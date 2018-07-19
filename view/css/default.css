@@ -33,6 +33,15 @@ p,a{
     padding:0;
     box-sizing: border-box;
 }
+
+#container{
+
+   background-color: white;
+   width: 100%;
+   max-width: 1366px;
+   margin: 0 auto;
+    
+}
 header{
     background-color: #011627;
     width: 100vw;
@@ -67,13 +76,9 @@ header form button{
 }
 
 body{
-    background: rgba(0, 0, 0, .5)
+    background: #e9ebee;
 }
 
-ul{
- 
-    
-}
 li{
     display: inline-block;
 }
@@ -385,3 +390,4 @@ nav.notificacoes ul li a span:first-of-type{
     width: 90%;
 }
 
+/*NÃO ALTERAR NADA DAQUI PARA CIMA*/
