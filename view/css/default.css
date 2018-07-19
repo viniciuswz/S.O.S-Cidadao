@@ -1,0 +1,387 @@
+:root{
+    --ajuste:100vw;
+    --ajusteMetade:50vw;
+}
+
+@font-face{
+    font-family: 'Open-Sans';
+    src:url("../fonts/Open_Sans/OpenSans-Regular.ttf");
+    font-size: 1em;
+}
+
+@font-face{
+    font-family: 'Open-Sans-Light';
+    src:url("../fonts/Open_Sans/OpenSans-light.ttf");
+    font-size: 1em;
+}
+@font-face{
+    font-family: 'Open-Sans-Bold';
+    src:url("../fonts/Open_Sans/OpenSans-Bold.ttf");
+    font-size: 1em;
+}
+
+h1,h2,h3,h4,h5,h6{
+    font-family: "Open-Sans-Bold";
+}
+
+p,a{
+    font-family: "Open-Sans";
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+header{
+    background-color: #011627;
+    width: 100vw;
+
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header form input[type=text]{
+outline: white;
+border:0;
+}
+
+header form button{
+    background-color: white;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+}
+.negrito{
+    font-weight: 600
+}
+
+body{
+    background: rgba(0, 0, 0, .5)
+}
+
+ul{
+ 
+    
+}
+li{
+    display: inline-block;
+}
+
+i{
+    background-image: url("../imagens/icones.png");
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    top:1px;
+}
+
+i.icone-user{
+    background-position: 0 0;
+
+}
+
+i.icone-reclamacao{
+    background-position: -40px 0
+}
+
+i.icone-notificacao{
+    background-position: -80px 0
+}
+
+
+i.icone-debate{
+        background-position: -120px 0
+    }
+    
+i.icone-pesquisa{
+    background-position: -160px 0
+}
+i.icone-grupo{
+    background-position: -200px 0
+}
+i.icone-salvar-full{
+    background-position: -240px 0
+}
+
+i.icone-salvar{
+    background-position: -280px 0
+}
+
+i.icone-local{
+    background-position: -320px 0
+}
+i.icone-mail{
+    background-position: -360px 0
+}
+
+i.icone-3pontos{
+    background-position: -400px 0
+}
+
+i.icone-edit-full{
+    background-position: -440px 0
+}
+i.icone-edit{
+    background-position: -480px 0
+}
+
+i.icone-lapis{
+    background-position: -520px 0
+}
+
+
+i.icone-like{
+    background-position: -560px 0
+}
+
+i.icone-like-full{
+    background-position: -600px 0
+}
+
+i.icone-olho{
+    background-position: -640px 0
+}
+
+i.icone-olho-fechado{
+    background-position: -680px 0
+}
+
+i.icone-comentario{
+    background-position: -720px 0
+}
+
+i.icone-comentario-full{
+    background-position: -760px 0
+}
+
+i.icone-camera{
+    background-position: -800px 0
+}
+
+i.icone-upload{
+    background-position: -840px 0
+}
+i.icone-senha{
+    background-position: -880px 0
+}
+
+i.icone-filtro{
+    background-position: -920px 0
+}
+
+i.icone-config{
+    background-position: -960px 0
+}
+
+i.icone-bandeira{
+    background-position: -1000px 0
+}
+
+i.icone-adm{
+    background-position: -1040px 0
+}
+
+i.icone-fechar{
+    background-position: -1080px 0
+}
+
+i.icone-prefeitura{
+    background-position: -1120px 0
+}
+
+i.icone-categoria-debate{
+    background-position: -1160px 0
+}
+
+i.icone-logout{
+    background-position: -1200px 0
+}
+    
+a{
+    text-decoration: none;
+}
+
+
+/*menu padrao*/
+
+nav.menu > ul > li > a > i > span{
+    font-family: arial;
+    z-index: 2;
+    position: absolute;
+    color: white;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    font-size:12px;
+    background-color: green;
+    border-radius: 50%;
+    font-style: normal;
+    text-align: center;
+
+}
+
+
+/*menu do usuario*/
+.user-menu{
+    display: block;
+    width: 0;
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+
+
+
+.user-menu div div{
+    position: absolute;
+    top: 100px;
+    left: 15px;
+    overflow: hidden;
+    width: 90px;
+    height: 90px;
+    border: 5px solid white;
+    border-radius: 50%;
+    z-index: 2;
+    
+
+}
+
+.user-menu p{
+    position: absolute;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: aliceblue;
+    text-shadow: 0px 0px 10px black;
+    top: 130px;
+    left: 110px;
+    z-index: 2;
+}
+
+.user-menu .mini-perfil{
+    overflow: hidden;
+    width: 100%;
+    height: 200px;
+}
+
+
+.user-menu .mini-perfil img:nth-child(1){
+
+   
+    width: 100px;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translateY(-50%) translateX(-50%);
+
+   
+}
+
+.user-menu .mini-perfil img:nth-child(2){
+    height: 280px;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    z-index: 1;
+}
+
+
+.user-menu nav ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.user-menu nav ul li{
+overflow: hidden;
+width: 100vw;
+}
+
+.user-menu ul li a{
+    font-size: .85rem;
+    font-weight: 600;
+    display: flex;
+    color: white;
+    width: 100%;
+    align-items: center;
+
+
+    padding: 2px 0;
+    padding-left: 19px;
+}
+
+.user-menu ul li a i.icone-user{
+
+
+    background-size: 950px;
+    background-position: 8px -1.5px;
+}
+
+/*Notificações*/
+.notificacoes{
+    display: block;
+    position: absolute;
+    overflow:hidden;
+    background-color: white;
+    width: 390px;
+    height: 0;
+    transition: 0.5s;
+}
+
+nav.notificacoes h3{
+    font-size: 1em;
+    border-bottom: 2px solid rgb(212, 212, 212);
+    padding: 5px 4px;
+}
+nav.notificacoes ul{
+    display: block;
+    overflow-y: scroll;
+    width: 410px;
+    height: 45vh;
+    margin-right: -10px;
+    padding-right: 3px;
+}
+
+.notificacoes.ul li a:last-child{
+background-color: red;
+}
+nav.notificacoes ul li a{
+    display: flex;
+    color: black;
+    font-size: 13.5px;
+    border-bottom: 1px solid rgb(212, 212, 212);
+    padding: 10px 3px;
+
+    align-items: center;
+}
+
+
+nav.notificacoes ul li {
+width: 100%; 
+}
+nav.notificacoes ul li a span:first-of-type{
+    word-wrap: break-word;
+    width: 90%;
+}
+

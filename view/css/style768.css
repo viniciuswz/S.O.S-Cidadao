@@ -1,0 +1,135 @@
+header{
+    height: 60px;
+}
+header img{
+    height: 60px;
+}
+header form{
+    width: 60%;
+    justify-content: center;
+}
+
+header form input[type=text]{
+width: 60%;
+min-width: 129px;
+outline: white;
+height: 35px;
+border:0;
+}
+
+header form input:focus{
+border: 3px solid pink;
+border-right: 0;
+}
+
+header input:focus + button{
+    border: 3px solid pink;
+    border-left: 0;
+    height: 35px;
+    width: 28px;
+
+}
+
+header form button{
+    background-color: white;
+    border: 0;
+    height: 35px;
+    width: 35px;
+    outline: none;
+    cursor: pointer;
+}
+
+header form button i.icone-pesquisa{
+
+    height: 28px;
+    width: 28px;
+
+    background-size: 950px;
+    background-position: -123.9px -2px ;
+}
+header i.icone-user{
+  
+margin:0 30px;
+width: 35px;
+height: 35px;
+
+background-size: 1060px;
+
+}
+
+nav.menu{
+    display: flex;
+    justify-content: center;
+    background-color: #011627;
+    width: 100vw;
+    position: fixed;
+    top: calc(100vh - 60px);
+    height: 60px;
+}
+nav.menu > ul{
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    width: 100vw;
+
+}
+
+nav.menu > ul > li{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+nav.menu > ul > li > a > i{
+   display: block;
+   margin: 0 auto; 
+}
+nav.menu > ul > li > a{
+color:white;
+width: calc(var(--ajuste)/3)
+}
+
+nav.menu > ul > li > a:hover{
+background-color: purple
+}
+
+.user-menu .fechar{
+    
+    color: aliceblue;
+    font-size: 50px;
+    font-weight: bold;
+    position: absolute;
+    left:calc(480px - 80px);
+    z-index: 2;
+}
+
+/*notificacoes*/
+
+.notificacoes ul::-webkit-scrollbar{
+    display:none
+}
+nav.notificacoes{
+    
+    bottom: 60px;
+    right: 0;
+    
+    width: 100vw;
+  
+}
+
+
+nav.notificacoes ul{
+    width: calc(100vw + 30px);
+    height: calc(100vh - 160px);
+    margin-right: -10px;
+    padding-right: 3px;
+    text-align: start;
+}
+
+nav.notificacoes ul li a{
+width: 100vw;
+}
+
+.notificacoes.ativo{
+    height: calc(100vh - 120px);
+}
+

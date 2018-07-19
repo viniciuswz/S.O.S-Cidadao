@@ -1,0 +1,177 @@
+
+header{
+  
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+   
+}
+header img{
+    height: 50px;
+    
+}
+header form{
+   
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+   
+}
+
+header form input[type=text]{
+width: 90%;
+min-width: 129px;
+outline: white;
+height: 28px;
+border:0;
+
+
+}
+
+header form input:focus{
+
+border-right: 0;
+}
+
+
+
+header form button{
+    background-color: white;
+    border: 0;
+    height: 28px;
+    width: 28px;
+    outline: none;
+    cursor: pointer;
+}
+
+header form button i.icone-pesquisa{
+    height: 28px;
+    width: 28px;
+
+    background-size: 950px;
+    background-position: -123.9px -2px ;
+}
+header i.icone-user{
+  
+margin:0 10px;
+width: 30px;
+height: 30px;
+
+background-size: 950px;
+
+}
+nav.menu{
+    display: flex;
+    justify-content: center;
+    background-color: #011627;
+    width: 100vw;
+    position: fixed;
+    top: calc(100vh - 50px);
+    height: 50px;
+}
+nav.menu >ul{
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    width: 100vw;
+
+}
+
+nav.menu > ul > li{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+nav.menu > ul > li > a > i{
+   display: block;
+   margin: 0 auto; 
+   width: 30px;
+   height: 30px;
+   background-size: 980px;
+ 
+
+}
+
+nav.menu > ul li > a > i.icone-reclamacao{
+    background-position: -32.5px -1.6px;
+    }
+    
+    
+    nav.menu ul li a i.icone-notificacao{
+        background-position: -65px -1.6px;
+    }
+    
+    nav.menu ul li a i.icone-debate{
+        background-position: -96px -1.6px;
+    }
+    
+    nav.menu > ul > li > a > i > span{
+    
+        margin: -7px 14px 0px -5px;
+    }
+    
+
+nav.menu > ul > li > a{
+color:white;
+width: calc(var(--ajuste)/3);
+font-size:0.9rem;
+}
+
+nav.menu > ul > li > a:hover{
+background-color: purple
+}
+
+
+nav.menu > ul > li > a > i > span{
+    width: 20px;
+    height: 20px;
+    margin: 0px 14px 0px 15px;
+}
+
+.user-menu > .fechar{
+    
+    color: aliceblue;
+    font-size: 50px;
+    font-weight: bold;
+    position: absolute;
+    left:calc(100vw - 45px);
+    z-index: 2;
+}
+
+/*notificações*/
+
+.notificacoes ul::-webkit-scrollbar{
+    display:none
+}
+
+nav.notificacoes{
+   
+    width: 100vw;
+    bottom: 50px;
+    right: 0;
+    
+    width: 100vw;
+   
+}
+
+
+nav.notificacoes ul{
+    
+    
+    width: calc(100vw + 20px);
+    height: calc(100vh - 150px);
+    margin-right: -10px;
+    padding-right: 3px;
+    text-align: start
+}
+
+nav.notificacoes ul li a{
+width: 100vw;
+}
+
+.notificacoes.ativo{
+    height: calc(100vh - 100px);
+}
