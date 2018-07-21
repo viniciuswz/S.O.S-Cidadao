@@ -391,3 +391,81 @@ nav.notificacoes ul li a span:first-of-type{
 }
 
 /*NÃO ALTERAR NADA DAQUI PARA CIMA*/
+
+
+
+.perfil{
+    display: flex;
+    overflow: hidden;
+    width: 100%; 
+    background-color: white;
+}
+
+.perfil > img{
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translateY(-50%) translateX(-50%);
+   
+}
+
+
+.perfil > div{
+    display: flex;
+    position: absolute;
+}
+
+.perfil div div{
+    display: flex;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.perfil div div img{
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translateY(-50%) translateX(-50%);
+}
+
+
+.perfil-base p{
+    position: absolute;
+    color: white;
+    font-family: 'Open-Sans-Bold';
+}
+
+.perfil i{
+    background-color: white;
+    border-radius: 6px;
+    width: 30px;
+    height: 30px;
+    background-position: -445px -5.7px;
+    cursor: pointer;
+}
+
+.perfil div i{
+  
+    position: relative;
+    right: 40px;
+    top: 60px;
+    margin: 0 auto;
+       
+}
+
+.perfil form input{
+    display: none;
+}
+
+.perfil > form > label{
+    align-self: flex-end;
+    position: absolute;
+    margin-top:3px;
+    border-radius: 0px;
+}
+
+.perfil > form{
+ z-index: 1;
+display: flex;
+}
+

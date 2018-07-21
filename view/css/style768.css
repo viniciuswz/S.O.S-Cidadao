@@ -134,3 +134,51 @@ width: 100vw;
 }
 
 /*NÃO ALTERAR NADA DAQUI PARA CIMA*/
+
+.perfil-base{
+   background-color: white;
+}
+
+
+.perfil{
+    height: 260px;
+    justify-content: center;
+}
+
+.perfil > img{
+    height: 56.23vw;
+    max-height: 774px;
+}
+
+
+.perfil > div{
+    margin-top: 150px;
+    align-items: center;
+    flex-direction: column-reverse;
+}
+
+.perfil div div{
+    height: 150px;
+    width: 150px;
+    border: 6px solid white;
+}
+
+.perfil div div img{
+    height: 135%;
+}
+
+.perfil-base p{
+    margin-top: 40px;
+    position: inherit;
+   
+    text-align: center;
+    font-size: 1.8rem;
+    color: black
+}
+
+.perfil div i{
+    position: absolute;
+    margin-right: -30px;
+    margin-top: 60px;
+       
+}
