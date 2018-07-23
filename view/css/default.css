@@ -469,3 +469,55 @@ nav.notificacoes ul li a span:first-of-type{
 display: flex;
 }
 
+.menu-perfil{
+    display: flex;
+   
+    justify-content: center;
+    height: 45px;
+    
+    
+}
+
+.menu-perfil ul{
+    
+    display: flex;
+    justify-content: center;
+}
+
+.menu-perfil ul li{
+    display: flex;
+    width: calc(100vw / 3);
+    justify-content: center;
+   
+    margin: 1px;
+    max-width: calc(768px / 3);
+
+    
+}
+
+.menu-perfil ul li a{
+    font-weight: 600;
+    display: inline-block;
+    line-height: 45px;
+
+    width: 100%;
+    height: 45px;
+    color: black;
+    text-align: center
+}
+
+.menu-perfil ul li.ativo a{
+    color: #00aeef;
+}
+
+
+
+#linha {
+    position: absolute;
+    margin-top: 40px;
+   
+    width: 165px;
+    height: 4px;
+    background: #00aeef;
+    transition: all 0.3s;
+  }
