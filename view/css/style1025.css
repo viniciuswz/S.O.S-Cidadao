@@ -145,3 +145,37 @@ background-color: purple
 
 
 /*NÃO ALTERAR NADA DAQUI PARA CIMA*/
+
+/*pag todos debates*/
+
+#container .criar-debate {
+    width: 84%;
+    background-color: darkcyan;
+    margin-top: 5px;
+    margin-left: 8%;
+    margin-right: 8%
+}
+
+.criar-debate p{
+    height: 100%;
+    margin-left: 10px;
+    font-family: Arial;
+    font-size: 18px;
+    display: inline-block;
+    
+}
+ .icone-criar-debate{
+     background-size: 1900px;
+     background-position: -735px -1.6px;
+     background-color: red;
+     width: 55px;
+     height: 55px;
+     margin-top: 5px;
+ }
+
+ .criar-debate a{
+     background-color: darkslateblue;
+     color:white;
+     width: 130px;
+     display: inline-block;
+ }
