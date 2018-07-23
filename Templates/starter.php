@@ -319,6 +319,8 @@ desired effect
         <a href="UpdateSenhaTemplate.php">Update Senha</a>
           <br>
         <a href="EnviarPublicacaoTemplate.php">Enviar Publicacao</a>
+          <br>
+        <a href="VisualizarPublicacaoTemplate.php">Ver publicações</a>
       <!-- Your Page Content Here -->
 
     </section>
