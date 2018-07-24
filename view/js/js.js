@@ -32,24 +32,12 @@ jQuery(function($)
 
     $(window).resize(function(){
         $(".notificacoes").removeClass('ativo');
-    })
-        
-    teste.data('batata', teste.position().left)
-    var teste =  $("#teste");
-   
+    })     
 })
 
 
 $(function() {
  
-
- 
- teste.click(function(){
-  
-    alert(teste.data('batata'))
-  });
-
-
   /*ativar*/
   var leftPos, newWidth, $linha;
 
@@ -60,6 +48,7 @@ $(function() {
     .data('origLeft', $linha.position().left)// armazenar os valores da position left do elemento que esta selecionado inicialmente
     .data('origWidth', $linha.width());// armazenar o valor da largura do elemento que esta selecionado inicialmente
 
+    /* trocar cor do a ativo */
   $('.espacos li a').click(function() {
     var $this = $(this); //o elemento que vai ser clicado
     $this.parent().addClass('ativo').siblings().removeClass('ativo');// vai pegar o elemento pai do a que acabu de ser clicado e mandar a classe ativo para ele em seguida remover a classe ativo dos elementos que não estiver selecionado
@@ -69,14 +58,14 @@ $(function() {
     return false; // encerra
   });
 
-  /*linha click transição*/
+  /*mudar a linha para o ativo*/
 
-  $('.espacos li').find('a').click(function() {
-    var $thisBar = $(this);
-    leftPos = $thisBar.position().left;
-    newWidth = $thisBar.parent().width();
-    $linha.css({
-      "left": leftPos,
+  $('.espacos li').find('a').click(function() { //econtrar o a dentro do li que estamos clicando e execultar a função
+    var $thisBar = $(this); //this se refere ao <a>  confirmo execultando isso, alert($thisBar.attr('href'))
+    leftPos = $thisBar.position().left; // a posição do elemento a que clicamos
+    newWidth = $thisBar.parent().width();// a largura do elemento...
+    $linha.css({ // posicionar no css a linha
+      "left": leftPos,// daqui para baixo já sabemos...
       "width": newWidth
     });
   }, function() {
