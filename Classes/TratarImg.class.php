@@ -18,6 +18,6 @@ class TratarImg{
 
     public function gerarNome($nomeAntigo){
         $tipo = strrchr($nomeAntigo, '.'); //Pegar a ultima ocorrencia
-        return $novoNome =  md5(uniqid("")) . $tipo; 
+        return $novoNome =  uniqid(mt_rand(), true) . $tipo; 
     }
 }

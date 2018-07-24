@@ -26,9 +26,7 @@ class TratarDataHora{
     public function calcularSegun(){
         $segundos1 = strtotime($this->dataHoraEnvio->format('d-m-Y H:i:s')); //transforma a data em segundos        
         $segundos2 = strtotime($this->dataHoraAgora->format('d-m-Y H:i:s'));        
-        $diferenca = $segundos2 - $segundos1;
-        //echo $this->dataHoraAgora->format('d-m-Y H:i:s') . '<br>';
-        //echo $this->dataHoraEnvio->format('d-m-Y H:i:s') . '<br>';
+        $diferenca = $segundos2 - $segundos1;        
         return $diferenca;
     }
 
@@ -72,7 +70,7 @@ class TratarDataHora{
                     $msg = "agora";
                 }else if($minutos <= 59){ // Menor que 1 hora
                     if($minutos == 1){ 
-                        $msg =  "há 1 minutos";
+                        $msg =  "há 1 minuto";
                     }else if($minutos >= 2 && $minutos <= 59){
                         $msg =  "há ". $minutos ." minutos";
                     }else{ // Se os minutos forem menor que 0
