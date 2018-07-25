@@ -18,8 +18,14 @@ session_start();
         if(isset($_SESSION['id_user']) AND !empty($_SESSION['id_user'])){
             $publi->setCodUsu($_SESSION['id_user']);
         }        
-        $resposta = $publi->ListFromALL();
-        //var_dump($resposta);
+        if(isset($_GET['pagina'])){            
+            $resposta = $publi->ListFromALL($_GET['pagina']);
+        }else{            
+            $resposta = $publi->ListFromALL($pagina);
+        }
+            $quantidadePaginas = $publi->getQuantidadePaginas();
+            $pagina = $publi->getPaginaAtual();
+        
         
 ?>
 
@@ -36,7 +42,7 @@ session_start();
             div.item{
                 //background-color:red;
                 width:  400px;
-                height: 300px;
+                height: 270px;
                 margin: 10px;
                 border: 2px solid red;
             }              
@@ -84,6 +90,26 @@ session_start();
                 display: inline-block;
                 width: auto;
                 margin-left: 20px;
+            }
+            ul{
+                text-align: center;
+            }
+            ul li{
+                display: inline-block;
+                margin-left: 10px;
+                background-color: pink;
+                width: 100px
+            }
+            ul li:hover{
+                background-color: red;
+            }
+            ul li a{
+                text-decoration: none;
+                color: black;
+                font-size: 20px;
+            }
+            .jaca {
+                background-color:green;
             }
         </style>
     </head>
@@ -136,7 +162,21 @@ session_start();
                 $contador++;
             }
         ?>        
-        </div>        
+        </div>      
+        <ul>
+        <?php
+            $contador = 1;
+            while($contador <= $quantidadePaginas){
+                if(isset($pagina) AND $pagina == $contador){
+                    echo '<li class="jaca"><a href="VisualizarPublicacaoTemplate.php?pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;  
+                }else{
+                    echo '<li><a href="VisualizarPublicacaoTemplate.php?pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;
+                }
+                
+                $contador++;        
+            }
+        ?>
+        </ul>
     </body>
 </html>
 

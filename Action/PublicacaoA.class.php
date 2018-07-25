@@ -4,6 +4,7 @@ use Model\PublicacaoM;
 use Core\Logradouro;
 use Classes\TratarImg;
 use Classes\TratarDataHora;
+use Classes\Paginacao;
 class PublicacaoA extends PublicacaoM{
     
     private $sqlInsert = "INSERT INTO publicacao(texto_publi, img_publi, titulo_publi, cod_usu, cod_cate, cep_logra,dataHora_publi)
@@ -16,13 +17,13 @@ class PublicacaoA extends PublicacaoM{
                                     INNER JOIN logradouro ON (publicacao.cep_logra = logradouro.cep_logra) 
                                     INNER JOIN bairro ON (logradouro.cod_bai = bairro.cod_bai) 
                                     INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu) 
-                                    WHERE descri_tipo_usu = 'Comum' AND %s  %s ";
+                                    WHERE descri_tipo_usu = 'Comum' AND %s  %s %s";
     
     private $whereListFromALL = "status_publi = 'A'  AND status_usu = 'A' ";
     
     private $whereIdUser = " AND usuario.cod_usu = '%s' ";
 
-    private $limite = " order by dataHora_publi desc limit 0,6";
+    private $limite = " order by dataHora_publi desc limit 10,5";
 
     private $sqlSelectQuantCurti = "SELECT COUNT(*) FROM publicacao_curtida WHERE cod_publi = '%s' AND status_publi_curti = 'A'";
 
@@ -30,6 +31,11 @@ class PublicacaoA extends PublicacaoM{
 
     private $sqlSelectVerifyCurti = "SELECT COUNT(*) FROM publicacao_curtida WHERE cod_publi = '%s' AND cod_usu = '%s' AND status_publi_curti = 'A'";
    
+    private $sqlSelectQuantPubli = "SELECT COUNT(*) FROM publicacao INNER JOIN usuario ON (usuario.cod_usu = publicacao.cod_usu)  
+                                        WHERE status_publi = 'A'  AND status_usu = 'A' %s";
+
+    private $sqlPaginaAtual;
+    
 
     public function cadastrarPublicacao($bairro, $local){
         $this->cadastrarLocal($bairro, $local);
@@ -69,23 +75,31 @@ class PublicacaoA extends PublicacaoM{
         return;
     } 
 
-    public function ListFromALL(){ // Listar todas as publicacoes
+    public function ListFromALL($pagina = null){ // Listar todas as publicacoes
+       
+        $sqlPaginacao = $this->controlarPaginacao($pagina, null);
         $sql = sprintf($this->sqlSelect,
-                        $this->whereListFromALL,
-                       // '1=1' // colocar um 1=1 pq nao tem mais nada, se nao colocar da pau
-                       $this->limite
+                        $this->whereListFromALL,                       
+                       ' AND 1=1', //colocar um AND 1=1 pq nao tem mais nada, se nao colocar da pau
+                       $sqlPaginacao
+                       
         );        
         $res = $this->runSelect($sql);
+        
         return $dadosTratados = $this->tratarInformacoes($res);
     }
 
-    public function ListByIdUser(){ //Listar publicacoes de um usuario       
+    public function ListByIdUser($pagina = null){ //Listar publicacoes de um usuario    
+        $prepararWhereUser = sprintf($this->whereIdUser, $this->getCodUsu()); 
+
+        $sqlPaginacao = $this->controlarPaginacao($pagina, $prepararWhereUser);
         $sql = sprintf($this->sqlSelect,
                     $this->whereListFromALL,
-                    sprintf($this->whereIdUser, $this->getCodUsu())
+                    $prepararWhereUser,
+                    $sqlPaginacao
         );  
         $res = $this->runSelect($sql);        
-        $dadosTratados = $this->tratarInformacoes($res);
+        return $dadosTratados = $this->tratarInformacoes($res);
     }
 
     public function tratarInformacoes($dados){        
@@ -148,6 +162,34 @@ class PublicacaoA extends PublicacaoM{
             return TRUE;
         }
         return FALSE;
+    }    
+
+    public function quantidadeTotalPubli($where){//Pegar a quantidade de publicacoes
+        if($where != null){ // Se for passado o paramentro null, nao tem restriçoes retorna todas as publicacoes
+            $sql = sprintf($this->sqlSelectQuantPubli,
+                                $where); 
+        }else{
+            $sql = sprintf($this->sqlSelectQuantPubli,
+                                'AND 1=1');
+        }
+          
+        $res = $this->runSelect($sql);
+        return $res[0]['COUNT(*)'];
+    }
+    
+    public function controlarPaginacao($pagina = null, $where){ // Fazer o controle da paginacao       
+        $paginacao = new Paginacao(); 
+        $QtdPubliPaginas = $this->getQtdPubliPaginas(); //Pega a quantidade de publicacoes por pagina
+        $quantidadeTotalPubli = $this->quantidadeTotalPubli($where);   //Pega a quantidade de publicacoes no total          
+        
+        $sqlPaginacao = $paginacao->prapararSql('dataHora_publi','desc',$QtdPubliPaginas, $pagina, $quantidadeTotalPubli);//Prepare o sql
+        $this->setQuantidadePaginas($paginacao->getQuantidadePaginas());//Seta a quantidade de paginas no total
+        $this->setPaginaAtual($paginacao->getPaginaAtual());
+        return $sqlPaginacao;
+        
     }
 
+    
+
+   
 }
