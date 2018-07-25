@@ -391,3 +391,45 @@ nav.notificacoes ul li a span:first-of-type{
 }
 
 /*NÃO ALTERAR NADA DAQUI PARA CIMA*/
+
+.informacoes{
+    margin: 70px;
+    margin-top: 65px;
+    width: 550px;
+    height: 300px;  
+    background-color: blanchedalmond;
+    
+}
+.informacoes h3{
+    text-align: center;
+}
+.campo-envio{
+    margin-top: 60px;
+}
+.imagem{
+    display: flex;
+    justify-content: flex-end;
+    width: 500px;
+    height: 300px;
+    background-color: blanchedalmond 
+}
+.imagem h3{
+    text-align: center;
+}
+.envio-img{
+   text-align: center;
+   margin-top: 100px;
+}
+
+.campo-texto{
+    text-align: center;
+    height: 300px;
+    background-color: blanchedalmond
+}
+.campo-texto h3{
+    display: flex;
+    justify-content: center;
+
+
+}
+
