@@ -21,7 +21,7 @@ session_start();
         if(isset($_GET['pagina'])){            
             $resposta = $publi->ListFromALL($_GET['pagina']);
         }else{            
-            $resposta = $publi->ListFromALL($pagina);
+            $resposta = $publi->ListFromALL();
         }
             $quantidadePaginas = $publi->getQuantidadePaginas();
             $pagina = $publi->getPaginaAtual();
@@ -121,7 +121,7 @@ session_start();
                 
         ?>  
                 <div class="item">  
-                    <a href="">
+                    <a href="VerPublicacaoTemplate.php?ID=<?php echo $resposta[$contador]['cod_publi'] ?>">
                         <div class="cabecalho">                  
                             <img src="../Img/perfil/<?php echo $resposta[$contador]['img_perfil_usu']?>" class="perfil">
                             <div class="informacoesCabe">
@@ -165,16 +165,19 @@ session_start();
         </div>      
         <ul>
         <?php
-            $contador = 1;
-            while($contador <= $quantidadePaginas){
-                if(isset($pagina) AND $pagina == $contador){
-                    echo '<li class="jaca"><a href="VisualizarPublicacaoTemplate.php?pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;  
-                }else{
-                    echo '<li><a href="VisualizarPublicacaoTemplate.php?pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;
+            if($quantidadePaginas != 1){
+                $contador = 1;
+                while($contador <= $quantidadePaginas){
+                    if(isset($pagina) AND $pagina == $contador){
+                        echo '<li class="jaca"><a href="VisualizarPublicacoesTemplate.php?pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;  
+                    }else{
+                        echo '<li><a href="VisualizarPublicacoesTemplate.php?pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;
+                    }
+                    
+                    $contador++;        
                 }
-                
-                $contador++;        
             }
+            
         ?>
         </ul>
     </body>

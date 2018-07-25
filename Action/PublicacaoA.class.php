@@ -23,6 +23,8 @@ class PublicacaoA extends PublicacaoM{
     
     private $whereIdUser = " AND usuario.cod_usu = '%s' ";
 
+    private $whereIdPubli = " AND publicacao.cod_publi = '%s'"; 
+
     private $limite = " order by dataHora_publi desc limit 10,5";
 
     private $sqlSelectQuantCurti = "SELECT COUNT(*) FROM publicacao_curtida WHERE cod_publi = '%s' AND status_publi_curti = 'A'";
@@ -102,6 +104,24 @@ class PublicacaoA extends PublicacaoM{
         return $dadosTratados = $this->tratarInformacoes($res);
     }
 
+    public function listByIdPubli(){ // Listar pelo id da publicacao
+        $prepararWherePubli = sprintf($this->whereIdPubli, $this->getCodPubli());         
+        $sql = sprintf($this->sqlSelect,
+                        $this->whereListFromALL,
+                        $prepararWherePubli,
+                        ' AND 1=1'
+        );  
+        $res = $this->runSelect($sql);
+        if(empty($res)){
+            throw new \Exception("Não foi possível fazer o select",9); 
+        }        
+        $dadosTratados = $this->tratarInformacoes($res);       
+        $dadosTratados[0]['class_cate'] = $this->tirarAcentos($dadosTratados[0]['descri_cate']);//Tirar acentos pra entrar como classe no html
+        //var_dump($dadosTratados);
+        return $dadosTratados;
+        
+    }
+
     public function tratarInformacoes($dados){        
         $contador = 0;
                
@@ -130,6 +150,12 @@ class PublicacaoA extends PublicacaoM{
         
         return $dados;       
         
+    }
+
+    public function tirarAcentos($palavra){ // Tirar acentos de palavras
+        $semAcento = strtolower(preg_replace( '/[`^~\'"]/', null, iconv( 'UTF-8', 'ASCII//TRANSLIT', $palavra )));       
+        $tirarEspacos = str_replace(" ", "", $semAcento);
+        return $tirarEspacos;        
     }
     
     public function tratarHora($hora){ 

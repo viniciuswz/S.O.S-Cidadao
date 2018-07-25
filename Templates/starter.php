@@ -320,7 +320,7 @@ desired effect
           <br>
         <a href="EnviarPublicacaoTemplate.php">Enviar Publicacao</a>
           <br>
-        <a href="VisualizarPublicacaoTemplate.php">Ver publicações</a>
+        <a href="VisualizarPublicacoesTemplate.php">Ver publicações</a>
       <!-- Your Page Content Here -->
 
     </section>

@@ -91,6 +91,10 @@ class PublicacaoM extends DbConnection{
     public function getQtdPubliPaginas(){//Pega a quantidade de publicacoes por pagina
         return $this->qtdPubliPaginas;
     }
+
+    public function setQtdPubliPaginas($quantidade){//Pega a quantidade de publicacoes por pagina
+        $this->qtdPubliPaginas = $quantidade;
+    }
     
     public function setQuantidadePaginas($quantidade){// Seta a quantidade de paginas no total
         $this->qtdPaginas = $quantidade;
