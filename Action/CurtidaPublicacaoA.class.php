@@ -15,7 +15,7 @@ class CurtidaPublicacaoA extends CurtidaPublicacaoM{
                      $this->getCodPubli());
         $resultado = $this->runSelect($sql);
         var_dump($resultado);
-
+        $verificacaoDono = $this->selectDonoPubli();
         if(empty($resultado)){
             echo 'insert';
         }else if($resultado[0]['status_publi_curti'] == "A"){
@@ -33,10 +33,10 @@ class CurtidaPublicacaoA extends CurtidaPublicacaoM{
         $sql = sprintf($this->selectCodUsu(),
                        $this->codPubli());
           $resultado = $this->runSelect($sql);
-          if($empty($resultado)){
-              return false;
+          if(empty($resultado)){
+              return "A";
           }else{
-              return true;
+              return "I";
           }
     }
 }
