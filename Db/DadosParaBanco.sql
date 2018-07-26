@@ -27,7 +27,7 @@ CREATE TABLE `bairro` (
   `nome_bai` varchar(60) NOT NULL,
   `status_bai` char(1) NOT NULL DEFAULT 'A',
   PRIMARY KEY (`cod_bai`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +36,7 @@ CREATE TABLE `bairro` (
 
 LOCK TABLES `bairro` WRITE;
 /*!40000 ALTER TABLE `bairro` DISABLE KEYS */;
-INSERT INTO `bairro` VALUES (1,'Engenho Novo','A'),(2,'Jardim Belval','A'),(3,'Jardim Silveira','A'),(5,'Parque Santana II','A'),(6,'Bairro do funk','A'),(7,'Bairro da jaca','A');
+INSERT INTO `bairro` VALUES (1,'Engenho Novo','A'),(2,'Jardim Belval','A'),(3,'Jardim Silveira','A'),(5,'Parque Santana II','A'),(6,'Bairro do funk','A'),(7,'Bairro da jaca','A'),(8,'Fudeu','A');
 /*!40000 ALTER TABLE `bairro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -91,6 +91,7 @@ CREATE TABLE `comen_curtida` (
 
 LOCK TABLES `comen_curtida` WRITE;
 /*!40000 ALTER TABLE `comen_curtida` DISABLE KEYS */;
+INSERT INTO `comen_curtida` VALUES (1,68,'A','I');
 /*!40000 ALTER TABLE `comen_curtida` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -146,7 +147,7 @@ CREATE TABLE `comentario` (
   KEY `fk_Comentario_Publicacao1_idx` (`cod_publi`),
   CONSTRAINT `fk_Comentario_Publicacao1` FOREIGN KEY (`cod_publi`) REFERENCES `publicacao` (`cod_publi`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_Comentario_Usuario1` FOREIGN KEY (`cod_usu`) REFERENCES `usuario` (`cod_usu`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -155,7 +156,7 @@ CREATE TABLE `comentario` (
 
 LOCK TABLES `comentario` WRITE;
 /*!40000 ALTER TABLE `comentario` DISABLE KEYS */;
-INSERT INTO `comentario` VALUES (1,'Comen1','I','2012-05-08 08:00:00','A',1,1),(3,'Comen2','N','2012-05-08 08:00:00','A',2,1),(4,'Comen3','N','2012-05-08 08:00:00','A',2,2),(5,'Comen4','N','2012-05-08 08:00:00','A',2,3),(6,'5','N','2012-05-08 08:00:00','A',3,1),(7,'6','N','2012-05-08 08:00:00','A',3,2),(8,'7','N','2012-05-08 08:00:00','A',3,3),(9,'9','N','2012-05-08 08:00:00','A',3,4),(10,'10','N','0000-00-00 00:00:00','A',4,5),(11,'11','N','0000-00-00 00:00:00','A',5,1);
+INSERT INTO `comentario` VALUES (1,'Comen1','I','2012-05-08 08:00:00','A',1,1),(3,'Comen2','N','2012-05-08 08:00:00','A',2,1),(4,'Comen3','N','2012-05-08 08:00:00','A',2,2),(5,'Comen4','N','2012-05-08 08:00:00','A',2,3),(6,'5','N','2012-05-08 08:00:00','A',3,1),(7,'6','N','2012-05-08 08:00:00','A',3,2),(8,'7','N','2012-05-08 08:00:00','A',3,3),(9,'9','N','2012-05-08 08:00:00','I',3,4),(10,'10','N','0000-00-00 00:00:00','A',4,5),(11,'11','N','0000-00-00 00:00:00','A',5,1),(13,'JACA','I','2018-07-25 20:00:42','A',1,17),(14,'JACA','N','2018-07-25 20:01:25','A',2,17),(15,'JACA','I','2018-07-25 20:05:25','A',1,17),(16,'JACA','I','2018-07-25 20:18:53','A',1,17),(17,'JACA','I','2018-07-25 20:18:55','A',1,17),(18,'JACA','I','2018-07-25 20:19:09','A',1,17),(19,'JACA','I','2018-07-25 20:19:09','A',1,17),(20,'JACA','I','2018-07-25 20:19:09','A',1,17),(21,'JACA','I','2018-07-25 20:22:44','A',1,17),(22,'JACA','I','2018-07-25 20:25:12','A',1,17),(23,'JACA','I','2018-07-25 20:28:07','A',1,17),(24,'JACA','I','2018-07-25 20:28:21','A',1,17),(25,'JACA','I','2018-07-25 20:28:23','A',1,17),(26,'JACA','I','2018-07-25 20:28:23','A',1,17),(27,'JACA','I','2018-07-25 20:28:23','A',1,17),(28,'JACA','I','2018-07-25 20:28:24','A',1,17),(29,'JACA','I','2018-07-25 20:28:24','A',1,17),(30,'JACA','I','2018-07-25 20:28:24','A',1,17),(31,'JACA','I','2018-07-25 20:28:33','A',1,17),(32,'JACA','I','2018-07-25 20:28:33','A',1,17),(33,'JACA','I','2018-07-25 20:28:33','A',1,17),(34,'JACA','I','2018-07-25 20:28:43','A',1,17),(35,'JACA','I','2018-07-25 20:28:44','A',1,17),(36,'JACA','I','2018-07-25 20:28:44','A',1,17),(37,'JACA','I','2018-07-25 20:28:44','A',1,17),(38,'JACA','I','2018-07-25 20:28:44','A',1,17),(39,'JACA','I','2018-07-25 20:29:02','A',1,17),(40,'JACA','I','2018-07-25 20:30:02','A',1,17),(41,'JACA','I','2018-07-25 20:30:27','A',1,17),(42,'JACA','I','2018-07-25 20:31:43','A',1,17),(43,'JACA','I','2018-07-25 20:31:44','A',1,17),(44,'JACA','I','2018-07-25 20:31:44','A',1,17),(45,'JACA','I','2018-07-25 20:31:44','A',1,17),(46,'JACA','I','2018-07-25 20:31:44','A',1,17),(47,'JACA','I','2018-07-25 20:31:45','A',1,17),(48,'Essa é a resposta da prefeitura','N','2018-07-25 20:31:45','A',3,17),(49,'JACA','I','2018-07-25 20:32:11','A',1,17),(50,'JACA','I','2018-07-25 20:32:11','A',1,17),(51,'JACA','I','2018-07-25 20:32:11','A',1,17),(52,'JACA','I','2018-07-25 20:32:12','A',1,17),(53,'JACA','I','2018-07-25 20:32:19','A',1,17),(54,'JACA','I','2018-07-25 20:32:20','A',1,17),(55,'JACA','I','2018-07-25 20:32:20','A',1,17),(56,'JACA','I','2018-07-25 20:32:20','A',1,17),(57,'JACA','I','2018-07-25 20:32:30','A',1,17),(58,'JACA','I','2018-07-25 20:32:31','A',1,17),(59,'JACA','I','2018-07-25 20:32:31','A',1,17),(60,'JACA','I','2018-07-25 20:32:31','A',1,17),(61,'JACA','I','2018-07-25 20:32:58','A',1,17),(62,'JACA','I','2018-07-25 20:33:17','A',1,17),(63,'JACA','I','2018-07-25 20:35:02','A',1,17),(64,'JACA','I','2018-07-25 20:35:29','A',1,17),(65,'JACA','I','2018-07-25 20:35:30','A',1,17),(66,'JACA','I','2018-07-25 20:39:35','A',1,17),(67,'JACA','I','2018-07-25 20:39:53','A',1,17),(68,'JACA','I','2018-07-25 20:40:12','A',1,17);
 /*!40000 ALTER TABLE `comentario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -261,7 +262,7 @@ DROP TABLE IF EXISTS `logradouro`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `logradouro` (
-  `cep_logra` int(11) NOT NULL,
+  `cep_logra` varchar(8) NOT NULL,
   `endere_logra` varchar(60) NOT NULL,
   `cod_bai` int(11) NOT NULL,
   PRIMARY KEY (`cep_logra`),
@@ -276,7 +277,7 @@ CREATE TABLE `logradouro` (
 
 LOCK TABLES `logradouro` WRITE;
 /*!40000 ALTER TABLE `logradouro` DISABLE KEYS */;
-INSERT INTO `logradouro` VALUES (12,'Rua da Jaca',1),(45,'Rua do Gol',2),(78,'Rua do Brasil',3),(123,'Rua da Uva',1),(456,'Rua do Camario',2),(789,'Rua da Dinamarca',3),(1478,'Rua do funk',6),(897564,'Rua do crai',7),(6420150,'Avenida Grupo Bandeirantes',2),(6515045,'Rua das Mangueiras',5),(12345678,'Rua das Mangueiras',5);
+INSERT INTO `logradouro` VALUES ('01313000','Rua Nove de Julho',5),('01407000','Avenida 14 de Juhlo',3),('06420150','Avenida Grupo Bandeirantes',2),('06515045','Rua das Mangueiras',5),('12','Rua da Jaca',1),('123','Rua da Uva',1),('1234567','Rua das Mangueiras',5),('1478','Rua do funk',6),('17670-00','Avenida Fudeu agora',8),('45','Rua do Gol',2),('456','Rua do Camario',2),('78','Rua do Brasil',3),('789','Rua da Dinamarca',3),('897564','Rua do crai',7);
 /*!40000 ALTER TABLE `logradouro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -384,7 +385,7 @@ CREATE TABLE `publicacao` (
   `dataHora_publi` datetime NOT NULL,
   `cod_usu` int(11) NOT NULL,
   `cod_cate` int(11) NOT NULL,
-  `cep_logra` int(11) NOT NULL,
+  `cep_logra` varchar(8) NOT NULL,
   `img_publi` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`cod_publi`),
   KEY `fk_Publicacao_Usuario1_idx` (`cod_usu`),
@@ -393,7 +394,7 @@ CREATE TABLE `publicacao` (
   CONSTRAINT `fk_Publicacao_Categorias1` FOREIGN KEY (`cod_cate`) REFERENCES `categoria` (`cod_cate`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_Publicacao_Logradouro1` FOREIGN KEY (`cep_logra`) REFERENCES `logradouro` (`cep_logra`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_Publicacao_Usuario1` FOREIGN KEY (`cod_usu`) REFERENCES `usuario` (`cod_usu`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -402,7 +403,7 @@ CREATE TABLE `publicacao` (
 
 LOCK TABLES `publicacao` WRITE;
 /*!40000 ALTER TABLE `publicacao` DISABLE KEYS */;
-INSERT INTO `publicacao` VALUES (1,'A','Texto1','Titulo1','2012-05-08 08:00:00',1,1,12,NULL),(2,'A','Texto2','Titulo2','2012-05-08 08:00:00',1,1,123,NULL),(3,'A','Texto3','Titulo3','2012-05-08 08:00:00',1,1,123,NULL),(4,'A','Texto4','Titulo4','2012-05-08 08:00:00',2,2,45,NULL),(5,'A','Texto5','Titulo5','2012-05-08 08:00:00',2,2,456,NULL),(6,'A','Texto6','Titulo6','2012-05-08 08:00:00',2,2,456,NULL),(7,'A','Texto7','Titulo7','2012-05-08 08:00:00',2,2,45,NULL),(8,'A','Texto8','Titulo8','2012-05-08 08:00:00',1,1,12,NULL),(9,'A','adasdas','Titulo1','2018-07-21 21:49:09',1,1,6515045,''),(10,'A','dasdadasdasd\r\ndasd\r\nas\r\nd\r\nasd\r\n','Titulo1','2018-07-21 21:49:35',1,2,6515045,'0c03cd62c0aa101e231c97108e1575d3.png'),(11,'A','dsadasd','Titulo1','2018-07-21 22:01:21',1,1,6515045,'0447e46d3710ecf5af641b68994bd044.08.31.jpeg'),(12,'A','dasdasdas','Titulo1','2018-07-21 22:02:46',1,1,6515045,'982aea1948ed1365a5adf252831ef14a.jpeg'),(13,'A','dasdasd','Titulo1','2018-07-21 22:05:13',2,1,897564,'c91bdb565fd2c93aae027c537c51d605.jpeg'),(15,'A','dasdasdas','Titulo1','2018-07-21 22:06:55',2,4,897564,'b89fe512f39658168628dc176617d130.jpeg'),(16,'A','Esse itb ta uma poha\r\nta um cu\r\noloco meu\r\n','Titulo1','2018-07-22 12:16:30',1,4,6420150,'6f3aafbcc90e1bbaef18dd131119e3b9.jpeg');
+INSERT INTO `publicacao` VALUES (1,'A','Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos.','Titulo1','2012-05-08 08:00:00',1,1,'06515045',NULL),(2,'A','Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos.','Titulo2','2012-05-08 08:00:00',1,1,'06515045',NULL),(3,'A','Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos.','Titulo3','2012-05-08 08:00:00',1,1,'06515045',NULL),(4,'A','Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos.','Titulo4','2012-05-08 08:00:00',2,2,'01313000',NULL),(5,'A','Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos.','Titulo5','2012-05-08 08:00:00',2,2,'01313000',NULL),(6,'A','Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos.','Titulo6','2012-05-08 08:00:00',2,2,'01313000',NULL),(7,'A','Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos.','Titulo7','2012-05-08 08:00:00',2,2,'01407000',NULL),(8,'A','Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos.','Titulo8','2012-05-08 08:00:00',1,1,'01407000',NULL),(9,'A','Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos.','Titulo1','2018-07-21 21:49:09',1,1,'06515045',''),(10,'A','Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos.','Titulo1','2018-07-21 21:49:35',1,2,'06515045','0c03cd62c0aa101e231c97108e1575d3.png'),(11,'A','Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos.','Titulo1','2018-07-21 22:01:21',1,1,'06515045','0447e46d3710ecf5af641b68994bd044.08.31.jpeg'),(12,'A','Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos.','Titulo1','2018-07-21 22:02:46',1,1,'06515045','982aea1948ed1365a5adf252831ef14a.jpeg'),(13,'A','Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos.','Titulo1','2018-07-21 22:05:13',2,1,'06515045','c91bdb565fd2c93aae027c537c51d605.jpeg'),(15,'A','Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos.','Titulo1','2018-07-21 22:06:55',2,4,'06515045','b89fe512f39658168628dc176617d130.jpeg'),(16,'A','Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos.','Titulo1','2018-07-22 12:16:30',1,4,'06420150','6f3aafbcc90e1bbaef18dd131119e3b9.jpeg'),(17,'A','Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos.','Estudantes sendo escravizados','2018-07-24 14:41:14',1,1,'06515045','6373643755b565c1e7095d9.30678218.jpeg'),(20,'A','Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos.','Falta de Merenda no colégio','2018-07-25 19:44:21',2,4,'06420150','8918513285b58fd453602a9.76229848.jpeg');
 /*!40000 ALTER TABLE `publicacao` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -432,7 +433,7 @@ CREATE TABLE `publicacao_curtida` (
 
 LOCK TABLES `publicacao_curtida` WRITE;
 /*!40000 ALTER TABLE `publicacao_curtida` DISABLE KEYS */;
-INSERT INTO `publicacao_curtida` VALUES (1,1,'A','I'),(1,2,'A','I'),(1,3,'A','I'),(1,8,'A','I'),(2,4,'A','I'),(2,5,'A','I'),(2,6,'A','I'),(2,7,'A','I'),(3,1,'A','N'),(3,2,'A','N'),(3,3,'A','N'),(3,4,'A','N'),(3,5,'A','N'),(3,6,'A','N'),(3,7,'A','N'),(3,8,'A','N'),(4,1,'A','N'),(4,2,'A','N'),(4,3,'A','N'),(4,4,'A','N'),(4,5,'A','N'),(4,6,'A','N'),(4,7,'A','N'),(4,8,'A','N'),(5,1,'A','N'),(5,2,'A','N'),(5,3,'A','N'),(5,4,'A','N'),(5,5,'A','N'),(5,6,'A','N'),(5,7,'A','N'),(5,8,'A','N'),(6,1,'A','N'),(6,2,'A','N'),(6,3,'A','N'),(6,4,'A','N'),(6,5,'A','N'),(6,6,'A','N'),(6,7,'A','N'),(6,8,'A','N');
+INSERT INTO `publicacao_curtida` VALUES (1,1,'A','I'),(1,2,'A','I'),(1,3,'A','I'),(1,8,'A','I'),(1,17,'A','I'),(2,4,'A','I'),(2,5,'A','I'),(2,6,'A','I'),(2,7,'A','I'),(2,17,'A','N'),(3,1,'A','N'),(3,2,'A','N'),(3,3,'A','N'),(3,4,'A','N'),(3,5,'A','N'),(3,6,'A','N'),(3,7,'A','N'),(3,8,'A','N'),(4,1,'A','N'),(4,2,'A','N'),(4,3,'A','N'),(4,4,'A','N'),(4,5,'I','N'),(4,6,'A','N'),(4,7,'A','N'),(4,8,'A','N'),(5,1,'A','N'),(5,2,'A','N'),(5,3,'A','N'),(5,4,'A','N'),(5,5,'I','N'),(5,6,'A','N'),(5,7,'I','N'),(5,8,'A','N'),(6,1,'A','N'),(6,2,'A','N'),(6,3,'A','N'),(6,4,'A','N'),(6,5,'I','N'),(6,6,'A','N'),(6,8,'A','N');
 /*!40000 ALTER TABLE `publicacao_curtida` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -533,4 +534,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-07-23 15:34:21
+-- Dump completed on 2018-07-26 12:42:10

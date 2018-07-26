@@ -196,7 +196,7 @@ ENGINE = InnoDB;
 -- Table `Reclama1`.`Logradouro`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Reclama1`.`Logradouro` (
-  `cep_logra` INT NOT NULL,
+  `cep_logra` VARCHAR(8) NOT NULL,
   `endere_logra` VARCHAR(60) NOT NULL,
   `cod_bai` INT NOT NULL,
   INDEX `fk_Endereco_Bairro1_idx` (`cod_bai` ASC),
@@ -221,7 +221,7 @@ CREATE TABLE IF NOT EXISTS `Reclama1`.`Publicacao` (
   `dataHora_publi` DATETIME NOT NULL,
   `cod_usu` INT NOT NULL,
   `cod_cate` INT NOT NULL,
-  `cep_logra` INT NOT NULL,
+  `cep_logra` VARCHAR(8) NOT NULL,
   PRIMARY KEY (`cod_publi`),
   INDEX `fk_Publicacao_Usuario1_idx` (`cod_usu` ASC),
   INDEX `fk_Publicacao_Categorias1_idx` (`cod_cate` ASC),

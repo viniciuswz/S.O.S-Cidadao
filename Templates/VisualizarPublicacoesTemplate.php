@@ -114,6 +114,13 @@ session_start();
         </style>
     </head>
     <body>
+        <?php
+            if(!isset($_SESSION['id_user'])){
+                echo '<a href="loginTemplate.php">Fazer Login</a>';
+            }else{
+                echo '<a href="starter.php">Home</a>';
+            }
+        ?>
         <div class="agrupa">
         <?php
             $contador = 0;

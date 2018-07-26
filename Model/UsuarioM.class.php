@@ -60,7 +60,7 @@ class UsuarioM extends DbConnection{
     }    
 
     public function setNomeUsu($nomeUsu){        
-        $this->nomeUsu = filter_var($nomeUsu, FILTER_SANITIZE_STRING);
+        $this->nomeUsu = ucfirst(filter_var($nomeUsu, FILTER_SANITIZE_STRING));
     }
 
     public function setImgCapaUsu($imgCapaUsu){

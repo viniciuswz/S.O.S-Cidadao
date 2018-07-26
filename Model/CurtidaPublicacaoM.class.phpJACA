@@ -1,0 +1,11 @@
+<?php 
+
+namespace Model;
+use Db\DbConnection;
+
+class CurtidaPublicacaoM extends DbConnection{        
+    
+}
+
+
+

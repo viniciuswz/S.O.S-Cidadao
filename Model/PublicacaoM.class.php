@@ -61,7 +61,7 @@ class PublicacaoM extends DbConnection{
     }
 
     public function setTextoPubli($texto){
-        $this->textoPubli = filter_var($texto, FILTER_SANITIZE_STRING);
+        $this->textoPubli = ucfirst(filter_var($texto, FILTER_SANITIZE_STRING));
     }
 
     public function setImgPubli($img){
@@ -69,7 +69,7 @@ class PublicacaoM extends DbConnection{
     }
 
     public function setTituloPubli($titulo){
-        $this->tituloPubli = filter_var($titulo, FILTER_SANITIZE_STRING);
+        $this->tituloPubli = ucfirst(filter_var($titulo, FILTER_SANITIZE_STRING));
     }
 
     public function setDataHoraPubli($data){
