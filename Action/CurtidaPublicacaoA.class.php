@@ -3,6 +3,5 @@ namespace Action;
 use Model\CurtidaPublicacaoM;
 
 class CurtidaPublicacaoA extends CurtidaPublicacaoM{
- 
-
+    
 }
