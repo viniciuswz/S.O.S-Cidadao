@@ -8,7 +8,7 @@ class CurtidaPublicacaoA extends CurtidaPublicacaoM{
     private $sqlUpdate = "UPDATE publicacao_curtida SET status_publi_curti = '%s',
                                                         ind_visu_dono_publi = '%s' WHERE cod_usu = '%s' AND cod_publi='%s'";
     
-    private $selectCodUsu ="SELECT cod_usu FROM publicacao WHERE cod_publi = '%s'";
+    private $selectCodUsu ="SELECT cod_usu FROM publicacao WHERE cod_publi = '%s' AND cod_usu = '%s'";
     public function select(){
      echo $sql = sprintf($this->sqlSelect,
                      $this->getCodUsu(),
@@ -37,10 +37,11 @@ class CurtidaPublicacaoA extends CurtidaPublicacaoM{
 
     public function selectDonoPubli(){
         $sql = sprintf($this->selectCodUsu,
-                       $this->getCodPubli());
+                       $this->getCodPubli(),
+                       $this)->getCodUsu());
           $resultado = $this->runSelect($sql);
           if(empty($resultado)){
-              return "A";
+              return "N";
           }else{
               return "I";
           }
