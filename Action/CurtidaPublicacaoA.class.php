@@ -12,4 +12,8 @@ class CurtidaPublicacaoA extends CurtidaPublicacaoM{
         $resultado = $this->runSelect($sql);
         var_dump($resultado);
     }
+
+    public function update($statusCurtida, $indVisuDono){
+
+    }
 }
