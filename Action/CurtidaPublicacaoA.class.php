@@ -37,7 +37,7 @@ class CurtidaPublicacaoA extends CurtidaPublicacaoM{
 
     public function selectDonoPubli(){
         $sql = sprintf($this->selectCodUsu(),
-                       $this->codPubli;
+                       $this->codPubli);
           $resultado = $this->runSelect($sql);
           if(empty($resultado)){
               return "A";
