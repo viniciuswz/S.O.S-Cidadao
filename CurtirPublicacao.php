@@ -13,7 +13,7 @@ if(isset($_GET['ID'])){
         $curtidaPub = new CurtidaPublicacao();
         $curtidaPub>setCodUsu(2);
         $curtidaPub->setCodPubli(17);
-        $curtidaPub->select()
+        $curtidaPub->select();
 
     }catch(Exception $exc){
             $mensagem = $exc->getMessage();  
