@@ -35,9 +35,9 @@ session_start();
         $resposta = $publi->listByIdPubli();   
         $comentarioPrefei = $comentario->SelecionarComentariosUserPrefei();
 
-            $quantidadePaginas = $comentario->getQuantidadePaginas();
-            $pagina = $comentario->getPaginaAtual();
-        //var_dump($resposta);
+        $quantidadePaginas = $comentario->getQuantidadePaginas();
+        $pagina = $comentario->getPaginaAtual();
+        //var_dump($comentarioComum);
 ?>
 
 <html>
