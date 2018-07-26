@@ -10,8 +10,10 @@ session_start();
 if(isset($_GET['ID'])){
     try{
         Usuario::verificarLogin(2);//Tem q estar logado, vai estourar um erro se nao estiver logado
-        $curtidaPub = new CurtidaPublicacao;
-
+        $curtidaPub = new CurtidaPublicacao();
+        $curtidaPub>setCodUsu(2);
+        $curtidaPub->setCodPubli(17);
+        $curtidaPub->select()
 
     }catch(Exception $exc){
             $mensagem = $exc->getMessage();  
