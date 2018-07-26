@@ -14,6 +14,7 @@ if(isset($_GET['ID'])){
         $curtidaPub->setCodUsu(2);
         $curtidaPub->setCodPubli(17);
         $curtidaPub->select();
+       
 
     }catch(Exception $exc){
             $mensagem = $exc->getMessage();  
