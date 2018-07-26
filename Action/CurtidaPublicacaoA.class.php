@@ -23,6 +23,7 @@ class CurtidaPublicacaoA extends CurtidaPublicacaoM{
             $this->update("I", $verificacaoDono);
         }else{
             echo 'curtir';
+            $this->update("A", $verificacaoDono);
         }
     }
 
