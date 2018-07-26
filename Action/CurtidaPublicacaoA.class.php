@@ -33,5 +33,10 @@ class CurtidaPublicacaoA extends CurtidaPublicacaoM{
         $sql = sprintf($this->selectCodUsu(),
                        $this->codPubli());
           $resultado = $this->runSelect($sql);
+          if($empty($resultado)){
+              return false;
+          }else{
+              return true;
+          }
     }
 }
