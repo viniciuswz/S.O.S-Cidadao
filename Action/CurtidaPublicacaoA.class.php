@@ -11,6 +11,14 @@ class CurtidaPublicacaoA extends CurtidaPublicacaoM{
                      $this->getCodPubli());
         $resultado = $this->runSelect($sql);
         var_dump($resultado);
+
+        if(empty($resultado)){
+
+        }else if($resultado[0]['status_publi_curti'] == A){
+
+        }else{
+
+        }
     }
 
     public function update($statusCurtida, $indVisuDono){
