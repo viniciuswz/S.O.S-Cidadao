@@ -1,46 +1,12 @@
 <?php
 namespace Classes;
-class Paginacao{
-    private $limite = " order by %s %s limit %s,%s";
+use Classes\Model\PaginacaoM;
+
+class Paginacao extends PaginacaoM{
+    private $limite = " order by %s %s limit %s,%s";  
 
 
-    private $qtdPubliPaginas;
-    private $qtdPaginas;
-    private $paginaAtual;
-
-    public function getQtdPubliPaginas(){//Pega a quantidade de publicacoes por pagina
-        return $this->qtdPubliPaginas;
-    }
-
-    public function setQtdPubliPaginas($quantidadePorPagina){ // Seta a quantiade de publicacoes por pagina
-        if(!is_numeric($quantidadePorPagina) or $quantidadePorPagina <= 0 ){
-            $this->qtdPubliPaginas = 3;
-            return;
-        }
-        $this->qtdPubliPaginas = $quantidadePorPagina; 
-    }
-
-    public function setQuantidadePaginas($quantidadeTotal, $quantidadePorPagina){ // Seta a quantidade de paginas no total
-
-        return $this->qtdPaginas = ceil($quantidadeTotal / $quantidadePorPagina);
-
-    }
-
-    public function getQuantidadePaginas(){// Pega a quantidade de paginas no total
-        return $this->qtdPaginas;
-    }
-
-    public function getPaginaAtual(){
-        return $this->paginaAtual;
-    }
-
-    public function setPaginaAtual($pagina){
-        $this->paginaAtual = $pagina;
-    }
-
-    public function prapararSql($atributo,$ordenar, int $quantidadePorPagina,  $pagina, int $quantidadeTotal){
-
-        $this->setQtdPubliPaginas($quantidadePorPagina);
+    public function prapararSql($atributo,$ordenar,  $pagina, int $quantidadeTotal){        
         
         $quantidadePorPagina = $this->getQtdPubliPaginas();  
 

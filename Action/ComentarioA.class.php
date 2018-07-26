@@ -2,6 +2,7 @@
 namespace Action;
 use Model\ComentarioM;
 use Classes\TratarDataHora;
+use Classes\Paginacao;
 class ComentarioA extends ComentarioM{
     private $sqlVerifyDonoPubli = "SELECT cod_publi FROM publicacao WHERE cod_usu = '%s' AND cod_publi = '%s'";
 
@@ -13,11 +14,16 @@ class ComentarioA extends ComentarioM{
                                     INNER JOIN publicacao ON (publicacao.cod_publi = comentario.cod_publi) 
                                     WHERE 1=1 AND status_comen = 'A' AND %s ";
 
-    private $whereUserComum = " publicacao.cod_publi = '%s' AND descri_tipo_usu = 'Comum' %s ORDER BY dataHora_comen DESC";
+    private $whereUserComum = " publicacao.cod_publi = '%s' AND descri_tipo_usu = 'Comum' AND status_usu = 'A' %s ";
 
-    private $wherePrefeiFunc =  " publicacao.cod_publi = '%s' AND (descri_tipo_usu = 'Prefeitura' or descri_tipo_usu = 'Funcionario')";
+    private $wherePrefeiFunc =  " publicacao.cod_publi = '%s' AND (descri_tipo_usu = 'Prefeitura' or descri_tipo_usu = 'Funcionario') AND status_usu = 'A'";
 
     private $sqlSelectVerifyCurti = "SELECT COUNT(*) FROM comen_curtida WHERE cod_comen = '%s' AND cod_usu = '%s' AND status_curte = 'A'";
+
+    private $sqlQtdComenComum = "SELECT COUNT(*) FROM comentario INNER JOIN usuario ON (usuario.cod_usu = comentario.cod_usu) 
+                                    INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu) 
+                                    WHERE  cod_publi = '%s' AND status_comen = 'A' AND descri_tipo_usu = 'Comum'
+                                        AND status_usu = 'A'";
 
     public function inserirComen(){
         if($this->verifyDonoPubli()){//Se a verificacao for true
@@ -55,10 +61,11 @@ class ComentarioA extends ComentarioM{
         return FALSE; // se for o dono retorna false
     }
 
-    public function SelecionarComentariosUserComum(){
+    public function SelecionarComentariosUserComum($pagina = null){
+        $limite = $this->controlarPaginacao($pagina);
         $where = sprintf($this->whereUserComum,
                             $this->getCodPubli(),
-                            'AND 1=1'//Aqui vai o limit da paginacao
+                            $limite
                 );              
         $sql = sprintf($this->sqlSelectComen,
                         $where       
@@ -115,4 +122,23 @@ class ComentarioA extends ComentarioM{
         }
         return FALSE;
     }    
+    public function quantidadeTotalPubli(){//Comentarios comum
+        $sql = sprintf($this->sqlQtdComenComum,
+                                $this->getCodPubli()
+                            
+        );
+        $res = $this->runSelect($sql);
+        return $res[0]['COUNT(*)'];
+    }
+
+    public function controlarPaginacao($pagina = null){ // Fazer o controle da paginacao       
+        $paginacao = new Paginacao(); //Instancinado a classe
+        $paginacao->setQtdPubliPaginas(6); //Quantos comentarios quero por pagina       
+        $quantidadeTotalPubli = $this->quantidadeTotalPubli(); //total de comentarios
+        $sqlPaginacao = $paginacao->prapararSql('dataHora_comen','desc', $pagina, $quantidadeTotalPubli);//Prepare o sql
+        $this->setQuantidadePaginas($paginacao->getQuantidadePaginas());//Seta a quantidade de paginas no total
+        $this->setPaginaAtual($paginacao->getPaginaAtual()); // Seta a pagina atual
+        return $sqlPaginacao;
+        
+    }
 }

@@ -12,6 +12,10 @@ class ComentarioM extends DbConnection{
     private $codUsu;
     private $codPubli;
 
+   
+    private $qtdPaginas;
+    private $PaginaAtual;
+
     public function getCodComen(){
         return $this->codComen;
     }
@@ -68,6 +72,22 @@ class ComentarioM extends DbConnection{
 
     public function setCodPubli($cod){
         $this->codPubli = $cod;
+    }
+       
+    public function setQuantidadePaginas($quantidade){// Seta a quantidade de paginas no total
+        $this->qtdPaginas = $quantidade;
+    }
+
+    public function getQuantidadePaginas(){ // Pega a quantidade de paginas no total 
+       return $this->qtdPaginas;
+    }
+
+    public function setPaginaAtual($pagina){// Seta a pagina atual
+        $this->PaginaAtual = $pagina;
+    }
+
+    public function getPaginaAtual(){// Pega a pagina atual
+        return $this->PaginaAtual;
     }
     
 

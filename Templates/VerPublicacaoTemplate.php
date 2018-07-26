@@ -21,14 +21,22 @@ session_start();
             $publi->setCodUsu($_SESSION['id_user']);
             $comentario->setCodUsu($_SESSION['id_user']);
         }
+
         if(isset($_GET['ID'])){
             $publi->setCodPubli($_GET['ID']);
             $comentario->setCodPubli($_GET['ID']);
         }
-        $resposta = $publi->listByIdPubli();
-        //
-        //$comentarioComum = $comentario->SelecionarComentariosUserComum();
-        //$comentarioPrefei = $comentario->SelecionarComentariosUserPrefei();
+
+        if(isset($_GET['pagina'])){            
+            $comentarioComum = $comentario->SelecionarComentariosUserComum($_GET['pagina']);
+        }else{            
+            $comentarioComum = $comentario->SelecionarComentariosUserComum();
+        }
+        $resposta = $publi->listByIdPubli();   
+        $comentarioPrefei = $comentario->SelecionarComentariosUserPrefei();
+
+            $quantidadePaginas = $comentario->getQuantidadePaginas();
+            $pagina = $comentario->getPaginaAtual();
         //var_dump($resposta);
 ?>
 
@@ -93,9 +101,46 @@ session_start();
                 height:400px;
                 background-color: red;
             }
+            div.comenComum{
+                padding-top:20px;
+                width:100%;
+                height:400px;
+                background-color: pink;
+            }
             span{
                 display: inline-block;
                 width:50%;
+            }
+            img.prefei{
+                width: 15%;
+                height: 30%;
+                //background-color: pink;
+                position: relative;
+                left: 0px;
+                display: inline-block;
+            }  
+            ul{
+                text-align: center;
+            }
+            ul li{
+                display: inline-block;
+                margin-left: 10px;
+                background-color: pink;
+                width: 100px
+            }
+            ul li:hover{
+                background-color: red;
+            }
+            ul li a{
+                text-decoration: none;
+                color: black;
+                font-size: 20px;
+            }
+            .jaca {
+                background-color:green;
+            }
+            .arruma{
+                display:flex;                
             }
         </style>
     </head> 
@@ -145,14 +190,58 @@ session_start();
         ?>
                 <div class="comenPrefei">
                     <h1>Resposta Prefeitura:</h1>
-                    <img src="../Img/perfil/<?php echo $comentarioPrefei[0]['img_perfil_usu']?>" class="perfil">
-                    <div>
-                    <span class="nomeUsu"><?php echo $comentarioPrefei[0]['nome_usu']?></span>
-                    <span class="dataHora"><?php echo $comentarioPrefei[0]['dataHora_comen']?></span>
+                    <img src="../Img/perfil/<?php echo $comentarioPrefei[0]['img_perfil_usu']?>" class="prefei">
+                    <div class="informacoesCabe">
+                        <span class="nomeUsu"><?php echo $comentarioPrefei[0]['nome_usu']?></span>
+                        <span class="dataHora"><?php echo $comentarioPrefei[0]['dataHora_comen']?></span>
                     </div>
                     <p><?php echo $comentarioPrefei[0]['texto_comen']?></p>
                 </div>
         <?php
+            }
+        ?>
+
+         <?php 
+            if(!empty($comentarioComum)){
+        ?>      
+            <h1>Comentarios</h1> 
+            <div class="arruma">
+               
+        <?php 
+                $contador = 0;
+                while($contador < count($comentarioComum)){
+        ?>        
+                <div class="comenComum">
+                   
+
+                    <img src="../Img/perfil/<?php echo $comentarioComum[$contador]['img_perfil_usu']?>" class="prefei">
+                    <div class="informacoesCabe">
+                        <span class="nomeUsu"><?php echo $comentarioComum[$contador]['nome_usu']?></span>
+                        <span class="dataHora"><?php echo $comentarioComum[$contador]['dataHora_comen']?></span>
+                    </div>
+                    <p><?php echo $comentarioComum[$contador]['texto_comen']?></p>
+                </div>
+        <?php
+                    $contador++;
+                }
+        echo '</div>';
+        echo '<ul>';
+        
+            if($quantidadePaginas != 1){
+                $contador = 1;
+                while($contador <= $quantidadePaginas){
+                    if(isset($pagina) AND $pagina == $contador){
+                        echo '<li class="jaca"><a href="VerPublicacaoTemplate.php?ID='.$_GET['ID'].'&pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;  
+                    }else{
+                        echo '<li><a href="VerPublicacaoTemplate.php?ID='.$_GET['ID'].'&pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;
+                    }
+                    
+                    $contador++;        
+                }
+            }
+            
+        
+        echo '</ul>';
             }
         ?>
         
