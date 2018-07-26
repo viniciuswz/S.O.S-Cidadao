@@ -28,4 +28,8 @@ class CurtidaPublicacaoA extends CurtidaPublicacaoM{
     public function update($statusCurtida, $indVisuDono){
 
     }
+
+    public function selectDonoPubli(){
+        $sql = sprintf($)
+    }
 }
