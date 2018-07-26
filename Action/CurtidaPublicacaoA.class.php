@@ -30,8 +30,9 @@ class CurtidaPublicacaoA extends CurtidaPublicacaoM{
         $sql = sprintf($this->sqlUpdate,
                        $statusCurtida,
                        $indVisuDono,
-                       $this->getCodUsu();
-                       $this->getCodPubli()
+                       $this->getCodUsu(),
+                       $this->getCodPubli());
+            $resultado=$this->runQuery($sql);
     }
 
     public function selectDonoPubli(){
