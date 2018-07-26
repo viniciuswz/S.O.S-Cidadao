@@ -13,11 +13,11 @@ class CurtidaPublicacaoA extends CurtidaPublicacaoM{
         var_dump($resultado);
 
         if(empty($resultado)){
-
-        }else if($resultado[0]['status_publi_curti'] == A){
-
+            echo 'insert';
+        }else if($resultado[0]['status_publi_curti'] == "A"){
+            echo 'descurtir';
         }else{
-
+            echo 'curtir';
         }
     }
 
