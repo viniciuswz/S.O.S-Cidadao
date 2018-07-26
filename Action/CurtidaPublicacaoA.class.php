@@ -20,18 +20,23 @@ class CurtidaPublicacaoA extends CurtidaPublicacaoM{
             echo 'insert';
         }else if($resultado[0]['status_publi_curti'] == "A"){
             echo 'descurtir';
+            $this->update("I", $verificacaoDono);
         }else{
             echo 'curtir';
         }
     }
 
     public function update($statusCurtida, $indVisuDono){
-
+        $sql = sprintf($this->sqlUpdate,
+                       $statusCurtida,
+                       $indVisuDono,
+                       $this->getCodUsu();
+                       $this->getCodPubli()
     }
 
     public function selectDonoPubli(){
         $sql = sprintf($this->selectCodUsu(),
-                       $this->codPubli());
+                       $this->codPubli;
           $resultado = $this->runSelect($sql);
           if(empty($resultado)){
               return "A";
