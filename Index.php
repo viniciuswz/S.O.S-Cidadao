@@ -16,13 +16,13 @@ $resultado = $jaca->notificacoes();
 
 echo json_encode($resultado);
 
-/*
+/*s
 foreach($resultado as $chaves => $valores){
     foreach($valores as $chave => $valor){
         if($chave == 'notificacao'){
             echo $valor . "<br>";
         }
-    }
+    }s
 }
 */
 ?>
