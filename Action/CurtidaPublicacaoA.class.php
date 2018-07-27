@@ -53,8 +53,8 @@ class CurtidaPublicacaoA extends CurtidaPublicacaoM{
     public function insert(){
         $sql = sprintf($this->getCodUsu(),
                        $this->getCodPubli(),
-                       $verificacaoDono,
-                       $this->getindVisuDono("A"));
+                       $this->selectDonoPubli(),
+                       $this->getIndVisuDonoPubli("A"));
                        $resultado=$this->runQuery($sql);
     }
 }
