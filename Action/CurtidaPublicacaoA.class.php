@@ -42,7 +42,7 @@ class CurtidaPublicacaoA extends CurtidaPublicacaoM{
         $sql = sprintf($this->selectCodUsu,
                        $this->getCodPubli(),
                        $this->getCodUsu());
-          $resultado = $this->runSelect($sql);
+            $resultado=$this->runSelect($sql);
           if(empty($resultado)){
               return "N";
           }else{
@@ -51,10 +51,11 @@ class CurtidaPublicacaoA extends CurtidaPublicacaoM{
     }
 
     public function insert(){
-        $sql = sprintf($this->getCodUsu(),
+        $sql = sprintf($this->sqlInsert,
+                       $this->getCodUsu(),
                        $this->getCodPubli(),
                        $this->selectDonoPubli(),
                        $this->getIndVisuDonoPubli("A"));
-                       $resultado=$this->runQuery($sql);
+            $resultado=$this->runQuery($sql);
     }
 }
