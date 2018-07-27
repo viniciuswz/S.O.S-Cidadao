@@ -11,8 +11,8 @@ if(isset($_GET['ID'])){
     try{
         Usuario::verificarLogin(2);//Tem q estar logado, vai estourar um erro se nao estiver logado
         $curtidaPub = new CurtidaPublicacao();
-        $curtidaPub->setCodUsu(2);
-        $curtidaPub->setCodPubli(17);
+        $curtidaPub->setCodUsu($_SESSION['id_user']);
+        $curtidaPub->setCodPubli($_GET['ID']);
         $curtidaPub->select();
        
 
