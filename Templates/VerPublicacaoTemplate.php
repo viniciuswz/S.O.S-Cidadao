@@ -20,6 +20,7 @@ session_start();
         if(isset($_SESSION['id_user']) AND !empty($_SESSION['id_user'])){
             $publi->setCodUsu($_SESSION['id_user']);
             $comentario->setCodUsu($_SESSION['id_user']);
+            $tipoUsu = $_SESSION['tipo_usu'];
         }
 
         if(isset($_GET['ID'])){
@@ -37,6 +38,7 @@ session_start();
 
         $quantidadePaginas = $comentario->getQuantidadePaginas();
         $pagina = $comentario->getPaginaAtual();
+        
         //var_dump($comentarioPrefei);
 ?>
 
@@ -195,7 +197,7 @@ session_start();
                         <span class="nomeUsu"><?php echo $comentarioPrefei[0]['nome_usu']?></span>
                         <span class="dataHora"><?php echo $comentarioPrefei[0]['dataHora_comen']?></span>
                     </div>
-                    <p><?php echo $comentarioPrefei[0]['texto_comen']?></p>
+                    <p><?php echo nl2br($comentarioPrefei[0]['texto_comen'])?></p>
                     <?php
                         if(isset($comentarioPrefei[0]['indCurtidaDoUser']) AND $comentarioPrefei[0]['indCurtidaDoUser'] == TRUE){            
                             echo '<a href="../CurtirComentario.php?ID='.$comentarioPrefei[0]['cod_comen'].'">Descurtir</a>';            
@@ -207,8 +209,23 @@ session_start();
                 </div>
         <?php
             }
+            
+            if($tipoUsu == 'Funcionario' or $tipoUsu == 'Prefeitura'){
+                if(empty($comentarioPrefei)){
+                    echo '
+                        <div>
+                            <form action="../Comentario.php" method="post">
+                                <h1>Envie seu comentario!!:</h1>
+                                <textarea cols="70" rows="5" name="texto"></textarea>
+                                <input type="hidden" value=" '. $_GET['ID'].'" name="id">
+                                <input type="submit" value="Enviar">
+                            </form>        
+                       </div>   
+                    ';
+                }
+            }else{            
         ?>
-        
+            
         <div>
                 <form action="../Comentario.php" method="post">
                     <h1>Envie seu comentario!!:</h1>
@@ -220,6 +237,8 @@ session_start();
         </div>
 
          <?php 
+            }
+
             if(!empty($comentarioComum)){
         ?>      
             <h1>Comentarios</h1> 
@@ -237,7 +256,7 @@ session_start();
                         <span class="nomeUsu"><?php echo $comentarioComum[$contador]['nome_usu']?></span>
                         <span class="dataHora"><?php echo $comentarioComum[$contador]['dataHora_comen']?></span>
                     </div>
-                    <p><?php echo $comentarioComum[$contador]['texto_comen']?></p>
+                    <p><?php echo nl2br($comentarioComum[$contador]['texto_comen'])?></p>
                     <?php
                         if(isset($comentarioComum[$contador]['indCurtidaDoUser']) AND $comentarioComum[$contador]['indCurtidaDoUser'] == TRUE){            
                             echo '<a href="../CurtirComentario.php?ID='.$comentarioComum[$contador]['cod_comen'].'">Descurtir</a>';            

@@ -28,7 +28,7 @@ class ComentarioA extends ComentarioM{
     public function inserirComen(){
         $indVisuDono = $this->verifyDonoPubli();
 
-        echo $sql = sprintf($this->sqlInsert,
+        $sql = sprintf($this->sqlInsert,
                         $this->getTextoComen(),
                         $indVisuDono,
                         $this->getCodUsu(),
