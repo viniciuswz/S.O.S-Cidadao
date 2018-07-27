@@ -26,26 +26,21 @@ class ComentarioA extends ComentarioM{
                                         AND status_usu = 'A'";
 
     public function inserirComen(){
-        if($this->verifyDonoPubli()){//Se a verificacao for true
-            $indVisuDono = 'N';//Quer dizer que nao é o dono da publicacao
-            //entao coloca N, para o dono ser notificado
-        }else{//Se a verificacao for false
-            $indVisuDono = 'I';//Quer dizer que é o dono da publicacao
-            //entao coloca I, para o dono nao ser notificado
-        }
-        $sql = sprintf($this->sqlInsert,
+        $indVisuDono = $this->verifyDonoPubli();
+
+        echo $sql = sprintf($this->sqlInsert,
                         $this->getTextoComen(),
                         $indVisuDono,
                         $this->getCodUsu(),
                         $this->getCodPubli()
         );
 
-        //$inserir = $this->runQuery($sql); 
-        //if(!$inserir->rowCount()){  // Se der erro cai nesse if          
-          //  throw new \Exception("Não foi possível realizar o comentario",11);   
-        //}   
-        //$this->SelecionarComentariosUserComum();
-        //$this->SelecionarComentariosUserPrefei();
+        $inserir = $this->runQuery($sql); 
+        if(!$inserir->rowCount()){  // Se der erro cai nesse if          
+            throw new \Exception("Não foi possível realizar o comentario",11);   
+        }   
+        $this->SelecionarComentariosUserComum();
+        $this->SelecionarComentariosUserPrefei();
         
     }
 
@@ -55,10 +50,12 @@ class ComentarioA extends ComentarioM{
                         $this->getCodPubli()
         );
         $consulta = $this->runSelect($sql); 
-        if(empty($consulta)){ // Se nao for o dono retorna true
-            return TRUE;            
+        if(empty($consulta)){ //Quer dizer que nao é o dono da publicacao
+            //entao coloca N, para o dono ser notificado
+            return "N";            
         }
-        return FALSE; // se for o dono retorna false
+        return "I"; //Quer dizer que é o dono da publicacao
+        //entao coloca I, para o dono nao ser notificado
     }
 
     public function SelecionarComentariosUserComum($pagina = null){

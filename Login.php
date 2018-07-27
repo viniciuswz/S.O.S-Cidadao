@@ -16,11 +16,13 @@ session_start();
                 //echo 'comum';
                 header("Location: ./Templates/starter.php"); // Joga pra index
             }else if($resultado[0]['descri_tipo_usu'] == 'Adm' or $resultado[0]['descri_tipo_usu'] == 'Moderador'){
-                echo 'administracao';
+                //echo 'administracao';
                 //header("Location: ./Templates/indexTemplate.php");
+                header("Location: ./Templates/starter.php");
             }else if($resultado[0]['descri_tipo_usu'] == 'Prefeitura' or $resultado[0]['descri_tipo_usu'] == 'Funcionario'){
-                echo 'prefeitura';
+                //echo 'prefeitura';
                 //header("Location: ./Templates/indexTemplate.php");
+                header("Location: ./Templates/starter.php");
             }
     
     

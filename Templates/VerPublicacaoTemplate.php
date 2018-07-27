@@ -184,7 +184,7 @@ session_start();
             
                 ?>              
             </div>   
-        </div>  
+        </div>          
         <?php 
             if(!empty($comentarioPrefei)){
         ?>
@@ -208,6 +208,16 @@ session_start();
         <?php
             }
         ?>
+        
+        <div>
+                <form action="../Comentario.php" method="post">
+                    <h1>Envie seu comentario!!:</h1>
+                    <textarea cols="70" rows="5" name="texto"></textarea>
+                    <input type="hidden" value="<?php echo $_GET['ID']?>" name="id">
+                    <input type="submit" value="Enviar">
+                </form>
+
+        </div>
 
          <?php 
             if(!empty($comentarioComum)){
