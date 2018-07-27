@@ -37,7 +37,7 @@ session_start();
 
         $quantidadePaginas = $comentario->getQuantidadePaginas();
         $pagina = $comentario->getPaginaAtual();
-        //var_dump($comentarioComum);
+        //var_dump($comentarioPrefei);
 ?>
 
 <html>
@@ -196,6 +196,14 @@ session_start();
                         <span class="dataHora"><?php echo $comentarioPrefei[0]['dataHora_comen']?></span>
                     </div>
                     <p><?php echo $comentarioPrefei[0]['texto_comen']?></p>
+                    <?php
+                        if(isset($comentarioPrefei[0]['indCurtidaDoUser']) AND $comentarioPrefei[0]['indCurtidaDoUser'] == TRUE){            
+                            echo '<a href="../CurtirComentario.php?ID='.$comentarioPrefei[0]['cod_comen'].'">Descurtir</a>';            
+                        }else{                     
+                            echo '<a href="../CurtirComentario.php?ID='.$comentarioPrefei[0]['cod_comen'].'">Curtir</a>';  
+                        }
+
+                    ?>
                 </div>
         <?php
             }
@@ -220,6 +228,14 @@ session_start();
                         <span class="dataHora"><?php echo $comentarioComum[$contador]['dataHora_comen']?></span>
                     </div>
                     <p><?php echo $comentarioComum[$contador]['texto_comen']?></p>
+                    <?php
+                        if(isset($comentarioComum[$contador]['indCurtidaDoUser']) AND $comentarioComum[$contador]['indCurtidaDoUser'] == TRUE){            
+                            echo '<a href="../CurtirComentario.php?ID='.$comentarioComum[$contador]['cod_comen'].'">Descurtir</a>';            
+                        }else{                     
+                            echo '<a href="../CurtirComentario.php?ID='.$comentarioComum[$contador]['cod_comen'].'">Curtir</a>';  
+                        }
+
+                    ?>
                 </div>
         <?php
                     $contador++;
