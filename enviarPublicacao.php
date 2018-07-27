@@ -26,7 +26,9 @@ if(isset($_POST) AND !empty($_POST)){
                 $publicacao->setImgPubli($_FILES['imagem']);
             }            
             $publicacao->cadastrarPublicacao($_POST['bairro'], $_POST['local']);
-            echo "<script> alert('Publicacao enviada com sucesso');javascript:window.location='Templates/starter.php';</script>";
+            $idPubli = $publicacao->last(); 
+            echo "<script> alert('Publicacao enviada com sucesso');javascript:window.location='./Templates/VerPublicacaoTemplate.php?ID=".$idPubli."';</script>";
+        
         }catch(Exception $exc){
             $mensagem = $exc->getMessage(); 
             if($exc->getCode() == 8 or $exc->getCode() == 12){  // 8 = Se der erro ao cadastrar
