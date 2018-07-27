@@ -19,6 +19,7 @@ class CurtidaPublicacaoA extends CurtidaPublicacaoM{
         $verificacaoDono = $this->selectDonoPubli();
         if(empty($resultado)){
             echo 'insert';
+            $this->insert();
         }else if($resultado[0]['status_publi_curti'] == "A"){
             echo 'descurtir';
             $this->update("I", $verificacaoDono);
