@@ -149,7 +149,7 @@ session_start();
                         <span class="titulo"><?php echo $resposta[$contador]['titulo_publi']?></span>
                         <span class="endereco"><?php echo $resposta[$contador]['endereco_organizado_fechado']?></span>
                         <?php
-                            if($resposta[$contador]['indCurtidaDoUser']){ 
+                            if(isset($resposta[$contador]['indCurtidaDoUser']) AND $resposta[$contador]['indCurtidaDoUser'] == TRUE){ 
                         ?>                             
                             <span class="curtidas">Curtidas<b> (Você ja curtiu):</b> <?php echo $resposta[$contador]['quantidade_curtidas']?></span>                       
                         <?php  
