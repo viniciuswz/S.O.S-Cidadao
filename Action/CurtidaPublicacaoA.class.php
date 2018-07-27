@@ -11,20 +11,16 @@ class CurtidaPublicacaoA extends CurtidaPublicacaoM{
     private $sqlInsert = "INSERT into publicacao_curtida(cod_usu, cod_publi, ind_visu_dono_publi) VALUES('%s', '%s', '%s')";
     private $selectCodUsu ="SELECT cod_usu FROM publicacao WHERE cod_publi = '%s' AND cod_usu = '%s'";
     public function select(){
-     echo $sql = sprintf($this->sqlSelect,
+      $sql = sprintf($this->sqlSelect,
                      $this->getCodUsu(),
                      $this->getCodPubli());
         $resultado = $this->runSelect($sql);
-        var_dump($resultado);
         $verificacaoDono = $this->selectDonoPubli();
         if(empty($resultado)){
-            echo 'insert';
             $this->insert();
         }else if($resultado[0]['status_publi_curti'] == "A"){
-            echo 'descurtir';
             $this->update("I", $verificacaoDono);
         }else{
-            echo 'curtir';
             $this->update("A", $verificacaoDono);
         }
     }
@@ -54,8 +50,7 @@ class CurtidaPublicacaoA extends CurtidaPublicacaoM{
         $sql = sprintf($this->sqlInsert,
                        $this->getCodUsu(),
                        $this->getCodPubli(),
-                       $this->selectDonoPubli()
-    );
+                       $this->selectDonoPubli());
             $resultado=$this->runQuery($sql);
     }
 }
