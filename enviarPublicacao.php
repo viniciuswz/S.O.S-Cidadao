@@ -28,7 +28,19 @@ if(isset($_POST) AND !empty($_POST)){
             $publicacao->cadastrarPublicacao($_POST['bairro'], $_POST['local']);
             echo "<script> alert('Publicacao enviada com sucesso');javascript:window.location='Templates/starter.php';</script>";
         }catch(Exception $exc){
-            echo $mensagem = $exc->getMessage();  
+            $mensagem = $exc->getMessage(); 
+            if($exc->getCode() == 8 or $exc->getCode() == 12){  // 8 = Se der erro ao cadastrar
+                $mensagem = $exc->getMessage();   // 12 = Mexer no inspecionar elemento
+                echo "<script> alert('$mensagem');javascript:window.location='./Templates/EnviarPublicacaoTemplate.php';</script>";            
+            }
+            if($exc->getCode() == 2){//Nao esta logado
+                $mensagem = $exc->getMessage();   
+                echo "<script> alert('$mensagem');javascript:window.location='./Templates/loginTemplate.php';</script>";
+            }
+            if($exc->getCode() == 6){//Não é usuario comum
+                $mensagem = $exc->getMessage();  
+                echo "<script> alert('$mensagem');javascript:window.location='./Templates/starter.php';</script>";
+            }
         }    
 }else{
     echo 'Caba safado para de entrar pela url';

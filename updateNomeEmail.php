@@ -20,10 +20,13 @@ if(isset($_POST) AND !empty($_POST)){//Verificaçao se ele entrou pela url
             echo "<script> alert('Alteração realizada com sucesso');javascript:window.location='Templates/starter.php';</script>";
     
         }catch (Exception $exc){
-            $mensagem = $exc->getMessage();  
-            echo "<script> alert('$mensagem');javascript:window.location='Templates/UpdateNomeEmailTemplate.php';</script>";
-        }
-    
+            $mensagem = $exc->getMessage();
+            if($exc->getCode() == 1 or $exc->getCode() == 12){  // 1 = Se der erro ao cadastrar
+                $mensagem = $exc->getMessage();   // 12 = Mexer no inspecionar elemento
+                echo "<script> alert('$mensagem');javascript:window.location='Templates/UpdateNomeEmailTemplate.php';</script>";            
+            }  
+            
+        }   
     
 }else{
     echo 'Caba safado nao entre pela url';

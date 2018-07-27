@@ -25,7 +25,14 @@ if(isset($_POST) AND !empty($_POST)){
        echo "<script> javascript:window.location='Templates/VerPublicacaoTemplate.php?ID=".$idPubli."';</script>";
 
     }catch (Exception $exc){
-        echo $exc->getMessage();
+        //echo $exc->getMessage();
+        if($exc->getCode() == 11 or $exc->getCode() == 12){  // 11 = Se der erro ao enviar comentario
+            $mensagem = $exc->getMessage();   // 12 = Mexer no inspecionar elemento
+            echo "<script> alert('$mensagem');javascript:history.back(-1);</script>";            
+        }
+        if($exc->getCode() == 2){ // Se nao estiver logado
+            echo "<script> javascript:window.location='Templates/loginTemplate.php';</script>";
+        }
     }
 }else{
     echo 'caba safado para entrar pela url';

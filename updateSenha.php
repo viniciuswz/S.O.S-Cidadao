@@ -18,7 +18,10 @@ if(isset($_POST) AND !empty($_POST)){
     
         }catch (Exception $exc){
             $mensagem = $exc->getMessage();  
-            echo "<script> alert('$mensagem');javascript:window.location='Templates/UpdateSenhaTemplate.php';</script>";
+            if($exc->getCode() == 1 or $exc->getCode() == 12){  // 1 = Se der erro ao cadastrar
+                $mensagem = $exc->getMessage();   // 12 = Mexer no inspecionar elemento
+                echo "<script> alert('$mensagem');javascript:window.location='Templates/UpdateNomeEmailTemplate.php';</script>";            
+            } 
         }   
             
 }else{
