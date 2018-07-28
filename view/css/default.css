@@ -393,48 +393,133 @@ nav.notificacoes ul li a span:first-of-type{
 
 /*NÃO ALTERAR NADA DAQUI PARA CIMA*/
 
+
+/*///////////////////////////////BLOCO PRINCIPAL////////////////////////////////////*/
 .formulario{
-    width: auto;
+    width: 90%;
+    margin: 5% auto;
     height: 600px;
     display: -webkit-flex; 
-    flex-wrap: wrap;}
+    flex-wrap: wrap;
+    justify-content: space-between; 
+    }
+
+/*/////////////////////////////TITULO E TEMA//////////////////////////////////////*/
 
 .informacoes{
-    width: 50%;
-    background-color: #011627
+    width: 45%;
+    height: 50%;
+    display: block;
     }
+
 .informacoes h3{
     text-align: center;
-  
-}
-.campo-envio{
-
 }
 
+.informacoes hr{
+    border: 0,3px solid black;
+    margin-top: 4%
+    
+}
+
+.campo-envio hr{
+    border: 0,3px solid gray;
+    margin: 10px 20px;
+}
+
+
+.campo-envio input{
+    padding: 5px 20px;
+    width: 80%;
+    border: none;
+   
+}
+.campo-envio label{
+    font: 16px arial;
+    color: rgb(20, 20, 20);
+    display: block;
+    padding: 15px 20px;
+    margin-top: 5%
+}
+
+
+
+/*/////////////////////////////ENVIAR IMG//////////////////////////////////////*/
 
 .imagem{
-    width: 50%;
-    background-color: blanchedalmond;
+    width: 40%;
+    height: 50%;
 }
+
 .imagem h3{
-text-align: center;
-}
-.envio-img{
-
-}
-
-
-
-
-.campo-texto{
-    
-    width: 100%;
-    background-color: aqua;
     text-align: center;
+}
+
+.imagem hr{
+    border: 0,3px solid black;
+    margin-top: 4%
+}
+
+.envio-img{
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+    margin-top: 5%
+}
+
+.envio-img input{
+    position: absolute;
+    margin-top: -20px;
+    width: 30%;
+    height: 35%;
+    cursor: pointer;
+    padding: 7% 4%;
+    border: 2px solid black;
+    
     
 }
-.campo-texto h3{
 
-display: flex;
-    justify-content: center;
+/*//////////////////////////////CAMPO "SOBRE"/////////////////////////////////////*/
+
+.campo-texto{   
+    width: 100%;
+    height: auto;
+    text-align: center;
+     
+
 }
+.linha{
+    border: 0,3px solid black;
+    margin: 10px 0;  
+    background: #011627
+}
+
+.campo-texto h3{
+    display: flex;
+    justify-content: center;   
+}
+
+.campo-texto textarea{
+    width: 50%;
+    height: 60%;
+    font: 16px arial;
+    margin-top: 25px;
+}
+
+.botao{
+    padding: 30px 0px;
+}
+
+.botao input{
+    padding: 10px 30px;
+    cursor: pointer;
+}
+
+.botao input:hover{
+    background: #011627;
+    color: white;
+}
+
+
+
+
