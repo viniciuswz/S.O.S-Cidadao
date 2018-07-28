@@ -6,7 +6,7 @@ require_once(WWW_ROOT.DS.'autoload.php');
 use Core\Usuario;
 use Core\CurtidaPublicacao;
 session_start();
-
+//JAca
 if(isset($_GET['ID'])){
     try{
         Usuario::verificarLogin(2);//Tem q estar logado, vai estourar um erro se nao estiver logado
