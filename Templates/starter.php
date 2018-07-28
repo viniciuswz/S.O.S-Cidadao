@@ -323,6 +323,8 @@ desired effect
           if($resultado[0]['descri_tipo_usu'] == 'Comum'){
             echo '<a href="EnviarPublicacaoTemplate.php">Enviar Publicacao</a>
             <br>';
+            echo '<a href="CriarDebateTemplate.php">Criar Debate</a>
+            <br>';
           }
         ?>
         
