@@ -12,12 +12,12 @@ if(isset($_GET['ID'])){
     try{
         Usuario::verificarLogin(2);
         $curtidaComen = new CurtirComentario();
-        $curtidaComen->setCodUsu(1);
-        $curtidaComen->setCodComen(68);
+        $curtidaComen->setCodUsu($_SESSION['id_user']);
+        $curtidaComen->setCodComen($_GET['ID']);
         $curtidaComen->select();
     }catch(Exception $exc){
         $mensagem = $exc->getMessage();
-        if($exc->getCode == 2){
+        if($exc->getCode() == 2){
             $mensagem = $exc->getMessage();
             echo "<script> alert('$mensagem');javascript:window.location='./Templates/loginTemplate.php';</script>";
         }
