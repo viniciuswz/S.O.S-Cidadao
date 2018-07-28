@@ -397,7 +397,7 @@ nav.notificacoes ul li a span:first-of-type{
 /*///////////////////////////////BLOCO PRINCIPAL////////////////////////////////////*/
 .formulario{
     width: 90%;
-    margin: 5% auto;
+    margin: 0 auto;
     height: 600px;
     display: -webkit-flex; 
     flex-wrap: wrap;
@@ -422,24 +422,43 @@ nav.notificacoes ul li a span:first-of-type{
     
 }
 
-.campo-envio hr{
-    border: 0,3px solid gray;
-    margin: 10px 20px;
+.campo-envio{
+    border-bottom: 1px solid gray;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    
 }
 
 
 .campo-envio input{
-    padding: 5px 20px;
-    width: 80%;
+    outline: none;
+    padding: 10px 20px;
+    width: 100%;
     border: none;
-   
+    font-size: 16px;
+}
+
+.campo-envio input:focus + span{
+width: 100%
 }
 .campo-envio label{
+    text-align: start;
     font: 16px arial;
     color: rgb(20, 20, 20);
     display: block;
-    padding: 15px 20px;
+    padding: 15px 0px;
     margin-top: 5%
+}
+
+.campo-envio span{
+    display:inline-block;
+    width:0px;
+    height: 2px;
+    background: #000;
+    position: relative;
+    top:1px;
+    transition: all ease-in-out .2s;
 }
 
 
@@ -483,7 +502,7 @@ nav.notificacoes ul li a span:first-of-type{
 
 .campo-texto{   
     width: 100%;
-    height: auto;
+
     text-align: center;
      
 
@@ -500,22 +519,23 @@ nav.notificacoes ul li a span:first-of-type{
 }
 
 .campo-texto textarea{
-    width: 50%;
-    height: 60%;
+    width: 620px;
+    height: 160px;
     font: 16px arial;
     margin-top: 25px;
+    resize: none
 }
 
-.botao{
-    padding: 30px 0px;
-}
 
-.botao input{
+.campo-texto input[type="submit"]{
     padding: 10px 30px;
     cursor: pointer;
+    display: block;
+    margin: 10px auto;
+  
 }
 
-.botao input:hover{
+.campo-texto input:hover{
     background: #011627;
     color: white;
 }
