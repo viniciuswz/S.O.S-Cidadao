@@ -40,7 +40,7 @@ if(isset($_POST) AND !empty($_POST)){
                 echo "<script> alert('$mensagem');javascript:window.location='./Templates/loginTemplate.php';</script>";
             }
             if($exc->getCode() == 6){//Não é usuario comum
-                $mensagem = $exc->getMessage();  
+                echo $mensagem = $exc->getMessage();  
                 echo "<script> alert('$mensagem');javascript:window.location='./Templates/starter.php';</script>";
             }
         }    
