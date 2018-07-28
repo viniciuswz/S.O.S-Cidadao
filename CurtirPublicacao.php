@@ -17,7 +17,7 @@ if(isset($_GET['ID'])){
         echo "<script> javascript:window.location='Templates/VerPublicacaoTemplate.php?ID=".$_GET['ID']."';</script>";
 
     }catch(Exception $exc){
-            $mensagem = $exc->getMessage();  
+            echo $mensagem = $exc->getMessage();  
     }
 }else{
     echo 'Não tem ID';
