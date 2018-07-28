@@ -31,7 +31,7 @@ class CurtidaPublicacaoA extends CurtidaPublicacaoM{
                        $indVisuDonoPubli,
                        $this->getCodUsu(),
                        $this->getCodPubli());
-            $resultado=$this->runQuery($sql);
+        $resultado = $this->runQuery($sql);
     }
 
     public function selectDonoPubli(){
@@ -51,6 +51,6 @@ class CurtidaPublicacaoA extends CurtidaPublicacaoM{
                        $this->getCodUsu(),
                        $this->getCodPubli(),
                        $this->selectDonoPubli());
-            $resultado=$this->runQuery($sql);
+        $resultado = $this->runQuery($sql);
     }
 }
