@@ -15,7 +15,7 @@ if(isset($_GET['ID'])){
         $curtidaComen->setCodUsu($_SESSION['id_user']);
         $curtidaComen->setCodComen($_GET['ID']);
         $curtidaComen->select();
-        
+        echo "<script> javascript:window.location='Templates/VerPublicacaoTemplate.php?ID=".$_GET['IDPubli']."&pagina=".$_GET['pagina']."';</script>";
     }catch(Exception $exc){
         $mensagem = $exc->getMessage();
         if($exc->getCode() == 2){
