@@ -540,6 +540,45 @@ width: 100%
     color: white;
 }
 
+/* FORMULARIO CATEGORIAS */
+
+form input[type="radio"]{
+    display:  none;
+}
+
+form .categorias{
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+form .categorias div{
+  
+    margin: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 120px;
+}
+
+form .categorias div label{
+    background-color: gray;
+    padding: 29px 25px;
+
+}
+
+form .categorias div label i{
+   
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+}
+
+form input[type="radio"]:checked + label{
+background-color: pink;
+}
 
 
 
