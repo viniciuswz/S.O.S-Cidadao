@@ -20,7 +20,7 @@ session_start();
         <title>Login</title>
     </head>
     <body>
-        <form method="post" action="../Debate.php" enctype="multipart/form-data">
+        <form method="post" action="../EnviarDebate.php" enctype="multipart/form-data">
             <input type="text" name="titulo" placeholder="Titulo">
                 <br />
             <input type="text" name="tema" placeholder="Tema">
