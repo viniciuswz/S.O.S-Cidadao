@@ -210,7 +210,7 @@ session_start();
         <?php
             }
             
-            if($tipoUsu == 'Funcionario' or $tipoUsu == 'Prefeitura'){
+            if(isset($tipoUsu) AND ($tipoUsu == 'Funcionario' or $tipoUsu == 'Prefeitura')){
                 if(empty($comentarioPrefei)){
                     echo '
                         <div>
