@@ -14,7 +14,8 @@
 
       $dados = new Usuario();
       $dados->setCodUsu($_SESSION['id_user']);
-      $resultado = $dados->getDadosUser();    
+      $resultado = $dados->getDadosUser();   
+      //var_dump($resultado); 
     
 ?>
 
@@ -318,8 +319,13 @@ desired effect
           <br>
         <a href="UpdateSenhaTemplate.php">Update Senha</a>
           <br>
-        <a href="EnviarPublicacaoTemplate.php">Enviar Publicacao</a>
-          <br>
+        <?php
+          if($resultado[0]['descri_tipo_usu'] == 'Comum'){
+            echo '<a href="EnviarPublicacaoTemplate.php">Enviar Publicacao</a>
+            <br>';
+          }
+        ?>
+        
         <a href="VisualizarPublicacoesTemplate.php">Ver publicações</a>
       <!-- Your Page Content Here -->
 

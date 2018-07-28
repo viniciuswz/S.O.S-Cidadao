@@ -25,8 +25,6 @@ class PublicacaoA extends PublicacaoM{
 
     private $whereIdPubli = " AND publicacao.cod_publi = '%s'"; 
 
-    private $limite = " order by dataHora_publi desc limit 10,5";
-
     private $sqlSelectQuantCurti = "SELECT COUNT(*) FROM publicacao_curtida WHERE cod_publi = '%s' AND status_publi_curti = 'A'";
 
     private $sqlSelectQuantComen = "SELECT COUNT(*) FROM comentario WHERE cod_publi = '%s' AND status_comen = 'A'";
@@ -205,10 +203,11 @@ class PublicacaoA extends PublicacaoM{
     
     public function controlarPaginacao($pagina = null, $where){ // Fazer o controle da paginacao       
         $paginacao = new Paginacao(); 
-        $QtdPubliPaginas = $this->getQtdPubliPaginas(); //Pega a quantidade de publicacoes por pagina
+        $paginacao->setQtdPubliPaginas(6); // Setar a quantidade de publicacoes por pagina
+        
         $quantidadeTotalPubli = $this->quantidadeTotalPubli($where);   //Pega a quantidade de publicacoes no total          
         
-        $sqlPaginacao = $paginacao->prapararSql('dataHora_publi','desc',$QtdPubliPaginas, $pagina, $quantidadeTotalPubli);//Prepare o sql
+        $sqlPaginacao = $paginacao->prapararSql('dataHora_publi','desc', $pagina, $quantidadeTotalPubli);//Prepare o sql
         $this->setQuantidadePaginas($paginacao->getQuantidadePaginas());//Seta a quantidade de paginas no total
         $this->setPaginaAtual($paginacao->getPaginaAtual());
         return $sqlPaginacao;

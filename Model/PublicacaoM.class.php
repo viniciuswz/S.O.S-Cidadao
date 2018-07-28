@@ -12,7 +12,7 @@ class PublicacaoM extends DbConnection{
     private $codCate;
     private $cepLogra;
 
-    private $qtdPubliPaginas = 6;
+    
     private $qtdPaginas;
     private $PaginaAtual;
 
@@ -88,14 +88,7 @@ class PublicacaoM extends DbConnection{
         $this->cepLogra = filter_var($cep, FILTER_SANITIZE_STRING);
     }
 
-    public function getQtdPubliPaginas(){//Pega a quantidade de publicacoes por pagina
-        return $this->qtdPubliPaginas;
-    }
-
-    public function setQtdPubliPaginas($quantidade){//Pega a quantidade de publicacoes por pagina
-        $this->qtdPubliPaginas = $quantidade;
-    }
-    
+        
     public function setQuantidadePaginas($quantidade){// Seta a quantidade de paginas no total
         $this->qtdPaginas = $quantidade;
     }

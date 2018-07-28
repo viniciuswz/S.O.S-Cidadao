@@ -20,16 +20,26 @@ session_start();
         if(isset($_SESSION['id_user']) AND !empty($_SESSION['id_user'])){
             $publi->setCodUsu($_SESSION['id_user']);
             $comentario->setCodUsu($_SESSION['id_user']);
+            $tipoUsu = $_SESSION['tipo_usu'];
         }
+
         if(isset($_GET['ID'])){
             $publi->setCodPubli($_GET['ID']);
             $comentario->setCodPubli($_GET['ID']);
         }
-        $resposta = $publi->listByIdPubli();
-        //
-        //$comentarioComum = $comentario->SelecionarComentariosUserComum();
-        //$comentarioPrefei = $comentario->SelecionarComentariosUserPrefei();
-        //var_dump($resposta);
+
+        if(isset($_GET['pagina'])){            
+            $comentarioComum = $comentario->SelecionarComentariosUserComum($_GET['pagina']);
+        }else{            
+            $comentarioComum = $comentario->SelecionarComentariosUserComum();
+        }
+        $resposta = $publi->listByIdPubli();   
+        $comentarioPrefei = $comentario->SelecionarComentariosUserPrefei();
+
+        $quantidadePaginas = $comentario->getQuantidadePaginas();
+        $pagina = $comentario->getPaginaAtual();
+        
+        //var_dump($comentarioPrefei);
 ?>
 
 <html>
@@ -93,9 +103,46 @@ session_start();
                 height:400px;
                 background-color: red;
             }
+            div.comenComum{
+                padding-top:20px;
+                width:100%;
+                height:400px;
+                background-color: pink;
+            }
             span{
                 display: inline-block;
                 width:50%;
+            }
+            img.prefei{
+                width: 15%;
+                height: 30%;
+                //background-color: pink;
+                position: relative;
+                left: 0px;
+                display: inline-block;
+            }  
+            ul{
+                text-align: center;
+            }
+            ul li{
+                display: inline-block;
+                margin-left: 10px;
+                background-color: pink;
+                width: 100px
+            }
+            ul li:hover{
+                background-color: red;
+            }
+            ul li a{
+                text-decoration: none;
+                color: black;
+                font-size: 20px;
+            }
+            .jaca {
+                background-color:green;
+            }
+            .arruma{
+                display:flex;                
             }
         </style>
     </head> 
@@ -139,20 +186,107 @@ session_start();
             
                 ?>              
             </div>   
-        </div>  
+        </div>          
         <?php 
             if(!empty($comentarioPrefei)){
         ?>
                 <div class="comenPrefei">
                     <h1>Resposta Prefeitura:</h1>
-                    <img src="../Img/perfil/<?php echo $comentarioPrefei[0]['img_perfil_usu']?>" class="perfil">
-                    <div>
-                    <span class="nomeUsu"><?php echo $comentarioPrefei[0]['nome_usu']?></span>
-                    <span class="dataHora"><?php echo $comentarioPrefei[0]['dataHora_comen']?></span>
+                    <img src="../Img/perfil/<?php echo $comentarioPrefei[0]['img_perfil_usu']?>" class="prefei">
+                    <div class="informacoesCabe">
+                        <span class="nomeUsu"><?php echo $comentarioPrefei[0]['nome_usu']?></span>
+                        <span class="dataHora"><?php echo $comentarioPrefei[0]['dataHora_comen']?></span>
                     </div>
-                    <p><?php echo $comentarioPrefei[0]['texto_comen']?></p>
+                    <p><?php echo nl2br($comentarioPrefei[0]['texto_comen'])?></p>
+                    <?php
+                        if(isset($comentarioPrefei[0]['indCurtidaDoUser']) AND $comentarioPrefei[0]['indCurtidaDoUser'] == TRUE){            
+                            echo '<a href="../CurtirComentario.php?ID='.$comentarioPrefei[0]['cod_comen'].'">Descurtir</a>';            
+                        }else{                     
+                            echo '<a href="../CurtirComentario.php?ID='.$comentarioPrefei[0]['cod_comen'].'">Curtir</a>';  
+                        }
+
+                    ?>
                 </div>
         <?php
+            }
+            
+            if(isset($tipoUsu) AND ($tipoUsu == 'Funcionario' or $tipoUsu == 'Prefeitura')){
+                if(empty($comentarioPrefei)){
+                    echo '
+                        <div>
+                            <form action="../Comentario.php" method="post">
+                                <h1>Envie seu comentario!!:</h1>
+                                <textarea cols="70" rows="5" name="texto"></textarea>
+                                <input type="hidden" value=" '. $_GET['ID'].'" name="id">
+                                <input type="submit" value="Enviar">
+                            </form>        
+                       </div>   
+                    ';
+                }
+            }else{            
+        ?>
+            
+        <div>
+                <form action="../Comentario.php" method="post">
+                    <h1>Envie seu comentario!!:</h1>
+                    <textarea cols="70" rows="5" name="texto"></textarea>
+                    <input type="hidden" value="<?php echo $_GET['ID']?>" name="id">
+                    <input type="submit" value="Enviar">
+                </form>
+
+        </div>
+
+         <?php 
+            }
+
+            if(!empty($comentarioComum)){
+        ?>      
+            <h1>Comentarios</h1> 
+            <div class="arruma">
+               
+        <?php 
+                $contador = 0;
+                while($contador < count($comentarioComum)){
+        ?>        
+                <div class="comenComum">
+                   
+
+                    <img src="../Img/perfil/<?php echo $comentarioComum[$contador]['img_perfil_usu']?>" class="prefei">
+                    <div class="informacoesCabe">
+                        <span class="nomeUsu"><?php echo $comentarioComum[$contador]['nome_usu']?></span>
+                        <span class="dataHora"><?php echo $comentarioComum[$contador]['dataHora_comen']?></span>
+                    </div>
+                    <p><?php echo nl2br($comentarioComum[$contador]['texto_comen'])?></p>
+                    <?php
+                        if(isset($comentarioComum[$contador]['indCurtidaDoUser']) AND $comentarioComum[$contador]['indCurtidaDoUser'] == TRUE){            
+                            echo '<a href="../CurtirComentario.php?ID='.$comentarioComum[$contador]['cod_comen'].'">Descurtir</a>';            
+                        }else{                     
+                            echo '<a href="../CurtirComentario.php?ID='.$comentarioComum[$contador]['cod_comen'].'">Curtir</a>';  
+                        }
+
+                    ?>
+                </div>
+        <?php
+                    $contador++;
+                }
+        echo '</div>';
+        echo '<ul>';
+        
+            if($quantidadePaginas != 1){
+                $contador = 1;
+                while($contador <= $quantidadePaginas){
+                    if(isset($pagina) AND $pagina == $contador){
+                        echo '<li class="jaca"><a href="VerPublicacaoTemplate.php?ID='.$_GET['ID'].'&pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;  
+                    }else{
+                        echo '<li><a href="VerPublicacaoTemplate.php?ID='.$_GET['ID'].'&pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;
+                    }
+                    
+                    $contador++;        
+                }
+            }
+            
+        
+        echo '</ul>';
             }
         ?>
         

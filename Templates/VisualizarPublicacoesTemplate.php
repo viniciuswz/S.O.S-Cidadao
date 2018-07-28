@@ -86,7 +86,7 @@ session_start();
             span.titulo{
                 font-size:20px;
             }
-            span.curtidas, span.comen{
+            a.curtidas, span.comen{
                 display: inline-block;
                 width: auto;
                 margin-left: 20px;
@@ -149,13 +149,14 @@ session_start();
                         <span class="titulo"><?php echo $resposta[$contador]['titulo_publi']?></span>
                         <span class="endereco"><?php echo $resposta[$contador]['endereco_organizado_fechado']?></span>
                         <?php
-                            if($resposta[$contador]['indCurtidaDoUser']){ 
-                        ?>                             
-                            <span class="curtidas">Curtidas<b> (Você ja curtiu):</b> <?php echo $resposta[$contador]['quantidade_curtidas']?></span>                       
+                            if(isset($resposta[$contador]['indCurtidaDoUser']) AND $resposta[$contador]['indCurtidaDoUser'] == TRUE){ 
+                        ?>      
+                            <a href='../CurtirPublicacao.php?ID=<?php echo $resposta[$contador]['cod_publi']?>&pagina=<?php echo $pagina?>' class="curtidas">Descurtir<b> (Você ja curtiu):<?php echo $resposta[$contador]['quantidade_curtidas']?></b></a>                   
+                                                  
                         <?php  
                             }else{
                         ?>
-                            <span class="curtidas">Curtidas: <?php echo $resposta[$contador]['quantidade_curtidas']?></span>                     
+                            <a href='../CurtirPublicacao.php?ID=<?php echo $resposta[$contador]['cod_publi']?>&pagina=<?php echo $pagina?>'  class="curtidas">Curtir<b>: <?php echo $resposta[$contador]['quantidade_curtidas']?></b></a>                       
                         <?php  
                             }
                         ?>

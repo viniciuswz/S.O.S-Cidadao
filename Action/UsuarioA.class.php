@@ -74,36 +74,37 @@ class UsuarioA extends UsuarioM{
                 }
         }
 
-        if($permissao == 4){// Tem q estar logado, apenas prefeitura, func, adm, moderador
+        if($permissao == 4){// Tem q estar logado, apenas prefeitura, func
             if(isset($_SESSION['tipo_usu']) AND !empty($_SESSION['tipo_usu']) // Se estiver logado e o seu tipo_usu for igual ao comum
-                AND $_SESSION['tipo_usu'] == 'Comum')
+                AND ($_SESSION['tipo_usu'] != 'Funcionario' or $_SESSION['tipo_usu'] != 'Prefeitura'))
             {  // Estoura um erro
-                    throw new \Exception("Você não tem permissão, usu Comum",6);
+                    throw new \Exception("Apenas user funcionarios ou prefeitura",6);
             }
         }
 
-        if($permissao == 5){// Tem q estar logado, apenas prefeitura, adm, moderador
-            if(isset($_SESSION['tipo_usu']) AND !empty($_SESSION['tipo_usu'])
-                AND ($_SESSION['tipo_usu'] == 'Comum' or $_SESSION['tipo_usu'] == 'Funcionario' )){ 
-                    throw new \Exception("Você não tem permissão, usu Comum, Func",6);
+        if($permissao == 5){// Tem q estar logado, apenas prefeitura
+            if(isset($_SESSION['tipo_usu']) AND !empty($_SESSION['tipo_usu']) // Se estiver logado e o seu tipo_usu for igual ao comum
+                AND $_SESSION['tipo_usu'] != 'Prefeitura')
+            {  // Estoura um erro
+                    throw new \Exception("Apenas user prefeitura",6);
             }
         }
 
-        if($permissao == 6){// Tem q estar logado, adm, moderador
-            if( isset($_SESSION['tipo_usu']) AND !empty($_SESSION['tipo_usu'])
-                AND ($_SESSION['tipo_usu'] == 'Comum' or $_SESSION['tipo_usu'] == 'Funcionario' or $_SESSION['tipo_usu'] == 'Prefeitura' )){ 
-                    throw new \Exception("Você não tem permissão, usu Comum, Func, prefei",6);
+        if($permissao == 6){// Tem q estar logado, apenas adm, moderador
+            if(isset($_SESSION['tipo_usu']) AND !empty($_SESSION['tipo_usu']) // Se estiver logado e o seu tipo_usu for igual ao comum
+            AND ($_SESSION['tipo_usu'] != 'Moderador' or $_SESSION['tipo_usu'] != 'Adm'))
+            {  // Estoura um erro
+                    throw new \Exception("Apenas user moderador ou Adm",6);
             }
         }
 
-        if($permissao == 7){// Tem q estar logado, adm
-            if( isset($_SESSION['tipo_usu']) AND !empty($_SESSION['tipo_usu'])
-                AND ($_SESSION['tipo_usu'] == 'Comum' or $_SESSION['tipo_usu'] == 'Funcionario' or $_SESSION['tipo_usu'] == 'Prefeitura' ) 
-                            or $_SESSION['tipo_usu'] == 'Moderador'
-                ){ 
-                    throw new \Exception("Você não tem permissão, usu Comum, Func, prefei, modera",6);
+        if($permissao == 7){// Tem q estar logado, apenas adm, moderador
+            if(isset($_SESSION['tipo_usu']) AND !empty($_SESSION['tipo_usu']) // Se estiver logado e o seu tipo_usu for igual ao comum
+            AND $_SESSION['tipo_usu'] != 'Adm')
+            {  // Estoura um erro
+                    throw new \Exception("Apenas user ADM",6);
             }
-        }
+        }      
 
 
     }
