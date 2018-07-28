@@ -199,28 +199,61 @@ background-color: purple
 
  .item-debate{
      background-color: coral;
-     width: 400px;
+     width: 340px;
      height: 300px;
      border-radius: 4%;
      margin-left: 10%;
      margin-top: 10px;
  }
 
- .item-debate p img{
-     background-size: 80px;
-     display: flex;
-     background-color: aqua;
-     width: 45px;
-     height: 45px;
-     border-radius: 50%;
-     position: relative;
-     margin-top: 5px;
+.item-debate .item-topo{
+   
+    display: flex;
+    align-items: center;
+    padding: 4px;
+}
+
+ .item-debate .item-topo div{
+  display: inline-block;
+   width: 45px;
+   height: 45px;
+   overflow: hidden;
+   border-radius: 50%;
+    background-color: green;
      
- }    
+ } 
+
+ 
+
+ .item-debate .item-topo p{
+    display: inline-block;
+    
+    margin-left: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-right: 66px;
+ }
+
+ .item-debate .item-topo span{
+     display: block;
+     font-family: Open-Sans-Bold;
+     display: block;
+     font-size: 15px;
+     
+     
+ }
+ 
+ .item-debate .item-topo img{
+    height: 100px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-40%);
+ }
 
 .item-debate figure{
      overflow: hidden;
-     width: 400px;
+     width: 340px;
      height: 250px;
 }
 
@@ -230,22 +263,19 @@ background-color: purple
     position: relative;
     top: 50%;
     left: 50%;
-    transform: translateX(-50%) translateY(-20%);
+    transform: translateX(-50%) translateY(-40%);
     background-color: blueviolet
 }
- 
- .item-debate p{
-     display: flex;
-     justify-content: space-around;
-     align-items: center;
-     font-size: 15px;
-     margin-bottom: 5px;
- }
 
- .item-debate figure img figcaption{
-    width: 500px;
-    height: 60px;
-    background-color: blue;
-    position: absolute;
-    z-index: 1;
+ .item-debate > p{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 15px;
+    width: 100%;
+    height: 50px;
+    background-color: rgba(000,000,000, 0.6);
+    color: #E7E8EB;
+   
+
  }
