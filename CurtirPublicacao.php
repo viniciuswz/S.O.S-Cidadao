@@ -14,10 +14,19 @@ if(isset($_GET['ID'])){
         $curtidaPub->setCodUsu($_SESSION['id_user']);
         $curtidaPub->setCodPubli($_GET['ID']);
         $curtidaPub->select();
-        echo "<script> javascript:window.location='Templates/VerPublicacaoTemplate.php?ID=".$_GET['ID']."';</script>";
+        if(isset($_GET['pagina'])){ //Ta curtindo atraves da listagem de todas as publicaçoes
+            echo "<script> javascript:window.location='Templates/VisualizarPublicacoesTemplate.php?pagina=".$_GET['pagina']."';</script>";
+        }else{//Ta curtindo atreves da pagina de uma publicacoes especifica
+            echo "<script> javascript:window.location='Templates/VerPublicacaoTemplate.php?ID=".$_GET['ID']."';</script>";
+        }
+        
 
     }catch(Exception $exc){
-            echo $mensagem = $exc->getMessage();  
+            $mensagem = $exc->getMessage();  
+            if($exc->getCode() == 2){//Nao esta logado
+                $mensagem = $exc->getMessage();   
+                echo "<script> alert('$mensagem');javascript:window.location='./Templates/loginTemplate.php';</script>";
+            }
     }
 }else{
     echo 'Não tem ID';
