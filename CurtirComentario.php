@@ -15,6 +15,7 @@ if(isset($_GET['ID'])){
         $curtidaComen->setCodUsu($_SESSION['id_user']);
         $curtidaComen->setCodComen($_GET['ID']);
         $curtidaComen->select();
+        
     }catch(Exception $exc){
         $mensagem = $exc->getMessage();
         if($exc->getCode() == 2){

@@ -200,9 +200,9 @@ session_start();
                     <p><?php echo nl2br($comentarioPrefei[0]['texto_comen'])?></p>
                     <?php
                         if(isset($comentarioPrefei[0]['indCurtidaDoUser']) AND $comentarioPrefei[0]['indCurtidaDoUser'] == TRUE){            
-                            echo '<a href="../CurtirComentario.php?ID='.$comentarioPrefei[0]['cod_comen'].'&pagina='. $pagina.'">Descurtir</a>';            
+                            echo '<a href="../CurtirComentario.php?ID='.$comentarioPrefei[0]['cod_comen'].'&pagina='. $pagina.'&IDPubli='.$_GET['ID'].'">Descurtir</a>';            
                         }else{                     
-                            echo '<a href="../CurtirComentario.php?ID='.$comentarioPrefei[0]['cod_comen'].'&pagina='. $pagina.'">Curtir</a>';  
+                            echo '<a href="../CurtirComentario.php?ID='.$comentarioPrefei[0]['cod_comen'].'&pagina='. $pagina.'&IDPubli='.$_GET['ID'].'">Curtir</a>';  
                         }
 
                     ?>
@@ -259,9 +259,9 @@ session_start();
                     <p><?php echo nl2br($comentarioComum[$contador]['texto_comen'])?></p>
                     <?php
                         if(isset($comentarioComum[$contador]['indCurtidaDoUser']) AND $comentarioComum[$contador]['indCurtidaDoUser'] == TRUE){            
-                            echo '<a href="../CurtirComentario.php?ID='.$comentarioComum[$contador]['cod_comen'].'&pagina='. $pagina.'">Descurtir</a>';           
+                            echo '<a href="../CurtirComentario.php?ID='.$comentarioComum[$contador]['cod_comen'].'&pagina='. $pagina.'&IDPubli='.$_GET['ID'].'">Descurtir</a>';           
                         }else{                     
-                            echo '<a href="../CurtirComentario.php?ID='.$comentarioComum[$contador]['cod_comen'].'&pagina='. $pagina.'">Curtir</a>';  
+                            echo '<a href="../CurtirComentario.php?ID='.$comentarioComum[$contador]['cod_comen'].'&pagina='. $pagina.'&IDPubli='.$_GET['ID'].'">Curtir</a>';  
                         }
 
                     ?>
