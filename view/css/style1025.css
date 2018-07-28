@@ -148,12 +148,26 @@ background-color: purple
 
 /*pag todos debates*/
 
-#container .criar-debate {
+#container{
+    background-color: #E7E8EB;
+}
+
+.criar-debate {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.criar-debate div {
+    
+    padding-right: 15px;
+    height: 65px;
     width: 84%;
-    background-color: darkcyan;
-    margin-top: 5px;
-    margin-left: 8%;
-    margin-right: 8%
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .criar-debate p{
@@ -161,21 +175,77 @@ background-color: purple
     margin-left: 10px;
     font-family: Arial;
     font-size: 18px;
-    display: inline-block;
-    
+    display: flex;
+    align-items: center;
+    justify-content: center
 }
- .icone-criar-debate{
+ .criar-debate i{
      background-size: 1900px;
      background-position: -735px -1.6px;
-     background-color: red;
      width: 55px;
-     height: 55px;
-     margin-top: 5px;
+     height: 65px;
+     display: flex;
  }
 
  .criar-debate a{
      background-color: darkslateblue;
      color:white;
      width: 130px;
-     display: inline-block;
+     height: 40px;
+     display: flex;
+     align-items: center;
+     justify-content: center
+ }
+
+ .item-debate{
+     background-color: coral;
+     width: 400px;
+     height: 300px;
+     border-radius: 4%;
+     margin-left: 10%;
+     margin-top: 10px;
+ }
+
+ .item-debate p img{
+     background-size: 80px;
+     display: flex;
+     background-color: aqua;
+     width: 45px;
+     height: 45px;
+     border-radius: 50%;
+     position: relative;
+     margin-top: 5px;
+     
+ }    
+
+.item-debate figure{
+     overflow: hidden;
+     width: 400px;
+     height: 250px;
+}
+
+.item-debate figure img{
+    align-self: center;
+    height: 540px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-20%);
+    background-color: blueviolet
+}
+ 
+ .item-debate p{
+     display: flex;
+     justify-content: space-around;
+     align-items: center;
+     font-size: 15px;
+     margin-bottom: 5px;
+ }
+
+ .item-debate figure img figcaption{
+    width: 500px;
+    height: 60px;
+    background-color: blue;
+    position: absolute;
+    z-index: 1;
  }
