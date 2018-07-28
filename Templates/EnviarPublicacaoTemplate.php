@@ -51,14 +51,15 @@ session_start();
 
 <?php
     }catch (Exception $exc){
-        $mensagem = $exc->getMessage();  
-        if($exc->getCode() == 2){  // Se nao ja estiver logado
-            echo "<script> alert('$mensagem');javascript:window.location='./loginTemplate.php';</script>";
-        }    
-        if($exc->getCode() == 6){  // Se for qualquer usuario q nao seja comum
-            echo "<script> alert('$mensagem');javascript:window.location='./starter.php';</script>";
-        }       
-    }finally{
-    
+        $erro = $exc->getCode();   
+        $mensagem = $exc->getMessage();
+        switch($erro){
+            case 2://Nao esta logado    
+                echo "<script> alert('$mensagem');javascript:window.location='./loginTemplate.php';</script>";
+                break;
+            case 6://Não é usuario comum  
+                echo "<script> alert('$mensagem');javascript:window.location='./starter.php';</script>";
+                break;            
+        }            
     }
 ?>

@@ -31,11 +31,13 @@ session_start();
 
 <?php
     }catch (Exception $exc){
-        if($exc->getCode() == 2){  // Se ja estiver logado
-            $mensagem = $exc->getMessage();  
-            echo "<script> alert('$mensagem');javascript:window.location='./starter.php';</script>";
-        }        
-    }finally{
-    
+        $erro = $exc->getCode();   
+        $mensagem = $exc->getMessage();
+        switch($erro){
+            case 2://Ja esta logado   
+                echo "<script> alert('$mensagem');javascript:window.location='./starter.php';</script>";
+                break;
+           
+        }         
     }
 ?>

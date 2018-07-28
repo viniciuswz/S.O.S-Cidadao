@@ -29,7 +29,5 @@ session_start();
             $mensagem = $exc->getMessage();  
             echo "<script> alert('$mensagem');javascript:window.location='./loginTemplate.php';</script>";
         }        
-    }finally{
-    
     }
 ?>

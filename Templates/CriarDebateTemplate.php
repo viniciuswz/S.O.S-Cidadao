@@ -36,11 +36,15 @@ session_start();
 
 <?php
     }catch (Exception $exc){
-        //if($exc->getCode() == 2){  // Se ja estiver logado
-           echo $mensagem = $exc->getMessage();  
-           // echo "<script> alert('$mensagem');javascript:window.location='./starter.php';</script>";
-        //}        
-    }finally{
-    
+        $erro = $exc->getCode();   
+        $mensagem = $exc->getMessage();  
+        switch($erro){
+            case 2://Nao esta logado    
+                echo "<script> alert('$mensagem');javascript:window.location='./loginTemplate.php';</script>";
+                break;
+            case 6://Não é usuario comum  
+                echo "<script> alert('$mensagem');javascript:window.location='./starter.php';</script>";
+                break;            
+        }        
     }
 ?>
