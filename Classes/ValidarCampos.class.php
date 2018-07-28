@@ -12,7 +12,7 @@ class ValidarCampos{
             if(!isset($dadosFormulario[$nomeCampo])){ // Primeiro pergunta nos dados do POST
                if($dadosImagem != null AND !isset($dadosImagem[$nomeCampo])){ // Depois nos dados do FILE se for dirente de null é pq tem q ter imagem                       
                     throw new \Exception("Mexeu no inspecionar elemento",12); // Se nao existir estoura um erro
-                }else{                    
+                }else if(!isset($dadosImagem[$nomeCampo])){                                     
                     throw new \Exception("Mexeu no inspecionar elemento",12); // Se nao existir estoura um erro
                 }                
             }
