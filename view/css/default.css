@@ -431,6 +431,6 @@ nav.notificacoes ul li a span:first-of-type{
     width: 40px;
     height: 40px;
 }
-.mini-menu-item-ativo {
+.mini-menu-item.mini-menu-item-ativo ul{
     display: block;
 }
