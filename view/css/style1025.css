@@ -160,18 +160,18 @@ background-color: purple
 }
 
 .criar-debate div {
-    
-    padding-right: 15px;
+    flex-flow: row wrap;
     height: 65px;
     width: 84%;
     background-color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    align-content: stretch;
+
 }
 
 .criar-debate p{
-    width: 890px;
     height: 100%;
     margin-left: 10px;
     font-family: Arial;
@@ -199,14 +199,14 @@ background-color: purple
  }
 
  .item-debate{
-     background-color: coral;
+     background-color: white;
      width: 340px;
-     height: 300px;
+     height: 320px;
      border-radius: 4%;
-     margin-left: 10%;
      margin-top: 10px;
      margin-bottom: 100px;
-     margin-right: 40px;
+     display: inline-block;
+     
  }
 
 .item-debate .item-topo{
@@ -279,12 +279,19 @@ background-color: purple
     height: 50px;
     background-color: rgba(000,000,000, 0.6);
     color: #E7E8EB;
+    margin-top: -50px;
+    position: relative;
    
 
  }
 
- .ialinha-item{
+ .alinha-item{
      display: flex;
+     flex-flow: row wrap;
      justify-content: space-around;
+     width: 80%;
+     align-content: stretch;
+     margin-left: 10%;
+     
      
  }
