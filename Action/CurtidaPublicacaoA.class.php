@@ -18,14 +18,14 @@ class CurtidaPublicacaoA extends CurtidaPublicacaoM{
         $verificacaoDono = $this->selectDonoPubli();
         if(empty($resultado)){
             $this->insert();
-        }else if($resultado[0]['status_publi_curti'] == "A"){
-            $this->update("I", $verificacaoDono);
+        }else if($resultado[0]['status_publi_curti'] == "A"){ 
+            $this->update("I", $verificacaoDono);//se for A(like) atualiza pra I(deslike)
         }else{
-            $this->update("A", $verificacaoDono);
+            $this->update("A", $verificacaoDono);//se for I(deslike) atualiza pra A(like)
         }
     }
 
-    public function update($statusCurtida, $indVisuDonoPubli){
+    public function update($statusCurtida, $indVisuDonoPubli){ //se já tiver inserido, atualiza pra A/I no banco
         $sql = sprintf($this->sqlUpdate,
                        $statusCurtida,
                        $indVisuDonoPubli,
@@ -40,13 +40,13 @@ class CurtidaPublicacaoA extends CurtidaPublicacaoM{
                        $this->getCodUsu());
             $resultado=$this->runSelect($sql);
           if(empty($resultado)){
-              return "N";
+              return "N"; //se for vazio, quem tá curtindo não é o dono
           }else{
-              return "I";
+              return "I"; //se não for vazio, é o dono
           }
     }
 
-    public function insert(){
+    public function insert(){ // se o usuario não tiver dado like, insere no banco
         $sql = sprintf($this->sqlInsert,
                        $this->getCodUsu(),
                        $this->getCodPubli(),
