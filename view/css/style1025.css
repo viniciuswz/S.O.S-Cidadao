@@ -171,13 +171,13 @@ background-color: purple
 }
 
 .criar-debate p{
+    width: 890px;
     height: 100%;
     margin-left: 10px;
     font-family: Arial;
     font-size: 18px;
     display: flex;
     align-items: center;
-    justify-content: center
 }
  .criar-debate i{
      background-size: 1900px;
@@ -185,6 +185,7 @@ background-color: purple
      width: 55px;
      height: 65px;
      display: flex;
+     margin-left: 5px;
  }
 
  .criar-debate a{
@@ -204,6 +205,8 @@ background-color: purple
      border-radius: 4%;
      margin-left: 10%;
      margin-top: 10px;
+     margin-bottom: 100px;
+     margin-right: 40px;
  }
 
 .item-debate .item-topo{
@@ -278,4 +281,10 @@ background-color: purple
     color: #E7E8EB;
    
 
+ }
+
+ .ialinha-item{
+     display: flex;
+     justify-content: space-around;
+     
  }

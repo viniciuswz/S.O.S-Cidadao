@@ -128,3 +128,146 @@ background-color: purple
 }
 
 /*NÃO ALTERAR NADA DAQUI PARA CIMA*/
+
+/*pag todos debates*/
+
+#container{
+    background-color: #E7E8EB;
+}
+
+.criar-debate {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.criar-debate div {
+    
+    padding-right: 15px;
+    height: 65px;
+    width: 84%;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.criar-debate p{
+    height: 100%;
+    margin-left: 10px;
+    font-family: Arial;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+ .criar-debate i{
+     background-size: 1900px;
+     background-position: -735px -1.6px;
+     width: 55px;
+     height: 65px;
+     display: flex;
+ }
+
+ .criar-debate a{
+     background-color: darkslateblue;
+     color:white;
+     width: 130px;
+     height: 40px;
+     display: flex;
+     align-items: center;
+     justify-content: center
+ }
+
+ .item-debate{
+     background-color: coral;
+     width: 340px;
+     height: 300px;
+     border-radius: 4%;
+     margin-left: 10%;
+     margin-top: 10px;
+     margin-bottom: 100px;
+     margin-right: 40px;
+ }
+
+.item-debate .item-topo{
+   
+    display: flex;
+    align-items: center;
+    padding: 4px;
+}
+
+ .item-debate .item-topo div{
+  display: inline-block;
+   width: 45px;
+   height: 45px;
+   overflow: hidden;
+   border-radius: 50%;
+    background-color: green;
+     
+ } 
+
+ 
+
+ .item-debate .item-topo p{
+    display: inline-block;
+    
+    margin-left: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-right: 66px;
+ }
+
+ .item-debate .item-topo span{
+     display: block;
+     font-family: Open-Sans-Bold;
+     display: block;
+     font-size: 15px;
+     
+     
+ }
+ 
+ .item-debate .item-topo img{
+    height: 100px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-40%);
+ }
+
+.item-debate figure{
+     overflow: hidden;
+     width: 340px;
+     height: 250px;
+}
+
+.item-debate figure img{
+    align-self: center;
+    height: 540px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-40%);
+    background-color: blueviolet
+}
+
+ .item-debate > p{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 15px;
+    width: 100%;
+    height: 50px;
+    background-color: rgba(000,000,000, 0.6);
+    color: #E7E8EB;
+   
+
+ }
+
+ .itens-debate{
+     width: 100%;
+     display: block;
+     justify-content: space-around;
+     
+ }
