@@ -39,7 +39,7 @@ session_start();
         $quantidadePaginas = $comentario->getQuantidadePaginas();
         $pagina = $comentario->getPaginaAtual();
         
-        var_dump($resposta);
+        //var_dump($comentarioComum);
 ?>
 
 <html>
@@ -207,7 +207,9 @@ session_start();
                         }
 
                     ?>
+                    <h3><?php echo $comentarioPrefei[0]['qtdCurtidas'] ?></h3>
                 </div>
+                
         <?php
             }
             
@@ -267,6 +269,7 @@ session_start();
                         }
 
                     ?>
+                    <h3><?php echo $comentarioComum[$contador]['qtdCurtidas'] ?></h3>
                 </div>
         <?php
                     $contador++;

@@ -25,6 +25,8 @@ class ComentarioA extends ComentarioM{
                                     WHERE  cod_publi = '%s' AND status_comen = 'A' AND descri_tipo_usu = 'Comum'
                                         AND status_usu = 'A'";
 
+    private $sqlQuantCurtidaComentario = "SELECT COUNT(*) FROM comen_curtida WHERE cod_comen = '%s' AND status_curte = 'A'";
+
     public function inserirComen(){
         $indVisuDono = $this->verifyDonoPubli();
 
@@ -96,6 +98,7 @@ class ComentarioA extends ComentarioM{
             
             $dados[$contador]['dataHora_comen'] = $this->tratarHora($dados[$contador]['dataHora_comen']);//Calcular o tempo
             $dados[$contador]['indCurtidaDoUser'] =  $this->getVerifyCurti($dados[$contador]['cod_comen']);//Verificar se ele curtiu a publicacao
+            $dados[$contador]['qtdCurtidas'] =  $this->getQuantCurtiComen($dados[$contador]['cod_comen']);//Verificar se ele curtiu a publicacao
                 //Me retorna um bollenao   
             $contador++;
         }  
@@ -106,6 +109,13 @@ class ComentarioA extends ComentarioM{
     public function tratarHora($hora){ 
         $tratarHoras = new TratarDataHora($hora);
         return $tratarHoras->calcularTempo('publicacao','N');
+    }
+    public function getQuantCurtiComen($idComen){ //Verificar se o usuario ja curtiu a publicacao
+        $sql = sprintf($this->sqlQuantCurtidaComentario,
+                            $idComen    
+           );
+        $res = $this->runSelect($sql);
+        return $res[0]['COUNT(*)'];
     }
 
     public function getVerifyCurti($idComen){ //Verificar se o usuario ja curtiu a publicacao
