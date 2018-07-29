@@ -21,10 +21,8 @@ class CurtirComentarioA extends CurtirComentarioM{
           $resultado = $this->runSelect($sql);
           $verificacaoDono = $this->selectDonoComen();
 
-          var_dump($resultado);
           if(empty($resultado)){
-              $this->insert();
-              echo "Inserido";
+              $this->insert();              
           }else if($resultado[0]['status_curte'] == "A"){ 
               $this->update("I", $verificacaoDono);//se for A(like) atualiza pra I(deslike)
           }else{

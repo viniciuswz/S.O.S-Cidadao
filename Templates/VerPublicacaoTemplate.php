@@ -296,6 +296,14 @@ session_start();
 
 
     }catch (Exception $exc){
-        echo $exc->getMessage();
+        $erro = $exc->getCode();   
+        $mensagem = $exc->getMessage();  
+        switch($erro){
+            case 9://Não foi possivel achar a publicacao  
+                echo "<script> alert('$mensagem');javascript:window.location='VisualizarPublicacoesTemplate.php';</script>";
+                break; 
+            default: //Qualquer outro erro cai aqui
+                echo "<script> alert('$mensagem');javascript:window.location='VisualizarPublicacoesTemplate.php';</script>";
+        }   
     }  
 ?>
