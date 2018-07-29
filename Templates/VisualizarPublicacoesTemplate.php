@@ -89,7 +89,7 @@ session_start();
             a.curtidas, span.comen{
                 display: inline-block;
                 width: auto;
-                margin-left: 20px;
+                margin-left: 5px;
             }
             ul{
                 text-align: center;
@@ -160,7 +160,20 @@ session_start();
                         <?php  
                             }
                         ?>
-                        <span class="comen">Comentario: <?php echo $resposta[$contador]['quantidade_comen']?></span>
+
+                         <?php
+                            if(isset($resposta[$contador]['indResPrefei']) AND $resposta[$contador]['indResPrefei'] == TRUE){ 
+                        ?>      
+                            <span class="comen">Comentario: <?php echo $resposta[$contador]['quantidade_comen']?> (<b>Respondida</b>)</span>                   
+                                                  
+                        <?php  
+                            }else{
+                        ?>
+                            <span class="comen">Comentario: <?php echo $resposta[$contador]['quantidade_comen']?></span>                       
+                        <?php  
+                            }
+                        ?>
+                        
                         
                     </div>
                 </div> 

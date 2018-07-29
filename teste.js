@@ -16,6 +16,7 @@ function jaca(){
 function teste(resposta){
     var arr1 = JSON.parse(resposta);
     document.getElementById('menu23').innerHTML = "";
+    document.getElementById('quantidade').innerHTML = "";
     if(arr1.length > 0){
         document.getElementById('quantidade').innerHTML = arr1.length;
         document.getElementById('header').innerHTML = "Você tem " + arr1.length + " notificações"; 

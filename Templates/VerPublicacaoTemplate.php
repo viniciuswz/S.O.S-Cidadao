@@ -39,7 +39,7 @@ session_start();
         $quantidadePaginas = $comentario->getQuantidadePaginas();
         $pagina = $comentario->getPaginaAtual();
         
-        //var_dump($comentarioPrefei);
+        var_dump($resposta);
 ?>
 
 <html>
@@ -185,6 +185,7 @@ session_start();
                 }
             
                 ?>              
+                
             </div>   
         </div>          
         <?php 
@@ -235,10 +236,11 @@ session_start();
                 </form>
 
         </div>
-
+                
          <?php 
             }
-
+            echo "<h3>Curtidas: ".$resposta[0]['quantidade_curtidas']."</h3>"; 
+            echo "<h3>Comenatarios: ".$resposta[0]['quantidade_comen']."</h3>";  
             if(!empty($comentarioComum)){
         ?>      
             <h1>Comentarios</h1> 

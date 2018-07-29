@@ -27,7 +27,15 @@ class PublicacaoA extends PublicacaoM{
 
     private $sqlSelectQuantCurti = "SELECT COUNT(*) FROM publicacao_curtida WHERE cod_publi = '%s' AND status_publi_curti = 'A'";
 
-    private $sqlSelectQuantComen = "SELECT COUNT(*) FROM comentario WHERE cod_publi = '%s' AND status_comen = 'A'";
+    private $sqlSelectQuantComen = "SELECT COUNT(*) FROM comentario INNER JOIN usuario on(usuario.cod_usu = comentario.cod_usu)
+                                        INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu)  
+                                        WHERE cod_publi = '%s' AND status_comen = 'A' AND descri_tipo_usu = 'Comum'
+                                        AND status_usu = 'A'";//Nao conta com comentarios da prefeitura
+
+    private $sqlSelectVerifyResPrefei = "SELECT COUNT(*) FROM comentario INNER JOIN usuario on(usuario.cod_usu = comentario.cod_usu)
+                                        INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu)  
+                                        WHERE cod_publi = '%s' AND status_comen = 'A' AND (descri_tipo_usu = 'Prefeitura' or descri_tipo_usu = 'Funcionario')
+                                        AND status_usu = 'A'";//Nao conta com comentarios da prefeitura
 
     private $sqlSelectVerifyCurti = "SELECT COUNT(*) FROM publicacao_curtida WHERE cod_publi = '%s' AND cod_usu = '%s' AND status_publi_curti = 'A'";
    
@@ -137,7 +145,8 @@ class PublicacaoA extends PublicacaoM{
             $dados[$contador]['endereco_organizado_aberto'] = $texto; //Cria um novo campo na array, com o endereço organizado com o cep 
 
             $dados[$contador]['quantidade_curtidas'] =  $this->getQuantCurtidas($dados[$contador]['cod_publi']); //Pegar quantidade de curtidas
-            $dados[$contador]['quantidade_comen'] =  $this->getQuantComen($dados[$contador]['cod_publi']); //Pegar quantidade de comentarios    
+            $dados[$contador]['quantidade_comen'] =  $this->getQuantComen($dados[$contador]['cod_publi']); //Pegar quantidade de comentarios
+            $dados[$contador]['indResPrefei'] =  $this->getVerifyResPrefei($dados[$contador]['cod_publi']); //Veficar resposta da prefeitura   
             if(!empty($this->getCodUsu())){//Só entar aqui se ele estiver logado
                 $dados[$contador]['indCurtidaDoUser'] =  $this->getVerifyCurti($dados[$contador]['cod_publi']);//Verificar se ele curtiu a publicacao
                 //Me retorna um bollenao
@@ -174,6 +183,16 @@ class PublicacaoA extends PublicacaoM{
                                 $idPubli);          
         $res = $this->runSelect($sql);         
         return $res[0]['COUNT(*)'];
+    }
+    public function getVerifyResPrefei($idPubli) { // Pegar quantidade de resposta da prefeitura
+        $sql = sprintf($this->sqlSelectVerifyResPrefei,
+                                $idPubli);          
+        $res = $this->runSelect($sql);         
+        $quantidade = $res[0]['COUNT(*)'];
+        if($quantidade > 0){ //Se for maior q zero é pq ta respondida
+            return TRUE;
+        }
+        return FALSE;
     }
 
     public function getVerifyCurti($idPubli){ //Verificar se o usuario ja curtiu a publicacao
