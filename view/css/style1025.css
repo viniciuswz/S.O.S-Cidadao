@@ -160,18 +160,18 @@ background-color: purple
 }
 
 .criar-debate div {
-    flex-flow: row wrap;
+    
+    padding-right: 15px;
     height: 65px;
     width: 84%;
     background-color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    align-content: stretch;
-
 }
 
 .criar-debate p{
+    width: 80%;
     height: 100%;
     margin-left: 10px;
     font-family: Arial;
@@ -180,10 +180,11 @@ background-color: purple
     align-items: center;
 }
  .criar-debate i{
-     background-size: 1900px;
-     background-position: -735px -1.6px;
-     width: 55px;
+     background-size: 1870px;
+     background-position: -728px -1.6px;
+     width:60px;
      height: 65px;
+     position: relative;
      display: flex;
      margin-left: 5px;
  }
@@ -195,7 +196,9 @@ background-color: purple
      height: 40px;
      display: flex;
      align-items: center;
-     justify-content: center
+     justify-content: center;
+     flex-grow: 18%;
+     
  }
 
  .item-debate{
@@ -206,6 +209,7 @@ background-color: purple
      margin-top: 10px;
      margin-bottom: 100px;
      display: inline-block;
+     margin-left: 10px;
      
  }
 
@@ -222,7 +226,6 @@ background-color: purple
    height: 45px;
    overflow: hidden;
    border-radius: 50%;
-    background-color: green;
      
  } 
 

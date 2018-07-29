@@ -162,25 +162,29 @@ background-color: purple
     font-size: 18px;
     display: flex;
     align-items: center;
-    justify-content: center
 }
  .criar-debate i{
-     background-size: 1900px;
-     background-position: -735px -1.6px;
-     width: 55px;
+     background-size: 1870px;
+     background-position: -728px -1.6px;
+     width:60px;
      height: 65px;
+     position: relative;
      display: flex;
+     margin-left: 5px;
  }
 
  .criar-debate a{
      background-color: darkslateblue;
      color:white;
-     width: 130px;
+     width: 15%;
      height: 40px;
      display: flex;
      align-items: center;
-     justify-content: center
+     justify-content: center;
+    margin-right: 9px;
+     
  }
+
 
  .item-debate{
     background-color: white;

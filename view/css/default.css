@@ -391,3 +391,46 @@ nav.notificacoes ul li a span:first-of-type{
 }
 
 /*NÃO ALTERAR NADA DAQUI PARA CIMA*/
+
+.mini-menu-item ul{
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    z-index: 1;
+    transition: 0.5s;
+    display: none
+}
+
+.mini-menu-item ul li{
+    color: black;
+    position: relative;
+    margin-left: -80px;
+    background-color:white;
+    width: 160px;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    
+}
+
+.mini-menu-item ul li:hover{
+    background-color: rgb(194, 197, 202);
+}
+
+
+
+.mini-menu-item ul li a{
+    color: black;
+    font-family: arial;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+}
+
+.mini-menu-item i{
+    width: 40px;
+    height: 40px;
+}
+.mini-menu-item-ativo {
+    display: block;
+}

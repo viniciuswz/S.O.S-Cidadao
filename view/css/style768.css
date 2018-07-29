@@ -148,43 +148,45 @@ width: 100vw;
 }
 
 .criar-debate div {
-    flex-flow: row wrap;
+    
+    padding-right: 15px;
     height: 65px;
     width: 84%;
     background-color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    align-content: stretch;
-
 }
 
 .criar-debate p{
+    width: 70%;
     height: 100%;
+    margin-left: 10px;
     font-family: Arial;
-    font-size: 12x;
+    font-size: 16px;
     display: flex;
     align-items: center;
-    justify-content: space-between
 }
  .criar-debate i{
-     background-size: 1900px;
-     background-position: -735px -1.6px;
-     width: 55px;
-     height: 65px;
+     background-size: 1700px;
+     background-position: -661px -1.6px;
+     width:53px;
+     height: 55px;
+     position: relative;
      display: flex;
-     margin-right: 4px;
+     margin-left: 5px;
  }
 
  .criar-debate a{
      background-color: darkslateblue;
      color:white;
-     width: 28%;
+     width: 24%;
      height: 40px;
      display: flex;
      align-items: center;
      justify-content: center;
-     font-size:15px;
+    font-size: 13px;
+     
  }
 
  .item-debate{
