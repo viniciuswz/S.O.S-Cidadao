@@ -141,8 +141,7 @@ session_start();
                         
                     
                     <div class="rodape">
-                        <span class="titulo"><?php echo $resposta[$contador]['nome_deba']?></span>
-                        <span class="endereco">Tema: <?php echo $resposta[$contador]['tema_deba']?></span>
+                        <span class="titulo"><?php echo $resposta[$contador]['nome_deba']?></span>                        
                         <?php
                             if(isset($resposta[$contador]['indParticipa']) AND $resposta[$contador]['indParticipa'] == TRUE){ 
                         ?>      

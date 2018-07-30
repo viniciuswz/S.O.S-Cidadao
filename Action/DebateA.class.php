@@ -9,6 +9,9 @@ class DebateA extends DebateM{
     private $sqlInsert = "INSERT INTO debate(img_deba, nome_deba, dataHora_deba, tema_deba, descri_deba, cod_usu) 
                 VALUES ('%s','%s',now(),'%s','%s','%s')";
 
+    private $sqlInserirPartici = "INSERT INTO debate_participante(cod_deba, cod_usu, data_inicio_lista, data_fim_lista, ind_visu_criador)
+                                        VALUES ('%s','%s',now(),null,'%s')";
+
     private $sqlSelect = "SELECT cod_deba, img_deba, nome_deba, dataHora_deba, tema_deba, descri_deba, 
                                         debate.cod_usu,nome_usu, img_perfil_usu
                                 FROM debate INNER JOIN usuario ON (usuario.cod_usu = debate.cod_usu) 
@@ -23,9 +26,16 @@ class DebateA extends DebateM{
                                         INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu)      
                                         WHERE status_lista = 'A' AND descri_tipo_usu = 'Comum' AND data_fim_lista is null AND status_usu = 'A' AND cod_deba = '%s'";
 
-    private $sqlVerificarSeEstaParticipando = "SELECT COUNT(*) FROM debate_participante WHERE data_fim_lista is null AND cod_deba = '%s' AND cod_usu = '%s'";
+    private $sqlVerificarSeEstaParticipando = "SELECT COUNT(*) FROM debate_participante 
+                                                    INNER JOIN usuario ON (usuario.cod_usu = debate_participante.cod_usu)
+                                                    INNER JOIN debate ON (debate_participante.cod_deba = debate.cod_deba)    
+                                                    WHERE data_fim_lista is null AND debate_participante.cod_deba = '%s' 
+                                                    AND debate_participante.cod_usu = '%s' AND     
+                                                    debate.cod_usu != debate_participante.cod_usu";
 
     private $whereListFromALL = "status_usu = 'A' AND status_deba = 'A' ";
+
+    private $whereIdDeba = "AND cod_deba = '%s'";
    
     private $sqlPaginaAtual;
 
@@ -48,6 +58,9 @@ class DebateA extends DebateM{
         );
 
         $inserir = $this->runQuery($sql);
+        $idInserido = $this->last();
+        $this->setCodDeba($idInserido);
+        $this->inserirParticipante('I');//Aqui vai inserir o dono
         if(!$inserir->rowCount()){  // Se der erro cai nesse if          
             throw new \Exception("Não foi possível realizar o cadastro da publicacao",13);   
         }
@@ -68,6 +81,23 @@ class DebateA extends DebateM{
         $dadosTratados = $this->tratarDados($res);
         //var_dump($dadosTratados);
         return $dadosTratados;
+    }
+
+    public function listByIdDeba(){ // Listar pelo id da publicacao
+        $prepararWherePubli = sprintf($this->whereIdDeba, $this->getCodDeba());         
+        $sql = sprintf($this->sqlSelect,
+                        $this->whereListFromALL,
+                        $prepararWherePubli,
+                        ' AND 1=1'
+        );  
+        $res = $this->runSelect($sql);
+        if(empty($res)){
+            throw new \Exception("Não foi possível fazer o select",9); 
+        }        
+        $dadosTratados = $this->tratarDados($res); 
+        //var_dump($dadosTratados);
+        return $dadosTratados;
+        
     }
 
     public function tratarDados($dados){
@@ -136,5 +166,17 @@ class DebateA extends DebateM{
         $this->setPaginaAtual($paginacao->getPaginaAtual());
         return $sqlPaginacao;
         
+    }
+
+    public function inserirParticipante($status){
+        $sql = sprintf($this->sqlInserirPartici,
+                        $this->getCodDeba(),
+                        $this->getCodUsu(),
+                        $status
+        );
+        $inserir = $this->runQuery($sql);
+        if(!$inserir->rowCount()){  // Se der erro cai nesse if          
+            throw new \Exception("Não foi possível realizar o cadastro da publicacao",13);   
+        }
     }
 }

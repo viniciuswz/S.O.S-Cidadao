@@ -329,7 +329,7 @@ desired effect
             <br>';
           }
 
-          if($resultado[0]['descri_tipo_usu'] == 'Prefeitura' or $resultado[0]['descri_tipo_usu'] = 'Funcionario'){
+          if($resultado[0]['descri_tipo_usu'] == 'Prefeitura' or $resultado[0]['descri_tipo_usu'] == 'Funcionario'){
             echo '<a href="">Listar reclamaçoes nao respondidas(Não feito)</a>
             <br>';
             if($resultado[0]['descri_tipo_usu'] == 'Prefeitura'){
