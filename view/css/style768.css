@@ -138,27 +138,38 @@ width: 100vw;
 .formulario{
     width: 90%;
     margin: 0 auto;
-   flex-direction: column;
-    
+    flex-direction: column;
     align-items: center; 
-    background: pink
     }
 
 .informacoes{
     width: 100%;
-    background: blueviolet;
     }
+.informacoes hr{
+    margin-top: 0;
+}
+.informacoes h3{
+    margin-top: 5%
+}
     
 .imagem{
     width: 100%;
-    background: orange;
+    }
+
+.imagem h3{
+    margin-top: 10%
+    }
+.imagem hr{
+    margin-top: 0;
 }
 
 
-    .campo-texto{   
-        width: 100%;
-    
-        text-align: center;
-         
-    background-color: red;
+.campo-texto{   
+    width: 100%;
+    text-align: center;   
     }
+
+
+.campo-texto h3{
+        margin-top: 10%
+     }
