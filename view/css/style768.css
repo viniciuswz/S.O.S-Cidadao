@@ -134,3 +134,12 @@ width: 100vw;
 }
 
 /*NÃO ALTERAR NADA DAQUI PARA CIMA*/
+.formulario{
+    width: 90%;
+    margin: 0 auto;
+   flex-direction: column;
+   
+    
+    align-items: center; 
+    background: pink
+    }

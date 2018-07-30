@@ -128,3 +128,11 @@ background-color: purple
 }
 
 /*NÃO ALTERAR NADA DAQUI PARA CIMA*/
+.formulario{
+    width: 90%;
+    margin: 0 auto;
+    height: 600px;
+    display: -webkit-flex; 
+    flex-wrap: wrap;
+    justify-content: space-between; 
+    }

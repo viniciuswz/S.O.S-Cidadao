@@ -396,12 +396,7 @@ nav.notificacoes ul li a span:first-of-type{
 
 /*///////////////////////////////BLOCO PRINCIPAL////////////////////////////////////*/
 .formulario{
-    width: 90%;
-    margin: 0 auto;
-    height: 600px;
-    display: -webkit-flex; 
-    flex-wrap: wrap;
-    justify-content: space-between; 
+   display: flex;
     }
 
 /*/////////////////////////////TITULO E TEMA//////////////////////////////////////*/
@@ -487,14 +482,8 @@ width: 100%
 }
 
 .envio-img input{
-    position: absolute;
-    margin-top: -20px;
-    width: 30%;
-    height: 35%;
-    cursor: pointer;
-    padding: 7% 4%;
-    border: 2px solid black;
     
+
     
 }
 
@@ -519,7 +508,7 @@ width: 100%
 }
 
 .campo-texto textarea{
-    width: 620px;
+    width: 80%;
     height: 160px;
     font: 16px arial;
     margin-top: 25px;
