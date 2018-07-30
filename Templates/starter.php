@@ -315,6 +315,8 @@ desired effect
 
     <!-- Main content -->
     <section class="content">
+        <span><?php echo $resultado[0]['descri_tipo_usu'] ?> </span>
+          <br>
         <a href="UpdateNomeEmailTemplate.php">Update Email e Nome</a>
           <br>
         <a href="UpdateSenhaTemplate.php">Update Senha</a>
@@ -326,9 +328,34 @@ desired effect
             echo '<a href="CriarDebateTemplate.php">Criar Debate</a>
             <br>';
           }
+
+          if($resultado[0]['descri_tipo_usu'] == 'Prefeitura' or $resultado[0]['descri_tipo_usu'] = 'Funcionario'){
+            echo '<a href="">Listar reclamaçoes nao respondidas(Não feito)</a>
+            <br>';
+            if($resultado[0]['descri_tipo_usu'] == 'Prefeitura'){
+              echo '<a href="">Cadastrar Funcionario(Não feito)</a>
+                            <br>';
+              echo '<a href="">Remover Funcionario(Não feito)</a>
+                            <br>';
+            }
+            
+          }
+
+          if($resultado[0]['descri_tipo_usu'] == 'Adm' or $resultado[0]['descri_tipo_usu'] = 'Moderador'){
+            echo '<a href="">Visualizar denuncias(Não feito)</a>
+            <br>';
+            if($resultado[0]['descri_tipo_usu'] == 'Adm'){
+              echo '<a href="">Cadastrar Moderador(Não feito)</a>
+                            <br>';
+             
+            }
+            
+          }
         ?>
         
         <a href="VisualizarPublicacoesTemplate.php">Ver publicações</a>
+          <br>
+        <a href="VisualizarDebatesTemplate.php">Ver Debates</a>
       <!-- Your Page Content Here -->
 
     </section>

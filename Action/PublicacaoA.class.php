@@ -42,6 +42,8 @@ class PublicacaoA extends PublicacaoM{
     private $sqlSelectQuantPubli = "SELECT COUNT(*) FROM publicacao INNER JOIN usuario ON (usuario.cod_usu = publicacao.cod_usu)  
                                         WHERE status_publi = 'A'  AND status_usu = 'A' %s";
 
+    
+
     private $sqlPaginaAtual;
     
 
