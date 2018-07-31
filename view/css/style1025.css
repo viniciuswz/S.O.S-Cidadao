@@ -184,163 +184,6 @@ background-color: purple
 }
 /*pag todos debates*/
 
-#container{
-    background-color: #E7E8EB;
-}
-
-.criar-debate {
-    margin-top: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center
-}
-
-.criar-debate div {
-    
-    padding-right: 15px;
-    height: 65px;
-    width: 84%;
-    background-color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.criar-debate p{
-    width: 80%;
-    height: 100%;
-    margin-left: 10px;
-    font-family: Arial;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-}
- .criar-debate i{
-     background-size: 1870px;
-     background-position: -728px -1.6px;
-     width:60px;
-     height: 65px;
-     position: relative;
-     display: flex;
-     margin-left: 5px;
- }
-
- .criar-debate a{
-     background-color: darkslateblue;
-     color:white;
-     width: 130px;
-     height: 40px;
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     flex-grow: 18%;
-     
- }
-
- .item-debate{
-     background-color: white;
-     width: 340px;
-     height: 320px;
-     border-radius: 4%;
-     margin-top: 10px;
-     margin-bottom: 100px;
-     display: inline-block;
-     margin-left: 10px;
-     
- }
-
-.item-debate .item-topo{
-   
-    display: flex;
-    align-items: center;
-    padding: 4px;
-}
-
- .item-debate .item-topo div{
-  display: inline-block;
-   width: 45px;
-   height: 45px;
-   overflow: hidden;
-   border-radius: 50%;
-     
- } 
-
- 
-
- .item-debate .item-topo p{
-    display: inline-block;
-    
-    margin-left: 4px;
-    font-size: 11px;
-    font-weight: 600;
-    margin-right: 66px;
- }
-
- .item-debate .item-topo span{
-     display: block;
-     font-family: Open-Sans-Bold;
-     display: block;
-     font-size: 15px;
-     
-     
- }
- 
- .item-debate .item-topo img{
-    height: 100px;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-40%);
- }
-
-.item-debate figure{
-     overflow: hidden;
-     width: 340px;
-     height: 250px;
-}
-
-.item-debate figure img{
-    align-self: center;
-    height: 540px;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-40%);
-    background-color: blueviolet
-}
-
- .item-debate > p{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    font-size: 15px;
-    width: 100%;
-    height: 50px;
-    background-color: rgba(000,000,000, 0.6);
-    color: #E7E8EB;
-    margin-top: -50px;
-    position: relative;
-   
-
- }
-
- .alinha-item{
-     display: flex;
-     flex-flow: row wrap;
-     justify-content: space-around;
-     width: 80%;
-     align-content: stretch;
-     margin-left: 10%;
-     
-     
- }
-
- /*pag todas reclamacoes*/
-
-#container{
-    background-color: #E7E8EB;
-}
-
 .criar-publicacao {
     margin-top: 10px;
     display: flex;
@@ -386,14 +229,14 @@ background-color: purple
      display: flex;
      align-items: center;
      justify-content: center;
-     font-size: 14px;
+     flex-grow: 18%;
      
  }
 
  .item-publicacao{
      background-color: white;
      width: 340px;
-     height: 330px;
+     padding-bottom:20px; 
      border-radius: 4%;
      margin-top: 10px;
      margin-bottom: 100px;
@@ -407,11 +250,10 @@ background-color: purple
     display: flex;
     align-items: center;
     padding: 4px;
-    justify-content: space-around;
 }
 
- .item-publicacao .item-topo div{
-  display: inline-block;
+ .item-publicacao .item-topo a > div{
+   display: inline-block;
    width: 45px;
    height: 45px;
    overflow: hidden;
@@ -419,7 +261,10 @@ background-color: purple
      
  } 
 
- 
+ .item-publicacao a{
+    text-decoration: none;
+    color:black;
+ }
 
  .item-publicacao .item-topo p{
     display: inline-block;
@@ -450,7 +295,7 @@ background-color: purple
 .item-publicacao figure{
      overflow: hidden;
      width: 340px;
-     height: 200px;
+     height: 250px;
 }
 
 .item-publicacao figure img{
@@ -463,19 +308,51 @@ background-color: purple
     background-color: blueviolet
 }
 
- .item-publicacao > p{
+ .item-publicacao .legenda{
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-around;
     align-items: center;
-    font-size: 17px;
-    width: 100%;
-    height: 30px;
-    margin-left: 5px;
-    position: relative;
-    font-family: arial;
-    font-weight: bold;
+   
+    width: 340px;
+    height: 50px;
+    background-color: rgba(000,000,000, 0.6);
+    color: #E7E8EB;
+    margin-top: -50px;
+    position: absolute;
+    
+    word-break: break-all;
+    padding: 1px 4px
+
  }
 
+ .item-publicacao .legenda p:first-of-type{
+ 
+    color: #E7E8EB;
+    font-size: 16px;
+    font-family: 'Open-Sans';
+    font-weight: bold;
+    width: 80%;
+    flex-grow: 1
+ }
+
+ .item-publicacao .legenda p:last-of-type{
+    font-weight: 600
+ }
+
+ .alinha-item{
+     display: flex;
+     flex-flow: row wrap;
+     justify-content: space-around;
+     width: 80%;
+     align-content: stretch;
+     margin-left: 10%;
+     
+     
+ }
+
+ /*pag todas reclamacoes*/
+
+ 
  .item-baixo{
      width: 340px;
      height: 40px;
