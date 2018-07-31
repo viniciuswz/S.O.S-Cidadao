@@ -390,6 +390,7 @@ nav.notificacoes ul li a span:first-of-type{
     width: 90%;
 }
 
+
 /*NÃO ALTERAR NADA DAQUI PARA CIMA*/
 
 
@@ -563,3 +564,175 @@ display: flex;
 .mini-menu-item.mini-menu-item-ativo ul{
     display: block;
 }
+/*///////////////////////////////BLOCO PRINCIPAL////////////////////////////////////*/
+.formulario{
+   display: flex;
+    }
+
+/*/////////////////////////////TITULO E TEMA//////////////////////////////////////*/
+
+.informacoes{
+    width: 45%;
+   
+    display: block;
+    }
+
+.informacoes h3{
+    text-align: center;
+}
+
+.informacoes hr{
+    border: 0,3px solid black;
+    margin-top: 4%
+    
+}
+
+.campo-envio{
+    border-bottom: 1px solid gray;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    
+}
+
+
+.campo-envio input{
+    outline: none;
+    padding: 10px 20px;
+    width: 100%;
+    border: none;
+    font-size: 16px;
+}
+
+.campo-envio input:focus + span{
+width: 100%
+}
+.campo-envio label{
+    text-align: start;
+    font: 16px arial;
+    color: rgb(20, 20, 20);
+    display: block;
+    padding: 15px 0px;
+    margin-top: 5%
+}
+
+.campo-envio span{
+    display:inline-block;
+    width:0px;
+    height: 2px;
+    background: #000;
+    position: relative;
+    top:1px;
+    transition: all ease-in-out .2s;
+}
+
+
+
+/*/////////////////////////////ENVIAR IMG//////////////////////////////////////*/
+
+.imagem{
+    width: 40%;
+    
+}
+
+.imagem h3{
+    text-align: center;
+}
+
+.imagem hr{
+    border: 0,3px solid black;
+    margin-top: 4%
+}
+
+.envio-img{
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+    margin-top: 5%
+}
+
+
+/*//////////////////////////////CAMPO "SOBRE"/////////////////////////////////////*/
+
+.campo-texto{   
+    width: 100%;
+
+    text-align: center;
+     
+
+}
+.linha{
+    border: 0,3px solid black;
+    margin: 10px 0;  
+    background: #011627
+}
+
+.campo-texto h3{
+    display: flex;
+    justify-content: center;   
+}
+
+.campo-texto textarea{
+    width: 80%;
+    height: 160px;
+    font: 16px arial;
+    margin-top: 25px;
+    resize: none
+}
+
+
+.campo-texto input[type="submit"]{
+    padding: 10px 30px;
+    cursor: pointer;
+    display: block;
+    margin: 10px auto;
+  
+}
+
+.campo-texto input:hover{
+    background: #011627;
+    color: white;
+}
+
+/* FORMULARIO CATEGORIAS */
+
+form input[type="radio"]{
+    display:  none;
+}
+
+form .categorias{
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+form .categorias div{
+  
+    margin: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 120px;
+}
+
+form .categorias div label{
+    background-color: gray;
+    padding: 29px 25px;
+
+}
+
+form .categorias div label i{
+   
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+}
+
+form input[type="radio"]:checked + label{
+background-color: pink;
+}
+
+
+

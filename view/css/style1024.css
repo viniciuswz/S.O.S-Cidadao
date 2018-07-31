@@ -514,3 +514,11 @@ background-color: purple
    background-size: 1200px;
    background-position: -310px -1.6px;
 }
+.formulario{
+    width: 90%;
+    margin: 0 auto;
+    height: 600px;
+    display: -webkit-flex; 
+    flex-wrap: wrap;
+    justify-content: space-between; 
+    }

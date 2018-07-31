@@ -137,10 +137,60 @@
         </div>
 
         <div id="container">
-           
-            <!--ESCREVA AQUI DENTRO DESSA TAG NÃO ALTERE NADA POR FORA-->
-            <!--OBS: ISSO É UM COMENTARIO E NÃO UMA TAG-->
-asdasd
+
+   
+<form class="formulario">
+<!--FORMULARIO ENVIO TITULO E TEMA-->
+<div class="informacoes">
+    <h3>Informações importantes</h3>
+    <hr>
+        <div class="campo-envio">
+            <label for="titulo">Título</label>
+            <input type="text" id="titulo" placeholder="fora temer"  maxlength="20">
+            <span></span>
+   
+       </div>
+        
+        <div class="campo-envio">
+            <label for="tema">Tema</label>
+            <input type="text" id="tema" placeholder="algum tema ai"  maxlength="20">
+            <span></span>
+   
+        </div>
+</div>
+            
+<!--FORMULARIO ENVIO DA FOTO-->           
+<div class="imagem">
+             <h3>Escolha uma foto para o debate</h3>
+             <hr>
+        <div class="envio-img">
+            <input type="file" name="imagem" id="imagem">
+        </div>
+</div>
+<!-- FORMULARIO CATEGORIAS-->
+<div class="categorias">
+        <div>
+            <input type="radio" name="categoria" id="categoria-1" value="categoria1">
+            <label for="categoria-1"><i class="icone-mail"></i>categoria1</label>
+        </div>
+        <div>   
+            <input type="radio" name="categoria" id="categoria-2" value="categoria2">
+            <label for="categoria-2"> <i class="icone-adm"></i>categoria2</label>
+        </div>
+    </div>
+<!--FORMULARIO DESCRIÇÃO DO DEBATE--> 
+        <div class="campo-texto"> 
+            <h3>sobre o que vai debater ?</h3>
+        
+        <hr>
+            <textarea placeholder="escreva aqui"></textarea>
+   
+                <input type="submit" value="iniciar debate">
+     
+        </div>     
+</form>
+
+
         </div>
     </body>
 </html>

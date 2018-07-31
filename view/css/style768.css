@@ -528,3 +528,41 @@ width: 100vw;
    background-size: 1200px;
    background-position: -310px -1.6px;
 }
+.formulario{
+    width: 90%;
+    margin: 0 auto;
+    flex-direction: column;
+    align-items: center; 
+    }
+
+.informacoes{
+    width: 100%;
+    }
+.informacoes hr{
+    margin-top: 0;
+}
+.informacoes h3{
+    margin-top: 5%
+}
+    
+.imagem{
+    width: 100%;
+    }
+
+.imagem h3{
+    margin-top: 10%
+    }
+.imagem hr{
+    margin-top: 0;
+}
+
+
+.campo-texto{   
+    width: 100%;
+    text-align: center;   
+    }
+
+
+.campo-texto h3{
+        margin-top: 10%
+     }
