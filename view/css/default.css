@@ -397,6 +397,7 @@ nav.notificacoes ul li a span:first-of-type{
 /*///////////////////////////////BLOCO PRINCIPAL////////////////////////////////////*/
 .formulario{
    display: flex;
+
     }
 
 /*/////////////////////////////TITULO E TEMA//////////////////////////////////////*/
@@ -528,13 +529,18 @@ width: 100%
 
 form input[type="radio"]{
     display:  none;
+    
 }
 
 form .categorias{
-    background-color: white;
+    background-color:white;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     flex-wrap: wrap;
+    width: 100%;
+}
+form .categorias h3{
+    text-align: center
 }
 
 form .categorias div{
@@ -563,6 +569,5 @@ form .categorias div label i{
 form input[type="radio"]:checked + label{
 background-color: pink;
 }
-
 
 

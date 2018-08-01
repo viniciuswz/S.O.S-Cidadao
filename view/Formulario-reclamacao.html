@@ -146,36 +146,56 @@
     <hr>
         <div class="campo-envio">
             <label for="titulo">Título</label>
-            <input type="text" id="titulo" placeholder="fora temer"  maxlength="20">
+            <input type="text" id="titulo" placeholder="ex:arvore caida"  maxlength="20">
             <span></span>
    
        </div>
         
         <div class="campo-envio">
-            <label for="tema">Tema</label>
-            <input type="text" id="tema" placeholder="algum tema ai"  maxlength="20">
+            <label for="Local">Local</label>
+            <input type="text" id="Local" placeholder="Rua, avenida"  maxlength="20">
             <span></span>
    
         </div>
+
+        <div class="campo-envio">
+            <label for="Bairro">Bairro</label>
+            <input type="text" id="Bairro" placeholder="aldeia da folha"  maxlength="20">
+            <span></span>
+   
+       </div>
+
+       <div class="campo-envio">
+        <label for="CEP">CEP</label>
+        <input type="text" id="CEP" placeholder="00000-000"  maxlength="20">
+        <span></span>
+
+   </div>
 </div>
             
 <!--FORMULARIO ENVIO DA FOTO-->           
 <div class="imagem">
-             <h3>Escolha uma foto para o debate</h3>
+             <h3>Coloque uma foto</h3>
              <hr>
         <div class="envio-img">
             <input type="file" name="imagem" id="imagem">
         </div>
 </div>
 <!-- FORMULARIO CATEGORIAS-->
+
 <div class="categorias">
+        <h3>ESCOLHA A CARALHA DE UM TOPICO</h3>
         <div>
-            <input type="radio" name="categoria" id="categoria-1" value="categoria1">
-            <label for="categoria-1"><i class="icone-mail"></i>categoria1</label>
+            <input type="radio" name="saude" id="categoria-1" value="categoria1">
+            <label for="categoria-1"><i class="icone-mail"></i>Saude</label>
         </div>
         <div>   
-            <input type="radio" name="categoria" id="categoria-2" value="categoria2">
-            <label for="categoria-2"> <i class="icone-adm"></i>categoria2</label>
+            <input type="radio" name="trasnporte" id="categoria-2" value="categoria2">
+            <label for="categoria-2"> <i class="icone-adm"></i>transporte</label>
+        </div>
+        <div>
+            <input type="radio" name="Acessibilidade" id="categoria-3" value="categoria3">
+            <label for="categoria-3 "><i class="icone-mail"></i>Acessibilidade</label>
         </div>
     </div>
 <!--FORMULARIO DESCRIÇÃO DO DEBATE--> 
@@ -183,6 +203,7 @@
             <h3>sobre o que vai debater ?</h3>
         
         <hr>
+
             <textarea placeholder="escreva aqui"></textarea>
    
                 <input type="submit" value="iniciar debate">
