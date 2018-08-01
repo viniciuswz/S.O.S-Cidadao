@@ -522,19 +522,198 @@ display: flex;
     background: #00aeef;
     transition: all 0.3s;
   }
+
+
+  .criar-publicacao {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.criar-publicacao div {
+    
+    padding-right: 15px;
+    height: 65px;
+    width: 84%;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.criar-publicacao p{
+    width: 80%;
+    height: 100%;
+    margin-left: 10px;
+    font-family: Arial;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+ .criar-publicacao i{
+     background-size: 1870px;
+     background-position: -728px -1.6px;
+     width:60px;
+     height: 65px;
+     position: relative;
+     display: flex;
+     margin-left: 5px;
+ }
+
+ .criar-publicacao a{
+     background-color: darkslateblue;
+     color:white;
+     width: 130px;
+     height: 40px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     flex-grow: 18%;
+     
+ }
+
+ .item-publicacao{
+     background-color: white;
+     width: 340px;
+     padding-bottom:20px; 
+     border-radius: 4%;
+     margin-top: 10px;
+     margin-bottom: 100px;
+     display: inline-block;
+     margin-left: 10px;
+ }
+
+.item-publicacao .item-topo{
+    display: flex;
+    align-items: center;
+    padding: 4px;
+}
+
+ .item-publicacao .item-topo a > div{
+   display: inline-block;
+   width: 45px;
+   height: 45px;
+   overflow: hidden;
+   border-radius: 50%;
+     
+ } 
+
+ .item-publicacao a{
+    text-decoration: none;
+    color:black;
+ }
+
+ .item-publicacao .item-topo p{
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 4px;
+    font-size: 12px;
+    flex-grow: 1;
+ }
+
+ .item-publicacao .item-topo span{
+    display: block;
+    font-family: Open-Sans-Bold;
+    white-space: nowrap; 
+    width: 200px; 
+    overflow: hidden;
+    text-overflow: a; 
+    font-size: 15px;
+    position: relative;
+
+ }
+
+ .item-publicacao .item-topo span:after{
+
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), #fff 50%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    bottom: 0;
+    content: "...";
+    color: white;
+    padding: 0 10px 0px 45px;
+    position: absolute;
+    right: 0;
+      
+ }
+ 
+ .item-publicacao .item-topo img{
+    height: 100px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-40%);
+ }
+
+.item-publicacao figure{
+     overflow: hidden;
+     width: 340px;
+     height: 250px;
+}
+
+.item-publicacao figure img{
+    align-self: center;
+    height: 540px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-40%);
+    background-color: blueviolet
+}
+
+ .item-publicacao .legenda{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+   
+    width: 340px;
+    height: 50px;
+    background-color: rgba(000,000,000, 0.6);
+    color: #E7E8EB;
+    margin-top: -50px;
+    position: absolute;
+    padding: 1px 4px
+
+ }
+
+ .item-publicacao .legenda p:first-of-type{
+    color: #E7E8EB;
+    font-size: 16px;
+    font-family: 'Open-Sans';
+    font-weight: bold;  
+    flex-grow: 1;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
+ }
+
+ .item-publicacao .legenda p:last-of-type{
+    font-weight: 600
+ }
+
+ .alinha-item{
+     display: flex;
+     flex-flow: row wrap;
+     justify-content: space-around;
+     width: 80%;
+     align-content: stretch;
+     margin-left: 10%;
+ }
+
 .mini-menu-item ul{
     display: flex;
     position: absolute;
     flex-direction: column;
     z-index: 1;
     transition: 0.5s;
-    display: none
+    display: none;
+    background: chartreuse
 }
 
 .mini-menu-item ul li{
     color: black;
     position: relative;
-    margin-left: -80px;
+    
+    margin-left: -116px;
     background-color:white;
     width: 160px;
     display: flex;
@@ -555,6 +734,9 @@ display: flex;
     display: flex;
     align-items: center;
     font-size: 15px;
+   
+    width: 100%;
+    height: 100%;
 }
 
 .mini-menu-item i{
