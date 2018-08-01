@@ -235,6 +235,30 @@ width: 100vw;
    top: 240px
    }
 /*pag todos debates*/
+
+
+
+.criar-publicacao p{
+    font-size: 16px;
+}
+ .criar-publicacao i{
+     display: block;
+     background-size: 1700px;
+     background-position: -664.5px -1.6px;
+     width:60px
+
+ }
+
+ .criar-publicacao a{
+    
+     width: 135px;
+     
+     font-size: 15px;
+     text-align: center;
+     
+ }
+
+
 .item-publicacao{
     width: 318px;
 }
