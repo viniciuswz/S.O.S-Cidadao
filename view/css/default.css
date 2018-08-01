@@ -221,7 +221,9 @@ a{
 
 
 /*menu padrao*/
-
+nav.menu{
+    z-index: 98
+}
 nav.menu > ul > li > a > i > span{
     font-family: arial;
     z-index: 2;
@@ -247,7 +249,7 @@ nav.menu > ul > li > a > i > span{
     width: 0;
     height: 100%;
     position: fixed;
-    z-index: 1;
+    z-index: 100;
     top: 0;
     right: 0;
     background-color: #111;
@@ -267,7 +269,7 @@ nav.menu > ul > li > a > i > span{
     height: 90px;
     border: 5px solid white;
     border-radius: 50%;
-    z-index: 2;
+    z-index: 3;
     
 
 }
@@ -528,7 +530,8 @@ display: flex;
     margin-top: 10px;
     display: flex;
     justify-content: center;
-    align-items: center
+    align-items: center;
+    margin-bottom:10px;
 }
 
 .criar-publicacao div {
@@ -579,9 +582,9 @@ display: flex;
      padding-bottom:20px; 
      border-radius: 4%;
      margin-top: 10px;
-     margin-bottom: 100px;
+     margin-bottom: 10px;
      display: inline-block;
-     margin-left: 10px;
+     
  }
 
 .item-publicacao .item-topo{
@@ -694,9 +697,10 @@ display: flex;
      display: flex;
      flex-flow: row wrap;
      justify-content: space-around;
-     width: 80%;
+     width: 100%;
      align-content: stretch;
-     margin-left: 10%;
+     margin:0 auto;
+     
  }
 
 .mini-menu-item ul{

@@ -9,7 +9,7 @@ header img{
     height: 80px;
 }
 header form{
-    margin:0 2vw;
+    margin:0 1vw;
 }
 
 header form input[type=text]{
@@ -63,6 +63,7 @@ nav.menu > ul{
     display: flex;
     align-items: center;
     height: 80px;
+    
 }
 
 nav.menu > ul > li > a > i{
@@ -82,7 +83,7 @@ nav.menu ul li a i.icone-notificacao{
     background-position: -59px -1.6px;
 }
 
-nav.menu ul li a i.icone-publicacao{
+nav.menu ul li a i.icone-debate{
     background-position: -87.51px -1.6px;
 }
 
@@ -170,8 +171,14 @@ background-color: purple
 
 .item-publicacao{
     width: 340px;
+   
 }
 
+.alinha-item{
+   
+    width: 95%;
+
+}
 
 /*pag todas reclamacoes*/
 

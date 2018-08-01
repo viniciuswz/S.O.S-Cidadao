@@ -189,6 +189,13 @@ width: 100vw;
     width: 340px;
 }
 
+.alinha-item{
+   
+    width: 100%;
+    flex-flow: column wrap;
+    align-items: center;
+
+}
 /*pag todoas reclamacoes*/
 
 .item-baixo{

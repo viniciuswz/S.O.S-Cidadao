@@ -247,6 +247,14 @@ width: 100vw;
     width: 318px;
 }
 
+.alinha-item{
+   
+    width: 100%;
+    flex-flow: column wrap;
+    align-items: center;
+
+}
+
 .item-baixo{
     width: 340px;
     height: 40px;
