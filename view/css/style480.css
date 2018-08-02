@@ -22,8 +22,8 @@ header form{
 }
 
 header form input[type=text]{
-width: 90%;
-min-width: 129px;
+width: 80%;
+min-width: 110px;
 outline: white;
 height: 28px;
 border:0;
@@ -35,8 +35,6 @@ header form input:focus{
 
 border-right: 0;
 }
-
-
 
 header form button{
     background-color: white;
@@ -55,13 +53,10 @@ header form button i.icone-pesquisa{
     background-position: -123.9px -2px ;
 }
 header i.icone-user{
-  
-margin:0 10px;
-width: 30px;
-height: 30px;
-
-background-size: 950px;
-
+    margin:0 10px;
+    width: 35px;
+    height: 30px;
+    background-size: 950px;
 }
 nav.menu{
     display: flex;
@@ -280,20 +275,38 @@ width: 100vw;
 }
 
 .formulario{
-    width: 90%;
-    margin: 0 auto;
     flex-direction: column;
     align-items: center; 
-    }
+    padding: 0 0 50px 0;
+}
 
+.formulario h3{
+    font-size: 15px;
+}
+
+.formulario hr{
+   
+    border: 2px solid purple;
+    position: relative;
+    bottom: 10px
+}
+.formulario .campo-envio{
+    width: 80%;
+    margin: 0 auto
+}
 .informacoes{
     width: 100%;
     }
 .informacoes hr{
-    margin-top: 0;
+    margin-top: 13px;
+    width: 70%;
+    margin:13px auto 0 auto;
+
 }
+
 .informacoes h3{
-    margin-top: 5%
+    margin-top: 5%;
+   
 }
     
 .imagem{
@@ -301,19 +314,35 @@ width: 100vw;
     }
 
 .imagem h3{
-    margin-top: 10%
+    margin-top: 13px;
+    
     }
 .imagem hr{
-    margin-top: 0;
+    width: 80%;
+    margin:13px auto 0 auto;;
 }
 
 
 .campo-texto{   
     width: 100%;
     text-align: center;   
-    }
-
+}
+.campo-texto textarea{
+    height: 100px}
 
 .campo-texto h3{
-        margin-top: 10%
-     }
+    margin:13px auto 7px auto;
+}
+
+.campo-texto hr{
+    width: 70%;
+}
+
+form .categorias hr{
+    width: 70%;
+}
+
+form .categorias{
+    width: 100%;
+}
+
