@@ -71,6 +71,10 @@ header form button{
     outline: none;
     cursor: pointer;
 }
+
+header i.icone-user{
+cursor: pointer
+}
 .negrito{
     font-weight: 600
 }
@@ -906,7 +910,7 @@ width: 100%
     color: rgb(48, 47, 47);
     display: block;
     padding: 15px 0px;
-    margin-top: 5%;
+    
     font-weight: 600;
 }
 
@@ -925,7 +929,11 @@ width: 100%
 /*/////////////////////////////ENVIAR IMG//////////////////////////////////////*/
 
 .imagem{
-    width: 40%;
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
     
 }
 
@@ -935,16 +943,72 @@ width: 100%
 
 .imagem hr{
     border: 0,3px solid black;
-    margin-top: 3%
+    margin-top: 3%;
+    width: 100%;
 }
 
 .envio-img{
     display: flex;
     justify-content: center;
-    padding: 30px;
-    margin-top: 5%
+    
 }
 
+.envio-img input{
+    display: none;
+}
+.envio-img label{
+    font-family: "Open-Sans";
+    color: white;
+    
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: #011627
+
+   
+    
+
+}
+
+.envio-img label p{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 150px;
+    height: 40px;
+    background-color: #00aeef;
+    margin-left: -150px;
+    z-index: 2;
+    left: 150px;
+    bottom:90px
+
+}
+
+.envio-img label i{
+
+    line-height: 10px;
+}
+
+.envio-img label div{
+    overflow: hidden;
+    width: 400px;
+    height: 220px;
+}
+
+.envio-img label div img{
+    overflow: hidden;
+    width: 120%;
+    align-self: center;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%)
+    
+}
 
 /*//////////////////////////////CAMPO "SOBRE"/////////////////////////////////////*/
 
