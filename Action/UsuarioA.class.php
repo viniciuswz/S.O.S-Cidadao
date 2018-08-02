@@ -62,50 +62,48 @@ class UsuarioA extends UsuarioM{
         }
 
         if($permissao == 2){// Tem q estar logado, nao importa o tipo_usu
-            if(!isset($_SESSION['id_user']) AND empty($_SESSION['id_user'])){
+            if(!isset($_SESSION['id_user']) AND empty($_SESSION['id_user'])  
+                AND !isset($_SESSION['tipo_usu']) AND empty($_SESSION['tipo_usu'])){
                 throw new \Exception("Não está logado",2);  
             }
         }
 
         if($permissao == 3){//Apenas user comum tem acesso
-            if(isset($_SESSION['tipo_usu']) AND !empty($_SESSION['tipo_usu'])
-                AND $_SESSION['tipo_usu'] != 'Comum'){
-                    throw new \Exception("Apenas user comum tem acesso",6);
-                }
+            if($_SESSION['tipo_usu'] != 'Comum'){
+                throw new \Exception("Apenas user comum tem acesso",6);
+            }
         }
 
         if($permissao == 4){// Tem q estar logado, apenas prefeitura, func
-            if(isset($_SESSION['tipo_usu']) AND !empty($_SESSION['tipo_usu']) // Se estiver logado e o seu tipo_usu for igual ao comum
-                AND ($_SESSION['tipo_usu'] != 'Funcionario' or $_SESSION['tipo_usu'] != 'Prefeitura'))
-            {  // Estoura um erro
-                    throw new \Exception("Apenas user funcionarios ou prefeitura",6);
+            if($_SESSION['tipo_usu'] != 'Funcionario' AND $_SESSION['tipo_usu'] != 'Prefeitura'){  // Estoura um erro
+                throw new \Exception("Apenas user funcionarios ou prefeitura",6);
             }
         }
 
         if($permissao == 5){// Tem q estar logado, apenas prefeitura
-            if(isset($_SESSION['tipo_usu']) AND !empty($_SESSION['tipo_usu']) // Se estiver logado e o seu tipo_usu for igual ao comum
-                AND $_SESSION['tipo_usu'] != 'Prefeitura')
-            {  // Estoura um erro
-                    throw new \Exception("Apenas user prefeitura",6);
+            if($_SESSION['tipo_usu'] != 'Prefeitura'){  // Estoura um erro
+                throw new \Exception("Apenas user prefeitura",6);
             }
         }
 
         if($permissao == 6){// Tem q estar logado, apenas adm, moderador
-            if(isset($_SESSION['tipo_usu']) AND !empty($_SESSION['tipo_usu']) // Se estiver logado e o seu tipo_usu for igual ao comum
-            AND ($_SESSION['tipo_usu'] != 'Moderador' or $_SESSION['tipo_usu'] != 'Adm'))
-            {  // Estoura um erro
-                    throw new \Exception("Apenas user moderador ou Adm",6);
+            if($_SESSION['tipo_usu'] != 'Moderador' AND $_SESSION['tipo_usu'] != 'Adm'){  // Estoura um erro
+                throw new \Exception("Apenas user moderador ou Adm",6);
             }
         }
 
         if($permissao == 7){// Tem q estar logado, apenas adm, moderador
-            if(isset($_SESSION['tipo_usu']) AND !empty($_SESSION['tipo_usu']) // Se estiver logado e o seu tipo_usu for igual ao comum
-            AND $_SESSION['tipo_usu'] != 'Adm')
-            {  // Estoura um erro
+            if($_SESSION['tipo_usu'] != 'Adm'){  // Estoura um erro
                     throw new \Exception("Apenas user ADM",6);
             }
-        }      
-
+        }   
+        
+        if($permissao == 8){// Tem q estar logado, apenas prefeitura, func,comum
+            if($_SESSION['tipo_usu'] != 'Moderador' AND $_SESSION['tipo_usu'] != 'Funcionario' AND $_SESSION['tipo_usu'] != 'Comum'){  // Estoura um erro
+                echo $_SESSION['tipo_usu'];
+                throw new \Exception("Apenas user Comum, func, e prefei",6);
+            }
+        }   
 
     }
 
