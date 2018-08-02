@@ -18,9 +18,9 @@ try{
     $debate->setDescriDeba($_POST['descricao']);            
     $debate->setImgDeba($_FILES['imagem']);
     $debate->setCodUsu($_SESSION['id_user']);
-    $debate->insert();    
-
-    echo 'tudo certo';//So tem q redimensionar
+    $debate->insert();   
+    $idDeba = $debate->getCodDeba(); // Pegar o codigo inserido, que a classe setou
+    echo "<script> javascript:window.location='./Templates/VerDebateTemplate.php?ID=".$idDeba."'</script>";
     
 }catch (Exception $exc){
     $erro = $exc->getCode();   

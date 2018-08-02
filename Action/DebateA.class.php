@@ -157,7 +157,7 @@ class DebateA extends DebateM{
 
     public function controlarPaginacao($pagina = null, $where){ // Fazer o controle da paginacao       
         $paginacao = new Paginacao(); 
-        $paginacao->setQtdPubliPaginas(1); // Setar a quantidade de publicacoes por pagina
+        $paginacao->setQtdPubliPaginas(3); // Setar a quantidade de publicacoes por pagina
         
         $quantidadeTotalPubli = $this->quantidadeTotalPubli($where);   //Pega a quantidade de publicacoes no total          
         
