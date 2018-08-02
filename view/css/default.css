@@ -555,8 +555,8 @@ display: flex;
     align-items: center;
 }
  .criar-publicacao i{
-     background-size: 1870px;
-     background-position: -728px -1.6px;
+     background-size: 1470px;
+     background-position: -568px 2.6px;
      width:60px;
      height: 65px;
      position: relative;
@@ -567,19 +567,22 @@ display: flex;
  .criar-publicacao a{
      background-color: darkslateblue;
      color:white;
-     width: 130px;
-     height: 40px;
+     width: 200px;
+     height: 35px;
      display: flex;
      align-items: center;
      justify-content: center;
-     flex-grow: 18%;
+    
+     text-align: center;
+     font-size: 14px
+     
      
  }
 
  .item-publicacao{
      background-color: white;
      width: 340px;
-     padding-bottom:20px; 
+    
      border-radius: 4%;
      margin-top: 10px;
      margin-bottom: 10px;
@@ -663,6 +666,19 @@ display: flex;
     background-color: blueviolet
 }
 
+.item-publicacao figure + p{
+    font-family: 'Open-Sans-Bold';
+    border-bottom:1px solid grey;
+    width:90%;
+    margin: 0 auto;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 1000;
+    padding: 6px;
+    
+}
+
  .item-publicacao .legenda{
     display: flex;
     justify-content: space-around;
@@ -703,6 +719,11 @@ display: flex;
      
  }
 
+
+ .mini-menu-item > i{
+    
+     margin-right: 15px
+ }
 .mini-menu-item ul{
     display: flex;
     position: absolute;
@@ -750,6 +771,94 @@ display: flex;
 .mini-menu-item.mini-menu-item-ativo ul{
     display: block;
 }
+
+
+/*pag todas reclamacoes*/
+
+ 
+.item-baixo{
+    width: 90%;
+    height: 40px;
+    display: flex;
+    
+    align-items: center;
+    font-size: 15px;
+    font-family: arial;
+    margin: 0 auto;
+}
+.item-baixo p{
+   font-size: 14px;
+   font-family: arial;
+  line-height: 35px;
+   align-items: center;
+  
+   height: 100%;
+   
+   flex-grow: 1;
+   overflow:hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap; 
+   max-width: 230px;
+ 
+}
+
+.item-baixo span{
+    font-family: arial;
+    font-size: 14px;
+    display: flex;
+    align-items: flex-start;
+    color: #2E2E2E;
+    font-weight: bold;
+    
+    
+}
+.item-baixo div{
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+
+}
+.item-baixo i{
+  
+    width: 30px;
+    height: 30px;
+
+
+    
+}
+
+.item-baixo i.icone-like{
+
+        background-size:950px; 
+        background-position: -460px 3px;
+        position: relative;
+        top: -5px
+       
+    
+}
+
+.item-baixo i.icone-comentario{
+
+    background-size:950px; 
+    background-position: -550px 3px;
+    position: relative;
+    top: -5px;
+   
+   
+
+}
+
+.item-baixo i.icone-local{
+    background-size:950px ;
+    background-position: -250px -1px;
+ 
+    
+    position: relative;
+    top: -5px
+    
+}
+
+
 /*///////////////////////////////BLOCO PRINCIPAL////////////////////////////////////*/
 .formulario{
    display: flex;

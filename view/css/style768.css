@@ -202,56 +202,6 @@ width: 100vw;
 }
 /*pag todoas reclamacoes*/
 
-.item-baixo{
-    width: 340px;
-    height: 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 14px;
-    font-family: arial;
-}
-.item-baixo p{
-   font-size: 17px;
-   font-family: arial;
-   display: flex;
-   align-items: flex-end;
-   width: 70%;
-   height: 100%;
-}
-
-.item-baixo span{
-    font-family: arial;
-    font-size: 19px;
-    display: flex;
-    align-items: flex-start;
-    color: #2E2E2E;
-    
-}
-.item-baixo div{
-    display: flex;
-   align-items: baseline;
-   justify-content: space-between;
-}
-.item-baixo i{
-    width: 35px;
-    height: 30px;
-}
-
-.item-baixo .icone-like{
-    background-size: 1200px;
-    background-position: -543px -1.6px;
-}
-
-.item-baixo .icone-comentario{
-   background-size: 1200px;
-   background-position: -697px -1.6px;
-}
-
-.item-baixo .icone-local{
-   background-size: 1200px;
-   background-position: -310px -1.6px;
-}
 .formulario{
     width: 90%;
     margin: 0 auto;
