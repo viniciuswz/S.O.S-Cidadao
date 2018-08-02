@@ -234,6 +234,15 @@ width: 100vw;
 
 }
 
+.informacoes label{
+    font-size: 15px;
+    padding: 13px 0px;
+}
+
+.informacoes input{
+    font-size: 15px;
+}
+
 .informacoes h3{
     margin-top: 5%;
    

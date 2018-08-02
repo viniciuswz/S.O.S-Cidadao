@@ -864,6 +864,12 @@ display: flex;
    padding: 40px;
     }
 
+.formulario hr{
+    border: 2px solid purple;
+    position: relative;
+    bottom: 10px
+}
+
 /*/////////////////////////////TITULO E TEMA//////////////////////////////////////*/
 
 .informacoes{

@@ -292,7 +292,7 @@ width: 100vw;
 }
 .formulario .campo-envio{
     width: 80%;
-    margin: 0 auto
+    margin: 15px auto
 }
 .informacoes{
     width: 100%;
@@ -301,7 +301,14 @@ width: 100vw;
     margin-top: 13px;
     width: 70%;
     margin:13px auto 0 auto;
+}
+.informacoes label{
+    font-size: 14px;
+    padding: 2px 0px;
+}
 
+.informacoes input{
+    font-size: 14px;
 }
 
 .informacoes h3{
@@ -322,13 +329,10 @@ width: 100vw;
     margin:13px auto 0 auto;;
 }
 
-.envio-img label{
-   
-}
 .envio-img label div{
     
-    width: 80%;
-    min-width: 280px;;
+    width: 100%;
+    min-width: 280px;
     
 }
 .envio-img label div img{
