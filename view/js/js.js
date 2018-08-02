@@ -75,3 +75,12 @@ $(function() {
     });
   });
 });
+
+
+jQuery(function($){
+
+  $(".icone-3pontos").click(function(){
+    var $this = $(this);
+    $this.parent().toggleClass('mini-menu-item-ativo')
+  })
+})

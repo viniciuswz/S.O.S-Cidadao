@@ -532,12 +532,13 @@ display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom:10px;
+    
 }
 
 .criar-publicacao div {
     
     padding-right: 15px;
-    height: 65px;
+  
     width: 84%;
     background-color: white;
     display: flex;
@@ -556,7 +557,7 @@ display: flex;
 }
  .criar-publicacao i{
      background-size: 1470px;
-     background-position: -568px 2.6px;
+     background-position: -568px 5.9px;
      width:60px;
      height: 65px;
      position: relative;
@@ -574,7 +575,8 @@ display: flex;
      justify-content: center;
     
      text-align: center;
-     font-size: 14px
+     font-size: 14px;
+     font-weight:600
      
      
  }
