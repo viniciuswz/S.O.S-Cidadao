@@ -84,3 +84,32 @@ jQuery(function($){
     $this.parent().toggleClass('mini-menu-item-ativo')
   })
 })
+
+
+jQuery(function(){
+    $(".formulario").submit(function(){
+       
+     var titulo = $("#titulo").val();
+    
+      if( titulo === ""){
+        $("#titulo").parent().find('p').text("Escreve algua coisa");
+        return false;
+      }else{
+        $("#titulo").parent().find('p').text("");
+      }
+    });
+    $(".formulario").submit(function(){
+       
+      var tema = $("#tema").val();
+     
+       if( tema === ""){
+         $("#tema").parent().find('p').text("Escreve algua coisa porra");
+         return false;
+       }else{
+        $("#tema").parent().find('p').text("");
+      }
+     });
+
+})
+
+
