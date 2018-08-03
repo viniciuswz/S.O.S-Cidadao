@@ -93,23 +93,54 @@ jQuery(function(){
     
       if( titulo === ""){
         $("#titulo").parent().find('p').text("Escreve algua coisa");
+        $("#titulo").parent().find('span').addClass('verificar');
         return false;
       }else{
         $("#titulo").parent().find('p').text("");
+        $("#titulo").parent().find('span').removeClass('verificar');
       }
     });
+
+
     $(".formulario").submit(function(){
        
       var tema = $("#tema").val();
      
        if( tema === ""){
-         $("#tema").parent().find('p').text("Escreve algua coisa porra");
+         $("#tema").parent().find('p').text("Tem que ter uma tema");
+         $("#tema").parent().find('span').addClass('verificar');
          return false;
        }else{
         $("#tema").parent().find('p').text("");
+        $("#tema").parent().find('span').removeClass('verificar');
       }
+
+      
      });
 
+     $(".formulario").submit(function(){
+       var caminhoImagem = $("#imagemDebate").val();
+       var extensao = caminhoImagem.substr(caminhoImagem.lastIndexOf(".") + 1).toLowerCase();
+
+        if(extensao == "png" || extensao =="jpg" || extensao == "jpeg"){
+          
+          $(".imagem").find('p:last-child').text("Essa imagem é valida");
+          
+          $("#img").attr("src",caminhoImagem)
+           
+        }else if(caminhoImagem ===""){
+           
+          $(".imagem").find('p:last-child').text("é obrigatorio inserir uma imagem");
+        }else{
+          $('#imagemDebate').val("");
+
+          $(".imagem").find('p:last-child').text("isso não é uma imagem");
+        }
+       
+      
+     });
+
+     
 })
 
 

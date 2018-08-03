@@ -912,12 +912,18 @@ width: 100%
 }
 .campo-envio label{
     text-align: start;
-    font: 16px arial;
+    font: 16px 'Open-Sans';
     color: rgb(48, 47, 47);
-    display: block;
+    display: flex;
     padding: 15px 0px;
     
     font-weight: 600;
+}
+
+.campo-envio label p{
+    color: red;
+    margin-left: 10px;
+    font-size: 1em
 }
 
 .campo-envio span{
@@ -930,6 +936,10 @@ width: 100%
     transition: all ease-in-out .2s;
 }
 
+.campo-envio span.verificar{
+    background: red;
+    width: 100%;
+}
 
 
 /*/////////////////////////////ENVIAR IMG//////////////////////////////////////*/
@@ -951,6 +961,15 @@ width: 100%
     border: 0,3px solid black;
     margin-top: 3%;
     width: 100%;
+}
+
+.imagem p:last-child{
+    width: 100%;
+    text-align: center;
+    color: red;
+    font-size: 1em;
+    font-weight:600;
+    border-bottom: red 2px solid
 }
 
 .envio-img{
