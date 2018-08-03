@@ -251,7 +251,7 @@ session_start();
                        </div>   
                     ';
                 }               
-            }else if($tipoUsu == 'Comum' or $tipoUsu == 'Prefeitura' or $tipoUsu == 'Funcionario'){            
+            }else if(isset($tipoUsu) AND ($tipoUsu == 'Comum' or $tipoUsu == 'Prefeitura' or $tipoUsu == 'Funcionario')){            
         ?>
             
         <div>
