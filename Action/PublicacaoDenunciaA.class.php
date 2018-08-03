@@ -32,7 +32,7 @@ class PublicacaoDenunciaA extends PublicacaoDenunciaM{
     }
 
     public function verificarDonoPubli(){ // Verificar se o dono ja denunciou a publicacao
-        echo $sql = sprintf(
+        $sql = sprintf(
                     $this->sqlVerifyDonoPubli,                    
                     $this->getCodUsu(),
                     $this->getCodPubli()
@@ -44,11 +44,11 @@ class PublicacaoDenunciaA extends PublicacaoDenunciaM{
         }
         return FALSE;        
     }
-    public function inserirDenuncia(){
+    public function inserirDenuncia(){ // Inserir a denuncia
         $verificar = $this->verificarSeDenunciou(); // SE for true é pq ja denunciou
         $verificarDonoPubli = $this->verificarDonoPubli();// SE for true é pq ele é o no
         if($verificarDonoPubli or $verificar){ // Se ele for o dono nao faz nada           
-            return;
+            throw new \Exception("Você nao pode denunciar está publicação",14);
         }
          $sql = sprintf(
                 $this->sqlInsert,
@@ -62,6 +62,5 @@ class PublicacaoDenunciaA extends PublicacaoDenunciaM{
         }
             return;       
     }
-
     
 }
