@@ -187,7 +187,9 @@ session_start();
                 if(isset($resposta[0]['indDenunPubli']) AND $resposta[0]['indDenunPubli'] == TRUE){ // Aparecer quando o user ja denunciou            
                     echo '<b>Denunciado</b>';            
                 }else if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] != $resposta[0]['cod_usu']){ // Aparecer apenas naspublicaçoes q nao é do usuario
-                    echo '<a href="DenunciarPublicacaoTemplate.php?ID='.$_GET['ID'].'">Denunciar</a>';
+                        if($tipoUsu == 'Comum' or $tipoUsu == 'Prefeitura' or $tipoUsu == 'Funcionario'){
+                            echo '<a href="DenunciarPublicacaoTemplate.php?ID='.$_GET['ID'].'">Denunciar</a>';
+                        }                    
                 }else if(!isset($_SESSION['id_user'])){ // aparecer parar os usuario nao logado
                     echo '<a href="DenunciarPublicacaoTemplate.php?ID='.$_GET['ID'].'">Denunciar</a>';
                 }                 
@@ -234,7 +236,7 @@ session_start();
                        </div>   
                     ';
                 }
-            }else{            
+            }else if($tipoUsu == 'Comum' or $tipoUsu == 'Prefeitura' or $tipoUsu == 'Funcionario'){            
         ?>
             
         <div>

@@ -42,6 +42,7 @@ session_start();
             case 2://Ja esta logado   
                 echo "<script> alert('$mensagem');javascript:window.location='starter.php';</script>";
                 break;
+            case 6: // Não esta autorizado
             case 12://Mexeu no insprnsionar elemento, ou mexeu no valor do id           
                 echo "<script> alert('$mensagem');javascript:window.location='VisualizarPublicacoesTemplate.php';</script>";
             break; 

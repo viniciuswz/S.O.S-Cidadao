@@ -99,7 +99,7 @@ class UsuarioA extends UsuarioM{
         }   
         
         if($permissao == 8){// Tem q estar logado, apenas prefeitura, func,comum
-            if($_SESSION['tipo_usu'] != 'Moderador' AND $_SESSION['tipo_usu'] != 'Funcionario' AND $_SESSION['tipo_usu'] != 'Comum'){  // Estoura um erro
+            if($_SESSION['tipo_usu'] != 'Prefeitura' AND $_SESSION['tipo_usu'] != 'Funcionario' AND $_SESSION['tipo_usu'] != 'Comum'){  // Estoura um erro
                 throw new \Exception("Apenas user Comum, func, e prefei",6);
             }
         }   
