@@ -17,14 +17,13 @@ session_start();
         $publi = new Publicacao();        
         if(isset($_SESSION['id_user']) AND !empty($_SESSION['id_user'])){
             $publi->setCodUsu($_SESSION['id_user']);
-        }        
-        if(isset($_GET['pagina'])){            
-            $resposta = $publi->ListFromALL($_GET['pagina']);
-        }else{            
-            $resposta = $publi->ListFromALL();
-        }
-            $quantidadePaginas = $publi->getQuantidadePaginas();
-            $pagina = $publi->getPaginaAtual();
+        }    
+        isset($_GET['pagina']) ?: $_GET['pagina'] = null;    
+                   
+        $resposta = $publi->ListFromALL($_GET['pagina']);
+        
+        $quantidadePaginas = $publi->getQuantidadePaginas();
+        $pagina = $publi->getPaginaAtual();
         
         
 ?>

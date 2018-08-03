@@ -11,7 +11,7 @@ session_start();
     
     use Core\Usuario;    
     use Core\Debate;
-    
+    use Classes\ValidarCampos;
     try{        
         $debate = new Debate();        
 
@@ -20,10 +20,11 @@ session_start();
             $tipoUsu = $_SESSION['tipo_usu'];
         }
 
-        if(isset($_GET['ID'])){
-            $debate->setCodDeba($_GET['ID']);
-            
-        }
+        $nomesCampos = array('ID');// Nomes dos campos que receberei da URL    
+        $validar = new ValidarCampos($nomesCampos, $_GET);
+        $validar->verificarTipoInt($nomesCampos, $_GET); // Verificar se o parametro da url é um numero        
+
+        $debate->setCodDeba($_GET['ID']);        
         $resposta = $debate->listByIdDeba();   
         
         

@@ -12,7 +12,7 @@ session_start();
     use Core\Usuario;
     use Core\Publicacao;
     use Core\Comentario;
-    
+    use Classes\ValidarCampos;
     try{        
         $publi = new Publicacao();
         $comentario = new Comentario();
@@ -23,16 +23,16 @@ session_start();
             $tipoUsu = $_SESSION['tipo_usu'];
         }
 
-        if(isset($_GET['ID'])){
-            $publi->setCodPubli($_GET['ID']);
-            $comentario->setCodPubli($_GET['ID']);
-        }
-
-        if(isset($_GET['pagina'])){            
-            $comentarioComum = $comentario->SelecionarComentariosUserComum($_GET['pagina']);
-        }else{            
-            $comentarioComum = $comentario->SelecionarComentariosUserComum();
-        }
+        $nomesCampos = array('ID');// Nomes dos campos que receberei da URL    
+        $validar = new ValidarCampos($nomesCampos, $_GET);
+        $validar->verificarTipoInt($nomesCampos, $_GET); // Verificar se o parametro da url é um numero
+        
+        $publi->setCodPubli($_GET['ID']);
+        $comentario->setCodPubli($_GET['ID']);        
+        isset($_GET['pagina']) ?: $_GET['pagina'] = null;
+                  
+        $comentarioComum = $comentario->SelecionarComentariosUserComum($_GET['pagina']);
+        
         $resposta = $publi->listByIdPubli();   
         $comentarioPrefei = $comentario->SelecionarComentariosUserPrefei();
 

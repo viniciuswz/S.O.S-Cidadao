@@ -10,18 +10,16 @@ session_start();
     require_once('../autoload.php');
     
     use Core\Usuario;    
-    use Core\Debate;
+    use Core\Debate;    
     try{
 
         $debate = new Debate();
         if(isset($_SESSION['id_user']) AND !empty($_SESSION['id_user'])){
             $debate->setCodUsu($_SESSION['id_user']);
         } 
-        if(isset($_GET['pagina'])){            
-            $resposta = $debate->ListFromALL($_GET['pagina']);
-        }else{            
-            $resposta = $debate->ListFromALL();
-        }
+        isset($_GET['pagina']) ?: $_GET['pagina'] = null;        
+        
+        $resposta = $debate->ListFromALL($_GET['pagina']);       
         $quantidadePaginas = $debate->getQuantidadePaginas();
         $pagina = $debate->getPaginaAtual();
         
