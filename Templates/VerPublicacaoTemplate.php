@@ -39,7 +39,7 @@ session_start();
         $quantidadePaginas = $comentario->getQuantidadePaginas();
         $pagina = $comentario->getPaginaAtual();
         
-        //var_dump($comentarioComum);
+        //var_dump($resposta);
 ?>
 
 <html>
@@ -182,6 +182,12 @@ session_start();
                     echo '<a href="../CurtirPublicacao.php?ID='.$_GET['ID'].'">Descurtir</a>';            
                 }else{                     
                     echo '<a href="../CurtirPublicacao.php?ID='.$_GET['ID'].'">Curtir</a>';  
+                }
+                    echo '<br>';
+                if(isset($resposta[0]['indDenunPubli']) AND $resposta[0]['indDenunPubli'] == TRUE){            
+                    echo '<b>Denunciado</b>';            
+                }else{                     
+                    echo '<a href="DenunciarPublicacaoTemplate.php?ID='.$_GET['ID'].'">Denunciar</a>';  
                 }
             
                 ?>              

@@ -2,6 +2,7 @@
 namespace Action;
 use Model\PublicacaoM;
 use Core\Logradouro;
+use Core\PublicacaoDenuncia;
 use Classes\TratarImg;
 use Classes\TratarDataHora;
 use Classes\Paginacao;
@@ -151,6 +152,7 @@ class PublicacaoA extends PublicacaoM{
             $dados[$contador]['indResPrefei'] =  $this->getVerifyResPrefei($dados[$contador]['cod_publi']); //Veficar resposta da prefeitura   
             if(!empty($this->getCodUsu())){//Só entar aqui se ele estiver logado
                 $dados[$contador]['indCurtidaDoUser'] =  $this->getVerifyCurti($dados[$contador]['cod_publi']);//Verificar se ele curtiu a publicacao
+                $dados[$contador]['indDenunPubli'] =  $this->getVerificarSeDenunciou($dados[$contador]['cod_publi']);//Verificar se ele denunciou a publicacao
                 //Me retorna um bollenao
             }
             
@@ -208,6 +210,16 @@ class PublicacaoA extends PublicacaoM{
         }
         return FALSE;
     }    
+
+    public function getVerificarSeDenunciou(){
+        $idPubli = $this->getCodPubli();
+        $idUser = $this->getCodUsu();
+
+        $denun = new PublicacaoDenuncia();
+        $denun->setCodPubli($idPubli);
+        $denun->setCodUsu($idUser);
+        return $denun->verificarSeDenunciou();
+    }
 
     public function quantidadeTotalPubli($where){//Pegar a quantidade de publicacoes
         if($where != null){ // Se for passado o paramentro null, nao tem restriçoes retorna todas as publicacoes
