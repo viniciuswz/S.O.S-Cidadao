@@ -17,10 +17,7 @@ session_start();
 
         $nomesCampos = array('ID');// Nomes dos campos que receberei da URL    
         $validar = new ValidarCampos($nomesCampos, $_GET);
-
-        if(!is_numeric($_GET['ID'])){
-            echo 'nao é um numero';
-        }
+        $validar->verificarTipoInt($nomesCampos, $_GET); // Verificar se o parametro da url é um numero        
 ?>
 
 <html>
@@ -45,7 +42,7 @@ session_start();
             case 2://Ja esta logado   
                 echo "<script> alert('$mensagem');javascript:window.location='starter.php';</script>";
                 break;
-            case 12://Mexeu no insprnsionar elemento            
+            case 12://Mexeu no insprnsionar elemento, ou mexeu no valor do id           
                 echo "<script> alert('$mensagem');javascript:window.location='VisualizarPublicacoesTemplate.php';</script>";
             break; 
            

@@ -13,10 +13,8 @@ try{
     Usuario::verificarLogin(8);//Apenas user comum, prefeitura e func 
     $nomesCampos = array('id_publi','texto');// Nomes dos campos que receberei da URL    
     $validar = new ValidarCampos($nomesCampos, $_POST);
-
-    if(!is_numeric(intval($_POST['id_publi']))){
-        echo 'nao é um numero';
-    }
+    $validar->verificarTipoInt(array('id_publi'),$_POST); // Verificar se é um numero
+    
     $denuncia = new PublicacaoDenuncia();   
     $denuncia->setCodPubli($_POST['id_publi']);
     $denuncia->setCodUsu($_SESSION['id_user']);
@@ -35,7 +33,7 @@ try{
         case 6://Não é usuario comum, prefeitura ou func
             echo "<script> alert('$mensagem');javascript:window.location='./Templates/starter.php';</script>";
             break;
-        case 12://Mexeu no insprnsionar elemento
+        case 12://Mexeu no insprnsionar elemento, ou nao tem valores validos
         case 14://Erro no ao fazer a insercao
             echo "<script> alert('$mensagem');javascript:window.location='./Templates/VisualizarPublicacoesTemplate.php';</script>";
             break;        
