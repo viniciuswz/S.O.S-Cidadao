@@ -3,6 +3,7 @@ namespace Action;
 use Model\ComentarioM;
 use Classes\TratarDataHora;
 use Classes\Paginacao;
+use Core\ComentarioDenuncia;
 class ComentarioA extends ComentarioM{
     private $sqlVerifyDonoPubli = "SELECT cod_publi FROM publicacao WHERE cod_usu = '%s' AND cod_publi = '%s'";
 
@@ -96,10 +97,14 @@ class ComentarioA extends ComentarioM{
                
         while($contador < count($dados)){//Nesse while so entra a parte q me interresa
             
-            $dados[$contador]['dataHora_comen'] = $this->tratarHora($dados[$contador]['dataHora_comen']);//Calcular o tempo
-            $dados[$contador]['indCurtidaDoUser'] =  $this->getVerifyCurti($dados[$contador]['cod_comen']);//Verificar se ele curtiu a publicacao
+            $dados[$contador]['dataHora_comen'] = $this->tratarHora($dados[$contador]['dataHora_comen']);//Calcular o tempo            
             $dados[$contador]['qtdCurtidas'] =  $this->getQuantCurtiComen($dados[$contador]['cod_comen']);//Verificar se ele curtiu a publicacao
                 //Me retorna um bollenao   
+            if(!empty($this->getCodUsu())){//Só entar aqui se ele estiver logado
+                $dados[$contador]['indCurtidaDoUser'] =  $this->getVerifyCurti($dados[$contador]['cod_comen']);//Verificar se ele curtiu a publicacao
+                $dados[$contador]['indDenunComen'] =  $this->getVerificarSeDenunciou($dados[$contador]['cod_comen']);//Verificar se ele denunciou a publicacao
+                //Me retorna um bollenao
+            }
             $contador++;
         }  
         
@@ -136,6 +141,16 @@ class ComentarioA extends ComentarioM{
         );
         $res = $this->runSelect($sql);
         return $res[0]['COUNT(*)'];
+    }
+
+    public function getVerificarSeDenunciou(){
+        $idComen = $this->getCodComen();
+        $idUser = $this->getCodUsu();
+
+        $denun = new ComentarioDenuncia();
+        $denun->setCodComen($idComen);
+        $denun->setCodUsu($idUser);
+        return $denun->verificarSeDenunciou();
     }
 
     public function controlarPaginacao($pagina = null){ // Fazer o controle da paginacao       

@@ -40,6 +40,7 @@ session_start();
         $pagina = $comentario->getPaginaAtual();
         
         //var_dump($resposta);
+        var_dump($comentarioPrefei);
 ?>
 
 <html>
@@ -218,6 +219,20 @@ session_start();
 
                     ?>
                     <h3><?php echo $comentarioPrefei[0]['qtdCurtidas'] ?></h3>
+                    <?php
+                        if(isset($comentarioPrefei[0]['indDenunComen']) AND $comentarioPrefei[0]['indDenunComen'] == TRUE){ // Aparecer quando o user ja denunciou            
+                            echo '<b>Denunciado</b>';            
+                        }else if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] != $comentarioPrefei[0]['cod_usu']){ // Aparecer apenas naspublicaçoes q nao é do usuario
+                                if($tipoUsu == 'Comum' or $tipoUsu == 'Prefeitura' or $tipoUsu == 'Funcionario'){
+                                    echo '<a href="DenunciarComentarioTemplate.php?ID='.$comentarioPrefei[0]['cod_comen'].'&IDPubli='.$_GET['ID'].'&pagina='. $pagina.'">Denunciar</a>';
+                                }                    
+                        }else if(!isset($_SESSION['id_user'])){ // aparecer parar os usuario nao logado
+                            echo '<a href="DenunciarComentarioTemplate.php?ID='.$comentarioPrefei[0]['cod_comen'].'&IDPubli='.$_GET['ID'].'&pagina='. $pagina.'">Denunciar</a>';
+                        }
+
+
+                    ?>
+                    
                 </div>
                 
         <?php
@@ -235,7 +250,7 @@ session_start();
                             </form>        
                        </div>   
                     ';
-                }
+                }               
             }else if($tipoUsu == 'Comum' or $tipoUsu == 'Prefeitura' or $tipoUsu == 'Funcionario'){            
         ?>
             
@@ -276,10 +291,21 @@ session_start();
                             echo '<a href="../CurtirComentario.php?ID='.$comentarioComum[$contador]['cod_comen'].'&pagina='. $pagina.'&IDPubli='.$_GET['ID'].'">Descurtir</a>';           
                         }else{                     
                             echo '<a href="../CurtirComentario.php?ID='.$comentarioComum[$contador]['cod_comen'].'&pagina='. $pagina.'&IDPubli='.$_GET['ID'].'">Curtir</a>';  
-                        }
+                        }                       
 
                     ?>
                     <h3><?php echo $comentarioComum[$contador]['qtdCurtidas'] ?></h3>
+                    <?php 
+                        if(isset($comentarioComum[$contador]['indDenunComen']) AND $comentarioComum[$contador]['indDenunComen'] == TRUE){ // Aparecer quando o user ja denunciou            
+                            echo '<b>Denunciado</b>';            
+                        }else if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] != $comentarioComum[$contador]['cod_usu']){ // Aparecer apenas naspublicaçoes q nao é do usuario
+                                if($tipoUsu == 'Comum' or $tipoUsu == 'Prefeitura' or $tipoUsu == 'Funcionario'){
+                                    echo '<a href="DenunciarComentarioTemplate.php?ID='.$comentarioComum[$contador]['cod_comen'].'&IDPubli='.$_GET['ID'].'&pagina='. $pagina.'">Denunciar</a>';
+                                }                    
+                        }else if(!isset($_SESSION['id_user'])){ // aparecer parar os usuario nao logado
+                            echo '<a href="DenunciarComentarioTemplate.php?ID='.$comentarioComum[$contador]['cod_comen'].'&IDPubli='.$_GET['ID'].'&pagina='. $pagina.'">Denunciar</a>';
+                        }
+                    ?>
                 </div>
         <?php
                     $contador++;
