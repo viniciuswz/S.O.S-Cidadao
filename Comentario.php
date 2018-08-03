@@ -11,7 +11,8 @@ try{
 
     $nomesCampos = array('texto', 'id');// Nomes dos campos que receberei do formulario
     $validar = new ValidarCampos($nomesCampos, $_POST);//Verificar se eles existem, se nao existir estoura um erro
-       
+    $validar->verificarTipoInt(array('id'), $_POST); 
+
     $texto = $_POST['texto'];
     $idPubli = $_POST['id'];
     $comentario = new Comentario();

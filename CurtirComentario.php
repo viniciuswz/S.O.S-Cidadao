@@ -13,6 +13,8 @@ try{
     $curtidaComen = new CurtirComentario();
     $nomesCampos = array('ID');// Nomes dos campos que receberei da url, ID = do comentario
     $validar = new ValidarCampos($nomesCampos, $_GET);//Verificar se eles existem, se nao existir estoura um erro
+    $validar->verificarTipoInt($nomesCampos, $_GET); 
+    
     $curtidaComen->setCodUsu($_SESSION['id_user']);
     $curtidaComen->setCodComen($_GET['ID']);
     $curtidaComen->select();

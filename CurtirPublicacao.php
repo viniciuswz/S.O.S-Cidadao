@@ -11,6 +11,7 @@ try{
     Usuario::verificarLogin(2);//Tem q estar logado
     $nomesCampos = array('ID');// Nomes dos campos que receberei da url, ID = da publicacao
     $validar = new ValidarCampos($nomesCampos, $_GET);//Verificar se eles existem, se nao existir estoura um erro
+    $validar->verificarTipoInt($nomesCampos, $_GET); 
 
     $curtidaPub = new CurtidaPublicacao();
     $curtidaPub->setCodUsu($_SESSION['id_user']);

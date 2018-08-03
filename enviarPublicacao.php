@@ -14,7 +14,8 @@ try{
 
     $nomesCampos = array('titulo', 'categoria','texto','cep','bairro','local');// Nomes dos campos que receberei do formulario
     $validar = new ValidarCampos($nomesCampos, $_POST);//Verificar se eles existem, se nao existir estoura um erro
-
+    $validar->verificarTipoInt(array('categoria'), $_POST); 
+    
     $publicacao = new Publicacao();
     $publicacao->setTituloPubli($_POST['titulo']);
     $publicacao->setCodCate($_POST['categoria']);
