@@ -40,13 +40,13 @@ session_start();
 <?php
     }catch (Exception $exc){
         $erro = $exc->getCode();   
-        echo $mensagem = $exc->getMessage();
+        $mensagem = $exc->getMessage();
         switch($erro){
             case 2://Ja esta logado   
-                echo "<script> alert('$mensagem');javascript:window.location='./starter.php';</script>";
+                echo "<script> alert('$mensagem');javascript:window.location='starter.php';</script>";
                 break;
             case 12://Mexeu no insprnsionar elemento            
-                echo "<script> alert('$mensagem');javascript:window.location='./Templates/VisualizarPublicacoesTemplate.php';</script>";
+                echo "<script> alert('$mensagem');javascript:window.location='VisualizarPublicacoesTemplate.php';</script>";
             break; 
            
         }         
