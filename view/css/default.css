@@ -969,7 +969,7 @@ width: 100%
     color: red;
     font-size: 1em;
     font-weight:600;
-    border-bottom: red 2px solid
+    
 }
 
 .envio-img{
@@ -1044,6 +1044,14 @@ width: 100%
      
 
 }
+
+.campo-texto p{
+    width: 100%;
+    text-align: center;
+    color: red;
+    font-size: 1em;
+    font-weight:600;
+}
 .linha{
     border: 0,3px solid black;
     margin: 10px 0;  
@@ -1096,6 +1104,14 @@ form .categorias{
     flex-direction: column;
     margin-top: 20px
    
+}
+
+form .categorias p{
+    width: 100%;
+    text-align: center;
+    color: red;
+    font-size: 1em;
+    font-weight:600;
 }
 
 form .categorias h3{
