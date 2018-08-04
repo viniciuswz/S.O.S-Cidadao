@@ -128,6 +128,7 @@ jQuery(function(){
     
       if(imgDebate == ""){
         $(".imagem").find('p:last-child').text("uma imagem é obrigatoria");
+        return false;
       }
     })
 
@@ -152,8 +153,9 @@ jQuery(function(){
                   } 
               //se não for uma imagem
                 else {
-                  $('#imagem').val("");
+                  $('#imagemDebateInput').val("");
                   $(".imagem").find('p:last-child').text("esse formato não é valido");
+                  return false;
             }
         })
 
@@ -312,33 +314,52 @@ jQuery(function(){
           
          });
 
+         $(".formulario").submit(function(){
+          var img = $("#imagem").val();
+        
+          if(img == ""){
+            
+          }
+        })
 
 
-              $(document).on("change", "#imagem", function(){
-                var InputData = document.getElementById('imagem');
-                var caminhoImagem = InputData.value;
-                // verificando a extensão
-                var extensao = caminhoImagem.substring(
-                caminhoImagem.lastIndexOf('.') + 1).toLowerCase();
-                 //verificando se é uma img
-                  if (extensao == "gif" || extensao == "png" || extensao == "bmp"
-                      || extensao == "jpeg" || extensao == "jpg") {
-                  // vai mostrar no preview
-                      if (InputData.files && InputData.files[0]) {
-                        var reader = new FileReader();
-                        reader.onload = function(e) {
-                            $('#imgPreview').attr('src', e.target.result);
-                            $(".imagem").find('p:last-child').text("");
-                        }
-                          reader.readAsDataURL(InputData.files[0]);
-                        }
-                      } 
-                  //se não for uma imagem
-                    else {
-                      $('#imagem').val("");
-                      $(".imagem").find('p:last-child').text("esse formato não é valido");
-                }
-            })
+
+        $(".formulario").submit(function(){
+          var imgDebate = $("#imagem").val();
+        
+          if(imgDebate == ""){
+            $(".imagem").find('p:last-child').text("");
+          }
+        })
+    
+        $(document).on("change", "#imagem", function(){
+          var InputData = document.getElementById('imagem');
+          var caminhoImagem = InputData.value;
+          // verificando a extensão
+          var extensao = caminhoImagem.substring(
+          caminhoImagem.lastIndexOf('.') + 1).toLowerCase();
+           //verificando se é uma img
+            if (extensao == "gif" || extensao == "png" || extensao == "bmp"
+                || extensao == "jpeg" || extensao == "jpg") {
+            // vai mostrar no preview
+                if (InputData.files && InputData.files[0]) {
+                  var reader = new FileReader();
+                  reader.onload = function(e) {
+                      $('#imgPreview').attr('src', e.target.result);
+                      $(".imagem").find('p:last-child').text("");
+                  }
+                    reader.readAsDataURL(InputData.files[0]);
+                  }
+                } 
+            //se não for uma imagem
+              else {
+                $('#imagem').val("");
+                $(".imagem").find('p:last-child').text("esse formato não é valido");
+                return false;
+          }
+      })
+
+              
          
        
   
