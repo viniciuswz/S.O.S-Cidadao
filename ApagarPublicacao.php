@@ -10,7 +10,7 @@ session_start();
   
 try{                     
     Usuario::verificarLogin(2);//Tem q estar logado
-    //Usuario::verificarLogin(8);//Apenas user comum, prefeitura e func 
+    Usuario::verificarLogin(9);//Apenas user comum, adm e moderador 
     $nomesCampos = array('ID');// Nomes dos campos que receberei da URL    
     $validar = new ValidarCampos($nomesCampos, $_GET);
     $validar->verificarTipoInt(array('ID'),$_GET); // Verificar se é um numero
