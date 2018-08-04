@@ -3,7 +3,7 @@ define ('WWW_ROOT', dirname(__FILE__));
 define ('DS', DIRECTORY_SEPARATOR); 
 
 require_once(WWW_ROOT.DS.'autoload.php');
-use Core\Publicacao;
+use Core\Comentario;
 use Core\Usuario;
 use Classes\ValidarCampos;
 session_start();
@@ -15,12 +15,12 @@ try{
     $validar = new ValidarCampos($nomesCampos, $_GET);
     $validar->verificarTipoInt(array('ID'),$_GET); // Verificar se é um numero
     
-    $publi = new Publicacao();   
-    $publi->setCodPubli($_GET['ID']);
+    $publi = new Comentario();   
+    $publi->setCodComen($_GET['ID']);
     $publi->setCodUsu($_SESSION['id_user']);   
-    $publi->updateStatusPubli('I');
+    $publi->updateStatusComen('I');
 
-    echo "<script> alert('Status mudado');javascript:window.location='./Templates/VisualizarPublicacoesTemplate.php';</script>";
+    //echo "<script> alert('Status mudado');javascript:window.location='./Templates/VisualizarPublicacoesTemplate.php';</script>";
         
 }catch(Exception $exc){  
     $erro = $exc->getCode();   

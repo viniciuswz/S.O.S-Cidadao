@@ -311,6 +311,12 @@ session_start();
                         }else if(!isset($_SESSION['id_user'])){ // aparecer parar os usuario nao logado
                             echo '<a href="DenunciarComentarioTemplate.php?ID='.$comentarioComum[$contador]['cod_comen'].'&IDPubli='.$_GET['ID'].'&pagina='. $pagina.'">Denunciar</a>';
                         }
+
+                        if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $comentarioComum[$contador]['cod_usu']){
+                            echo '<a href="../ApagarComentario.php?ID='.$comentarioComum[$contador]['cod_comen'].'">Apagar Comentario</a>';
+                        }else if(isset($tipoUsu) AND ($tipoUsu == 'Adm' or $tipoUsu == 'Moderador')){
+                            echo '<a href="../ApagarComentario.php?ID='.$comentarioComum[$contador]['cod_comen'].'">Apagar Comentario</a>';
+                        }
                     ?>
                 </div>
         <?php

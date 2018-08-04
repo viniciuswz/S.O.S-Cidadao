@@ -179,6 +179,12 @@ session_start();
                         }else if(!isset($_SESSION['id_user'])){ // aparecer parar os usuario nao logado
                             echo '<a href="DenunciarDebateTemplate.php?ID='.$_GET['ID'].'">Denunciar</a>';
                         }       
+
+                        if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $resposta[0]['cod_usu']){
+                            echo '<a href="../ApagarDebate.php?ID='.$_GET['ID'].'">Apagar Debate</a>';
+                        }else if(isset($tipoUsu) AND ($tipoUsu == 'Adm' or $tipoUsu == 'Moderador')){
+                            echo '<a href="../ApagarDebate.php?ID='.$_GET['ID'].'">Apagar Debate</a>';
+                        }
                     ?>
                     <figure>
                         <img src="../Img/debate/<?php echo $resposta[0]['img_deba']?>" class="imgPubli">
