@@ -4,7 +4,7 @@ define ('DS', DIRECTORY_SEPARATOR); //
 require_once(WWW_ROOT.DS.'autoload.php');
 use Core\Comentario;
 use Core\Usuario;
-use Classes\ValidarCampos;
+use Classes\ValidarCampos;//dsadas
 session_start();
 try{            
     Usuario::verificarLogin(2);// Tem q estar logado
