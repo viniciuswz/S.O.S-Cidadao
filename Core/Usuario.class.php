@@ -56,6 +56,12 @@ class Usuario extends UsuarioA{
             }
         }   
 
+        if($permissao == 9){// Tem q estar logado, apenas Comum, Adm, Moderador
+            if($_SESSION['tipo_usu'] != 'Comum' AND $_SESSION['tipo_usu'] != 'Adm' AND $_SESSION['tipo_usu'] != 'Moderador'){  // Estoura um erro
+                throw new \Exception("Apenas user Comum, Adm, e Moderador",6);
+            }
+        }  
+
     }
     
     
