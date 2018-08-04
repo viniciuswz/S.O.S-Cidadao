@@ -18,7 +18,8 @@ class UsuarioA extends UsuarioM{
                                 
     private $sqlVerifiEmail = "SELECT cod_usu,nome_usu FROM usuario WHERE email_usu = '%s'";
 
-    private $sqlTipoUsu = "SELECT descri_tipo_usu FROM tipo_usuario WHERE cod_tipo_usu = '%s'";
+    private $sqlTipoUsu = "SELECT descri_tipo_usu FROM usuario INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu)
+                            WHERE usuario.cod_usu = '%s'";
 
     private $sqlUpdateEmailUsu = "UPDATE usuario SET email_usu = '%s', nome_usu = '%s' WHERE cod_usu = '%s'";
 
@@ -82,9 +83,9 @@ class UsuarioA extends UsuarioM{
         if(!$inserir->rowCount()){  // Se der erro cai nesse if          
             throw new \Exception("Não foi possível realizar o cadastro",3);   
         }   
-
-        $tipo = $this->getDescTipo();
         $id = $this->last();
+        $tipo = $this->getDescTipo($this->setCodUsu($id));
+        
         $_SESSION['id_user'] = $id;
         $_SESSION['tipo_usu'] = $tipo;
         
@@ -104,7 +105,7 @@ class UsuarioA extends UsuarioM{
 
     public function getDescTipo(){ //Pegar o tipo usuario
         $sql = sprintf($this->sqlTipoUsu,
-                            $this->getCodTipoUsu()                             
+                            $this->getCodUsu()                             
                     );
         $consulta = $this->runSelect($sql);
         return $consulta[0]['descri_tipo_usu'];

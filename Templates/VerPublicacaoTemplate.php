@@ -193,13 +193,19 @@ session_start();
                         }                    
                 }else if(!isset($_SESSION['id_user'])){ // aparecer parar os usuario nao logado
                     echo '<a href="DenunciarPublicacaoTemplate.php?ID='.$_GET['ID'].'">Denunciar</a>';
-                }                 
-            
-                ?>              
+                }            
+                
+                if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $resposta[0]['cod_usu']){
+                    echo '<a href="../ApagarPublicacao.php?ID='.$_GET['ID'].'">Apagar Publicacao</a>';
+                }else if(isset($tipoUsu) AND ($tipoUsu == 'Adm' or $tipoUsu == 'Moderador')){
+                    echo '<a href="../ApagarPublicacao.php?ID='.$_GET['ID'].'">Apagar Publicacao</a>';
+                }
+                ?>               
                 
             </div>   
         </div>          
         <?php 
+        
             if(!empty($comentarioPrefei)){
         ?>
                 <div class="comenPrefei">

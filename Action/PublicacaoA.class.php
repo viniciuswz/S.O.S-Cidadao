@@ -3,9 +3,11 @@ namespace Action;
 use Model\PublicacaoM;
 use Core\Logradouro;
 use Core\PublicacaoDenuncia;
+use Core\Usuario;
 use Classes\TratarImg;
 use Classes\TratarDataHora;
 use Classes\Paginacao;
+
 class PublicacaoA extends PublicacaoM{
     
     private $sqlInsert = "INSERT INTO publicacao(texto_publi, img_publi, titulo_publi, cod_usu, cod_cate, cep_logra,dataHora_publi)
@@ -51,6 +53,8 @@ class PublicacaoA extends PublicacaoM{
                                 INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu) 
                                 WHERE  status_comen = 'A' AND (descri_tipo_usu = 'Prefeitura' or descri_tipo_usu = 'Funcionario') AND status_usu = 'A')
                                 AND %s %s";
+    
+    private $sqlUpdateStatusPubli = "UPDATE publicacao SET status_publi = '%s' WHERE cod_publi = '%s' AND cod_usu = '%s'";
 
     private $sqlPaginaAtual;
     
@@ -239,10 +243,9 @@ class PublicacaoA extends PublicacaoM{
           
         $res = $this->runSelect($sql);        
         return $res[0]['COUNT(*)'];
-    }
-    
+    }    
 
-    public function getIdsPubliNRespo($pagina = null){
+    public function getIdsPubliNRespo($pagina = null){ //Pegar os ids da publicacoes nao respondidas
         $sqlQtdNRespon = sprintf(
             $this->sqlQtdNRespon,
             'COUNT(*)',
@@ -275,7 +278,7 @@ class PublicacaoA extends PublicacaoM{
               
     }
 
-    public function getPubliNRespo($pagina = null){
+    public function getPubliNRespo($pagina = null){//Pegar os dados das publicacoes nao respondidas
         $sql = sprintf(
                 $this->sqlSelect,
                 $this->getIdsPubliNRespo($pagina),
@@ -297,9 +300,37 @@ class PublicacaoA extends PublicacaoM{
         $this->setPaginaAtual($paginacao->getPaginaAtual());
         return $sqlPaginacao;
         
-    }
-
+    }   
     
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
+    // UPDATESSSSSS
 
+    public function updateStatusPubli($status){        
+        $usuario = new Usuario();
+        $usuario->setCodUsu($this->getCodUsu());
+        $tipo = $usuario->getDescTipo();       
+
+        if($tipo == 'Adm' or $tipo == 'Moderador'){
+            $sqlUpdatePubli = "UPDATE publicacao SET status_publi = '%s' WHERE cod_publi = '%s'";
+            $sql = sprintf(
+                $sqlUpdatePubli,
+                $status,
+                $this->getCodPubli()                
+            );
+        }else{
+            $sql = sprintf(
+                $this->sqlUpdateStatusPubli,
+                $status,
+                $this->getCodPubli(),
+                $this->getCodUsu()
+            );
+        }    
+        $resposta = $this->runQuery($sql);
+        if(!$resposta->rowCount()){
+            throw new \Exception("Não foi possível mudar o status",9);
+        }
+
+        return;
+    }
    
 }
