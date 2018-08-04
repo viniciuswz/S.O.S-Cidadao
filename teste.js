@@ -3,7 +3,7 @@ function jaca(){
     var jaq;
     $.ajax({
 
-        url: '../notificaoes.php',
+        url: '../notificacoes.php',
 
         success: function(data){            
             //$('#lista').html(data);

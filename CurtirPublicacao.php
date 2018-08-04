@@ -16,7 +16,7 @@ try{
     $curtidaPub = new CurtidaPublicacao();
     $curtidaPub->setCodUsu($_SESSION['id_user']);
     $curtidaPub->setCodPubli($_GET['ID']);
-    $curtidaPub->select();
+    $curtidaPub->select();    
     if(isset($_GET['pagina'])){ //Ta curtindo atraves da listagem de todas as publicaçoess
         echo "<script> javascript:window.location='Templates/VisualizarPublicacoesTemplate.php?pagina=".$_GET['pagina']."';</script>";
     }else{//Ta curtindo atreves da pagina de uma publicacoes especifica

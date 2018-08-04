@@ -5,7 +5,7 @@ define ('DS', DIRECTORY_SEPARATOR);
 require_once(WWW_ROOT.DS.'autoload.php');
 
 use Notificacoes\GerenNotiComum;
-
+use Core\Publicacao;
 session_start();
 //$_SESSION['id'] = 1;
 

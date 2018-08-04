@@ -330,7 +330,7 @@ desired effect
           }
 
           if($resultado[0]['descri_tipo_usu'] == 'Prefeitura' or $resultado[0]['descri_tipo_usu'] == 'Funcionario'){
-            echo '<a href="">Listar reclamaçoes nao respondidas(Não feito)</a>
+            echo '<a href="VerPubliNRespondidasTemplate.php">Listar reclamaçoes nao respondidas</a>
             <br>';
             if($resultado[0]['descri_tipo_usu'] == 'Prefeitura'){
               echo '<a href="">Cadastrar Funcionario(Não feito)</a>
