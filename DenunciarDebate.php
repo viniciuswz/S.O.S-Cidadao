@@ -18,7 +18,7 @@ try{
     $denuncia = new DebateDenuncia();   
     $denuncia->setCodDeba($_POST['id_deba']);
     $denuncia->setCodUsu($_SESSION['id_user']);
-    $denuncia->setMotivoDenunPubli($_POST['texto']);
+    $denuncia->setMotivoDenunDeba($_POST['texto']);
     
     $denuncia->inserirDenuncia();
 
