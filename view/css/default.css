@@ -404,7 +404,6 @@ nav.notificacoes ul li a span:first-of-type{
 
 .informacoes{
     width: 45%;
-   
     display: block;
     }
 
@@ -462,8 +461,7 @@ width: 100%
 /*/////////////////////////////ENVIAR IMG//////////////////////////////////////*/
 
 .imagem{
-    width: 40%;
-    
+    width: 40%;   
 }
 
 .imagem h3{
@@ -570,4 +568,64 @@ form input[type="radio"]:checked + label{
 background-color: pink;
 }
 
+/*////////////////AGRADECIMENTO PAGE//////////////////////*/
 
+.bloco{
+    width: 300px;
+    height: 450px;
+    margin: 40px auto;
+    background: white;
+    padding: 10px 30px;
+
+}
+.img{
+    height: 200px;
+    background: white;
+    background-image:url('../imagens/TOPO.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+   
+}
+.fundo{
+    background-image:url('../imagens/fundo.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-color: black
+}
+.bloco h2{
+    text-align: center;
+}
+.bloco p{
+    text-align: center;
+    margin: 5px;
+    color: gray;
+}
+.bloco input{
+    padding: 10px 30px;
+    cursor: pointer;
+    display: block;
+    margin: 50px auto;
+}
+
+/*////////////////DEBATE PAGE//////////////////////*/
+
+.page{
+    display: flex;
+}
+
+.postada{
+    width: 55%;
+    height: 450px;
+    background: grey;
+}
+.autor{
+    background: white;
+    
+}
+
+
+.titulo{
+    width: 45%;
+    height: 450px;
+    background: blueviolet;
+}
