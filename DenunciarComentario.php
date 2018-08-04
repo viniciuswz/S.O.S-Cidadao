@@ -18,7 +18,7 @@ try{
     $denuncia = new ComentarioDenuncia();   
     $denuncia->setCodComen($_POST['id_comen']);
     $denuncia->setCodUsu($_SESSION['id_user']);
-    $denuncia->setMotivoDenunPubli($_POST['texto']);
+    $denuncia->setMotivoDenunComen($_POST['texto']);
     
     $denuncia->inserirDenuncia();
 
