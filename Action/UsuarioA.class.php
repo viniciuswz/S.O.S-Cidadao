@@ -18,7 +18,8 @@ class UsuarioA extends UsuarioM{
                                 
     private $sqlVerifiEmail = "SELECT cod_usu,nome_usu FROM usuario WHERE email_usu = '%s'";
 
-    private $sqlTipoUsu = "SELECT descri_tipo_usu FROM tipo_usuario WHERE cod_tipo_usu = '%s'";
+    private $sqlTipoUsu = "SELECT descri_tipo_usu FROM usuario INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu)
+                            WHERE usuario.cod_usu = '%s'";
 
     private $sqlUpdateEmailUsu = "UPDATE usuario SET email_usu = '%s', nome_usu = '%s' WHERE cod_usu = '%s'";
 
@@ -51,60 +52,7 @@ class UsuarioA extends UsuarioM{
             throw new \Exception("Email ou senha invalidos(Mais de um registro)",1); 
         }
         
-    }                                
-
-    static function verificarLogin($permissao){//Niveis de permissao
-
-        if($permissao == 1){// Nao pode estar logado
-            if(isset($_SESSION['id_user']) AND !empty($_SESSION['id_user'])){
-                throw new \Exception("Ja está logado",2);  
-            }
-        }
-
-        if($permissao == 2){// Tem q estar logado, nao importa o tipo_usu
-            if(!isset($_SESSION['id_user']) AND empty($_SESSION['id_user'])  
-                AND !isset($_SESSION['tipo_usu']) AND empty($_SESSION['tipo_usu'])){
-                throw new \Exception("Não está logado",2);  
-            }
-        }
-
-        if($permissao == 3){//Apenas user comum tem acesso
-            if($_SESSION['tipo_usu'] != 'Comum'){
-                throw new \Exception("Apenas user comum tem acesso",6);
-            }
-        }
-
-        if($permissao == 4){// Tem q estar logado, apenas prefeitura, func
-            if($_SESSION['tipo_usu'] != 'Funcionario' AND $_SESSION['tipo_usu'] != 'Prefeitura'){  // Estoura um erro
-                throw new \Exception("Apenas user funcionarios ou prefeitura",6);
-            }
-        }
-
-        if($permissao == 5){// Tem q estar logado, apenas prefeitura
-            if($_SESSION['tipo_usu'] != 'Prefeitura'){  // Estoura um erro
-                throw new \Exception("Apenas user prefeitura",6);
-            }
-        }
-
-        if($permissao == 6){// Tem q estar logado, apenas adm, moderador
-            if($_SESSION['tipo_usu'] != 'Moderador' AND $_SESSION['tipo_usu'] != 'Adm'){  // Estoura um erro
-                throw new \Exception("Apenas user moderador ou Adm",6);
-            }
-        }
-
-        if($permissao == 7){// Tem q estar logado, apenas adm, moderador
-            if($_SESSION['tipo_usu'] != 'Adm'){  // Estoura um erro
-                    throw new \Exception("Apenas user ADM",6);
-            }
-        }   
-        
-        if($permissao == 8){// Tem q estar logado, apenas prefeitura, func,comum
-            if($_SESSION['tipo_usu'] != 'Prefeitura' AND $_SESSION['tipo_usu'] != 'Funcionario' AND $_SESSION['tipo_usu'] != 'Comum'){  // Estoura um erro
-                throw new \Exception("Apenas user Comum, func, e prefei",6);
-            }
-        }   
-
-    }
+    }      
 
     public function getDadosUser(){//PEgar dados do usuario        
         $sql = sprintf($this->sqlPegarDados,
@@ -135,9 +83,9 @@ class UsuarioA extends UsuarioM{
         if(!$inserir->rowCount()){  // Se der erro cai nesse if          
             throw new \Exception("Não foi possível realizar o cadastro",3);   
         }   
-
-        $tipo = $this->getDescTipo();
         $id = $this->last();
+        $tipo = $this->getDescTipo($this->setCodUsu($id));
+        
         $_SESSION['id_user'] = $id;
         $_SESSION['tipo_usu'] = $tipo;
         
@@ -157,7 +105,7 @@ class UsuarioA extends UsuarioM{
 
     public function getDescTipo(){ //Pegar o tipo usuario
         $sql = sprintf($this->sqlTipoUsu,
-                            $this->getCodTipoUsu()                             
+                            $this->getCodUsu()                             
                     );
         $consulta = $this->runSelect($sql);
         return $consulta[0]['descri_tipo_usu'];
