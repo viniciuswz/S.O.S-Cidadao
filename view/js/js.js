@@ -36,8 +36,9 @@ jQuery(function($)
 })
 
 
-$(function() {
+jQuery(function($) {
  
+  $(document).ready(function(){
   /*ativar*/
   var leftPos, newWidth, $linha;
 
@@ -74,6 +75,7 @@ $(function() {
       "width": $linha.data('origWidth')
     });
   });
+});
 });
 
 
@@ -150,6 +152,7 @@ jQuery(function(){
                   } 
               //se não for uma imagem
                 else {
+                  $('#imagem').val("");
                   $(".imagem").find('p:last-child').text("esse formato não é valido");
             }
         })
@@ -171,8 +174,171 @@ jQuery(function(){
           
          });
 
+         $(".formulario").submit(function(){
+       
+          if($('input[name=categoria]:checked').length<=0)
+            {
+              $(".categorias").find('p').text("Escolha uma catgoria")
+            }else{
+              $(".categorias").find('p').text("")
+            }
+          
+         });
 
 
+         $(".formulario").submit(function(){
+
+          //Nova variável "cep" somente com dígitos.
+          var CEP = $("#cep").val().replace(/\D/g, '');
+         
+       
+           if( CEP === ""){
+             $("#cep").parent().find('p').text("O CEP é obrigatorio");
+             $("#cep").parent().find('span').addClass('verificar');
+             $("#cep").css("background" , 'rgba(256,000,000,.1)' )
+             return false;
+
+           }else{
+
+
+      /*
+            function limpa_formulário_cep() {
+              // Limpa valores do formulário de cep.
+              $("#local").val("");
+              $("#bairro").val("");
+          }
+            //Nova variável "cep" somente com dígitos.
+            var cep = CEP;
+
+            //Verifica se campo cep possui valor informado.
+            if (cep != "") {
+
+                //Expressão regular para validar o CEP.
+                var validacep = /^[0-9]{8}$/;
+
+                //Valida o formato do CEP.
+                if(validacep.test(cep)) {
+
+                    //Preenche os campos com "..." enquanto consulta webservice.
+                    $("#local").val("...");
+                    $("#bairro").val("...");
+                   
+
+                    //Consulta o webservice viacep.com.br/
+                    $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+
+                        if (!("erro" in dados)) {
+                            //Atualiza os campos com os valores da consulta.
+                            $("#local").val(dados.logradouro);
+                            $("#bairro").val(dados.bairro);
+                            
+                        } //end if.
+                        else {
+                            //CEP pesquisado não foi encontrado.
+                            limpa_formulário_cep();
+                            $("#cep").parent().find('p').text("CEP não encontrado");
+                            $("#cep").parent().find('span').addClass('verificar');
+                            $("#cep").css("background" , 'rgba(256,000,000,.1)' )
+
+                            $("#bairro").parent().find('p').text("CEP não encontrado");
+                            $("#bairro").parent().find('span').addClass('verificar');
+                            $("#bairro").css("background" , 'rgba(256,000,000,.1)' )
+
+                            $("#local").parent().find('p').text("CEP não encontrado");
+                            $("#local").parent().find('span').addClass('verificar');
+                            $("#local").css("background" , 'rgba(256,000,000,.1)' )
+                        }
+                    });
+                } //end if.
+                else {
+                    //cep é inválido.
+                    limpa_formulário_cep();
+                    $("#cep").parent().find('p').text(" o CEP é invalido");
+                    $("#cep").parent().find('span').addClass('verificar');
+                    $("#cep").css("background" , 'rgba(256,000,000,.1)' )
+                    
+                }
+            } //end if.
+            */
+
+
+            $("#cep").parent().find('p').text("");
+            $("#cep").parent().find('span').removeClass('verificar');
+            $("#cep").css("background" , 'white' )
+            $("#cep").val(CEP.replace('-',''))
+            
+            
+          }
+          
+         });
+
+         $(document).ready(function(){
+          $("#cep").mask("99999-999");
+        });
+
+        $(".formulario").submit(function(){
+       
+          var local = $("#local").val();
+         
+           if( local === "" ){
+             $("#local").parent().find('p').text("Escreve algua coisa porra");
+             $("#local").parent().find('span').addClass('verificar');
+             $("#local").css("background" , 'rgba(256,000,000,.1)' )
+             return false;
+           }else{
+            $("#local").parent().find('p').text("");
+            $("#local").parent().find('span').removeClass('verificar');
+            $("#local").css("background" , 'white' )
+            
+          }
+          
+         });
+
+          $(".formulario").submit(function(){
+       
+          var bairro = $("#bairro").val();
+         
+           if( bairro === "" ){
+             $("#bairro").parent().find('p').text("Escreve algua coisa porra");
+             $("#bairro").parent().find('span').addClass('verificar');
+             $("#bairro").css("background" , 'rgba(256,000,000,.1)' )
+             return false;
+           }else{
+            $("#bairro").parent().find('p').text("");
+            $("#bairro").parent().find('span').removeClass('verificar');
+            $("#bairro").css("background" , 'white' )
+            
+          }
+          
+         });
+
+
+
+              $(document).on("change", "#imagem", function(){
+                var InputData = document.getElementById('imagem');
+                var caminhoImagem = InputData.value;
+                // verificando a extensão
+                var extensao = caminhoImagem.substring(
+                caminhoImagem.lastIndexOf('.') + 1).toLowerCase();
+                 //verificando se é uma img
+                  if (extensao == "gif" || extensao == "png" || extensao == "bmp"
+                      || extensao == "jpeg" || extensao == "jpg") {
+                  // vai mostrar no preview
+                      if (InputData.files && InputData.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = function(e) {
+                            $('#imgPreview').attr('src', e.target.result);
+                            $(".imagem").find('p:last-child').text("");
+                        }
+                          reader.readAsDataURL(InputData.files[0]);
+                        }
+                      } 
+                  //se não for uma imagem
+                    else {
+                      $('#imagem').val("");
+                      $(".imagem").find('p:last-child').text("esse formato não é valido");
+                }
+            })
          
        
   

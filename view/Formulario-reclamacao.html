@@ -24,6 +24,7 @@
         <!-- JS-->
 
         <script src="lib/_jquery/jquery.js"></script>
+        <script src="lib/_jquery/jquery.mask177.min.js"></script>
         <script src="js/js.js"></script>
 
     </head>
@@ -152,19 +153,19 @@
                     </div>
 
                     <div class="campo-envio">
-                            <label for="cep">CEP</label>
+                            <label for="cep">CEP<p></p></label>
                             <input type="text" id="cep" placeholder="00000-000"  maxlength="20">
                             <span></span>
                         </div>
 
                         <div class="campo-envio">
-                            <label for="local">local</label>
+                            <label for="local">local<p></p></label>
                             <input type="text" id="local" placeholder="rua, Avenida..."  maxlength="20">
                             <span></span>
                         </div>
 
                         <div class="campo-envio">
-                                <label for="bairro">Bairro</label>
+                                <label for="bairro">Bairro<p></p></label>
                                 <input type="text" id="bairro" placeholder="Parque dos Churros"  maxlength="20">
                                 <span></span>
                             </div>
@@ -180,10 +181,12 @@
                             <label for="imagem"><p><i class="icone-camera"></i>Escolha foto</p>
                         
                         <div>
-                            <img src="imagens/capa.png">
+                            <img src="imagens/capa.png" id="imgPreview">
                         </div>
                     </label>
+                    
                 </div>
+                <p></p>
                 </div>
             <!-- FORMULARIO CATEGORIAS-->
                 <div class="categorias">
