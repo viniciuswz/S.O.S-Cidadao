@@ -1,6 +1,7 @@
-<?php
+<?php // PAREI AQUI DIA 03/08/18
 namespace Action;
 use Model\DebateM;
+use Core\DebateDenuncia;
 use Classes\TratarImg;
 use Classes\Paginacao;
 use Classes\TratarDataHora;
@@ -107,8 +108,13 @@ class DebateA extends DebateM{
             
             $dados[$contador]['dataHora_deba'] = $this->tratarHora($dados[$contador]['dataHora_deba']);//Calcular o tempo
             $dados[$contador]['qtdParticipantes'] = $this->quantidadeTotalParticipantes($dados[$contador]['cod_deba']);//Calcular o total de participantes
-            $dados[$contador]['indParticipa'] =  $this->verificarSeParticipaOuNao($dados[$contador]['cod_deba']);//Verificar se ele participa do debate
-              
+            
+            
+            if(!empty($this->getCodUsu())){//Só entar aqui se ele estiver logado
+                $dados[$contador]['indParticipa'] =  $this->verificarSeParticipaOuNao($dados[$contador]['cod_deba']);//Verificar se ele participa do debate
+                $dados[$contador]['indDenunComen'] =  $this->getVerificarSeDenunciou($dados[$contador]['cod_deba']);//Verificar se ele denunciou o debate
+                //Me retorna um bollenao
+            }
             $contador++;
         }  
         
@@ -153,6 +159,16 @@ class DebateA extends DebateM{
           
         $res = $this->runSelect($sql);
         return $res[0]['COUNT(*)'];
+    }
+
+    public function getVerificarSeDenunciou(){
+        $idDeba = $this->getCodDeba();
+        $idUser = $this->getCodUsu();
+
+        $denun = new DebateDenuncia();
+        $denun->setCodDeba($idDeba);
+        $denun->setCodUsu($idUser);
+        return $denun->verificarSeDenunciou();
     }
 
     public function controlarPaginacao($pagina = null, $where){ // Fazer o controle da paginacao       

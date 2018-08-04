@@ -40,7 +40,7 @@ session_start();
         $pagina = $comentario->getPaginaAtual();
         
         //var_dump($resposta);
-        var_dump($comentarioPrefei);
+        //var_dump($comentarioComum);
 ?>
 
 <html>

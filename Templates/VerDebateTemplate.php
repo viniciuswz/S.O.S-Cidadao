@@ -28,7 +28,7 @@ session_start();
         $resposta = $debate->listByIdDeba();   
         
         
-        //var_dump($comentarioComum);
+        //var_dump($resposta);
 ?>
 
 <html>
@@ -169,10 +169,25 @@ session_start();
                             <span>Participantes: <?php echo $resposta[0]['qtdParticipantes']?></span>                       
                         <?php  
                             }
-                        ?>                 
+                          
+                        if(isset($resposta[0]['indDenunComen']) AND $resposta[0]['indDenunComen'] == TRUE){ // Aparecer quando o user ja denunciou            
+                            echo '<b>Denunciado</b>';            
+                        }else if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] != $resposta[0]['cod_usu']){ // Aparecer apenas naspublicaçoes q nao é do usuario
+                            if($tipoUsu == 'Comum' or $tipoUsu == 'Prefeitura' or $tipoUsu == 'Funcionario'){
+                                echo '<a href="DenunciarDebateTemplate.php?ID='.$_GET['ID'].'">Denunciar</a>';
+                            }                    
+                        }else if(!isset($_SESSION['id_user'])){ // aparecer parar os usuario nao logado
+                            echo '<a href="DenunciarDebateTemplate.php?ID='.$_GET['ID'].'">Denunciar</a>';
+                        }       
+                    ?>
                     <figure>
                         <img src="../Img/debate/<?php echo $resposta[0]['img_deba']?>" class="imgPubli">
-                    </figure>                 
+                    </figure>          
+                    <?php
+                
+                          
+            
+                ?>                   
         </div>                
       
                 

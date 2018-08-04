@@ -38,7 +38,7 @@ try{
             echo "<script> alert('$mensagem');javascript:window.location='./Templates/VisualizarPublicacoesTemplate.php';</script>";
             break;        
         default: //Qualquer outro erro cai aqui
-            echo "<script> alert('$mensagem');javascript:window.location='./Templates/CriarDebateTemplate.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='./Templates/starter.php';</script>";
     }    
 }    
 

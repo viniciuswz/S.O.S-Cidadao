@@ -143,8 +143,7 @@ class ComentarioA extends ComentarioM{
         return $res[0]['COUNT(*)'];
     }
 
-    public function getVerificarSeDenunciou(){
-        $idComen = $this->getCodComen();
+    public function getVerificarSeDenunciou($idComen){
         $idUser = $this->getCodUsu();
 
         $denun = new ComentarioDenuncia();
