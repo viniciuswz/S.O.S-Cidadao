@@ -1,6 +1,6 @@
 <?php
 define ('WWW_ROOT', dirname(__FILE__)); 
-define ('DS', DIRECTORY_SEPARATOR); 
+define ('DS', DIRECTORY_SEPARATOR); //
 require_once(WWW_ROOT.DS.'autoload.php');
 use Core\Comentario;
 use Core\Usuario;
