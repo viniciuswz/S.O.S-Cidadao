@@ -265,11 +265,65 @@ width: 100vw;
 .campo-texto{   
     width: 100%;
     text-align: center;   
-    }
+}
 
+.form-icone section{
+    
+    align-items: baseline
+}
+
+
+.form-icone section > div{
+    width: 100%;
+    display: block;
+    text-align: center;
+    margin:  auto;
+   
+    margin-bottom: 10px;
+
+
+}
+.form-icone section h1{
+    
+    font-size: 30px;
+    
+}
+
+.form-icone section p{
+ 
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    text-shadow: 1px 1px 1px black
+    
+}
 
 .campo-texto h3{
     margin-top: 13px;
     width: 70%;
     margin:13px auto 0 auto;
-     }
+}
+
+.form-icone form{
+    position: initial;
+    width:300px;
+    height: 280px;
+    margin: 0;
+    
+   
+}
+
+.form-icone form h3{
+    width: 213px;
+    
+}
+
+
+.form-icone form button{
+   
+    padding:10px;
+    margin-top: 40px;
+    width: 80%;
+    font-weight:800;
+    
+}

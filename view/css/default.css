@@ -1162,4 +1162,131 @@ background-color: pink;
 }
 
 
+.form-icone{
+    background-color: green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.form-icone section{
+   
+    background-image: url("../imagens/fundo-login.jpg");
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-position: center center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-color: #333;
+    margin: 0;
+    padding: 0;
+
+}
+.form-icone section > div{
+ 
+margin-right:500px;
+margin-bottom :200px;
+}
+.form-icone section h1{
+    color: #E7E8EB;
+    font-size: 40px;
+    text-shadow: 1px 1px 1px black
+}
+.form-icone section p{
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    text-shadow: 1px 1px 1px black
+    
+}
+.form-icone form{
+    width:300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    flex-direction: column;
+    background-color: rgb(235, 235, 235 ,.8);
+    position: absolute;
+    right: 0;
+    margin-right: 120px;
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px
+   
+}
+
+.form-icone form h3{
+  
+    width: 80%;
+    
+   
+}
+
+
+
+.campo-texto-icone{
+    text-align: center;
+    height:30px;
+    display: flex;
+    background-color: green;
+    justify-content: center;
+    margin: 10px
+    
+}
+
+.campo-texto-icone input{
+    outline: none;
+    border: 2px solid grey;
+}
+
+
+.campo-texto-icone label{
+    background-color: dodgerblue;
+    display: flex;
+
+}
+
+.campo-texto-icone label i{
+    height:30px;
+    
+}
+
+.campo-texto-icone label i.icone-mail{
+    background-size: 1000px;
+    height:25px;
+    background-position: -287px -2px; 
+}
+
+.campo-texto-icone label i.icone-senha{
+    background-size: 1000px;
+    height:25px;
+    background-position: -704px -2px;
+    
+}
+
+
+
+.campo-texto-icone input:focus {
+    border: 2px solid dodgerblue;
+}
+
+
+.form-icone form button{
+    background-color: #00aeef;
+    border: 0;
+    color: white;
+    padding:7px;
+    margin-top: 40px;
+    width: 80%
+    
+}
 

@@ -358,11 +358,72 @@ width: 100vw;
     width: 70%;
 }
 
-form .categorias hr{
-    width: 70%;
+
+.form-icone section{
+    
+    align-items: baseline
 }
 
-form .categorias{
+
+.form-icone section > div{
+    width: 90%;
+    display: block;
+    text-align: center;
+    margin: auto;
+   
+    margin-bottom: 10px;
+
+
+}
+.form-icone section h1{
+    
+    font-size: 30px;
+    
+}
+
+.form-icone section p{
+    width: 90%;
+    font-size: 16px;
+    margin: 0 auto;
+}
+
+.campo-texto h3{
+    margin-top: 13px;
+    width: 320px;
+    max-width: 320px;
+    margin:13px auto 0 auto;
+}
+
+.form-icone form{
+    position: initial;
+    width:90%;
+    
+    height: 280;
+    margin: 0;
+    
+   
+}
+
+.form-icone form .campo-texto-icone{
+    width: 80%;
+}
+
+.form-icone form .campo-texto-icone input{
     width: 100%;
 }
 
+.form-icone form h3{
+  
+    width: 80%;
+   
+   
+}
+
+.form-icone form button{
+   
+    padding:10px;
+    margin-top: 0px;
+    width: 80%;
+    font-weight:800;
+    
+}

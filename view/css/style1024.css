@@ -189,3 +189,20 @@ background-color: purple
     flex-wrap: wrap;
     justify-content: space-between; 
     }
+
+
+.form-icone form{
+    margin-right: 70px;
+}    
+.form-icone section > div{
+
+    margin-right:300px;
+    margin-bottom :200px;
+}
+
+.form-icone section p{
+font-size: 18px;
+
+width: 320px
+  
+}
