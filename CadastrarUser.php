@@ -1,7 +1,7 @@
 <?php
 define ('WWW_ROOT', dirname(__FILE__)); 
 define ('DS', DIRECTORY_SEPARATOR); 
-require_once(WWW_ROOT.DS.'autoload.php');
+require_once(WWW_ROOT.DS.'autoload.php');//
 use Core\Usuario;
 use Classes\ValidarCampos;
 session_start();
