@@ -590,3 +590,12 @@ background-color: purple
     position: relative;
 }
 
+/*tabela admin*/
+
+.tabelinha-admin table td p {
+    width: 250px;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+

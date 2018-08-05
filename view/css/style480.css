@@ -637,3 +637,11 @@ width: 100vw;
     position: relative;
     margin-bottom: 10px
 }
+/*tabela admin*/
+
+.tabelinha-admin table td p {
+    width: 100px;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}

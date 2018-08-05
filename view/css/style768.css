@@ -579,3 +579,12 @@ width: 100vw;
     border-radius: 10%;
     position: relative;
 }
+
+/*tabela admin*/
+
+.tabelinha-admin table td p {
+    width: 130px;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
