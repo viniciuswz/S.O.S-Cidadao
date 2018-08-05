@@ -481,6 +481,7 @@ display: flex;
    
     justify-content: center;
     height: 45px;
+    background-color: white;
     
     
 }
@@ -493,7 +494,7 @@ display: flex;
 
 .menu-perfil ul li{
     display: flex;
-    width: calc(100vw / 3);
+    width: calc(100vw / 3 - 10px);
     justify-content: center;
    
     margin: 1px;
@@ -1339,4 +1340,52 @@ margin-bottom :200px;
 
 .form-cad form .campo-texto-icone{
     margin: 15px 0px;
+}
+
+#config{
+    background-color: #00aeef
+}
+
+.form-config{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    
+}
+
+.form-config form{
+    margin-top: 40px;
+}
+
+.form-config .campo-texto-config{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    width: 320px;
+
+}
+.form-config .campo-texto-config input{
+    
+    padding:5px;
+}
+
+.form-config .campo-texto-config label{
+font-family: "Open-Sans";
+font-weight:600
+}
+
+.form-config button{
+    display: block;
+    background-color: #00aeef;
+    border: 0;
+    color: white;
+    padding:7px;
+    width: 70%;
+    margin: 10px auto;
+    text-align: center;
+    font: "Open-Sans";
+    font-weight: 600;
+   
 }
