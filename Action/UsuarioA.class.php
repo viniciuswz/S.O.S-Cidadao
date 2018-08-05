@@ -25,6 +25,8 @@ class UsuarioA extends UsuarioM{
 
     private $sqlUpdateSenha = "UPDATE usuario SET senha_usu = '%s' WHERE cod_usu = '%s'";
 
+    private $sqlUpdateStatusUsu = "UPDATE usuario SET status_usu = '%s' WHERE cod_usu = '%s'";
+
     public function logar(){ //Logar       
         $sql = sprintf($this->sqlSelectLogar, // Junta o wher com o outra parte do select
                             $this->getEmail()                              
@@ -155,4 +157,29 @@ class UsuarioA extends UsuarioM{
         }
     }
     
+    public function updateStatusUsu($status){
+        $usuario = new Usuario();
+        $usuario->setCodUsu($this->getCodUsu());
+        $tipo = $usuario->getDescTipo();
+
+        if($tipo == 'Adm' or $tipo == 'Moderador'){
+            $sqlUpdateUsu = "UPDATE usuario SET status_usu = '%s' WHERE cod_usu = '%s'";
+            $sql = sprintf(
+                $sqlUpdateUsu,
+                $status,
+                $this->getCodUsu()
+            );
+        }else{
+            $sql = sprintf(
+                $this->sqlUpdateStatusUsu,
+                $status,
+                $this->getCodUsu()
+            );
+        }
+        $resposta = $this->runQuery($sql);
+        if(!$resposta->rowCount()){
+            throw new \Exception("Não foi possível mudar o status", 15);
+        }
+        return;
+    }
  }
