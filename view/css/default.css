@@ -1308,14 +1308,13 @@ margin-bottom :200px;
     align-items: center;
 }
 .form-cad form{
-    align-content:center;
+    
     background-color: #E7E8EB;
     width: 350px;
-   
+    
     border-top-right-radius: 100px;
     border-bottom-left-radius: 100px;
-    justify-content: center;
-    align-items: center;
+
     padding: 70px 20px;
     
     

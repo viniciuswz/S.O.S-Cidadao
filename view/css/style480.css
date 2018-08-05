@@ -427,3 +427,17 @@ width: 100vw;
     font-weight:800;
     
 }
+
+.form-cad form{
+    
+    background-color: #E7E8EB;
+    width: 95%;
+    max-width: 320px;
+    
+    border-top-right-radius: 100px;
+    border-bottom-left-radius: 100px;
+
+    padding: 70px 20px;
+    
+    
+}
