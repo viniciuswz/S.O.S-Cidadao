@@ -181,7 +181,7 @@ class ComentarioA extends ComentarioM{
         $tipo = $usuario->getDescTipo();       
 
         if($tipo == 'Adm' or $tipo == 'Moderador'){
-            $sqlUpdateComen = "UPDATE comentario SET status_comen = '%s' WHERE cod_comen = '%s'";
+            $sqlUpdateComen = "UPDATE comentario SET status_comen = '%s' WHERE cod_comen = '%s'"; //
             $sql = sprintf(
                 $sqlUpdateComen,
                 $status,
