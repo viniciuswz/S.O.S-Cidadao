@@ -39,7 +39,7 @@ class Denuncias extends DenunciasM{
     public function select($tabelas = array(), $pagina = null){
         $sqlLimite = $this->controlarPaginacao($tabelas,$pagina);
         $sqlNPrepa = $this->gerarSql('sqlDenun',$tabelas);        
-        $sqlNPrepa .= " %s";    
+        $sqlNPrepa .= " %s";    //Colocar essa parada pra depois entrar o sql da paginacao
         
         $sql = sprintf(
             $sqlNPrepa,
