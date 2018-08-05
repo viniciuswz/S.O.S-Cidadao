@@ -2,6 +2,7 @@
 namespace Action;
 use Model\DebateM;
 use Core\DebateDenuncia;
+use Core\Usuario;
 use Classes\TratarImg;
 use Classes\Paginacao;
 use Classes\TratarDataHora;
@@ -39,6 +40,8 @@ class DebateA extends DebateM{
     private $whereIdDeba = "AND cod_deba = '%s'";
    
     private $sqlPaginaAtual;
+
+    private $sqlUpdateStatusDeba = "UPDATE debate SET status_deba = '%s' WHERE cod_deba = '%s' AND cod_usu = '%s'";
 
     public function tratarImagem(){ // Mexer depois nessa funcao
         //Fazer a parada da thumb       
@@ -194,5 +197,32 @@ class DebateA extends DebateM{
         if(!$inserir->rowCount()){  // Se der erro cai nesse if          
             throw new \Exception("Não foi possível realizar o cadastro da publicacao",13);   
         }
+    }
+    public function updateStatusDeba($status){        
+        $usuario = new Usuario();
+        $usuario->setCodUsu($this->getCodUsu());
+        $tipo = $usuario->getDescTipo();       
+
+        if($tipo == 'Adm' or $tipo == 'Moderador'){
+            $sqlUpdateDeba = "UPDATE debate SET status_deba= '%s' WHERE cod_deba = '%s'";
+            $sql = sprintf(
+                $sqlUpdateDeba,
+                $status,
+                $this->getCodDeba()                
+            );
+        }else{
+            $sql = sprintf(
+                $this->sqlUpdateStatusDeba,
+                $status,
+                $this->getCodDeba(),
+                $this->getCodUsu()
+            );
+        }    
+        $resposta = $this->runQuery($sql);
+        if(!$resposta->rowCount()){
+            throw new \Exception("Não foi possível mudar o status",9);
+        }
+
+        return;
     }
 }

@@ -4,6 +4,7 @@ use Model\ComentarioM;
 use Classes\TratarDataHora;
 use Classes\Paginacao;
 use Core\ComentarioDenuncia;
+use Core\Usuario;
 class ComentarioA extends ComentarioM{
     private $sqlVerifyDonoPubli = "SELECT cod_publi FROM publicacao WHERE cod_usu = '%s' AND cod_publi = '%s'";
 
@@ -27,6 +28,17 @@ class ComentarioA extends ComentarioM{
                                         AND status_usu = 'A'";
 
     private $sqlQuantCurtidaComentario = "SELECT COUNT(*) FROM comen_curtida WHERE cod_comen = '%s' AND status_curte = 'A'";
+
+
+    private $sqlUpdateStatusComen = "UPDATE comentario SET status_comen = '%s' WHERE cod_comen = '%s' AND cod_usu = '%s'";
+
+    private $sqlSelectVerifyPref = "SELECT  usuario.cod_usu
+    FROM usuario INNER JOIN comentario ON (usuario.cod_usu = comentario.cod_usu) 
+    INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu) 
+    INNER JOIN publicacao ON (publicacao.cod_publi = comentario.cod_publi) 
+    WHERE 1=1 AND status_comen = 'A' AND publicacao.cod_publi = 1
+    AND publicacao.cod_publi = '%s' AND (descri_tipo_usu = 'Prefeitura' or descri_tipo_usu = 'Funcionario') 
+    AND status_usu = 'A'";
 
     public function inserirComen(){
         $indVisuDono = $this->verifyDonoPubli();
@@ -162,4 +174,33 @@ class ComentarioA extends ComentarioM{
         return $sqlPaginacao;
         
     }
+
+    public function updateStatusComen($status){        
+        $usuario = new Usuario();
+        $usuario->setCodUsu($this->getCodUsu());
+        $tipo = $usuario->getDescTipo();       
+
+        if($tipo == 'Adm' or $tipo == 'Moderador'){
+            $sqlUpdateComen = "UPDATE comentario SET status_comen = '%s' WHERE cod_comen = '%s'"; //
+            $sql = sprintf(
+                $sqlUpdateComen,
+                $status,
+                $this->getCodComen()                
+            );
+        }else{
+            $sql = sprintf(
+                $this->sqlUpdateStatusComen,
+                $status,
+                $this->getCodComen(),
+                $this->getCodUsu()
+            );
+        }    
+        $resposta = $this->runQuery($sql);
+        if(!$resposta->rowCount()){
+            throw new \Exception("Não foi possível mudar o status",9);
+        }
+
+        return;
+    }
+    
 }
