@@ -15,8 +15,8 @@ try{
     $validar->verificarTipoInt(array('ID'),$_GET); // Verificar se é um numero
     
     $usu = new Usuario();   
-    $usu->setCodUsu($_GET['ID']);
-    $usu->setCodUsuAdm($_SESSION['id_user']);   
+    $usu->setCodUsu($_GET['ID']);//Usuario q esta sendo apagado
+    $usu->setCodUsuAdm($_SESSION['id_user']);   // Usuario q esta apagando
     $usu->updateStatusUsu('I');
 
     echo "<script> alert('Status mudado');javascript:window.location='./Templates/starter.php';</script>";
