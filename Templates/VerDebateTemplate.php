@@ -184,6 +184,8 @@ session_start();
                             echo '<a href="../ApagarDebate.php?ID='.$_GET['ID'].'">Apagar Debate</a>';
                         }else if(isset($tipoUsu) AND ($tipoUsu == 'Adm' or $tipoUsu == 'Moderador')){
                             echo '<a href="../ApagarDebate.php?ID='.$_GET['ID'].'">Apagar Debate</a>';
+                                echo '<br>';
+                            echo '<a href="../ApagarUsuario.php?ID='.$resposta[0]['cod_usu'].'">Apagar Usuario</a>';
                         }
                     ?>
                     <figure>

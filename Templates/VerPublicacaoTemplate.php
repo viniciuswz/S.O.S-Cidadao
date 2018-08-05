@@ -199,6 +199,8 @@ session_start();
                     echo '<a href="../ApagarPublicacao.php?ID='.$_GET['ID'].'">Apagar Publicacao</a>';
                 }else if(isset($tipoUsu) AND ($tipoUsu == 'Adm' or $tipoUsu == 'Moderador')){
                     echo '<a href="../ApagarPublicacao.php?ID='.$_GET['ID'].'">Apagar Publicacao</a>';
+                        echo '<br>';
+                    echo '<a href="../ApagarUsuario.php?ID='.$resposta[0]['cod_usu'].'">Apagar Usuario</a>';
                 }
                 ?>               
                 
@@ -316,6 +318,8 @@ session_start();
                             echo '<a href="../ApagarComentario.php?ID='.$comentarioComum[$contador]['cod_comen'].'">Apagar Comentario</a>';
                         }else if(isset($tipoUsu) AND ($tipoUsu == 'Adm' or $tipoUsu == 'Moderador')){
                             echo '<a href="../ApagarComentario.php?ID='.$comentarioComum[$contador]['cod_comen'].'">Apagar Comentario</a>';
+                                echo '<br>';
+                            echo '<a href="../ApagarUsuario.php?ID='.$comentarioComum[$contador]['cod_comen'].'">Apagar Usuario</a>';
                         }
                     ?>
                 </div>
