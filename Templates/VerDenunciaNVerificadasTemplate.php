@@ -83,23 +83,21 @@ session_start();
                 <th>Data</th>
                 <th>Motivo</th>
                 <th>Visitar Página</th>
-                <th>Remover Reclamacao</th>
+                <th>Remover Publicacao</th>
                 <th>Bloquear Usuario</th>
             <tr>
             <?php
                 $contador = 0;
                 $contador2 = 0;
                 while($contador < count($res)){
-                    echo '<tr>';    
-                           
-                    echo '<td>'.$res[$contador]['nome_denunciado'].'</td>';
-                    echo '<td>'.$res[$contador]['Tipo'].'</td>';
-                    echo '<td>'.$res[$contador]['dataHora'].'</td>';
-                    echo '<td>'.$res[$contador]['motivo'].'</td>';
-                    echo '<td>'.$res[$contador]['LinkVisita'].'</td>';
-                    echo '<td>'.$res[$contador]['LinkApagarPubli'].'</td>';
-                    echo '<td>'.$res[$contador]['LinkApagarUsu'].'</td>';                              
-                           
+                    echo '<tr>';  
+                        echo '<td>'.$res[$contador]['nome_denunciado'].'</td>';
+                        echo '<td>'.$res[$contador]['Tipo'].'</td>';
+                        echo '<td>'.$res[$contador]['dataHora'].'</td>';
+                        echo '<td>'.$res[$contador]['motivo'].'</td>';
+                        echo '<td>'.$res[$contador]['LinkVisita'].'</td>';
+                        echo '<td>'.$res[$contador]['LinkApagarPubli'].'</td>';
+                        echo '<td>'.$res[$contador]['LinkApagarUsu'].'</td>'; 
                     echo '</tr>';
                     $contador++;
                     $contador2 = 0;
