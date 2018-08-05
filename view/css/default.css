@@ -1237,13 +1237,14 @@ margin-bottom :200px;
     text-align: center;
     height:30px;
     display: flex;
-    background-color: green;
+    
     justify-content: center;
     margin: 10px
     
 }
 
 .campo-texto-icone input{
+    padding-left: 5px;
     outline: none;
     border: 2px solid grey;
 }
@@ -1263,7 +1264,7 @@ margin-bottom :200px;
 .campo-texto-icone label i.icone-mail{
     background-size: 1000px;
     height:25px;
-    background-position: -287px -2px; 
+    background-position: -285px -2px; 
 }
 
 .campo-texto-icone label i.icone-senha{
@@ -1271,6 +1272,15 @@ margin-bottom :200px;
     height:25px;
     background-position: -704px -2px;
     
+}
+
+.campo-texto-icone label i.icone-user{
+    background-size: 830px;
+    height:28px;
+    margin: 0 7px;
+    width: 26px;
+    text-align: center;
+    background-position: 0px -0px;
 }
 
 
@@ -1290,3 +1300,44 @@ margin-bottom :200px;
     
 }
 
+.form-cad{
+    background-color: #111;
+    height: 100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.form-cad form{
+    align-content:center;
+    background-color: #E7E8EB;
+    width: 350px;
+   
+    border-top-right-radius: 100px;
+    border-bottom-left-radius: 100px;
+    justify-content: center;
+    align-items: center;
+    padding: 70px 20px;
+    
+    
+}
+
+.form-cad form h3{
+   
+    width: 213px;
+    margin: 0 auto
+}
+
+.form-cad form button{
+    display: block;
+    background-color: #00aeef;
+    border: 0;
+    color: white;
+    padding:7px;
+    width: 70%;
+    
+    margin: 0 auto;
+}
+
+.form-cad form .campo-texto-icone{
+    margin: 15px 0px;
+}
