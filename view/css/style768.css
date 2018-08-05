@@ -137,6 +137,7 @@ width: 100vw;
 
 .perfil-base{
    background-color: white;
+   
 }
 
 
@@ -167,13 +168,22 @@ width: 100vw;
     height: 135%;
 }
 
-.perfil-base p{
-    margin-top: 40px;
+.perfil-base .perfil + p{
+    
     position: inherit;
-   
     text-align: center;
     font-size: 1.8rem;
-    color: black
+    color: black;
+    margin: 40px auto 0 auto;
+}
+
+.perfil-base p + p{
+    position: inherit;
+    
+    color: black;
+    font-size: 1rem;
+    margin: 0px auto 0 auto;
+    text-align: center
 }
 
 .perfil div i{
@@ -181,6 +191,15 @@ width: 100vw;
     margin-right: -30px;
     margin-top: 60px;
 }
+
+
+.perfil h3{
+  
+    color: aliceblue;
+    font-size: 29px;
+   margin-top: 30px;
+    }
+
        
 /*pag todos debates*/
 
@@ -326,4 +345,16 @@ width: 100vw;
     width: 80%;
     font-weight:800;
     
+}
+
+.form-config{
+    padding-bottom: 70px
+}
+
+.form-config .campo-texto-config label{
+    font-size: .85em;
+}
+
+.form-config h3{
+font-size: 1.1em;
 }

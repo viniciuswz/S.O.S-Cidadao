@@ -159,24 +159,27 @@
             </section>
             <nav class="menu-perfil">
                 <ul class="espacos">
-                    <li class="ativo"><a href="configuracao.html">pessoais</a></li>
+                    <li><a href="configuracao.html">pessoais</a></li>
 
-            <li><a href="configuracoes2.html">Segurança</a></li>
-
-                    
-                    
+            <li class="ativo"><a href="configuracoes2.html">Segurança</a></li>
                 </ul>
             </nav>
             <section class="form-config">
                 <form>
+                    <h3>Alterar senha</h3>
                     <div class="campo-texto-config">
-                            <label for="user">Nome</label>
-                            <input type="text" name="user" id="user" placeholder="Nome" autocomplete ="off">
-                        </div>
-                        <div class="campo-texto-config">
-                            <label for="email">E-mail</i></label>
-                            <input type="email" name="email" id="email" placeholder="E-mail">
+                            <label for="passAtual">Senha atual</label>
+                            <input type="password" name="passAtual" id="passAtual" placeholder="senha atual" autocomplete ="off">
                     </div>
+                    <div class="campo-texto-config">
+                            <label for="passNova">Nova senha</label>
+                            <input type="password" name="passNova" id="passNova" placeholder="Nova senha" autocomplete ="off">
+                    </div>
+                    <div class="campo-texto-config">
+                            <label for="passNovaRepete">Repita a nova senha</label>
+                            <input type="password" name="passNovaRepete" id="passNovaRepete" placeholder="Repita a nova senha" autocomplete ="off">
+                    </div>
+                        
                     <button type="submit">Alterar</button>
             </form>
         </section>

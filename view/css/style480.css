@@ -54,9 +54,11 @@ header form button i.icone-pesquisa{
 }
 header i.icone-user{
     margin:0 10px;
-    width: 35px;
+    width: 30px;
     height: 30px;
     background-size: 950px;
+  
+    background-position-x: -2px
 }
 nav.menu{
     display: flex;
@@ -173,12 +175,23 @@ width: 100vw;
 
 /*NÃO ALTERAR NADA DAQUI PARA CIMA*/
 
+.perfil-base{
+    background-color: white;
+    
+ }
 
 .perfil{
     height: 190px;
     justify-content: center;
-    
 }
+
+.perfil h3{
+  
+    color: aliceblue;
+    font-size: 20px;
+   margin-top: 20px;
+    }
+
 
 .perfil > img{
     align-self: center;
@@ -193,12 +206,14 @@ width: 100vw;
     margin-top: 100px;
     align-items: center;
     flex-direction: column-reverse;
+    
 }
 
 .perfil div div{
     height: 130px;
     width: 130px;
     border: 6px solid white;
+    
    
 }
 
@@ -206,14 +221,25 @@ width: 100vw;
     height: 135%;
 }
 
-.perfil-base p{
+.perfil-base .perfil + p{
     margin-top: 40px;
     position: inherit;
    
    text-align: center;
-    font-size: 1.4rem;
-    color: black
+    font-size: 1.3rem;
+    color: black;
+    margin: 40px auto 0 auto;padding: 0 15px;
 }
+
+.perfil-base p + p{
+    position: inherit;
+    
+    color: black;
+    font-size: .9rem;
+    margin: 0px auto 0 auto;
+    text-align: center
+}
+
 
 .perfil div i{
     position: absolute;
@@ -413,37 +439,45 @@ width: 100vw;
 }
 
 .form-icone form h3{
-  
     width: 80%;
-   
-   
 }
 
 .form-icone form button{
-   
     padding:10px;
     margin-top: 0px;
     width: 80%;
     font-weight:800;
-    
 }
 
 .form-cad form{
-    
     background-color: #E7E8EB;
     width: 95%;
     max-width: 320px;
-    
     border-top-right-radius: 100px;
     border-bottom-left-radius: 100px;
-
     padding: 70px 20px;
-    
-    
+}
+
+.form-config form{
+
+    width: 85%;
 }
 
 .form-config .campo-texto-config{
-    width: 100%;
-    padding:5px;
-   
+    width: 90%;
+    padding:5px;;
+    
 }
+
+.form-config form{
+    margin-top: 10px;
+    margin-bottom: 50px
+}
+
+.form-config .campo-texto-config label{
+    font-size: .8em;
+}
+
+.form-config h3{
+    font-size: .97em;
+ }

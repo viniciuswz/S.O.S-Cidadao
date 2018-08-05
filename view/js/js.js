@@ -56,7 +56,7 @@ jQuery(function($) {
     $linha
       .data('origLeft', $this.position().left) //armazena o valor da posição left elemento que esta sendo clicado
       .data('origWidth', $this.parent().width());//armazena o valor do width do elemento que esta sendo clicado
-    return false; // encerra
+    //return false; // encerra
   });
 
   /*mudar a linha para o ativo*/

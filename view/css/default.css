@@ -436,10 +436,24 @@ nav.notificacoes ul li a span:first-of-type{
 }
 
 
-.perfil-base p{
+.perfil-base .perfil + p{
     position: absolute;
     color: white;
     font-family: 'Open-Sans-Bold';
+    max-width: 320px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    
+}
+
+
+.perfil-base p + p{
+    display: block;
+    position: absolute;
+    color: white;
+    font-family: 'Open-Sans-Bold';
+    max-width: 320px;
 }
 
 .perfil i{
@@ -1372,6 +1386,7 @@ margin-bottom :200px;
 }
 
 .form-config .campo-texto-config label{
+font-size: 1em;
 font-family: "Open-Sans";
 font-weight:600
 }
@@ -1389,3 +1404,4 @@ font-weight:600
     font-weight: 600;
    
 }
+

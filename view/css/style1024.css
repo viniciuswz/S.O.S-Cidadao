@@ -159,13 +159,30 @@ background-color: purple
 }
 
 
-.perfil-base p{
+.perfil-base .perfil + p{
     top: 330px;
     right: 0;
     margin-right: 200px;
     font-size: 1.8rem;
+    text-shadow: 0px 0px 10px black
+}
+
+.perfil-base p + p{
+    top: 370px;
+    right: 0;
+    margin-right: 260px;
+    font-size: 1rem;
     text-shadow: 0px 0px 30px black
 }
+
+.perfil h3{
+    position: absolute;
+    left: 0;
+    color: aliceblue;
+    font-size: 29px;
+    margin: 30px 0px 0px 30px
+    }
+
 /*pag todos debates*/
 
 
