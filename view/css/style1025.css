@@ -490,3 +490,29 @@ background-color: purple
     background-size: 1200px;
     background-position: -310px -1.6px;
 }
+
+/*pag admin*/
+
+
+.tabelinha-admin table {
+    font-family: arial;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+.tabelinha-admin table td,.tabelinha-admin table th {
+    text-align: left;
+    width: 400px;
+    height: 36px;
+    padding-left: 30px;
+}
+
+.tabelinha-admin table tr:nth-child(even){background-color: #f2f2f2;}
+
+.tabelinha-admin table th {
+    
+    background-color: rgb(121, 129, 121);
+    color: white;
+    border:0;
+}
