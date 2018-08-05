@@ -1236,26 +1236,18 @@ margin-bottom :200px;
     margin-right: 120px;
     border-top-left-radius: 30px;
     border-bottom-right-radius: 30px
-   
 }
 
 .form-icone form h3{
-  
     width: 80%;
-    
-   
 }
-
-
 
 .campo-texto-icone{
     text-align: center;
     height:30px;
     display: flex;
-    
     justify-content: center;
     margin: 10px
-    
 }
 
 .campo-texto-icone input{
@@ -1268,12 +1260,10 @@ margin-bottom :200px;
 .campo-texto-icone label{
     background-color: dodgerblue;
     display: flex;
-
 }
 
 .campo-texto-icone label i{
     height:30px;
-    
 }
 
 .campo-texto-icone label i.icone-mail{
@@ -1286,7 +1276,6 @@ margin-bottom :200px;
     background-size: 1000px;
     height:25px;
     background-position: -704px -2px;
-    
 }
 
 .campo-texto-icone label i.icone-user{
@@ -1323,20 +1312,14 @@ margin-bottom :200px;
     align-items: center;
 }
 .form-cad form{
-    
     background-color: #E7E8EB;
     width: 350px;
-    
     border-top-right-radius: 100px;
     border-bottom-left-radius: 100px;
-
     padding: 70px 20px;
-    
-    
 }
 
 .form-cad form h3{
-   
     width: 213px;
     margin: 0 auto
 }
@@ -1348,7 +1331,6 @@ margin-bottom :200px;
     color: white;
     padding:7px;
     width: 70%;
-    
     margin: 0 auto;
 }
 
@@ -1365,8 +1347,6 @@ margin-bottom :200px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    
-    
 }
 
 .form-config form{
@@ -1378,10 +1358,8 @@ margin-bottom :200px;
     flex-direction: column;
     margin: 10px;
     width: 320px;
-
 }
 .form-config .campo-texto-config input{
-    
     padding:5px;
 }
 
@@ -1403,5 +1381,89 @@ font-weight:600
     font: "Open-Sans";
     font-weight: 600;
    
+}
+
+.contatos{
+    width: 28%;
+    background-color: white;
+    overflow: hidden;
+}
+
+
+.contatos header{
+    background-color: #4b2983;
+    justify-content: space-around
+}
+
+.contatos header h3{
+    color: white;
+    flex-grow: 1;
+    margin-left: 8px;
+}
+
+.contatos header i.icone-3pontos{
+    transform: rotate(90deg);
+    margin-right: 8px;
+}
+.contatos ul{
+   
+    
+   
+    overflow-y: scroll;
+    height: calc(100vh - 100px);
+
+    
+    
+}
+
+.contatos ul li{
+    display: flex;
+    width: 100%;
+    flex-grow: 1;
+    align-items: center;
+   
+    justify-content: center;
+}
+
+.contatos ul li:hover{
+    background-color: #f2f2f2
+}
+
+
+.contatos  ul  li div.img-debate{
+    display: block;
+    overflow: hidden;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 4px
+}
+.contatos ul li div.img-debate img{
+    align-self: center;
+    width: 200px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%)
+}
+
+.contatos ul li div.status-debate{
+    display: flex;
+    height: 70px;
+    width: 77%;
+    align-items: center;
+    border-bottom: 1px solid #f2f2f2;
+
+   
+}
+
+.contatos ul li div.status-debate p{
+font-size: 14px;
+overflow: hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
+width: 100%;
+
+
 }
 
