@@ -342,7 +342,7 @@ desired effect
           }
 
           if($resultado[0]['descri_tipo_usu'] == 'Adm' or $resultado[0]['descri_tipo_usu'] = 'Moderador'){
-            echo '<a href="">Visualizar denuncias(Não feito)</a>
+            echo '<a href="VerDenunciaNVerificadasTemplate.php?tipo1=Debate&tipo2=Comen&tipo3=Publi">Visualizar denuncias(Não feito)</a>
             <br>';
             if($resultado[0]['descri_tipo_usu'] == 'Adm'){
               echo '<a href="">Cadastrar Moderador(Não feito)</a>

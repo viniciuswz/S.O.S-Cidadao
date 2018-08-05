@@ -3,7 +3,7 @@
 namespace Classes\Model;
 //use Db\DbConnection;
 
-class PaginacaoM{        
+class PaginacaoM {        
     private $qtdPubliPaginas;
     private $qtdPaginas;
     private $PaginaAtual;

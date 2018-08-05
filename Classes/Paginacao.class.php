@@ -9,7 +9,7 @@ class Paginacao extends PaginacaoM{
     public function prapararSql($atributo,$ordenar,  $pagina, int $quantidadeTotal){        
         
         $quantidadePorPagina = $this->getQtdPubliPaginas();  
-
+    
         if(!is_numeric($pagina) or $pagina <= 0 or $pagina == null){
             $pagina = 1;
         }     
