@@ -89,7 +89,7 @@ class ComentarioA extends ComentarioM{
 
         $consulta = $this->runSelect($sql); // Executa      
         return $resultado = $this->tratarDados($consulta);
-        //var_dump($resultado);
+        //var_dump($resultado);////
     }
 
     public function tratarDados($dados){
