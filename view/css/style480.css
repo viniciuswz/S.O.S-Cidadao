@@ -526,3 +526,114 @@ width: 100vw;
    background-size: 1200px;
    background-position: -310px -1.6px;
 }
+
+/*filtro*/
+
+
+.filtro-admin .filtro-admin-ativo form{
+    display: block;
+}
+
+.filtro-admin form h3{
+    font-size: 17px;
+}
+
+.filtro-admin {
+    display: flex;
+    justify-content: flex-end;
+
+}
+.filtro-admin form{
+    position: absolute;
+    display: flex;
+    padding-left: 20px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    width: 200px;
+    height: 200px;
+    background-color: #E7E8EB;
+    display: none;
+}
+
+.filtro-admin div{
+    width: 100px;
+}
+
+.filtro-admin .icone-filtro{
+    margin-right: 10px;
+}
+
+
+.container {
+    position: relative;
+    padding-left: 20px;
+    cursor: pointer;
+    font-size: 17px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-family: arial;
+    color:#999b9c;
+  }
+  
+ 
+  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+ 
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border-radius: 25%;
+    border: 2px solid;
+    border-color: #999b9c;
+  }
+  
+  .container:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+
+  .container input:checked ~ .checkmark {
+    border-color: rgb(20, 126, 11);
+  }
+  
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+
+  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  .container .checkmark:after {
+    left: 5px;
+    width: 4px;
+    height: 10px;
+    border: solid rgb(20, 126, 11);
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+.filtro-admin .botao-filtro{
+    width: 90px;
+    height: 40px;
+    background-color: #011627;
+    font-family: arial;
+    color:white;
+    border: 0;
+    font-size:17px;
+    border-radius: 10%;
+    position: relative;
+    margin-bottom: 10px
+}
