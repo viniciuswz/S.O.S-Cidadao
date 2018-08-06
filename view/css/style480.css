@@ -46,11 +46,11 @@ header form button{
 }
 
 header form button i.icone-pesquisa{
-    height: 28px;
-    width: 28px;
+    height: 28px; /*tamanho do espaço que a altura ocupa na tela*/
+    width: 28px; /*tamanho do espaço que a largura ocupa na tela*/
 
-    background-size: 950px;
-    background-position: -123.9px -2px ;
+    background-size: 950px; /*tamanho do icone*/
+    background-position: -123.9px -2px ; /*posição que se encontra, esqueda/direita e cima/baixo*/
 }
 header i.icone-user{
     margin:0 10px;

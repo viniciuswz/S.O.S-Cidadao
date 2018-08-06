@@ -1376,9 +1376,9 @@ margin-bottom :200px;
 }
 
 .form-config .campo-texto-config label{
-font-size: 1em;
-font-family: "Open-Sans";
-font-weight:600
+    font-size: 1em;
+    font-family: "Open-Sans";
+    font-weight:600
 }
 
 .form-config button{
@@ -1392,7 +1392,23 @@ font-weight:600
     text-align: center;
     font: "Open-Sans";
     font-weight: 600;
-   
+}
+
+.usuarios-debate-info{
+    position: absolute;
+    overflow-y: hidden;
+    height: 100vh;
+    background-color: pink;
+    z-index: 100;
+    width: 27.5%;
+    max-width: 376.141px
+    
+}
+
+.usuarios-debate-info .moldura-debate{
+    overflow:hidden;
+    width: 40px;
+    height: 40px
 }
 
 .contatos{
@@ -1466,22 +1482,17 @@ font-weight:600
     width: 77%;
     align-items: center;
     border-bottom: 1px solid #f2f2f2;
-
-   
 }
 
 .contatos nav .contatinhos div.status-debate p{
-font-size: 14px;
-overflow: hidden;
-white-space: nowrap;
-text-overflow: ellipsis;
-width: 100%;
-
-
+    font-size: 14px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
 }
 
 .batepapo{
-   
     width: 100%;
 }
 
@@ -1498,7 +1509,7 @@ width: 100%;
 }
 .batepapo header img{
     align-self: center;
-   width: 150%;
+    width: 150%;
     position: relative;
     top: 50%;
     left: 50%;
@@ -1512,6 +1523,34 @@ width: 100%;
     transform: rotate(90deg);
 }
 
+.batepapo form{
+    background-color: red;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.batepapo form input{
+    width: 90%;
+    height: 60%;
+    outline:none;
+    border: 0;
+    border-radius: 20px;
+    padding-left: 10px;
+}
+.batepapo form button{
+    background-color: black;
+    border: 0;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-left: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer
+}
+
 
 .debate-full{
     display: flex;
@@ -1519,7 +1558,7 @@ width: 100%;
 
 .mensagens{
     overflow-x: hidden;
-    height: calc(100vh - 100px);
+    height: calc(100vh - 160px);
 }
 
 .mensagens sub{
@@ -1530,8 +1569,6 @@ width: 100%;
     top: 7px;
     color: #a9a9a9;
     float: right;
-    
-    
 }
 .mensagem_padrao span.nome{
     display: block;
@@ -1542,7 +1579,6 @@ width: 100%;
     text-overflow: ellipsis;
     white-space: nowrap;
     font-size: .95em;
-    
 }
 .mensagem_padrao span.nome + span{
     font-family: "Open-Sans";
@@ -1550,7 +1586,6 @@ width: 100%;
     display: block;
     font-size: .85em;
     float: left;
-   
 }
 .mensagem_padrao {
 	position: relative;
@@ -1560,9 +1595,6 @@ width: 100%;
     margin-left: 10px;
     word-wrap: break-word;
     flex-direction: column;
-    
-    
-      
 }
 
 .mensagem_usuario {
@@ -1570,11 +1602,8 @@ width: 100%;
 	background: white;
 	border-radius: .4em;
     padding:14px;
-    
     word-wrap: break-word;
-    max-width: 500px; 
-   
-          
+    max-width: 500px;  
 }
 .linha-mensagem_padrao{
     display: flex;
@@ -1672,5 +1701,4 @@ width: 100%;
     font-family: "Open-Sans";
     font-size: .80em;
     text-align: center;
-
 }
