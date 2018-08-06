@@ -1396,10 +1396,10 @@ font-weight:600
 }
 
 .contatos{
-    
-    width: 28%;
+    width: 38%;
     background-color: white;
     overflow: hidden;
+    order: 2;
 }
 
 
@@ -1414,18 +1414,19 @@ font-weight:600
     margin-left: 8px;
 }
 
-.contatos header i.icone-3pontos{
-    transform: rotate(90deg);
+.contatos header p{
+    display: none;
+    color: aliceblue;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 20px;
 }
+
+
 .contatos nav{
-   
-    
-   
     overflow-y: scroll;
     height: calc(100vh - 100px);
-
-    
-    
 }
 
 .contatos nav .contatinhos{
@@ -1507,13 +1508,22 @@ width: 100%;
     flex-grow: 1;
     color: #E7E8EB;
 }
+.batepapo header i.icone-3pontos{
+    transform: rotate(90deg);
+}
 
 
 .debate-full{
     display: flex;
 }
 
-.mensagem_padrao span sub{
+.mensagens{
+    overflow-x: hidden;
+    height: calc(100vh - 100px);
+}
+
+.mensagens sub{
+    font-family: "Open-Sans";
     font-size:11.6px;
     margin-left: 16px;
     position:relative;
@@ -1524,13 +1534,23 @@ width: 100%;
     
 }
 .mensagem_padrao span.nome{
+    display: block;
+    font-family: "Open-Sans";
     font-weight: bold;
-
+    overflow: hidden;
+    width: 220px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: .95em;
     
 }
-.mensagem_padrao span{
+.mensagem_padrao span.nome + span{
+    font-family: "Open-Sans";
     margin-top: 1px;
     display: block;
+    font-size: .85em;
+    float: left;
+   
 }
 .mensagem_padrao {
 	position: relative;
@@ -1539,16 +1559,32 @@ width: 100%;
     padding:14px;
     margin-left: 10px;
     word-wrap: break-word;
-    max-width: 500px; 
-    float: left;        
+    flex-direction: column;
+    
+    
+      
 }
-.linha-mensagem{
-    display: block;
+
+.mensagem_usuario {
+	position: relative;
+	background: white;
+	border-radius: .4em;
+    padding:14px;
+    
+    word-wrap: break-word;
+    max-width: 500px; 
+   
+          
+}
+.linha-mensagem_padrao{
+    display: flex;
     width: 100%;
     margin-top: 20px;
+    align-items: center;
+    
 
 }
-.linha-mensagem:after{
+.linha-mensagem_padrao:after{
     content: '';
     display: table;
     clear: both;
@@ -1568,6 +1604,73 @@ width: 100%;
 	margin-left: -10px;
         
 }
-.linha-mensagem{
+.linha-mensagem_padrao .usuario-msg-foto{
+    overflow: hidden;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 0 10px;
+}
+
+.linha-mensagem_padrao .usuario-msg-foto img{
+    height: 200%;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%)
+}
+
+.linha-mensagem_usuario{
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+    align-items: center;
+    justify-content: flex-end;
+
+}
+
+.linha-mensagem_usuario div {
+	position: relative;
+	background: rgb(167, 255, 251);
+	border-radius: .4em;
+    padding:14px;
+    margin-right: 10px;
+    word-wrap: break-word;
+    max-width: 500px; 
+          
+}
+
+.linha-mensagem_usuario div span{
+    font-family: "Open-Sans";
+    font-size: .85em;
+    float: right;
+
+}
+
+.linha-mensagem_sistema{
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.linha-mensagem_sistema div {
+	position: relative;
+	background: rgba(225, 245, 254, 0.92);
+	border-radius: .4em;
+    padding:14px;
+    margin-right: 10px;
+    word-wrap: break-word;
+    max-width: 40%; 
     
+}
+
+.linha-mensagem_sistema div span{
+    display: block;
+    font-family: "Open-Sans";
+    font-size: .80em;
+    text-align: center;
+
 }
