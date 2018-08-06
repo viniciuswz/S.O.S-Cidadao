@@ -1512,3 +1512,62 @@ width: 100%;
 .debate-full{
     display: flex;
 }
+
+.mensagem_padrao span sub{
+    font-size:11.6px;
+    margin-left: 16px;
+    position:relative;
+    top: 7px;
+    color: #a9a9a9;
+    float: right;
+    
+    
+}
+.mensagem_padrao span.nome{
+    font-weight: bold;
+
+    
+}
+.mensagem_padrao span{
+    margin-top: 1px;
+    display: block;
+}
+.mensagem_padrao {
+	position: relative;
+	background: white;
+	border-radius: .4em;
+    padding:14px;
+    margin-left: 10px;
+    word-wrap: break-word;
+    max-width: 500px; 
+    float: left;        
+}
+.linha-mensagem{
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+
+}
+.linha-mensagem:after{
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.mensagem_padrao:after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 10px solid transparent;
+	border-right-color: #ffffff;
+	border-left: 0;
+	margin-top: -10px;
+	margin-left: -10px;
+        
+}
+.linha-mensagem{
+    
+}
