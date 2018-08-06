@@ -158,30 +158,31 @@ class UsuarioA extends UsuarioM{
     }
     
     public function updateStatusUsu($status, $codUsuApagador){        
-        $usuario = new Usuario();
+        //$usuario = new Usuario();
         //$usuario->setCodUsu($this->getCodUsu());
-        $tipo = $this->getDescTipo();       
+        $codApagar = $this->getCodUsu(); // Codigo do usuario q sera apagado
+        $this->setCodUsu($codUsuApagador); // Redefinir p setCodUsu, para o cod do usuario q esta apagando o outro
+        $tipo = $this->getDescTipo(); //Verificar o tipo do usuario  
 
-        if($tipo == 'Adm' or $tipo == 'Moderador'){
-            $sqlUpdatePubli = "UPDATE usuario SET status_usu = '%s' WHERE cod_usu = '%s'";
+        if($tipo == 'Adm' or $tipo == 'Moderador'){   //Se for adm executa         
             $sql = sprintf(
-                $sqlUpdateUsu,
+                $this->sqlDeleteUsu,
                 $status,
-                $this->getCodUsu()                
+                $codApagar                
             );
-        }else{
+        }else{ // Se nao cair no primeiro if, é pq é o dono da conta q esta apagando. mas temos q ter certeza, por isso q colamos outro comando sql
+            $sqlUpdatePubli = "UPDATE usuario SET status_usu = '%s' WHERE (cod_usu = '%s' AND cod_usu = '%s')";
             $sql = sprintf(
-                $this->sqlUpdateStatusUsu,
-                $status,
-                $this->getCodPubli(),
-                $this->getCodUsu()
+                $sqlUpdatePubli,
+                $status,    
+                $codApagar,  //cod_usu = '%s'         
+                $codUsuApagador //AND cod_usu = '%s' 
             );
         }    
         $resposta = $this->runQuery($sql);
         if(!$resposta->rowCount()){
             throw new \Exception("Não foi possível mudar o status",9);
         }
-
         return;
     }
  }
