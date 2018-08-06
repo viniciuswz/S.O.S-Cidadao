@@ -616,16 +616,87 @@ background-color: pink;
 .postada{
     width: 55%;
     height: 450px;
-    background: grey;
 }
+
+
 .autor{
-    background: white;
+    height: 60px;
+}
+
+.foto{
+    background: #000;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-left: 30px;
+    margin-top: 10px;
+}
+.foto h1{
+    margin-left: 60px;
+    font-size: 10pt;
     
 }
 
+.foto a{
+    margin-left: 60px;
+    font-size: 10pt;
+}
+
+.autor img{
+    margin-left: 20px;
+    margin-top: 15px;
+
+}
 
 .titulo{
     width: 45%;
     height: 450px;
-    background: blueviolet;
+}
+
+.tema{
+    width: 100%;
+    height: 15%;
+    margin-top: 12%;
+    background: grey;
+}
+
+.icon{
+   display: flex;
+   justify-content: center;
+   align-items: center
+}
+
+.icon i.icone-grupo{
+    background-position: -200px 15px;  
+    height: 65px;   
+    width: 45px; 
+}
+.icon i.icone-categoria-debate{
+    background-position: -1160px 15px;  
+    height: 65px;   
+    width: 45px; 
+}
+
+.texto{
+    height: 40%;
+    width: 60%;
+    margin: 60px auto
+}
+.texto h2{
+    font-size: 15pt;
+}
+
+.texto a{
+    font-size: 10pt;
+}
+
+.tema input{
+    padding: 10px 40px;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto;
+    border: none;
+    color:white;
+    background: #6495ed
+
 }
