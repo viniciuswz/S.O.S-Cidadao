@@ -16,7 +16,7 @@ try{
     
     $usu = new Usuario();   
     $usu->setCodUsu($_GET['ID']);//Usuario q esta sendo apagado
-  //  $usu->setCodUsuApagador($_SESSION['id_user']);   // Usuario q esta apagando
+    //$usu->setCodUsuApagador($_SESSION['id_user']);   // Usuario q esta apagando
     $usu->updateStatusUsu('I', $_SESSION['id_user']);
 
     echo "<script> alert('Status mudado');javascript:window.location='./Templates/starter.php';</script>";
