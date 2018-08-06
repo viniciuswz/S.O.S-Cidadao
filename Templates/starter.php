@@ -341,11 +341,11 @@ desired effect
             
           }
 
-          if($resultado[0]['descri_tipo_usu'] == 'Adm' or $resultado[0]['descri_tipo_usu'] = 'Moderador'){
-            echo '<a href="VerDenunciaNVerificadasTemplate.php?tipo1=Debate&tipo2=Comen&tipo3=Publi">Visualizar denuncias(Não feito)</a>
+          if($resultado[0]['descri_tipo_usu'] == 'Adm' or $resultado[0]['descri_tipo_usu'] == 'Moderador'){
+            echo '<a href="VerDenunciaNVerificadasTemplate.php?tipo1=Debate&tipo2=Comen&tipo3=Publi">Visualizar denuncias</a>
             <br>';
             if($resultado[0]['descri_tipo_usu'] == 'Adm'){
-              echo '<a href="">Cadastrar Moderador(Não feito)</a>
+              echo '<a href="VerUsuariosTemplate.php?tipo1=Adm&tipo2=Moderador&tipo3=Prefeitura&tipo4=Funcionario">Cadastrar Moderador e Prefeitura(Não Feito)</a>
                             <br>';
              
             }

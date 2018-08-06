@@ -9,13 +9,13 @@ session_start();
     define ('DS', DIRECTORY_SEPARATOR);    
     require_once('../autoload.php');
     
-    use Classes\Denuncias;
+    
     use Core\Usuario;
     
     try{
         if(isset($_GET)){
         Usuario::verificarLogin(9);  // Apenas prefeitura funcionario
-        $denun = new Denuncias();    
+        $usu = new Usuario();    
         $tipo = array();
         $parametro = "";
         $contador = 1;
@@ -30,17 +30,20 @@ session_start();
             }            
             $contador++;            
         }   
-        //$tipos = array('Publi','Debate','Comen');         
-        isset($_GET['pagina']) ?: $_GET['pagina'] = null;                      
-        $res = $denun->select($tipos,$_GET['pagina']);   
+        isset($_GET['pagina']) ?: $_GET['pagina'] = null;  
+        $res = $usu->getDadosUsuByTipoUsu($tipos,$_GET['pagina']);
         //var_dump($res);
-        $quantidadePaginas = $denun->getQuantidadePaginas();
-        $pagina = $denun->getPaginaAtual();
+        //$tipos = array('Publi','Debate','Comen');         
+        //isset($_GET['pagina']) ?: $_GET['pagina'] = null;                      
+        //$res = $denun->select($tipos,$_GET['pagina']);   
+        //var_dump($res);
+        $quantidadePaginas = $usu->getQuantidadePaginas();
+        $pagina = $usu->getPaginaAtual();
         if(empty($res)){
             echo 'Não há nenhuma denuncia para verificar<br>';
         }
 
-        
+       
 ?>
 <html>
     <head>
@@ -78,12 +81,9 @@ session_start();
     <body>
         <table>
             <tr>
-                <th>Denunciado</th>
+                <th>Usuario</th>
                 <th>Tipo</th>
-                <th>Data</th>
-                <th>Motivo</th>
-                <th>Visitar Página</th>
-                <th>Remover Publicacao</th>
+                <th>Data</th>                
                 <th>Bloquear Usuario</th>
             <tr>
             <?php
@@ -91,12 +91,9 @@ session_start();
                 $contador2 = 0;
                 while($contador < count($res)){
                     echo '<tr>';  
-                        echo '<td>'.$res[$contador]['nome_denunciado'].'</td>';
-                        echo '<td>'.$res[$contador]['Tipo'].'</td>';
-                        echo '<td>'.$res[$contador]['dataHora'].'</td>';
-                        echo '<td>'.$res[$contador]['motivo'].'</td>';
-                        echo '<td>'.$res[$contador]['LinkVisita'].'</td>';
-                        echo '<td>'.$res[$contador]['LinkApagarPubli'].'</td>';
+                        echo '<td>'.$res[$contador]['nome_usu'].'</td>';
+                        echo '<td>'.$res[$contador]['descri_tipo_usu'].'</td>';
+                        echo '<td>'.$res[$contador]['dataHora_cadastro_usu'].'</td>';                        
                         echo '<td>'.$res[$contador]['LinkApagarUsu'].'</td>'; 
                     echo '</tr>';
                     $contador++;
@@ -110,9 +107,9 @@ session_start();
                 $contador = 1;
                 while($contador <= $quantidadePaginas){
                     if(isset($pagina) AND $pagina == $contador){
-                        echo '<li class="jaca"><a href="VerDenunciaNVerificadasTemplate.php?'.$parametro.'&pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;  
+                        echo '<li class="jaca"><a href="VerUsuariosTemplate.php?'.$parametro.'&pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;  
                     }else{
-                        echo '<li><a href="VerDenunciaNVerificadasTemplate.php?'.$parametro.'&pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;
+                        echo '<li><a href="VerUsuariosTemplate.php?'.$parametro.'&pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;
                     }                    
                     $contador++;        
                 }
@@ -122,10 +119,12 @@ session_start();
     	<?php
         }
         ?>
-        <form action="VerDenunciaNVerificadasTemplate.php" method="get">
-            Debate<input type="checkbox" name="tipo1" value="Debate">
-            Comentario<input type="checkbox" name="tipo2" value="Comen">
-            Publicacao<input type="checkbox" name="tipo3" value="Publi">
+        <form action="VerUsuariosTemplate.php" method="get">
+            Moderador<input type="checkbox" name="tipo1" value="Moderador">
+            Funcionario<input type="checkbox" name="tipo2" value="Funcionario">
+            Adm<input type="checkbox" name="tipo3" value="Adm">
+            Prefeitura<input type="checkbox" name="tipo4" value="Prefeitura">
+            Comum<input type="checkbox" name="tipo5" value="Comum">
             <input type="submit" value="enviar">
         </form>
 
@@ -135,6 +134,7 @@ session_start();
 </html>
 
 <?php
+
 }catch (Exception $exc){
     $erro = $exc->getCode();   
     $mensagem = $exc->getMessage();  

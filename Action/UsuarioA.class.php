@@ -1,7 +1,7 @@
 <?php
 namespace Action;
 use Model\UsuarioM;
-
+use Classes\Paginacao;
 class UsuarioA extends UsuarioM{
 
     private $sqlSelectLogar = "SELECT usuario.cod_usu, descri_tipo_usu, senha_usu,status_usu 
@@ -9,7 +9,7 @@ class UsuarioA extends UsuarioM{
                                     WHERE status_tipo_usu = 'A' AND email_usu = '%s'";       
 
     private $sqlPegarDados = "SELECT usuario.cod_usu, nome_usu, email_usu, 
-                                    img_perfil_usu, img_capa_usu, descri_tipo_usu,senha_usu
+                                    img_perfil_usu, img_capa_usu, descri_tipo_usu,senha_usu,dataHora_cadastro_usu
                                     FROM usuario INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu)
                                     WHERE status_usu = 'A' AND status_tipo_usu = 'A' AND usuario.cod_usu = '%s'";
 
@@ -24,6 +24,15 @@ class UsuarioA extends UsuarioM{
     private $sqlUpdateEmailUsu = "UPDATE usuario SET email_usu = '%s', nome_usu = '%s' WHERE cod_usu = '%s'";
 
     private $sqlUpdateSenha = "UPDATE usuario SET senha_usu = '%s' WHERE cod_usu = '%s'";
+
+    private $sqlSelectDados2 = "SELECT usuario.cod_usu, nome_usu, email_usu, 
+                                    descri_tipo_usu, dataHora_cadastro_usu
+                                    FROM usuario INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu)
+                                    WHERE status_usu = 'A' AND status_tipo_usu = 'A' AND descri_tipo_usu %s %s ";
+    
+    private $countSqlSelectDados2 = "SELECT COUNT(*)
+                                        FROM usuario INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu)
+                                        WHERE status_usu = 'A' AND status_tipo_usu = 'A' AND descri_tipo_usu %s";
 
     public function logar(){ //Logar       
         $sql = sprintf($this->sqlSelectLogar, // Junta o wher com o outra parte do select
@@ -154,5 +163,80 @@ class UsuarioA extends UsuarioM{
             throw new \Exception("Ops, erro ao alterar",5);
         }
     }
+
+    public function getDadosUsuByTipoUsu($tipos = array(),$pagina = null){
+        $in = $this->gerarIn($tipos);
+        $sqlLimite = $this->controlarPaginacao($in, $pagina);
+        $sql = sprintf(
+            $this->sqlSelectDados2,
+            $in,
+            $sqlLimite
+        );
+        $consulta =  $this->runSelect($sql);
+        $DadosTratados = $this->tratarInformacoesListagem($consulta);
+        return $DadosTratados;
+        
+    }
+
+    public function gerarIn($tipos = array()){// gerar o in, exemplo in('adm','moderador')
+        $in = "in( ";
+        $contador = 1;
+        foreach ($tipos as $valor){
+            if($contador == count($tipos)){
+                $in.= "'$valor'" . ' )';
+            }else{
+                $in.= "'$valor'".', ';
+            }
+            $contador++;            
+        }
+        return $in;
+    }
+
+    public function tratarInformacoesListagem($dados){//Quando for listados os usuarios
+
+        $contador = 0;               
+        while($contador < count($dados)){//Nesse while so entra a parte q me interresa            
+            $dados[$contador]['dataHora_cadastro_usu'] = $this->tratarData($dados[$contador]['dataHora_cadastro_usu']);//Calcular o tempo           
+            //$dados[$contador]['LinkVisita'] = $this->LinkParaVisita($dados[$contador]['Tipo'],$dados[$contador]['cod_publi_denun']);//Calcular o tempo    
+            //$dados[$contador]['LinkApagarPubli'] = $this->LinkParaDeletar($dados[$contador]['Tipo'],$dados[$contador]['cod_publi_denun']);//Calcular o tempo      
+            $dados[$contador]['LinkApagarUsu'] = $this->LinkParaDeletar('Usuario',$dados[$contador]['cod_usu']);//Calcular o tempo                                  
+            $contador++;
+        }          
+        return $dados;
+    }
+
+    public function tratarData($data){
+        $novaData = new \DateTime($data);
+        return $novaData->format('d-m-Y H:i');
+    }
+
+    public function LinkParaDeletar($palavra,$cod){ // Deletar Usuario
+        $semAcento = strtolower(preg_replace( '/[`^~\'"]/', null, iconv( 'UTF-8', 'ASCII//TRANSLIT', $palavra )));       
+        $tirarEspacos = str_replace(" ", "", $semAcento);
+        $semAcentos = ucfirst($tirarEspacos);
+        return $link = '../Apagar'.$semAcentos.'.php?ID='.$cod;
+    }
+
+    public function quantidadeTotalPubli($in = array()){ // Quantidade total de usuarios
+        $sql = sprintf(
+            $this->countSqlSelectDados2,
+            $in
+        );
+        
+        $res = $this->runSelect($sql);        
+        return $res[0]['COUNT(*)'];
+    }
+
+    public function controlarPaginacao($in,$pagina = null){ // Fazer o controle da paginacao       
+        $paginacao = new Paginacao(); //Instancinado a classe
+        $paginacao->setQtdPubliPaginas(2); //Quantos comentarios quero por pagina       
+        $quantidadeTotalPubli = $this->quantidadeTotalPubli($in); //total de comentarios
+        $sqlPaginacao = $paginacao->prapararSql('dataHora_cadastro_usu','desc', $pagina, $quantidadeTotalPubli);//Prepare o sql
+        $this->setQuantidadePaginas($paginacao->getQuantidadePaginas());//Seta a quantidade de paginas no total
+        $this->setPaginaAtual($paginacao->getPaginaAtual()); // Seta a pagina atual
+        return $sqlPaginacao;
+        
+    }
+
     
  }

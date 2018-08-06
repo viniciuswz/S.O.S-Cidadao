@@ -13,7 +13,7 @@ class Denuncias extends DenunciasM{
                                 FROM debate_denun 
                                 INNER JOIN debate ON (debate_denun.cod_deba = debate.cod_deba)
                                 INNER JOIN usuario ON (debate.cod_usu = usuario.cod_usu)
-                                WHERE status_denun_deba = 'A' ";
+                                WHERE status_denun_deba = 'A' AND status_deba = 'A' AND status_usu = 'A' ";
     private $sqlDenunPubli = " %s SELECT 'Publicação' AS Tipo, 
                                 cod_denun_publi AS cod_denun, motivo_denun_publi AS motivo, 
                                 dataHora_denun_publi AS dataHora, publicacao.cod_usu AS cod_usu_denunciado, 
@@ -22,7 +22,7 @@ class Denuncias extends DenunciasM{
                                 nome_usu AS nome_denunciado
                                 FROM publi_denun INNER JOIN publicacao ON (publi_denun.cod_publi = publicacao.cod_publi)
                                 INNER JOIN usuario ON (publicacao.cod_usu = usuario.cod_usu)
-                                WHERE status_denun_publi = 'A' ";
+                                WHERE status_denun_publi = 'A' AND status_publi = 'A' ";
 
     private $sqlDenunComen = " %s SELECT 'Comentário' AS Tipo, 
                                 cod_denun_comen AS cod_denun, motivo_denun_comen AS motivo , 
@@ -31,10 +31,20 @@ class Denuncias extends DenunciasM{
                                 nome_usu AS nome_denunciado
                                 FROM comen_denun INNER JOIN comentario ON (comen_denun.cod_comen = comentario.cod_comen)
                                 INNER JOIN usuario ON (comentario.cod_usu = usuario.cod_usu)
-                                WHERE status_denun_comen = 'A' ";
-    private $countDenunDebate = " %s SELECT 'Debate' AS Tipo, cod_deba FROM debate_denun WHERE status_denun_deba = 'A' ";
-    private $countDenunPubli = " %s SELECT 'Publicação' AS Tipo, cod_publi FROM publi_denun WHERE status_denun_publi = 'A' ";
-    private $countDenunComen = " %s SELECT 'Comentário' AS Tipo, cod_comen FROM comen_denun WHERE status_denun_comen = 'A' ";
+                                WHERE status_denun_comen = 'A' AND status_comen = 'A' AND status_usu = 'A' AND status_usu = 'A' ";
+    
+    private $countDenunDebate = " %s SELECT 'Debate' AS Tipo, debate_denun.cod_deba FROM debate_denun 
+                                        INNER JOIN debate ON (debate_denun.cod_deba = debate.cod_deba)
+                                        INNER JOIN usuario ON (debate.cod_usu = usuario.cod_usu)
+                                        WHERE status_denun_deba = 'A' AND status_deba = 'A' ";
+    private $countDenunPubli = " %s SELECT 'Publicação' AS Tipo, publi_denun.cod_publi FROM publi_denun 
+                                            INNER JOIN publicacao ON (publi_denun.cod_publi = publicacao.cod_publi)
+                                            INNER JOIN usuario ON (publicacao.cod_usu = usuario.cod_usu)
+                                            WHERE status_denun_publi = 'A' AND status_publi = 'A' ";
+    private $countDenunComen = " %s SELECT 'Comentário' AS Tipo, comen_denun.cod_comen FROM comen_denun
+                                        INNER JOIN comentario ON (comen_denun.cod_comen = comentario.cod_comen)
+                                        INNER JOIN usuario ON (comentario.cod_usu = usuario.cod_usu)
+                                        WHERE status_denun_comen = 'A' AND status_comen = 'A' ";
 
     public function select($tabelas = array(), $pagina = null){
         $sqlLimite = $this->controlarPaginacao($tabelas,$pagina);
