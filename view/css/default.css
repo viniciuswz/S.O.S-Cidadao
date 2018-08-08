@@ -1,6 +1,7 @@
 :root{
     --ajuste:100vw;
     --ajusteMetade:50vw;
+    --ajusteDebate: 85%;
 }
 
 @font-face{
@@ -1403,6 +1404,7 @@ margin-bottom :200px;
     z-index: 100;
     width: 27.5%;
     max-width: 376.141px;
+    min-width: 340px;
     
     
 }
@@ -1412,19 +1414,46 @@ margin-bottom :200px;
     justify-content: center;
     align-items: center;
     height: 300px;
-    border-bottom: 1px solid #f2f2f2;
   
     border-width: 3px;
 }
 
+.usuarios-debate-info > span{
+    font-family: "Open-Sans";
+    font-size: 50px;
+    font-weight: bold;
+    position: absolute;
+    left: 85%;
+    z-index: 2;
+    cursor: pointer;
+}
 
-.usuarios-debate-info .moldura-debate div{
+.usuarios-debate-info .moldura-debate div input{
+    display: none;
+}
+
+.usuarios-debate-info .moldura-debate div label{
+position: absolute;
+margin-top: -40px;
+margin-left: 140px;
+background-color: white;
+width: 30px;
+height: 30px;
+border-radius: 10%;
+cursor:pointer
+}
+
+.usuarios-debate-info .moldura-debate div label i{
+    width: 30px;
+    height: 30px;
+    background-position: -445px -6px
+}
+
+.usuarios-debate-info .moldura-debate div div{
     overflow:hidden;
     width: 190px;
     height: 190px;
     border-radius: 50%;
-    
-    
 }
 
 .usuarios-debate-info .moldura-debate img{
@@ -1440,9 +1469,11 @@ margin-bottom :200px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-bottom: 1px solid #f2f2f2;
-    border-top: 1px solid #f2f2f2;
-    border-width: 3px;
+    background-color: rgba(174, 0, 255, .1);
+    border-bottom: 1px solid #ae00ff;
+    border-top: 1px solid #ae00ff;
+   
+
 
 }
 
@@ -1451,10 +1482,11 @@ margin-bottom :200px;
 }
 
 .usuarios-debate-info .participantes h4{
-    border-bottom: 1px solid #f2f2f2;
-    border-top: 1px solid #f2f2f2;
-    border-width: 3px;
-    padding: 9px
+    border-bottom: 1px solid #ae00ff;
+   border-width: 3px;
+    
+    padding: 9px;
+    margin: 5px;
 }
 
 .usuarios-debate-info .participantes > div{
@@ -1503,6 +1535,7 @@ margin-bottom :200px;
     background-color: white;
     overflow: hidden;
     order: 2;
+    min-width: 340px;
 }
 
 
