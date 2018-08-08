@@ -1396,9 +1396,9 @@ margin-bottom :200px;
 
 .usuarios-debate-info{
     position: absolute;
-    overflow-y: hidden;
+    overflow-y: scroll;
     height: 100vh;
-    background-color: pink;
+    background-color: white;
     z-index: 100;
     width: 27.5%;
     max-width: 376.141px;
@@ -1407,7 +1407,6 @@ margin-bottom :200px;
 }
 
 .usuarios-debate-info .moldura-debate{
-    background-color: red;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1431,11 +1430,61 @@ margin-bottom :200px;
 }
 
 .usuarios-debate-info .infos{
-    background-color: green;
+   
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #e7e7e7;
 
+}
+
+.usuarios-debate-info .participantes{
+    background-color: white;
+}
+
+.usuarios-debate-info .participantes h4{
+    background-color: red;
+    padding: 9px
+}
+
+.usuarios-debate-info .participantes > div{
+    display: flex;
+    border-bottom: 1px solid #f2f2f2;
+   
+    align-self: center;
+    padding: 10px 4px;
+    cursor: pointer;
+}
+
+.usuarios-debate-info .participantes > div:hover{
+    background-color: #f2f2f2
+}
+
+.usuarios-debate-info .participantes .img-participante{
+    width: 56px;
+    height: 56px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.usuarios-debate-info .participantes .img-participante img{
+    width: 150%;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+
+
+}
+.usuarios-debate-info .participantes .img-participante + p {
+    color: black;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 75%;
+    font-weight: 600;
+    align-self: center;
+    margin-left: 3px;
 }
 
 
