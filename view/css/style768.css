@@ -362,55 +362,25 @@ font-size: 1.1em;
 /*DEBATES*/
 
 .usuarios-debate-info{
-   
-    display: block;
-    
-    
-}
-
-.contatos header p{
-    display: block;
-    
-}
-
-
-/* .usuarios-debate-info + header + nav{
-    overflow: hidden;
-    width: 100%;
-   
-} */
-
-.contatos{
-    
-}
-
-.contatos-aba{
     position: absolute;
-    overflow-y: scroll;
-    height: 100vh;
-    background-color: wheat;
-    z-index: 100;
+    right: 0;
     width: 100%;
     max-width: 100%;
-    display: block;
+    display: block
+   
 }
 
-
-
-.contatos nav{
-    height: calc(100vh - 60px);
+.usuarios-debate-info > span{
+    left: 90%;
 }
 
-
-
-.batepapo form{
-    background-color: red;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.mensagens{
-    height: calc(100vh - 140px);
+.contatos{
+    position: absolute;
+    width: 100%;
+    background-color: white;
+    overflow: hidden;
+    order: 2;
+    z-index: 1;
+    max-width: 100%;
+    display: none
 }

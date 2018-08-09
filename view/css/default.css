@@ -1401,30 +1401,33 @@ margin-bottom :200px;
 }
 
 .usuarios-debate-info{
-    position: absolute;
+    order:3;
     overflow-y: scroll;
     height: 100vh;
     background-color: white;
     z-index: 100;
     width: 100%;
     max-width: 376px;
-    min-width: 340px;
+    min-width: 266px;
     display: block;
+    
 }
 
 .usuarios-debate-info .moldura-debate{
+    
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 300px;
+    height: 200px;
     border-width: 3px;
+    margin-left: 20px
 }
 
 .usuarios-debate-info > span{
     font-family: "Open-Sans";
     font-size: 50px;
     font-weight: bold;
-    position: absolute;
+    position: relative;
     left: 85%;
     z-index: 2;
     cursor: pointer;
@@ -1435,20 +1438,22 @@ margin-bottom :200px;
 }
 
 .usuarios-debate-info .moldura-debate div label{
-    position: absolute;
-    margin-top: -40px;
-    margin-left: 140px;
-    background-color: white;
+    position: relative;
+    
+   bottom:40px;
+   left: 140px;
     width: 30px;
-    height: 30px;
-    border-radius: 10%;
+    height: 60px;
+   
     cursor:pointer
 }
 
 .usuarios-debate-info .moldura-debate div label i{
     width: 30px;
     height: 30px;
-    background-position: -445px -6px
+    background-position: -445px -6px;
+    background-color: white;
+    border-radius: 10%;
 }
 
 .usuarios-debate-info .moldura-debate div div{
@@ -1527,12 +1532,13 @@ margin-bottom :200px;
 
 
 .contatos{
-    width: 100%;
+    width: 55vw;
     background-color: white;
     overflow: hidden;
     order: 2;
     max-width: 376px;
-    min-width: 340px;
+    min-width: 266px;
+   
 }
 
 
@@ -1568,6 +1574,7 @@ margin-bottom :200px;
     flex-grow: 1;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 .contatos nav .contatinhos:hover{

@@ -481,3 +481,28 @@ width: 100vw;
 .form-config h3{
     font-size: .97em;
  }
+/*DEBATE mensa*/
+
+.usuarios-debate-info{
+    position: absolute;
+    right: 0;
+    width: 100%;
+    max-width: 100%;
+    display: none
+   
+}
+
+.usuarios-debate-info > span{
+    left: 85%;
+}
+
+.contatos{
+    position: absolute;
+    width: 100%;
+    background-color: white;
+    overflow: hidden;
+    order: 2;
+    z-index: 1;
+    max-width: 100%;
+    display: block
+}
