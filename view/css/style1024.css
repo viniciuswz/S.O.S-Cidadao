@@ -223,3 +223,36 @@ font-size: 18px;
 width: 320px
   
 }
+
+/*DEBATES*/
+
+.usuarios-debate-info{
+    width: 100%;
+    max-width: 320px;
+    min-width: 280px;
+    
+}
+
+.contatos{
+    width: 100%;
+    max-width: 320px;
+    min-width: 280px;
+}
+
+.contatos nav{
+    height: calc(100vh - 80px);
+}
+
+
+
+.batepapo form{
+    background-color: red;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mensagens{
+    height: calc(100vh - 140px);
+}
