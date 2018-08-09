@@ -1670,6 +1670,7 @@ margin-bottom :200px;
 
 .debate-full{
     display: flex;
+    flex-direction: row;
 }
 
 .mensagens{
