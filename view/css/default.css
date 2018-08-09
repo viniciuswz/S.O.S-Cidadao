@@ -1425,7 +1425,7 @@ margin-bottom :200px;
 
 .usuarios-debate-info > span{
     font-family: "Open-Sans";
-    font-size: 50px;
+    font-size: 40px;
     font-weight: bold;
     position: relative;
     left: 85%;
@@ -1647,7 +1647,7 @@ margin-bottom :200px;
 }
 
 .batepapo form{
-    background-color: red;
+    background-color: #4b2983;
     height: 60px;
     display: flex;
     justify-content: center;
@@ -1707,27 +1707,29 @@ margin-bottom :200px;
 .mensagem_padrao span.nome + span{
     font-family: "Open-Sans";
     margin-top: 1px;
-    display: block;
+    
     font-size: .85em;
+    word-wrap: break-word;
+    width: 100%;
     float: left;
 }
-.mensagem_padrao {
+.mensagem_padrao {  /*POR CAUSA DO NOME TA BUGANDO*/
 	position: relative;
 	background: white;
 	border-radius: .4em;
     padding:14px;
     margin-left: 10px;
-    word-wrap: break-word;
+    max-width: 500px;  
     flex-direction: column;
 }
 
 .mensagem_usuario {
-	position: relative;
+    
+    position: relative;
 	background: white;
 	border-radius: .4em;
     padding:14px;
-    word-wrap: break-word;
-    max-width: 500px;  
+    
 }
 .linha-mensagem_padrao{
     display: flex;
@@ -1735,7 +1737,6 @@ margin-bottom :200px;
     margin-top: 20px;
     align-items: center;
     
-
 }
 .linha-mensagem_padrao:after{
     content: '';
@@ -1788,14 +1789,16 @@ margin-bottom :200px;
 	border-radius: .4em;
     padding:14px;
     margin-right: 10px;
-    word-wrap: break-word;
-    max-width: 500px; 
+    max-width: 70%; 
+    
           
 }
 
 .linha-mensagem_usuario div span{
     font-family: "Open-Sans";
     font-size: .85em;
+    word-wrap: break-word;
+    width: 100%; 
     float: right;
 
 }

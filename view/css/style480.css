@@ -504,5 +504,13 @@ width: 100vw;
     order: 2;
     z-index: 1;
     max-width: 100%;
-    display: block
+    display: NONE
+}
+
+.contatos nav{
+    height: calc(100vh - 50px);
+}
+
+.contatos header p{
+    display:block
 }
