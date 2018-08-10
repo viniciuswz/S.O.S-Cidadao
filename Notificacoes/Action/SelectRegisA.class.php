@@ -9,7 +9,7 @@ class SelectRegisA extends GenericaM{
 
     private $sqlSelectComen = "SELECT cod_comen FROM comentario WHERE cod_usu = '%s' AND status_comen = 'A'";
 
-    private $sqlSelectSalvos = "SELECT cod_publi from publicacao_salva where cod_usu = '%s' AND status_publi_sal = 'A' AND ind_visu_respos_prefei = 'N'";
+    private $sqlSelectSalvos = "SELECT cod_publi,ind_visu_respos_prefei from publicacao_salva where cod_usu = '%s' AND status_publi_sal = 'A' AND (ind_visu_respos_prefei = 'N' or ind_visu_respos_prefei = 'B')";
 
     public function selectPubli():array{
         $sql = sprintf( $this->sqlSelect,

@@ -6,9 +6,11 @@ class CurtidaPublicacaoA extends CurtidaPublicacaoM{
     private $sqlSelect = "SELECT status_publi_curti FROM publicacao_curtida WHERE cod_usu = '%s' AND cod_publi = '%s'";
 
     private $sqlUpdate = "UPDATE publicacao_curtida SET status_publi_curti = '%s',
-                                                        ind_visu_dono_publi = '%s' WHERE cod_usu = '%s' AND cod_publi='%s'";
+                                                        ind_visu_dono_publi = '%s',
+                                                        dataHora_publi_curti = now()
+                                                        WHERE cod_usu = '%s' AND cod_publi='%s'";
     
-    private $sqlInsert = "INSERT into publicacao_curtida(cod_usu, cod_publi, ind_visu_dono_publi) VALUES('%s', '%s', '%s')";
+    private $sqlInsert = "INSERT into publicacao_curtida(cod_usu, cod_publi, ind_visu_dono_publi,dataHora_publi_curti) VALUES('%s', '%s', '%s',NOW())";
     private $selectCodUsu ="SELECT cod_usu FROM publicacao WHERE cod_publi = '%s' AND cod_usu = '%s'";
     public function select(){
       $sql = sprintf($this->sqlSelect,

@@ -16,26 +16,39 @@ class SelectPubliSalvaA extends GenericaM{
     public function getWherePubli(){   // Ta no esquema
         $ids = $this->getCodSalvos();        
         $sql = array();
-        //$contador = 0;
+        $contador = 0;
         foreach($ids as $chaves => $valores){
             foreach($valores as $chave => $id){
-                $sql[] = sprintf($this->sqlSelect, $id);                
-            }          
+                if($chave == 'cod_publi'){
+                    $sql[$contador]['query'] = sprintf($this->sqlSelect, $id); 
+                }else{
+                    $sql[$contador]['ind'] = $id; 
+                }
+                               
+            }     
+            $contador++;    
         }     
         //echo "<br><br><br><br><strong>getWhereUserComum : :: IDS PUBLICACOES DO USUARIO: <br><br><br></strong>";
         //var_dump($sql);
         //$sql = sprintf($this->whereUserComum, $this->getCodPubli());
         return $sql;
     }
-    public function selectComen($query){ // Ta no esquema
+    public function selectComen($dados){ // Ta no esquema
         $resultadoTemp = array();
         $resultadoFinal = array(); 
-        foreach($query as $chave => $sql){
-                    if(empty($this->runSelect($sql))){ // SE por um acaso nao retornar nada, nao joga nada na array
-                       
+        $contador = 0;
+        foreach($dados as $chaves => $dados){
+            foreach($dados as $chave => $vlr){                
+                if($chave == 'query'){
+                    if(!empty($this->runSelect($vlr))){ // SE por um acaso nao retornar nada, nao joga nada na array
+                        $resultadoFinal[] = $this->runSelect($vlr); //So vai entrar nesse array se tiver alguma coisa
+                        $resultadoFinal[$contador][0]['indicador'] = $dados['ind'];
                     }else{
-                        $resultadoFinal[] = $this->runSelect($sql); //So vai entrar nesse array se tiver alguma coisa
+                        $contador--;
                     }
+                }
+            }
+            $contador++; 
              // Me retorna uma array tridimensional
         }
         //echo "<br><br><br><br><strong>Dados do comentario<br><br><br></strong>";

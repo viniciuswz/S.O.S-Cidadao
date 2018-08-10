@@ -57,6 +57,7 @@ class GerenNotiComum extends GenericaM{
                 $resultado[$contador]['notificacao'] = "A publicação salva <strong> " . $listaResposta[$contador][0]['titulo_publi'] . "</strong> foi respondida pela prefeitura";
                 $resultado[$contador]['id_publi'] = $listaResposta[$contador][0]['cod_publi']; 
                 $resultado[$contador]['tipo'] = 'resposta';
+                $resultado[$contador]['classe'] = $this->nomeClasse($listaResposta[$contador][0]['indicador']);
                 $contador++;
             }
         }
@@ -71,11 +72,12 @@ class GerenNotiComum extends GenericaM{
         $quantidade = count($listaResposta); // quantidade de publicacaoes que foram respondidas
         $resultado = array();
         if($quantidade > 0){
-            $contador = 0;
+            $contador = 0;            
             while($contador < count($listaResposta)){
                 $resultado[$contador]['notificacao'] = " A prefeitura respondeu a publição <strong> " . $listaResposta[$contador][0]['titulo_publi'] . "</strong>";
                 $resultado[$contador]['id_publi'] = $listaResposta[$contador][0]['cod_publi']; 
-                $resultado[$contador]['tipo'] = 'resposta';
+                $resultado[$contador]['tipo'] = 'resposta'; 
+                $resultado[$contador]['classe'] = $this->nomeClasse($listaResposta[$contador][0]['ind_visu_dono_publi']);               
                 $contador++;
             }
         }
@@ -110,7 +112,7 @@ class GerenNotiComum extends GenericaM{
                     $resultado[$contador]['notificacao'] = $listaCurtidores[$contador][0]['nome_usu'] . " $singular $complemento  <strong>" .  $listaCurtidores[$contador][0]['titulo_publi'] . "</strong>";
                     $resultado[$contador]['id_publi'] = $listaCurtidores[$contador][0]['cod_publi'];
                     $resultado[$contador]['tipo'] = $tipoPubli;
-                    
+                    $resultado[$contador]['classe'] = $this->nomeClasse($listaCurtidores[$contador][0]['ind_visu_dono_publi']);
                 }else if($quantidadeCurtidoresComen == 2){                        
                     $contador2 = 0;
                     $texto = "";
@@ -124,6 +126,7 @@ class GerenNotiComum extends GenericaM{
                     $resultado[$contador]['notificacao'] = $texto . " $plural $complemento  <strong>" .  $listaCurtidores[$contador][0]['titulo_publi'] . "</strong>";
                     $resultado[$contador]['id_publi'] = $listaCurtidores[$contador][0]['cod_publi'];
                     $resultado[$contador]['tipo'] = $tipoPubli;
+                    $resultado[$contador]['classe'] = $this->nomeClasse($listaCurtidores[$contador][0]['ind_visu_dono_publi']);
                     
                 }else{
                     $contador2 = 0;
@@ -143,6 +146,7 @@ class GerenNotiComum extends GenericaM{
                     }                    
                     $resultado[$contador]['id_publi'] = $listaCurtidores[$contador][0]['cod_publi'];
                     $resultado[$contador]['tipo'] = $tipoPubli;
+                    $resultado[$contador]['classe'] = $this->nomeClasse($listaCurtidores[$contador][0]['ind_visu_dono_publi']);
 
                 }
                 $contador++;
@@ -157,8 +161,15 @@ class GerenNotiComum extends GenericaM{
         $curtidasPubli = $this->curtidasPubli();
         $respostaPubliSalva = $this->respostaPubliSalva();
         $respostaPrefei = $this->respostaPrefei();
-        $comentarioComum = $this->comentarioComum();        
-        
+        $comentarioComum = $this->comentarioComum();
         return $this->resultados ;
+    }
+
+    public function nomeClasse($ind){
+        if($ind == 'B'){
+            return 'Visualizado';
+        }else if($ind == 'N'){
+            return 'NVisualizado';
+        }
     }
 }

@@ -4,11 +4,12 @@ namespace Notificacoes\Action;
 use Notificacoes\Model\GenericaM;
 
 class SelectPubliCurtiA extends GenericaM{  
-    private $sqlSelect = "SELECT usuario.nome_usu, titulo_publi, publicacao_curtida.cod_publi 
+    private $sqlSelect = "SELECT usuario.nome_usu, titulo_publi, publicacao_curtida.cod_publi, ind_visu_dono_publi, dataHora_publi_curti
                             FROM publicacao_curtida INNER JOIN usuario ON(publicacao_curtida.cod_usu = usuario.cod_usu)
                             INNER JOIN publicacao ON (publicacao_curtida.cod_publi = publicacao.cod_publi) 
-                            WHERE ind_visu_dono_publi = 'N' AND status_publi_curti = 'A' AND publicacao_curtida.cod_publi = '%s' 
-                            AND publicacao.status_publi = 'A'";
+                            WHERE (ind_visu_dono_publi = 'N' or ind_visu_dono_publi  = 'B') AND status_publi_curti = 'A' AND publicacao_curtida.cod_publi = '%s' 
+                            AND publicacao.status_publi = 'A' ORDER BY dataHora_publi_curti DESC, ind_visu_dono_publi DESC ";
+
 
     public function select():array{ // Ja ta no esquema
         $ids = $this->getCodPubli();   

@@ -6,10 +6,12 @@ use Model\CurtirComentarioM;
 class CurtirComentarioA extends CurtirComentarioM{
     private $sqlSelect = "SELECT status_curte FROM comen_curtida WHERE cod_usu = '%s' AND cod_comen = '%s'";
 
-    private $sqlUpdate = "UPDATE comen_curtida SET status_curte = '%s', ind_visu_dono_publi = '%s'
+    private $sqlUpdate = "UPDATE comen_curtida SET status_curte = '%s', 
+                                                    ind_visu_dono_publi = '%s',
+                                                    dataHora_comen_curti = NOW()
                                                WHERE cod_usu = '%s' AND cod_comen = '%s'";
 
-    private $sqlInsert = "INSERT into comen_curtida(cod_usu, cod_comen, ind_visu_dono_publi) VALUES ('%s', '%s', '%s')";
+    private $sqlInsert = "INSERT into comen_curtida(cod_usu, cod_comen, ind_visu_dono_publi,dataHora_comen_curti) VALUES ('%s', '%s', '%s',NOW())";
 
     private $selectCodUsu = "SELECT cod_usu FROM comentario WHERE cod_comen = '%s' AND cod_usu = '%s'";
 

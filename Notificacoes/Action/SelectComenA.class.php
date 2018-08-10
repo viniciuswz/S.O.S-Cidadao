@@ -8,18 +8,19 @@ class SelectComenA extends GenericaM{
     // ind_visu_dono_publi = N (Notificar, ainda nao visualizou)
     // ind_visu_dono_publi = V (Nao notificar, pois ja foi visualizado) 
 
-    private $sqlSelectComen = "SELECT usuario.nome_usu, cod_comen, titulo_publi, usuario.cod_usu, publicacao.cod_publi 
+    private $sqlSelectComen = "SELECT usuario.nome_usu, cod_comen, titulo_publi, usuario.cod_usu, publicacao.cod_publi, ind_visu_dono_publi, dataHora_comen 
                             FROM usuario INNER JOIN comentario ON (usuario.cod_usu = comentario.cod_usu) 
                             INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu) 
                             INNER JOIN publicacao ON (publicacao.cod_publi = comentario.cod_publi) 
-                            WHERE 1=1 AND  ind_visu_dono_publi = 'N' AND status_comen = 'A' AND %s %s";
+                            WHERE 1=1 AND  (ind_visu_dono_publi = 'N' or ind_visu_dono_publi = 'B') AND status_comen = 'A' AND %s %s
+                            ORDER BY dataHora_comen DESC, ind_visu_dono_publi DESC ";
 
     // Selecionar os comentarios realizados que nao foram visualiados pelo dono da publicacao
     // E que nao foram realizados pela prefeitura e pelos funcionarios
-    private $whereUserComum = " publicacao.cod_publi = '%s' AND descri_tipo_usu != 'Prefeitura'  AND descri_tipo_usu != 'Funcionario'";
+    private $whereUserComum = " publicacao.cod_publi = '%s' AND descri_tipo_usu != 'Prefeitura'  AND descri_tipo_usu != 'Funcionario' ";
 
     // Selecionar os comentarios que foram realizados pela prefeitura ou pelos funcionarios e que nao foram visualizados pelo dono da publicacao
-    private $wherePrefeiFunc =  " publicacao.cod_publi = '%s' AND (descri_tipo_usu = 'Prefeitura' or descri_tipo_usu = 'Funcionario')";
+    private $wherePrefeiFunc =  " publicacao.cod_publi = '%s' AND (descri_tipo_usu = 'Prefeitura' or descri_tipo_usu = 'Funcionario') ";
 
     //fica
     public function getWhereUserComum(){   // Ta no esquema
@@ -64,7 +65,7 @@ class SelectComenA extends GenericaM{
         foreach($wheres as $chaves => $valores){
             foreach($valores as $chave => $valor){
                 if($chave == 'where'){
-                    $sql = sprintf($this->sqlSelectComen,$valor,$order);   
+                   $sql = sprintf($this->sqlSelectComen,$valor,$order);   
                     
                     if(empty($this->runSelect($sql))){ // SE por um acaso nao retornar nada, nao joga nada na array
                        
@@ -100,6 +101,7 @@ class SelectComenA extends GenericaM{
                             $Novalista[$contador2][$contador]['nome_usu'] = $valores2['nome_usu'];
                             $Novalista[$contador2][$contador]['titulo_publi'] = $valores2['titulo_publi'];
                             $Novalista[$contador2][$contador]['cod_publi'] = $valores2['cod_publi'];
+                            $Novalista[$contador2][$contador]['ind_visu_dono_publi'] = $valores2['ind_visu_dono_publi'];
                             $contador++;
                         }
                         
