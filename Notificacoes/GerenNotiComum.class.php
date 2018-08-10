@@ -7,16 +7,20 @@ use Notificacoes\Core\SelectComenCurtido;
 use Notificacoes\Core\SelectPubliCurti;
 use Notificacoes\Core\SelectPubliSalva;
 use Notificacoes\Core\SelectComen;
+use Notificacoes\Core\VisualizarNotificacao;
 class GerenNotiComum extends GenericaM{
 
     private $resultados = array();
 
-    public function __construct($idUser){ // ASsim q for instanciado ele vai pegar todos os ids de publicacoes
+    public function __construct($idUser,$indVisu = null){ // ASsim q for instanciado ele vai pegar todos os ids de publicacoes
         $publicacoes = new SelectRegis(); // Que o usuario envio, e dos comentarios tambem
         $publicacoes->setCodUsu($idUser);        
+        
         $this->setCodPubli($publicacoes->selectPubli());
         $this->setCodComen($publicacoes->selectComen()); 
-        $this->setCodSalvos($publicacoes->selectSalvos());        
+        $this->setCodSalvos($publicacoes->selectSalvos());       
+        
+        $this->visualizarNotificacao($indVisu,$idUser);
     }
 
     //Feito
@@ -58,45 +62,72 @@ class GerenNotiComum extends GenericaM{
                 $resultado[$contador]['id_publi'] = $listaResposta[$contador][0]['cod_publi']; 
                 $resultado[$contador]['tipo'] = 'resposta';
                 $resultado[$contador]['classe'] = $this->nomeClasse($listaResposta[$contador][0]['indicador']);
+                
                 $contador++;
             }
         }
         $this->resultados = array_merge_recursive($this->resultados, $resultado);
+        //var_dump($resultado);
         return $resultado;        
     }
     // Feito
-    public function respostaPrefei(){
+    public function respostaPrefei($getIdsComen = null){
         $resposta = new SelectComen();
         $resposta->setCodPubli($this->getCodPubli());
         $listaResposta = $resposta->selectComen($resposta->getWherePrefeiFunc()); // Faz o select  
         $quantidade = count($listaResposta); // quantidade de publicacaoes que foram respondidas
         $resultado = array();
+        $idsComen = array();
         if($quantidade > 0){
             $contador = 0;            
             while($contador < count($listaResposta)){
                 $resultado[$contador]['notificacao'] = " A prefeitura respondeu a publição <strong> " . $listaResposta[$contador][0]['titulo_publi'] . "</strong>";
                 $resultado[$contador]['id_publi'] = $listaResposta[$contador][0]['cod_publi']; 
                 $resultado[$contador]['tipo'] = 'resposta'; 
-                $resultado[$contador]['classe'] = $this->nomeClasse($listaResposta[$contador][0]['ind_visu_dono_publi']);               
+                $resultado[$contador]['classe'] = $this->nomeClasse($listaResposta[$contador][0]['ind_visu_dono_publi']); 
+                $idsComen[$contador]['cod_comen'] = $listaResposta[$contador][0]['cod_comen'];                 
                 $contador++;
             }
         }
         $this->resultados = array_merge_recursive($this->resultados, $resultado);
-        return $resultado;     
+        if($getIdsComen != null){
+            return $idsComen; 
+        }else{
+            return $resultado; 
+        }
+            
     
     }
     // Feito
-    public function comentarioComum(){
+    public function comentarioComum($getIdsComen = null){
         $publicacaoComentario = new SelectComen();
         $publicacaoComentario->setCodPubli($this->getCodPubli());
-        $listaComentarios = $publicacaoComentario->selectComen($publicacaoComentario->getWhereUserComum());
-
+        $listaComentarios = $publicacaoComentario->selectComen($publicacaoComentario->getWhereUserComum());    
+        //var_dump($listaComentarios);   
+        if($getIdsComen != null){
+            $idsComen = array();
+            $contador = 0;
+            $contador2 = 0;
+            $contador3 = 0;
+            while($contador < count($listaComentarios)){
+                while($contador2 < count($listaComentarios[$contador])){
+                    $idsComen[$contador3]['cod_comen'] = $listaComentarios[$contador][$contador2]['cod_comen'];                                        
+                    $contador2++;
+                    $contador3++;  
+                }          
+                $contador2 =0;    
+                $contador++;
+            }
+            
+            return $idsComen;
+        }
         if(count($listaComentarios) > 0){
             $novaLista = $publicacaoComentario->retirarComentariosIguais($listaComentarios);
             $resultado = $this->Mensagem($novaLista, "comentou", "comentaram" ,"na sua publicacao", "comentario"); 
             $this->resultados = array_merge_recursive($this->resultados, $resultado);
             return $resultado;
         }
+        
     }
     //Feito
     public function Mensagem($listaCurtidores = array(), $singular, $plural, $complemento, $tipoPubli){        
@@ -157,12 +188,14 @@ class GerenNotiComum extends GenericaM{
 
     public function notificacoes(){
             
-        $curtidasComen = $this->curtidasComen();
+        $curtidasComen = $this->curtidasComen();        
         $curtidasPubli = $this->curtidasPubli();
         $respostaPubliSalva = $this->respostaPubliSalva();
         $respostaPrefei = $this->respostaPrefei();
         $comentarioComum = $this->comentarioComum();
-        return $this->resultados ;
+        
+        //var_dump($respostaPrefei);
+        return $this->resultados;
     }
 
     public function nomeClasse($ind){
@@ -171,5 +204,20 @@ class GerenNotiComum extends GenericaM{
         }else if($ind == 'N'){
             return 'NVisualizado';
         }
+    }
+
+    public function visualizarNotificacao($indVisu, $idUser){
+        if($indVisu != null){
+            if($indVisu == 'B'){            
+                $ids = array();
+                $ids['Publicacao'][] = $this->getCodPubli();
+                $ids['Comen'][] = $this->comentarioComum('QueroOsIds');
+                $ids['ComenCurti'][] = $this->getCodComen();
+                $ids['PubliSalvas'][] = $this->getCodSalvos();
+                $ids['ComenPrefei'][] = $this->respostaPrefei('QueroOsIds');                 
+                $visualizar = new VisualizarNotificacao($ids,$indVisu,$idUser);
+            }     
+        }
+        return;        
     }
 }

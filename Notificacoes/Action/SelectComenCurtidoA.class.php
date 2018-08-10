@@ -5,7 +5,7 @@ use Notificacoes\Model\GenericaM;
 
 class SelectComenCurtidoA extends GenericaM{  
 
-    private $sqlSelect = "SELECT titulo_publi, nome_usu, comen_curtida.cod_comen, publicacao.cod_publi, dataHora_comen_curti, ind_visu_dono_publi
+    private $sqlSelect = "SELECT titulo_publi, nome_usu, comen_curtida.cod_comen, publicacao.cod_publi, dataHora_comen_curti, comen_curtida.ind_visu_dono_publi
                             FROM comen_curtida INNER JOIN comentario ON (comen_curtida.cod_comen = comentario.cod_comen)
                             INNER JOIN publicacao ON (comentario.cod_publi = publicacao.cod_publi)
                             INNER JOIN usuario on (comen_curtida.cod_usu = usuario.cod_usu)

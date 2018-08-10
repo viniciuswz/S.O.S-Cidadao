@@ -102,6 +102,7 @@ class SelectComenA extends GenericaM{
                             $Novalista[$contador2][$contador]['titulo_publi'] = $valores2['titulo_publi'];
                             $Novalista[$contador2][$contador]['cod_publi'] = $valores2['cod_publi'];
                             $Novalista[$contador2][$contador]['ind_visu_dono_publi'] = $valores2['ind_visu_dono_publi'];
+                            $Novalista[$contador2][$contador]['cod_comen'] = $valores2['cod_comen'];
                             $contador++;
                         }
                         

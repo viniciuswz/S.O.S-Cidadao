@@ -11,6 +11,8 @@ class SelectRegisA extends GenericaM{
 
     private $sqlSelectSalvos = "SELECT cod_publi,ind_visu_respos_prefei from publicacao_salva where cod_usu = '%s' AND status_publi_sal = 'A' AND (ind_visu_respos_prefei = 'N' or ind_visu_respos_prefei = 'B')";
 
+    //private $sqlComenPrefei = "SELECT cod_publi,ind_visu_respos_prefei from publicacao_salva where cod_usu = '%s' AND status_publi_sal = 'A' AND (ind_visu_respos_prefei = 'N' or ind_visu_respos_prefei = 'B')";
+
     public function selectPubli():array{
         $sql = sprintf( $this->sqlSelect,
                         $this->getCodUsu()
