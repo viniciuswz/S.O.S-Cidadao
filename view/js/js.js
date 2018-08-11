@@ -365,4 +365,23 @@ jQuery(function(){
   
 })
 
+jQuery(function($){
+  $("#abrir-debate-info").click(function(){
+    $(".usuarios-debate-info").addClass("usuarios-debate-info-ativo")
+    $(".mini-menu-item").removeClass("mini-menu-item-ativo")
+  })
 
+  $("#fechar-debate-info").click(function(){
+    $(".usuarios-debate-info").removeClass("usuarios-debate-info-ativo")
+  })
+})
+
+jQuery(function($){
+  $("#abrir-contatos").click(function(){
+    $(".contatos").addClass("contatos-ativo");
+    $(".mini-menu-item").removeClass("mini-menu-item-ativo")
+  })
+  $("#fechar-contatos").click(function(){
+    $(".contatos").removeClass("contatos-ativo")
+  })
+})

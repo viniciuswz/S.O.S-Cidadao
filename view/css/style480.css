@@ -486,9 +486,9 @@ width: 100vw;
 .usuarios-debate-info{
     position: absolute;
     right: 0;
-    width: 100%;
+    width: 0;
     max-width: 100%;
-    display: block
+   
    
 }
 
@@ -498,13 +498,15 @@ width: 100vw;
 
 .contatos{
     position: absolute;
-    width: 100%;
+    width: 0;
+    right: 0;
     background-color: white;
     overflow: hidden;
     order: 2;
-    z-index: 1;
     max-width: 100%;
-    display: NONE
+    min-width: 0;
+    display: block;
+    transition: 0.5s;
 }
 
 .contatos nav{
@@ -515,6 +517,9 @@ width: 100vw;
     display:block
 }
 
+.contatos header h3{
+    white-space: nowrap
+}
 .batepapo header h4{
     font-size: 13px
 }
@@ -547,4 +552,8 @@ width: 100vw;
 
 .linha-mensagem_sistema div {
     max-width: 90%; 
+}
+
+.contatos.contatos-ativo{
+    width: 100%;
 }

@@ -229,10 +229,15 @@ width: 320px
 .usuarios-debate-info{
     position: absolute;
     right: 0;
-    width: 100%;
     max-width: 312px;
-    display: none
+    width: 0;
+    z-index: 96;
    
+}
+
+.batepapo{
+    width: 70%;
+
 }
 
 .contatos{
@@ -255,4 +260,20 @@ width: 320px
 .batepapo header div:first-child{
     width: 55px;
     height: 55px;
+}
+
+
+.mensagem_padrao {  /*POR CAUSA DO NOME TA BUGANDO*/
+    max-width: 35vw;
+}
+
+.linha-mensagem_usuario div {
+    max-width: 35vw;
+}  
+.linha-mensagem_sistema div {
+    max-width: 40%; 
+}
+
+#abrir-contatos{
+    display: none
 }

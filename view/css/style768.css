@@ -364,9 +364,9 @@ font-size: 1.1em;
 .usuarios-debate-info{
     position: absolute;
     right: 0;
-    width: 100%;
+    width: 0;
     max-width: 100%;
-    display: block
+    
    
 }
 
@@ -376,13 +376,15 @@ font-size: 1.1em;
 
 .contatos{
     position: absolute;
-    width: 100%;
+    width: 0;
+    right: 0;
     background-color: white;
     overflow: hidden;
     order: 2;
-    z-index: 1;
+   transition: 0.5s;
     max-width: 100%;
-    display: none
+    min-width: 0;
+    display: block
 }
 
 
@@ -395,6 +397,9 @@ font-size: 1.1em;
     display:block
 }
 
+.contatos header h3{
+    white-space: nowrap
+}
 
 
 .batepapo header h4{
@@ -420,8 +425,6 @@ font-size: 1.1em;
     font-size: .95em;
 }
 .mensagem_padrao {  /*POR CAUSA DO NOME TA BUGANDO*/
-    
-   
     max-width: 70%;
 }
 
@@ -430,4 +433,9 @@ font-size: 1.1em;
 }  
 .linha-mensagem_sistema div {
     max-width: 40%; 
+}
+
+
+.contatos.contatos-ativo{
+    width: 100%;
 }

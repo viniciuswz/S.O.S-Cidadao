@@ -756,11 +756,13 @@ display: flex;
     position: absolute;
     flex-direction: column;
     z-index:2;
-    transition: 0.5s;
+    transition: 1.5s;
     display: none;
     width: 160px;
     margin-left: -116px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, .4);
+    
+    display: none;
 }
 
 .mini-menu-item ul li{
@@ -805,6 +807,7 @@ display: flex;
 }
 .mini-menu-item.mini-menu-item-ativo ul{
     display: block;
+    
 }
 
 
@@ -1400,16 +1403,17 @@ margin-bottom :200px;
     font-weight: 600;
 }
 
-.usuarios-debate-info{
+.usuarios-debate-info{/*aqui*/
     order:3;
     overflow-y: scroll;
+    overflow-x: hidden;
     height: 100vh;
     background-color: white;
-    z-index: 100;
-    width: 100%;
+    z-index: 95;
+    width: 0;
     max-width: 376px;
-    min-width: 266px;
     display: block;
+    transition: 0.5s
     
 }
 
@@ -1457,6 +1461,7 @@ margin-bottom :200px;
 }
 
 .usuarios-debate-info .moldura-debate div div{
+    
     overflow:hidden;
     width: 190px;
     height: 190px;
@@ -1497,6 +1502,7 @@ margin-bottom :200px;
 }
 .usuarios-debate-info .participantes{
     background-color: white;
+    
 }
 
 .usuarios-debate-info .participantes h4{
@@ -1554,6 +1560,7 @@ margin-bottom :200px;
     order: 2;
     max-width: 376px;
     min-width: 266px;
+    z-index: 95;
    
 }
 
@@ -1633,6 +1640,7 @@ margin-bottom :200px;
 
 .batepapo{
     width: 100%;
+    
 }
 
 .batepapo header{
@@ -1678,6 +1686,7 @@ margin-bottom :200px;
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 .batepapo form input{
     width: 90%;
@@ -1709,6 +1718,7 @@ margin-bottom :200px;
 .mensagens{
     overflow-x: hidden;
     height: calc(100vh - 160px);
+    padding-bottom: 10px
 }
 
 .mensagens sub{
@@ -1851,7 +1861,7 @@ margin-bottom :200px;
     padding:14px;
     
     word-wrap: break-word;
-    max-width: 40%; 
+    max-width: 50%; 
     
 }
 
@@ -1861,4 +1871,12 @@ margin-bottom :200px;
     font-size: .80em;
     text-align: center;
     margin: 0 auto;
+}
+
+/*ATIVOS DA PAG DEBATES MENSAGENS*/
+
+.usuarios-debate-info.usuarios-debate-info-ativo{
+   
+    width: 100%;
+    
 }
