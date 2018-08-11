@@ -21,7 +21,7 @@ $jaca = new GerenNotiComum($idUser,'B');
 $resultado = $jaca->notificacoes();
 
 echo json_encode($resultado);
-var_dump($resultado);
+//var_dump($resultado);
 /*s
 foreach($resultado as $chaves => $valores){
     foreach($valores as $chave => $valor){

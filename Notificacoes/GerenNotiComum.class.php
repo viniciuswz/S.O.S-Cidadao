@@ -11,16 +11,18 @@ use Notificacoes\Core\VisualizarNotificacao;
 class GerenNotiComum extends GenericaM{
 
     private $resultados = array();
-
+    private $indVisu;
+    private $idUser;
     public function __construct($idUser,$indVisu = null){ // ASsim q for instanciado ele vai pegar todos os ids de publicacoes
         $publicacoes = new SelectRegis(); // Que o usuario envio, e dos comentarios tambem
-        $publicacoes->setCodUsu($idUser);        
-        
+        $publicacoes->setCodUsu($idUser); 
+        $this->indVisu = $indVisu;
+        $this->idUser = $idUser;
         $this->setCodPubli($publicacoes->selectPubli());
         $this->setCodComen($publicacoes->selectComen()); 
         $this->setCodSalvos($publicacoes->selectSalvos());       
         
-        $this->visualizarNotificacao($indVisu,$idUser);
+        //$this->visualizarNotificacao($indVisu,$idUser);
     }
 
     //Feito
@@ -62,6 +64,7 @@ class GerenNotiComum extends GenericaM{
                 $resultado[$contador]['id_publi'] = $listaResposta[$contador][0]['cod_publi']; 
                 $resultado[$contador]['tipo'] = 'resposta';
                 $resultado[$contador]['classe'] = $this->nomeClasse($listaResposta[$contador][0]['indicador']);
+                $resultado[$contador]['Hora'] = strtotime($listaResposta[$contador][0]['dataHora']);
                 
                 $contador++;
             }
@@ -79,12 +82,13 @@ class GerenNotiComum extends GenericaM{
         $resultado = array();
         $idsComen = array();
         if($quantidade > 0){
-            $contador = 0;            
+            $contador = 0; 
             while($contador < count($listaResposta)){
                 $resultado[$contador]['notificacao'] = " A prefeitura respondeu a publição <strong> " . $listaResposta[$contador][0]['titulo_publi'] . "</strong>";
                 $resultado[$contador]['id_publi'] = $listaResposta[$contador][0]['cod_publi']; 
-                $resultado[$contador]['tipo'] = 'resposta'; 
-                $resultado[$contador]['classe'] = $this->nomeClasse($listaResposta[$contador][0]['ind_visu_dono_publi']); 
+                $resultado[$contador]['tipo'] = 'resposta';
+                $resultado[$contador]['Hora'] = strtotime($listaResposta[$contador][0]['dataHora']);                
+                $resultado[$contador]['classe'] = $this->nomeClasse($listaResposta[$contador][0]['ind_visu_dono_publi']);
                 $idsComen[$contador]['cod_comen'] = $listaResposta[$contador][0]['cod_comen'];                 
                 $contador++;
             }
@@ -122,7 +126,7 @@ class GerenNotiComum extends GenericaM{
             return $idsComen;
         }
         if(count($listaComentarios) > 0){
-            $novaLista = $publicacaoComentario->retirarComentariosIguais($listaComentarios);
+            $novaLista = $publicacaoComentario->retirarComentariosIguais($listaComentarios);            
             $resultado = $this->Mensagem($novaLista, "comentou", "comentaram" ,"na sua publicacao", "comentario"); 
             $this->resultados = array_merge_recursive($this->resultados, $resultado);
             return $resultado;
@@ -144,6 +148,7 @@ class GerenNotiComum extends GenericaM{
                     $resultado[$contador]['id_publi'] = $listaCurtidores[$contador][0]['cod_publi'];
                     $resultado[$contador]['tipo'] = $tipoPubli;
                     $resultado[$contador]['classe'] = $this->nomeClasse($listaCurtidores[$contador][0]['ind_visu_dono_publi']);
+                    $resultado[$contador]['Hora'] = strtotime($listaCurtidores[$contador][0]['dataHora']);
                 }else if($quantidadeCurtidoresComen == 2){                        
                     $contador2 = 0;
                     $texto = "";
@@ -158,6 +163,9 @@ class GerenNotiComum extends GenericaM{
                     $resultado[$contador]['id_publi'] = $listaCurtidores[$contador][0]['cod_publi'];
                     $resultado[$contador]['tipo'] = $tipoPubli;
                     $resultado[$contador]['classe'] = $this->nomeClasse($listaCurtidores[$contador][0]['ind_visu_dono_publi']);
+                    $resultado[$contador]['notificacao'];
+                    $resultado[$contador]['Hora'] = strtotime($listaCurtidores[$contador][0]['dataHora']);
+                    
                     
                 }else{
                     $contador2 = 0;
@@ -178,6 +186,7 @@ class GerenNotiComum extends GenericaM{
                     $resultado[$contador]['id_publi'] = $listaCurtidores[$contador][0]['cod_publi'];
                     $resultado[$contador]['tipo'] = $tipoPubli;
                     $resultado[$contador]['classe'] = $this->nomeClasse($listaCurtidores[$contador][0]['ind_visu_dono_publi']);
+                    $resultado[$contador]['Hora'] = strtotime($listaCurtidores[$contador][0]['dataHora']);
 
                 }
                 $contador++;
@@ -194,8 +203,15 @@ class GerenNotiComum extends GenericaM{
         $respostaPrefei = $this->respostaPrefei();
         $comentarioComum = $this->comentarioComum();
         
-        //var_dump($respostaPrefei);
+        //var_dump($this->resultados);
+        //$res = sort($this->resultados,SORT_NUMERIC );
+        $this->visualizarNotificacao($this->indVisu,$this->idUser);
         return $this->resultados;
+    }
+
+    public function ordenarArray($dados){ //Parei aqui, ordenar uma array
+        
+        
     }
 
     public function nomeClasse($ind){
@@ -213,8 +229,9 @@ class GerenNotiComum extends GenericaM{
                 $ids['Publicacao'][] = $this->getCodPubli();
                 $ids['Comen'][] = $this->comentarioComum('QueroOsIds');
                 $ids['ComenCurti'][] = $this->getCodComen();
-                $ids['PubliSalvas'][] = $this->getCodSalvos();
                 $ids['ComenPrefei'][] = $this->respostaPrefei('QueroOsIds');                 
+                $ids['PubliSalvas'][] = $this->getCodSalvos();
+                
                 $visualizar = new VisualizarNotificacao($ids,$indVisu,$idUser);
             }     
         }

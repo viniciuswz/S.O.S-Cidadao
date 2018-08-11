@@ -15,6 +15,7 @@ class VisualizarNotificacaoA extends GenericaM{
 
 
     public function __construct($ids,$tipoInd,$codUsu){  
+        //$tipoInd = 'N';
         $res = array();
         $this->codUsu = $codUsu;
         foreach($ids as $chavePrincipal =>$valores){
@@ -25,21 +26,21 @@ class VisualizarNotificacaoA extends GenericaM{
                 }else{
                     $prapararSql = sprintf($this->{'sqlUpdate'.$chavePrincipal},$tipoInd,$inId);
                 }  
-                           
-                $update = $this->runQuery($prapararSql); 
+                
+                $update = $this->runQuery($prapararSql);                
             }            
         }
                
     }   
 
     public function gerarIn($tipos = array()){// gerar o in, exemplo in('adm','moderador')
-        $in = "in( ";
+        $in = "in(";
         $contador = 1;        
         foreach ($tipos as $valores){
             foreach($valores as $chave => $valor){
                 if($chave != 'ind_visu_respos_prefei'){
                     if($contador == count($tipos)){
-                        $in.= "'$valor'" . ' )';
+                        $in.= "'$valor'" . ')';
                     }else{
                         $in.= "'$valor'".', ';
                     }

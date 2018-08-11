@@ -8,7 +8,7 @@ class SelectComenA extends GenericaM{
     // ind_visu_dono_publi = N (Notificar, ainda nao visualizou)
     // ind_visu_dono_publi = V (Nao notificar, pois ja foi visualizado) 
 
-    private $sqlSelectComen = "SELECT usuario.nome_usu, cod_comen, titulo_publi, usuario.cod_usu, publicacao.cod_publi, ind_visu_dono_publi, dataHora_comen 
+    private $sqlSelectComen = "SELECT usuario.nome_usu, cod_comen, titulo_publi, usuario.cod_usu, publicacao.cod_publi, ind_visu_dono_publi, dataHora_comen AS dataHora
                             FROM usuario INNER JOIN comentario ON (usuario.cod_usu = comentario.cod_usu) 
                             INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu) 
                             INNER JOIN publicacao ON (publicacao.cod_publi = comentario.cod_publi) 
@@ -103,6 +103,7 @@ class SelectComenA extends GenericaM{
                             $Novalista[$contador2][$contador]['cod_publi'] = $valores2['cod_publi'];
                             $Novalista[$contador2][$contador]['ind_visu_dono_publi'] = $valores2['ind_visu_dono_publi'];
                             $Novalista[$contador2][$contador]['cod_comen'] = $valores2['cod_comen'];
+                            $Novalista[$contador2][$contador]['dataHora'] = $valores2['dataHora'];
                             $contador++;
                         }
                         

@@ -5,7 +5,7 @@ use Notificacoes\Model\GenericaM;
 
 class SelectPubliSalvaA extends GenericaM{  
 
-    private $sqlSelect = "SELECT usuario.nome_usu, cod_comen, titulo_publi, usuario.cod_usu, publicacao.cod_publi 
+    private $sqlSelect = "SELECT usuario.nome_usu, cod_comen, titulo_publi, usuario.cod_usu, publicacao.cod_publi,dataHora_comen AS dataHora
                             FROM usuario INNER JOIN comentario ON (usuario.cod_usu = comentario.cod_usu) 
                             INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu) 
                             INNER JOIN publicacao ON (publicacao.cod_publi = comentario.cod_publi) 
@@ -18,11 +18,11 @@ class SelectPubliSalvaA extends GenericaM{
         $sql = array();
         $contador = 0;
         foreach($ids as $chaves => $valores){
-            foreach($valores as $chave => $id){
+            foreach($valores as $chave => $vlr){
                 if($chave == 'cod_publi'){
-                    $sql[$contador]['query'] = sprintf($this->sqlSelect, $id); 
+                    $sql[$contador]['query'] = sprintf($this->sqlSelect, $vlr); 
                 }else{
-                    $sql[$contador]['ind'] = $id; 
+                    $sql[$contador]['ind'] = $vlr; 
                 }
                                
             }     
