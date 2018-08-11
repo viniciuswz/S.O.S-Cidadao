@@ -92,7 +92,7 @@ class SelectComenA extends GenericaM{
                 foreach($valores2 as $chave => $valor){
                     if($chave == 'cod_usu'){   
 
-                       $seraPesqui = 'IdUser=' . $valores2['cod_usu'] . ' da publi=' . $valores2['titulo_publi'];       
+                        $seraPesqui = ' IdUser=' . $valores2['cod_usu'] . ' da publi=' . $valores2['cod_publi'];                              
                        // Tive q fazer esse texto pra dar pra pesquisar na array     
                         
                         $pesquisa = in_array($seraPesqui, $listaAux);

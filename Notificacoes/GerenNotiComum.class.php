@@ -13,6 +13,7 @@ class GerenNotiComum extends GenericaM{
     private $resultados = array();
     private $indVisu;
     private $idUser;
+   
     public function __construct($idUser,$indVisu = null){ // ASsim q for instanciado ele vai pegar todos os ids de publicacoes
         $publicacoes = new SelectRegis(); // Que o usuario envio, e dos comentarios tambem
         $publicacoes->setCodUsu($idUser); 
@@ -126,7 +127,8 @@ class GerenNotiComum extends GenericaM{
             return $idsComen;
         }
         if(count($listaComentarios) > 0){
-            $novaLista = $publicacaoComentario->retirarComentariosIguais($listaComentarios);            
+            $novaLista = $publicacaoComentario->retirarComentariosIguais($listaComentarios);  
+            //var_dump($novaLista);          
             $resultado = $this->Mensagem($novaLista, "comentou", "comentaram" ,"na sua publicacao", "comentario"); 
             $this->resultados = array_merge_recursive($this->resultados, $resultado);
             return $resultado;
@@ -134,13 +136,13 @@ class GerenNotiComum extends GenericaM{
         
     }
     //Feito
-    public function Mensagem($listaCurtidores = array(), $singular, $plural, $complemento, $tipoPubli){        
+    public function Mensagem($listaCurtidores = array(), $singular, $plural, $complemento, $tipoPubli){ 
         if(count($listaCurtidores) > 0){
             $contador = 0;
             $singular = trim($singular);
             $plural = trim($plural);
             $complemento = trim($complemento);
-            while($contador < count($listaCurtidores)){// = Quantidade de comentarios Curtidas
+            while($contador < count($listaCurtidores)){// = Quantidade de comentarios Curtidas                
                 $quantidadeCurtidoresComen = count($listaCurtidores[$contador]);
                 $texto = "";
                 if($quantidadeCurtidoresComen == 1){
@@ -206,12 +208,31 @@ class GerenNotiComum extends GenericaM{
         //var_dump($this->resultados);
         //$res = sort($this->resultados,SORT_NUMERIC );
         $this->visualizarNotificacao($this->indVisu,$this->idUser);
+        $this->resultados = $this->ordenarArray();
         return $this->resultados;
     }
 
-    public function ordenarArray($dados){ //Parei aqui, ordenar uma array
+    public function ordenarArray(){ //Parei aqui, ordenar uma array
         
+        $HoraOrganizada = array();
+        $newArray = array();
+        $dados = $this->resultados;        
+        $contador = 0;
+        while($contador < count($dados)){
+            $segundos = $dados[$contador]['Hora']; // Esta em segundos
+            $HoraOrganizada[$contador] = $segundos . '.'.$contador;      //Colocar a data e Hora em um vetor concatenado com a posicao da notificacao
+            $contador++;
+        }
+        sort($HoraOrganizada,SORT_NUMERIC );//Ordenar o vetor, so ordena do menor pro maior
+        foreach($HoraOrganizada as $valor){
+            $posicaoPonto = strpos($valor, '.'); // Achar a posicao do ponto
+            $indice = substr($valor, $posicaoPonto + 1); //Nao comecar a pegar a partir do ponto
+            $newArray[] = $dados[$indice];
+        }
+        $OrderMaiorMenor = array_reverse($newArray); //Inverter a array;
         
+        //var_dump($OrderMaiorMenor);
+        return $OrderMaiorMenor;
     }
 
     public function nomeClasse($ind){
