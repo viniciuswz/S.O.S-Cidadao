@@ -242,3 +242,17 @@ width: 320px
     order: 2;
     max-width: 312px;
 }
+
+.contatos nav{
+    height: calc(100vh - 80px);
+}
+
+.mensagens{
+    height: calc(100vh - 140px);
+}
+
+
+.batepapo header div:first-child{
+    width: 55px;
+    height: 55px;
+}

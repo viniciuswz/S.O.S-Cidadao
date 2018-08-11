@@ -1480,6 +1480,21 @@ margin-bottom :200px;
     border-top: 1px solid #ae00ff;
 }
 
+.usuarios-debate-info .infos h3{
+    overflow: hidden;
+    
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 80%;
+}
+
+.usuarios-debate-info .infos p{
+    overflow: hidden;
+    
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 80%;
+}
 .usuarios-debate-info .participantes{
     background-color: white;
 }
@@ -1487,9 +1502,10 @@ margin-bottom :200px;
 .usuarios-debate-info .participantes h4{
     border-bottom: 1px solid #ae00ff;
    border-width: 3px;
-    
+
     padding: 9px;
     margin: 5px;
+
 }
 
 .usuarios-debate-info .participantes > div{
@@ -1628,20 +1644,30 @@ margin-bottom :200px;
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    margin-right: 4px
+    margin:0 4px
 }
 .batepapo header img{
     align-self: center;
-    width: 150%;
+    height: 160%;
     position: relative;
     top: 50%;
     left: 50%;
     transform: translateY(-50%) translateX(-50%)
 }
+
+
 .batepapo header h4{
+    
     flex-grow: 1;
     color: #E7E8EB;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+   
+    width: 50px;
+    
 }
+
 .batepapo header i.icone-3pontos{
     transform: rotate(90deg);
 }
@@ -1707,30 +1733,25 @@ margin-bottom :200px;
 .mensagem_padrao span.nome + span{
     font-family: "Open-Sans";
     margin-top: 1px;
-    
     font-size: .85em;
-    word-wrap: break-word;
     width: 100%;
+    display: block;
     float: left;
+    word-wrap: break-word;
 }
+
 .mensagem_padrao {  /*POR CAUSA DO NOME TA BUGANDO*/
 	position: relative;
 	background: white;
 	border-radius: .4em;
     padding:14px;
     margin-left: 10px;
-    max-width: 500px;  
+    display: block;
+    max-width: 400px;
     flex-direction: column;
 }
 
-.mensagem_usuario {
-    
-    position: relative;
-	background: white;
-	border-radius: .4em;
-    padding:14px;
-    
-}
+
 .linha-mensagem_padrao{
     display: flex;
     width: 100%;
@@ -1774,6 +1795,8 @@ margin-bottom :200px;
     transform: translateX(-50%) translateY(-50%)
 }
 
+
+
 .linha-mensagem_usuario{
     display: flex;
     width: 100%;
@@ -1790,8 +1813,7 @@ margin-bottom :200px;
     padding:14px;
     margin-right: 10px;
     max-width: 70%; 
-    
-          
+           
 }
 
 .linha-mensagem_usuario div span{
@@ -1803,21 +1825,31 @@ margin-bottom :200px;
 
 }
 
+.mensagem_usuario {
+    
+    position: relative;
+	background: white;
+	border-radius: .4em;
+    padding:14px;
+    
+}
+
 .linha-mensagem_sistema{
     display: flex;
     width: 100%;
     margin-top: 20px;
     align-items: center;
     justify-content: center;
+   
 
 }
 
 .linha-mensagem_sistema div {
-	position: relative;
+	
 	background: rgba(225, 245, 254, 0.92);
 	border-radius: .4em;
     padding:14px;
-    margin-right: 10px;
+    
     word-wrap: break-word;
     max-width: 40%; 
     
@@ -1828,4 +1860,5 @@ margin-bottom :200px;
     font-family: "Open-Sans";
     font-size: .80em;
     text-align: center;
+    margin: 0 auto;
 }

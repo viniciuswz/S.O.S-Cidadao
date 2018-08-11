@@ -488,7 +488,7 @@ width: 100vw;
     right: 0;
     width: 100%;
     max-width: 100%;
-    display: none
+    display: block
    
 }
 
@@ -513,4 +513,38 @@ width: 100vw;
 
 .contatos header p{
     display:block
+}
+
+.batepapo header h4{
+    font-size: 13px
+}
+
+.batepapo header div:first-child{
+    width: 40px;
+    height: 40px;
+}
+
+.mensagens{
+    height: calc(100vh - 110px);
+}
+
+.mensagem_padrao span.nome{
+    max-width: 90%;
+    font-size: .95em;
+}
+.mensagem_padrao {  /*POR CAUSA DO NOME TA BUGANDO*/
+    
+   
+    max-width: 70%;
+}
+
+.linha-mensagem_usuario div {
+    max-width: 70%; 
+}  
+.linha-mensagem_sistema div {
+    max-width: 40%; 
+}
+
+.linha-mensagem_sistema div {
+    max-width: 90%; 
 }
