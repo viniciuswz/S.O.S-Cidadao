@@ -159,10 +159,10 @@ background-color: purple
 }
 
 
-.perfil-base .perfil + p{
-    top: 330px;
-    right: 0;
-    margin-right: 200px;
+.perfil-base .perfil  p{
+   
+    color: aliceblue;
+    margin-right: 10px;
     font-size: 1.8rem;
     text-shadow: 0px 0px 10px black
 }

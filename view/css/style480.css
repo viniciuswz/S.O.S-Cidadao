@@ -246,7 +246,7 @@ width: 100vw;
 
 .perfil div i{
     position: absolute;
-    margin-right: 30px;
+    margin-right: -40px;
     margin-top: 30px;
 }
 
@@ -257,6 +257,10 @@ width: 100vw;
    position: absolute;
    left: 0;
    top: 240px
+   }
+
+   .menu-perfil ul li a{
+       font-size: .9em;
    }
 /*pag todos debates*/
 

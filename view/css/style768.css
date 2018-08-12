@@ -174,12 +174,12 @@ width: 100vw;
 
 
 .perfil-base div div p{
-    background-color: red;
+  
    
     text-align: center;
     font-size: 1.8rem;
     color: black;
-    margin: 40px auto 0 auto;
+    margin: 0px auto 0 auto;
 }
 
 .perfil-base div div span{
@@ -194,7 +194,7 @@ width: 100vw;
 .perfil div i{
     position: absolute;
     margin-right: 30px;
-    margin-top: 50px;
+    margin-top: 40px;
 }
 
 
