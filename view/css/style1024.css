@@ -167,15 +167,13 @@ background-color: purple
     text-shadow: 0px 0px 10px black
 }
 
-.perfil-base p + p{
-    top: 370px;
-    right: 0;
-    margin-right: 260px;
-    font-size: 1rem;
+.perfil-base div div span{
+
+    font-size: 1.1rem;
     text-shadow: 0px 0px 30px black
 }
 
-.perfil h3{
+.perfil-base h3{
     position: absolute;
     left: 0;
     color: aliceblue;

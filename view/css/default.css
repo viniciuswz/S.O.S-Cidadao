@@ -409,6 +409,18 @@ nav.notificacoes ul li a span:first-of-type{
     background-color: white;
 }
 
+.perfil-base span p:first-child{
+    
+    color: red;
+    font-family: 'Open-Sans-Bold';
+    max-width: 320px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    
+}
+
+
 .perfil > img{
     position: relative;
     left: 50%;
@@ -437,9 +449,7 @@ nav.notificacoes ul li a span:first-of-type{
 }
 
 
-.perfil-base .perfil + p{
-    position: absolute;
-    color: white;
+.perfil-base div div p{
     font-family: 'Open-Sans-Bold';
     max-width: 320px;
     overflow: hidden;
@@ -449,12 +459,13 @@ nav.notificacoes ul li a span:first-of-type{
 }
 
 
-.perfil-base p + p{
+.perfil-base div div span{
     display: block;
-    position: absolute;
     color: white;
     font-family: 'Open-Sans-Bold';
-    max-width: 320px;
+    margin-right: 10px;
+   
+   
 }
 
 .perfil i{
