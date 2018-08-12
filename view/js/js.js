@@ -23,16 +23,23 @@ jQuery(function($)
 jQuery(function($)
 {
 
-  
+  var click = 0;
     $("#abrir-not").click(function(){
-    
         $(".notificacoes").toggleClass('ativo');
-
+       var banana= $(".notificacoes").attr("class");
+       
+       if(banana=='notificacoes ativo'){
+         click++;
+         $("#not-fechado").html(' fechou ' + click + 'vezes');
+        
+       }
+      
     })
 
     $(window).resize(function(){
         $(".notificacoes").removeClass('ativo');
     })     
+    
 })
 
 
