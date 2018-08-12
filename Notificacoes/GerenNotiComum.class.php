@@ -66,6 +66,7 @@ class GerenNotiComum extends GenericaM{
                 $resultado[$contador]['tipo'] = 'resposta';
                 $resultado[$contador]['classe'] = $this->nomeClasse($listaResposta[$contador][0]['indicador']);
                 $resultado[$contador]['Hora'] = strtotime($listaResposta[$contador][0]['dataHora']);
+                $resultado[$contador]['DataHora'] = $listaResposta[$contador][0]['dataHora'];
                 
                 $contador++;
             }
@@ -88,7 +89,8 @@ class GerenNotiComum extends GenericaM{
                 $resultado[$contador]['notificacao'] = " A prefeitura respondeu a publição <strong> " . $listaResposta[$contador][0]['titulo_publi'] . "</strong>";
                 $resultado[$contador]['id_publi'] = $listaResposta[$contador][0]['cod_publi']; 
                 $resultado[$contador]['tipo'] = 'resposta';
-                $resultado[$contador]['Hora'] = strtotime($listaResposta[$contador][0]['dataHora']);                
+                $resultado[$contador]['Hora'] = strtotime($listaResposta[$contador][0]['dataHora']);  
+                $resultado[$contador]['DataHora'] = $listaResposta[$contador][0]['dataHora'];               
                 $resultado[$contador]['classe'] = $this->nomeClasse($listaResposta[$contador][0]['ind_visu_dono_publi']);
                 $idsComen[$contador]['cod_comen'] = $listaResposta[$contador][0]['cod_comen'];                 
                 $contador++;
@@ -151,6 +153,7 @@ class GerenNotiComum extends GenericaM{
                     $resultado[$contador]['tipo'] = $tipoPubli;
                     $resultado[$contador]['classe'] = $this->nomeClasse($listaCurtidores[$contador][0]['ind_visu_dono_publi']);
                     $resultado[$contador]['Hora'] = strtotime($listaCurtidores[$contador][0]['dataHora']);
+                    $resultado[$contador]['DataHora'] = $listaCurtidores[$contador][0]['dataHora'];
                 }else if($quantidadeCurtidoresComen == 2){                        
                     $contador2 = 0;
                     $texto = "";
@@ -167,6 +170,7 @@ class GerenNotiComum extends GenericaM{
                     $resultado[$contador]['classe'] = $this->nomeClasse($listaCurtidores[$contador][0]['ind_visu_dono_publi']);
                     $resultado[$contador]['notificacao'];
                     $resultado[$contador]['Hora'] = strtotime($listaCurtidores[$contador][0]['dataHora']);
+                    $resultado[$contador]['DataHora'] = $listaCurtidores[$contador][0]['dataHora'];
                     
                     
                 }else{
@@ -189,6 +193,7 @@ class GerenNotiComum extends GenericaM{
                     $resultado[$contador]['tipo'] = $tipoPubli;
                     $resultado[$contador]['classe'] = $this->nomeClasse($listaCurtidores[$contador][0]['ind_visu_dono_publi']);
                     $resultado[$contador]['Hora'] = strtotime($listaCurtidores[$contador][0]['dataHora']);
+                    $resultado[$contador]['DataHora'] = $listaCurtidores[$contador][0]['dataHora'];
 
                 }
                 $contador++;

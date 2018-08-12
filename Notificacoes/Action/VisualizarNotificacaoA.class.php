@@ -7,11 +7,11 @@ class VisualizarNotificacaoA extends GenericaM{
 
     private $cod_usu;
 
-    private $sqlUpdatePublicacao = "UPDATE publicacao_curtida SET ind_visu_dono_publi = '%s' WHERE cod_publi %s";
-    private $sqlUpdateComenCurti = "UPDATE comen_curtida SET ind_visu_dono_publi = '%s' WHERE cod_comen %s";
-    private $sqlUpdateComen = "UPDATE comentario SET ind_visu_dono_publi = '%s' WHERE cod_comen %s";
-    private $sqlUpdatePubliSalvas = "UPDATE publicacao_salva SET ind_visu_respos_prefei = '%s' WHERE cod_usu = '%s' AND cod_publi %s";
-    private $sqlUpdateComenPrefei = "UPDATE comentario SET ind_visu_dono_publi = '%s' WHERE cod_comen %s";
+    private $sqlUpdatePublicacao = "UPDATE publicacao_curtida SET ind_visu_dono_publi = '%s' WHERE ind_visu_dono_publi != 'I' AND cod_publi %s";
+    private $sqlUpdateComenCurti = "UPDATE comen_curtida SET ind_visu_dono_publi = '%s' WHERE ind_visu_dono_publi != 'I' AND cod_comen %s";
+    private $sqlUpdateComen = "UPDATE comentario SET ind_visu_dono_publi = '%s' WHERE ind_visu_dono_publi != 'I' AND cod_comen %s";
+    private $sqlUpdatePubliSalvas = "UPDATE publicacao_salva SET ind_visu_respos_prefei = '%s' WHERE ind_visu_respos_prefei != 'I' AND cod_usu = '%s' AND cod_publi %s";
+    private $sqlUpdateComenPrefei = "UPDATE comentario SET ind_visu_dono_publi = '%s' WHERE ind_visu_dono_publi != 'I' AND cod_comen %s";
 
 
     public function __construct($ids,$tipoInd,$codUsu){  
