@@ -1890,3 +1890,15 @@ margin-bottom :200px;
     width: 100%;
     
 }
+
+.salvos h4{
+    color :black;
+    padding: 6px;
+}
+.salvos{
+    
+    display: block;
+    margin:10px auto;
+    width: 95%;
+    background-color: white;
+}

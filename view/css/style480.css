@@ -265,7 +265,9 @@ width: 100vw;
 /*pag todos debates*/
 
 
-
+.alinha-item{
+    padding-bottom: 60px;
+}
 .criar-publicacao p{
     font-size: 16px;
 }
@@ -288,15 +290,19 @@ width: 100vw;
 
 
 .item-publicacao{
-    width: 318px;
+    width:100%;
 }
 
+.item-publicacao .item-topo span{
+    width: 180px; 
+ }
+
 .item-publicacao .legenda{
-    width: 318px;
+    width:100%;
  }
 
  .item-publicacao figure{
-    width: 318px;
+    width:100%;
 }
 
 .alinha-item{
