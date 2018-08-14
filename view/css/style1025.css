@@ -627,23 +627,26 @@ background-color: purple
 
 .baixo-publicacao{
     margin: 0 auto;
-    width: 90%;
     margin-top: 10px;
-    background-color: aqua;
-    border-top: 1px solid #2E2E2E
+    background-color: rgb(214, 210, 214);
+    border-top: 2px solid #2E2E2E;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .baixo-publicacao div{
     display: flex;
     justify-content: center;
-
+    align-items: center;
+    margin-top: 20px;
 }
 
 .baixo-publicacao div img{
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
-
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
 }
 
 .baixo-publicacao span{
@@ -659,14 +662,44 @@ background-color: purple
     font-family: arial;
     font-size: 13px;
     
-    
 }
 
-.baixo-publicacao .conteudo-resposta{
-    width: 80%;
-    background-color: darkorchid;
-    font-size:13px;
+.baixo-publicacao .conteudo-resposta p{
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    margin-top: 10px;
+    font-size:14px;
     font-family: arial;
-    margin: 0 auto;
 }
- 
+ .baixo-publicacao .barra-curtir-publicacao{
+     background-color: white;
+     width: 100%;
+     border-top: 2px solid #2E2E2E;
+     border-bottom: 2px solid #2E2E2E;
+     display: flex;
+    justify-content: space-around;
+ } 
+ .baixo-publicacao .barra-curtir-publicacao div{
+    
+    margin: 0 auto;
+    width: 50%;
+    font-family: arial;
+   font-weight: 700;
+   font-size: 19px;
+} 
+
+.baixo-publicacao form{
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    width:100%;
+    justify-content: center;
+}
+
+.baixo-publicacao form textarea{
+    margin: 0 auto;
+    width: 50%;
+    height: 100px;
+
+}
