@@ -701,5 +701,22 @@ background-color: purple
     margin: 0 auto;
     width: 50%;
     height: 100px;
+    font-family: arial;
+    font-size: 14px;
+    color: #2E2E2E;
+
+}
+
+.baixo-publicacao form input{
+    background-color: blue;
+    color: #E7E8EB;
+    font-family: arial;
+    font-size: 15px;
+    border-radius: 10px;
+    width: 150px;
+    height: 50px;
+    border: 0;
+    margin: 0 auto;
+    margin-top: 30px;
 
 }
