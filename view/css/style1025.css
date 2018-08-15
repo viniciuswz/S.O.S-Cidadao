@@ -571,7 +571,7 @@ background-color: purple
  }
 
  .img-publicacao{
-     width: 40%;
+     width: 481px;
      background-color: crimson;
  }
 
@@ -668,7 +668,6 @@ background-color: purple
     display: flex;
     justify-content: center;
     width: 50%;
-    margin-top: 10px;
     font-size:14px;
     font-family: arial;
 }
@@ -689,7 +688,7 @@ background-color: purple
    font-size: 19px;
 } 
 
-.baixo-publicacao form{
+.enviar-comentario-publicacao form{
     display: flex;
     flex-direction: column;
     margin-top: 50px;
@@ -697,7 +696,7 @@ background-color: purple
     justify-content: center;
 }
 
-.baixo-publicacao form textarea{
+.enviar-comentario-publicacao form textarea{
     margin: 0 auto;
     width: 50%;
     height: 100px;
@@ -707,7 +706,7 @@ background-color: purple
 
 }
 
-.baixo-publicacao form input{
+.enviar-comentario-publicacao form input{
     background-color: blue;
     color: #E7E8EB;
     font-family: arial;
@@ -720,3 +719,79 @@ background-color: purple
     margin-top: 30px;
 
 }
+
+.comentario-publicacao{
+    width: 40%;
+    justify-content: space-around;
+    align-items: center;
+    display: flex;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.comentario-publicacao .comentario-balao{
+    position: relative;
+	background: #c8cfcf;
+    border-radius: .4em;
+    
+}
+
+.comentario-publicacao .comentario-balao:after{
+    content: '';
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 16px solid transparent;
+	border-right-color: #c8cfcf;
+	border-left: 0;
+	margin-top: -16px;
+    margin-left: -16px;
+    
+}
+
+.comentario-publicacao img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.comentario-publicacao .topo-comentario{
+    border-bottom: 1px solid #2E2E2E;
+    display: flex;
+    justify-content: space-between;
+    font-family: arial;
+    font-size: 16px;
+    align-items: center;
+    height: 50px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.comentario-publicacao .topo-comentario p{
+    font-weight: 600;
+    font-size: 18px;
+
+}
+
+.comentario-publicacao .txt-comentario{
+    width: 90%;
+    font-family: arial;
+    font-size: 13px;
+    margin:0 auto;
+    margin-bottom: 10px;
+}
+
+.like-comentario-publicacao{
+    width: 40%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0 auto;
+    font-family: arial;
+    font-size: 20px;
+    font-weight: 600;
+}
+
