@@ -497,3 +497,16 @@ background-color: purple
 .tabelinha-admin table td p {
     width: 200px;
 }
+
+.img-publicacao figure{
+    width: 100%;
+    height: 300px;
+}
+
+.img-publicacao{
+    width: 420px;
+}
+
+.Reclamacao{
+    width: 55%
+}

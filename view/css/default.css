@@ -619,10 +619,11 @@ nav.notificacoes ul li a span:first-of-type{
 
 .Reclamacao .publicacao-conteudo p{
     font-size: 13px;
-
+    overflow: auto;
+    height: 250px;
 }
 
-.Reclamacao .publicacao-topo-aberta div{
+ .publicacao-topo-aberta div{
   display: inline-block;
    width: 45px;
    height: 45px;
@@ -633,30 +634,43 @@ nav.notificacoes ul li a span:first-of-type{
 
  
 
- .Reclamacao .publicacao-topo-aberta p{
+ .publicacao-topo-aberta p{
     display: inline-block;
     flex-grow: 1;
     margin-left: 4px;
     font-size: 11px;
     font-weight: 600;
-    margin-right: 66px;
  }
 
- .Reclamacao .publicacao-topo-aberta span{
+ .publicacao-topo-aberta span{
      display: block;
      font-family: Open-Sans-Bold;
      display: block;
      font-size: 15px;
-     
+     text-overflow: ellipsis;
+     white-space: nowrap; 
+    overflow: hidden;
+    width: 60%;
+    max-width: 180px;
      
  }
  
- .Reclamacao .publicacao-topo-aberta img{
+  .publicacao-topo-aberta img{
+     width: 60px;
     height: 100px;
     position: relative;
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-40%);
+ }
+
+ .comentario-balao .publicacao-topo-aberta{
+     display: flex;
+     justify-content: space-around;
+     align-items: center;
+    margin: 0 auto;
+    width: 90%;
+    border-bottom: 1px solid #2E2E2E;
  }
 
  .img-publicacao{
@@ -683,6 +697,7 @@ nav.notificacoes ul li a span:first-of-type{
     transform: translateX(-50%) translateY(-40%);
     background-color: blueviolet
 }
+
 
 .img-publicacao .item-baixo{
     display: flex;
@@ -732,9 +747,11 @@ nav.notificacoes ul li a span:first-of-type{
 
 .baixo-publicacao div img{
     border-radius: 50%;
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     margin-right: 10px;
+    overflow: hidden;
+    
 }
 
 .baixo-publicacao span{
@@ -742,6 +759,11 @@ nav.notificacoes ul li a span:first-of-type{
     font-family: Open-Sans-Bold;
     display: block;
     font-size: 15px;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
+   overflow: hidden;
+   width: 60%;
+   max-width: 200px;
     
     
 }
@@ -861,7 +883,13 @@ nav.notificacoes ul li a span:first-of-type{
 .comentario-publicacao .topo-comentario p{
     font-weight: 600;
     font-size: 18px;
-
+     font-family: Open-Sans-Bold;
+     display: block;
+     text-overflow: ellipsis;
+     white-space: nowrap; 
+    overflow: hidden;
+    width: 60%;
+    max-width: 200px;
 }
 
 .comentario-publicacao .txt-comentario{
@@ -882,3 +910,4 @@ nav.notificacoes ul li a span:first-of-type{
     font-size: 20px;
     font-weight: 600;
 }
+

@@ -588,7 +588,7 @@ width: 100vw;
 }
 
 .comentario-publicacao{
-    width: 70%;
+    width: 90%;
 }
 
 .img-publicacao figure{
@@ -598,4 +598,16 @@ width: 100vw;
 
 .img-publicacao{
     width: 100%;
+}
+
+.comentario-publicacao .topo-comentario p{
+    font-weight: 600;
+    font-size: 13px;
+     font-family: Open-Sans-Bold;
+     display: block;
+     text-overflow: ellipsis;
+     white-space: nowrap; 
+    overflow: hidden;
+    width: 60%;
+    max-width: 100px;
 }
