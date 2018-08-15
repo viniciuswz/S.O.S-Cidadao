@@ -496,3 +496,17 @@ width: 100vw;
 }
 
 /*PAG RECLAMAÇAO*/
+
+.pag-reclamacao{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Reclamacao{
+    width: 100%;
+}
+
+.comentario-publicacao{
+    width: 70%;
+}

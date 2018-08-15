@@ -574,3 +574,28 @@ width: 100vw;
 .tabelinha-admin table td p {
     width: 100px;
 }
+
+/*PAG RECLAMAÇAO*/
+
+.pag-reclamacao{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Reclamacao{
+    width: 100%;
+}
+
+.comentario-publicacao{
+    width: 70%;
+}
+
+.img-publicacao figure{
+    width: 100%;
+    height: 300px;
+}
+
+.img-publicacao{
+    width: 100%;
+}
