@@ -1236,6 +1236,56 @@ form input[type="radio"]:checked + label{
 background-color: pink;
 }
 
+/*////////////////AGRADECIMENTO PAGE//////////////////////*/
+
+.bloco{
+    width: 300px;
+    height: 450px;
+    margin: 40px auto;
+    background: white;
+    padding: 10px 30px;
+
+}
+.img{
+    height: 200px;
+    background: white;
+    background-image:url('../imagens/TOPO.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+   
+}
+.fundo{
+    background-image:url('../imagens/fundo.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-color: black
+}
+.bloco h2{
+    text-align: center;
+}
+.bloco p{
+    text-align: center;
+    margin: 5px;
+    color: gray;
+}
+.bloco input{
+    padding: 10px 30px;
+    cursor: pointer;
+    display: block;
+    margin: 50px auto;
+}
+
+/*////////////////DEBATE PAGE//////////////////////*/
+
+.page{
+    display: flex;
+}
+
+.postada{
+    width: 55%;
+    height: 450px;
+}
+
 
 .form-icone{
     background-color: green;
@@ -1929,4 +1979,86 @@ margin-bottom :200px;
     margin:10px auto;
     width: 95%;
     background-color: white;
+}
+
+.autor{
+    height: 60px;
+}
+
+.foto{
+    background: #000;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-left: 30px;
+    margin-top: 10px;
+}
+.foto h1{
+    margin-left: 60px;
+    font-size: 10pt;
+    
+}
+
+.foto a{
+    margin-left: 60px;
+    font-size: 10pt;
+}
+
+.autor img{
+    margin-left: 20px;
+    margin-top: 15px;
+
+}
+
+.titulo{
+    width: 45%;
+    height: 450px;
+}
+
+.tema{
+    width: 100%;
+    height: 15%;
+    margin-top: 12%;
+    background: grey;
+}
+
+.icon{
+   display: flex;
+   justify-content: center;
+   align-items: center
+}
+
+.icon i.icone-grupo{
+    background-position: -200px 15px;  
+    height: 65px;   
+    width: 45px; 
+}
+.icon i.icone-categoria-debate{
+    background-position: -1160px 15px;  
+    height: 65px;   
+    width: 45px; 
+}
+
+.texto{
+    height: 40%;
+    width: 60%;
+    margin: 60px auto
+}
+.texto h2{
+    font-size: 15pt;
+}
+
+.texto a{
+    font-size: 10pt;
+}
+
+.tema input{
+    padding: 10px 40px;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto;
+    border: none;
+    color:white;
+    background: #6495ed
+
 }
