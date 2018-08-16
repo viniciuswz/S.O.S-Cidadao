@@ -450,3 +450,34 @@ font-size: 1.1em;
 .contatos.contatos-ativo{
     width: 100%;
 }
+.item-baixo .icone-local{
+   background-size: 1200px;
+   background-position: -310px -1.6px;
+}
+
+.filtro-admin i, h3{
+    display: none;
+}
+
+/*tabela admin*/
+
+.tabelinha-admin table td p {
+    width: 130px; 
+}
+
+/*PAG RECLAMAÇAO*/
+
+.pag-reclamacao{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Reclamacao{
+    width: 100%;
+}
+
+.comentario-publicacao{
+    width: 70%;
+}
+

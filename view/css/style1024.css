@@ -270,5 +270,43 @@ width: 320px
 }
 
 #abrir-contatos{
-    display: none
+    display: none;
+
+}
+
+.item-baixo .icone-local{
+   background-size: 1200px;
+   background-position: -310px -1.6px;
+}
+
+.filtro-admin i, h3{
+    display: none;
+}
+
+/*pag admin*/
+
+/*filtro*/
+
+
+.filtro-admin i, h3{
+    display: none;
+}
+
+/*tabela admin*/
+
+.tabelinha-admin table td p {
+    width: 200px;
+}
+
+.img-publicacao figure{
+    width: 100%;
+    height: 300px;
+}
+
+.img-publicacao{
+    width: 420px;
+}
+
+.Reclamacao{
+    width: 55%
 }

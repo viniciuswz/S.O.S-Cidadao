@@ -226,3 +226,27 @@ margin: 30px 0px 0px 40px
 #abrir-contatos{
     display: none
 }
+
+.item-baixo .icone-local{
+    background-size: 1200px;
+    background-position: -310px -1.6px;
+}
+
+/*pag admin*/
+
+/*filtro*/
+
+
+.filtro-admin i, h3{
+    display: none;
+}
+
+
+/*tabela admin*/
+
+.tabelinha-admin table td p {
+    width: 250px;
+}
+
+
+

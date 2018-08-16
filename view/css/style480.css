@@ -580,3 +580,92 @@ width: 100vw;
 .contatos.contatos-ativo{
     width: 100%;
 }
+.item-baixo .icone-local{
+   background-size: 1200px;
+   background-position: -310px -1.6px;
+}
+
+/*pag admin*/
+
+/*filtro*/
+
+
+.filtro-admin .filtro-admin-ativo form{
+    display: block;
+}
+
+.filtro-admin form h3{
+    font-size: 17px;
+}
+
+.filtro-admin {
+    display: flex;
+    justify-content: flex-end;
+
+}
+.filtro-admin form{
+    position: absolute;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    width: 200px;
+    height: 200px;
+    background-color: #E7E8EB;
+    display: none;
+}
+
+.filtro-admin div{
+    width: 100px;
+}
+
+.filtro-admin .icone-filtro{
+    margin-right: 10px;
+}
+
+
+  
+.filtro-admin .botao-filtro{
+    margin-bottom: 10px
+}
+/*tabela admin*/
+
+.tabelinha-admin table td p {
+    width: 100px;
+}
+
+/*PAG RECLAMAÇAO*/
+
+.pag-reclamacao{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Reclamacao{
+    width: 100%;
+}
+
+.comentario-publicacao{
+    width: 90%;
+}
+
+.img-publicacao figure{
+    width: 100%;
+    height: 300px;
+}
+
+.img-publicacao{
+    width: 100%;
+}
+
+.comentario-publicacao .topo-comentario p{
+    font-weight: 600;
+    font-size: 13px;
+     font-family: Open-Sans-Bold;
+     display: block;
+     text-overflow: ellipsis;
+     white-space: nowrap; 
+    overflow: hidden;
+    width: 60%;
+    max-width: 100px;
+}
