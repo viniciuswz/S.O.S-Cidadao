@@ -44,7 +44,7 @@ p,a{
     
 }
 header{
-    background-color: #011627;
+    background-color: #3be7fd ;
     width: 100%;
 
 }
@@ -53,6 +53,7 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
 }
 
 header form{
@@ -62,12 +63,18 @@ header form{
 }
 
 header form input[type=text]{
-outline: white;
+background-color: #263238;
+outline: #263238 ;
 border:0;
+color: white;
 }
 
+header form input[type=text]::placeholder{
+    color:white;
+    opacity: 1;
+}
 header form button{
-    background-color: white;
+    background-color: #263238 ;
     border: 0;
     outline: none;
     cursor: pointer;
@@ -81,7 +88,7 @@ cursor: pointer
 }
 
 body{
-    background: #e9ebee;
+    background: #1d1d1d;
 }
 
 li{
@@ -89,7 +96,7 @@ li{
 }
 
 i{
-    background-image: url("../imagens/icones.png");
+    background-image: url("../imagens/icones-v2.png");
     background-repeat: no-repeat;
     display: inline-block;
     width: 40px;
@@ -229,6 +236,17 @@ a{
 nav.menu{
     z-index: 98
 }
+
+nav.menu > ul > li > a{
+
+
+    font-weight: 500;
+    color:#263238;
+    padding: 0 6px;
+    
+    line-height: 100px;
+    }
+    
 nav.menu > ul > li > a > i > span{
     font-family: arial;
     z-index: 2;
@@ -240,12 +258,25 @@ nav.menu > ul > li > a > i > span{
     width: 20px;
     height: 20px;
     font-size:12px;
-    background-color: green;
+    background-color: #028aa2  ;
     border-radius: 50%;
     font-style: normal;
     text-align: center;
 
 }
+
+nav.menu > ul > li > a:hover{
+    background-color: #028aa2;
+    color:white;  
+    }
+    
+    nav.menu > ul > li > a:hover i{
+        background-position-y: -37.5px;
+    }
+    
+    nav.menu > ul > li > a:hover #quantidade_de_not{
+        background-color: #253137;
+    }
 
 
 /*menu do usuario*/
@@ -261,9 +292,6 @@ nav.menu > ul > li > a > i > span{
     overflow-x: hidden;
     transition: 0.5s;
 }
-
-
-
 
 .user-menu div div{
     position: absolute;
@@ -347,7 +375,7 @@ width: 100vw;
 
 
     background-size: 950px;
-    background-position: 8px -1.5px;
+    background-position: 8px -30.5px;
 }
 
 /*Notificações*/
@@ -1654,7 +1682,7 @@ margin-bottom :200px;
 }
 
 .batepapo header{
-    background-color: #4b2983;
+    background-color: #263238 ;
 }
 
 .batepapo header div:first-child{
@@ -1691,7 +1719,7 @@ margin-bottom :200px;
 }
 
 .batepapo form{
-    background-color: #4b2983;
+    background-color: #263238 ;
     height: 60px;
     display: flex;
     justify-content: center;

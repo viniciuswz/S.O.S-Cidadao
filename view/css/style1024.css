@@ -33,7 +33,6 @@ header input:focus + button{
 }
 
 header form button{
-    background-color: white;
     border: 0;
     height: 35px;
     width: 35px;
@@ -97,18 +96,16 @@ nav.menu > ul > li > a{
 display: block;
 line-height: 80px;
 font-size: .89em;
-color:white;
+
 padding: 0 5px;
 height: 80px;
 }
 
-nav.menu > ul > li > a:hover{
-background-color: purple
+nav.menu > ul > li > a:hover i{
+    background-position-y: -30.1px;
 }
 
-
-.user-menu .fechar{
-    
+.user-menu .fechar{    
     color: aliceblue;
     font-size: 50px;
     font-weight: bold;

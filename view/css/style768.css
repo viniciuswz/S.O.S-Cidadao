@@ -17,21 +17,21 @@ height: 35px;
 border:0;
 }
 
-header form input:focus{
+/* header form input:focus{
 border: 3px solid pink;
 border-right: 0;
-}
+} */
 
-header input:focus + button{
+/* header input:focus + button{
     border: 3px solid pink;
     border-left: 0;
     height: 35px;
     width: 28px;
 
-}
+} */
 
 header form button{
-    background-color: white;
+    
     border: 0;
     height: 35px;
     width: 35px;
@@ -60,7 +60,7 @@ background-size: 1060px;
 nav.menu{
     display: flex;
     justify-content: center;
-    background-color: #011627;
+    background-color: #3be7fd;
     width: 100vw;
     position: fixed;
     top: calc(100vh - 60px);
@@ -83,14 +83,18 @@ nav.menu > ul > li > a > i{
    display: block;
    margin: 0 auto; 
 }
+
 nav.menu > ul > li > a{
-color:white;
-width: calc(var(--ajuste)/3)
+    font-weight: inherit;
+    color:#263238;
+    width: calc(var(--ajuste)/3);
+    line-height: inherit;
 }
 
-nav.menu > ul > li > a:hover{
-background-color: purple
+nav.menu > ul > li > a:hover i{
+    background-position-y: -41.1px;
 }
+
 
 .user-menu .fechar{
     

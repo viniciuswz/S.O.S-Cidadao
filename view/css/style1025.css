@@ -28,7 +28,7 @@ header input:focus + button{
 }
 
 header form button{
-    background-color: white;
+
     border: 0;
     height: 40px;
     width: 40px;
@@ -103,14 +103,23 @@ nav.menu > ul > li > a{
 
 
 font-weight: 500;
-color:white;
+color:#263238;
 padding: 0 6px;
 
 line-height: 100px;
 }
 
 nav.menu > ul > li > a:hover{
-background-color: purple
+background-color: #028aa2;
+color:white;  
+}
+
+nav.menu > ul > li > a:hover i{
+    background-position-y: -37.5px;
+}
+
+nav.menu > ul > li > a:hover #quantidade_de_not{
+    background-color: #253137;
 }
 
 

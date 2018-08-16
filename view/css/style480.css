@@ -37,7 +37,7 @@ border-right: 0;
 }
 
 header form button{
-    background-color: white;
+   
     border: 0;
     height: 28px;
     width: 28px;
@@ -63,7 +63,7 @@ header i.icone-user{
 nav.menu{
     display: flex;
     justify-content: center;
-    background-color: #011627;
+    background-color: #3be7fd;
     width: 100vw;
     position: fixed;
     top: calc(100vh - 50px);
@@ -87,10 +87,9 @@ nav.menu > ul > li > a > i{
    margin: 0 auto; 
    width: 30px;
    height: 30px;
-   background-size: 980px;
- 
-
+   background-size: 980px; 
 }
+
 
 nav.menu > ul li > a > i.icone-reclamacao{
     background-position: -32.5px -1.6px;
@@ -112,14 +111,23 @@ nav.menu > ul li > a > i.icone-reclamacao{
     
 
 nav.menu > ul > li > a{
-color:white;
+
 width: calc(var(--ajuste)/3);
 font-size:0.9rem;
 }
 
-nav.menu > ul > li > a:hover{
-background-color: purple
+
+nav.menu > ul > li > a{
+    font-weight: inherit;
+    color:#263238;
+    width: calc(var(--ajuste)/3);
+    line-height: inherit;
 }
+
+nav.menu > ul > li > a:hover i{
+    background-position-y: -34.1px;
+}
+
 
 
 nav.menu > ul > li > a > i > span{
