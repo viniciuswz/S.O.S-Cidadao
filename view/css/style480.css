@@ -18,7 +18,6 @@ header form{
     justify-content: center;
     align-items: center;
     margin-left: 10px;
-   
 }
 
 header form input[type=text]{
@@ -589,13 +588,31 @@ width: 100vw;
 
 /*filtro*/
 
+.filtro-admin i, .filtro-admin h3, .filtro-admin span:first-child{
+    display: block;
+}
+
+.filtro-admin span:first-child{
+    position: absolute;
+    font-family: "Open-Sans";
+    font-size: 40px;
+    line-height: 25px;
+    font-weight: bold;
+    margin-top: 6px;
+   
+    left: 85%;
+    z-index: 2;
+    cursor: pointer;
+    
+}
 
 .filtro-admin .filtro-admin-ativo form{
     display: block;
 }
 
 .filtro-admin form h3{
-    font-size: 17px;
+    font-size: 18px;
+    margin: 6px;
 }
 
 .filtro-admin {
@@ -605,18 +622,51 @@ width: 100vw;
 }
 .filtro-admin form{
     position: absolute;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    width: 200px;
-    height: 200px;
-    background-color: #E7E8EB;
+    width: 100%;
+    height: calc(100% - 50px);
+    background-color: #fff;
     display: none;
+    z-index: 98;
+
 }
 
-.filtro-admin div{
-    width: 100px;
+.filtro-admin form div{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
+
+
+.container {
+    margin-top: 10px;
+    padding-left: 27px;
+    font-size: 15px;
+    height: 27px;
+    display: flex;
+    align-items: center;
+    color:black;
+    margin-left: 10px;
+  }
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 23px;
+    width: 23px;
+    background-color: #eee;
+    border-radius: 25%;
+    border: 2px solid;
+    border-color: #999b9c;
+  }
+
+
+  .container .checkmark:after {
+   
+    width: 6px;
+    height: 12px;
+  }
+
+
 
 .filtro-admin .icone-filtro{
     margin-right: 10px;
@@ -625,13 +675,30 @@ width: 100vw;
 
   
 .filtro-admin .botao-filtro{
-    margin-bottom: 10px
+   position: absolute;
+   left:50%;
+   bottom: 10px;
+   transform: translateX(-50%)
+   
+    
+    
 }
+
+
 /*tabela admin*/
 
 .tabelinha-admin table td p {
     width: 100px;
 }
+.tabelinha-admin table td:nth-child(3){
+    
+    display: none
+}
+
+.tabelinha-admin table th:last-child{
+    display: none
+}
+
 
 /*PAG RECLAMAÇAO*/
 
