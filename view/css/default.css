@@ -684,7 +684,7 @@ display: flex;
     white-space: nowrap; 
     width: 200px; 
     overflow: hidden;
-    text-overflow: a; 
+    text-overflow: ellipsis; 
     font-size: 15px;
     position: relative;
 
@@ -699,6 +699,7 @@ display: flex;
     padding: 0 10px 0px 45px;
     position: absolute;
     right: 0;
+
       
  }
  
@@ -786,7 +787,7 @@ display: flex;
      cursor:pointer
  }
  .mini-menu-item div{
-    background-color: red;
+    /* background-color: red; */
     
  }
 .mini-menu-item  ul{
@@ -2236,6 +2237,16 @@ margin-bottom :200px;
     width: 40%;
 }
 
+.Reclamacao .mini-menu-item i.icone-3pontos{
+    
+}
+
+.pag-reclamacao{
+    display: flex;
+    justify-content: center;
+    color:white;
+}
+
 .Reclamacao .publicacao-topo-aberta{
     margin: 0 auto;
     width: 90%;
@@ -2249,12 +2260,40 @@ margin-bottom :200px;
 .Reclamacao .publicacao-conteudo{
     width: 90%;
     margin: 0 auto;
+    overflow: hidden;
+  
+   
+}
+
+.Reclamacao .publicacao-conteudo div{ 
+    overflow: hidden;
+    width: calc(100% + 17px)
+    
 }
 
 .Reclamacao .publicacao-conteudo p{
+    max-width: 100%;
     font-size: 13px;
-    overflow: auto;
-    height: 250px;
+    overflow-y: scroll;
+    height: 200px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    padding-right: 7px;
+  
+   
+   
+}
+
+.Reclamacao .publicacao-conteudo div:after{
+    display: block;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #1d1d1d 50%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    content: ".";
+    width: 100%;
+    position: relative;
+    bottom: 24px;
+    height: 50px;
+    color: #1d1d1d
+    
 }
 
  .publicacao-topo-aberta div{
@@ -2265,8 +2304,6 @@ margin-bottom :200px;
    border-radius: 50%;
      
  } 
-
- 
 
  .publicacao-topo-aberta p{
     display: inline-block;
@@ -2290,8 +2327,7 @@ margin-bottom :200px;
  }
  
   .publicacao-topo-aberta img{
-     width: 60px;
-    height: 100px;
+   height: 170%;
     position: relative;
     top: 50%;
     left: 50%;
@@ -2317,10 +2353,6 @@ margin-bottom :200px;
     height: 350px;
 }
 
-.pag-reclamacao{
-    display: flex;
-    justify-content: center;
-}
 
 .img-publicacao figure img{
     align-self: center;
@@ -2365,11 +2397,12 @@ margin-bottom :200px;
 .baixo-publicacao{
     margin: 0 auto;
     margin-top: 10px;
-    background-color: rgb(214, 210, 214);
+    background-color: #263238;
     border-top: 2px solid #2E2E2E;
     display: flex;
     justify-content: center;
     flex-direction: column;
+    color:white
 }
 
 .baixo-publicacao div{
@@ -2388,7 +2421,7 @@ margin-bottom :200px;
     
 }
 
-.baixo-publicacao span{
+.img-baixo-publicacao span{
     display: block;
     font-family: Open-Sans-Bold;
     display: block;
@@ -2408,15 +2441,16 @@ margin-bottom :200px;
     
 }
 
-.baixo-publicacao .conteudo-resposta p{
+.baixo-publicacao .conteudo-resposta span{
     display: flex;
     justify-content: center;
     width: 50%;
     font-size:14px;
     font-family: arial;
+    white-space: pre
 }
  .baixo-publicacao .barra-curtir-publicacao{
-     background-color: white;
+     background-color: #000a12;
      width: 100%;
      border-top: 2px solid #2E2E2E;
      border-bottom: 2px solid #2E2E2E;
@@ -2461,7 +2495,6 @@ margin-bottom :200px;
     border: 0;
     margin: 0 auto;
     margin-top: 30px;
-
 }
 
 .comentario-publicacao{
