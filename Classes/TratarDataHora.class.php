@@ -10,8 +10,7 @@ class TratarDataHora{
         // Configurar a data para pt-br
         // Assim q a classe for instanciada é configurada
         date_default_timezone_set("America/Sao_Paulo");
-        setlocale(LC_ALL, 'pt_BR');
-        var_dump($dataHoraEnvio);
+        setlocale(LC_ALL, 'pt_BR');        
         $this->dataHoraEnvio = new \DateTime($dataHoraEnvio);
         $this->dataHoraAgora = new \DateTime('now');    
         
