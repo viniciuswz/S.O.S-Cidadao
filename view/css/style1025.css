@@ -247,3 +247,7 @@ margin: 30px 0px 0px 40px
 
 
 
+.comentarios .comentario-user:last-child::after{
+    content: ' ';
+    height:115px
+}

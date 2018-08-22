@@ -2255,6 +2255,7 @@ margin-bottom :200px;
     padding: 4px;
     justify-content: space-around;
     border-bottom: 1px solid #2E2E2E;
+    
 }
 
 .Reclamacao .publicacao-conteudo{
@@ -2296,12 +2297,13 @@ margin-bottom :200px;
     
 }
 
- .publicacao-topo-aberta div{
+ .publicacao-topo-aberta div:first-child{
   display: inline-block;
    width: 45px;
    height: 45px;
    overflow: hidden;
    border-radius: 50%;
+   
      
  } 
 
@@ -2334,15 +2336,6 @@ margin-bottom :200px;
     transform: translateX(-50%) translateY(-40%);
  }
 
- .comentario-balao .publicacao-topo-aberta{
-     display: flex;
-     justify-content: space-around;
-     align-items: center;
-    margin: 0 auto;
-    width: 90%;
-    border-bottom: 1px solid #2E2E2E;
- }
-
  .img-publicacao{
      width: 481px;
  }
@@ -2365,11 +2358,11 @@ margin-bottom :200px;
 }
 
 
-.img-publicacao .item-baixo{
+.img-publicacao .item-baixo-publicacao{
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 15px;
+    font-size: 14px;
     width: 100%;
     height: 50px;
     background-color: rgba(000,000,000, 0.6);
@@ -2380,11 +2373,12 @@ margin-bottom :200px;
 
  }
 
- .img-publicacao .item-baixo i{
+ .img-publicacao .item-baixo-publicacao i{
      margin-bottom: 10px;
+     background-position-y: -40px
  }
 
- .img-publicacao .item-baixo p{
+ .img-publicacao .item-baixo-publicacao p{
     font-size: 17px;
     font-family: arial;
     display: flex;
@@ -2394,7 +2388,7 @@ margin-bottom :200px;
 
 }
 
-.baixo-publicacao{
+.prefeitura-publicacao{
     margin: 0 auto;
     margin-top: 10px;
     background-color: #263238;
@@ -2405,14 +2399,15 @@ margin-bottom :200px;
     color:white
 }
 
-.baixo-publicacao div{
+.prefeitura-publicacao .topo-prefeitura-publicacao{
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+   
 }
 
-.baixo-publicacao div img{
+.prefeitura-publicacao .topo-prefeitura-publicacao div:first-child{
     border-radius: 50%;
     width: 55px;
     height: 55px;
@@ -2420,28 +2415,40 @@ margin-bottom :200px;
     overflow: hidden;
     
 }
+.prefeitura-publicacao .topo-prefeitura-publicacao img{
+    height: 170%;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
 
-.img-baixo-publicacao span{
+.topo-prefeitura-publicacao span:first-child{
     display: block;
     font-family: Open-Sans-Bold;
-    display: block;
     font-size: 15px;
     text-overflow: ellipsis;
     white-space: nowrap; 
    overflow: hidden;
-   width: 60%;
-   max-width: 200px;
+   width: 100%; 
+   max-width: 90%;
+ 
     
     
 }
 
-.baixo-publicacao p{
+.prefeitura-publicacao p{
     font-family: arial;
     font-size: 13px;
     
 }
 
-.baixo-publicacao .conteudo-resposta span{
+.prefeitura-publicacao .conteudo-resposta{
+    display: flex;
+    justify-content: center
+}
+
+.prefeitura-publicacao .conteudo-resposta span{
     display: flex;
     justify-content: center;
     width: 50%;
@@ -2449,38 +2456,64 @@ margin-bottom :200px;
     font-family: arial;
     white-space: pre
 }
- .baixo-publicacao .barra-curtir-publicacao{
+.barra-curtir-publicacao{
      background-color: #000a12;
      width: 100%;
      border-top: 2px solid #2E2E2E;
      border-bottom: 2px solid #2E2E2E;
      display: flex;
     justify-content: space-around;
+    align-items: center;
  } 
- .baixo-publicacao .barra-curtir-publicacao div{
-    
-    margin: 0 auto;
-    width: 50%;
-    font-family: arial;
+
+.barra-curtir-publicacao div{
+   display: flex;
+   align-items: center; 
+   font-family: arial;
    font-weight: 700;
    font-size: 19px;
-} 
+  
+}
 
+.barra-curtir-publicacao a{
+   
+    display: flex;
+    align-items: center;
+    padding: 0 10px 0 5px;
+    color: white
+}
+.barra-curtir-publicacao a:hover{
+    background-color: #263238
+}
+
+.barra-curtir-publicacao a i{
+    /* background-position-y: -40px; */
+}
+.enviar-comentario-publicacao{
+    width: 50%;
+    margin: 0 auto
+}
+
+.enviar-comentario-publicacao h3{
+    color:white;
+    margin-top: 10px;
+}
 .enviar-comentario-publicacao form{
     display: flex;
     flex-direction: column;
-    margin-top: 50px;
+    margin-top: 10px;
     width:100%;
     justify-content: center;
 }
 
 .enviar-comentario-publicacao form textarea{
     margin: 0 auto;
-    width: 50%;
+    width: 100%;
     height: 100px;
     font-family: arial;
     font-size: 14px;
     color: #2E2E2E;
+    resize: none;
 
 }
 
@@ -2495,86 +2528,67 @@ margin-bottom :200px;
     border: 0;
     margin: 0 auto;
     margin-top: 30px;
+
 }
 
-.comentario-publicacao{
-    width: 40%;
-    justify-content: space-around;
-    align-items: center;
-    display: flex;
+.comentarios{
+    width: 50%;
     margin: 0 auto;
-    margin-top: 30px;
+    color:white
 }
 
-.comentario-publicacao .comentario-balao{
-    position: relative;
-	background: #c8cfcf;
-    border-radius: .4em;
-    
-}
-
-.comentario-publicacao .comentario-balao:after{
-    content: '';
-	position: absolute;
-	left: 0;
-	top: 50%;
-	width: 0;
-	height: 0;
-	border: 16px solid transparent;
-	border-right-color: #c8cfcf;
-	border-left: 0;
-	margin-top: -16px;
-    margin-left: -16px;
-    
-}
-
-.comentario-publicacao img{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 20px;
-}
-
-.comentario-publicacao .topo-comentario{
-    border-bottom: 1px solid #2E2E2E;
+.comentarios .comentario-user{
     display: flex;
-    justify-content: space-between;
-    font-family: arial;
-    font-size: 16px;
-    align-items: center;
-    height: 50px;
+    flex-direction: column;
+   
+    padding: 15px 0
+}
+
+.comentarios .comentario-user:last-child{
+    border: none
+}
+
+.comentarios .comentario-user > p{
+    margin-top: 10px;
     width: 90%;
-    margin: 0 auto;
+    align-self: flex-end;
+    word-break: break-all
+
+} 
+
+.comentarios .comentario-user .publicacao-topo-aberta{
+    display: flex;
+    align-items: center;
 }
 
-.comentario-publicacao .topo-comentario p{
+.comentarios .comentario-user .publicacao-topo-aberta div:first-child{
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    border-radius: 50%;  
+} 
+
+
+.comentarios .comentario-user .publicacao-topo-aberta p{
+    display:flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin-left: 4px;
+    font-size: 11px;
     font-weight: 600;
-    font-size: 18px;
-     font-family: Open-Sans-Bold;
-     display: block;
-     text-overflow: ellipsis;
-     white-space: nowrap; 
+ }
+
+ .comentarios .comentario-user .publicacao-topo-aberta span{
+    font-family: Open-Sans-Bold;
+    display: flex;
+    font-size: 15px;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
     overflow: hidden;
     width: 60%;
-    max-width: 200px;
-}
+    max-width: 180px;
+     
+ }
 
-.comentario-publicacao .txt-comentario{
-    width: 90%;
-    font-family: arial;
-    font-size: 13px;
-    margin:0 auto;
-    margin-bottom: 10px;
-}
-
-.like-comentario-publicacao{
-    width: 40%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin: 0 auto;
-    font-family: arial;
-    font-size: 20px;
-    font-weight: 600;
-}
 
