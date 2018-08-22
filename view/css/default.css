@@ -2369,8 +2369,6 @@ margin-bottom :200px;
     color: #E7E8EB;
     margin-top: -50px;
     position: relative;
-   
-
  }
 
  .img-publicacao .item-baixo-publicacao i{
@@ -2454,7 +2452,8 @@ margin-bottom :200px;
     width: 50%;
     font-size:14px;
     font-family: arial;
-    white-space: pre
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 .barra-curtir-publicacao{
      background-color: #000a12;
