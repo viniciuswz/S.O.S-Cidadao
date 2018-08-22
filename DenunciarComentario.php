@@ -8,9 +8,11 @@ use Core\Usuario;
 use Classes\ValidarCampos;
 session_start();
   
-try{                     
-    Usuario::verificarLogin(2);//Tem q estar logado
-    Usuario::verificarLogin(8);//Apenas user comum, prefeitura e func 
+try{   
+    
+    $tipoUsuPermi = array('Comum','Funcionario','Prefeitura');
+    Usuario::verificarLogin(1,$tipoUsuPermi);  // Tem q estar logado 
+    
     $nomesCampos = array('id_comen','texto','id_publi','pagina');// Nomes dos campos que receberei da URL    
     $validar = new ValidarCampos($nomesCampos, $_POST);
     $validar->verificarTipoInt(array('id_comen','id_publi','pagina'),$_POST); // Verificar se é um numero

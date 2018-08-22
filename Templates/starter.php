@@ -10,7 +10,8 @@
     require_once('../autoload.php');    
     use Core\Usuario;
     try{
-      Usuario::verificarLogin(2); // Tem q estar logado
+      $tipoUsuPermi = array('Comum','Funcionario','Prefeitura','Moderador','Adm');
+      Usuario::verificarLogin(1,$tipoUsuPermi); // Nao pode estar logado // Tem q estar logado
 
       $dados = new Usuario();
       $dados->setCodUsu($_SESSION['id_user']);

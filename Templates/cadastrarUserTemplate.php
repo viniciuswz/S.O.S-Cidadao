@@ -11,7 +11,7 @@ session_start();
     
     use Core\Usuario;
     try{
-        Usuario::verificarLogin(1);  // Vai estourar um erro se ele ja estiver logado
+        Usuario::verificarLogin(0);  // Vai estourar um erro se ele ja estiver logado
 ?>
 <html>
     <form action="../CadastrarUser.php" method="post">

@@ -10,8 +10,8 @@ session_start();
     require_once('../autoload.php');
     
     use Core\Usuario;
-    try{
-        Usuario::verificarLogin(1);  // Vai estourar um erro se ele ja estiver logado
+    try{        
+        Usuario::verificarLogin(0); // Nao pode estar logado
 ?>
 
 <html>

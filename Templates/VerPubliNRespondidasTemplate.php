@@ -13,7 +13,10 @@ session_start();
     use Core\Publicacao;
     
     try{
-        Usuario::verificarLogin(4);  // Apenas prefeitura funcionario
+
+        $tipoUsuPermi = array('Funcionario','Prefeitura');
+        Usuario::verificarLogin(1,$tipoUsuPermi);  // Tem q estar logado
+                
         $publi = new Publicacao();       
         $publi->setCodUsu($_SESSION['id_user']);         
         isset($_GET['pagina']) ?: $_GET['pagina'] = null;   
@@ -208,7 +211,7 @@ session_start();
     $erro = $exc->getCode();   
     $mensagem = $exc->getMessage();  
     switch($erro){
-        case 2://Nao esta logado    
+        case 2://Nao esta logado           
             echo "<script> alert('$mensagem');javascript:window.location='./loginTemplate.php';</script>";
             break;
         case 6://Não é usuario prefeitura ou func  

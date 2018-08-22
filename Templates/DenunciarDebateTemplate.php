@@ -11,10 +11,10 @@ session_start();
     
     use Core\Usuario;
     use Classes\ValidarCampos;
-    try{
-        Usuario::verificarLogin(2);//Tem q estar logado
-        Usuario::verificarLogin(8);//Apenas user comum, prefeitura e func 
-
+    try{        
+        $tipoUsuPermi = array('Comum','Prefeitura','Funcionario');
+        Usuario::verificarLogin(1,$tipoUsuPermi);
+        
         $nomesCampos = array('ID');// Nomes dos campos que receberei da URL    
         $validar = new ValidarCampos($nomesCampos, $_GET);
         $validar->verificarTipoInt($nomesCampos, $_GET); // Verificar se o parametro da url é um numero        

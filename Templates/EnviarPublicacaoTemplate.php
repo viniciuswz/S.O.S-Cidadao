@@ -11,9 +11,9 @@ session_start();
     
     use Core\Usuario;
     use Core\Categoria;
-    try{
-        Usuario::verificarLogin(2);  // Tem q estar logado, todos tem permissao
-        Usuario::verificarLogin(3); // Apenas user comum pode entrar aqui
+    try{       
+        $tipoUsuPermi = array('Comum');
+        Usuario::verificarLogin(1,$tipoUsuPermi);
         $cate = new Categoria();
         $categorias = $cate->gerarOptions();   
 ?>

@@ -11,8 +11,8 @@ session_start();
     
     use Core\Usuario;
     try{
-        Usuario::verificarLogin(2);  // Vai estourar um erro se ele nao estiver logado
-        Usuario::verificarLogin(3);  // apenas user comum
+        $tipoUsuPermi = array('Comum');        
+        Usuario::verificarLogin(1,$tipoUsuPermi);  // 1 = tem q estar logado
 ?>
 
 <html>
@@ -42,7 +42,7 @@ session_start();
             case 2://Nao esta logado    
                 echo "<script> alert('$mensagem');javascript:window.location='./loginTemplate.php';</script>";
                 break;
-            case 6://Não é usuario comum  
+            case 6://Não é usuario comum                 
                 echo "<script> alert('$mensagem');javascript:window.location='./starter.php';</script>";
                 break;            
         }        

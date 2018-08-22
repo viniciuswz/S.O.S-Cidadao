@@ -7,7 +7,8 @@ use Core\Usuario;
 use Classes\ValidarCampos;//dsadas///
 session_start();
 try{            
-    Usuario::verificarLogin(2);// Tem q estar logado
+    $tipoUsuPermi = array('Comum','Prefeitura','Funcionario');
+    Usuario::verificarLogin(1,$tipoUsuPermi);  // Tem q estar logado 
 
     $nomesCampos = array('texto', 'id');// Nomes dos campos que receberei do formulario
     $validar = new ValidarCampos($nomesCampos, $_POST);//Verificar se eles existem, se nao existir estoura um erro

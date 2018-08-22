@@ -6,7 +6,7 @@ use Core\Usuario;
 use Classes\ValidarCampos;
 session_start();
 try{        
-    Usuario::verificarLogin(1);//Nao pode estar logado
+    Usuario::verificarLogin(0);//Nao pode estar logado
     
     $nomesCampos = array('nome', 'email','senha');// Nomes dos campos que receberei do formulario
     $validar = new ValidarCampos($nomesCampos, $_POST);//Verificar se eles existem, se nao existir estoura um erro

@@ -14,7 +14,9 @@ session_start();
     
     try{
         if(isset($_GET)){
-        Usuario::verificarLogin(9);  // Apenas prefeitura funcionario
+
+        $tipoUsuPermi = array('Moderador','Adm');
+        Usuario::verificarLogin(1,$tipoUsuPermi);  // Tem q estar logado         
         $usu = new Usuario();    
         $tipo = array();
         $parametro = "";

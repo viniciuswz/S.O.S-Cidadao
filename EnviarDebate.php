@@ -8,8 +8,10 @@ use Core\Usuario;
 session_start();
 
 try{
-    Usuario::verificarLogin(2);//Tem q estar logado
-    Usuario::verificarLogin(3);//Apenas user comum tem acesso 
+    $tipoUsuPermi = array('Comum');
+    Usuario::verificarLogin(1,$tipoUsuPermi);  // Tem q estar logado
+
+    
     $nomesCampos = array('imagem','titulo', 'tema','descricao');// Nomes dos campos que receberei do formulario
     $validar = new ValidarCampos($nomesCampos, $_POST, $_FILES);//Verificar se eles existem, se nao existir estoura um erro
     $debate = new Debate();

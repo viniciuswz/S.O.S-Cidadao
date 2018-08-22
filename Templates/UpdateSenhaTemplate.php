@@ -11,7 +11,8 @@ session_start();
     
     use Core\Usuario;
     try{
-       Usuario::verificarLogin(2);  // Tem q estar logado, todos tem permissao
+        $tipoUsuPermi = array('Comum','Funcionario','Prefeitura','Moderador','Adm');
+        Usuario::verificarLogin(1,$tipoUsuPermi);  // Tem q estar logado 
              
 ?>
 <form action="../updateSenha.php" method="post">

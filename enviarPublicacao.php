@@ -9,8 +9,9 @@ use Classes\ValidarCampos;
 session_start();
   
 try{                     
-    Usuario::verificarLogin(2);//Tem q estar logado
-    Usuario::verificarLogin(3);//Apenas user comum tem acesso           
+    $tipoUsuPermi = array('Comum');
+    Usuario::verificarLogin(1,$tipoUsuPermi);  // Tem q estar logado
+         
 
     $nomesCampos = array('titulo', 'categoria','texto','cep','bairro','local');// Nomes dos campos que receberei do formulario
     $validar = new ValidarCampos($nomesCampos, $_POST);//Verificar se eles existem, se nao existir estoura um erro

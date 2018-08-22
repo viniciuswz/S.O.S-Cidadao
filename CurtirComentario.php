@@ -9,7 +9,9 @@ use Core\CurtirComentario;
 use Classes\ValidarCampos;
 session_start();
 try{
-    Usuario::verificarLogin(2);
+    $tipoUsuPermi = array('Comum','Funcionario','Prefeitura','Moderador','Adm');
+    Usuario::verificarLogin(1,$tipoUsuPermi);  // Tem q estar logado 
+    
     $curtidaComen = new CurtirComentario();
     $nomesCampos = array('ID');// Nomes dos campos que receberei da url, ID = do comentario
     $validar = new ValidarCampos($nomesCampos, $_GET);//Verificar se eles existem, se nao existir estoura um erro
