@@ -91,6 +91,7 @@ class UsuarioA extends UsuarioM{
                         );
         
         $inserir = $this->runQuery($sql); // Executad a query
+        
         if(!$inserir->rowCount()){  // Se der erro cai nesse if          
             throw new \Exception("Não foi possível realizar o cadastro",3);   
         }  
@@ -102,8 +103,7 @@ class UsuarioA extends UsuarioM{
 
         $_SESSION['id_user'] = $id;
         $_SESSION['tipo_usu'] = $tipo;        
-        return 2; // Nao foi inserido por adm   
-        
+        return 2; // Nao foi inserido por adm           
     }
     
     public function verificarEmail(){//Verficar se ja existe o email
@@ -131,9 +131,9 @@ class UsuarioA extends UsuarioM{
                             $this->getDescriTipoUsu()                                                        
                         );
         $consulta = $this->runSelect($sql);
-            if(empty($consulta)){
-                throw new \Exception("Não foi possível realizar o cadastro tipo usu nao encontrado",3);
-            }   
+        if(empty($consulta)){
+            throw new \Exception("Não foi possível realizar o cadastro tipo usu nao encontrado",3);
+        }          
         switch($this->getDescriTipoUsu()){ // Imagens padrao, se quiser mudar é aqui
             case 'Prefeitura':
             case 'Funcionario':

@@ -129,7 +129,7 @@ session_start();
             Comum<input type="checkbox" name="tipo5" value="Comum">
             <input type="submit" value="enviar">
         </form>
-
+        <a href="cadastrarUserTemplate.php">Cadastrar Usuario</a>
     </body>
 
 

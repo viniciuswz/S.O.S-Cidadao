@@ -29,16 +29,16 @@ session_start();
             <br/>
         <?php if(isset($indUsu)){
                 echo '
-                    <input type="radio" id="dewey" name="tipo" value="prefeitura" />
+                    <input type="radio" id="dewey" name="tipo" value="Prefeitura" />
                     <label for="dewey">Prefeitura</label>   
                         <br>
-                    <input type="radio" id="dewey" name="tipo" value="comum" />
+                    <input type="radio" id="dewey" name="tipo" value="Comum" />
                     <label for="dewey">Comum</label>   
                         <br>
-                    <input type="radio" id="dewey" name="tipo" value="adm" />
+                    <input type="radio" id="dewey" name="tipo" value="Adm" />
                     <label for="dewey">Adm</label>   
                         <br>
-                    <input type="radio" id="dewey" name="tipo" value="moderador" />
+                    <input type="radio" id="dewey" name="tipo" value="Moderador" />
                     <label for="dewey">Moderador</label>   
                         <br>
                     
