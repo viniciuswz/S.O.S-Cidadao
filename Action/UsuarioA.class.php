@@ -89,6 +89,9 @@ class UsuarioA extends UsuarioM{
                             $this->getImgPerfilUsu(),
                             $this->getCodTipoUsu()                                                        
                         );
+        if($this->verifyExistContPrefei() == TRUE AND $this->getDescriTipoUsu() == 'Prefeitura'){
+            throw new \Exception("Não foi possível realizar o cadastro, pois ja existe conta de prefeitura",3);  
+        }
         
         $inserir = $this->runQuery($sql); // Executad a query
         
@@ -103,7 +106,8 @@ class UsuarioA extends UsuarioM{
 
         $_SESSION['id_user'] = $id;
         $_SESSION['tipo_usu'] = $tipo;        
-        return 2; // Nao foi inserido por adm           
+        return 2; // Nao foi inserido por adm 
+                  
     }
     
     public function verificarEmail(){//Verficar se ja existe o email
@@ -122,7 +126,7 @@ class UsuarioA extends UsuarioM{
         $sql = sprintf($this->sqlTipoUsu,
                             $this->getCodUsu()                             
                     );
-        $consulta = $this->runSelect($sql);
+        $consulta = $this->runSelect($sql);    
         return $consulta[0]['descri_tipo_usu'];
     }
 
@@ -147,6 +151,21 @@ class UsuarioA extends UsuarioM{
         }
         $this->setCodTipoUsu($consulta[0]['cod_tipo_usu']);
         return;
+    }
+
+    public function verifyExistContPrefei(){ // Verificar se ja existe conta de prefeitura
+        $sql = sprintf(
+            $this->countSqlSelectDados2,
+            ' = "Prefeitura"',
+            ' '
+        );
+        $res = $this->runSelect($sql);        
+        $quant = $res[0]['COUNT(*)'];
+        if($quant > 0){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public function updateEmailNome(){//Alterar nome e email

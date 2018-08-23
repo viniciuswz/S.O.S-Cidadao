@@ -13,8 +13,7 @@ try{
     $validar = new ValidarCampos($nomesCampos, $_POST);//Verificar se eles existem, se nao existir estoura um erro
    
     $tipoUsu = isset($_SESSION['tipo_usu']) ? true : false;
-    $usuario = new Usuario();
-
+    $usuario = new Usuario();    
     $usuario->setNomeUsu($_POST['nome']);
     $usuario->setEmail($_POST['email']);
     $usuario->setSenha($usuario->gerarHash($_POST['senha']));// gerar hash da senha   

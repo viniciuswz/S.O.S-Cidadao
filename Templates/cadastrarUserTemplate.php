@@ -13,7 +13,12 @@ session_start();
     try{
         $tipoUsuPermi = array('Adm');
         Usuario::verificarLogin(0,$tipoUsuPermi);  // Vai estourar um erro se ele ja estiver logado, ou se ele nao for adm
-
+        $usuario = new Usuario();//disabled
+        if($usuario->verifyExistContPrefei()){
+            $inputPrefei = '<input type="radio" id="dewey" name="tipo" value="Prefeitura" disabled/>';
+        }else{
+            $inputPrefei = '<input type="radio" id="dewey" name="tipo" value="Prefeitura" />';
+        }
         if(isset($_SESSION['id_user']) AND !empty($_SESSION['id_user'])){ // Aqui so vai entrar adm, por causa do Usuario::verificarLogin
             // ou seja ou ele nao vai estar logado, ou ele vai ser adm
             $indUsu = 'Adm';
@@ -28,9 +33,8 @@ session_start();
         <label>Senha: <input type="password" name="senha" required></label>
             <br/>
         <?php if(isset($indUsu)){
-                echo '
-                    <input type="radio" id="dewey" name="tipo" value="Prefeitura" />
-                    <label for="dewey">Prefeitura</label>   
+                echo $inputPrefei . 
+                '   <label for="dewey">Prefeitura</label>   
                         <br>
                     <input type="radio" id="dewey" name="tipo" value="Comum" />
                     <label for="dewey">Comum</label>   
