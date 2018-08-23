@@ -48,7 +48,12 @@ class UsuarioA extends UsuarioM{
 
         if(count($consulta) == 1){
             if($consulta[0]['status_usu'] != 'A'){
-                throw new \Exception("Sua conta foi bloquada, se acha que foi um engano entre em contato conosco",1);
+                $this->setCodUsu($consulta[0]['cod_usu']); // Setar o codigo do usuario
+                $tipoUsu = $this->getDescTipo(); // Selecionar o tipo de usuario
+                if($tipoUsu == 'Funcionario'){ // Se a conta desativada for de funcionario
+                    throw new \Exception("Infelizmente você nao faz mais parte do time de funcionarios da Prefeitura",1);
+                }
+                throw new \Exception("Sua conta foi bloquada, se acha que foi um engano entre em contato conosco",1);                
             }
             $hash = $consulta[0]['senha_usu']; // Pego o hash q esta no banco
             if(!password_verify($this->getSenha(), $hash)){ // Verifico se o hash é igual a senha digitada
@@ -77,11 +82,20 @@ class UsuarioA extends UsuarioM{
        return password_hash($senha, PASSWORD_DEFAULT, array("cost"=>12));
     }
 
-    public function cadastrarUser($indAdm){// Cadastrar Usuario
+    public function cadastrarUser($tipoUsuCadastrador){// Cadastrar Usuario
         if(!empty($this->verificarEmail())){
             throw new \Exception("Não foi possível realizar o cadastro(Email ja existente)",3);
         } 
         $this->getCodTipoUsuSelect();
+
+        if($this->verifyExistContPrefei() == TRUE AND $this->getDescriTipoUsu() == 'Prefeitura'){
+            throw new \Exception("Não foi possível realizar o cadastro, pois ja existe conta de prefeitura",3);  
+        }
+        
+        if($tipoUsuCadastrador == 'Prefeitura' AND $this->getDescriTipoUsu() != 'Funcionario'){
+            throw new \Exception("Não foi possível realizar o cadastro, pois você só tem permissao de cadastrar funcionario",3);
+        }
+
         $sql = sprintf($this->sqlInsert, // Junta o wher com o outra parte do select
                             $this->getNomeUsu(),
                             $this->getEmail(),
@@ -90,24 +104,30 @@ class UsuarioA extends UsuarioM{
                             $this->getImgPerfilUsu(),
                             $this->getCodTipoUsu()                                                        
                         );
-        if($this->verifyExistContPrefei() == TRUE AND $this->getDescriTipoUsu() == 'Prefeitura'){
-            throw new \Exception("Não foi possível realizar o cadastro, pois ja existe conta de prefeitura",3);  
-        }
         
+
         $inserir = $this->runQuery($sql); // Executad a query
         
         if(!$inserir->rowCount()){  // Se der erro cai nesse if          
             throw new \Exception("Não foi possível realizar o cadastro",3);   
         }  
-        if($indAdm == TRUE){
-            return 1; // Inserido pelo adm
-        }
-        $id = $this->last();
-        $tipo = $this->getDescTipo($this->setCodUsu($id));
 
-        $_SESSION['id_user'] = $id;
-        $_SESSION['tipo_usu'] = $tipo;        
-        return 2; // Nao foi inserido por adm 
+        if($tipoUsuCadastrador == 'Adm'){// Inserido pelo adm
+            return 1; 
+        }
+
+        if($tipoUsuCadastrador == 'Prefeitura'){// Inserido pelo prefeitura
+            return 2; 
+        }
+        // Inserido por um user nao cadastrado
+            $id = $this->last();
+            $tipo = $this->getDescTipo($this->setCodUsu($id));
+
+            $_SESSION['id_user'] = $id;
+            $_SESSION['tipo_usu'] = $tipo;        
+            return 3; 
+        
+        
                   
     }
     
@@ -288,19 +308,32 @@ class UsuarioA extends UsuarioM{
     }
 
     
-    public function updateStatusUsu($status, $codUsuApagador){        
-        //$usuario = new Usuario();
-        //$usuario->setCodUsu($this->getCodUsu());
+    public function updateStatusUsu($status, $codUsuApagador){       
+        
         $codApagar = $this->getCodUsu(); // Codigo do usuario q sera apagado
-        $this->setCodUsu($codUsuApagador); // Redefinir p setCodUsu, para o cod do usuario q esta apagando o outro
-        $tipo = $this->getDescTipo(); //Verificar o tipo do usuario  
+        $tipoUserApagado = $this->getDescTipo(); // Status usuario q sera apagado
 
-        if($tipo == 'Adm' or $tipo == 'Moderador'){   //Se for adm executa         
+        $this->setCodUsu($codUsuApagador); // Redefinir p setCodUsu, para o cod do usuario q esta apagando o outro
+        $tipo = $this->getDescTipo(); //Verificar o tipo do usuario que esta apagando o outro
+
+        if($tipo == 'Prefeitura'){ // Prefeitura esta apagando o funcionario   
+            if($tipoUserApagado != 'Funcionario'){                
+                throw new \Exception("Não foi possível mudar o status, pois voce so pode apagar funcionario",9);
+            }    
+
+            $sql = sprintf(
+                $this->sqlDeleteUsu,
+                $status,
+                $codApagar                
+            );           
+            $codReturn = 1; // Prefeitura q esta apagando
+        }else if($tipo == 'Adm' or $tipo == 'Moderador'){   //Se for adm executa         
             $sql = sprintf(
                 $this->sqlDeleteUsu,
                 $status,
                 $codApagar                
             );
+            $codReturn = 2; // Adm ou moderador q esta apagando
         }else{ // Se nao cair no primeiro if, é pq é o dono da conta q esta apagando. mas temos q ter certeza, por isso q colamos outro comando sql
             $sqlUpdatePubli = "UPDATE usuario SET status_usu = '%s' WHERE (cod_usu = '%s' AND cod_usu = '%s')";
             $sql = sprintf(
@@ -308,12 +341,13 @@ class UsuarioA extends UsuarioM{
                 $status,    
                 $codApagar,  //cod_usu = '%s'         
                 $codUsuApagador //AND cod_usu = '%s' 
-            );
+            );            
+            $codReturn = 3; // usuario comum q esta apagando sua conta
         }    
         $resposta = $this->runQuery($sql);
         if(!$resposta->rowCount()){
             throw new \Exception("Não foi possível mudar o status",9);
         }
-        return;
+        return $codReturn;
     }
  }

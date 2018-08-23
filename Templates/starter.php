@@ -342,10 +342,8 @@ desired effect
             echo '<a href="VerPubliNRespondidasTemplate.php">Listar reclamaçoes nao respondidas</a>
             <br>';
             if($resultado[0]['descri_tipo_usu'] == 'Prefeitura'){
-              echo '<a href="">Cadastrar Funcionario(Não feito)</a>
-                            <br>';
-              echo '<a href="">Remover Funcionario(Não feito)</a>
-                            <br>';
+              echo '<a href="VerFuncionariosTemplate.php">Cadastrar Funcionario</a>
+                            <br>';              
             }
             
           }
@@ -354,7 +352,7 @@ desired effect
             echo '<a href="VerDenunciaNVerificadasTemplate.php?tipo1=Debate&tipo2=Comen&tipo3=Publi">Visualizar denuncias</a>
             <br>';
             if($resultado[0]['descri_tipo_usu'] == 'Adm'){
-              echo '<a href="VerUsuariosTemplate.php?tipo1=Adm&tipo2=Moderador&tipo3=Prefeitura&tipo4=Funcionario">Cadastrar Moderador e Prefeitura(Não Feito)</a>
+              echo '<a href="VerUsuariosTemplate.php?tipo1=Adm&tipo2=Moderador&tipo3=Prefeitura&tipo4=Funcionario">Cadastrar Moderador e Prefeitura</a>
                             <br>';
              
             }

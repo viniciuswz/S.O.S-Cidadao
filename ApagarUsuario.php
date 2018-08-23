@@ -9,7 +9,7 @@ session_start();
   
 try{       
     
-    $tipoUsuPermi = array('Comum','Moderador','Adm');
+    $tipoUsuPermi = array('Comum','Moderador','Adm','Prefeitura');
     Usuario::verificarLogin(1,$tipoUsuPermi);  // Tem q estar logado 
          
     $nomesCampos = array('ID');// Nomes dos campos que receberei da URL    
@@ -19,9 +19,16 @@ try{
     $usu = new Usuario();   
     $usu->setCodUsu($_GET['ID']);//Usuario q esta sendo apagado
     //$usu->setCodUsuApagador($_SESSION['id_user']);   // Usuario q esta apagando
-    $usu->updateStatusUsu('I', $_SESSION['id_user']);
+    $resul = $usu->updateStatusUsu('I', $_SESSION['id_user']);
 
-    echo "<script> alert('Status mudado');javascript:window.location='./Templates/starter.php';</script>";
+    if($resul == 1){ // Prefeitura apagou funcionario
+        echo "<script> alert('A funcão de funcionario para este usuario foi removida');javascript:window.location='./Templates/VerFuncionariosTemplate.php';</script>";
+    }else if($resul == 2){
+        echo "<script> alert('Status mudado');javascript:window.location='./Templates/VerUsuariosTemplate.php?tipo1=Adm&tipo2=Moderador&tipo3=Prefeitura&tipo4=Funcionario';</script>";
+    }else{
+        echo "<script> alert('Status mudado');javascript:window.location='./Templates/starter.php';</script>";
+    }
+    
         
 }catch(Exception $exc){  
     $erro = $exc->getCode();   
