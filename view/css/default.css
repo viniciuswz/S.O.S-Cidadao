@@ -2298,13 +2298,11 @@ margin-bottom :200px;
 }
 
  .publicacao-topo-aberta div:first-child{
-  display: inline-block;
+   display: inline-block;
    width: 45px;
    height: 45px;
    overflow: hidden;
-   border-radius: 50%;
-   
-     
+   border-radius: 50%;  
  } 
 
  .publicacao-topo-aberta p{
@@ -2427,12 +2425,9 @@ margin-bottom :200px;
     font-size: 15px;
     text-overflow: ellipsis;
     white-space: nowrap; 
-   overflow: hidden;
-   width: 100%; 
-   max-width: 90%;
- 
-    
-    
+    overflow: hidden;
+    width: 100%; 
+    max-width: 90%;
 }
 
 .prefeitura-publicacao p{

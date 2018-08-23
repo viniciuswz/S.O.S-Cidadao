@@ -712,6 +712,13 @@ width: 100vw;
     width: 100%;
 }
 
+.publicacao-topo-aberta div:first-child{
+   
+    width: 40px;
+    height: 40px;
+   
+  } 
+ 
 .Reclamacao .publicacao-conteudo div{ 
     overflow: initial;
     width: 100%;
@@ -737,23 +744,49 @@ width: 100vw;
 
 .img-publicacao{
     width: 90%;
-    background-color: orange
+   
 }
 
 .img-publicacao figure{
     width: 100%;
+    height: 200px
 }
-
 
 .img-publicacao figure img{
-    height: 250%;
-    background-color: red
+    height: 280%;
+    
  }
 
- .img-publicacao .item-baixo-publicacao{
-     height: 60px;
-     margin-top: -60px;
-}
+.img-publicacao .item-baixo-publicacao{
+    display: block;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    height: initial;
+    margin: 0;
+    position: inherit;
+    background-color: inherit;
+    
+ }
+
+ .img-publicacao .item-baixo-publicacao p{
+    word-wrap: break-word;
+    width: 85%;
+    display: inline-block;
+    font-size: 15px;
+    
+ }
+ .img-publicacao .item-baixo-publicacao i{
+     display: inline-block;
+    
+     background-size: 1000px;
+     background-position: -260px -35px;
+     width: 30px;
+     height: 30px;
+ }
+
+
+
 .enviar-comentario-publicacao{
     width: 100%;
     padding: 20px;
@@ -761,8 +794,8 @@ width: 100vw;
 }
 
 .prefeitura-publicacao .conteudo-resposta span{
-    background-color: red;
     width: 100%;
+    padding: 10px;
 }
 .comentarios{
     width: 100%;
@@ -784,5 +817,14 @@ width: 100vw;
  }
  
 
+ .comentarios .comentario-user .publicacao-topo-aberta div:first-child{
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: 50%;  
+} 
+
  .prefeitura-publicacao .conteudo-resposta span{
+    
 }
