@@ -319,7 +319,7 @@ session_start();
                         }else if(isset($tipoUsu) AND ($tipoUsu == 'Adm' or $tipoUsu == 'Moderador')){
                             echo '<a href="../ApagarComentario.php?ID='.$comentarioComum[$contador]['cod_comen'].'">Apagar Comentario</a>';
                                 echo '<br>';
-                            echo '<a href="../ApagarUsuario.php?ID='.$comentarioComum[$contador]['cod_comen'].'">Apagar Usuario</a>';
+                            echo '<a href="../ApagarUsuario.php?ID='.$comentarioComum[$contador]['cod_usu'].'">Apagar Usuario</a>';
                         }
                     ?>
                 </div>

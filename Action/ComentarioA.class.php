@@ -32,13 +32,6 @@ class ComentarioA extends ComentarioM{
 
     private $sqlUpdateStatusComen = "UPDATE comentario SET status_comen = '%s' WHERE cod_comen = '%s' AND cod_usu = '%s'";
 
-    private $sqlSelectVerifyPref = "SELECT  usuario.cod_usu
-    FROM usuario INNER JOIN comentario ON (usuario.cod_usu = comentario.cod_usu) 
-    INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu) 
-    INNER JOIN publicacao ON (publicacao.cod_publi = comentario.cod_publi) 
-    WHERE 1=1 AND status_comen = 'A' AND publicacao.cod_publi = 1
-    AND publicacao.cod_publi = '%s' AND (descri_tipo_usu = 'Prefeitura' or descri_tipo_usu = 'Funcionario') 
-    AND status_usu = 'A'";
 
     public function inserirComen(){
         $indVisuDono = $this->verifyDonoPubli();
