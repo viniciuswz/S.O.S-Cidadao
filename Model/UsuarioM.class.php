@@ -12,6 +12,8 @@ class UsuarioM extends DbConnection{
     private $imgPerfilUsu;
     private $codTipoUsu;
     private $dataHoraCadastro;
+    private $descriTipoUsu;
+
 
     private $qtdPaginas;
     private $PaginaAtual;
@@ -48,6 +50,9 @@ class UsuarioM extends DbConnection{
         return $this->dataHoraCadastro;
     }
     
+    public function getDescriTipoUsu(){
+        return $this->descriTipoUsu;
+    }
 
 
     public function setEmail($email){
@@ -78,6 +83,10 @@ class UsuarioM extends DbConnection{
         $this->codTipoUsu = $codTipoUsu;
     }
 
+    public function setDescriTipoUsu($tipo){
+        $this->descriTipoUsu = $tipo;
+    }
+
     public function setDataHoraCadastro($dataHoraCadastro){
         $this->dataHoraCadastro = $dataHoraCadastro;
     }
@@ -97,6 +106,8 @@ class UsuarioM extends DbConnection{
     public function getPaginaAtual(){// Pega a pagina atual
         return $this->PaginaAtual;
     }
+
+
 
 }
 

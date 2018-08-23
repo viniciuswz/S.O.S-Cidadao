@@ -34,7 +34,8 @@ session_start();
         $erro = $exc->getCode();   
         $mensagem = $exc->getMessage();
         switch($erro){
-            case 2://Ja esta logado   
+            case 2://Ja esta logado  
+            case 6://Ja esta logado 
                 echo "<script> alert('$mensagem');javascript:window.location='./starter.php';</script>";
                 break;
            

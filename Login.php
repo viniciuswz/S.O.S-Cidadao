@@ -38,6 +38,7 @@ try{
             echo "<script> alert('$mensagem');javascript:window.location='./Templates/loginTemplate.php';</script>";
             break;
         case 2://Está logado  
+        case 6://nao tem permissao
             echo "<script> alert('$mensagem');javascript:window.location='./Templates/starter.php';</script>";
             break;        
         default: //Qualquer outro erro cai aqui

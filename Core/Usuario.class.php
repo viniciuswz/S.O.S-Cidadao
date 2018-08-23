@@ -6,7 +6,18 @@ use Action\UsuarioA;
 class Usuario extends UsuarioA{  
     public static function verificarLogin($inLogado, $usuariosPermi = array()){
         if($inLogado == 1){ // Tem q estar logado
-            if(!isset($_SESSION['id_user']) AND empty($_SESSION['id_user'])  
+            Usuario::verificarPermissoes($usuariosPermi);
+        }else{ // Nao pode estar logado, ou se for adm
+            if(!isset($_SESSION['id_user']) AND empty($_SESSION['id_user'])){ // Nao esta logado                
+                return;
+            }  
+            Usuario::verificarPermissoes($usuariosPermi);
+        }
+    }
+
+    public static function verificarPermissoes($usuariosPermi = array()){
+
+        if(!isset($_SESSION['id_user']) AND empty($_SESSION['id_user'])  
                 AND !isset($_SESSION['tipo_usu']) AND empty($_SESSION['tipo_usu'])){ // Estou um erro se ele nao estiver com a sessao iniciada
                 throw new \Exception("Não está logado",2);  
             }
@@ -21,11 +32,7 @@ class Usuario extends UsuarioA{
                 // significa que o usuario nao tem permissao
                 throw new \Exception("Você nao tem permissão para esta página !!",6);
             }  
-        }else{ // Nao pode estar logado
-            if(isset($_SESSION['id_user']) AND !empty($_SESSION['id_user'])){
-                throw new \Exception("Ja está logado",2);  
-            }
-        }
+            return;
     }
     
 }

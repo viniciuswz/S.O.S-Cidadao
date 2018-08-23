@@ -33,6 +33,8 @@ class UsuarioA extends UsuarioM{
     private $countSqlSelectDados2 = "SELECT COUNT(*)
                                         FROM usuario INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu)
                                         WHERE status_usu = 'A' AND status_tipo_usu = 'A' AND descri_tipo_usu %s";
+    
+    private $sqlSelectCodTipoUsu = "SELECT cod_tipo_usu FROM tipo_usuario WHERE descri_tipo_usu = '%s' ";
 
     public function logar(){ //Logar       
         $sql = sprintf($this->sqlSelectLogar, // Junta o wher com o outra parte do select
@@ -74,11 +76,12 @@ class UsuarioA extends UsuarioM{
        return password_hash($senha, PASSWORD_DEFAULT, array("cost"=>12));
     }
 
-    public function cadastrarUser(){// Cadastrar Usuario
+    public function cadastrarUser($indAdm){// Cadastrar Usuario
         if(!empty($this->verificarEmail())){
             throw new \Exception("Não foi possível realizar o cadastro(Email ja existente)",3);
-       } 
-       $sql = sprintf($this->sqlInsert, // Junta o wher com o outra parte do select
+        } 
+        $this->getCodTipoUsuSelect();
+        $sql = sprintf($this->sqlInsert, // Junta o wher com o outra parte do select
                             $this->getNomeUsu(),
                             $this->getEmail(),
                             $this->getSenha(),
@@ -86,17 +89,20 @@ class UsuarioA extends UsuarioM{
                             $this->getImgPerfilUsu(),
                             $this->getCodTipoUsu()                                                        
                         );
-
+        
         $inserir = $this->runQuery($sql); // Executad a query
-
         if(!$inserir->rowCount()){  // Se der erro cai nesse if          
             throw new \Exception("Não foi possível realizar o cadastro",3);   
-        }   
+        }  
+        if($indAdm == TRUE){
+            return 1; // Inserido pelo adm
+        }
         $id = $this->last();
         $tipo = $this->getDescTipo($this->setCodUsu($id));
-        
+
         $_SESSION['id_user'] = $id;
-        $_SESSION['tipo_usu'] = $tipo;
+        $_SESSION['tipo_usu'] = $tipo;        
+        return 2; // Nao foi inserido por adm   
         
     }
     
@@ -118,6 +124,29 @@ class UsuarioA extends UsuarioM{
                     );
         $consulta = $this->runSelect($sql);
         return $consulta[0]['descri_tipo_usu'];
+    }
+
+    public function getCodTipoUsuSelect(){ // Pega o cod tipo usu e defini as imagens padrao
+        $sql = sprintf($this->sqlSelectCodTipoUsu,                         
+                            $this->getDescriTipoUsu()                                                        
+                        );
+        $consulta = $this->runSelect($sql);
+            if(empty($consulta)){
+                throw new \Exception("Não foi possível realizar o cadastro tipo usu nao encontrado",3);
+            }   
+        switch($this->getDescriTipoUsu()){ // Imagens padrao, se quiser mudar é aqui
+            case 'Prefeitura':
+            case 'Funcionario':
+                $this->setImgCapaUsu('concursobarueri4.jpg');// Imagem padrao prefeitura
+                $this->setImgPerfilUsu('concursobarueri4.jpg'); // Imagem padrao prefeitura
+                break;
+            default:
+                $this->setImgCapaUsu('imgcapapadrao.jpg');// Imagem padrao user comum
+                $this->setImgPerfilUsu('imgperfilpadrao.jpg'); // Imagem padrao comum
+            break;
+        }
+        $this->setCodTipoUsu($consulta[0]['cod_tipo_usu']);
+        return;
     }
 
     public function updateEmailNome(){//Alterar nome e email
