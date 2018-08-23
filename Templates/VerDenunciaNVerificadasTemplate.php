@@ -42,7 +42,7 @@ session_start();
         if(empty($res)){
             echo 'Não há nenhuma denuncia para verificar<br>';
         }
-
+        echo '<a href="starter.php">Home</a>';
         
 ?>
 <html>

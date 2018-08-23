@@ -13,6 +13,7 @@ session_start();
     try{
         $tipoUsuPermi = array('Comum');        
         Usuario::verificarLogin(1,$tipoUsuPermi);  // 1 = tem q estar logado
+        echo '<a href="starter.php">Home</a>';
 ?>
 
 <html>

@@ -17,7 +17,8 @@ session_start();
         
         $nomesCampos = array('ID');// Nomes dos campos que receberei da URL    
         $validar = new ValidarCampos($nomesCampos, $_GET);
-        $validar->verificarTipoInt($nomesCampos, $_GET); // Verificar se o parametro da url é um numero        
+        $validar->verificarTipoInt($nomesCampos, $_GET); // Verificar se o parametro da url é um numero   
+        echo '<a href="starter.php">Home</a>';     
 ?>
 
 <html>

@@ -16,7 +16,8 @@ session_start();
         Usuario::verificarLogin(1,$tipoUsuPermi);
         $nomesCampos = array('ID','IDPubli','pagina');// Nomes dos campos que receberei da URL    
         $validar = new ValidarCampos($nomesCampos, $_GET);
-        $validar->verificarTipoInt($nomesCampos, $_GET); // Verificar se o parametro da url é um numero        
+        $validar->verificarTipoInt($nomesCampos, $_GET); // Verificar se o parametro da url é um numero   
+        echo '<a href="starter.php">Home</a>';     
 ?>
 
 <html>

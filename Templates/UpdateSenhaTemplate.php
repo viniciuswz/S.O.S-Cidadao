@@ -13,7 +13,7 @@ session_start();
     try{
         $tipoUsuPermi = array('Comum','Funcionario','Prefeitura','Moderador','Adm');
         Usuario::verificarLogin(1,$tipoUsuPermi);  // Tem q estar logado 
-             
+        echo '<a href="starter.php">Home</a>';     
 ?>
 <form action="../updateSenha.php" method="post">
     <label>Senha Antiga:<input type="password" name="senhaAntiga"></label>

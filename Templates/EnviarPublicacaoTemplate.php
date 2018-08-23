@@ -15,7 +15,8 @@ session_start();
         $tipoUsuPermi = array('Comum');
         Usuario::verificarLogin(1,$tipoUsuPermi);
         $cate = new Categoria();
-        $categorias = $cate->gerarOptions();   
+        $categorias = $cate->gerarOptions(); 
+        echo '<a href="starter.php">Home</a>';  
 ?>
 
 <html>

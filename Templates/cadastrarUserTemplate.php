@@ -22,6 +22,7 @@ session_start();
         if(isset($_SESSION['id_user']) AND !empty($_SESSION['id_user'])){ // Aqui so vai entrar adm, por causa do Usuario::verificarLogin
             // ou seja ou ele nao vai estar logado, ou ele vai ser adm
             $indUsu = $_SESSION['tipo_usu']; // Ou é adm ou prefeitura
+            echo '<a href="starter.php">Home</a>';
         }
 ?>
 <html>

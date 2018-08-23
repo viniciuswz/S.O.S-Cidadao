@@ -15,7 +15,8 @@ session_start();
         Usuario::verificarLogin(1,$tipoUsuPermi);  // Tem q estar logado
        $usuario = new Usuario();
        $usuario->setCodUsu($_SESSION['id_user']);
-       $dados = $usuario->getDadosUser();       
+       $dados = $usuario->getDadosUser();  
+       echo '<a href="starter.php">Home</a>';     
 ?>
 <form action="../updateNomeEmail.php" method="post">
     <label>Nome:<input type="text" name="nome" value="<?php echo $dados[0]['nome_usu'] ?>"></label>

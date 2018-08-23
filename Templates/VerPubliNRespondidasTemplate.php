@@ -29,6 +29,7 @@ session_start();
         if(empty($resposta)){
             echo 'Não há nenhuma publicacao para responder<br>';
         }
+        
 ?>
 
 <html>
