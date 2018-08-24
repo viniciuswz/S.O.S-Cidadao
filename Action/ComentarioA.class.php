@@ -10,7 +10,7 @@ class ComentarioA extends ComentarioM{
 
     private $sqlInsert = "INSERT INTO comentario(texto_comen, dataHora_comen, ind_visu_dono_publi, cod_usu, cod_publi) VALUES ('%s', now(), '%s', '%s','%s')";
 
-    private $sqlSelectComen = "SELECT usuario.nome_usu, usuario.cod_usu, cod_comen, img_perfil_usu,texto_comen,dataHora_comen
+    private $sqlSelectComen = "SELECT usuario.nome_usu, usuario.cod_usu, cod_comen, img_perfil_usu,texto_comen,dataHora_comen,descri_tipo_usu
                                     FROM usuario INNER JOIN comentario ON (usuario.cod_usu = comentario.cod_usu) 
                                     INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu) 
                                     INNER JOIN publicacao ON (publicacao.cod_publi = comentario.cod_publi) 
@@ -20,6 +20,8 @@ class ComentarioA extends ComentarioM{
 
     private $wherePrefeiFunc =  " publicacao.cod_publi = '%s' AND (descri_tipo_usu = 'Prefeitura' or descri_tipo_usu = 'Funcionario') AND status_usu = 'A'";
 
+    private $whereCodComen = " comentario.cod_comen = '%s' AND status_usu = 'A' %s";
+    
     private $sqlSelectVerifyCurti = "SELECT COUNT(*) FROM comen_curtida WHERE cod_comen = '%s' AND cod_usu = '%s' AND status_curte = 'A'";
 
     private $sqlQtdComenComum = "SELECT COUNT(*) FROM comentario INNER JOIN usuario ON (usuario.cod_usu = comentario.cod_usu) 
@@ -194,6 +196,44 @@ class ComentarioA extends ComentarioM{
         }
 
         return;
+    }
+
+    public function getDadosComenByIdComen($restricoes = null){ // Pegar dados do comentario
+        
+        $usuario = new Usuario();
+        $usuario->setCodUsu($this->getCodUsu());
+        $tipoUsu = $usuario->getDescTipo();
+        $sql = sprintf(
+            $this->sqlSelectComen,
+            sprintf(
+                $this->whereCodComen,
+                $this->getCodComen(),
+                " %s " // Coloquei esse coringa para podelo usar nos outros sprintf
+            )
+        );        
+
+        if($tipoUsu == 'Prefeitura'){ // Prefeitura pode alterar sem se o dono do comentario
+            //SO pode editar de respostas
+            $sql = sprintf(
+                $sql,
+                " AND (descri_tipo_usu = 'Prefeitura' or descri_tipo_usu = 'Funcionario')"
+            );
+        }else{ // Se cair nesse if ele tem q ser o dono do comentario
+            $whereVerifyDono = " AND comentario.cod_usu = '%s' ";
+            $sql = sprintf(
+                $sql,
+                sprintf(
+                    $whereVerifyDono,
+                    $this->getCodUsu()
+                )
+            );
+        }
+
+        $res = $this->runSelect($sql);
+        if(empty($res)){
+            throw new \Exception("Você nao pode editar este comentario",16);
+        }
+        return $res;        
     }
     
 }

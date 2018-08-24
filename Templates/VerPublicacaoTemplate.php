@@ -208,7 +208,7 @@ session_start();
         </div>          
         <?php 
         
-            if(!empty($comentarioPrefei)){
+            if(!empty($comentarioPrefei)){                
         ?>
                 <div class="comenPrefei">
                     <h1>Resposta Prefeitura:</h1>
@@ -238,6 +238,15 @@ session_start();
                             echo '<a href="DenunciarComentarioTemplate.php?ID='.$comentarioPrefei[0]['cod_comen'].'&IDPubli='.$_GET['ID'].'&pagina='. $pagina.'">Denunciar</a>';
                         }
 
+                        if(isset($tipoUsu)){
+                            if($tipoUsu == 'Prefeitura'){ // SE for tipo prefeitura pode editar qualquer comenentario
+                                echo '<br><br>';
+                                echo '<a href="UpdateComentarioTemplate.php?ID='.$comentarioPrefei[0]['cod_comen'].'&IDPubli='.$_GET['ID'].'">Editar</a>';
+                            }else if($tipoUsu == 'Funcionario' AND $_SESSION['id_user'] == $comentarioPrefei[0]['cod_usu']){ // se for tipo funcionario so pode editar as suas respostas
+                                echo '<a href="UpdateComentarioTemplate.php?ID='.$comentarioPrefei[0]['cod_comen'].'&IDPubli='.$_GET['ID'].'">Editar</a>';
+                            }
+                        }
+
 
                     ?>
                     
@@ -258,8 +267,10 @@ session_start();
                             </form>        
                        </div>   
                     ';
-                }               
-            }else if(isset($tipoUsu) AND ($tipoUsu == 'Comum' or $tipoUsu == 'Prefeitura' or $tipoUsu == 'Funcionario')){            
+                }              
+
+
+            }else if(isset($tipoUsu) AND ($tipoUsu == 'Comum')){            
         ?>
             
         <div>
