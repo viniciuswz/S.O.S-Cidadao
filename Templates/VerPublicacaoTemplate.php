@@ -197,10 +197,14 @@ session_start();
                 
                 if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $resposta[0]['cod_usu']){
                     echo '<a href="../ApagarPublicacao.php?ID='.$_GET['ID'].'">Apagar Publicacao</a>';
+                        echo '<br><br>';
+                    echo '<a href="UpdatePublicacaoTemplate.php?ID='.$_GET['ID'].'">Editar Publicacao</a>';
                 }else if(isset($tipoUsu) AND ($tipoUsu == 'Adm' or $tipoUsu == 'Moderador')){
                     echo '<a href="../ApagarPublicacao.php?ID='.$_GET['ID'].'">Apagar Publicacao</a>';
                         echo '<br>';
                     echo '<a href="../ApagarUsuario.php?ID='.$resposta[0]['cod_usu'].'">Apagar Usuario</a>';
+                        echo '<br><br>';
+                    echo '<a href="UpdatePublicacaoTemplate.php?ID='.$_GET['ID'].'">Editar Publicacao</a>';
                 }
                 ?>               
                 
@@ -327,10 +331,12 @@ session_start();
 
                         if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $comentarioComum[$contador]['cod_usu']){
                             echo '<a href="../ApagarComentario.php?ID='.$comentarioComum[$contador]['cod_comen'].'">Apagar Comentario</a>';
+                            echo '<br><br>';
+                            echo '<a href="UpdateComentarioTemplate.php?ID='.$comentarioComum[$contador]['cod_comen'].'&IDPubli='.$_GET['ID'].'">Editar</a>';
                         }else if(isset($tipoUsu) AND ($tipoUsu == 'Adm' or $tipoUsu == 'Moderador')){
                             echo '<a href="../ApagarComentario.php?ID='.$comentarioComum[$contador]['cod_comen'].'">Apagar Comentario</a>';
                                 echo '<br>';
-                            echo '<a href="../ApagarUsuario.php?ID='.$comentarioComum[$contador]['cod_usu'].'">Apagar Usuario</a>';
+                            echo '<a href="../ApagarUsuario.php?ID='.$comentarioComum[$contador]['cod_usu'].'">Apagar Usuario</a>';                            
                         }
                     ?>
                 </div>

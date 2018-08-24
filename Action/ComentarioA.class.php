@@ -269,7 +269,7 @@ class ComentarioA extends ComentarioM{
                 // Por isso esse if, so estou o erro se for diferente
                 throw new \Exception("Erro ao fazer o update",16);
             }
-            return $dados[0]['cod_publi']; // Retorna o codigo da publicacao
+            
         }
 
         return $dados[0]['cod_publi']; // Retorna o codigo da publicacao

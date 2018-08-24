@@ -9,7 +9,7 @@ class CategoriaA extends CategoriaM{
         return $this->runSelect($this->sqlSelect);
     }
 
-    public function gerarOptions(){ //Gerar Options do select para a pagina publicaçoes
+    public function gerarOptions($selecionadoPadrao = null){ //Gerar Options do select para a pagina publicaçoes
         $res = $this->select();
         $option = '';
         $options = array();
@@ -21,7 +21,12 @@ class CategoriaA extends CategoriaM{
                 }
                 if($chave == 'descri_cate'){
                     $option .= 'class="'.$this->tirarAcentos($valor).'"';
-                    $option .= ' >'.$valor;
+                    if($selecionadoPadrao == $valor){
+                        $option .= ' selected="selected" >'.$valor;
+                    }else{
+                        $option .= ' >'.$valor;
+                    }
+                    
                     $option .= ' </option>';
                     
                 }

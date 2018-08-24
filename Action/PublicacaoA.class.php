@@ -124,16 +124,43 @@ class PublicacaoA extends PublicacaoM{
         return $dadosTratados = $this->tratarInformacoes($res);
     }
 
-    public function listByIdPubli(){ // Listar pelo id da publicacao
-        $prepararWherePubli = sprintf($this->whereIdPubli, $this->getCodPubli());         
+    public function listByIdPubli($restricao = null){ // Listar pelo id da publicacao
+        $usuario = new Usuario();
+        $usuario->setCodUsu($this->getCodUsu());
+        $tipoUsu = $usuario->getDescTipo();
         $sql = sprintf($this->sqlSelect,
                         $this->whereListFromALL,
-                        $prepararWherePubli,
-                        ' AND 1=1'
+                        ' %s',
+                        ' %s '
         );  
+        
+        if($restricao == null OR ($tipoUsu == 'Adm' OR $tipoUsu == 'Moderador')){ // Nao precisa ser o dono da publicacao
+            $prepararWherePubli = sprintf($this->whereIdPubli, $this->getCodPubli());
+            $sql = sprintf(
+                $sql,
+                $prepararWherePubli,
+                ' AND 1=1 '
+            );
+            $erro = "Não foi possível fazer o select"; // Se der erro aparece esta mensagem
+        }else{ // Precisa ser o dono da publicacao
+            $sql = sprintf(
+                    $sql,
+                    sprintf(
+                        $this->whereIdUser,
+                        $this->getCodUsu()
+                    ),
+                    sprintf(
+                        $this->whereIdPubli,
+                        $this->getCodPubli()
+                    )
+                );
+                $erro = "Você nao tem permissao para esta publicacao";// Se der erro aparece esta mensagem
+        }       
+                         
+        
         $res = $this->runSelect($sql);
         if(empty($res)){
-            throw new \Exception("Não foi possível fazer o select",9); 
+            throw new \Exception($erro,9); 
         }        
         $dadosTratados = $this->tratarInformacoes($res);       
         $dadosTratados[0]['class_cate'] = $this->tirarAcentos($dadosTratados[0]['descri_cate']);//Tirar acentos pra entrar como classe no html
