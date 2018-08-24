@@ -11,7 +11,7 @@ session_start();
     
     use Core\Usuario;
     use Classes\ValidarCampos;
-    Use Core\Comentario;
+    use Core\Comentario;
     try{
         $tipoUsuPermi = array('Comum','Funcionario','Prefeitura');
         Usuario::verificarLogin(1,$tipoUsuPermi);  // Tem q estar logado

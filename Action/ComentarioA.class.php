@@ -10,7 +10,7 @@ class ComentarioA extends ComentarioM{
 
     private $sqlInsert = "INSERT INTO comentario(texto_comen, dataHora_comen, ind_visu_dono_publi, cod_usu, cod_publi) VALUES ('%s', now(), '%s', '%s','%s')";
 
-    private $sqlSelectComen = "SELECT usuario.nome_usu, usuario.cod_usu, cod_comen, img_perfil_usu,texto_comen,dataHora_comen,descri_tipo_usu
+    private $sqlSelectComen = "SELECT usuario.nome_usu, usuario.cod_usu, cod_comen, img_perfil_usu,texto_comen,dataHora_comen,descri_tipo_usu, publicacao.cod_publi
                                     FROM usuario INNER JOIN comentario ON (usuario.cod_usu = comentario.cod_usu) 
                                     INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu) 
                                     INNER JOIN publicacao ON (publicacao.cod_publi = comentario.cod_publi) 
@@ -34,6 +34,7 @@ class ComentarioA extends ComentarioM{
 
     private $sqlUpdateStatusComen = "UPDATE comentario SET status_comen = '%s' WHERE cod_comen = '%s' AND cod_usu = '%s'";
 
+    private $sqlUpdateComen = "UPDATE comentario SET texto_comen = '%s' WHERE cod_comen = '%s' %s";
 
     public function inserirComen(){
         $indVisuDono = $this->verifyDonoPubli();
@@ -198,7 +199,7 @@ class ComentarioA extends ComentarioM{
         return;
     }
 
-    public function getDadosComenByIdComen($restricoes = null){ // Pegar dados do comentario
+    public function getDadosComenByIdComen(){ // Pegar dados do comentario
         
         $usuario = new Usuario();
         $usuario->setCodUsu($this->getCodUsu());
@@ -228,7 +229,6 @@ class ComentarioA extends ComentarioM{
                 )
             );
         }
-
         $res = $this->runSelect($sql);
         if(empty($res)){
             throw new \Exception("Você nao pode editar este comentario",16);
@@ -236,4 +236,43 @@ class ComentarioA extends ComentarioM{
         return $res;        
     }
     
+    public function updateComentario(){ // Editar Comentario
+        $dados = $this->getDadosComenByIdComen(); // Verificar se o usuario nao mudou o id via inspecionar elemento
+        $usuario = new Usuario();
+        $usuario->setCodUsu($this->getCodUsu());
+        $tipoUsu = $usuario->getDescTipo();
+        $sql = sprintf(
+            $this->sqlUpdateComen,
+            $this->getTextoComen(),
+            $this->getCodComen(),
+            ' %s '
+        );
+        if($tipoUsu == 'Prefeitura'){
+            $sql = sprintf(
+                $sql,
+                ''
+            );
+        }else{
+            $whereVerifyDono = " AND cod_usu = '%s' ";
+            $sql = sprintf(
+                $sql,
+                sprintf(
+                    $whereVerifyDono,
+                    $this->getCodUsu()
+                )
+            );
+        }
+
+        $res = $this->runQuery($sql);
+        if(!$res->rowCount()){            
+            if($this->getTextoComen() != $dados[0]['texto_comen']){ // por algum motivo se for igual os dados o update da como 0 linhas afetadas
+                // Por isso esse if, so estou o erro se for diferente
+                throw new \Exception("Erro ao fazer o update",16);
+            }
+            return $dados[0]['cod_publi']; // Retorna o codigo da publicacao
+        }
+
+        return $dados[0]['cod_publi']; // Retorna o codigo da publicacao
+        
+    }
 }
