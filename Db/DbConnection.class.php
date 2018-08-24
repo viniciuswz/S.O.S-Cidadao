@@ -36,9 +36,10 @@ class DbConnection extends CfAcademicoLogin{ //Extender de uma classe é com ext
 
         if($stm){            
             $this->lastId = $this->conn->lastInsertId();
-            $this->conn->commit(); // retificadpo "confirmado" a operacao            
+            $this->conn->commit(); // retificadpo "confirmado" a operacao                        
         }else{            
             $this->conn->rollBack(); // desfazendo as operações anteriores para manter a integridade do banco
+            
         }
         
         //$stm->lastInsertId();

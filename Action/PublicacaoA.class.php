@@ -56,6 +56,8 @@ class PublicacaoA extends PublicacaoM{
     
     private $sqlUpdateStatusPubli = "UPDATE publicacao SET status_publi = '%s' WHERE cod_publi = '%s' AND cod_usu = '%s'";
 
+    private $sqlUpdatePubli = "UPDATE publicacao SET texto_publi = '%s', titulo_publi = '%s', cod_cate = '%s', cep_logra = '%s' %s WHERE %s %s";
+
     private $sqlPaginaAtual;
     
 
@@ -329,6 +331,18 @@ class PublicacaoA extends PublicacaoM{
         
     }   
     
+    public function verificarDadosIguais($NovosDados, $dadosOriginais){
+        $indIgual = 0;
+        foreach($NovosDados as $chave => $valor){
+            if($valor == $dadosOriginais[0][$chave]){                                 
+                $indIgual++;
+            }
+        }
+        if($indIgual == count($NovosDados)){
+            return true;
+        }
+        return false;
+    }
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     // UPDATESSSSSS
 
@@ -358,6 +372,74 @@ class PublicacaoA extends PublicacaoM{
         }
 
         return;
+    }
+
+    public function updatePublicacao($bairro, $local){    
+        $dados = $this->listByIdPubli(); // Verificar se ele ainda é o dono 
+
+        $NovosDados = array( 
+            "titulo_publi" => $this->getTituloPubli(),
+            "texto_publi" => $this->getTextoPubli(),
+            "cod_cate" => $this->getCodCate(),
+            "cep_logra" => $this->getCepLogra()            
+        );            
+        if(!empty($this->getImgPubli())){
+            $NovosDados["img_publi"] = $this->getCepLogra();
+        }
+        if($this->verificarDadosIguais($NovosDados, $dados)){ // Verificar se os dados sao igual            
+            return $this->getCodPubli(); // se for igual nao precisa dar update
+        }
+        
+        $usuario = new Usuario();
+        $usuario->setCodUsu($this->getCodUsu());
+        $tipoUsu = $usuario->getDescTipo();        
+        $this->cadastrarLocal($bairro, $local);  
+        $prepararWherePubli = sprintf(" cod_publi = '%s'", $this->getCodPubli());
+
+        $sql = sprintf($this->sqlUpdatePubli, 
+                        $this->getTextoPubli(),                        
+                        $this->getTituloPubli(),                        
+                        $this->getCodCate(),
+                        $this->getCepLogra(),
+                         '%s' ,
+                        $prepararWherePubli,
+                         '%s' 
+        );      
+
+        if(!empty($this->getImgPubli())){ // Se for enviado uma nova imagem
+            $this->tratarImagem();
+            $sql = sprintf(
+                $sql,
+                ", img_publi = '" . $this->getImgPubli()."'", // Adiciona um campo
+                ' %s ' // Mantem o caracter coringa para pode usar posteriormente
+            );
+        }else{ // se nao for
+            $sql = sprintf(
+                $sql,
+                ' ', // Nao coloca nenhum campo a mais
+                ' %s '// Mantem o caracter coringa para pode usar posteriormente
+            );
+        }
+
+        if($tipoUsu == 'Adm' or $tipoUsu == 'Moderador'){  // Se for adn ou moderador pode editar tranquilamente
+
+            $sql = sprintf($sql, ' AND 1=1 ');
+            
+        }else{ // Se nao for, precisa ser o dono
+            $sql = sprintf(
+                $sql,                           
+                sprintf(
+                    " AND cod_usu = '%s' ", // Adiciona um campo
+                    $this->getCodUsu()
+                )
+                
+            );
+        }                  
+        $resposta = $this->runQuery($sql);    
+        if($resposta->rowCount() <= 0 ){
+                throw new \Exception("Não foi possivel editar a publicacao",9);
+        }    
+        return $this->getCodPubli();
     }
    
 }

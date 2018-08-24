@@ -150,7 +150,7 @@ session_start();
                 </div>                    
             </div>
             <div class="conteudo">
-            <form action="#" method="post" enctype="multipart/form-data">
+            <form action="../UpdatePublicacao.php" method="post" enctype="multipart/form-data">
                 <div class="subConteudo"> 
                     <div class="descri">
                         <h2>Titulo: <input type="text" name="titulo" value="<?php echo $resposta[0]['titulo_publi']?>"></h2>
@@ -169,10 +169,11 @@ session_start();
                         
                     </div>                    
                     <figure>
+                        <h2>Imagem atual:</h2>
                         <img src="../Img/publicacao/<?php echo $resposta[0]['img_publi']?>" class="imgPubli">
                         <figcaption>
                                 <br >
-                            <input type="file" name="imagem" accept="image/png, image/jpeg"/>                                                  
+                            <input type="file" name="imagem" accept="image/png, image/jpeg" />                                                  
                                 <br>
                             <label>Local: <input type="text" name="local" value="<?php echo $resposta[0]['endere_logra']?>"></label>
                                 <br >
@@ -183,6 +184,7 @@ session_start();
                     </figure>  
                 </div>                
                 <br>
+                <input type="hidden" name="id_publi" value="<?php echo $_GET['ID']?>">
                 <input type="submit" value="Editar !!!">
             </form>       
                 
