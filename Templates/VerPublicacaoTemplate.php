@@ -12,15 +12,22 @@ session_start();
     use Core\Usuario;
     use Core\Publicacao;
     use Core\Comentario;
+    use Core\PublicacaoSalva;
     use Classes\ValidarCampos;
     try{        
         $publi = new Publicacao();
         $comentario = new Comentario();
-
+       
         if(isset($_SESSION['id_user']) AND !empty($_SESSION['id_user'])){
             $publi->setCodUsu($_SESSION['id_user']);
             $comentario->setCodUsu($_SESSION['id_user']);
-            $tipoUsu = $_SESSION['tipo_usu'];
+            
+            $publiSalva = new PublicacaoSalva();
+            $publiSalva->setCodUsu($_SESSION['id_user']);
+            $publiSalva->setCodPubli($_GET['ID']);  
+            $indSalva = $publiSalva->indSalva();
+
+            $tipoUsu = $_SESSION['tipo_usu'];            
         }
 
         $nomesCampos = array('ID');// Nomes dos campos que receberei da URL    
@@ -28,7 +35,9 @@ session_start();
         $validar->verificarTipoInt($nomesCampos, $_GET); // Verificar se o parametro da url é um numero
         
         $publi->setCodPubli($_GET['ID']);
-        $comentario->setCodPubli($_GET['ID']);        
+        $comentario->setCodPubli($_GET['ID']);   
+          
+        
         isset($_GET['pagina']) ?: $_GET['pagina'] = null;
                   
         $comentarioComum = $comentario->SelecionarComentariosUserComum($_GET['pagina']);
@@ -206,6 +215,15 @@ session_start();
                         echo '<br><br>';
                     echo '<a href="UpdatePublicacaoTemplate.php?ID='.$_GET['ID'].'">Editar Publicacao</a>';
                 }
+                    echo '<br>';
+                    if(isset($indSalva) AND !$indSalva){
+                        echo '<a href="../SalvarPublicacao.php?ID='.$_GET['ID'].'">Salvar</a>';
+                    }else if(isset($indSalva) AND $indSalva){
+                        echo '<a href="../SalvarPublicacao.php?ID='.$_GET['ID'].'">Nao salvar1</a>';
+                    }else{
+                        echo '<a href="../SalvarPublicacao.php?ID='.$_GET['ID'].'">Salvar1</a>';
+                    }
+
                 ?>               
                 
             </div>   

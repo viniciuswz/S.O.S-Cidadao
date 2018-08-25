@@ -53,7 +53,9 @@ class PublicacaoA extends PublicacaoM{
                                 INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu) 
                                 WHERE  status_comen = 'A' AND (descri_tipo_usu = 'Prefeitura' or descri_tipo_usu = 'Funcionario') AND status_usu = 'A')
                                 AND %s %s";
-    
+    private $sqlSelectDonoPubli = "SELECT cod_usu FROM publicacao WHERE cod_usu = '%s' AND cod_publi = '%s'";
+
+
     private $sqlUpdateStatusPubli = "UPDATE publicacao SET status_publi = '%s' WHERE cod_publi = '%s' AND cod_usu = '%s'";
 
     private $sqlUpdatePubli = "UPDATE publicacao SET texto_publi = '%s', titulo_publi = '%s', cod_cate = '%s', cep_logra = '%s' %s WHERE %s %s";
@@ -127,9 +129,11 @@ class PublicacaoA extends PublicacaoM{
     }
 
     public function listByIdPubli($restricao = null){ // Listar pelo id da publicacao
-        $usuario = new Usuario();
-        $usuario->setCodUsu($this->getCodUsu());
-        $tipoUsu = $usuario->getDescTipo();
+        if(!empty($this->getCodUsu())){
+            $usuario = new Usuario();
+            $usuario->setCodUsu($this->getCodUsu());
+            $tipoUsu = $usuario->getDescTipo();
+        }        
         $sql = sprintf($this->sqlSelect,
                         $this->whereListFromALL,
                         ' %s',
@@ -316,6 +320,20 @@ class PublicacaoA extends PublicacaoM{
         );
         $res = $this->runSelect($sql); // Ids Na array;
         return $dadosTratados = $this->tratarInformacoes($res);
+    }
+
+    public function verificarDonoPubli(){ // verificar dono da publicacao
+        $sql = sprintf(
+            $this->sqlSelectDonoPubli,
+            $this->getCodUsu(),
+            $this->getCodPubli()
+        );
+        $res = $this->runSelect($sql);
+        if(empty($res)){     // se nao for o dono       
+            return false;
+        }        
+        return true; // se for o dono
+        
     }
     
     public function controlarPaginacao($sqlCountPubli, $where, $quantidadePubliPagina, $pagina = null){ // Fazer o controle da paginacao       
