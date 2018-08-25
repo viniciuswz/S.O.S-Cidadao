@@ -28,15 +28,15 @@ try{
         
 }catch(Exception $exc){
     $erro = $exc->getCode();   
-    echo $mensagem = $exc->getMessage();  
+    $mensagem = $exc->getMessage();  
     switch($erro){
         case 2://Não está logado  
-            //echo "<script> alert('$mensagem');javascript:window.location='./Templates/loginTemplate.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='./Templates/loginTemplate.php';</script>";
             break;          
         case 12://Mexeu no insprnsionar elemento ou nao submeteu o formulario      
-            //echo "<script> alert('$mensagem');javascript:window.location='./Templates/VisualizarPublicacoesTemplate.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='./Templates/VisualizarPublicacoesTemplate.php';</script>";
             break;             
         default: //Qualquer outro erro cai aqui
-            //echo "<script> alert('$mensagem');javascript:window.location='./Templates/VisualizarPublicacoesTemplate.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='./Templates/VisualizarPublicacoesTemplate.php';</script>";
     }   
 }
