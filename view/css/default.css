@@ -1237,45 +1237,6 @@ form input[type="radio"]:checked + label{
 background-color: pink;
 }
 
-/*////////////////AGRADECIMENTO PAGE//////////////////////*/
-
-.bloco{
-    width: 300px;
-    height: 450px;
-    margin: 40px auto;
-    background: white;
-    padding: 10px 30px;
-
-}
-.img{
-    height: 200px;
-    background: white;
-    background-image:url('../imagens/TOPO.png');
-    background-repeat: no-repeat;
-    background-size: 100%;
-   
-}
-.fundo{
-    background-image:url('../imagens/fundo.png');
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-color: black
-}
-.bloco h2{
-    text-align: center;
-}
-.bloco p{
-    text-align: center;
-    margin: 5px;
-    color: gray;
-}
-.bloco input{
-    padding: 10px 30px;
-    cursor: pointer;
-    display: block;
-    margin: 50px auto;
-}
-
 /*formularios 2*/
 
 .form-icone{
@@ -2687,4 +2648,44 @@ margin-bottom :200px;
     align-self: center;
     margin-top: 10px
     
+}
+
+/* AGRADECIMENTO PAGE*/
+
+.agradecimento{
+    background-image: url("../imagens/fundo.png");
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.agradecimento > div{
+    background-color: white;
+    width: 300px;
+    height: calc(100vh - 50px );
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0px 0px 12px #000
+}
+.agradecimento div div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column
+}
+
+.agradecimento div div p{
+    width: 90%;
+}
+
+.agradecimento div a{
+background-color: #1d1d1d;
+padding: 10px 20px;
+border-radius: 20%/100px;
+color:white
 }
