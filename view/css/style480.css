@@ -804,16 +804,12 @@ width: 100vw;
 }
 
 .prefeitura-publicacao .topo-prefeitura-publicacao{
-
     justify-content: flex-start;
-   margin-left: 20px
+    margin-left: 20px
 }
 
 .topo-prefeitura-publicacao span:first-child{
     max-width: 200px;
-  
-     
-     
  }
  
 
@@ -827,4 +823,72 @@ width: 100vw;
 
  .prefeitura-publicacao .conteudo-resposta span{
     
+}
+
+.pag-debate{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center
+}
+
+
+.debate{
+    width: 100%;
+    
+    
+}
+.debate-publicacao{
+    width: 95%;
+}
+
+.publicacao-conteudo-debate{
+    overflow: hidden;
+    
+    width: 95%;
+    height: 200px;
+    margin: 0 auto;
+   
+}
+
+.debate-publicacao a{
+    margin-bottom:60px 
+}
+.debate-publicacao h3 ~ div:first-of-type{
+overflow: inherit
+}
+
+.debate-publicacao h3 ~ div:first-of-type::after{
+    display: none;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #1d1d1d 50%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    content: ".";
+    width: 100%;
+    position: relative;
+    bottom: 24px;
+    height: 50px;
+    color: #1d1d1d;
+    margin-bottom: -24px
+    
+}
+.debate-publicacao div:nth-child(2) p{
+    font-size: 13px;
+    overflow-y: inherit;
+    width:100%;
+    height: inherit;
+    padding-right: 0px;
+    padding-bottom: 15px
+}
+
+.debate-status{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(77, 77, 77);
+}
+
+.debate-status div{
+    flex-direction: column;
+    justify-content: center
 }
