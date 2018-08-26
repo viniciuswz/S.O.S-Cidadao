@@ -131,6 +131,7 @@ nav.menu > ul > li > a:hover i{
 .perfil{
     height: 350px;
     justify-content: flex-end;
+    position: relative;
 }
 
 .perfil > img{
@@ -143,6 +144,7 @@ nav.menu > ul > li > a:hover i{
     margin-top: 190px;
     padding-right: 10px;
     align-items: center;
+    bottom: 3px
 }
 
 .perfil div div{

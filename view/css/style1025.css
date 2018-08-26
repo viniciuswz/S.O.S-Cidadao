@@ -159,7 +159,12 @@ nav.menu > ul > li > a:hover #quantidade_de_not{
 .perfil{
     height: 350px;
     justify-content: flex-end;
+    position: relative;
 }
+
+
+
+
 
 .perfil > img{
     height: 56.23vw;
@@ -171,6 +176,7 @@ nav.menu > ul > li > a:hover #quantidade_de_not{
     margin-top: 210px;
     padding-right: 40px;
     align-items: center;
+    bottom: 3px
 }
 
 .perfil div div{

@@ -435,6 +435,7 @@ nav.notificacoes ul li a span:first-of-type{
     overflow: hidden;
     width: 100%; 
     background-color: white;
+  
 }
 
 .perfil-base span p:first-child{
@@ -532,12 +533,9 @@ display: flex;
 
 .menu-perfil{
     display: flex;
-   
     justify-content: center;
     height: 45px;
     background-color: white;
-    
-    
 }
 
 .menu-perfil ul{
@@ -549,11 +547,9 @@ display: flex;
     display: flex;
     width: calc(100vw / 3 - 10px);
     justify-content: center;
-   
     margin: 1px;
     max-width: calc(768px / 3);
 
-    
 }
 
 .menu-perfil ul li a{
@@ -564,11 +560,13 @@ display: flex;
     width: 100%;
     height: 45px;
     color: black;
-    text-align: center
+    text-align: center;
+    z-index: 1;
 }
 
 .menu-perfil ul li.ativo a{
     color: #00aeef;
+   
 }
 
 
@@ -581,6 +579,7 @@ display: flex;
     height: 4px;
     background: #00aeef;
     transition: all 0.3s;
+    z-index: 2;
   }
 
 
@@ -642,7 +641,6 @@ display: flex;
  .item-publicacao{
      background-color: white;
      width: 340px;
-    
      border-radius: 4%;
      margin-top: 10px;
      margin-bottom: 10px;
@@ -650,6 +648,13 @@ display: flex;
      
  }
 
+
+ .item-publicacao.db{
+
+    max-height: 348px;
+    align-self: center;
+    padding-bottom: 70px
+ }
 .item-publicacao .item-topo{
     display: flex;
     align-items: center;
@@ -2084,7 +2089,10 @@ margin-bottom :200px;
 
 
 /*filtro*/
-
+.filtro-admin{
+    display: flex;
+    flex-wrap: wrap
+}
 
 
 .filtro-admin form{
@@ -2096,8 +2104,9 @@ margin-bottom :200px;
     
 }
 
-.filtro-admin div{
+.filtro-admin form div{
     padding-right: 100px;
+    display: block
    
 }
 
@@ -2105,10 +2114,28 @@ margin-bottom :200px;
     margin-right: 9px;
 }
 
-.filtro-admin i, .filtro-admin h3, .filtro-admin span:first-child{
+.filtro-admin i, .filtro-admin form h3, .filtro-admin form span:first-child{
     display: none;
 }
 
+.filtro-admin > div:first-of-type{
+    background-color: red;
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    padding: 5px 0;
+    width: 40%;
+    word-wrap: break-word;
+    word-break: break-all
+}
+
+.filtro-admin > div:first-of-type h3{
+    font-size: 18px
+}
+
+.filtro-admin > div:first-of-type p{
+    background-color: pink
+}
 .container {
     position: relative;
     padding-left: 20px;

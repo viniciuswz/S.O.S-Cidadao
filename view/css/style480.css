@@ -588,7 +588,7 @@ width: 100vw;
 
 /*filtro*/
 
-.filtro-admin i, .filtro-admin h3, .filtro-admin span:first-child{
+.filtro-admin i, .filtro-admin form h3, .filtro-admin form span:first-child{
     display: block;
 }
 
@@ -599,12 +599,15 @@ width: 100vw;
     line-height: 25px;
     font-weight: bold;
     margin-top: 6px;
-   
     left: 85%;
     z-index: 2;
     cursor: pointer;
-    
 }
+
+.filtro-admin > div:first-of-type{
+    padding: 0px 0;
+}
+
 
 .filtro-admin .filtro-admin-ativo form{
     display: block;
@@ -614,6 +617,15 @@ width: 100vw;
     font-size: 18px;
     margin: 6px;
 }
+
+.filtro-admin > div:first-of-type h3{
+    font-size: 15px
+}
+
+.filtro-admin > div:first-of-type p{
+    font-size: 14px
+}
+
 
 .filtro-admin {
     display: flex;
