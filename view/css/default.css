@@ -2711,8 +2711,82 @@ margin-bottom :200px;
 }
 
 .agradecimento div a{
-background-color: #1d1d1d;
-padding: 10px 20px;
-border-radius: 20%/100px;
-color:white
+    background-color: #1d1d1d;
+    padding: 10px 20px;
+    border-radius: 20%/100px;
+    color:white
+}
+
+.landing-dobra{
+    width: 100%;
+    height: 100vh;
+    background-image: url('../imagens/fundo-login.jpg');
+    background-size: cover
+}
+
+.landing-dobra h1{
+    color:white;
+    position: absolute;
+    top: 100px;
+    left:100px
+}
+
+.landing-dobra div{
+    color:white;
+    position: absolute;
+    top: 150px;
+    left:100px;
+    
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+}
+
+.cta{
+    display: block;
+    color:white;
+    padding: 10px 15px;
+    background-color: pink;
+    width: 200px;
+    text-align: center;
+    border-radius: 10%/100px;
+    margin-top: 10px
+}
+
+.landing-dobra p{
+
+}
+
+.landing-dobra a:last-child{
+   
+    color:white;
+}
+
+
+.landing-funcionalidades{
+    background-color: red;
+    display: flex;
+    justify-content: space-around;
+    height: 100vh
+}
+
+.landing-item{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+   
+    align-items: center
+}
+
+.landing-item div:first-of-type{
+    overflow: hidden;
+    width: calc(100vw/2 - 100px);
+   
+}
+.landing-item h3{
+    flex-flow: 1;
+    
+}
+.landing-item p{
+    width: 300px
 }
