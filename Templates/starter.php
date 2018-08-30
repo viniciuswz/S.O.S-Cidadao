@@ -330,6 +330,8 @@ desired effect
           <br>
         <a href="UpdateSenhaTemplate.php">Update Senha</a>
           <br>
+        <a href="UpdatePerfilTemplate.php">Editar Perfil</a>
+          <br>
         <?php
           if($resultado[0]['descri_tipo_usu'] == 'Comum'){
             echo '<a href="EnviarPublicacaoTemplate.php">Enviar Publicacao</a>

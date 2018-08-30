@@ -2,6 +2,8 @@
 namespace Action;
 use Model\UsuarioM;
 use Classes\Paginacao;
+use Classes\TratarImg;
+
 class UsuarioA extends UsuarioM{
 
     private $sqlSelectLogar = "SELECT usuario.cod_usu, descri_tipo_usu, senha_usu,status_usu 
@@ -34,8 +36,15 @@ class UsuarioA extends UsuarioM{
                                         FROM usuario INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu)
                                         WHERE status_usu = 'A' AND status_tipo_usu = 'A' AND descri_tipo_usu %s";
     
-    private $sqlSelectCodTipoUsu = "SELECT cod_tipo_usu FROM tipo_usuario WHERE descri_tipo_usu = '%s' ";
+    private $sqlSelectCodTipoUsu = "SELECT cod_tipo_usu FROM tipo_usuario WHERE descri_tipo_usu = '%s' ";    
+
     private $sqlDeleteUsu = "UPDATE usuario SET status_usu = '%s' WHERE cod_usu = '%s'";
+
+    private $sqlUpdateImagem = "UPDATE usuario SET %s WHERE %s";
+
+    private $sqlSelectCodUsuByTipoUsu = "SELECT cod_usu FROM usuario INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu) 
+                                            WHERE tipo_usuario.descri_tipo_usu %s";
+
 
     public function logar(){ //Logar       
         $sql = sprintf($this->sqlSelectLogar, // Junta o wher com o outra parte do select
@@ -174,6 +183,26 @@ class UsuarioA extends UsuarioM{
         return;
     }
 
+    public function getCodUsuByTipoUsu($in){ // Pegar os ids do usuario pelo tipo usuario
+        $sql = sprintf(
+            $this->sqlSelectCodUsuByTipoUsu,
+            $in
+        );
+        $resultado = $this->runSelect($sql);        
+        if(empty($resultado)){
+            return false;
+        }
+        $ids = array();
+        foreach($resultado as $chaves => $valor){ // Transformar em vetor
+            foreach($valor as $chave => $vlr){
+                if($chave == 'cod_usu'){
+                    $ids[] = $vlr;
+                }
+            }
+        }
+        return $this->gerarIn($ids);
+    }
+
     public function verifyExistContPrefei(){ // Verificar se ja existe conta de prefeitura
         $sql = sprintf(
             $this->countSqlSelectDados2,
@@ -187,51 +216,7 @@ class UsuarioA extends UsuarioM{
         }else{
             return false;
         }
-    }
-
-    public function updateEmailNome(){//Alterar nome e email
-        $verifiEmail = $this->verificarEmail();        
-        $codUsu = $this->getCodUsu();
-        if(!empty($verifiEmail) or $verifiEmail == TRUE){//Se ja existir o email do update            
-            if($verifiEmail[0]['cod_usu'] != $codUsu){ // SE o cod_usu da consulta for diferente ao codigo usu da sessao, entao ele nao pode usar esse email
-                throw new \Exception("Não foi possível realizar a alteracao(Email ja existente)",4);
-            }
-            if($verifiEmail[0]['nome_usu'] == $this->getNomeUsu()){ // Cai nesse if se ele nao modificou nada em nenhuma opcao
-                return;                                                 //se ele nao modificou nao precisa alterar
-            }
-        }
-        $sql = sprintf($this->sqlUpdateEmailUsu,
-                            $this->getEmail(),
-                            $this->getNomeUsu(),
-                            $codUsu
-                        );
-        $alterar = $this->runQuery($sql);        
-        if($alterar->rowCount() <= 0){
-            throw new \Exception("Ops, erro ao alterar, asd",4);
-        }
-    }
-
-    public function updateSenha($novaSenha){//Altarar Senha
-        $dados = $this->getDadosUser();
-        $hashUsu = $dados[0]['senha_usu'];
-        $senhaAntiga = $this->getSenha();
-        if(!password_verify($senhaAntiga, $hashUsu)){
-            throw new \Exception("Senha Incorreta",5);
-        }
-        if(empty($novaSenha)){
-            throw new \Exception("Nova senha vazia",5);
-        }        
-        $novoHash = $this->gerarHash($novaSenha);
-
-        $sql = sprintf($this->sqlUpdateSenha,
-                            $novoHash,
-                            $this->getCodUsu()
-                        );
-        $alterar = $this->runQuery($sql);
-        if($alterar->rowCount() <= 0){
-            throw new \Exception("Ops, erro ao alterar",5);
-        }
-    }
+    }    
 
     public function getDadosUsuByTipoUsu($tipos = array(),$pagina = null){
         $in = $this->gerarIn($tipos);
@@ -307,6 +292,12 @@ class UsuarioA extends UsuarioM{
         
     }
 
+    public function tratarImagem($imagem,$pasta){ // Mexer depois nessa funcao
+        //Fazer a parada da thumb        
+        $tratar = new TratarImg();
+        $novoNome = $tratar->tratarImagem($imagem, $pasta);
+        return $novoNome;        
+    }     
     
     public function updateStatusUsu($status, $codUsuApagador){       
         
@@ -349,5 +340,96 @@ class UsuarioA extends UsuarioM{
             throw new \Exception("Não foi possível mudar o status",9);
         }
         return $codReturn;
+    }
+
+    public function updateEmailNome(){//Alterar nome e email
+        $verifiEmail = $this->verificarEmail();        
+        $codUsu = $this->getCodUsu();
+        if(!empty($verifiEmail) or $verifiEmail == TRUE){//Se ja existir o email do update            
+            if($verifiEmail[0]['cod_usu'] != $codUsu){ // SE o cod_usu da consulta for diferente ao codigo usu da sessao, entao ele nao pode usar esse email
+                throw new \Exception("Não foi possível realizar a alteracao(Email ja existente)",4);
+            }
+            if($verifiEmail[0]['nome_usu'] == $this->getNomeUsu()){ // Cai nesse if se ele nao modificou nada em nenhuma opcao
+                return;                                                 //se ele nao modificou nao precisa alterar
+            }
+        }
+        $sql = sprintf($this->sqlUpdateEmailUsu,
+                            $this->getEmail(),
+                            $this->getNomeUsu(),
+                            $codUsu
+                        );
+        $alterar = $this->runQuery($sql);        
+        if($alterar->rowCount() <= 0){
+            throw new \Exception("Ops, erro ao alterar, asd",4);
+        }
+    }
+
+    public function updateSenha($novaSenha){//Altarar Senha
+        $dados = $this->getDadosUser();
+        $hashUsu = $dados[0]['senha_usu'];
+        $senhaAntiga = $this->getSenha();
+        if(!password_verify($senhaAntiga, $hashUsu)){
+            throw new \Exception("Senha Incorreta",5);
+        }
+        if(empty($novaSenha)){
+            throw new \Exception("Nova senha vazia",5);
+        }        
+        $novoHash = $this->gerarHash($novaSenha);
+
+        $sql = sprintf($this->sqlUpdateSenha,
+                            $novoHash,
+                            $this->getCodUsu()
+                        );
+        $alterar = $this->runQuery($sql);
+        if($alterar->rowCount() <= 0){
+            throw new \Exception("Ops, erro ao alterar",5);
+        }
+    }
+
+    public function updateImage($imagem,$tipo){ // Alterar imagem de capa ou de perfil
+        $tipoUsu = $this->getDescTipo();
+               
+        if($tipo == 'capa'){
+            $campo = " img_capa_usu = '%s' ";
+            $nomeImagem = $this->tratarImagem($imagem,'capa');
+            $erro = "Não foi possível alterar a imagem de capa";
+        }else if($tipo == 'perfil' AND $tipoUsu != 'Funcionario'){
+            $campo = " img_perfil_usu = '%s' ";
+            $nomeImagem = $this->tratarImagem($imagem,'perfil');
+            $erro = "Não foi possível alterar a imagem de perfil";
+        }else{
+            throw new \Exception('nao tem esse tipo ou voce nao tem autorizacao',5);
+        }
+       
+        $sql = sprintf(
+            $this->sqlUpdateImagem,
+            $campo,
+            '  %s '
+        );       
+        
+        if($tipoUsu == 'Prefeitura'){
+            if($tipo == 'perfil'){ // Se for perfil muda de todos os funcionarios
+                $inTipo = $this->gerarIn(array('Prefeitura','Funcionario'));            
+                $ids = $this->getCodUsuByTipoUsu($inTipo);
+            }else{// sE for capa muda so o dele
+                $ids = $this->gerarIn(array($this->getCodUsu()));
+            }                         
+            $sql = sprintf(
+                $sql,
+                $nomeImagem,
+                ' cod_usu '.$ids
+            );            
+        }else{ // Qualquer um 
+            $sql = sprintf(
+                $sql,
+                $nomeImagem,
+                ' cod_usu = '. $this->getCodUsu()
+            );
+        } 
+        $resultado = $this->runQuery($sql);
+        if($resultado->rowCount() <= 0 ){
+            throw new \Exception($erro,5);           
+        }        
+        return;       
     }
  }

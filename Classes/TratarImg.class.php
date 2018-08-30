@@ -3,8 +3,8 @@ namespace Classes;
 
 class TratarImg{
 
-    public function tratarImagem($dadosImagem, $pastaDestino){ // Mexer depois nessa funcao
-        //Fazer a parada da thumb 
+    public function tratarImagem($dadosImagem, $pastaDestino){ // Mexer depois nessa funcao       //Fazer a parada da thumb 
+        
         if($dadosImagem['size'] >= 5000000){
             throw new \Exception("Imagem muito pesada",10);  
         }               
