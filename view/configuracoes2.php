@@ -24,7 +24,6 @@
         <!-- JS-->
 
         <script src="lib/_jquery/jquery.js"></script>
-        <script src="lib/_jquery/jquery.mask177.min.js"></script>
         <script src="js/js.js"></script>
 
     </head>
@@ -106,9 +105,9 @@
                             </li>
                             <li>
                         </ul>
-                    </nav><a href="#" id="abrir-not"><i class="icone-notificacao"><span>99+</span></i>Notificações</a></li>
-                    <li><a href="todasreclamacoes.html"><i class="icone-reclamacao"></i>Reclamações</a></li>
-                    <li><a href="todosdebates.html"><i class="icone-debate"></i>Debates</a></li>
+                    </nav><a href="#" id="abrir-not"><i class="icone-notificacao"><span>99+</span id="quantidade_de_not"></i>Notificações</a></li>
+                    <li><a href="todasreclamacoes.php"><i class="icone-reclamacao"></i>Reclamações</a></li>
+                    <li><a href="todosdebates.php"><i class="icone-debate"></i>Debates</a></li>
                 </ul>
             </nav>
             <i class="icone-user" id="abrir"></i>
@@ -137,86 +136,50 @@
             </nav>
         </div>
 
+
         <div id="container">
-
-            
-            <form class="formulario">
-            <!--FORMULARIO ENVIO TITULO E TEMA-->
-                <div class="informacoes">
-                    <h3>Informações importantes</h3>
-                    <hr>
-                        <div class="campo-envio">
-                            <label for="titulo">Título<p></p></label>
-                            <input type="text" id="titulo" placeholder="ex. arvore caidar"  maxlength="20" autocomplete="off">
-                            <span></span>
-                
-                    </div>
-
-                    <div class="campo-envio">
-                            <label for="cep">CEP<p></p></label>
-                            <input type="text" id="cep" placeholder="00000-000"  maxlength="20" >
-                            <span></span>
-                        </div>
-
-                        <div class="campo-envio">
-                            <label for="local">local<p></p></label>
-                            <input type="text" id="local" placeholder="rua, Avenida..."  maxlength="20" autocomplete="off">
-                            <span></span>
-                        </div>
-
-                        <div class="campo-envio">
-                                <label for="bairro">Bairro<p></p></label>
-                                <input type="text" id="bairro" placeholder="Parque dos Churros"  maxlength="20" autocomplete="off">
-                                <span></span>
-                            </div>
-                </div>
-                        
-            <!--FORMULARIO ENVIO DA FOTO-->           
-                <div class="imagem">
-                            <h3>Escolha uma foto para a reclamação</h3>
-                            <hr>
-                        <div class="envio-img">
-                            
-                            <input type="file" name="imagem" id="imagem">
-                            <label for="imagem"><p><i class="icone-camera"></i>Escolha foto</p>
-                        
-                        <div>
-                            <img src="imagens/capa.png" id="imgPreview">
-                        </div>
-                    </label>
+            <section class="perfil-base">
+                <h3>Configurações da conta</h3>
+                <div class="perfil" id="config">
                     
-                </div>
-                <p></p>
-                </div>
-            <!-- FORMULARIO CATEGORIAS-->
-                <div class="categorias">
-                    <h3>Sobre o que vai reclamar?</h3>
-                    <hr>
-                    <p></p>
-                    <div>
                         <div>
-                            <input type="radio" name="categoria" id="categoria-1" value="categoria1">
-                            <label for="categoria-1"><i class="icone-mail"></i>categoria1</label>
+                                <span>usuário des de 15 de Dezembro de 2015</span>
+                                
+                                <div>
+                                    <img src="imagens/perfil.jpg">
+                                </div>
+                                                         
+                            </div>
                         </div>
-                        <div>   
-                            <input type="radio" name="categoria" id="categoria-2" value="categoria2">
-                            <label for="categoria-2"> <i class="icone-adm"></i>categoria2</label>
-                        </div>
-                        
-                    </div>
-                </div>
-            <!--FORMULARIO DESCRIÇÃO DO DEBATE--> 
-                <div class="campo-texto"> 
-                    <h3>sobre o que vai debater ?</h3>
-                    <hr>
-                    <textarea placeholder="escreva aqui" id="sobre"></textarea>
-                    <p></p>
-                    <input type="submit" value="iniciar debate">
-                </div>     
-            </form>
+               
+            </section>
+            <nav class="menu-perfil">
+                <ul class="espacos">
+                    <li><a href="configuracao.html">pessoais</a></li>
 
+            <li class="ativo"><a href="configuracoes2.html">Segurança</a></li>
+                </ul>
+            </nav>
+            <section class="form-config">
+                <form>
+                    <h3>Alterar senha</h3>
+                    <div class="campo-texto-config">
+                            <label for="passAtual">Senha atual</label>
+                            <input type="password" name="passAtual" id="passAtual" placeholder="senha atual" autocomplete ="off">
+                    </div>
+                    <div class="campo-texto-config">
+                            <label for="passNova">Nova senha</label>
+                            <input type="password" name="passNova" id="passNova" placeholder="Nova senha" autocomplete ="off">
+                    </div>
+                    <div class="campo-texto-config">
+                            <label for="passNovaRepete">Repita a nova senha</label>
+                            <input type="password" name="passNovaRepete" id="passNovaRepete" placeholder="Repita a nova senha" autocomplete ="off">
+                    </div>
+                        
+                    <button type="submit">Alterar</button>
+            </form>
+        </section>
 
         </div>
     </body>
 </html>
- 

@@ -1,3 +1,27 @@
+<?php
+session_start();
+    require_once('../Config/Config.php');
+    require_once(SITE_ROOT.DS.'autoload.php');
+    
+    use Core\Usuario;    
+    use Core\Debate;
+    use Classes\ValidarCampos;
+    try{        
+        $debate = new Debate();        
+
+        if(isset($_SESSION['id_user']) AND !empty($_SESSION['id_user'])){
+            $debate->setCodUsu($_SESSION['id_user']);            
+            $tipoUsu = $_SESSION['tipo_usu'];
+        }
+
+        $nomesCampos = array('ID');// Nomes dos campos que receberei da URL    
+        $validar = new ValidarCampos($nomesCampos, $_GET);
+        $validar->verificarTipoInt($nomesCampos, $_GET); // Verificar se o parametro da url é um numero        
+
+        $debate->setCodDeba($_GET['ID']);        
+        $resposta = $debate->listByIdDeba();   
+        
+?>
 <!DOCTYPE html>
 <html lang=pt-br>
     <head>
@@ -106,8 +130,8 @@
                             <li>
                         </ul>
                     </nav><a href="#" id="abrir-not"><i class="icone-notificacao"><span>99+</span></i>Notificações</a></li>
-                    <li><a href="#"><i class="icone-reclamacao"></i>Reclamações</a></li>
-                    <li><a href="#"><i class="icone-debate"></i>Debates</a></li>
+                    <li><a href="todasreclamacoes.php"><i class="icone-reclamacao"></i>Reclamações</a></li>
+                    <li><a href="todosdebates.php"><i class="icone-debate"></i>Debates</a></li>
                 </ul>
             </nav>
             <i class="icone-user" id="abrir"></i>
@@ -131,98 +155,73 @@
                     <hr>
                     <li><a href="#"><i class="icone-config"></i>Configurações</a></li>
                     <li><a href="#"><i class="icone-logout"></i>Log out</a></li>
+
                 </ul>
             </nav>
         </div>
 
         <div id="container">
+                <section class="pag-debate">
+                    <div class="debate">   
+                        <div class="publicacao-topo-aberta">
+                            <div>
+                                <img src="../Img/perfil/<?php echo $resposta[0]['img_perfil_usu']?>">
+                            </div>
+                            <p><span class="negrito"><?php echo $resposta[0]['nome_usu']?></span><time><?php echo $resposta[0]['dataHora_deba']?></time></p>
+                            <div class="mini-menu-item ">
+                                
+                            <i class="icone-3pontos"></i>
+                                <div>
+                                    <ul>
+                                        <li><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>
+                                        <li><a href="#"><i class="icone-fechar"></i></i>Remover</a></li>
+                                        <li><a href="#"><i class="icone-edit-full"></i></i>Alterar</a></li>
 
-            
-                <div class="filtro-admin">
-                    <i class="icone-filtro "></i>
-                    <form>
-                        <span>&times;</span>
-                        <h3>Tipo de Denuncia</h3>
-                        <div>
-                            <label class="container"> Comentários
-                                <input type="checkbox" checked="checked">
-                                <span class="checkmark"></span>
-                            </label>
-                                    
-                            <label class="container"> Debates 
-                                <input type="checkbox">
-                                <span class="checkmark"></span>
-                            </label>
-
-                            <label class="container"> Reclamações
-                                <input type="checkbox">
-                                <span class="checkmark"></span>
-                            </label>
-
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                        <input type="submit" class="botao-filtro" value="Filtrar">
-                    </form>
-                </div>
-            <div class="tabelinha-admin" >
-                    <table>
-                            <tr>
-                              <th><p>Denunciado</p></th>
-                              <th><p>Tipo</p></th>
-                              <th><p>Data</p></th>
-                            </tr>
-                            <tr>
-                              <td><p>Jão de Barru</p></td>
-                              <td><p>Reclamação</p></td>
-                              <td><p>20/06/2018</p></td>
-                            </tr>
-                            <tr>
-                              <td><p>Periclão</p></td>
-                              <td><p>Comentário</p></td>
-                              <td><p>20/06/2018</p></td>
-                            </tr>
-                            <tr>
-                              <td><p>Aldo Churros</p></td>
-                              <td><p>Reclamação</p></td>
-                              <td><p>19/06/2018</p></td>
-                            </tr>
-                            <tr>
-                              <td><p>Cebolinha</p></td>
-                              <td><p>Comentário</p></td>
-                              <td><p>19/06/2018</p></td>
-                            </tr>
-                            <tr>
-                              <td><p>Pai de Família</p></td>
-                              <td><p>Reclamação</p></td>
-                              <td><p>19/06/2018</p></td>
-                            </tr>
-                            <tr>
-                              <td><p>Jeredy</p></td>
-                              <td><p>Reclamação</p></td>
-                              <td><p>19/06/2018</p></td>
-                            </tr>
-                            <tr>
-                              <td><p>Alderto</p></td>
-                              <td><p>Comentário</p></td>
-                              <td><p>18/06/2018</p></td>
-                            </tr>
-                            <tr>
-                              <td><p>péricles do exalta samba</p></td>
-                              <td><p>Comentário</p></td>
-                              <td><p>18/06/2018</p></td>
-                            </tr>
-                            <tr>
-                              <td><p>jordam</p></td>
-                              <td><p>Reclamação</p></td>
-                              <td><p>17/06/2018</p></td>
-                            </tr>
-                            <tr>
-                              <td><p>pedro</p></td>
-                              <td><p>Comentário</p></td>
-                              <td><p>16/06/2018</p></td>
-                            </tr>
-                          </table>
-                    </div>      
+                        <div class="publicacao-conteudo-debate">
+                            <img src="../Img/debate/<?php echo $resposta[0]['img_deba']?>">
+                        </div>        
+                    </div>
+                    <div class="debate-publicacao">    
+                        <h3><?php echo $resposta[0]['nome_deba']?></h3>
+                        <div> 
+                            <p>
+<?php  echo nl2br($resposta[0]['descri_deba'])?>
+                            </p>
+                        </div>
+
+                        <div class="debate-status">
+                            <div>
+                               <i class="icone-grupo"></i><span><span class="negrito"><?php echo $resposta[0]['qtdParticipantes']?></span> participante(s)</span>
+                            </div>
+                            <div>
+                                <i class="icone-categoria-debate"></i><span><?php echo $resposta[0]['tema_deba']?></span>
+                            </div>
+                        </div>   
+                            <a href="#">Entrar no debate</a>
+                    </div>
+                    
+        
+                    </section>
+                    
         </div>
     </body>
 </html>
+<?php
 
+
+    }catch (Exception $exc){
+        $erro = $exc->getCode();   
+        $mensagem = $exc->getMessage();  
+        switch($erro){
+            case 9://Não foi possivel achar a publicacao  
+                echo "<script> alert('$mensagem');javascript:window.location='VisualizarDebatesTemplate.php';</script>";
+                break; 
+            default: //Qualquer outro erro cai aqui
+                echo "<script> alert('$mensagem');javascript:window.location='VisualizarDebatesTemplate.php';</script>";
+        }   
+    }  
+?>

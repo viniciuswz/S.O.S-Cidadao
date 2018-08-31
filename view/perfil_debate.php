@@ -106,8 +106,8 @@
                             <li>
                         </ul>
                     </nav><a href="#" id="abrir-not"><i class="icone-notificacao"><span>99+</span></i>Notificações</a></li>
-                    <li><a href="#"><i class="icone-reclamacao"></i>Reclamações</a></li>
-                    <li><a href="#"><i class="icone-debate"></i>Debates</a></li>
+                    <li><a href="todasreclamacoes.php"><i class="icone-reclamacao"></i>Reclamações</a></li>
+                    <li><a href="todosdebates.php"><i class="icone-debate"></i>Debates</a></li>
                 </ul>
             </nav>
             <i class="icone-user" id="abrir"></i>
@@ -123,7 +123,7 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="#"><i class="icone-user"></i>Meu perfil</a></li>
+                    <li><a href="perfil.html"><i class="icone-user"></i>Meu perfil</a></li>
                     <li><a href="#"><i class="icone-salvar"></i>Salvos</a></li>
                     <hr>
                     <li><a href="#"><i class="icone-adm"></i>Area de administrador</a></li>
@@ -136,42 +136,102 @@
             </nav>
         </div>
 
+
         <div id="container">
+            <section class="perfil-base">
+                <div class="perfil">
+                        <form>
+                                <label for="imagem"><i class="icone-edit-full"></i></label>
+                                <input type="file" id="imagem">
+                        </form>
+                    <img src="imagens/capa.png"> 
+                   
+                    <div>
+                        <p>Péricles Consagrado</p>
+                        <div>
+                            <img src="imagens/perfil.jpg">
+                        </div>
+                        <form>
+                            <label for="imagem"><i class="icone-edit-full" title="Alterar a foto de perfil"></i></label>
+                            <input type="file" id="imagem">
+                        </form>
+                       
+                        
+                    </div>
+                </div>
+               
+            </section>
+            <nav class="menu-perfil">
+                <ul class="espacos">
 
+                    <li class="ativo"><a href="#r">Reclamações</a></li>
 
-            <section class="tabelinha-admin" >
-                <table>
-                    <tr>
-                        <th>Titulo</th>
-                        <th>Categoria</th>
-                        <th>Usuario</th>
-                    </tr>
-                    <tr>
-                        <td><p>Demora no atendimento</p></td>
-                        <td><p>Saúde</p></td>
-                        <td><p>Jão de Barru</p></td>
-                    </tr>
-                    <tr>
-                        <td><p>Demora no atendimento</p></td>
-                        <td><p>Saúde</p></td>
-                        <td><p>Jão de Barru</p></td>
-                    </tr>
-                    <tr>
-                        <td><p>Demora no atendimento</p></td>
-                        <td><p>Saúde</p></td>
-                        <td><p>Jão de Barru</p></td>
-                    </tr>
-                    <tr>
-                        <td><p>Demora no atendimento</p></td>
-                        <td><p>Saúde</p></td>
-                        <td><p>Jão de Barru</p></td>
-                    </tr>
-                    <tr>
-                        <td><p>Demora no atendimento</p></td>
-                        <td><p>Saúde</p></td>
-                        <td><p>Jão de Barru</p></td>
-                    </tr>
-                </table>
-            </section>      
+                    <li><a href="#d">Debates</a></li>
+                    
+                </ul>
+            </nav>
+            <section class="alinha-item">
+
+                <div class="item-publicacao">
+                        <div class="item-topo">
+                            <a href="#">
+                            <div>
+                                <img src="imagens/perfil.jpg">
+                            </div>
+                            <p><span class="negrito">Pericles do Exalta Samba</a></span>Debate criado há <time>4 minutos</time></p>
+                            <div class="mini-menu-item">
+                                <i class="icone-3pontos"></i>
+                                <div>
+                                    <ul>
+                                        <li><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>
+                                        <li><a href="#"><i class="icone-fechar"></i></i>Remover</a></li>
+                                        <li><a href="#"><i class="icone-edit-full"></i></i>Alterar</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <figure>
+                                <img src="imagens/RECLAMATION.png">
+                            </figure>
+                            <div class="legenda">
+                                    <p>Como os cadeirantes vão subir? aaaa</p><p>10</p><i class="icone-grupo"></i>
+                            </div>
+                            
+                        </a>
+                </div>
+
+                <div class="item-publicacao">
+                    <div class="item-topo">
+                        <a href="#">
+                        <div>
+                            <img src="imagens/perfil.jpg">
+                        </div>
+                        <p><span class="negrito">Pericles do Exalta Samba</a></span>Debate criado há <time>4 minutos</time></p>
+                        <div class="mini-menu-item">
+                            <i class="icone-3pontos"></i>
+                            <div>
+                                <ul>
+                                    <li><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>
+                                    <li><a href="#"><i class="icone-fechar"></i></i>Remover</a></li>
+                                    <li><a href="#"><i class="icone-edit-full"></i></i>Alterar</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#">
+                        <figure>
+                            <img src="imagens/RECLAMATION.png">
+                        </figure>
+                        <div class="legenda">
+                                <p>Como os cadeirantes vão subir? aaaa</p><p>10</p><i class="icone-grupo"></i>
+                        </div>
+                        
+                    </a>
+                </div>
+
+            </section>
+                
         </div>
     </body>
+</html>

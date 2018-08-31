@@ -1,3 +1,13 @@
+<?php
+session_start();
+    require_once('../Config/Config.php');
+    require_once(SITE_ROOT.DS.'autoload.php');
+        
+    use Core\Usuario;
+    try{
+        $tipoUsuPermi = array('Comum');        
+        Usuario::verificarLogin(1,$tipoUsuPermi);  // 1 = tem q estar logado
+?>
 <!DOCTYPE html>
 <html lang=pt-br>
     <head>
@@ -107,8 +117,8 @@
                             <li>
                         </ul>
                     </nav><a href="#" id="abrir-not"><i class="icone-notificacao"><span>99+</span></i>Notificações</a></li>
-                    <li><a href="todasreclamacoes.html"><i class="icone-reclamacao"></i>Reclamações</a></li>
-                    <li><a href="todosdebates.html"><i class="icone-debate"></i>Debates</a></li>
+                    <li><a href="todasreclamacoes.php"><i class="icone-reclamacao"></i>Reclamações</a></li>
+                    <li><a href="todosdebates.php"><i class="icone-debate"></i>Debates</a></li>
                 </ul>
             </nav>
             <i class="icone-user" id="abrir"></i>
@@ -140,21 +150,21 @@
         <div id="container">
 
    
-            <form class="formulario" name="envio debate">
+            <form class="formulario" name="envio debate" method="post" action="../EnviarDebate.php" enctype="multipart/form-data">
                 <!--FORMULARIO ENVIO TITULO E TEMA-->
                 <div class="informacoes">
                     <h3>Informações importantes</h3>
                     <hr>
                         <div class="campo-envio">
                             <label for="titulo">Título<p></p></label>
-                            <input type="text" id="titulo" placeholder="fora temer"  maxlength="20" autocomplete="off">
+                            <input type="text" id="titulo" name="titulo" placeholder="fora temer"  maxlength="20" autocomplete="off">
                             <span></span>
                 
                     </div>
                         
                         <div class="campo-envio">
                             <label for="tema">Tema<p></p></label>
-                            <input type="text" id="tema" placeholder="algum tema ai"  maxlength="20" autocomplete="off">
+                            <input type="text" id="tema" name="tema" placeholder="algum tema ai"  maxlength="20" autocomplete="off">
                             <span></span>
                 
                         </div>
@@ -166,7 +176,7 @@
                         <hr>
                         <div class="envio-img">
                                             
-                            <input type="file" name="imagem" id="imagemDebateInput">
+                            <input type="file" name="imagem" id="imagemDebateInput" accept="image/png, image/jpeg">
                             <label for="imagemDebateInput"><p><i class="icone-camera"></i>Escolha foto</p>
                                 
                         <div>
@@ -184,7 +194,7 @@
                         <hr>
                     
                         
-                            <textarea placeholder="escreva aqui" id="sobre"></textarea>
+                            <textarea placeholder="escreva aqui" id="sobre" name="descricao"></textarea>
                                 <p></p>
                                 <input type="submit" value="iniciar debate">
                     
@@ -196,4 +206,17 @@
         </div>
     </body>
 </html>
- 
+<?php
+    }catch (Exception $exc){
+        $erro = $exc->getCode();   
+        $mensagem = $exc->getMessage();  
+        switch($erro){
+            case 2://Nao esta logado    
+                echo "<script> alert('$mensagem');javascript:window.location='./loginTemplate.php';</script>";
+                break;
+            case 6://Não é usuario comum                 
+                echo "<script> alert('$mensagem');javascript:window.location='./starter.php';</script>";
+                break;            
+        }        
+    }
+?>

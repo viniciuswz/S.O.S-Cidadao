@@ -106,8 +106,8 @@
                             <li>
                         </ul>
                     </nav><a href="#" id="abrir-not"><i class="icone-notificacao"><span>99+</span></i>Notificações</a></li>
-                    <li><a href="#"><i class="icone-reclamacao"></i>Reclamações</a></li>
-                    <li><a href="#"><i class="icone-debate"></i>Debates</a></li>
+                    <li><a href="todasreclamacoes.php"><i class="icone-reclamacao"></i>Reclamações</a></li>
+                    <li><a href="todosdebates.php"><i class="icone-debate"></i>Debates</a></li>
                 </ul>
             </nav>
             <i class="icone-user" id="abrir"></i>
@@ -131,103 +131,47 @@
                     <hr>
                     <li><a href="#"><i class="icone-config"></i>Configurações</a></li>
                     <li><a href="#"><i class="icone-logout"></i>Log out</a></li>
+
                 </ul>
             </nav>
         </div>
 
         <div id="container">
 
-            
-                <section class="filtro-admin">
-                    <!-- <div>
-                        <h3>você pesquisou por:</h3><p>Churroooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooos</p>
-                    </div> -->
-                    <i class="icone-filtro "></i>
-                    <form>
-                        <span>&times;</span>
-                        <h3>estou procurando:</h3>
-                        <div>
-                                    
-                            <label class="container"> Debates 
-                                <input type="checkbox">
-                                <span class="checkmark"></span>
-                            </label>
 
-                            <label class="container"> Reclamações
-                                <input type="checkbox">
-                                <span class="checkmark"></span>
-                            </label>
-
-                        </div>
-                        <input type="submit" class="botao-filtro" value="Filtrar">
-                    </form>
-                </section>
-                <section class="alinha-item">
-
-                        <div class="item-publicacao db">
-                                <div class="item-topo">
-                                    <a href="#">
-                                    <div>
-                                        <img src="imagens/perfil.jpg">
-                                    </div>
-                                    <p><span class="negrito">Pericles do Exalta Samba</a></span>Debate criado há <time>4 minutos</time></p>
-                                    <div class="mini-menu-item">
-                                        <i class="icone-3pontos"></i>
-                                        <div>
-                                            <ul>
-                                                <li><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>
-                                                <li><a href="#"><i class="icone-fechar"></i></i>Remover</a></li>
-                                                <li><a href="#"><i class="icone-edit-full"></i></i>Alterar</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="#">
-                                    <figure>
-                                        <img src="imagens/RECLAMATION.png">
-                                    </figure>
-                                    <div class="legenda">
-                                            <p>Como os cadeirantes vão subir? aaaa</p><p>10</p><i class="icone-grupo"></i>
-                                    </div>
-                                    
-                                </a>
-                        </div>
-        
-                        <div class="item-publicacao">
-                                <div class="item-topo">
-                                    <a href="#">
-                                    <div>
-                                        <img src="imagens/perfil.jpg">
-                                    </div>
-                                    <p><span class="negrito">Pericles do Exalta Samba</a></span><time>em 3 de dezembro de 2016</time></p>
-                                    <div class="mini-menu-item mini-menu-item-ativo">
-                                        <i class="icone-3pontos"></i>
-                                        <div>
-                                            <ul>
-                                                <li><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>
-                                                <li><a href="#"><i class="icone-fechar"></i></i>Remover</a></li>
-                                                <li><a href="#"><i class="icone-edit-full"></i></i>Alterar</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="#">
-                                    <figure>
-                                        <img src="imagens/RECLAMATION.png">
-                                    </figure>    
-                                    <p>Como os cadeirantes vão subir? aaaa</p>
-                                    </a>
-                                    <div class="item-baixo">   
-                                        <i class="icone-local"></i><p>engenho novo, rua bananaaaaaaaaaaaaaaaaaaaaaaa   </p>
-                                        <div>    
-                                            <span>6.000</span><i class="icone-like"></i>
-                                            <span>6.000</span><i class="icone-comentario"></i>
-                                        </div>
-                                    </div>
-                            </div>
-                    </section>
-                  
+            <section class="tabelinha-admin" >
+                <table>
+                    <tr>
+                        <th>Titulo</th>
+                        <th>Categoria</th>
+                        <th>Usuario</th>
+                    </tr>
+                    <tr>
+                        <td><p>Demora no atendimento</p></td>
+                        <td><p>Saúde</p></td>
+                        <td><p>Jão de Barru</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>Demora no atendimento</p></td>
+                        <td><p>Saúde</p></td>
+                        <td><p>Jão de Barru</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>Demora no atendimento</p></td>
+                        <td><p>Saúde</p></td>
+                        <td><p>Jão de Barru</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>Demora no atendimento</p></td>
+                        <td><p>Saúde</p></td>
+                        <td><p>Jão de Barru</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>Demora no atendimento</p></td>
+                        <td><p>Saúde</p></td>
+                        <td><p>Jão de Barru</p></td>
+                    </tr>
+                </table>
+            </section>      
         </div>
     </body>
-</html>
-

@@ -106,8 +106,8 @@
                             <li>
                         </ul>
                     </nav><a href="#" id="abrir-not"><i class="icone-notificacao"><span>99+</span></i>Notificações</a></li>
-                    <li><a href="#"><i class="icone-reclamacao"></i>Reclamações</a></li>
-                    <li><a href="#"><i class="icone-debate"></i>Debates</a></li>
+                    <li><a href="todasreclamacoes.php"><i class="icone-reclamacao"></i>Reclamações</a></li>
+                    <li><a href="todosdebates.php"><i class="icone-debate"></i>Debates</a></li>
                 </ul>
             </nav>
             <i class="icone-user" id="abrir"></i>
@@ -123,7 +123,7 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="#"><i class="icone-user"></i>Meu perfil</a></li>
+                    <li><a href="perfil.html"><i class="icone-user"></i>Meu perfil</a></li>
                     <li><a href="#"><i class="icone-salvar"></i>Salvos</a></li>
                     <hr>
                     <li><a href="#"><i class="icone-adm"></i>Area de administrador</a></li>
@@ -136,70 +136,46 @@
             </nav>
         </div>
 
-        <div id="container">
 
-            <div class="tabelinha-admin" >
-                    <table>
-                        <tr>
-                            <th>Usuário</th>
-                            <th>E-mail</th>
-                            <th>Data</th>
-                        </tr>
-                        <tr>
-                                <td colspan="3" class="cad-adm"><div>+</div><p>Cadastrar</p></td>
-                        </tr>    
-                        <tr>
-                            <td><p>Jão de Barru</p></td>
-                            <td><p>eunaoaguentomais@hotmail.com</p></td>
-                            <td><p>20/06/1991</p></td>
-                        </tr>
-                        <tr>
-                            <td><p>Periclão</p></td>
-                            <td><p>eunaoaguentomais@hotmail.com</p></td>
-                            <td><p>20/06/1991</p></td>
-                        </tr>
-                        <tr>
-                            <td><p>Aldo Churros</p></td>
-                            <td><p>eunaoaguentomais@hotmail.com</p></td>
-                            <td><p>20/06/1991</p></td>
-                        </tr>
-                        <tr>
-                            <td><p>Cebolinha</td>
-                            <td><p>eunaoaguentomais@hotmail.com</p></td>
-                            <td><p>20/06/1991</p></td>
-                        </tr>
-                        <tr>
-                            <td><p>Pai de Família</td>
-                            <td><p>eunaoaguentomais@hotmail.com</p></td>
-                            <td><p>20/06/1991</p></td>
-                        </tr>
-                        <tr>
-                            <td><p>Jeredy</td>
-                            <td><p>eunaoaguentomais@hotmail.com</p></td>
-                            <td><p>20/06/1991</p></td>
-                        </tr>
-                        <tr>
-                            <td><p>Alderto</td>
-                            <td><p>eunaoaguentomais@hotmail.com</p></td>
-                            <td><p>20/06/1991</p></td>
-                        </tr>
-                        <tr>
-                            <td><p>péricles do exalta samba</td>
-                            <td><p>eunaoaguentomais@hotmail.com</p></td>
-                            <td><p>20/06/1991</p></td>
-                        </tr>
-                        <tr>
-                            <td><p>jordam</td>
-                            <td><p>eunaoaguentomais@hotmail.com</p></td>
-                            <td><p>20/06/1991</p></td>
-                        </tr>
-                        <tr>
-                            <td><p>pedro</td>
-                            <td><p>eunaoaguentomais@hotmail.com</p></td>
-                            <td><p>20/06/1991</p></td>
-                        </tr>
-                    </table>
-            </div>      
+        <div id="container">
+                <section class="perfil-base">
+                        <h3>Configurações da conta</h3>
+                        <div class="perfil" id="config">
+                            
+                                <div>
+                                        <span>usuário des de 15 de Dezembro de 2015</span>
+                                        
+                                        <div>
+                                            <img src="imagens/perfil.jpg">
+                                        </div>
+                                    </div>
+                                </div>
+                       
+                    </section>
+            <nav class="menu-perfil">
+                <ul class="espacos">
+                    <li class="ativo"><a href="configuracao.html">pessoais</a></li>
+
+            <li><a href="configuracoes2.html">Segurança</a></li>
+
+                    
+                    
+                </ul>
+            </nav>
+            <section class="form-config">
+                <form>
+                    <div class="campo-texto-config">
+                            <label for="user">Nome</label>
+                            <input type="text" name="user" id="user" placeholder="Nome" autocomplete ="off">
+                        </div>
+                        <div class="campo-texto-config">
+                            <label for="email">E-mail</i></label>
+                            <input type="email" name="email" id="email" placeholder="E-mail">
+                    </div>
+                    <button type="submit">Alterar</button>
+            </form>
+        </section>
+
         </div>
     </body>
 </html>

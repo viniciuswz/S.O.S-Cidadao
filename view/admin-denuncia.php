@@ -1,3 +1,55 @@
+<?php
+session_start();
+    require_once('../Config/Config.php');
+    require_once(SITE_ROOT.DS.'autoload.php');
+    
+    use Classes\Denuncias;
+    use Core\Usuario;
+    
+    try{
+        
+        
+
+        $tipoUsuPermi = array('Moderador','Adm');
+        Usuario::verificarLogin(1,$tipoUsuPermi);  // Tem q estar logado 
+        $denun = new Denuncias();    
+        $tipos = array();
+        if(!isset($_GET['tipo']) AND empty($_GET['tipo'])){
+            $tipos[] = 'Comen';
+        }else{
+            $parametro = "";
+            $contador = 1;
+            foreach($_GET as $chaves => $valores){    
+                if($chaves == 'tipo'){
+                    foreach($valores as $chave => $valor){
+                        $tipos[] = $valor;
+                        if($contador < count($_GET)){
+                            $parametro .= 'tipo[]=';
+                            $parametro .= $valor.'&';
+                        }else{                            
+                            $parametro .= 'tipo[]=';
+                            $parametro .= $valor;
+                        }
+                        $parametro .= '&';
+                        $contador++;  
+                    }
+                }
+                
+            }
+        }
+        var_dump($tipos);
+        //$tipos = array('Publi','Debate','Comen');         
+        isset($_GET['pagina']) ?: $_GET['pagina'] = null;                      
+        $res = $denun->select($tipos,$_GET['pagina']);   
+        //var_dump($res);
+        $quantidadePaginas = $denun->getQuantidadePaginas();
+        $pagina = $denun->getPaginaAtual();
+        if(empty($res)){
+            echo 'Não há nenhuma denuncia para verificar<br>';
+        }
+        
+        
+?>
 <!DOCTYPE html>
 <html lang=pt-br>
     <head>
@@ -105,9 +157,9 @@
                             </li>
                             <li>
                         </ul>
-                    </nav><a href="#" id="abrir-not"><i class="icone-notificacao"><span>99+</span id="quantidade_de_not"></i>Notificações</a></li>
-                    <li><a href="todasreclamacoes.html"><i class="icone-reclamacao"></i>Reclamações</a></li>
-                    <li><a href="todosdebates.html"><i class="icone-debate"></i>Debates</a></li>
+                    </nav><a href="#" id="abrir-not"><i class="icone-notificacao"><span>99+</span></i>Notificações</a></li>
+                    <li><a href="todasreclamacoes.php"><i class="icone-reclamacao"></i>Reclamações</a></li>
+                    <li><a href="todosdebates.php"><i class="icone-debate"></i>Debates</a></li>
                 </ul>
             </nav>
             <i class="icone-user" id="abrir"></i>
@@ -123,7 +175,7 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="perfil.html"><i class="icone-user"></i>Meu perfil</a></li>
+                    <li><a href="#"><i class="icone-user"></i>Meu perfil</a></li>
                     <li><a href="#"><i class="icone-salvar"></i>Salvos</a></li>
                     <hr>
                     <li><a href="#"><i class="icone-adm"></i>Area de administrador</a></li>
@@ -131,55 +183,94 @@
                     <hr>
                     <li><a href="#"><i class="icone-config"></i>Configurações</a></li>
                     <li><a href="#"><i class="icone-logout"></i>Log out</a></li>
-
                 </ul>
             </nav>
         </div>
-
 
         <div id="container">
-            <section class="perfil-base">
-                <h3>Configurações da conta</h3>
-                <div class="perfil" id="config">
-                    
+
+            
+                <div class="filtro-admin">
+                    <i class="icone-filtro "></i>
+                    <form>
+                        <span>&times;</span>
+                        <h3>Tipo de Denuncia</h3>
                         <div>
-                                <span>usuário des de 15 de Dezembro de 2015</span>
-                                
-                                <div>
-                                    <img src="imagens/perfil.jpg">
-                                </div>
-                                                         
-                            </div>
+                            <label class="container"> Comentários
+                                <input type="checkbox" checked="checked" name="tipo[]" value="Comen">
+                                <span class="checkmark"></span>
+                            </label>
+                                    
+                            <label class="container"> Debates 
+                                <input type="checkbox" name="tipo[]" value="Debate">
+                                <span class="checkmark"></span>
+                            </label>
+
+                            <label class="container"> Reclamações
+                                <input type="checkbox" name="tipo[]" value="Publi">
+                                <span class="checkmark"></span>
+                            </label>
+
                         </div>
-               
-            </section>
-            <nav class="menu-perfil">
-                <ul class="espacos">
-                    <li><a href="configuracao.html">pessoais</a></li>
-
-            <li class="ativo"><a href="configuracoes2.html">Segurança</a></li>
-                </ul>
-            </nav>
-            <section class="form-config">
-                <form>
-                    <h3>Alterar senha</h3>
-                    <div class="campo-texto-config">
-                            <label for="passAtual">Senha atual</label>
-                            <input type="password" name="passAtual" id="passAtual" placeholder="senha atual" autocomplete ="off">
-                    </div>
-                    <div class="campo-texto-config">
-                            <label for="passNova">Nova senha</label>
-                            <input type="password" name="passNova" id="passNova" placeholder="Nova senha" autocomplete ="off">
-                    </div>
-                    <div class="campo-texto-config">
-                            <label for="passNovaRepete">Repita a nova senha</label>
-                            <input type="password" name="passNovaRepete" id="passNovaRepete" placeholder="Repita a nova senha" autocomplete ="off">
-                    </div>
-                        
-                    <button type="submit">Alterar</button>
-            </form>
-        </section>
-
+                        <input type="submit" class="botao-filtro" value="Filtrar">
+                    </form>
+                </div>
+            <div class="tabelinha-admin" >
+                    <table>
+                            <tr>
+                              <th><p>Denunciado</p></th>
+                              <th><p>Tipo</p></th>
+                              <th><p>Data</p></th>
+                            </tr>
+                            <?php
+                                $contador = 0;
+                                $contador2 = 0;
+                                while($contador < count($res)){
+                                    echo '<tr>';  
+                                        echo '<td>'.$res[$contador]['nome_denunciado'].'</td>';
+                                        echo '<td>'.$res[$contador]['Tipo'].'</td>';
+                                        echo '<td>'.$res[$contador]['dataHora'].'</td>';                        
+                                        //echo '<td>'.$res[$contador]['LinkApagarUsu'].'</td>'; 
+                                    echo '</tr>';
+                                    $contador++;
+                                    $contador2 = 0;
+                                }
+                            ?>
+                          </table>
+                    </div>      
         </div>
+        <?php
+            if($quantidadePaginas != 1){
+                $contador = 1;
+                while($contador <= $quantidadePaginas){
+                    if(isset($pagina) AND $pagina == $contador){
+                        echo '<li class="jaca"><a href="admin-denuncia.php?'.$parametro.'&pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;  
+                    }else{
+                        echo '<li><a href="admin-denuncia.php?'.$parametro.'&pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;
+                    }                    
+                    $contador++;        
+                }
+            }            
+        ?>
     </body>
 </html>
+<?php
+}catch (Exception $exc){
+    $erro = $exc->getCode();   
+    $mensagem = $exc->getMessage();  
+    switch($erro){
+        case 2://Nao esta logado    
+            echo "<script> alert('$mensagem');javascript:window.location='./loginTemplate.php';</script>";
+            break;
+        case 6://Não é usuario prefeitura ou func  
+            echo "<script> alert('$mensagem');javascript:window.location='./starter.php';</script>";
+            break; 
+        case 9://Não foi possivel achar a publicacao  
+            echo "<script> alert('$mensagem');javascript:window.location='VisualizarPublicacoesTemplate.php';</script>";
+            break; 
+        default: //Qualquer outro erro cai aqui
+            echo "<script> alert('$mensagem');javascript:window.location='VisualizarPublicacoesTemplate.php';</script>";
+    }   
+}
+
+?>

@@ -29,7 +29,7 @@
     </head>
     <body>
         <header>
-            <img src="imagens/logotop.png" alt="logo">
+            <img src="imagens/Ativo2.png" alt="logo">
             <form>
                 <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar">
                 <button type="submit"><i class="icone-pesquisa"></i></button>
@@ -105,9 +105,9 @@
                             </li>
                             <li>
                         </ul>
-                    </nav><a href="#" id="abrir-not"><i class="icone-notificacao"><span id="quantidade_de_not">99+</span></i>Notificações</a></li>
-                    <li><a href="todasreclamacoes.html"><i class="icone-reclamacao"></i>Reclamações</a></li>
-                    <li><a href="todosdebates.html"><i class="icone-debate"></i>Debates</a></li>
+                    </nav><a href="#" id="abrir-not"><i class="icone-notificacao"><span>99+</span></i>Notificações</a></li>
+                    <li><a href="todasreclamacoes.php"><i class="icone-reclamacao"></i>Reclamações</a></li>
+                    <li><a href="todosdebates.php"><i class="icone-debate"></i>Debates</a></li>
                 </ul>
             </nav>
             <i class="icone-user" id="abrir"></i>
@@ -138,10 +138,76 @@
 
 
         <div id="container">
-           
-            <!--ESCREVA AQUI DENTRO DESSA TAG NÃO ALTERE NADA POR FORA-->
-            <!--OBS: ISSO É UM COMENTARIO E NÃO UMA TAG-->
-asdasd
+            <div class="salvos">
+                <h4>Salvos</h4>
+            </div>
+            <section class="alinha-item">
+                    <div class="item-publicacao">
+                            <div class="item-topo">
+                                <a href="#">
+                                <div>
+                                    <img src="imagens/perfil.jpg">
+                                </div>
+                                <p><span class="negrito">Pericles do Exalta Samba</a></span><time>em 3 de dezembro de 2016</time></p>
+                                <div class="mini-menu-item mini-menu-item-ativo">
+                                    <i class="icone-3pontos"></i>
+                                    <div>
+                                        <ul>
+                                            <li><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>
+                                            <li><a href="#"><i class="icone-fechar"></i></i>Remover</a></li>
+                                            <li><a href="#"><i class="icone-edit-full"></i></i>Alterar</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#">
+                                <figure>
+                                    <img src="imagens/RECLAMATION.png">
+                                </figure>    
+                                <p>Como os cadeirantes vão subir? aaaa</p>
+                                </a>
+                                <div class="item-baixo">   
+                                    <i class="icone-local"></i><p>engenho novo, rua bananaaaaaaaaaaaaaaaaaaaaaaa   </p>
+                                    <div>    
+                                        <span>6.000</span><i class="icone-like"></i>
+                                        <span>6.000</span><i class="icone-comentario"></i>
+                                    </div>
+                                </div>
+                    </div>
+                    <div class="item-publicacao">
+                    <div class="item-topo">
+                        <a href="#">
+                        <div>
+                            <img src="imagens/perfil.jpg">
+                        </div>
+                        <p><span class="negrito">Pericles do Exalta Samba</a></span><time>em 3 de dezembro de 2016</time></p>
+                        <div class="mini-menu-item mini-menu-item-ativo">
+                            <i class="icone-3pontos"></i>
+                            <div>
+                                <ul>
+                                    <li><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>
+                                    <li><a href="#"><i class="icone-fechar"></i></i>Remover</a></li>
+                                    <li><a href="#"><i class="icone-edit-full"></i></i>Alterar</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#">
+                        <figure>
+                            <img src="imagens/RECLAMATION.png">
+                        </figure>    
+                        <p>Como os cadeirantes vão subir? aaaa</p>
+                        </a>
+                        <div class="item-baixo">   
+                            <i class="icone-local"></i><p>engenho novo, rua bananaaaaaaaaaaaaaaaaaaaaaaa   </p>
+                            <div>    
+                                <span>6.000</span><i class="icone-like"></i>
+                                <span>6.000</span><i class="icone-comentario"></i>
+                            </div>
+                        </div>
+                    </div>
+            </section>
+
         </div>
     </body>
 </html>

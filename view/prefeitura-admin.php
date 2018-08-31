@@ -1,3 +1,26 @@
+<?php
+session_start();
+    require_once('../Config/Config.php');
+    require_once(SITE_ROOT.DS.'autoload.php');   
+    use Core\Usuario;
+    
+    try{
+        
+        $tipoUsuPermi = array('Prefeitura');
+        Usuario::verificarLogin(1,$tipoUsuPermi);  // Tem q estar logado         
+        $usu = new Usuario();         
+        isset($_GET['pagina']) ?: $_GET['pagina'] = null;  
+        $res = $usu->getDadosUsuByTipoUsu(array('Funcionario'),$_GET['pagina']);
+        //var_dump($res);             
+        
+        $quantidadePaginas = $usu->getQuantidadePaginas();
+        $pagina = $usu->getPaginaAtual();
+        if(empty($res)){
+            echo 'Não há nenhuma denuncia para verificar<br>';
+        }
+       
+       
+?>
 <!DOCTYPE html>
 <html lang=pt-br>
     <head>
@@ -106,8 +129,8 @@
                             <li>
                         </ul>
                     </nav><a href="#" id="abrir-not"><i class="icone-notificacao"><span>99+</span></i>Notificações</a></li>
-                    <li><a href="todasreclamacoes.html"><i class="icone-reclamacao"></i>Reclamações</a></li>
-                    <li><a href="todosdebates.html"><i class="icone-debate"></i>Debates</a></li>
+                    <li><a href="todasreclamacoes.php"><i class="icone-reclamacao"></i>Reclamações</a></li>
+                    <li><a href="todosdebates.php"><i class="icone-debate"></i>Debates</a></li>
                 </ul>
             </nav>
             <i class="icone-user" id="abrir"></i>
@@ -123,7 +146,7 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="perfil.html"><i class="icone-user"></i>Meu perfil</a></li>
+                    <li><a href="#"><i class="icone-user"></i>Meu perfil</a></li>
                     <li><a href="#"><i class="icone-salvar"></i>Salvos</a></li>
                     <hr>
                     <li><a href="#"><i class="icone-adm"></i>Area de administrador</a></li>
@@ -136,46 +159,56 @@
             </nav>
         </div>
 
-
         <div id="container">
-                <section class="perfil-base">
-                        <h3>Configurações da conta</h3>
-                        <div class="perfil" id="config">
-                            
-                                <div>
-                                        <span>usuário des de 15 de Dezembro de 2015</span>
-                                        
-                                        <div>
-                                            <img src="imagens/perfil.jpg">
-                                        </div>
-                                    </div>
-                                </div>
-                       
-                    </section>
-            <nav class="menu-perfil">
-                <ul class="espacos">
-                    <li class="ativo"><a href="configuracao.html">pessoais</a></li>
 
-            <li><a href="configuracoes2.html">Segurança</a></li>
-
-                    
-                    
-                </ul>
-            </nav>
-            <section class="form-config">
-                <form>
-                    <div class="campo-texto-config">
-                            <label for="user">Nome</label>
-                            <input type="text" name="user" id="user" placeholder="Nome" autocomplete ="off">
-                        </div>
-                        <div class="campo-texto-config">
-                            <label for="email">E-mail</i></label>
-                            <input type="email" name="email" id="email" placeholder="E-mail">
-                    </div>
-                    <button type="submit">Alterar</button>
-            </form>
-        </section>
-
+            <div class="tabelinha-admin" >
+                    <table>
+                        <tr>
+                            <th>Usuário</th>
+                            <th>E-mail</th>
+                            <th>Data</th>
+                        </tr>
+                        <tr>
+                                <td colspan="3" class="cad-adm"><div>+</div><p>Cadastrar</p></td>
+                        </tr>
+                        <?php
+                        $contador = 0;
+                        $contador2 = 0;
+                        while($contador < count($res)){
+                            echo '<tr>';  
+                                echo '<td><p>'.$res[$contador]['nome_usu'].'</p></td>';                      
+                                echo '<td>'.$res[$contador]['email_usu'].'</td>'; 
+                                echo '<td><p>'.$res[$contador]['dataHora_cadastro_usu'].'</p></td>';                       
+                                //echo '<td<p> <a href="'.$res[$contador]['LinkApagarUsu'].'">Remover Funcao</p></td>'; 
+                            echo '</tr>';
+                            $contador++;
+                            $contador2 = 0;
+                            }
+                        ?>                        
+                    </table>
+            </div>      
         </div>
     </body>
 </html>
+
+<?php
+
+}catch (Exception $exc){
+    $erro = $exc->getCode();   
+    $mensagem = $exc->getMessage();  
+    switch($erro){
+        case 2://Nao esta logado    
+            echo "<script> alert('$mensagem');javascript:window.location='./loginTemplate.php';</script>";
+            break;
+        case 6://Não é usuario prefeitura ou func  
+            echo "<script> alert('$mensagem');javascript:window.location='./starter.php';</script>";
+            break; 
+        case 9://Não foi possivel achar a publicacao  
+            echo "<script> alert('$mensagem');javascript:window.location='VisualizarPublicacoesTemplate.php';</script>";
+            break; 
+        default: //Qualquer outro erro cai aqui
+            echo "<script> alert('$mensagem');javascript:window.location='VisualizarPublicacoesTemplate.php';</script>";
+    }   
+}
+
+?>

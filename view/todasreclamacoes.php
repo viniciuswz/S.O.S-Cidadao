@@ -1,3 +1,27 @@
+<?php
+session_start();
+    require_once('../Config/Config.php');
+    require_once(SITE_ROOT.DS.'autoload.php');
+    
+    use Core\Usuario;
+    use Core\Publicacao;
+    
+    try{
+        //Usuario::verificarLogin(1);  // Vai estourar um erro se ele ja estiver logado
+        $publi = new Publicacao();        
+        if(isset($_SESSION['id_user']) AND !empty($_SESSION['id_user'])){
+            $publi->setCodUsu($_SESSION['id_user']);
+        }    
+        isset($_GET['pagina']) ?: $_GET['pagina'] = null;    
+                   
+        $resposta = $publi->ListFromALL($_GET['pagina']);
+        
+        $quantidadePaginas = $publi->getQuantidadePaginas();
+        $pagina = $publi->getPaginaAtual();
+        
+        
+?>
+
 <!DOCTYPE html>
 <html lang=pt-br>
     <head>
@@ -106,8 +130,8 @@
                             <li>
                         </ul>
                     </nav><a href="#" id="abrir-not"><i class="icone-notificacao"><span>99+</span></i>Notificações</a></li>
-                    <li><a href="todasreclamacoes.html"><i class="icone-reclamacao"></i>Reclamações</a></li>
-                    <li><a href="todosdebates.html"><i class="icone-debate"></i>Debates</a></li>
+                    <li><a href="todasreclamacoes.php"><i class="icone-reclamacao"></i>Reclamações</a></li>
+                    <li><a href="todosdebates.php"><i class="icone-debate"></i>Debates</a></li>
                 </ul>
             </nav>
             <i class="icone-user" id="abrir"></i>
@@ -140,50 +164,24 @@
            
             <section class="criar-publicacao">
                 <div>
-                   <i class="icone-edit"></i><p>   Não encontrou um debate? </p>
-                    <a href="Formulario-debate.html">Criar Debate</a>
+                   <i class="icone-edit"></i><p>  Gostaria de fazer uma reclamação?</p>
+                    <a href="Formulario-reclamacao.php">Fazer Reclamação</a>
                 </div>
-            </section> 
-
+            </section>  
             <section class="alinha-item">
-
+            <?php
+                $contador = 0;
+                while($contador < count($resposta)){                
+            ?>  
                 <div class="item-publicacao">
-                        <div class="item-topo">
-                            <a href="#">
-                            <div>
-                                <img src="imagens/perfil.jpg">
-                            </div>
-                            <p><span class="negrito">Pericles do Exalta Samba</a></span>Debate criado há <time>4 minutos</time></p>
-                            <div class="mini-menu-item">
-                                <i class="icone-3pontos"></i>
-                                <div>
-                                    <ul>
-                                        <li><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>
-                                        <li><a href="#"><i class="icone-fechar"></i></i>Remover</a></li>
-                                        <li><a href="#"><i class="icone-edit-full"></i></i>Alterar</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <figure>
-                                <img src="imagens/RECLAMATION.png">
-                            </figure>
-                            <div class="legenda">
-                                    <p>Como os cadeirantes vão subir? aaaa</p><p>10</p><i class="icone-grupo"></i>
-                            </div>
-                            
-                        </a>
-                </div>
-
-                <div class="item-publicacao">
+                
                     <div class="item-topo">
                         <a href="#">
                         <div>
-                            <img src="imagens/perfil.jpg">
+                            <img src="../Img/perfil/<?php echo $resposta[$contador]['img_perfil_usu']?>">
                         </div>
-                        <p><span class="negrito">Pericles do Exalta Samba</a></span>Debate criado há <time>4 minutos</time></p>
-                        <div class="mini-menu-item">
+                        <p><span class="negrito"><?php echo $resposta[$contador]['nome_usu']?></a></span><time><?php echo $resposta[$contador]['dataHora_publi']?></time></p>
+                        <div class="mini-menu-item mini-menu-item-ativo">
                             <i class="icone-3pontos"></i>
                             <div>
                                 <ul>
@@ -194,20 +192,56 @@
                             </div>
                         </div>
                     </div>
-                    <a href="#">
+                    <a href="reclamacao.php?ID=<?php echo $resposta[$contador]['cod_publi'] ?>">
+                    <?php
+                        if(!empty($resposta[$contador]['img_publi'])){
+                    ?>  
                         <figure>
-                            <img src="imagens/RECLAMATION.png">
-                        </figure>
-                        <div class="legenda">
-                                <p>Como os cadeirantes vão subir? aaaa</p><p>10</p><i class="icone-grupo"></i>
+                            <img src="../Img/publicacao/<?php echo $resposta[$contador]['img_publi']?>">
+                        </figure> 
+                    <?php
+                        }
+                    ?>                        
+                        <p><?php echo $resposta[$contador]['titulo_publi']?></p>
+                        </a>
+                        <div class="item-baixo">   
+                            <i class="icone-local"></i><p><?php echo $resposta[$contador]['endereco_organizado_fechado']?></p>
+                            <div>    
+                                <span><?php echo $resposta[$contador]['quantidade_curtidas']?></span><i class="icone-like"></i>
+                                <span><?php echo $resposta[$contador]['quantidade_comen']?></span><i class="icone-comentario"></i>
+                            </div>
                         </div>
-                        
-                    </a>
-                </div>
-
+                          
+                </div>  
+                <?php                  
+                    $contador++;
+                    }
+                ?>                 
             </section>
-    
-
+            </div>
         </div>
+        <ul>
+        <?php
+            if($quantidadePaginas != 1){
+                $contador = 1;
+                while($contador <= $quantidadePaginas){
+                    if(isset($pagina) AND $pagina == $contador){
+                        echo '<li class="jaca"><a href="todasreclamacoes.php?pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;  
+                    }else{
+                        echo '<li><a href="todasreclamacoes.php?pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;
+                    }
+                    
+                    $contador++;        
+                }
+            }
+            
+        ?>
+        </ul>
     </body>
 </html>
+<?php
+}catch (Exception $exc){
+         
+}
+
+?>

@@ -1,3 +1,12 @@
+<?php
+session_start();    
+    require_once('../Config/Config.php');
+    require_once(SITE_ROOT.DS.'autoload.php');
+       
+    use Core\Usuario;
+    try{        
+        Usuario::verificarLogin(0); // Nao pode estar logado
+?>
 <!DOCTYPE html>
 <html lang=pt-br>
     <head>
@@ -27,10 +36,7 @@
         <script src="js/js.js"></script>
 
     </head>
-    <body>
-       
-
-        
+    <body>       
            <div class="form-icone">
                <section>
                    <div>
@@ -38,7 +44,7 @@
                    <p>conecte-se com a nossa comunidade e colabore</p>
                    </div>
                    
-                    <form action="">
+                    <form action="../Login.php" method="POST">
                         <h3>login</h3>
                         <div class="campo-texto-icone">
                             <label for="email"><i class="icone-mail"></i></label>
@@ -50,11 +56,20 @@
                         </div>
                         <button type="submit">login</button>
                     </form>
-               </section>
-                
-           </div>
-
-        
+               </section>                
+           </div>        
     </body>
 </html>
- 
+<?php
+    }catch (Exception $exc){
+        $erro = $exc->getCode();   
+        $mensagem = $exc->getMessage();
+        switch($erro){
+            case 2://Ja esta logado  
+            case 6://Ja esta logado 
+                echo "<script> alert('$mensagem');javascript:window.location='home.php';</script>";
+                break;
+           
+        }         
+    }
+?>
