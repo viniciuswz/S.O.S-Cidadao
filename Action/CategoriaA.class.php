@@ -11,29 +11,37 @@ class CategoriaA extends CategoriaM{
 
     public function gerarOptions($selecionadoPadrao = null){ //Gerar Options do select para a pagina publicaçoes
         $res = $this->select();
-        $option = '';
+        $input = '';
+        $label = '';
         $options = array();
+        $contador = 1;
         foreach($res as $chaves=>$valores){
-            $option = '<option ';
-            foreach($valores as $chave => $valor){
+            $input = '<input type="radio" name="categoria" ';
+            $id = 'categoria'.$contador;
+            $input .= 'id="'.$id.'"';
+            $label = '<label for='.$id.'> ';
+            foreach($valores as $chave => $valor){                
                 if($chave == 'cod_cate'){
-                $option .= 'value="'.$valor .'"';
+                    $input .= 'value="'.$valor .'"
+                    
+                    ';
                 }
                 if($chave == 'descri_cate'){
-                    $option .= 'class="'.$this->tirarAcentos($valor).'"';
-                    if($selecionadoPadrao == $valor){
-                        $option .= ' selected="selected" >'.$valor;
+                    $label .= '<i class="'.$this->tirarAcentos($valor).'" ></i>'.$valor.'</label> '; 
+                    if($selecionadoPadrao == $valor){                        
+                        $input .= ' checked >';
                     }else{
-                        $option .= ' >'.$valor;
-                    }
-                    
-                    $option .= ' </option>';
-                    
-                }
-                    
-            }
-            $options[] = $option;            
-        }
+                        $input .='>
+                        
+                        ';
+                        
+                    }                           
+                }   
+            }             
+            $options[] = $input; 
+            $options[] = $label;
+            $contador++;    
+        }        
         return $options;
 
     }

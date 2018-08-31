@@ -1,3 +1,16 @@
+<?php
+session_start();
+    require_once('../Config/Config.php');
+    require_once(SITE_ROOT.DS.'autoload.php');
+    
+    use Core\Usuario;
+    use Core\Categoria;
+    try{       
+        $tipoUsuPermi = array('Comum');
+        Usuario::verificarLogin(1,$tipoUsuPermi);
+        $cate = new Categoria();
+        $categorias = $cate->gerarOptions();         
+?>
 <!DOCTYPE html>
 <html lang=pt-br>
     <head>
@@ -107,8 +120,8 @@
                             <li>
                         </ul>
                     </nav><a href="#" id="abrir-not"><i class="icone-notificacao"><span>99+</span></i>Notificações</a></li>
-                    <li><a href="todasreclamacoes.html"><i class="icone-reclamacao"></i>Reclamações</a></li>
-                    <li><a href="todosdebates.html"><i class="icone-debate"></i>Debates</a></li>
+                    <li><a href="todasreclamacoes.php"><i class="icone-reclamacao"></i>Reclamações</a></li>
+                    <li><a href="todosdebates.php"><i class="icone-debate"></i>Debates</a></li>
                 </ul>
             </nav>
             <i class="icone-user" id="abrir"></i>
@@ -140,33 +153,33 @@
         <div id="container">
 
             
-            <form class="formulario">
+            <form class="formulario" action="../enviarPublicacao.php" method="POST" enctype="multipart/form-data">
             <!--FORMULARIO ENVIO TITULO E TEMA-->
                 <div class="informacoes">
                     <h3>Informações importantes</h3>
                     <hr>
                         <div class="campo-envio">
                             <label for="titulo">Título<p></p></label>
-                            <input type="text" id="titulo" placeholder="ex. arvore caidar"  maxlength="20" autocomplete="off">
+                            <input type="text" id="titulo" name="titulo" placeholder="ex. arvore caidar"  maxlength="20" autocomplete="off">
                             <span></span>
                 
                     </div>
 
                     <div class="campo-envio">
                             <label for="cep">CEP<p></p></label>
-                            <input type="text" id="cep" placeholder="00000-000"  maxlength="20" >
+                            <input type="text" id="cep" name="cep" placeholder="00000-000"  maxlength="20" >
                             <span></span>
                         </div>
 
                         <div class="campo-envio">
                             <label for="local">local<p></p></label>
-                            <input type="text" id="local" placeholder="rua, Avenida..."  maxlength="20" autocomplete="off">
+                            <input type="text" id="local"name="local" placeholder="rua, Avenida..."  maxlength="20" autocomplete="off">
                             <span></span>
                         </div>
 
                         <div class="campo-envio">
                                 <label for="bairro">Bairro<p></p></label>
-                                <input type="text" id="bairro" placeholder="Parque dos Churros"  maxlength="20" autocomplete="off">
+                                <input type="text" id="bairro" name="bairro" placeholder="Parque dos Churros"  maxlength="20" autocomplete="off">
                                 <span></span>
                             </div>
                 </div>
@@ -177,7 +190,7 @@
                             <hr>
                         <div class="envio-img">
                             
-                            <input type="file" name="imagem" id="imagem">
+                            <input type="file" name="imagem" id="imagem" accept="image/png, image/jpeg">
                             <label for="imagem"><p><i class="icone-camera"></i>Escolha foto</p>
                         
                         <div>
@@ -195,21 +208,19 @@
                     <p></p>
                     <div>
                         <div>
-                            <input type="radio" name="categoria" id="categoria-1" value="categoria1">
-                            <label for="categoria-1"><i class="icone-mail"></i>categoria1</label>
-                        </div>
-                        <div>   
-                            <input type="radio" name="categoria" id="categoria-2" value="categoria2">
-                            <label for="categoria-2"> <i class="icone-adm"></i>categoria2</label>
-                        </div>
-                        
+                            <?php
+                            foreach($categorias as $valor){
+                                echo $valor;
+                            }
+                            ?>
+                        </div>  
                     </div>
                 </div>
             <!--FORMULARIO DESCRIÇÃO DO DEBATE--> 
                 <div class="campo-texto"> 
                     <h3>sobre o que vai debater ?</h3>
                     <hr>
-                    <textarea placeholder="escreva aqui" id="sobre"></textarea>
+                    <textarea placeholder="escreva aqui" id="sobre" name="texto"></textarea>
                     <p></p>
                     <input type="submit" value="iniciar debate">
                 </div>     
@@ -219,4 +230,17 @@
         </div>
     </body>
 </html>
- 
+<?php
+    }catch (Exception $exc){
+        $erro = $exc->getCode();   
+        $mensagem = $exc->getMessage();
+        switch($erro){
+            case 2://Nao esta logado    
+                echo "<script> alert('$mensagem');javascript:window.location='login.php';</script>";
+                break;
+            case 6://Não é usuario comum  
+                echo "<script> alert('$mensagem');javascript:window.location='index.php';</script>";
+                break;            
+        }            
+    }
+?>

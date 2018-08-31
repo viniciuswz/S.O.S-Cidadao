@@ -328,9 +328,9 @@ desired effect
           <br>
         <?php
           if($resultado[0]['descri_tipo_usu'] == 'Comum'){
-            echo '<a href="EnviarPublicacaoTemplate.php">Enviar Publicacao</a>
+            echo '<a href="../view/Formulario-reclamacao.php">Enviar Publicacao(Certo)</a>
             <br>';
-            echo '<a href="CriarDebateTemplate.php">Criar Debate</a>
+            echo '<a href="../view/Formulario-debate.php">Criar Debate(Certo)</a>
             <br>';
           }
 
@@ -338,17 +338,17 @@ desired effect
             echo '<a href="VerPubliNRespondidasTemplate.php">Listar reclamaçoes nao respondidas</a>
             <br>';
             if($resultado[0]['descri_tipo_usu'] == 'Prefeitura'){
-              echo '<a href="VerFuncionariosTemplate.php">Cadastrar Funcionario</a>
+              echo '<a href="../view/prefeitura-admin.php">Cadastrar Funcionario</a>
                             <br>';              
             }
             
           }
 
           if($resultado[0]['descri_tipo_usu'] == 'Adm' or $resultado[0]['descri_tipo_usu'] == 'Moderador'){
-            echo '<a href="VerDenunciaNVerificadasTemplate.php?tipo1=Debate&tipo2=Comen&tipo3=Publi">Visualizar denuncias</a>
+            echo '<a href="../view/admin-denuncia.php">Visualizar denuncias(certo)</a>
             <br>';
             if($resultado[0]['descri_tipo_usu'] == 'Adm'){
-              echo '<a href="VerUsuariosTemplate.php?tipo1=Adm&tipo2=Moderador&tipo3=Prefeitura&tipo4=Funcionario">Cadastrar Moderador e Prefeitura</a>
+              echo '<a href="../view/admin-moderador.php">Cadastrar Moderador e Prefeitura(certo)</a>
                             <br>';
              
             }
@@ -356,9 +356,9 @@ desired effect
           }
         ?>
         
-        <a href="VisualizarPublicacoesTemplate.php">Ver publicações</a>
+        <a href="../view/todasreclamacoes.php">Ver publicações(Certo)</a>
           <br>
-        <a href="VisualizarDebatesTemplate.php">Ver Debates</a>
+        <a href="../view/todosdebates.php">Ver Debates(Certo)</a>
       <!-- Your Page Content Here -->
 
     </section>

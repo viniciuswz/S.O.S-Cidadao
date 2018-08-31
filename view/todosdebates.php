@@ -1,3 +1,25 @@
+<?php
+session_start();
+    require_once('../Config/Config.php');
+    require_once(SITE_ROOT.DS.'autoload.php');
+    
+    use Core\Usuario;    
+    use Core\Debate;    
+    try{
+
+        $debate = new Debate();
+        if(isset($_SESSION['id_user']) AND !empty($_SESSION['id_user'])){
+            $debate->setCodUsu($_SESSION['id_user']);
+        } 
+        isset($_GET['pagina']) ?: $_GET['pagina'] = null;        
+        
+        $resposta = $debate->ListFromALL($_GET['pagina']);       
+        $quantidadePaginas = $debate->getQuantidadePaginas();
+        $pagina = $debate->getPaginaAtual();
+        
+       
+        
+?>
 <!DOCTYPE html>
 <html lang=pt-br>
     <head>
@@ -106,8 +128,8 @@
                             <li>
                         </ul>
                     </nav><a href="#" id="abrir-not"><i class="icone-notificacao"><span>99+</span></i>Notificações</a></li>
-                    <li><a href="todasreclamacoes.html"><i class="icone-reclamacao"></i>Reclamações</a></li>
-                    <li><a href="todosdebates.html"><i class="icone-debate"></i>Debates</a></li>
+                    <li><a href="todasreclamacoes.php"><i class="icone-reclamacao"></i>Reclamações</a></li>
+                    <li><a href="todosdebates.php"><i class="icone-debate"></i>Debates</a></li>
                 </ul>
             </nav>
             <i class="icone-user" id="abrir"></i>
@@ -141,19 +163,22 @@
             <section class="criar-publicacao">
                 <div>
                    <i class="icone-edit"></i><p>   Não encontrou um debate? </p>
-                    <a href="Formulario-debate.html">Criar Debate</a>
+                    <a href="Formulario-debate.php">Criar Debate</a>
                 </div>
             </section> 
 
             <section class="alinha-item">
-
+            <?php
+                $contador = 0;
+                while($contador < count($resposta)){                
+            ?>  
                 <div class="item-publicacao">
                         <div class="item-topo">
                             <a href="#">
                             <div>
-                                <img src="imagens/perfil.jpg">
+                                <img src="../Img/perfil/<?php echo $resposta[$contador]['img_perfil_usu']?>">
                             </div>
-                            <p><span class="negrito">Pericles do Exalta Samba</a></span>Debate criado há <time>4 minutos</time></p>
+                            <p><span class="negrito"><?php echo $resposta[$contador]['nome_usu']?></a></span><time><?php echo $resposta[$contador]['dataHora_deba']?></time></p>
                             <div class="mini-menu-item">
                                 <i class="icone-3pontos"></i>
                                 <div>
@@ -165,49 +190,46 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="Pagina-debate.php?ID=<?php echo $resposta[$contador]['cod_deba'] ?>">
                             <figure>
-                                <img src="imagens/RECLAMATION.png">
+                                <img src="../Img/debate/<?php echo $resposta[$contador]['img_deba']?>">
                             </figure>
                             <div class="legenda">
-                                    <p>Como os cadeirantes vão subir? aaaa</p><p>10</p><i class="icone-grupo"></i>
+                                    <p><?php echo $resposta[$contador]['nome_deba']?></p><p><?php echo $resposta[$contador]['qtdParticipantes']?></p><i class="icone-grupo"></i>
                             </div>
                             
                         </a>
                 </div>
-
-                <div class="item-publicacao">
-                    <div class="item-topo">
-                        <a href="#">
-                        <div>
-                            <img src="imagens/perfil.jpg">
-                        </div>
-                        <p><span class="negrito">Pericles do Exalta Samba</a></span>Debate criado há <time>4 minutos</time></p>
-                        <div class="mini-menu-item">
-                            <i class="icone-3pontos"></i>
-                            <div>
-                                <ul>
-                                    <li><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>
-                                    <li><a href="#"><i class="icone-fechar"></i></i>Remover</a></li>
-                                    <li><a href="#"><i class="icone-edit-full"></i></i>Alterar</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="#">
-                        <figure>
-                            <img src="imagens/RECLAMATION.png">
-                        </figure>
-                        <div class="legenda">
-                                <p>Como os cadeirantes vão subir? aaaa</p><p>10</p><i class="icone-grupo"></i>
-                        </div>
-                        
-                    </a>
-                </div>
-
+                <?php  
+                    $contador++;
+                    }
+                ?>   
             </section>
     
 
         </div>
+        <ul>
+        <?php
+            if($quantidadePaginas != 1){
+                $contador = 1;
+                while($contador <= $quantidadePaginas){
+                    if(isset($pagina) AND $pagina == $contador){
+                        echo '<li class="jaca"><a href="todosdebates.php?pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;  
+                    }else{
+                        echo '<li><a href="todosdebates.php?pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;
+                    }
+                    
+                    $contador++;        
+                }
+            }
+            
+        ?>
+        </ul>
     </body>
 </html>
+<?php
+}catch (Exception $exc){
+         
+}
+
+?>

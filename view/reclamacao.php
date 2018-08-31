@@ -1,3 +1,48 @@
+<?php
+session_start();
+    require_once('../Config/Config.php');
+    require_once(SITE_ROOT.DS.'autoload.php');
+    
+    use Core\Usuario;
+    use Core\Publicacao;
+    use Core\Comentario;
+    use Core\PublicacaoSalva;
+    use Classes\ValidarCampos;
+    try{        
+        $publi = new Publicacao();
+        $comentario = new Comentario();
+       
+        if(isset($_SESSION['id_user']) AND !empty($_SESSION['id_user'])){
+            $publi->setCodUsu($_SESSION['id_user']);
+            $comentario->setCodUsu($_SESSION['id_user']);
+            
+            $publiSalva = new PublicacaoSalva();
+            $publiSalva->setCodUsu($_SESSION['id_user']);
+            $publiSalva->setCodPubli($_GET['ID']);  
+            $indSalva = $publiSalva->indSalva();
+
+            $tipoUsu = $_SESSION['tipo_usu'];            
+        }
+
+        $nomesCampos = array('ID');// Nomes dos campos que receberei da URL    
+        $validar = new ValidarCampos($nomesCampos, $_GET);
+        $validar->verificarTipoInt($nomesCampos, $_GET); // Verificar se o parametro da url é um numero
+        
+        $publi->setCodPubli($_GET['ID']);
+        $comentario->setCodPubli($_GET['ID']);   
+          
+        
+        isset($_GET['pagina']) ?: $_GET['pagina'] = null;
+                  
+        $comentarioComum = $comentario->SelecionarComentariosUserComum($_GET['pagina']);
+        
+        $resposta = $publi->listByIdPubli();   
+        $comentarioPrefei = $comentario->SelecionarComentariosUserPrefei();
+
+        $quantidadePaginas = $comentario->getQuantidadePaginas();
+        $pagina = $comentario->getPaginaAtual();        
+?>
+
 <!DOCTYPE html>
 <html lang=pt-br>
     <head>
@@ -106,8 +151,8 @@
                             <li>
                         </ul>
                     </nav><a href="#" id="abrir-not"><i class="icone-notificacao"><span>99+</span></i>Notificações</a></li>
-                    <li><a href="#"><i class="icone-reclamacao"></i>Reclamações</a></li>
-                    <li><a href="#"><i class="icone-debate"></i>Debates</a></li>
+                    <li><a href="todasreclamacoes.php"><i class="icone-reclamacao"></i>Reclamações</a></li>
+                    <li><a href="todosdebates.php"><i class="icone-debate"></i>Debates</a></li>
                 </ul>
             </nav>
             <i class="icone-user" id="abrir"></i>
@@ -141,9 +186,9 @@
                 <div class="Reclamacao">   
                         <div class="publicacao-topo-aberta">
                                 <div>
-                                    <img src="imagens/perfil.jpg">
+                                    <img src="../Img/perfil/<?php echo $resposta[0]['img_perfil_usu']?>">
                                 </div>
-                                <p><span class="negrito">Périclessssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</span>Em Maio as <time>13 horas</time></p>
+                                <p><span class="negrito"><?php echo $resposta[0]['nome_usu']?></span><time><?php echo $resposta[0]['dataHora_publi']?></time></p>
                                 <div class="mini-menu-item ">
                                     
                                     <i class="icone-3pontos"></i>
@@ -158,102 +203,105 @@
                                 </div>
                         </div>
                         <div class="publicacao-conteudo">
-                            <h2>Falta de rampa de acesso! nesse caralho de rua puta quepariu</h2>
-                            <h5>acessbilidade</h5>
+                            <h2><?php echo $resposta[0]['titulo_publi']?></h2>
+                            <h5><?php echo $resposta[0]['descri_cate']?></h5>
 
                             <div>
                                 <p>
-Dia 25 estava passando em Barueri quando me deparei com a situaçao da imagem s seguir, 
-o pessoal tem que ser muito muito muito muito muito muito muito muito muito muito muito 
-muito muito muito muito muito muito muito muito muito muito muito muito estacionamento) 
-e o final dela, sendo que no final não tinha nenhum trânsito e tinha um agente de trânsito 
-parado lá de carro sem fazer nada, era só ele bloquear o trânsito da avenida por 2 minutos, 
-que todos os carros da Rio Negro iriam andar e ela ficaria vazia... Isso consequentemente 
-atrapalha o trânsito de Alphaville.muito muito muito muito muito muito muito muito muito 
-muito burro para fazer isso muito muito muito muito muito muito muito muito muito muito
-Dia 25 estava passando em Barueri quando me deparei com a situaçao da imagem s seguir, 
-o pessoal tem que ser muito muito muito muito muito muito muito muito muito muito muito 
-muito muito muito muito muito muito muito muito muito muito muito muito estacionamento) 
-e o final dela, sendo que no final não tinha nenhum trânsito e tinha um agente de trânsito 
-parado lá de carro sem fazer nada, era só ele bloquear o trânsito da avenida por 2 minutos, 
-que todos os carros da Rio Negro iriam andar e ela ficaria vazia... Isso consequentemente 
-atrapalha o trânsito de Alphaville.muito muito muito muito muito muito muito muito muito 
-muito burro para fazer isso muito muito muito muito muito muito muito muito muito muito
-Dia 25 estava passando em Barueri quando me deparei com a situaçao da imagem s seguir, 
-o pessoal tem que ser muito muito muito muito muito muito muito muito muito muito muito 
-muito muito muito muito muito muito muito muito muito muito muito muito estacionamento) 
-e o final dela, sendo que no final não tinha nenhum trânsito e tinha um agente de trânsito 
-parado lá de carro sem fazer nada, era só ele bloquear o trânsito da avenida por 2 minutos, 
-que todos os carros da Rio Negro iriam andar e ela ficaria vazia... Isso consequentemente 
-atrapalha o trânsito de Alphaville.muito muito muito muito muito muito muito muito muito 
-muito burro para fazer isso muito muito muito muito muito muito muito muito muito muito
-                                    </p>
+<?php  echo nl2br($resposta[0]['texto_publi'])?>
+                                </p>
                             </div>
                         </div>        
                 </div>
             <div class="img-publicacao">
                 
                 <figure>
-                    <img src="imagens/RECLAMATION.png">
+                    <img src="../Img/publicacao/<?php echo $resposta[0]['img_publi']?>">
                 </figure>
                                     
                 <div class="item-baixo-publicacao">   
-                    <i class="icone-local"></i><p>Engenho Novoooooooooooooooooooooooooo, Rua dos Churros, CEP 00000-000</p>
+                    <i class="icone-local"></i><p><?php echo $resposta[0]['endereco_organizado_aberto']?></p>
                 </div>         
 
             </div> 
 
             </section> 
+
+            <?php         
+                if(!empty($comentarioPrefei)){                
+            ?>
             <section class="prefeitura-publicacao">
                 <div class="topo-prefeitura-publicacao">
                     <div>
-                        <img src="imagens/perfil.jpg">
+                        <img src="../Img/perfil/<?php echo $comentarioPrefei[0]['img_perfil_usu']?>">
                     </div>
-                    <p><span class="negrito">Périturaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>  Em Maio as <time>13 horassssssssssssssss</time></p>  
+                    <p><span class="negrito"><?php echo $comentarioPrefei[0]['nome_usu']?></span><time><?php echo $comentarioPrefei[0]['dataHora_comen']?></time></p>  
                 </div> 
                 <div class="conteudo-resposta">
                     <span>
-Boa tarde!
-
-Sua demanda será encaminhada e receberá um número de protocolo
-em seu e-mail, para acompanhar acesse www.barueri.sp.gov.br, 
-colocar o seu e-mail e o número do protocolo. Em caso de dúvidas 
-entrar em contato com 0000 0000 000
-
-Dir.Adm
+<?php echo nl2br($comentarioPrefei[0]['texto_comen'])?>
                     </span>
                 </div>
-
+            
             </section>
+            <?php
+                }
+            ?>
             <div class="barra-curtir-publicacao"> 
                     <div>
-                        <span>4</span><i class="icone-comentario-full"></i>
-                        <span>4</span><i class="icone-like"></i>
+                        <span><?php echo $resposta[0]['quantidade_curtidas']?></span><i class="icone-comentario-full"></i>
+                        <span><?php echo $resposta[0]['quantidade_comen']?></span><i class="icone-like"></i>
                     </div>
                     <a href="#"> 
                         <i class="icone-like"></i> Like
                     </a>
                 
-            </div> 
+            </div>
+            <?php
+                if(isset($tipoUsu) AND ($tipoUsu == 'Funcionario' or $tipoUsu == 'Prefeitura')){
+                    if(empty($comentarioPrefei)){
+            ?>
+                        <section class="enviar-comentario-publicacao">
+                            <h3>
+                                Envie um comentario
+                            </h3>
+                            <form action="../Comentario.php" method="post">
+                                <textarea placeholder="Escreva um comentário" name="texto"></textarea>
+                                <input type="hidden" value="<?php echo $_GET['ID']?>" name="id">
+                                <input type="submit" value="Enviar Comentário">
+                            </form>  
+                        </section>
+            <?php
+                    }
+            }else if(isset($tipoUsu) AND ($tipoUsu == 'Comum')){  
+            ?>
             <section class="enviar-comentario-publicacao">
                 <h3>
                     Envie um comentario
                 </h3>
-                <form>
-                    <textarea placeholder="Escreva um comentário"></textarea>
+                <form action="../Comentario.php" method="post">
+                    <textarea placeholder="Escreva um comentário" name="texto"></textarea>
+                    <input type="hidden" value="<?php echo $_GET['ID']?>" name="id">
                     <input type="submit" value="Enviar Comentário">
                 </form>  
             </section>
+            <?php
+            }
+            ?>
             <section class="comentarios">
                 <h3>
                     comentarios
                 </h3>
+                <?php 
+                    $contador = 0;
+                    while($contador < count($comentarioComum)){
+                ?>   
                 <div class="comentario-user">
                     <div class="publicacao-topo-aberta">
                         <div>
-                            <img src="imagens/perfil.jpg">
+                            <img src="../Img/perfil/<?php echo $comentarioComum[$contador]['img_perfil_usu']?>">
                         </div>
-                        <p><span class="negrito">Périclessssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</span>Em Maio as 13 horas</p>
+                        <p><span class="negrito"><?php echo $comentarioComum[$contador]['nome_usu']?></span><?php echo $comentarioComum[$contador]['dataHora_comen']?></p>
                         <div class="mini-menu-item ">
                             <i class="icone-3pontos"></i>
                             <div>
@@ -267,35 +315,42 @@ Dir.Adm
                         </div>
                     </div>  
                     <p>
-                        QUEROCAFÈEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+                    <?php echo nl2br($comentarioComum[$contador]['texto_comen'])?>
                     </p>                
                 </div>
-                <div class="comentario-user">
-                        <div class="publicacao-topo-aberta">
-                            <div>
-                                <img src="imagens/perfil.jpg">
-                            </div>
-                            <p><span class="negrito">Périclessssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</span>Em Maio as 13 horas</p>
-                            <div class="mini-menu-item ">
-                                <i class="icone-3pontos"></i>
-                                <div>
-                                    <ul>
-                                        <li><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>
-                                        <li><a href="#"><i class="icone-fechar"></i></i>Remover</a></li>
-                                        <li><a href="#"><i class="icone-edit-full"></i></i>Alterar</a></li>
-                                        
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>  
-                        <p>
-                            QUEROCAFÈEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-                        </p>                
-                    </div>
-                
-            </section>        
-                    
-                           
+                <?php
+                    $contador++;
+                }
+                ?>
+                <ul>
+                <?php
+                    if($quantidadePaginas != 1){
+                        $contador = 1;
+                        while($contador <= $quantidadePaginas){
+                            if(isset($pagina) AND $pagina == $contador){
+                                echo '<li class="jaca"><a href="reclamacao.php?ID='.$_GET['ID'].'&pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;  
+                            }else{
+                                echo '<li><a href="reclamacao.php?ID='.$_GET['ID'].'&pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;
+                            }                            
+                            $contador++;        
+                        }
+                    }            
+                ?>
+                </ul>                
+            </section>                              
         </div>
     </body>
 </html>
+<?php
+}catch (Exception $exc){
+        $erro = $exc->getCode();   
+        $mensagem = $exc->getMessage();  
+        switch($erro){
+            case 9://Não foi possivel achar a publicacao  
+                echo "<script> alert('$mensagem');javascript:window.location='VisualizarPublicacoesTemplate.php';</script>";
+                break; 
+            default: //Qualquer outro erro cai aqui
+                echo "<script> alert('$mensagem');javascript:window.location='VisualizarPublicacoesTemplate.php';</script>";
+        }   
+    }  
+?>
