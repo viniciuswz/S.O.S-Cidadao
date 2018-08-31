@@ -1,14 +1,8 @@
 <?php
-session_start();
-    $NomeArquivo = dirname(__FILE__);
-    $posicao = strripos($NomeArquivo, "\Templates");
-    if($posicao){
-        $NomeArquivo = substr($NomeArquivo, 0, $posicao);
-    }
-    define ('WWW_ROOT', $NomeArquivo); 
-    define ('DS', DIRECTORY_SEPARATOR);    
-    require_once('../autoload.php');
-    
+session_start();    
+    require_once('../Config/Config.php');
+    require_once(SITE_ROOT.DS.'autoload.php');
+       
     use Core\Usuario;
     try{        
         Usuario::verificarLogin(0); // Nao pode estar logado

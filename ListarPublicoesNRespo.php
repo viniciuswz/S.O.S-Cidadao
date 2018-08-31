@@ -1,8 +1,6 @@
 <?php
-define ('WWW_ROOT', dirname(__FILE__)); 
-define ('DS', DIRECTORY_SEPARATOR); 
-
-require_once(WWW_ROOT.DS.'autoload.php');
+require_once(c'onfig/Config.php');
+require_once(SITE_ROOT.DS.'autoload.php');
 use Core\Publicacao;
 use Core\Usuario;
 use Classes\ValidarCampos;
