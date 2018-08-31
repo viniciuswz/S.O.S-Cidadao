@@ -1,0 +1,311 @@
+
+header{
+    display: flex;
+
+   
+    height: 80px;
+}
+header img{
+    height: 80px;
+}
+header form{
+    margin:0 1vw;
+}
+
+header form input[type=text]{
+width:20vw ;
+min-width: 129px;
+outline: white;
+height: 35px;
+border:0;
+}
+
+header form input:focus{
+border: 3px solid pink;
+border-right: 0;
+}
+
+header input:focus + button{
+    border: 3px solid pink;
+    border-left: 0;
+    height: 35px;
+    width: 28px;
+}
+
+header form button{
+    border: 0;
+    height: 35px;
+    width: 35px;
+    outline: none;
+    cursor: pointer;
+}
+
+header form button i.icone-pesquisa{
+    height: 28px;
+    width: 28px;
+    background-size: 950px;
+    background-position: -123.9px -2px ;
+}
+header i.icone-user{
+margin:0 15px;
+width: 35px;
+height: 35px;
+background-size: 1060px;
+
+}
+nav.menu{
+display: flex;
+right: calc(20vw - 100px);
+height: 80px;
+}
+nav.menu > ul{
+    display: flex;
+    align-items: center;
+    height: 80px;
+    
+}
+
+nav.menu > ul > li > a > i{
+   top:8px;
+   margin: 0 auto; 
+   height: 25px;
+   width: 25px;
+   background-size: 880px;
+}
+
+nav.menu > ul li > a > i.icone-reclamacao{
+background-position: -30px -1.6px;
+}
+
+
+nav.menu ul li a i.icone-notificacao{
+    background-position: -59px -1.6px;
+}
+
+nav.menu ul li a i.icone-debate{
+    background-position: -87.51px -1.6px;
+}
+
+nav.menu > ul > li > a > i > span{
+
+    margin: -7px 14px 0px -5px;
+}
+
+
+nav.menu > ul > li > a{
+display: block;
+line-height: 80px;
+font-size: .89em;
+
+padding: 0 5px;
+height: 80px;
+}
+
+nav.menu > ul > li > a:hover i{
+    background-position-y: -30.1px;
+}
+
+.user-menu .fechar{    
+    color: aliceblue;
+    font-size: 50px;
+    font-weight: bold;
+    position: absolute;
+    left:calc(480px - 80px);
+    z-index: 2;
+}
+
+
+/*Notificacoes*/
+
+.notificacoes{
+    top: 80px;
+ 
+}
+.notificacoes.ativo{
+    height: 50vh;
+}
+
+/*NÃO ALTERAR NADA DAQUI PARA CIMA*/
+
+
+.perfil{
+    height: 350px;
+    justify-content: flex-end;
+    position: relative;
+}
+
+.perfil > img{
+    height: 56.23vw;
+    max-height: 774px;
+}
+
+
+.perfil > div{
+    margin-top: 190px;
+    padding-right: 10px;
+    align-items: center;
+    bottom: 3px
+}
+
+.perfil div div{
+    height: 150px;
+    width: 150px;
+    border: 6px solid white;
+}
+
+.perfil div div img{
+    height: 135%;
+}
+
+
+.perfil-base .perfil  p{
+   
+    color: aliceblue;
+    margin-right: 10px;
+    font-size: 1.8rem;
+    text-shadow: 0px 0px 10px black
+}
+
+.perfil-base div div span{
+
+    font-size: 1.1rem;
+    text-shadow: 0px 0px 30px black
+}
+
+.perfil-base h3{
+    position: absolute;
+    left: 0;
+    color: aliceblue;
+    font-size: 29px;
+    margin: 30px 0px 0px 30px
+    }
+
+/*pag todos debates*/
+
+
+.item-publicacao{
+    width: 340px;
+   
+}
+
+.alinha-item{
+   
+    width: 95%;
+
+}
+
+/*pag todas reclamacoes*/
+
+
+.formulario{
+
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: space-between; 
+    }
+
+
+.form-icone form{
+    margin-right: 70px;
+}    
+.form-icone section > div{
+
+    margin-right:300px;
+    margin-bottom :200px;
+}
+
+.form-icone section p{
+font-size: 18px;
+
+width: 320px
+  
+}
+
+/*DEBATES*/
+
+.usuarios-debate-info{
+    position: absolute;
+    right: 0;
+    max-width: 312px;
+    width: 0;
+    z-index: 96;
+   
+}
+
+.batepapo{
+    width: 70%;
+
+}
+
+.contatos{
+    width: 100%;
+    background-color: white;
+    overflow: hidden;
+    order: 2;
+    max-width: 312px;
+}
+
+.contatos nav{
+    height: calc(100vh - 80px);
+}
+
+.mensagens{
+    height: calc(100vh - 140px);
+}
+
+
+.batepapo header div:first-child{
+    width: 55px;
+    height: 55px;
+}
+
+
+.mensagem_padrao {  /*POR CAUSA DO NOME TA BUGANDO*/
+    max-width: 35vw;
+}
+
+.linha-mensagem_usuario div {
+    max-width: 35vw;
+}  
+.linha-mensagem_sistema div {
+    max-width: 40%; 
+}
+
+#abrir-contatos{
+    display: none;
+
+}
+
+.item-baixo .icone-local{
+   background-size: 1200px;
+   background-position: -310px -1.6px;
+}
+
+
+
+/*pag admin*/
+
+/*filtro*/
+
+
+
+
+/*tabela admin*/
+
+.tabelinha-admin table td p {
+    width: 200px;
+}
+
+.img-publicacao figure{
+    width: 100%;
+    height: 300px;
+}
+
+.img-publicacao{
+    width: 420px;
+}
+
+.Reclamacao{
+    width: 55%
+}
+
