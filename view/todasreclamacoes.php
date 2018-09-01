@@ -18,8 +18,7 @@ session_start();
         }    
         isset($_GET['pagina']) ?: $_GET['pagina'] = null;    
                    
-        $resposta = $publi->ListFromALL($_GET['pagina']);
-        
+        $resposta = $publi->ListFromALL($_GET['pagina']);        
         $quantidadePaginas = $publi->getQuantidadePaginas();
         $pagina = $publi->getPaginaAtual();
         

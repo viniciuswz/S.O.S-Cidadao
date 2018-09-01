@@ -26,24 +26,24 @@ try{
         $publicacao->setImgPubli($_FILES['imagem']);
     }            
     $publicacao->updatePublicacao($_POST['bairro'], $_POST['local']);    
-    echo "<script> alert('Publicacao edita com sucesso');javascript:window.location='./Templates/VerPublicacaoTemplate.php?ID=".$_POST['id_publi']."';</script>";
+    echo "<script> alert('Publicacao edita com sucesso');javascript:window.location='./view/reclamacao.php?ID=".$_POST['id_publi']."';</script>";
         
 }catch(Exception $exc){
     $erro = $exc->getCode();   
     $mensagem = $exc->getMessage();
     switch($erro){
         case 2://Nao esta logado    
-            echo "<script> alert('$mensagem');javascript:window.location='./Templates/loginTemplate.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='./view/login.php';</script>";
             break;
         case 6://Não é usuario comum  
-            echo "<script> alert('$mensagem');javascript:window.location='./Templates/starter.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='./view/index.php';</script>";
             break;
         case 9:// Se der erro ao cadastrar
         case 12://Mexeu no insprnsionar elemento
-            echo "<script> alert('$mensagem');javascript:window.location='./Templates/starter.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='./view/index.php';</script>";
             break;        
         default: //Qualquer outro erro cai aqui
-           echo "<script> alert('$mensagem');javascript:window.location='./Templates/starter.php';</script>";
+           echo "<script> alert('$mensagem');javascript:window.location='./view/index.php';</script>";
     }   
             
             

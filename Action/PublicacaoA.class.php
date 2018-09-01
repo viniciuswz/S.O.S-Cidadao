@@ -255,13 +255,11 @@ class PublicacaoA extends PublicacaoM{
         return FALSE;
     }    
 
-    public function getVerificarSeDenunciou(){
-        $idPubli = $this->getCodPubli();
+    public function getVerificarSeDenunciou($codPubli){       
         $idUser = $this->getCodUsu();
-
         $denun = new PublicacaoDenuncia();
-        $denun->setCodPubli($idPubli);
-        $denun->setCodUsu($idUser);
+        $denun->setCodPubli($codPubli);
+        $denun->setCodUsu($idUser);        
         return $denun->verificarSeDenunciou();
     }
 

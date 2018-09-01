@@ -40,7 +40,7 @@ session_start();
                   
         $comentarioComum = $comentario->SelecionarComentariosUserComum($_GET['pagina']);
         
-        $resposta = $publi->listByIdPubli();   
+        $resposta = $publi->listByIdPubli(); 
         $comentarioPrefei = $comentario->SelecionarComentariosUserPrefei();
 
         $quantidadePaginas = $comentario->getQuantidadePaginas();

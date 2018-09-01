@@ -26,24 +26,24 @@ try{
     }            
     $publicacao->cadastrarPublicacao($_POST['bairro'], $_POST['local']);
     $idPubli = $publicacao->last(); 
-    echo "<script> alert('Publicacao enviada com sucesso');javascript:window.location='./Templates/VerPublicacaoTemplate.php?ID=".$idPubli."';</script>";
+    echo "<script> alert('Publicacao enviada com sucesso');javascript:window.location='./view/reclamacao.php?ID=".$idPubli."';</script>";
         
 }catch(Exception $exc){
     $erro = $exc->getCode();   
     $mensagem = $exc->getMessage();
     switch($erro){
         case 2://Nao esta logado    
-            echo "<script> alert('$mensagem');javascript:window.location='./Templates/loginTemplate.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='./view/loginTemplate.php';</script>";
             break;
         case 6://Não é usuario comum  
-            echo "<script> alert('$mensagem');javascript:window.location='./Templates/starter.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='./view/starter.php';</script>";
             break;
         case 8:// Se der erro ao cadastrar
         case 12://Mexeu no insprnsionar elemento
-            echo "<script> alert('$mensagem');javascript:window.location='./Templates/EnviarPublicacaoTemplate.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='./view/Formulario-reclamacao.php';</script>";
             break;        
         default: //Qualquer outro erro cai aqui
-            echo "<script> alert('$mensagem');javascript:window.location='./Templates/EnviarPublicacaoTemplate.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='./view/Formulario-reclamacao.php';</script>";
     }   
             
             

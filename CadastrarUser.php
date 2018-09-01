@@ -25,11 +25,11 @@ try{
    
     //Pra disparar email ele vai aqui
     if($resultado == 1){ // Adm q cadastrou
-        echo "<script> alert('Cadastro realizado com sucesso!!!');javascript:window.location='./Templates/VerUsuariosTemplate.php?tipo1=Adm&tipo2=Moderador&tipo3=Prefeitura&tipo4=Funcionario';</script>";
+        echo "<script> alert('Cadastro realizado com sucesso!!!');javascript:window.location='./view/admin-moderador.php?tipo1=Adm&tipo2=Moderador&tipo3=Prefeitura&tipo4=Funcionario';</script>";
     }else if($resultado == 2){
-        echo "<script> alert('Funcionario cadastrado com sucesso!!!');javascript:window.location='./Templates/VerFuncionariosTemplate.php';</script>";
+        echo "<script> alert('Funcionario cadastrado com sucesso!!!');javascript:window.location='./view/prefeitura-admin.php';</script>";
     }else{ // Usuario nao cadastrado
-        echo "<script> alert('Cadastro realizado com sucesso!!!');javascript:window.location='./Templates/starter.php';</script>";
+        echo "<script> alert('Cadastro realizado com sucesso!!!');javascript:window.location='./view/index.php';</script>";
     }
     
     
@@ -41,14 +41,14 @@ try{
     switch($erro){
         case 2://Esta logado 
         case 6://Esta logado 
-           echo "<script> alert('$mensagem');javascript:window.location='./Templates/starter.php';</script>";
+           echo "<script> alert('$mensagem');javascript:window.location='./view/index.php';</script>";
             break;       
         case 3://Erro ao cadastrar usuario
         case 12://Mexeu no insprnsionar elemento ou nao submeteu o formulario      
-            echo "<script> alert('$mensagem');javascript:window.location='./Templates/cadastrarUserTemplate.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='./view/cadastro.php';</script>";
             break;        
         default: //Qualquer outro erro cai aqui
-            echo "<script> alert('$mensagem');javascript:window.location='./Templates/loginTemplate.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='./view/login.php';</script>";
     }    
     
 }

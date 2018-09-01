@@ -1,4 +1,4 @@
 <?php
 session_start();
 session_destroy();
-header("Location: ./Templates/loginTemplate.php");
+header("Location: ./view/login.php");

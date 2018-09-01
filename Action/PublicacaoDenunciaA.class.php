@@ -48,6 +48,7 @@ class PublicacaoDenunciaA extends PublicacaoDenunciaM{
         $verificar = $this->verificarSeDenunciou(); // SE for true é pq ja denunciou
         $verificarDonoPubli = $this->verificarDonoPubli();// SE for true é pq ele é o no
         if($verificarDonoPubli or $verificar){ // Se ele for o dono nao faz nada           
+            echo $verificarDonoPubli;
             throw new \Exception("Você nao pode denunciar está publicação",14);
         }
          $sql = sprintf(

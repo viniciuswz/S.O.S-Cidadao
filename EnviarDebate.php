@@ -21,24 +21,24 @@ try{
     $debate->setCodUsu($_SESSION['id_user']);
     $debate->insert();   
     $idDeba = $debate->getCodDeba(); // Pegar o codigo inserido, que a classe setou
-    echo "<script> javascript:window.location='./Templates/VerDebateTemplate.php?ID=".$idDeba."'</script>";
+    echo "<script> javascript:window.location='./view/Pagina-debate.php?ID=".$idDeba."'</script>";
     
 }catch (Exception $exc){
     $erro = $exc->getCode();   
     $mensagem = $exc->getMessage();
     switch($erro){
         case 2://Nao esta logado    
-            echo "<script> alert('$mensagem');javascript:window.location='./Templates/loginTemplate.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='./view/login.php';</script>";
             break;
         case 6://Não é usuario comum  
-            echo "<script> alert('$mensagem');javascript:window.location='./Templates/starter.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='./view/index.php';</script>";
             break;
         case 12://Mexeu no insprnsionar elemento
         case 13://Mexeu no debate
-            echo "<script> alert('$mensagem');javascript:window.location='./Templates/CriarDebateTemplate.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='./view/Formulario-debate.php';</script>";
             break;        
         default: //Qualquer outro erro cai aqui
-            echo "<script> alert('$mensagem');javascript:window.location='./Templates/CriarDebateTemplate.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='./view/Formulario-debate.php';</script>";
     }    
 }   
     
