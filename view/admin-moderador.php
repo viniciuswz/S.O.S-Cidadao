@@ -17,6 +17,7 @@ session_start();
         
         if(!isset($_GET['tipo']) AND empty($_GET['tipo'])){
             $tipos[] = 'moderador';
+            $parametro = 'moderador';
         }else{           
             $parametro = "";
             $contador = 1;
@@ -126,10 +127,10 @@ session_start();
                     <hr>
                     <?php
                         if($resultado[0]['descri_tipo_usu'] == 'Adm' OR $resultado[0]['descri_tipo_usu'] == 'Moderador'){
-                            echo '<li><a href="#"><i class="icone-adm"></i>Area de administrador</a></li>';
+                            echo '<li><a href="admin-moderador.php"><i class="icone-adm"></i>Area de administrador</a></li>';
                             echo '<hr>';
                         }else if($resultado[0]['descri_tipo_usu'] == 'Funcionario' OR $resultado[0]['descri_tipo_usu'] =='Prefeitura'){
-                            echo '<li><a href="#"><i class="icone-salvar"></i>Area da prefeitura </a></li>';
+                            echo '<li><a href="prefeitura-admin.php"><i class="icone-salvar"></i>Area da prefeitura </a></li>';
                             echo '<hr>';
                         }                        
                     ?>                     
@@ -178,7 +179,7 @@ session_start();
                               <th>Data</th>
                             </tr>
                             <tr>
-                                    <td  colspan="3" class="cad-adm"><div>+</div><p>Cadastrar</p></td>
+                                    <td  colspan="3" class="cad-adm"><div>+</div><p><a href="../Templates/cadastrarUserTemplate.php">Cadastrar</a></p></td>
                             </tr>                             
                             <?php
                                 $contador = 0;
@@ -220,16 +221,16 @@ session_start();
     $mensagem = $exc->getMessage();  
     switch($erro){
         case 2://Nao esta logado    
-            echo "<script> alert('$mensagem');javascript:window.location='./loginTemplate.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='./login.php';</script>";
             break;
         case 6://Não é usuario prefeitura ou func  
-            echo "<script> alert('$mensagem');javascript:window.location='./starter.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='./index.php';</script>";
             break; 
         case 9://Não foi possivel achar a publicacao  
-            echo "<script> alert('$mensagem');javascript:window.location='VisualizarPublicacoesTemplate.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes.php';</script>";
             break; 
         default: //Qualquer outro erro cai aqui
-            echo "<script> alert('$mensagem');javascript:window.location='VisualizarPublicacoesTemplate.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes.php';</script>";
     }   
 }
 

@@ -102,10 +102,10 @@ session_start();
                     <hr>
                     <?php
                         if($resultado[0]['descri_tipo_usu'] == 'Adm' OR $resultado[0]['descri_tipo_usu'] == 'Moderador'){
-                            echo '<li><a href="#"><i class="icone-adm"></i>Area de administrador</a></li>';
+                            echo '<li><a href="admin-moderador.php"><i class="icone-adm"></i>Area de administrador</a></li>';
                             echo '<hr>';
                         }else if($resultado[0]['descri_tipo_usu'] == 'Funcionario' OR $resultado[0]['descri_tipo_usu'] =='Prefeitura'){
-                            echo '<li><a href="#"><i class="icone-salvar"></i>Area da prefeitura </a></li>';
+                            echo '<li><a href="prefeitura-admin.php"><i class="icone-salvar"></i>Area da prefeitura </a></li>';
                             echo '<hr>';
                         }                        
                     ?>                     
@@ -130,7 +130,7 @@ session_start();
                             <th>Data</th>
                         </tr>
                         <tr>
-                                <td colspan="3" class="cad-adm"><div>+</div><p>Cadastrar</p></td>
+                                <td colspan="3" class="cad-adm"><div>+</div><p><a href="../Templates/cadastrarUserTemplate.php">Cadastrar</a></p></td>
                         </tr>
                         <?php
                         $contador = 0;
@@ -149,6 +149,21 @@ session_start();
                     </table>
             </div>      
         </div>
+        <ul>
+        <?php
+            if($quantidadePaginas != 1){
+                $contador = 1;
+                while($contador <= $quantidadePaginas){
+                    if(isset($pagina) AND $pagina == $contador){
+                        echo '<li class="jaca"><a href="prefeitura-admin.php">Pagina'.$contador.'</a></li>'  ;  
+                    }else{
+                        echo '<li><a href="prefeitura-admin.php?pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;
+                    }                    
+                    $contador++;        
+                }
+            }            
+        ?>
+        </ul> 
     </body>
 </html>
 

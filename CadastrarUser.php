@@ -25,7 +25,7 @@ try{
    
     //Pra disparar email ele vai aqui
     if($resultado == 1){ // Adm q cadastrou
-        echo "<script> alert('Cadastro realizado com sucesso!!!');javascript:window.location='./view/admin-moderador.php?tipo1=Adm&tipo2=Moderador&tipo3=Prefeitura&tipo4=Funcionario';</script>";
+        echo "<script> alert('Cadastro realizado com sucesso!!!');javascript:window.location='./view/admin-moderador.php?tipo[]=Adm&tipo[]=Moderador&tipo[]=Prefeitura&tipo[]=Funcionario';</script>";
     }else if($resultado == 2){
         echo "<script> alert('Funcionario cadastrado com sucesso!!!');javascript:window.location='./view/prefeitura-admin.php';</script>";
     }else{ // Usuario nao cadastrado
