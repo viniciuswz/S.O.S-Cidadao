@@ -16,17 +16,16 @@ function jaca(){
 function teste(resposta){
     var arr1 = JSON.parse(resposta);
     document.getElementById('menu23').innerHTML = "";
-    document.getElementById('quantidade').innerHTML = "";
+    document.getElementById('noti').innerHTML = "";
     if(arr1.length > 0){
-        document.getElementById('quantidade').innerHTML = arr1.length;
-        document.getElementById('header').innerHTML = "Você tem " + arr1.length + " notificações"; 
+        document.getElementById('noti').innerHTML = "<span id='quantidade_de_not'>"+arr1.length+"</span>";
         for(i = 0; i < arr1.length; i++){            
-            document.getElementById('menu23').innerHTML += "<li class='Nvisualizado'><a href='VerPublicacaoTemplate.php?ID="+ arr1[i]['id_publi'] +"&com=notificacao'>" + arr1[i]['notificacao'] + "</a></li>";            
+            document.getElementById('menu23').innerHTML += "<li class='"+arr1[i]['classe']+"'<a href='VerPublicacaoTemplate.php?ID="+ arr1[i]['id_publi'] +"&com=notificacao'><div><i class='"+arr1[i]['tipo']+"'></i></div><span>" + arr1[i]['notificacao'] + "</span></a></li>";            
         }   
     }else{
         document.getElementById('header').innerHTML = "Você nao tem nenhuma notificação";
     }
-      
+    
       
 }
 

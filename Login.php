@@ -33,14 +33,14 @@ try{
     switch($erro){
         case 1://Erro ao fazer login   
         case 12://Mexeu no insprnsionar elemento  ou entrou pela url
-            echo "<script> alert('$mensagem');javascript:window.location='./Templates/loginTemplate.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='./view/login.php';</script>";
             break;
         case 2://Está logado  
         case 6://nao tem permissao
             echo "<script> alert('$mensagem');javascript:window.location='./Templates/starter.php';</script>";
             break;        
         default: //Qualquer outro erro cai aqui
-            echo "<script> alert('$mensagem');javascript:window.location='./Templates/loginTemplate.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='./view/login.php';</script>";
     }   
     
 }
