@@ -225,8 +225,8 @@ session_start();
             ?>
             <div class="barra-curtir-publicacao"> 
                     <div>
-                        <span><?php echo $resposta[0]['quantidade_curtidas']?></span><i class="icone-comentario-full"></i>
-                        <span><?php echo $resposta[0]['quantidade_comen']?></span><i class="icone-like"></i>
+                        <span><?php echo $resposta[0]['quantidade_comen']?></span><i class="icone-comentario-full"></i>
+                        <span><?php echo $resposta[0]['quantidade_curtidas']?></span><i class="icone-like"></i>
                     </div>
                     <a href="#"> 
                         <i class="icone-like"></i> Like
