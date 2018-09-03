@@ -48,6 +48,7 @@ class PublicacaoA extends PublicacaoM{
     private $sqlQtdNRespon = "SELECT %s FROM publicacao     
                                 INNER JOIN usuario on(usuario.cod_usu = publicacao.cod_usu)
                                 INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu)
+                                INNER JOIN categoria ON (publicacao.cod_cate = categoria.cod_cate)
                                 WHERE
                                 cod_publi  not in(SELECT cod_publi FROM comentario INNER JOIN usuario on(usuario.cod_usu = comentario.cod_usu)
                                 INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu) 
@@ -310,14 +311,21 @@ class PublicacaoA extends PublicacaoM{
     }
 
     public function getPubliNRespo($pagina = null){//Pegar os dados das publicacoes nao respondidas
+        // Tive q fazer esta gambi
+        $sqlSelect = "SELECT usuario.nome_usu, publicacao.cod_publi, descri_cate, titulo_publi
+                        FROM publicacao 
+                        INNER JOIN usuario on (usuario.cod_usu = publicacao.cod_usu) 
+                        INNER JOIN categoria ON (publicacao.cod_cate = categoria.cod_cate)
+                        INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu) 
+                        WHERE descri_tipo_usu = 'Comum' AND %s  %s %s";
         $sql = sprintf(
-                $this->sqlSelect,
+                $sqlSelect,
                 $this->getIdsPubliNRespo($pagina),
                 ' AND 1=1',
                 ' AND 1=1'
         );
-        $res = $this->runSelect($sql); // Ids Na array;
-        return $dadosTratados = $this->tratarInformacoes($res);
+        return $res = $this->runSelect($sql); // Ids Na array;
+        
     }
 
     public function verificarDonoPubli(){ // verificar dono da publicacao

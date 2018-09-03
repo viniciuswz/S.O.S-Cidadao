@@ -1,3 +1,31 @@
+<?php
+session_start();
+    require_once('../Config/Config.php');
+    require_once(SITE_ROOT.DS.'autoload.php');
+    
+    use Core\Usuario;
+    use Core\Publicacao;
+    
+    try{
+
+        $tipoUsuPermi = array('Funcionario','Prefeitura');
+        Usuario::verificarLogin(1,$tipoUsuPermi);  // Tem q estar logado
+        $dados = new Usuario();
+        $dados->setCodUsu($_SESSION['id_user']);
+        $resultado = $dados->getDadosUser();  
+
+        $publi = new Publicacao();       
+        $publi->setCodUsu($_SESSION['id_user']);         
+        isset($_GET['pagina']) ?: $_GET['pagina'] = null;
+        $resposta = $publi->getPubliNRespo($_GET['pagina']);
+        $quantidadePaginas = $publi->getQuantidadePaginas();
+        $pagina = $publi->getPaginaAtual();
+        
+        if(empty($resposta)){
+            echo 'Não há nenhuma publicacao para responder<br>';
+        }
+        
+?>
 <!DOCTYPE html>
 <html lang=pt-br>
     <head>
@@ -80,10 +108,14 @@
                         if($resultado[0]['descri_tipo_usu'] == 'Adm' OR $resultado[0]['descri_tipo_usu'] == 'Moderador'){
                             echo '<li><a href="admin-moderador.php"><i class="icone-adm"></i>Area de administrador</a></li>';
                             echo '<hr>';
-                        }else if($resultado[0]['descri_tipo_usu'] == 'Funcionario' OR $resultado[0]['descri_tipo_usu'] =='Prefeitura'){
+                        }else if($resultado[0]['descri_tipo_usu'] =='Prefeitura'){
                             echo '<li><a href="prefeitura-admin.php"><i class="icone-salvar"></i>Area da prefeitura </a></li>';
+                            echo '<li><a href="prefeitura-reclamacao.php"><i class="icone-salvar"></i>Reclamações nao respondidas</a></li>';
                             echo '<hr>';
-                        }                        
+                        }else if($resultado[0]['descri_tipo_usu'] == 'Funcionario'){
+                            echo '<li><a href="prefeitura-reclamacao.php"><i class="icone-salvar"></i>Reclamações nao respondidas</a></li>';
+                            echo '<hr>';
+                        }                          
                     ?>                     
                     <li><a href="#"><i class="icone-config"></i>Configurações</a></li>
                     <li><a href="../sair.php"><i class="icone-logout"></i>Log out</a></li>
@@ -106,32 +138,57 @@
                         <th>Categoria</th>
                         <th>Usuario</th>
                     </tr>
-                    <tr>
-                        <td><p>Demora no atendimento</p></td>
-                        <td><p>Saúde</p></td>
-                        <td><p>Jão de Barru</p></td>
-                    </tr>
-                    <tr>
-                        <td><p>Demora no atendimento</p></td>
-                        <td><p>Saúde</p></td>
-                        <td><p>Jão de Barru</p></td>
-                    </tr>
-                    <tr>
-                        <td><p>Demora no atendimento</p></td>
-                        <td><p>Saúde</p></td>
-                        <td><p>Jão de Barru</p></td>
-                    </tr>
-                    <tr>
-                        <td><p>Demora no atendimento</p></td>
-                        <td><p>Saúde</p></td>
-                        <td><p>Jão de Barru</p></td>
-                    </tr>
-                    <tr>
-                        <td><p>Demora no atendimento</p></td>
-                        <td><p>Saúde</p></td>
-                        <td><p>Jão de Barru</p></td>
-                    </tr>
+                    <?php
+                        $contador = 0;
+                        while($contador < count($resposta)){                           
+                            echo '<tr>';  
+                                echo '<td><a href="reclamacao.php?ID='.$resposta[$contador]['cod_publi'].'"><p>'.$resposta[$contador]['titulo_publi'].'</p></a></td>';                      
+                                echo '<td><p>'.$resposta[$contador]['descri_cate'].'</p></td>'; 
+                                echo '<td><p>'.$resposta[$contador]['nome_usu'].'</p></td>'; 
+                            echo '</tr>';                            
+                            $contador++;                            
+                            }
+                        ?> 
+                    ?>
+                    
                 </table>
-            </section>      
+            </section>  
+            <ul>
+        <?php
+            if($quantidadePaginas != 1){
+                $contador = 1;
+                while($contador <= $quantidadePaginas){
+                    if(isset($pagina) AND $pagina == $contador){
+                        echo '<li class="jaca"><a href="prefeitura-reclamacao.php?pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;  
+                    }else{
+                        echo '<li><a href="prefeitura-reclamacao.php?pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;
+                    }
+                    
+                    $contador++;        
+                }
+            }
+            
+        ?>
+        </ul>    
         </div>
     </body>
+<?php
+}catch (Exception $exc){
+    $erro = $exc->getCode();   
+    $mensagem = $exc->getMessage();  
+    switch($erro){
+        case 2://Nao esta logado           
+            echo "<script> alert('$mensagem');javascript:window.location='login.php';</script>";
+            break;
+        case 6://Não é usuario prefeitura ou func  
+            echo "<script> alert('$mensagem');javascript:window.location='index.php';</script>";
+            break; 
+        case 9://Não foi possivel achar a publicacao  
+            echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes.php';</script>";
+            break; 
+        default: //Qualquer outro erro cai aqui
+            echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes.php';</script>";
+    }   
+}
+
+?>

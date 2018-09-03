@@ -104,10 +104,14 @@ session_start();
                         if($resultado[0]['descri_tipo_usu'] == 'Adm' OR $resultado[0]['descri_tipo_usu'] == 'Moderador'){
                             echo '<li><a href="admin-moderador.php"><i class="icone-adm"></i>Area de administrador</a></li>';
                             echo '<hr>';
-                        }else if($resultado[0]['descri_tipo_usu'] == 'Funcionario' OR $resultado[0]['descri_tipo_usu'] =='Prefeitura'){
+                        }else if($resultado[0]['descri_tipo_usu'] =='Prefeitura'){
                             echo '<li><a href="prefeitura-admin.php"><i class="icone-salvar"></i>Area da prefeitura </a></li>';
+                            echo '<li><a href="prefeitura-reclamacao.php"><i class="icone-salvar"></i>Reclamações nao respondidas</a></li>';
                             echo '<hr>';
-                        }                        
+                        }else if($resultado[0]['descri_tipo_usu'] == 'Funcionario'){
+                            echo '<li><a href="prefeitura-reclamacao.php"><i class="icone-salvar"></i>Reclamações nao respondidas</a></li>';
+                            echo '<hr>';
+                        }                          
                     ?>                     
                     <li><a href="#"><i class="icone-config"></i>Configurações</a></li>
                     <li><a href="../sair.php"><i class="icone-logout"></i>Log out</a></li>
@@ -133,8 +137,7 @@ session_start();
                                 <td colspan="3" class="cad-adm"><div>+</div><p><a href="../Templates/cadastrarUserTemplate.php">Cadastrar</a></p></td>
                         </tr>
                         <?php
-                        $contador = 0;
-                        $contador2 = 0;
+                        $contador = 0;                        
                         while($contador < count($res)){
                             echo '<tr>';  
                                 echo '<td><p>'.$res[$contador]['nome_usu'].'</p></td>';                      
@@ -142,8 +145,7 @@ session_start();
                                 echo '<td><p>'.$res[$contador]['dataHora_cadastro_usu'].'</p></td>';                       
                                 //echo '<td<p> <a href="'.$res[$contador]['LinkApagarUsu'].'">Remover Funcao</p></td>'; 
                             echo '</tr>';
-                            $contador++;
-                            $contador2 = 0;
+                            $contador++;                            
                             }
                         ?>                        
                     </table>
