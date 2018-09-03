@@ -10,7 +10,7 @@ class TratarDataHora{
         // Configurar a data para pt-br
         // Assim q a classe for instanciada é configurada
         date_default_timezone_set("America/Sao_Paulo");
-        setlocale(LC_ALL, 'pt_BR');        
+        setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');       
         $this->dataHoraEnvio = new \DateTime($dataHoraEnvio);
         $this->dataHoraAgora = new \DateTime('now');    
         
@@ -93,12 +93,12 @@ class TratarDataHora{
                 if($diasDiferenca == 1){
                     $msg =  "ontem às " . $this->dataHoraEnvio->format('H:i'); 
                 }else{                    
-                    $msg =  "em " . str_replace("/", " de ", $this->dataHoraEnvio->format('d/M')) . " às " . $this->dataHoraEnvio->format('H:i');
+                    $msg = strftime('em %d de %B', strtotime($this->dataHoraEnvio->format('d-m-Y H:i:s'))) . " às " . $this->dataHoraEnvio->format('H:i');
                 }               
-            }else if($this->dataHoraEnvio->format('Y') == $this->dataHoraAgora->format('Y')){ // Maior que dois dias e do mesmo ano               
-                $msg =  "em " . str_replace("/", " de ", $this->dataHoraEnvio->format('d/M')) . " às " . $this->dataHoraEnvio->format('H:i');
+            }else if($this->dataHoraEnvio->format('Y') == $this->dataHoraAgora->format('Y')){ // Maior que dois dias e do mesmo ano    
+                $msg = strftime('em %d de %B', strtotime($this->dataHoraEnvio->format('d-m-Y H:i:s'))) . " às " . $this->dataHoraEnvio->format('H:i');
             }else{ // De outro ano
-                $msg = "em " . str_replace("/", " de ", $this->dataHoraEnvio->format('d/M/Y')) . " às " . $this->dataHoraEnvio->format('H:i');
+                $msg = strftime('em %d de %B de %Y', strtotime($this->dataHoraEnvio->format('d-m-Y H:i:s'))) . " às " . $this->dataHoraEnvio->format('H:i');          
             }
         }
 
@@ -109,6 +109,10 @@ class TratarDataHora{
             $mensagem = $this->mensagemPadrao($msg);
         }           
         return $mensagem; 
+    }
+
+    public function tempoDeCadastro(){
+        return $msg = strftime('Usuário desde %d de %B de %Y', strtotime($this->dataHoraEnvio->format('d-m-Y H:i:s')));          
     }
 }
 

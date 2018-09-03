@@ -3,6 +3,7 @@ namespace Action;
 use Model\UsuarioM;
 use Classes\Paginacao;
 use Classes\TratarImg;
+use Classes\TratarDataHora;
 
 class UsuarioA extends UsuarioM{
 
@@ -80,11 +81,19 @@ class UsuarioA extends UsuarioM{
         
     }      
 
-    public function getDadosUser(){//PEgar dados do usuario        
+    public function getDadosUser($tempoDeCadastro = false){//PEgar dados do usuario        
         $sql = sprintf($this->sqlPegarDados,
                             $this->getCodUsu()                            
                         );
-        return $consulta = $this->runSelect($sql);
+        
+        $consulta = $this->runSelect($sql);
+
+        if($tempoDeCadastro){
+            $data = $this->tratarData($consulta[0]['dataHora_cadastro_usu']);
+            $consulta[0]['dataHora_cadastro_usu'] = $data;
+        }
+
+        return $consulta;
     }
 
     public function gerarHash($senha){//Gerar hash
@@ -260,8 +269,8 @@ class UsuarioA extends UsuarioM{
     }
 
     public function tratarData($data){
-        $novaData = new \DateTime($data);
-        return $novaData->format('d-m-Y H:i');
+        $novaData = new TratarDataHora($data);        
+        return $novaData->tempoDeCadastro();
     }
 
     public function LinkParaDeletar($palavra,$cod){ // Deletar Usuario

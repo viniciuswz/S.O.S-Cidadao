@@ -9,9 +9,7 @@ session_start();
         Usuario::verificarLogin(1,$tipoUsuPermi);  // Tem q estar logado         
         $usu = new Usuario(); 
         $usu->setCodUsu($_SESSION['id_user']);
-        $resultado = $usu->getDadosUser();   
-       
-       
+        $resultado = $usu->getDadosUser(true);  
 ?>
 <!DOCTYPE html>
 <html lang=pt-br>
@@ -111,7 +109,7 @@ session_start();
                         <div class="perfil" id="config">
                             
                                 <div>
-                                        <span>Usuário des de 15 de Dezembro de 2015</span>
+                                        <span><?php echo $resultado[0]['dataHora_cadastro_usu'] ?></span>
                                         
                                         <div>
                                             <img src="../Img/perfil/<?php echo $resultado[0]['img_perfil_usu'] ?>">
@@ -122,7 +120,7 @@ session_start();
                     </section>
             <nav class="menu-perfil">
                 <ul class="espacos">
-                    <li class="ativo"><a href="configuracao.php">pessoais</a></li>
+                    <li class="ativo"><a href="configuracoes.php">pessoais</a></li>
 
             <li><a href="configuracoes2.php">Segurança</a></li>
 
