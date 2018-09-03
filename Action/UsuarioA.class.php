@@ -175,7 +175,7 @@ class UsuarioA extends UsuarioM{
                 $this->setImgPerfilUsu('concursobarueri4.jpg'); // Imagem padrao prefeitura
                 break;
             default:
-                $this->setImgCapaUsu('imgcapapadrao.jpg');// Imagem padrao user comum
+                $this->setImgCapaUsu('imgcapapadrao.png');// Imagem padrao user comum
                 $this->setImgPerfilUsu('imgperfilpadrao.jpg'); // Imagem padrao comum
             break;
         }
