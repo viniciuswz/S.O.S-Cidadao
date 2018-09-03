@@ -5,7 +5,7 @@ session_start();
     
     use Core\Usuario;    
     try{        
-        Usuario::verificarLogin(0,$tipoUsuPermi);  // Vai estourar um erro se ele ja estiver logado, ou se ele nao for adm
+        Usuario::verificarLogin(0);  // Vai estourar um erro se ele ja estiver logado, ou se ele nao for adm
         
 ?>
 <!DOCTYPE html>
@@ -76,7 +76,7 @@ session_start();
     switch($erro){
         case 2://Se ja estiver logado   
         case 6://nao  tem permissao de adm
-            echo "<script> alert('$mensagem');javascript:window.location='./starter.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='index.php';</script>";
             break;  
            
     }    
