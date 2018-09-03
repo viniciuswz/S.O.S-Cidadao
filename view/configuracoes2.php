@@ -1,3 +1,19 @@
+<?php
+session_start();
+    require_once('../Config/Config.php');
+    require_once(SITE_ROOT.DS.'autoload.php');   
+    use Core\Usuario;
+    
+    try{
+        
+        $tipoUsuPermi = array('Prefeitura','Adm','Funcionario','Moderador','Comum');
+        Usuario::verificarLogin(1,$tipoUsuPermi);  // Tem q estar logado         
+        $usu = new Usuario(); 
+        $usu->setCodUsu($_SESSION['id_user']);
+        $resultado = $usu->getDadosUser();
+       
+       
+?>
 <!DOCTYPE html>
 <html lang=pt-br>
     <head>
@@ -79,7 +95,7 @@
                     <?php
                         require_once('opcoes.php');                         
                     ?>                     
-                    <li><a href="#"><i class="icone-config"></i>Configurações</a></li>
+                    <li><a href="configuracoes.php"><i class="icone-config"></i>Configurações</a></li>
                     <li><a href="../sair.php"><i class="icone-logout"></i>Log out</a></li>
 
                 </ul>
@@ -96,10 +112,10 @@
                 <div class="perfil" id="config">
                     
                         <div>
-                                <span>usuário des de 15 de Dezembro de 2015</span>
+                                <span>Usuário des de 15 de Dezembro de 2015</span>
                                 
                                 <div>
-                                    <img src="imagens/perfil.jpg">
+                                    <img src="../Img/perfil/<?php echo $resultado[0]['img_perfil_usu'] ?>">
                                 </div>
                                                          
                             </div>
@@ -108,25 +124,25 @@
             </section>
             <nav class="menu-perfil">
                 <ul class="espacos">
-                    <li><a href="configuracao.html">pessoais</a></li>
+                    <li><a href="configuracoes.php">pessoais</a></li>
 
-            <li class="ativo"><a href="configuracoes2.html">Segurança</a></li>
+            <li class="ativo"><a href="configuracoes2.php">Segurança</a></li>
                 </ul>
             </nav>
             <section class="form-config">
-                <form>
+                <form action="../updateSenha.php" method="post">
                     <h3>Alterar senha</h3>
                     <div class="campo-texto-config">
                             <label for="passAtual">Senha atual</label>
-                            <input type="password" name="passAtual" id="passAtual" placeholder="senha atual" autocomplete ="off">
+                            <input type="password" name="senhaAntiga" id="passAtual" placeholder="senha atual" autocomplete ="off">
                     </div>
                     <div class="campo-texto-config">
                             <label for="passNova">Nova senha</label>
-                            <input type="password" name="passNova" id="passNova" placeholder="Nova senha" autocomplete ="off">
+                            <input type="password" name="novaSenha" id="novaSenha" placeholder="Nova senha" autocomplete ="off">
                     </div>
                     <div class="campo-texto-config">
                             <label for="passNovaRepete">Repita a nova senha</label>
-                            <input type="password" name="passNovaRepete" id="passNovaRepete" placeholder="Repita a nova senha" autocomplete ="off">
+                            <input type="password" name="novaSenhaRepete" id="passNovaRepete" placeholder="Repita a nova senha" autocomplete ="off">
                     </div>
                         
                     <button type="submit">Alterar</button>
@@ -136,3 +152,17 @@
         </div>
     </body>
 </html>
+<?php
+}catch (Exception $exc){     
+    $erro = $exc->getCode();   
+    $mensagem = $exc->getMessage();
+    switch($erro){
+        case 2://Ja esta logado  
+        case 6://Ja esta logado 
+            echo "<script> alert('$mensagem');javascript:window.location='index.php';</script>";
+            break;
+       
+    }      
+}finally{
+
+}

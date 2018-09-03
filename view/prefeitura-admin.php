@@ -103,7 +103,7 @@ session_start();
                     <?php
                         require_once('opcoes.php');                        
                     ?>                     
-                    <li><a href="#"><i class="icone-config"></i>Configurações</a></li>
+                    <li><a href="configuracoes.php"><i class="icone-config"></i>Configurações</a></li>
                     <li><a href="../sair.php"><i class="icone-logout"></i>Log out</a></li>
 
                 </ul>

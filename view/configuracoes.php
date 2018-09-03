@@ -1,3 +1,18 @@
+<?php
+session_start();
+    require_once('../Config/Config.php');
+    require_once(SITE_ROOT.DS.'autoload.php');   
+    use Core\Usuario;
+    
+    try{
+        $tipoUsuPermi = array('Prefeitura','Adm','Funcionario','Moderador','Comum');
+        Usuario::verificarLogin(1,$tipoUsuPermi);  // Tem q estar logado         
+        $usu = new Usuario(); 
+        $usu->setCodUsu($_SESSION['id_user']);
+        $resultado = $usu->getDadosUser();   
+       
+       
+?>
 <!DOCTYPE html>
 <html lang=pt-br>
     <head>
@@ -79,7 +94,7 @@
                     <?php
                         require_once('opcoes.php');                       
                     ?>                     
-                    <li><a href="#"><i class="icone-config"></i>Configurações</a></li>
+                    <li><a href="configuracoes.php"><i class="icone-config"></i>Configurações</a></li>
                     <li><a href="../sair.php"><i class="icone-logout"></i>Log out</a></li>
 
                 </ul>
@@ -96,10 +111,10 @@
                         <div class="perfil" id="config">
                             
                                 <div>
-                                        <span>usuário des de 15 de Dezembro de 2015</span>
+                                        <span>Usuário des de 15 de Dezembro de 2015</span>
                                         
                                         <div>
-                                            <img src="imagens/perfil.jpg">
+                                            <img src="../Img/perfil/<?php echo $resultado[0]['img_perfil_usu'] ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -107,23 +122,23 @@
                     </section>
             <nav class="menu-perfil">
                 <ul class="espacos">
-                    <li class="ativo"><a href="configuracao.html">pessoais</a></li>
+                    <li class="ativo"><a href="configuracao.php">pessoais</a></li>
 
-            <li><a href="configuracoes2.html">Segurança</a></li>
+            <li><a href="configuracoes2.php">Segurança</a></li>
 
                     
                     
                 </ul>
             </nav>
             <section class="form-config">
-                <form>
+                <form action="../updateNomeEmail.php" method="post">
                     <div class="campo-texto-config">
                             <label for="user">Nome</label>
-                            <input type="text" name="user" id="user" placeholder="Nome" autocomplete ="off">
+                            <input type="text" name="nome" id="user" placeholder="Nome" autocomplete ="off" value="<?php echo $resultado[0]['nome_usu'] ?>">
                         </div>
                         <div class="campo-texto-config">
                             <label for="email">E-mail</i></label>
-                            <input type="email" name="email" id="email" placeholder="E-mail">
+                            <input type="email" name="email" id="email" placeholder="E-mail" value="<?php echo $resultado[0]['email_usu'] ?>">
                     </div>
                     <button type="submit">Alterar</button>
             </form>
@@ -132,3 +147,18 @@
         </div>
     </body>
 </html>
+<?php
+
+}catch (Exception $exc){     
+    $erro = $exc->getCode();   
+    $mensagem = $exc->getMessage();
+    switch($erro){
+        case 2://Ja esta logado  
+        case 6://Ja esta logado 
+            echo "<script> alert('$mensagem');javascript:window.location='index.php';</script>";
+            break;
+       
+    }      
+}finally{
+
+}
