@@ -171,11 +171,11 @@ session_start();
         $erro = $exc->getCode();   
         $mensagem = $exc->getMessage();  
         switch($erro){
-            case 2://Nao esta logado    
-                echo "<script> alert('$mensagem');javascript:window.location='./loginTemplate.php';</script>";
+            case 2://Nao esta logado   
+                echo "<script> alert('$mensagem');javascript:window.location='login.php';</script>";
                 break;
             case 6://Não é usuario comum                 
-                echo "<script> alert('$mensagem');javascript:window.location='./starter.php';</script>";
+                echo "<script> alert('$mensagem');javascript:window.location='index.php';</script>";
                 break;            
         }        
     }

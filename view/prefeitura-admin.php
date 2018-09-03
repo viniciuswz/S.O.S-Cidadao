@@ -166,16 +166,16 @@ session_start();
     $mensagem = $exc->getMessage();  
     switch($erro){
         case 2://Nao esta logado    
-            echo "<script> alert('$mensagem');javascript:window.location='./loginTemplate.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='login.php';</script>";
             break;
         case 6://Não é usuario prefeitura ou func  
-            echo "<script> alert('$mensagem');javascript:window.location='./starter.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='index.php';</script>";
             break; 
         case 9://Não foi possivel achar a publicacao  
-            echo "<script> alert('$mensagem');javascript:window.location='VisualizarPublicacoesTemplate.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes.php';</script>";
             break; 
         default: //Qualquer outro erro cai aqui
-            echo "<script> alert('$mensagem');javascript:window.location='VisualizarPublicacoesTemplate.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes.php';</script>";
     }   
 }
 

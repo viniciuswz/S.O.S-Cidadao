@@ -8,7 +8,7 @@ session_start();
     try{
         
 
-        $tipoUsuPermi = array('Moderador','Adm');
+        $tipoUsuPermi = array('Adm');
         Usuario::verificarLogin(1,$tipoUsuPermi);  // Tem q estar logado         
         $usu = new Usuario();
         $usu->setCodUsu($_SESSION['id_user']);
@@ -215,10 +215,10 @@ session_start();
     $mensagem = $exc->getMessage();  
     switch($erro){
         case 2://Nao esta logado    
-            echo "<script> alert('$mensagem');javascript:window.location='./login.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='login.php';</script>";
             break;
         case 6://Não é usuario prefeitura ou func  
-            echo "<script> alert('$mensagem');javascript:window.location='./index.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='index.php';</script>";
             break; 
         case 9://Não foi possivel achar a publicacao  
             echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes.php';</script>";
