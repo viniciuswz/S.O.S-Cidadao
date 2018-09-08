@@ -1,4 +1,4 @@
-<li><a href="perfil.html"><i class="icone-user"></i>Meu perfil</a></li>
+<li><a href="perfil_reclamacao.php"><i class="icone-user"></i>Meu perfil</a></li>
 <li><a href="salvos.php"><i class="icone-salvar"></i>Salvos</a></li>
     <hr>
 <?php

@@ -87,7 +87,9 @@ class UsuarioA extends UsuarioM{
                         );
         
         $consulta = $this->runSelect($sql);
-
+        if(empty($consulta)){
+            throw new \Exception("Não há registros",1);
+        }
         if($tempoDeCadastro){
             $data = $this->tratarData($consulta[0]['dataHora_cadastro_usu']);
             $consulta[0]['dataHora_cadastro_usu'] = $data;
