@@ -1,3 +1,27 @@
+<?php
+session_start();
+    require_once('../Config/Config.php');
+    require_once(SITE_ROOT.DS.'autoload.php');   
+    use Core\Usuario;
+    use Core\PublicacaoSalva;
+    
+    try{        
+        $tipoUsuPermi = array('Prefeitura','Adm','Funcionario','Moderador','Comum');
+        Usuario::verificarLogin(1,$tipoUsuPermi);  // Tem q estar logado         
+        
+        $usu = new Usuario();        
+        $usu->setCodUsu($_SESSION['id_user']);
+        $resultado = $usu->getDadosUser();
+        $tipoUsu = $_SESSION['tipo_usu'];
+        
+        $publiSalva = new PublicacaoSalva();
+        $publiSalva->setCodUsu($_SESSION['id_user']);
+        isset($_GET['pagina']) ?: $_GET['pagina'] = null;   
+        $resposta = $publiSalva->SelectPubliSalvaByIdUser($_GET['pagina']);        
+        $quantidadePaginas = $publiSalva->getQuantidadePaginas();
+        $pagina = $publiSalva->getPaginaAtual();
+        
+?>
 <!DOCTYPE html>
 <html lang=pt-br>
     <head>
@@ -94,73 +118,106 @@
                 <h4>Salvos</h4>
             </div>
             <section class="alinha-item">
-                    <div class="item-publicacao">
-                            <div class="item-topo">
-                                <a href="#">
-                                <div>
-                                    <img src="imagens/perfil.jpg">
-                                </div>
-                                <p><span class="negrito">Pericles do Exalta Samba</a></span><time>em 3 de dezembro de 2016</time></p>
-                                <div class="mini-menu-item mini-menu-item-ativo">
-                                    <i class="icone-3pontos"></i>
-                                    <div>
-                                        <ul>
-                                            <li><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>
-                                            <li><a href="#"><i class="icone-fechar"></i></i>Remover</a></li>
-                                            <li><a href="#"><i class="icone-edit-full"></i></i>Alterar</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="#">
-                                <figure>
-                                    <img src="imagens/RECLAMATION.png">
-                                </figure>    
-                                <p>Como os cadeirantes vão subir? aaaa</p>
-                                </a>
-                                <div class="item-baixo">   
-                                    <i class="icone-local"></i><p>engenho novo, rua bananaaaaaaaaaaaaaaaaaaaaaaa   </p>
-                                    <div>    
-                                        <span>6.000</span><i class="icone-like"></i>
-                                        <span>6.000</span><i class="icone-comentario"></i>
-                                    </div>
-                                </div>
-                    </div>
-                    <div class="item-publicacao">
+            <?php
+                $contador = 0;
+                while($contador < count($resposta)){                
+            ?>  
+                <div class="item-publicacao">
+                
                     <div class="item-topo">
                         <a href="#">
                         <div>
-                            <img src="imagens/perfil.jpg">
+                            <img src="../Img/perfil/<?php echo $resposta[$contador]['img_perfil_usu']?>">
                         </div>
-                        <p><span class="negrito">Pericles do Exalta Samba</a></span><time>em 3 de dezembro de 2016</time></p>
+                        <p><span class="negrito"><?php echo $resposta[$contador]['nome_usu']?></a></span><time><?php echo $resposta[$contador]['dataHora_publi']?></time></p>
                         <div class="mini-menu-item mini-menu-item-ativo">
                             <i class="icone-3pontos"></i>
                             <div>
                                 <ul>
-                                    <li><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>
-                                    <li><a href="#"><i class="icone-fechar"></i></i>Remover</a></li>
-                                    <li><a href="#"><i class="icone-edit-full"></i></i>Alterar</a></li>
+                                <?php
+                                        if(isset($resposta[$contador]['indDenunPubli']) AND $resposta[$contador]['indDenunPubli'] == TRUE){ // Aparecer quando o user ja denunciou            
+                                            echo '<li><i class="icone-bandeira"></i><b>Denunciado</b></li>';        
+                                        }else if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] != $resposta[$contador]['cod_usu']){ // Aparecer apenas naspublicaçoes q nao é do usuario
+                                            if($tipoUsu == 'Comum' or $tipoUsu == 'Prefeitura' or $tipoUsu == 'Funcionario'){
+                                                echo '<li><a href="../Templates/DenunciarPublicacaoTemplate.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-bandeira"></i>Denunciar</a></li>';                                                        
+                                            }                    
+                                        }else if(!isset($_SESSION['id_user'])){ // aparecer parar os usuario nao logado
+                                                 echo '<li><a href="../Templates/DenunciarPublicacaoTemplate.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-bandeira"></i>Denunciar</a></li>';
+                                        } 
+                                ?>
+                                <?php
+                                        if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $resposta[$contador]['cod_usu']){
+                                            echo '<li><a href="../ApagarPublicacao.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-fechar"></i></i>Remover</a></li>';
+                                            echo '<li><a href="../Templates/UpdatePublicacaoTemplate.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';                                                    
+                                        }else if(isset($tipoUsu) AND ($tipoUsu == 'Adm' or $tipoUsu == 'Moderador')){
+                                            echo '<li><a href="../ApagarPublicacao.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-fechar"></i></i>Remover</a></li>';
+                                            // Icone para apagar usuaario
+                                            //echo '<a href="../ApagarUsuario.php?ID='.$resposta[0]['cod_usu'].'">Apagar Usuario</a>';                                                       
+                                            echo '<li><a href="../Templates/UpdatePublicacaoTemplate.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';                                                    
+                                        }
+                                ?> 
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <a href="#">
+                    <a href="reclamacao.php?ID=<?php echo $resposta[$contador]['cod_publi'] ?>">
+                    <?php
+                        if(!empty($resposta[$contador]['img_publi'])){
+                    ?>  
                         <figure>
-                            <img src="imagens/RECLAMATION.png">
-                        </figure>    
-                        <p>Como os cadeirantes vão subir? aaaa</p>
+                            <img src="../Img/publicacao/<?php echo $resposta[$contador]['img_publi']?>">
+                        </figure> 
+                    <?php
+                        }
+                    ?>                        
+                        <p><?php echo $resposta[$contador]['titulo_publi']?></p>
                         </a>
                         <div class="item-baixo">   
-                            <i class="icone-local"></i><p>engenho novo, rua bananaaaaaaaaaaaaaaaaaaaaaaa   </p>
+                            <i class="icone-local"></i><p><?php echo $resposta[$contador]['endereco_organizado_fechado']?></p>
                             <div>    
-                                <span>6.000</span><i class="icone-like"></i>
-                                <span>6.000</span><i class="icone-comentario"></i>
+                                <span><?php echo $resposta[$contador]['quantidade_curtidas']?></span><i class="icone-like"></i>
+                                <span><?php echo $resposta[$contador]['quantidade_comen']?></span><i class="icone-comentario"></i>
                             </div>
                         </div>
-                    </div>
+                          
+                </div>  
+                <?php                  
+                    $contador++;
+                    }
+                ?>                 
             </section>
-
+            </div>
         </div>
+        <ul>
+        <?php
+            if($quantidadePaginas != 1){
+                $contador = 1;
+                while($contador <= $quantidadePaginas){
+                    if(isset($pagina) AND $pagina == $contador){
+                        echo '<li class="jaca"><a href="salvos.php?pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;  
+                    }else{
+                        echo '<li><a href="salvos.php?pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;
+                    }
+                    
+                    $contador++;        
+                }
+            }
+            
+        ?>
+        </ul>
     </body>
 </html>
- 
+<?php
+}catch (Exception $exc){     
+    $erro = $exc->getCode();   
+    $mensagem = $exc->getMessage();
+    switch($erro){
+        case 2://Ja esta logado  
+        case 6://Ja esta logado 
+            echo "<script> alert('$mensagem');javascript:window.location='index.php';</script>";
+            break;
+       
+    }      
+}finally{
+
+}

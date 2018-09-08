@@ -4,21 +4,30 @@ use Model\PublicacaoSalvaM;
 use Core\Publicacao;
 use Core\Usuario;
 class PublicacaoSalvaA extends PublicacaoSalvaM{      
-    private $sqlSelect = "SELECT ind_visu_respos_prefei, status_publi_sal FROM publicacao_salva 
+    private $sqlSelect = "SELECT %s FROM publicacao_salva 
                                 INNER JOIN publicacao ON (publicacao_salva.cod_publi = publicacao.cod_publi) 
                                 INNER JOIN usuario ON (publicacao.cod_usu = usuario.cod_usu)
-                                WHERE publicacao_salva.cod_publi = '%s' AND publicacao_salva.cod_usu = '%s' 
-                                AND status_publi = 'A' AND status_usu = 'A'";
+                                WHERE status_publi = 'A' AND status_usu = 'A' AND 
+                                %s ";
 
     private $sqlInsert = "INSERT INTO publicacao_salva(cod_usu, cod_publi,ind_visu_respos_prefei) VALUES ('%s','%s','%s')";
 
     private $sqlUpdate = "UPDATE publicacao_salva SET status_publi_sal = '%s' WHERE cod_publi = '%s' AND cod_usu = '%s'";
     
+    private $sqlPaginaAtual;
+
     public function indSalva($indRes = null){
-        $sql = sprintf(
+        $campos = " ind_visu_respos_prefei, status_publi_sal ";
+        $whereSelect = "publicacao_salva.cod_publi = '%s' AND publicacao_salva.cod_usu = '%s'" ;
+        $preSql = sprintf(
             $this->sqlSelect,
-             $this->getCodPubli(),
-             $this->getCodUsu()
+            $campos,
+            $whereSelect
+        );
+        $sql = sprintf(
+            $preSql,
+            $this->getCodPubli(),
+            $this->getCodUsu()
               
          );
          
@@ -88,6 +97,55 @@ class PublicacaoSalvaA extends PublicacaoSalvaM{
         }
         return;
         
+    }
+
+    public function SelectPubliSalvaByIdUser($pagina = null){
+        $campos = ' publicacao_salva.cod_publi ';
+        $whereSelect = " publicacao_salva.cod_usu = '%s' AND status_publi_sal = 'A' ";
+
+        $preSql = sprintf(
+            $this->sqlSelect,
+            $campos,
+            $whereSelect
+        );
+        $sql = sprintf(
+            $preSql,            
+            $this->getCodUsu()              
+         );
+        
+        $res = $this->runSelect($sql);
+
+        if(!empty($res)){
+            $ids = array();
+            foreach($res as $chaves => $valor){ // Transformar em vetor
+                foreach($valor as $chave => $vlr){                    
+                        $ids[] = $vlr;                    
+                }
+            }
+            echo $in = $this->gerarIn($ids);
+            $publicacao = new Publicacao();
+            $dadosPubli = $publicacao->ListFromALL($pagina, ' AND publicacao.cod_publi ' . $in, ' AND cod_publi ' . $in);
+            $this->setQuantidadePaginas($publicacao->getQuantidadePaginas());
+            $this->setPaginaAtual($publicacao->getPaginaAtual());
+
+            return $dadosPubli;
+        }
+
+        return 'dsadsa';
+    }
+
+    public function gerarIn($tipos = array()){// gerar o in, exemplo in('adm','moderador')
+        $in = "in( ";
+        $contador = 1;
+        foreach ($tipos as $valor){
+            if($contador == count($tipos)){
+                $in.= "'$valor'" . ' )';
+            }else{
+                $in.= "'$valor'".', ';
+            }
+            $contador++;            
+        }
+        return $in;
     }
 
 }

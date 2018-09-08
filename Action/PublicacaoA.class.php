@@ -102,12 +102,14 @@ class PublicacaoA extends PublicacaoM{
         return;
     } 
 
-    public function ListFromALL($pagina = null){ // Listar todas as publicacoes
-       
-        $sqlPaginacao = $this->controlarPaginacao($this->sqlSelectQuantPubli,null,6,$pagina);
+    public function ListFromALL($pagina = null, $complemento = ' AND 1=1', $complementoPaginacao = null){ // Listar todas as publicacoes
+        // $pagina = pagina q o usuario esta
+        // $complemento = se precisa de mais algum where no select
+        // $complementoPaginacao = se precisa de mais algum where na paginacao
+        $sqlPaginacao = $this->controlarPaginacao($this->sqlSelectQuantPubli,$complementoPaginacao,6,$pagina);
         $sql = sprintf($this->sqlSelect,
                         $this->whereListFromALL,                       
-                       ' AND 1=1', //colocar um AND 1=1 pq nao tem mais nada, se nao colocar da pau
+                       $complemento, //colocar um AND 1=1 pq nao tem mais nada, se nao colocar da pau
                        $sqlPaginacao
                        
         );        
