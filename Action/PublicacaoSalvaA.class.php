@@ -131,7 +131,7 @@ class PublicacaoSalvaA extends PublicacaoSalvaM{
             return $dadosPubli;
         }
 
-        return 'dsadsa';
+        return;
     }
 
     public function gerarIn($tipos = array()){// gerar o in, exemplo in('adm','moderador')

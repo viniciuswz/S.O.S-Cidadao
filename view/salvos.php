@@ -106,11 +106,18 @@ session_start();
         </div>       
         <?php
             }
+            
         ?>
 
         <div id="container">
             <div class="salvos">
-                <h4>Salvos</h4>
+            <?php
+                if(empty($resposta)){                    
+                    echo '<h4>Não há publicacões salvas</h4>';                    
+                }else{
+                    echo '<h4>Salvos</h4>'; 
+                }
+            ?>
             </div>
             <section class="alinha-item">
             <?php
