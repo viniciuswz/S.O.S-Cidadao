@@ -31,26 +31,26 @@ session_start();
             $usuPerfil->setCodUsu($_GET['ID']);    
             $dadosPerfil =  $usuPerfil->getDadosUser();     
         }
-
-        if($dadosPerfil[0]['descri_tipo_usu'] != 'Comum'
-        AND $dadosPerfil[0]['descri_tipo_usu'] != 'Prefeitura'){ // Se for algum perfil de adm, funcionario ou prefeitura
-            if(!isset($_SESSION['id_user'])){ // Se na estiver logado
-                throw new \Exception("Você nao tem permissao para este perfil",1);
-            }else{
-                $id2 = $_SESSION['id_user'];   
-                if($dadosPerfil[0]['cod_usu'] != $id2){ // Se os ids forem difentes
-                    if($tipoUsu == 'Prefeitura'){ // se for prefeitura pode ver os funcionarios
-                        if($dadosPerfil[0]['descri_tipo_usu'] != 'Funcionario'){
-                            throw new \Exception("Você nao tem permissao para este perfil",1);
-                        }
-                    }else if($tipoUsu != 'Adm' AND $tipoUsu != 'Moderador' AND $tipoUsu != 'Prefeitura'){   // se nao for tipo adm ou moderador estou erro                     
-                        throw new \Exception("Você nao tem permissao para este perfil",1);
-                    }                  
-                }
+        $descPerfilVisu = $dadosPerfil[0]['descri_tipo_usu'];
+        if($descPerfilVisu != 'Comum' AND $descPerfilVisu != 'Prefeitura'){ // Vendo perfil restrito
+            if(!isset($_SESSION['id_user'])){ // Não esta logado
+                throw new \Exception("Você nao tem permissao para este perfil12",1);
             }
-            
-            
-        }        
+
+            if($_SESSION['id_user'] != $dadosPerfil[0]['cod_usu']){// Logado, e nao esta no seu perfil
+                switch($tipoUsu){
+                    case 'Comum':
+                    case 'Funcionario':
+                        throw new \Exception("Você nao tem permissao para este perfil13",1);
+                        break;
+                    case 'Prefeitura':
+                        if($descPerfilVisu != 'Funcionario'){
+                            throw new \Exception("Você nao tem permissao para este perfil14",1);
+                        }
+                        break; 
+                }
+        }}    
+               
         $publi = new Publicacao();
         $publi->setCodUsu($id);
         isset($_GET['pagina']) ?: $_GET['pagina'] = null; 
@@ -149,11 +149,17 @@ session_start();
         <div id="container">
             <section class="perfil-base">
                 <div class="perfil">
-                        <form action="../UpdateImagem.php" method="post" enctype="multipart/form-data">
-                                <label for="imagem"><i class="icone-edit-full"></i></label>
-                                <input type="file" id="imagem" name="imagem">
-                                <input type="hidden" value="capa" name="tipo">                                
-                        </form>
+                        <?php 
+                            if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $dadosPerfil[0]['cod_usu']){
+                        ?>
+                                <form action="../UpdateImagem.php" method="post" enctype="multipart/form-data">
+                                        <label for="imagem"><i class="icone-edit-full"></i></label>
+                                        <input type="file" id="imagem" name="imagem">
+                                        <input type="hidden" value="capa" name="tipo">                                
+                                </form>
+                        <?php 
+                            }
+                        ?>
                     <img src="../Img/capa/<?php echo $dadosPerfil[0]['img_capa_usu'] ?>"> 
                    
                     <div>
@@ -161,11 +167,17 @@ session_start();
                         <div>
                             <img src="../Img/perfil/<?php echo $dadosPerfil[0]['img_perfil_usu'] ?>">
                         </div>
-                        <form action="../UpdateImagem.php" method="post" enctype="multipart/form-data">
-                            <label for="imagem"><i class="icone-edit-full" title="Alterar a foto de perfil"></i></label>
-                            <input type="file" id="imagem" name="imagem">
-                            <input type="hidden" value="perfil" name="tipo">                            
-                        </form>
+                        <?php 
+                            if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $dadosPerfil[0]['cod_usu']){
+                        ?>
+                                <form action="../UpdateImagem.php" method="post" enctype="multipart/form-data">
+                                    <label for="imagem"><i class="icone-edit-full" title="Alterar a foto de perfil"></i></label>
+                                    <input type="file" id="imagem" name="imagem">
+                                    <input type="hidden" value="perfil" name="tipo">                            
+                                </form>
+                        <?php 
+                            }
+                        ?>
                     </div>
 
                 </div>
@@ -292,15 +304,15 @@ session_start();
 
 }catch (Exception $exc){     
     $erro = $exc->getCode();   
-    $mensagem = $exc->getMessage();
+    echo $mensagem = $exc->getMessage();
     switch($erro){
         case 2://Ja esta logado  
         case 6://Ja esta logado 
         case 1:
-            echo "<script> alert('$mensagem');javascript:window.location='index.php';</script>";
+            //echo "<script> alert('$mensagem');javascript:window.location='index.php';</script>";
             break;
         default:
-            echo "<script> alert('$mensagem');javascript:window.location='index.php';</script>";
+            //echo "<script> alert('$mensagem');javascript:window.location='index.php';</script>";
     }      
 }finally{
 
