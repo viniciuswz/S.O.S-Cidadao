@@ -38,6 +38,8 @@ class DebateA extends DebateM{
     private $whereListFromALL = "status_usu = 'A' AND status_deba = 'A' ";
 
     private $whereIdDeba = "AND cod_deba = '%s'";
+
+    private $whereIdUser = " AND debate.cod_usu = '%s' ";
    
     private $sqlPaginaAtual;
 
@@ -104,6 +106,25 @@ class DebateA extends DebateM{
         
     }
 
+    public function ListByIdUser($pagina = null){        
+        $prepararWhereUsu = sprintf($this->whereIdUser, $this->getCodUsu()); 
+        $sqlPaginacao = $this->controlarPaginacao($pagina, $prepararWhereUsu );  
+        $sql = sprintf($this->sqlSelect,
+                        $this->whereListFromALL,                       
+                        $prepararWhereUsu, //colocar um AND 1=1 pq nao tem mais nada, se nao colocar da pau
+                        $sqlPaginacao                       
+                       
+        );  
+        $res = $this->runSelect($sql);
+        if(empty($res)){
+            throw new \Exception("Não foi possível fazer o select",9); 
+        }  
+
+        $dadosTratados = $this->tratarDados($res);
+        //var_dump($dadosTratados);
+        return $dadosTratados;
+
+    }
     public function tratarDados($dados){
         $contador = 0;
                

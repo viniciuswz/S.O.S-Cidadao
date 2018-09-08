@@ -187,8 +187,14 @@ session_start();
                 <ul class="espacos">
 
                     <li class="ativo"><a href="#r">Reclamações</a></li>
-
-                    <li><a href="#d">Debates</a></li>
+                    <?php 
+                        if(isset($_GET['ID'])){                    
+                            echo '<li><a href="perfil_debate.php?ID='.$dadosPerfil[0]['cod_usu'].'">Debates</a></li>';
+                        }else{
+                            echo '<li><a href="perfil_debate.php">Debates</a></li>';
+                        }
+                    ?>
+                    
                     
                 </ul>
             </nav>

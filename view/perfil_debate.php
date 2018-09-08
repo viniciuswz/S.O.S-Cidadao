@@ -1,3 +1,63 @@
+<?php
+session_start();
+    require_once('../Config/Config.php');
+    require_once(SITE_ROOT.DS.'autoload.php');   
+    use Core\Usuario;
+    use Core\Debate;
+    use Classes\ValidarCampos;
+    
+    try{        
+        $usuPerfil = new Usuario();
+        if(isset($_SESSION['id_user'])){ // se estiver logado   
+            $usu = new Usuario();  
+            $usu->setCodUsu($_SESSION['id_user']);         
+            $resultado = $usu->getDadosUser();
+
+            $tipoUsu = $_SESSION['tipo_usu'];
+            if(isset($_GET['ID'])){ // quando for ver perfil de outras pessoas
+                $validar = new ValidarCampos(array('ID'), $_GET);
+                $validar->verificarTipoInt(array('ID'), $_GET); // Verificar se o parametro da url é um numero
+                $id = $_GET['ID'];
+                $usuPerfil->setCodUsu($_GET['ID']); 
+                $dadosPerfil =  $usuPerfil->getDadosUser();     
+            }else{ // seu propio perfil
+                $id = $_SESSION['id_user'];                
+                $dadosPerfil = $resultado;                            
+            }      
+        }else{ // Nao esta logado
+            $validar = new ValidarCampos(array('ID'), $_GET);
+            $validar->verificarTipoInt(array('ID'), $_GET); // Verificar se o parametro da url é um numero
+            $id = $_GET['ID'];   
+            $usuPerfil->setCodUsu($_GET['ID']);    
+            $dadosPerfil =  $usuPerfil->getDadosUser();     
+        }
+        $descPerfilVisu = $dadosPerfil[0]['descri_tipo_usu'];
+        if($descPerfilVisu != 'Comum' AND $descPerfilVisu != 'Prefeitura'){ // Vendo perfil restrito
+            if(!isset($_SESSION['id_user'])){ // Não esta logado
+                throw new \Exception("Você nao tem permissao para este perfil12",1);
+            }
+
+            if($_SESSION['id_user'] != $dadosPerfil[0]['cod_usu']){// Logado, e nao esta no seu perfil
+                switch($tipoUsu){
+                    case 'Comum':
+                    case 'Funcionario':
+                        throw new \Exception("Você nao tem permissao para este perfil13",1);
+                        break;
+                    case 'Prefeitura':
+                        if($descPerfilVisu != 'Funcionario'){
+                            throw new \Exception("Você nao tem permissao para este perfil14",1);
+                        }
+                        break; 
+                }
+        }}    
+               
+        $debate = new Debate();
+        $debate->setCodUsu($id);
+        isset($_GET['pagina']) ?: $_GET['pagina'] = null; 
+        $resposta = $debate->ListByIdUser($_GET['pagina']);        
+        echo $quantidadePaginas = $debate->getQuantidadePaginas();
+        $pagina = $debate->getPaginaAtual();        
+?>
 <!DOCTYPE html>
 <html lang=pt-br>
     <head>
@@ -87,100 +147,149 @@
 
 
         <div id="container">
-            <section class="perfil-base">
+        <section class="perfil-base">
                 <div class="perfil">
-                        <form>
-                                <label for="imagem"><i class="icone-edit-full"></i></label>
-                                <input type="file" id="imagem">
-                        </form>
-                    <img src="imagens/capa.png"> 
+                        <?php 
+                            if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $dadosPerfil[0]['cod_usu']){
+                        ?>
+                                <form action="../UpdateImagem.php" method="post" enctype="multipart/form-data">
+                                        <label for="imagem"><i class="icone-edit-full"></i></label>
+                                        <input type="file" id="imagem" name="imagem">
+                                        <input type="hidden" value="capa" name="tipo">                                
+                                </form>
+                        <?php 
+                            }
+                        ?>
+                    <img src="../Img/capa/<?php echo $dadosPerfil[0]['img_capa_usu'] ?>"> 
                    
                     <div>
-                        <p>Péricles Consagrado</p>
+                        <p><?php echo $dadosPerfil[0]['nome_usu'] ?></p>
                         <div>
-                            <img src="imagens/perfil.jpg">
+                            <img src="../Img/perfil/<?php echo $dadosPerfil[0]['img_perfil_usu'] ?>">
                         </div>
-                        <form>
-                            <label for="imagem"><i class="icone-edit-full" title="Alterar a foto de perfil"></i></label>
-                            <input type="file" id="imagem">
-                        </form>
-                       
-                        
+                        <?php 
+                            if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $dadosPerfil[0]['cod_usu']){
+                        ?>
+                                <form action="../UpdateImagem.php" method="post" enctype="multipart/form-data">
+                                    <label for="imagem"><i class="icone-edit-full" title="Alterar a foto de perfil"></i></label>
+                                    <input type="file" id="imagem" name="imagem">
+                                    <input type="hidden" value="perfil" name="tipo">                            
+                                </form>
+                        <?php 
+                            }
+                        ?>
                     </div>
+
                 </div>
                
             </section>
             <nav class="menu-perfil">
                 <ul class="espacos">
+                    <?php 
+                        if(isset($_GET['ID'])){                    
+                            echo '<li><a href="perfil_reclamacao.php?ID='.$dadosPerfil[0]['cod_usu'].'">Reclamações</a></li>';
+                        }else{
+                            echo '<li><a href="perfil_reclamacao.php">Reclamações</a></li>';
+                        }
+                    ?>
 
-                    <li class="ativo"><a href="#r">Reclamações</a></li>
-
-                    <li><a href="#d">Debates</a></li>
+                    <li class="ativo"><a href="#d">Debates</a></li>
                     
                 </ul>
             </nav>
             <section class="alinha-item">
-
+            <?php
+                $contador = 0;
+                while($contador < count($resposta)){                
+            ?>  
                 <div class="item-publicacao">
                         <div class="item-topo">
                             <a href="#">
                             <div>
-                                <img src="imagens/perfil.jpg">
+                                <img src="../Img/perfil/<?php echo $resposta[$contador]['img_perfil_usu']?>">
                             </div>
-                            <p><span class="negrito">Pericles do Exalta Samba</a></span>Debate criado há <time>4 minutos</time></p>
+                            <p><span class="negrito"><?php echo $resposta[$contador]['nome_usu']?></a></span><time><?php echo $resposta[$contador]['dataHora_deba']?></time></p>
                             <div class="mini-menu-item">
                                 <i class="icone-3pontos"></i>
                                 <div>
                                     <ul>
-                                        <li><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>
-                                        <li><a href="#"><i class="icone-fechar"></i></i>Remover</a></li>
-                                        <li><a href="#"><i class="icone-edit-full"></i></i>Alterar</a></li>
+                                    <?php
+                                        if(isset($resposta[$contador]['indDenunComen']) AND $resposta[$contador]['indDenunComen'] == TRUE){ // Aparecer quando o user ja denunciou            
+                                            echo '<li><i class="icone-bandeira"></i><b>Denunciado</b></li>';        
+                                        }else if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] != $resposta[$contador]['cod_usu']){ // Aparecer apenas naspublicaçoes q nao é do usuario
+                                            if($tipoUsu == 'Comum' or $tipoUsu == 'Prefeitura' or $tipoUsu == 'Funcionario'){
+                                                echo '<li><a href="../Templates/DenunciarDebateTemplate.php?ID='.$resposta[$contador]['cod_deba'].'"><i class="icone-bandeira"></i>Denunciar</a></li>';                                                        
+                                            }                    
+                                        }else if(!isset($_SESSION['id_user'])){ // aparecer parar os usuario nao logado
+                                                 echo '<li><a href="../Templates/DenunciarDebateTemplate.php?ID='.$resposta[$contador]['cod_deba'].'"><i class="icone-bandeira"></i>Denunciar</a></li>';
+                                        } 
+                                    ?>
+                                    <?php
+                                        if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $resposta[$contador]['cod_usu']){
+                                            echo '<li><a href="../ApagarDebate.php?ID='.$resposta[$contador]['cod_deba'].'"><i class="icone-fechar"></i></i>Remover</a></li>';
+                                            echo '<li><a href="#"><i class="icone-edit-full"></i></i>Alterar(Ñ feito)</a></li>';                                                    
+                                        }else if(isset($tipoUsu) AND ($tipoUsu == 'Adm' or $tipoUsu == 'Moderador')){
+                                            echo '<li><a href="../ApagarDebate.php?ID='.$resposta[$contador]['cod_deba'].'"><i class="icone-fechar"></i></i>Remover</a></li>';
+                                            // Icone para apagar usuaario
+                                            //echo '<a href="../ApagarUsuario.php?ID='.$resposta[0]['cod_usu'].'">Apagar Usuario</a>';                                                       
+                                            echo '<li><a href="#"><i class="icone-edit-full"></i></i>Alterar(Ñ feito)</a></li>';                                                    
+                                        }
+                                    ?> 
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="Pagina-debate.php?ID=<?php echo $resposta[$contador]['cod_deba'] ?>">
                             <figure>
-                                <img src="imagens/RECLAMATION.png">
+                                <img src="../Img/debate/<?php echo $resposta[$contador]['img_deba']?>">
                             </figure>
                             <div class="legenda">
-                                    <p>Como os cadeirantes vão subir? aaaa</p><p>10</p><i class="icone-grupo"></i>
+                                    <p><?php echo $resposta[$contador]['nome_deba']?></p><p><?php echo $resposta[$contador]['qtdParticipantes']?></p><i class="icone-grupo"></i>
                             </div>
                             
                         </a>
                 </div>
-
-                <div class="item-publicacao">
-                    <div class="item-topo">
-                        <a href="#">
-                        <div>
-                            <img src="imagens/perfil.jpg">
-                        </div>
-                        <p><span class="negrito">Pericles do Exalta Samba</a></span>Debate criado há <time>4 minutos</time></p>
-                        <div class="mini-menu-item">
-                            <i class="icone-3pontos"></i>
-                            <div>
-                                <ul>
-                                    <li><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>
-                                    <li><a href="#"><i class="icone-fechar"></i></i>Remover</a></li>
-                                    <li><a href="#"><i class="icone-edit-full"></i></i>Alterar</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="#">
-                        <figure>
-                            <img src="imagens/RECLAMATION.png">
-                        </figure>
-                        <div class="legenda">
-                                <p>Como os cadeirantes vão subir? aaaa</p><p>10</p><i class="icone-grupo"></i>
-                        </div>
-                        
-                    </a>
-                </div>
-
+                <?php  
+                    $contador++;
+                    }
+                ?>   
             </section>
-                
+    
+
         </div>
+        <ul>
+        <?php
+            if($quantidadePaginas != 1){
+                $contador = 1;
+                while($contador <= $quantidadePaginas){
+                    if(isset($pagina) AND $pagina == $contador){
+                        echo '<li class="jaca"><a href="perfil_debate.php?pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;  
+                    }else{
+                        echo '<li><a href="perfil_debate.php?pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;
+                    }
+                    
+                    $contador++;        
+                }
+            }
+            
+        ?>
+        </ul>
     </body>
 </html>
+<?php
+
+}catch (Exception $exc){     
+    $erro = $exc->getCode();   
+    echo $mensagem = $exc->getMessage();
+    switch($erro){
+        case 2://Ja esta logado  
+        case 6://Ja esta logado 
+        case 1:
+            //echo "<script> alert('$mensagem');javascript:window.location='index.php';</script>";
+            break;
+        default:
+            //echo "<script> alert('$mensagem');javascript:window.location='index.php';</script>";
+    }      
+}finally{
+
+}
