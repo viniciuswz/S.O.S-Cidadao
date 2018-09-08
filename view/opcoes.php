@@ -1,3 +1,6 @@
+<li><a href="perfil.html"><i class="icone-user"></i>Meu perfil</a></li>
+<li><a href="salvos.php"><i class="icone-salvar"></i>Salvos</a></li>
+    <hr>
 <?php
 switch($resultado[0]['descri_tipo_usu']){
     case 'Adm':
@@ -19,5 +22,7 @@ switch($resultado[0]['descri_tipo_usu']){
             echo '<hr>';
         break;
 }
-
+?>
+<li><a href="configuracoes.php"><i class="icone-config"></i>Configurações</a></li>
+<li><a href="../sair.php"><i class="icone-logout"></i>Log out</a></li>
    

@@ -98,16 +98,10 @@ session_start();
             </div>
            
             <nav>
-                <ul>
-                    <li><a href="perfil.html"><i class="icone-user"></i>Meu perfil</a></li>
-                    <li><a href="#"><i class="icone-salvar"></i>Salvos</a></li>
-                    <hr>
+                <ul>                    
                     <?php
                        require_once('opcoes.php');                        
-                    ?>                     
-                    <li><a href="configuracoes.php"><i class="icone-config"></i>Configurações</a></li>
-                    <li><a href="../sair.php"><i class="icone-logout"></i>Log out</a></li>
-
+                    ?> 
                 </ul>
             </nav>
             

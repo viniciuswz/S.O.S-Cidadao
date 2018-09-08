@@ -73,14 +73,9 @@
            
             <nav>
                 <ul>
-                    <li><a href="perfil.html"><i class="icone-user"></i>Meu perfil</a></li>
-                    <li><a href="admin-moderador.php"><i class="icone-salvar"></i>Salvos</a></li>
-                    <hr>
                     <?php
-                        require_once('opcoes.php');                           
-                    ?>                     
-                    <li><a href="configuracoes.php"><i class="icone-config"></i>Configurações</a></li>
-                    <li><a href="../sair.php"><i class="icone-logout"></i>Log out</a></li>
+                       require_once('opcoes.php');                        
+                    ?>
 
                 </ul>
             </nav>
