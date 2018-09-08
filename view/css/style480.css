@@ -592,6 +592,10 @@ width: 100vw;
     display: block;
 }
 
+.filtro-admin i{
+    cursor: pointer
+}
+
 .filtro-admin span:first-child{
     position: absolute;
     font-family: "Open-Sans";
@@ -639,9 +643,11 @@ width: 100vw;
     background-color: #fff;
     display: none;
     z-index: 98;
-
 }
 
+.filtro-admin form.filtro-ativo{
+    display: block
+}
 .filtro-admin form div{
     display: flex;
     flex-direction: column;

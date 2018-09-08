@@ -2742,7 +2742,7 @@ margin-bottom :200px;
     display: flex;
     flex-direction: column;
     text-shadow:1px 1px 1px #000
-    
+
 }
 
 .cta{
@@ -2842,4 +2842,38 @@ margin-bottom :200px;
 
 .landing-rodape h1{
     font-size: 21px
+}
+
+.mini-menu-adm{
+    
+    
+    position: relative;
+    
+}
+.mini-menu-adm ul{
+    position:absolute;
+    width: 300px;
+    background-color: red;
+    top: 73px;
+    display:flex;
+    flex-direction: column
+}
+
+.mini-menu-adm ul li{
+    padding: 5px
+}
+
+.mini-menu-adm ul li:hover{
+  background-color: purple
+}
+
+
+.mini-menu-adm ul li a{
+    display: block;
+    width: 100%;
+
+}
+
+.mini-menu-adm ul li a:hover{
+
 }

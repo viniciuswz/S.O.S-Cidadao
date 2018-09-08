@@ -392,3 +392,13 @@ jQuery(function($){
     $(".contatos").removeClass("contatos-ativo")
   })
 })
+
+jQuery(function($){
+  $(".icone-filtro").click(function(){
+    $(this).parent().find("form").addClass("filtro-ativo")
+  })
+  $("#fechar-filtro").click(function(){
+    $(this).parent().removeClass("filtro-ativo")
+  })
+})
+
