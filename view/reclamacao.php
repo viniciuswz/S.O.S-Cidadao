@@ -168,6 +168,15 @@ session_start();
                                                     echo '<li><a href="../Templates/UpdatePublicacaoTemplate.php?ID='.$_GET['ID'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';                                                    
                                                 }
                                             ?> 
+                                            <?php                                             
+                                                if(isset($indSalva) AND !$indSalva){
+                                                    echo '<li><a href="../SalvarPublicacao.php?ID='.$_GET['ID'].'"><i class="icone-salvar"></i>Salvar</a></li>';
+                                                }else if(isset($indSalva) AND $indSalva){
+                                                    echo '<li><a href="../SalvarPublicacao.php?ID='.$_GET['ID'].'"><i class="icone-salvar-full"></i>Salvo</a></li>';
+                                                }else{
+                                                    echo '<li><a href="../SalvarPublicacao.php?ID='.$_GET['ID'].'"><i class="icone-salvar"></i>Salvar</a></li>';
+                                                }
+                                            ?>
                                             </ul>
                                         </div>
                                 </div>

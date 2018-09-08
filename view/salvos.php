@@ -158,7 +158,7 @@ session_start();
                                             echo '<li><a href="../Templates/UpdatePublicacaoTemplate.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';                                                    
                                         }
                                 ?> 
-                                <li><a  href="../SalvarPublicacao.php?ID=<?php echo $resposta[$contador]['cod_publi'] ?>"><i class="icone-salvar-full"></i>Salvar</a></li>
+                                <li><a  href="../SalvarPublicacao.php?ID=<?php echo $resposta[$contador]['cod_publi'] ?>"><i class="icone-salvar-full"></i>Salvo</a></li>
                                 </ul>
                             </div>
                         </div>
