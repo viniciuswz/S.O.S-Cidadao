@@ -378,7 +378,7 @@ width: 100vw;
     background-position: 8px -30.5px;
 }
 
-/*Notificações*/
+/*NotificaÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Âµes*/
 .notificacoes{
     display: block;
     position: absolute;
@@ -426,7 +426,7 @@ nav.notificacoes ul li a span:first-of-type{
 }
 
 
-/*NÃO ALTERAR NADA DAQUI PARA CIMA*/
+/*NÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢O ALTERAR NADA DAQUI PARA CIMA*/
 
 
 
@@ -2209,7 +2209,7 @@ margin-bottom :200px;
     position: relative;
 }
 
-/*pag reclamaçao*/
+/*pag reclamaÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ao*/
 
 .Reclamacao{
     width: 40%;
@@ -2721,14 +2721,16 @@ margin-bottom :200px;
     width: 100%;
     height: 100vh;
     background-image: url('../imagens/fundo-login.jpg');
-    background-size: cover
+    background-size: cover;
+    position:relative;
 }
 
 .landing-dobra h1{
     color:white;
     position: absolute;
     top: 100px;
-    left:100px
+    left:100px;
+    text-shadow:1px 1px 1px #000
 }
 
 .landing-dobra div{
@@ -2736,10 +2738,11 @@ margin-bottom :200px;
     position: absolute;
     top: 150px;
     left:100px;
-    
     width: 450px;
     display: flex;
     flex-direction: column;
+    text-shadow:1px 1px 1px #000
+    
 }
 
 .cta{
@@ -2750,7 +2753,8 @@ margin-bottom :200px;
     width: 200px;
     text-align: center;
     border-radius: 10%/100px;
-    margin-top: 10px
+    margin-top: 10px;
+    text-shadow:none
 }
 
 .landing-dobra p{
@@ -2758,35 +2762,84 @@ margin-bottom :200px;
 }
 
 .landing-dobra a:last-child{
-   
     color:white;
 }
 
 
 .landing-funcionalidades{
-    background-color: red;
     display: flex;
     justify-content: space-around;
-    height: 100vh
+    padding:15px
+    
 }
 
 .landing-item{
-    width: 40%;
+    width: 50%;
     display: flex;
     flex-direction: column;
-   
-    align-items: center
+    align-items: center;
+    margin: 5px;
 }
 
 .landing-item div:first-of-type{
     overflow: hidden;
-    width: calc(100vw/2 - 100px);
+    width: 100%;
+    height:300px
    
+}
+
+.landing-item div img:first-of-type{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%)
 }
 .landing-item h3{
     flex-flow: 1;
+    margin:5px
     
 }
 .landing-item p{
-    width: 300px
+    width: 300px;
+    margin:5px
+}
+
+.landing-item a{
+    margin:15px
+}
+
+.landing-prefeitura{
+    background-color:pink;
+    height:100vh;
+    background-image: url('../imagens/fundo-login.jpg');
+    position:relative;
+    color:white;
+    text-shadow:1px 1px 1px black
+}
+
+.landing-prefeitura h1{
+    color:white;
+    position: absolute;
+    top: 30%;
+    left:50%;
+    transform: translateX(-50%)
+}
+
+.landing-prefeitura p{
+    color:white;
+    position: absolute;
+    top: 40%;
+    left:50%;
+    transform: translateX(-50%);
+}
+
+.landing-rodape{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:15px
+}
+
+.landing-rodape h1{
+    font-size: 21px
 }

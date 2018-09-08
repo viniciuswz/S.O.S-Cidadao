@@ -904,3 +904,57 @@ overflow: inherit
     flex-direction: column;
     justify-content: center
 }
+
+.landing-dobra h1{
+    top: 10%;
+    left:50%;
+    transform: translateX(-50%);
+    width: 100%;
+    font-size: 20px;
+    text-align: center
+}
+
+.landing-dobra div{
+    top: 90px;
+    left:50%;
+    transform: translateX(-50%);
+    width: 95%;
+    align-items: center;
+}
+
+.landing-dobra div p{
+    font-size: 15px;
+    text-align: center
+}
+
+.landing-funcionalidades{
+    flex-direction: column
+}
+
+.landing-item{
+    width: 100%;
+}
+
+.landing-prefeitura h1{
+    width: 100%;
+    text-align: center;
+    color:white;
+    position: absolute;
+    top: calc(50% - 10px);
+    left:50%;
+    transform: translateX(-50%) translateY(-50%)
+}
+
+.landing-prefeitura p{
+    color:white;
+    position: absolute;
+    width: 90%;
+    text-align: center;
+    top:calc(50% + 60px);
+    left:50%;
+    transform: translateX(-50%) translateY(-50%)
+}
+
+.landing-rodape h1{
+    font-size: 17px
+}
