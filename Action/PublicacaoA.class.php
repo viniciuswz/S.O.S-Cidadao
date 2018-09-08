@@ -4,6 +4,7 @@ use Model\PublicacaoM;
 use Core\Logradouro;
 use Core\PublicacaoDenuncia;
 use Core\Usuario;
+use Core\PublicacaoSalva;
 use Classes\TratarImg;
 use Classes\TratarDataHora;
 use Classes\Paginacao;
@@ -179,8 +180,12 @@ class PublicacaoA extends PublicacaoM{
     }
 
     public function tratarInformacoes($dados){        
-        $contador = 0;
-               
+        
+        if(!empty($this->getCodUsu())){
+            $publicacaoSalva = new PublicacaoSalva();
+            $publicacaoSalva->setCodUsu($this->getCodUsu());
+        }        
+        $contador = 0;               
         while($contador < count($dados)){//Nesse while so entra a parte q me interresa
             $texto = ""; //Limpar a variavel
             $dados[$contador]['dataHora_publi'] = $this->tratarHora($dados[$contador]['dataHora_publi']);//Calcular o tempo
@@ -199,8 +204,9 @@ class PublicacaoA extends PublicacaoM{
             $dados[$contador]['indResPrefei'] =  $this->getVerifyResPrefei($dados[$contador]['cod_publi']); //Veficar resposta da prefeitura   
             if(!empty($this->getCodUsu())){//Só entar aqui se ele estiver logado
                 $dados[$contador]['indCurtidaDoUser'] =  $this->getVerifyCurti($dados[$contador]['cod_publi']);//Verificar se ele curtiu a publicacao
-                $dados[$contador]['indDenunPubli'] =  $this->getVerificarSeDenunciou($dados[$contador]['cod_publi']);//Verificar se ele denunciou a publicacao
-                //Me retorna um bollenao
+                $dados[$contador]['indDenunPubli'] =  $this->getVerificarSeDenunciou($dados[$contador]['cod_publi']);//Verificar se ele denunciou a publicacao               
+                $dados[$contador]['indSalvaPubli'] = $this->getVerificarSeSalvou($publicacaoSalva, $dados[$contador]['cod_publi']);
+                //Me retorna um bollenao                
             }
             
             $contador++;
@@ -264,6 +270,20 @@ class PublicacaoA extends PublicacaoM{
         $denun->setCodPubli($codPubli);
         $denun->setCodUsu($idUser);        
         return $denun->verificarSeDenunciou();
+    }
+
+    public function getVerificarSeSalvou($obj,$codPubli){
+        $obj->setCodPubli($codPubli);
+        $retorno = $obj->indSalva(TRUE);
+        if($retorno){// ja salvou alguma vez
+            if($retorno[0]['status_publi_sal'] == 'A'){ // Ta salvo
+                return TRUE;
+            }else{ // nao esta salvo
+                return false;
+            }
+        }else{// nao ta salvo
+            return false;
+        }
     }
 
     public function quantidadeTotalPubli($sqlCountPubli,$where){//Pegar a quantidade de publicacoes

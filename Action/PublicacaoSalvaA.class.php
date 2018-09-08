@@ -148,4 +148,8 @@ class PublicacaoSalvaA extends PublicacaoSalvaM{
         return $in;
     }
 
+    public function verificarSalvo(){
+        
+    }
+
 }

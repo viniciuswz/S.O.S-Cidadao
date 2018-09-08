@@ -157,6 +157,17 @@ session_start();
                                             echo '<li><a href="../Templates/UpdatePublicacaoTemplate.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';                                                    
                                         }
                                 ?> 
+                                
+                                <?php
+                                        if(isset($_SESSION['id_user']) AND isset($resposta[$contador]['indSalvaPubli']) AND $resposta[$contador]['indSalvaPubli'] == TRUE){//Salvou
+                                            echo '<li><a href="../SalvarPublicacao.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-salvar-full"></i>Salvo</a></li>';
+                                        }else if(isset($_SESSION['id_user']) AND isset($resposta[$contador]['indSalvaPubli']) AND $resposta[$contador]['indSalvaPubli'] == FALSE){//Nao salvou
+                                            echo '<li><a href="../SalvarPublicacao.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-salvar"></i>Salvar</a></li>';
+                                        }else if(!isset($_SESSION['id_user'])){ // aparecer parar os usuario nao logado
+                                            echo '<li><a href="../SalvarPublicacao.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-salvar"></i>Salvar</a></li>';
+                                        } 
+                                ?> 
+
                                 </ul>
                             </div>
                         </div>
