@@ -228,9 +228,14 @@ session_start();
                         <span><?php echo $resposta[0]['quantidade_comen']?></span><i class="icone-comentario-full"></i>
                         <span><?php echo $resposta[0]['quantidade_curtidas']?></span><i class="icone-like"></i>
                     </div>
-                    <a href="#"> 
-                        <i class="icone-like"></i> Like
-                    </a>
+                    <?php
+                        if(isset($resposta[0]['indCurtidaDoUser']) AND $resposta[0]['indCurtidaDoUser'] == TRUE){            
+                            echo '<a href="../CurtirPublicacao.php?ID='.$_GET['ID'].'"><i class="icone-like-full"></i> Like</a>';            
+                        }else{                     
+                            echo '<a href="../CurtirPublicacao.php?ID='.$_GET['ID'].'"><i class="icone-like"></i> Like</a>';  
+                        }
+                    ?>
+
                 
             </div>
             <?php
@@ -264,14 +269,14 @@ session_start();
             <?php
             }
             ?>
-            <section class="comentarios">
-                <h3>
-                    comentarios
-                </h3>
+            <section class="comentarios">                
                 <?php 
                     $contador = 0;
                     while($contador < count($comentarioComum)){
                 ?>   
+                <h3>
+                    comentarios
+                </h3>
                 <div class="comentario-user">
                     <div class="publicacao-topo-aberta">
                         <div>

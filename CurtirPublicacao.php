@@ -21,7 +21,7 @@ try{
     if(isset($_GET['pagina'])){ //Ta curtindo atraves da listagem de todas as publicaçoess
         echo "<script> javascript:window.location='view/todasreclamacoes.php?pagina=".$_GET['pagina']."';</script>";
     }else{//Ta curtindo atreves da pagina de uma publicacoes especifica
-        echo "<script> javascript:window.location='view/todasreclamacoes.php?ID=".$_GET['ID']."';</script>";
+        echo "<script> javascript:window.location='view/reclamacao.php?ID=".$_GET['ID']."';</script>";
     }        
 
 }catch(Exception $exc){
