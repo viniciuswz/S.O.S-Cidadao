@@ -263,10 +263,18 @@ session_start();
                 $contador = 1;
                 while($contador <= $quantidadePaginas){
                     if(isset($pagina) AND $pagina == $contador){
-                        echo '<li class="jaca"><a href="perfil_debate.php?pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;  
+                        if(isset($_GET['ID'])){
+                            echo '<li class="jaca"><a href="perfil_debate.php?pagina='.$contador.'&ID='.$_GET['ID'].'">Pagina'.$contador.'</a></li>'  ; 
+                        }else{
+                            echo '<li class="jaca"><a href="perfil_debate.php?pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ; 
+                        }                         
                     }else{
-                        echo '<li><a href="perfil_debate.php?pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;
-                    }
+                        if(isset($_GET['ID'])){
+                            echo '<li class="jaca"><a href="perfil_debate.php?pagina='.$contador.'&ID='.$_GET['ID'].'">Pagina'.$contador.'</a></li>'  ; 
+                        }else{
+                            echo '<li class="jaca"><a href="perfil_debate.php?pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ; 
+                        }                         
+                    }          
                     
                     $contador++;        
                 }
