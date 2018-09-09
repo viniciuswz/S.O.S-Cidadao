@@ -86,7 +86,7 @@ class ComentarioA extends ComentarioM{
         //var_dump($resultado);
     }
 
-    public function SelecionarComentariosUserPrefei(){
+    public function SelecionarComentariosUserPrefei($indIdPref = null){
         $where = sprintf($this->wherePrefeiFunc,
                             $this->getCodPubli(),
                             'AND 1=1'
@@ -95,7 +95,17 @@ class ComentarioA extends ComentarioM{
                         $where       
         );
 
-        $consulta = $this->runSelect($sql); // Executa      
+        $consulta = $this->runSelect($sql); // Executa   
+        if($consulta[0]['descri_tipo_usu'] == 'Funcionario' AND $indIdPref != null){// Alem do id do funcionario precisso do id da prefeitura
+            $sql2 = "SELECT nome_usu, usuario.cod_usu FROM usuario                         
+                        INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu) 
+                        WHERE descri_tipo_usu = 'Prefeitura'";
+            $consulta2 =  $this->runSelect($sql2);
+            if(!empty($consulta2)){
+                $consulta[0]['cod_usu_prefei'] = $consulta2[0]['cod_usu'];
+                $consulta[0]['nome_usu_prefei'] = $consulta2[0]['nome_usu'];
+            }
+        }        
         return $resultado = $this->tratarDados($consulta);
         //var_dump($resultado);////
     }

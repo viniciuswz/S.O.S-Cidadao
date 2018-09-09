@@ -41,8 +41,7 @@ session_start();
         $comentarioComum = $comentario->SelecionarComentariosUserComum($_GET['pagina']);
         
         $resposta = $publi->listByIdPubli(); 
-        $comentarioPrefei = $comentario->SelecionarComentariosUserPrefei();
-
+        $comentarioPrefei = $comentario->SelecionarComentariosUserPrefei(TRUE);        
         $quantidadePaginas = $comentario->getQuantidadePaginas();
         $pagina = $comentario->getPaginaAtual();        
 ?>
@@ -210,11 +209,11 @@ session_start();
                 if(!empty($comentarioPrefei)){                
             ?>
             <section class="prefeitura-publicacao">
-                <div class="topo-prefeitura-publicacao">
+                <div class="topo-prefeitura-publicacao">                     
                     <div>
                         <img src="../Img/perfil/<?php echo $comentarioPrefei[0]['img_perfil_usu']?>">
                     </div>
-                    <p><span class="negrito"><?php echo $comentarioPrefei[0]['nome_usu']?></span><time><?php echo $comentarioPrefei[0]['dataHora_comen']?></time></p>  
+                    <p><span class="negrito"><?php echo $comentarioPrefei[0]['nome_usu_prefei']?></span><time><?php echo $comentarioPrefei[0]['dataHora_comen']?></time></p>  
                 </div> 
                 <div class="conteudo-resposta">
                     <span>
