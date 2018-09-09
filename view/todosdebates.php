@@ -126,7 +126,7 @@ session_start();
             ?>  
                 <div class="item-publicacao">
                         <div class="item-topo">
-                            <a href="#">
+                            <a href="perfil_debate.php?ID=<?php echo $resposta[$contador]['cod_usu']?>">
                             <div>
                                 <img src="../Img/perfil/<?php echo $resposta[$contador]['img_perfil_usu']?>">
                             </div>
