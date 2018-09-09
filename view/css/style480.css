@@ -964,3 +964,56 @@ overflow: inherit
 .landing-rodape h1{
     font-size: 17px
 }
+
+
+.mini-menu-adm{
+    position:absolute;
+    left: 0;
+    top: calc(0px + 50px);
+    width: 100%;
+    height: calc(100vh - 50px);
+    background-color: rgba(000, 000, 000, .5);
+    cursor: click
+}
+.mini-menu-adm ul{
+    margin-top:0px;
+    font-size: 15px;
+    font-weight: normal;
+    width: 100%;
+    background-color: red;
+    display:flex;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.mini-menu-adm ul li a{
+    padding: 12px;
+}
+
+
+
+.motivo-box{
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    transform: translateX(-0%) translateY(-0%);
+    width: 100%;
+    height: 100vh;
+    background-color: red;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    z-index: 99;
+}
+
+.motivo-box div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+.motivo-box div span{
+    font-size: 40px;
+    font-weight: 600;
+    cursor: pointer;
+}

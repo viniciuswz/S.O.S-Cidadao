@@ -402,3 +402,13 @@ jQuery(function($){
   })
 })
 
+jQuery(function($){
+  $(".tabelinha-linha").click(function(){
+    $(this).find("td:nth-child(2)").find("div").toggleClass("mini-menu-adm-ativo")
+  })
+  $(".mini-menu-adm").click(function(){
+    $(this).find("td:nth-child(2)").find("div").removeClass("mini-menu-adm-ativo")
+  })
+})
+
+

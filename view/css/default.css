@@ -2031,6 +2031,9 @@ margin-bottom :200px;
     color:white;
 }
 
+.tabelinha-linha{
+    cursor: pointer;
+}
 
 .tabelinha-admin table td,.tabelinha-admin table th {
     text-align: left;
@@ -2063,7 +2066,7 @@ margin-bottom :200px;
 .cad-adm p{
     display: inline-block;
 }
-.tabelinha-admin table tr td div{
+.tabelinha-admin table tr td div:first{ /*ta dando pau*/
     width: 30px;
     height: 30px;
     background-color: darkgreen;
@@ -2845,22 +2848,30 @@ margin-bottom :200px;
 }
 
 .mini-menu-adm{
-    
-    
-    position: relative;
-    
+    position:absolute;
+    left: 0;
+    display: none
+}
+
+.mini-menu-adm.mini-menu-adm-ativo{
+    display: block
 }
 .mini-menu-adm ul{
-    position:absolute;
-    width: 300px;
+    margin-top:8px;
+    font-size: 15px;
+    font-weight: normal;
+    width: 200px;
     background-color: red;
-    top: 73px;
     display:flex;
-    flex-direction: column
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif
+    
 }
 
 .mini-menu-adm ul li{
-    padding: 5px
+
+    text-align: center;
+    margin: 0;
 }
 
 .mini-menu-adm ul li:hover{
@@ -2871,9 +2882,48 @@ margin-bottom :200px;
 .mini-menu-adm ul li a{
     display: block;
     width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 7px;
 
 }
 
 .mini-menu-adm ul li a:hover{
 
+}
+
+.motivo{
+    display: none; /*rever a ultimo mini menu criado*/
+    position: fixed;
+    background-color: rgba(0, 0, 0, .4);
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 98;
+}
+
+.motivo-box{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: 500px;
+    background-color: red;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    z-index: 99;
+}
+
+.motivo-box div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+.motivo-box div span{
+    font-size: 40px;
+    font-weight: 600;
+    cursor: pointer;
 }
