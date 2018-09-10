@@ -404,11 +404,27 @@ jQuery(function($){
 
 jQuery(function($){
   $(".tabelinha-linha").click(function(){
-    $(this).find("td:nth-child(2)").find("div").toggleClass("mini-menu-adm-ativo")
+    $(this).parent().parent().find("td:nth-child(2)").find("div").toggleClass("mini-menu-adm-ativo")
   })
   $(".mini-menu-adm").click(function(){
     $(this).find("td:nth-child(2)").find("div").removeClass("mini-menu-adm-ativo")
+    teste
+
+    teste
+    teste
+    
   })
 })
 
+
+jQuery(function($){
+  $(".motivo-ativar").click(function(){
+    $(this).parents().find("div.motivo").css("display","block")
+    $(this).parents().find("tr").removeClass("tabelinha-linha")
+  })
+  $(".fechar-motivo").click(function(){
+    $(this).parents().find("div.motivo").css("display","none");
+    $(this).parents().find("tr").addClass("tabelinha-linha")
+  })
+})
 

@@ -2033,6 +2033,8 @@ margin-bottom :200px;
 
 .tabelinha-linha{
     cursor: pointer;
+    max-height: 36px;
+ 
 }
 
 .tabelinha-admin table td,.tabelinha-admin table th {
@@ -2857,7 +2859,7 @@ margin-bottom :200px;
     display: block
 }
 .mini-menu-adm ul{
-    margin-top:8px;
+    margin-top:1px;
     font-size: 15px;
     font-weight: normal;
     width: 200px;
@@ -2893,7 +2895,7 @@ margin-bottom :200px;
 }
 
 .motivo{
-    display: none; /*rever a ultimo mini menu criado*/
+    display: block; /*rever a ultimo mini menu criado*/
     position: fixed;
     background-color: rgba(0, 0, 0, .4);
     width: 100%;
@@ -2901,7 +2903,10 @@ margin-bottom :200px;
     left: 0;
     top: 0;
     z-index: 98;
+    display: none
 }
+
+
 
 .motivo-box{
     position: fixed;
