@@ -96,7 +96,7 @@ class ComentarioA extends ComentarioM{
         );
 
         $consulta = $this->runSelect($sql); // Executa   
-        if($consulta[0]['descri_tipo_usu'] == 'Funcionario' AND $indIdPref != null){// Alem do id do funcionario precisso do id da prefeitura
+        if(!empty($consulta) AND $consulta[0]['descri_tipo_usu'] == 'Funcionario' AND $indIdPref != null){// Alem do id do funcionario precisso do id da prefeitura
             $sql2 = "SELECT nome_usu, usuario.cod_usu FROM usuario                         
                         INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu) 
                         WHERE descri_tipo_usu = 'Prefeitura'";
