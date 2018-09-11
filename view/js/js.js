@@ -441,6 +441,11 @@ jQuery(function(){
       $(this).parent().parent().parent().removeClass("motivo-ativo");
       $(this).parent().parent().parent().parent().parent().addClass("tabelinha-linha")
     })
+
+    $(".motivo").click(function(){
+      $(this).removeClass("motivo-ativo");
+      $(this).parent().parent().parent().parent().parent().addClass("tabelinha-linha")
+    })
   })
   
   

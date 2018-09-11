@@ -60,6 +60,7 @@ header form{
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 header form input[type=text]{
@@ -67,6 +68,7 @@ background-color: #0a5ac9;
 outline: #0a5ac9 ;
 border:0;
 color: white;
+padding-left: 5px
 }
 
 header form input[type=text]::placeholder{
@@ -266,7 +268,7 @@ nav.menu > ul > li > a > i > span{
 }
 
 nav.menu > ul > li > a:hover{
-    background-color: #028aa2;
+    background-color: #0a5ac9;
     color:white;  
     }
     
@@ -2081,7 +2083,7 @@ margin-bottom :200px;
 .cad-adm p{
     display: inline-block;
 }
-.tabelinha-admin table tr td div:first{ /*ta dando pau*/
+.tabelinha-admin table tr td div:first-child{ /*ta dando pau*/
     width: 30px;
     height: 30px;
     background-color: darkgreen;
@@ -2900,7 +2902,7 @@ margin-bottom :200px;
 }
 
 .mini-menu-adm ul li:hover{
-  background-color: purple
+  background-color: #d1d1d1
 }
 
 
@@ -2926,7 +2928,8 @@ margin-bottom :200px;
     left: 0;
     top: 0;
     z-index: 98;
-    display: none
+    display: none;
+    color:black
 }
 
 
