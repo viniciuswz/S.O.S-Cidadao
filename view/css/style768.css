@@ -60,7 +60,7 @@ background-size: 1060px;
 nav.menu{
     display: flex;
     justify-content: center;
-    background-color: #3be7fd;
+    background-color: #0086ff;
     width: 100vw;
     position: fixed;
     top: calc(100vh - 60px);
@@ -86,7 +86,7 @@ nav.menu > ul > li > a > i{
 
 nav.menu > ul > li > a{
     font-weight: inherit;
-    color:#263238;
+    color:#fcfcfc;
     width: calc(var(--ajuste)/3);
     line-height: inherit;
 }
@@ -669,11 +669,12 @@ overflow: inherit
     top: 50%;
     transform: translateX(-50%) translateY(-50%);
     width: 470px;
-    background-color: red;
+    background-color: white;
     display: flex;
     flex-direction: column;
     padding: 25px;
     z-index: 99;
+    color: black
 }
 
 .motivo-box div{
