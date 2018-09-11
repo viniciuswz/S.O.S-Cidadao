@@ -103,7 +103,7 @@ jQuery(function(){
     var titulo = $("#titulo").val();
     
     if( titulo === ""){
-      $("#titulo").parent().find('p').text("Escreve algua coisa");
+      $("#titulo").parent().find('p').text("este campo não pode ser vazio");
       $("#titulo").parent().find('span').addClass('verificar');
       $("#titulo").css("background" , 'rgba(256,000,000,.1)' )
       return false;
@@ -118,7 +118,7 @@ jQuery(function(){
     var tema = $("#tema").val();
     
     if( tema === ""){
-      $("#tema").parent().find('p').text("Escreve algua coisa porra");
+      $("#tema").parent().find('p').text("este campo não pode ser vazio ");
       $("#tema").parent().find('span').addClass('verificar');
       $("#tema").css("background" , 'rgba(256,000,000,.1)' )
       return false;
@@ -172,7 +172,7 @@ jQuery(function(){
       var sobre = $("#sobre").val();
       
       if( sobre === ""){
-        $("#sobre").parent().find('p').text("Escreve algua coisa porra");
+        $("#sobre").parent().find('p').text("este campo não pode ser vazio ");
         $("#sobre").css("background" , 'rgba(256,000,000,.1)' )
         return false;
       }else{
@@ -290,7 +290,7 @@ jQuery(function(){
     var local = $("#local").val();
     
     if( local === "" ){
-      $("#local").parent().find('p').text("Escreve algua coisa porra");
+      $("#local").parent().find('p').text("este campo não pode ser vazio ");
       $("#local").parent().find('span').addClass('verificar');
       $("#local").css("background" , 'rgba(256,000,000,.1)' )
       return false;
@@ -308,7 +308,7 @@ jQuery(function(){
     var bairro = $("#bairro").val();
     
     if( bairro === "" ){
-      $("#bairro").parent().find('p').text("Escreve algua coisa porra");
+      $("#bairro").parent().find('p').text("este campo não pode ser vazio ");
       $("#bairro").parent().find('span').addClass('verificar');
       $("#bairro").css("background" , 'rgba(256,000,000,.1)' )
       return false;
