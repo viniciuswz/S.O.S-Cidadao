@@ -967,8 +967,8 @@ overflow: inherit
 
 
 .mini-menu-adm{
-    position:absolute;
-    left: 0;
+    position: fixed;
+    
     top: calc(0px + 50px);
     width: 100%;
     height: calc(100vh - 50px);

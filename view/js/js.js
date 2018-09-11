@@ -402,21 +402,25 @@ jQuery(function(){
     })
   })
   
+  
   jQuery(function($){
     $(".tabelinha-linha").click(function(){
       var $this = $(this);
       var classe = $this.attr('class');
       var motivo = $this.find('div.motivo').attr("class");
-      
+     
       /*criar uma rotina para remover os outros menu aberto */
+
       if(motivo == "motivo motivo-ativo"){
-        
       }else{
         if(classe == "mini-menu-adm"){
-          $(this).find("td:nth-child(1)").find("div").toggleClass("mini-menu-adm-ativo");
           alert($this.attr('class'))
-        }else{
           $(this).find("td:nth-child(1)").find("div").toggleClass("mini-menu-adm-ativo");
+        }else{
+          $(this).siblings().find("td:nth-child(1) div").removeClass("mini-menu-adm-ativo");
+          $(this).find("td:nth-child(1) div").toggleClass("mini-menu-adm-ativo");
+          
+
         }
       }
       
