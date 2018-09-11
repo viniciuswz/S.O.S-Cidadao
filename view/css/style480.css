@@ -297,18 +297,21 @@ width: 100vw;
 
 
 .item-publicacao{
+    max-width: 320px;
     width:100%;
 }
 
-.item-publicacao .item-topo span{
+.item-publicacao .item-topo p span{
     width: 180px; 
  }
 
 .item-publicacao .legenda{
+    max-width: 320px;
     width:100%;
  }
 
  .item-publicacao figure{
+
     width:100%;
 }
 
@@ -1016,4 +1019,10 @@ overflow: inherit
     font-size: 40px;
     font-weight: 600;
     cursor: pointer;
+}
+
+.box-denunciar{
+    background-color: white;
+    width: 100%;
+    padding-bottom: 10px
 }
