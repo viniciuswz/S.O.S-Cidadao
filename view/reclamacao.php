@@ -43,9 +43,9 @@ session_start();
         $resposta = $publi->listByIdPubli(); 
         $comentarioPrefei = $comentario->SelecionarComentariosUserPrefei(TRUE);        
         $quantidadePaginas = $comentario->getQuantidadePaginas();
-        $pagina = $comentario->getPaginaAtual();        
+        $pagina = $comentario->getPaginaAtual();       
 
-        var_dump($comentarioPrefei);
+        
 ?>
 
 <!DOCTYPE html>
