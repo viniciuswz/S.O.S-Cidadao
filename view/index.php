@@ -3,13 +3,14 @@
     require_once('../Config/Config.php');
     require_once(SITE_ROOT.DS.'autoload.php');
     use Core\Usuario;
-    try{  
-      if(isset($_SESSION['id_user']) AND !empty($_SESSION['id_user'])){
+    if(isset($_SESSION['id_user']) AND !empty($_SESSION['id_user'])){
         $dados = new Usuario();
         $dados->setCodUsu($_SESSION['id_user']);
         $resultado = $dados->getDadosUser();
        
       }    
+    try{  
+      
     
 ?>
 <!DOCTYPE html>

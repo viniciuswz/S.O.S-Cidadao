@@ -58,7 +58,7 @@
             
         </header>
         <?php
-                if(isset($resultado)){   
+                if(isset($resultado) AND !empty($resultado)){
         ?>
         <div class="user-menu">
            

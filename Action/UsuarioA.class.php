@@ -87,8 +87,12 @@ class UsuarioA extends UsuarioM{
                         );
         
         $consulta = $this->runSelect($sql);
-        if(empty($consulta)){
-            throw new \Exception("Não há registros",1);
+        if(empty($consulta)){            
+            if(isset($_SESSION['id_user'])){ // Se por um acaso a conta dele for desativa e ele estiver logado, é pra desativar
+                session_destroy();
+            }else{
+                throw new \Exception("Não há registros",1);
+            }            
         }
         if($tempoDeCadastro){
             $data = $this->tratarData($consulta[0]['dataHora_cadastro_usu']);

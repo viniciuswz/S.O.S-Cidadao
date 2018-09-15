@@ -30,7 +30,7 @@ session_start();
             $id = $_GET['ID'];   
             $usuPerfil->setCodUsu($_GET['ID']);    
             $dadosPerfil =  $usuPerfil->getDadosUser();     
-        }
+        }        
         $descPerfilVisu = $dadosPerfil[0]['descri_tipo_usu'];
         if($descPerfilVisu != 'Comum' AND $descPerfilVisu != 'Prefeitura'){ // Vendo perfil restrito
             if(!isset($_SESSION['id_user'])){ // Não esta logado
@@ -118,7 +118,7 @@ session_start();
             
         </header>
         <?php
-                if(isset($resultado)){   
+                if(isset($resultado) AND !empty($resultado)){  
         ?>
         <div class="user-menu">
            
@@ -310,15 +310,15 @@ session_start();
 
 }catch (Exception $exc){     
     $erro = $exc->getCode();   
-    echo $mensagem = $exc->getMessage();
+    $mensagem = $exc->getMessage();
     switch($erro){
         case 2://Ja esta logado  
         case 6://Ja esta logado 
         case 1:
-            //echo "<script> alert('$mensagem');javascript:window.location='index.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='index.php';</script>";
             break;
         default:
-            //echo "<script> alert('$mensagem');javascript:window.location='index.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='index.php';</script>";
     }      
 }finally{
 

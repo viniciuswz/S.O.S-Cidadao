@@ -75,7 +75,7 @@ session_start();
                 </ul>
             </nav>
             <?php
-                if(!isset($resultado)){
+                if(isset($resultado) AND !empty($resultado)){  
                     echo '<a href="login.php"><i class="icone-user" id="abrir"></i></a>';
                 }else{
                     echo '<i class="icone-user" id="abrir"></i>';
@@ -221,7 +221,7 @@ session_start();
 </html>
 <?php
 }catch (Exception $exc){
-         
+         echo $exc->getMessage();
 }
 
 ?>
