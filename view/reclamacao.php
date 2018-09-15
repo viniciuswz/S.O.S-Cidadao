@@ -44,6 +44,8 @@ session_start();
         $comentarioPrefei = $comentario->SelecionarComentariosUserPrefei(TRUE);        
         $quantidadePaginas = $comentario->getQuantidadePaginas();
         $pagina = $comentario->getPaginaAtual();        
+
+        var_dump($comentarioPrefei);
 ?>
 
 <!DOCTYPE html>
@@ -136,10 +138,12 @@ session_start();
             <section class="pag-reclamacao">
                 <div class="Reclamacao">   
                         <div class="publicacao-topo-aberta">
+                        <a href="perfil_reclamacao.php?ID=<?php echo $resposta[0]['cod_usu'] ?>">
                                 <div>
                                     <img src="../Img/perfil/<?php echo $resposta[0]['img_perfil_usu']?>">
                                 </div>
                                 <p><span class="negrito"><?php echo $resposta[0]['nome_usu']?></span><time><?php echo $resposta[0]['dataHora_publi']?></time></p>
+                        </a>
                                 <div class="mini-menu-item ">
                                     
                                     <i class="icone-3pontos"></i>
@@ -209,12 +213,14 @@ session_start();
                 if(!empty($comentarioPrefei)){                
             ?>
             <section class="prefeitura-publicacao">
+                <a href="perfil_reclamacao.php?ID=<?php echo $comentarioPrefei[0]['cod_usu_prefei'] ?>">   
                 <div class="topo-prefeitura-publicacao">                     
                     <div>
                         <img src="../Img/perfil/<?php echo $comentarioPrefei[0]['img_perfil_usu']?>">
                     </div>
                     <p><span class="negrito"><?php echo $comentarioPrefei[0]['nome_usu_prefei']?></span><time><?php echo $comentarioPrefei[0]['dataHora_comen']?></time></p>  
                 </div> 
+                </a>
                 <div class="conteudo-resposta">
                     <span>
 <?php echo nl2br($comentarioPrefei[0]['texto_comen'])?>
@@ -281,10 +287,12 @@ session_start();
                 </h3>
                 <div class="comentario-user">
                     <div class="publicacao-topo-aberta">
-                        <div>
-                            <img src="../Img/perfil/<?php echo $comentarioComum[$contador]['img_perfil_usu']?>">
-                        </div>
-                        <p><span class="negrito"><?php echo $comentarioComum[$contador]['nome_usu']?></span><?php echo $comentarioComum[$contador]['dataHora_comen']?></p>
+                        <a href="perfil_reclamacao.php?ID=<?php echo $comentarioComum[$contador]['cod_usu'] ?>">
+                            <div>
+                                <img src="../Img/perfil/<?php echo $comentarioComum[$contador]['img_perfil_usu']?>">
+                            </div>
+                            <p><span class="negrito"><?php echo $comentarioComum[$contador]['nome_usu']?></span><?php echo $comentarioComum[$contador]['dataHora_comen']?></p>
+                        </a>
                         <div class="mini-menu-item ">
                             <i class="icone-3pontos"></i>
                             <div>
