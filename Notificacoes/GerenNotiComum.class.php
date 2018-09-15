@@ -79,24 +79,29 @@ class GerenNotiComum extends GenericaM{
     public function respostaPrefei($getIdsComen = null){
         $resposta = new SelectComen();
         $resposta->setCodPubli($this->getCodPubli());
-        $listaResposta = $resposta->selectComen($resposta->getWherePrefeiFunc()); // Faz o select  
+        $listaResposta = $resposta->selectComen($resposta->getWherePrefeiFunc()); // Faz o select 
+        //var_dump($listaResposta); 
         $quantidade = count($listaResposta); // quantidade de publicacaoes que foram respondidas
         $resultado = array();
         $idsComen = array();
         if($quantidade > 0){
             $contador = 0; 
             while($contador < count($listaResposta)){
-                $resultado[$contador]['notificacao'] = " A prefeitura respondeu a publição <strong> " . $listaResposta[$contador][0]['titulo_publi'] . "</strong>";
-                $resultado[$contador]['id_publi'] = $listaResposta[$contador][0]['cod_publi']; 
-                $resultado[$contador]['tipo'] = 'icone-mail';
-                $resultado[$contador]['Hora'] = strtotime($listaResposta[$contador][0]['dataHora']);  
-                $resultado[$contador]['DataHora'] = $listaResposta[$contador][0]['dataHora'];               
-                $resultado[$contador]['classe'] = $this->nomeClasse($listaResposta[$contador][0]['ind_visu_dono_publi']);
-                $idsComen[$contador]['cod_comen'] = $listaResposta[$contador][0]['cod_comen'];                 
+                if($getIdsComen != null){
+                    $idsComen[$contador]['cod_comen'] = $listaResposta[$contador][0]['cod_comen'];       
+                }else{
+                    $resultado[$contador]['notificacao'] = " A prefeitura respondeu a publição <strong> " . $listaResposta[$contador][0]['titulo_publi'] . "</strong>";
+                    $resultado[$contador]['id_publi'] = $listaResposta[$contador][0]['cod_publi']; 
+                    $resultado[$contador]['tipo'] = 'icone-mail';
+                    $resultado[$contador]['Hora'] = strtotime($listaResposta[$contador][0]['dataHora']);  
+                    $resultado[$contador]['DataHora'] = $listaResposta[$contador][0]['dataHora'];               
+                    $resultado[$contador]['classe'] = $this->nomeClasse($listaResposta[$contador][0]['ind_visu_dono_publi']);                         
+                }    
                 $contador++;
             }
         }
         $this->resultados = array_merge_recursive($this->resultados, $resultado);
+        
         if($getIdsComen != null){
             return $idsComen; 
         }else{
@@ -210,8 +215,7 @@ class GerenNotiComum extends GenericaM{
         $respostaPrefei = $this->respostaPrefei();
         $comentarioComum = $this->comentarioComum();
         
-        //var_dump($this->resultados);
-        //$res = sort($this->resultados,SORT_NUMERIC );
+        
         $this->visualizarNotificacao($this->indVisu,$this->idUser);
         $this->resultados = $this->ordenarArray();
         return $this->resultados;

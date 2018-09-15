@@ -61,12 +61,11 @@ class SelectComenA extends GenericaM{
     //fica
     public function selectComen($wheres='', $order=''){ // Ta no esquema
         $resultadoTemp = array();
-        $resultadoFinal = array(); 
+        $resultadoFinal = array();        
         foreach($wheres as $chaves => $valores){
             foreach($valores as $chave => $valor){
                 if($chave == 'where'){
-                   $sql = sprintf($this->sqlSelectComen,$valor,$order);   
-                    
+                    $sql = sprintf($this->sqlSelectComen,$valor,$order);
                     if(empty($this->runSelect($sql))){ // SE por um acaso nao retornar nada, nao joga nada na array
                        
                     }else{
@@ -76,8 +75,7 @@ class SelectComenA extends GenericaM{
                 } 
             } // Me retorna uma array tridimensional
         }
-        //echo "<br><br><br><br><strong>Dados do comentario<br><br><br></strong>";
-        //var_dump($resultadoFinal);             
+        //echo "<br><br><br><br><strong>Dados do comentario<br><br><br></strong>"; 
         return $resultadoFinal;
     }
 
