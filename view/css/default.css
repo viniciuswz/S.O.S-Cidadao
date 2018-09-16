@@ -98,7 +98,7 @@ li{
 }
 
 i{
-    background-image: url("../imagens/icones-v2.png");
+    background-image: url("../imagens/icones-v3.png");
     background-repeat: no-repeat;
     display: inline-block;
     width: 40px;
@@ -1281,15 +1281,15 @@ background-color: pink;
 }
 .form-icone section > div{
  
-margin-right:500px;
-margin-bottom :200px;
+    margin-right:500px;
+    margin-bottom :200px;
 }
 .form-icone section h1{
     color: #E7E8EB;
     font-size: 40px;
     text-shadow: 1px 1px 1px black
 }
-.form-icone section p{
+.form-icone section h1 ~ p{
     color: white;
     font-size: 20px;
     font-weight: 600;
@@ -1317,6 +1317,7 @@ margin-bottom :200px;
 }
 
 .campo-texto-icone{
+    position: relative;
     text-align: center;
     height:30px;
     display: flex;
@@ -1343,13 +1344,13 @@ margin-bottom :200px;
 .campo-texto-icone label i.icone-mail{
     background-size: 1000px;
     height:25px;
-    background-position: -285px -2px; 
+    background-position: -285px -35px; 
 }
 
 .campo-texto-icone label i.icone-senha{
     background-size: 1000px;
     height:25px;
-    background-position: -704px -2px;
+    background-position: -704px -35px;
 }
 
 .campo-texto-icone label i.icone-user{
@@ -1358,7 +1359,7 @@ margin-bottom :200px;
     margin: 0 7px;
     width: 26px;
     text-align: center;
-    background-position: 0px -0px;
+    background-position: 0px -27px;
 }
 
 .campo-texto-icone input:focus {
@@ -1372,7 +1373,8 @@ margin-bottom :200px;
     color: white;
     padding:7px;
     margin-top: 40px;
-    width: 80% 
+    width: 80%; 
+    cursor:pointer
 }
 
 .form-cad{
@@ -1390,6 +1392,7 @@ margin-bottom :200px;
     border-bottom-left-radius: 100px;
     padding: 70px 20px;
 }
+
 
 .form-cad form h3{
     width: 213px;
@@ -3211,3 +3214,39 @@ margin-bottom :200px;
     margin-top: 10px
 }
 
+.balao-form {
+	position: absolute;
+	background: rgba(0, 0, 0, 0.5);
+    border-radius: 12px/100%;
+    padding: 4px;
+    color: white;
+    bottom: 50px
+}
+
+.balao-form:after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 0;
+	height: 0;
+	border: 13px solid transparent;
+	border-top-color: rgba(0, 0, 0, 0.5);
+	border-bottom: 0;
+	margin-left: -13px;
+    margin-bottom: -13px;
+    
+}
+
+.aviso-form-inicial{
+    background-color: red;
+    width: 100%;
+    color: white;
+    font-size: 14px;
+    padding: 4px;
+    display: none
+}
+
+.form-cad .aviso-form-inicial{
+margin-bottom: 15px
+}

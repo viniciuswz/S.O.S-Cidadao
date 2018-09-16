@@ -214,7 +214,7 @@ nav.menu > ul > li > a:hover i{
     margin-bottom :200px;
 }
 
-.form-icone section p{
+.form-icone section h1 ~ p{
 font-size: 18px;
 
 width: 320px

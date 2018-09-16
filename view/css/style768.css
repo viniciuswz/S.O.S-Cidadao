@@ -319,7 +319,7 @@ width: 100vw;
     
 }
 
-.form-icone section p{
+.form-icone section h1 ~ p{
  
     color: white;
     font-size: 16px;

@@ -496,3 +496,131 @@ jQuery(function(){
       $(this).parents(":eq(2)").remove();
     })
   })
+
+  /* verificação login */
+
+  jQuery(function($){
+    $("#login").submit(function(){
+      var senha = $("#senha").val();
+      if( senha === ""){
+        $("#senha").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+        $("#senha").css("border-color" , 'rgba(256,000,000)');
+        $("#senha").focus();
+        return false;
+      }else{
+        $("#senha").parent().find("label").css("background-color" , 'dodgerblue' );
+        $("#senha").css("border-color" , 'dodgerblue');
+      }
+    });
+
+    $("#login").submit(function(){
+      var email = $("#email").val();
+      if( email === ""){
+        $("#email").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+        $("#email").css("border-color" , 'rgba(256,000,000)');
+        $("#email").focus();
+        return false;
+      }else{
+        $("#email").parent().find("label").css("background-color" , 'dodgerblue' );
+        $("#email").css("border-color" , 'dodgerblue');
+      }
+    });
+
+
+    $("#login").submit(function(){
+      var email = $("#email").val();
+      var senha = $("#senha").val();
+
+      if( email === "" && senha === ""){
+        $(".aviso-form-inicial").show();
+        $(".aviso-form-inicial").find("p").text("O email e a senha então vazios")
+      }else if( senha === ""){
+        $(".aviso-form-inicial").show();
+        $(".aviso-form-inicial").find("p").text("você precisa digitar um senha")
+      }else{
+        $(".aviso-form-inicial").show();
+        $(".aviso-form-inicial").find("p").text("você precisa digitar uma E-mail")
+      }
+    })
+  })
+
+
+    /* verificação cadastro */
+
+    jQuery(function($){
+
+
+      $("#cadastro").submit(function(){
+        var senhaC = $("#senhaC").val();
+        if( senhaC === ""){
+          $("#senhaC").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+          $("#senhaC").css("border-color" , 'rgba(256,000,000)');
+          $("#senhaC").focus();
+          return false;
+        }else{
+          $("#senhaC").parent().find("label").css("background-color" , 'dodgerblue' );
+          $("#senhaC").css("border-color" , 'dodgerblue');
+        }
+      });
+      $("#cadastro").submit(function(){
+        var senha = $("#senha").val();
+        if( senha === ""){
+          $("#senha").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+          $("#senha").css("border-color" , 'rgba(256,000,000)');
+          $("#senha").focus();
+          return false;
+        }else{
+          $("#senha").parent().find("label").css("background-color" , 'dodgerblue' );
+          $("#senha").css("border-color" , 'dodgerblue');
+        }
+      });
+      $("#cadastro").submit(function(){
+        var email = $("#email").val();
+        if( email === ""){
+          $("#email").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+          $("#email").css("border-color" , 'rgba(256,000,000)');
+          $("#email").focus();
+          return false;
+        }else{
+          $("#email").parent().find("label").css("background-color" , 'dodgerblue' );
+          $("#email").css("border-color" , 'dodgerblue');
+        }
+      });
+      $("#cadastro").submit(function(){
+        var user = $("#user").val();
+        if( user === ""){
+          $("#user").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+          $("#user").css("border-color" , 'rgba(256,000,000)');
+          $("#user").focus();
+          return false;
+        }else{
+          $("#user").parent().find("label").css("background-color" , 'dodgerblue' );
+          $("#user").css("border-color" , 'dodgerblue');
+        }
+      });
+      $("#cadastro").submit(function(){
+        var user = $("#user").val();
+        var email = $("#email").val();
+        var senha = $("#senha").val();
+        var senhaC = $("#senhaC").val();
+        if(senhaC !== senha && senhaC !==""){
+          $(".aviso-form-inicial").show();
+          $(".aviso-form-inicial").find("p").text("confirmar senha não esta igual a senha, tente de novo");
+          return false;
+        }else{
+          if( user === ""){
+            $(".aviso-form-inicial").show();
+            $(".aviso-form-inicial").find("p").text("você precisa preencher o nome de usuário")
+          }else if( email === ""){
+            $(".aviso-form-inicial").show();
+            $(".aviso-form-inicial").find("p").text("você precisa digitar um E-mail")
+          }else if( senha === ""){
+            $(".aviso-form-inicial").show();
+            $(".aviso-form-inicial").find("p").text("você precisa digitar um senha")
+          }else{
+            $(".aviso-form-inicial").show();
+            $(".aviso-form-inicial").find("p").text("você precisa comfirmar a senha")
+          }
+        }
+      })
+    })
