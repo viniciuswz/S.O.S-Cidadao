@@ -262,7 +262,8 @@ class GerenNotiComum extends GenericaM{
                 $ids['ComenPrefei'][] = $this->respostaPrefei('QueroOsIds');                 
                 $ids['PubliSalvas'][] = $this->getCodSalvos();
                 
-                $visualizar = new VisualizarNotificacao($ids,$indVisu,$idUser);
+                $visualizar = new VisualizarNotificacao();
+                $visualizar->updateClickNoti($ids,$indVisu,$idUser);
             }     
         }
         return;        

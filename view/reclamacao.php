@@ -8,6 +8,7 @@ session_start();
     use Core\Comentario;
     use Core\PublicacaoSalva;
     use Classes\ValidarCampos;
+    use Notificacoes\Core\VisualizarNotificacao;
     try{        
         $publi = new Publicacao();
         $comentario = new Comentario();
@@ -28,6 +29,8 @@ session_start();
             $tipoUsu = $_SESSION['tipo_usu'];            
         }
 
+        
+
         $nomesCampos = array('ID');// Nomes dos campos que receberei da URL    
         $validar = new ValidarCampos($nomesCampos, $_GET);
         $validar->verificarTipoInt($nomesCampos, $_GET); // Verificar se o parametro da url é um numero
@@ -44,6 +47,14 @@ session_start();
         $comentarioPrefei = $comentario->SelecionarComentariosUserPrefei(TRUE);        
         $quantidadePaginas = $comentario->getQuantidadePaginas();
         $pagina = $comentario->getPaginaAtual();       
+
+        
+        if(isset($_GET['com'])){                            
+            if(isset($_SESSION['id_user']) AND $resposta[0]['cod_usu'] == $_SESSION['id_user']){
+                $visualizar = new VisualizarNotificacao();
+                $visualizar->visualizarNotificacao($_GET['com'], $_GET['ID'], $_SESSION['id_user']);
+            }                  
+        }
 
         
 ?>
@@ -353,7 +364,7 @@ session_start();
 <?php
 }catch (Exception $exc){
         $erro = $exc->getCode();   
-        $mensagem = $exc->getMessage();  
+        echo $mensagem = $exc->getMessage();  
         switch($erro){
             case 9://Não foi possivel achar a publicacao  
                 echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes.php';</script>";
