@@ -27,8 +27,8 @@ session_start();
             $resultado = $dados->getDadosUser();
 
             $tipoUsu = $_SESSION['tipo_usu'];            
-        }
-
+            
+        }      
         
 
         $nomesCampos = array('ID');// Nomes dos campos que receberei da URL    
@@ -263,12 +263,12 @@ session_start();
             ?>
                         <section class="enviar-comentario-publicacao">
                             <h3>
-                                Envie um comentario
+                                Envie uma resposta
                             </h3>
                             <form action="../Comentario.php" method="post">
-                                <textarea placeholder="Escreva um comentário" name="texto"></textarea>
+                                <textarea placeholder="Escreva uma resposta" name="texto"></textarea>
                                 <input type="hidden" value="<?php echo $_GET['ID']?>" name="id">
-                                <input type="submit" value="Enviar Comentário">
+                                <input type="submit" value="Enviar Resposta">
                             </form>  
                         </section>
             <?php
@@ -277,7 +277,7 @@ session_start();
             ?>
                 <section class="enviar-comentario-publicacao">
                     <h3>
-                        Envie um comentario
+                        Envie um comentário
                     </h3>
                     <form action="../Comentario.php" method="post">
                         <textarea placeholder="Escreva um comentário" name="texto"></textarea>
