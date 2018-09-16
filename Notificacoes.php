@@ -14,7 +14,7 @@ if(isset($_SESSION['id_user']) AND isset($_SESSION['tipo_usu'])){
     
     $idUser = (int)$_SESSION['id_user'];
     if($_SESSION['tipo_usu'] == 'Comum'){
-        $jaca = new GerenNotiComum($idUser,'B');
+        $jaca = new GerenNotiComum($idUser,$indVisu);
         $resultado = $jaca->notificacoes();
         echo json_encode($resultado);
     }

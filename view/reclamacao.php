@@ -50,7 +50,7 @@ session_start();
 
         
         if(isset($_GET['com'])){                            
-            if(isset($_SESSION['id_user']) AND $resposta[0]['cod_usu'] == $_SESSION['id_user']){
+            if(isset($_SESSION['id_user'])){                
                 $visualizar = new VisualizarNotificacao();
                 $visualizar->visualizarNotificacao($_GET['com'], $_GET['ID'], $_SESSION['id_user']);
             }                  
