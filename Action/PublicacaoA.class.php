@@ -128,7 +128,10 @@ class PublicacaoA extends PublicacaoM{
                     $prepararWhereUser,
                     $sqlPaginacao
         );  
-        $res = $this->runSelect($sql);        
+        $res = $this->runSelect($sql);     
+        if(empty($res)){
+            return;
+        }   
         if($idVisualizadorPerfil != false){ // Se eu passar este parametro é pq alguem esta vendo esse perfil, e por isso preciso 
             // verificar se esta pessoa denunciou a publicacao q esta nesse perfil
             // antes estava verificando se o do tinha denunciado

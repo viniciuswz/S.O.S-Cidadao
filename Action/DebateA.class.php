@@ -117,7 +117,8 @@ class DebateA extends DebateM{
         );  
         $res = $this->runSelect($sql);
         if(empty($res)){
-            throw new \Exception("Não foi possível fazer o select",9); 
+            //throw new \Exception("Não foi possível fazer o select",9); 
+            return;
         }  
 
         $dadosTratados = $this->tratarDados($res);

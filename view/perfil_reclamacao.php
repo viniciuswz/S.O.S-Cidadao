@@ -203,6 +203,10 @@ session_start();
             </nav>
             <section class="alinha-item">
             <?php
+                if(empty($resposta)){
+                    echo '<span style="color:white">Não há reclamações para serem exibidos</span>';
+                    exit();
+                }
                 $contador = 0;
                 while($contador < count($resposta)){                
             ?>  
