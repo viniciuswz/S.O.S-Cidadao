@@ -162,35 +162,31 @@ nav.menu > ul > li > a:hover #quantidade_de_not{
     position: relative;
 }
 
-
-
-
-
 .perfil > img{
-    height: 56.23vw;
-    max-height: 774px;
+    /* height: 56.23vw;
+    max-height: 774px; */
 }
 
 
-.perfil > div{
-    margin-top: 210px;
+.perfil-info{
+    margin-top: 150px;
     padding-right: 40px;
     align-items: center;
     bottom: 3px
 }
 
-.perfil div div{
+.perfil-info div{
     height: 180px;
     width: 180px;
     border: 8px solid white;
 }
 
-.perfil div div img{
+.perfil-info div img{
     height: 140%;
 }
 
 
-.perfil-base div div p{
+.perfil-info p{
     top: 370px;
     right: 0;
     color: aliceblue;

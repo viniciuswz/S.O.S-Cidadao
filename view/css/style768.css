@@ -150,34 +150,42 @@ width: 100vw;
     justify-content: center;
 }
 
+#trocar-capa{
+    position: absolute;
+    z-index: 1;
+    left: 10px;
+    top: 229px
+   
+}
+
 .perfil > img{
-    height: 56.23vw;
-    max-height: 774px;
+    /* height: 56.23vw;
+    max-height: 774px; */
 }
 
 
-.perfil > div{
+.perfil-info{
     margin-top: 150px;
     align-items: center;
     flex-direction: column-reverse;
+    right:0px;
+    left: 0
+ 
     
 }
 
-.perfil div div{
+.perfil-info div{
     height: 150px;
     width: 150px;
     border: 6px solid white;
     
 }
 
-.perfil div div img{
+.perfil-info img{
     height: 135%;
 }
 
-
-
-
-.perfil-base div div p{
+.perfil-info p{
   
    
     text-align: center;
@@ -186,7 +194,7 @@ width: 100vw;
     margin: 0px auto 0 auto;
 }
 
-.perfil-base div div span{
+.perfil-info span{
 
     
     color: black;
@@ -195,10 +203,11 @@ width: 100vw;
     text-align: center
 }
 
-.perfil div i{
+.perfil-info i{
     position: absolute;
-    margin-right: 30px;
+    
     margin-top: 40px;
+    left: 160px;
 }
 
 

@@ -140,25 +140,25 @@ nav.menu > ul > li > a:hover i{
 }
 
 
-.perfil > div{
+.perfil-info{
     margin-top: 190px;
     padding-right: 10px;
     align-items: center;
     bottom: 3px
 }
 
-.perfil div div{
+.perfil-info div{
     height: 150px;
     width: 150px;
     border: 6px solid white;
 }
 
-.perfil div div img{
+.perfil-info div img{
     height: 135%;
 }
 
 
-.perfil-base .perfil  p{
+.perfil-info p{
    
     color: aliceblue;
     margin-right: 10px;
@@ -166,13 +166,13 @@ nav.menu > ul > li > a:hover i{
     text-shadow: 0px 0px 10px black
 }
 
-.perfil-base div div span{
+.perfil-info span{
 
     font-size: 1.1rem;
     text-shadow: 0px 0px 30px black
 }
 
-.perfil-base h3{
+.perfil-info h3{
     position: absolute;
     left: 0;
     color: aliceblue;
