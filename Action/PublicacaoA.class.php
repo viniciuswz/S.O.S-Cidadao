@@ -55,10 +55,11 @@ class PublicacaoA extends PublicacaoM{
                                 INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu) 
                                 WHERE  status_comen = 'A' AND (descri_tipo_usu = 'Prefeitura' or descri_tipo_usu = 'Funcionario') AND status_usu = 'A')
                                 AND %s %s";
-    private $sqlQtdRespondidas = "SELECT cod_publi FROM comentario INNER JOIN usuario on(usuario.cod_usu = comentario.cod_usu)
+    private $sqlQtdRespondidas = "SELECT %s FROM comentario INNER JOIN usuario on(usuario.cod_usu = comentario.cod_usu)
+                                        INNER JOIN publicacao ON(comentario.cod_publi = publicacao.cod_publi)
                                         INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu) 
                                         WHERE  status_comen = 'A' AND (descri_tipo_usu = 'Prefeitura' or descri_tipo_usu = 'Funcionario') 
-                                        AND status_usu = 'A'";
+                                        AND  %s %s";
                                         
     private $sqlSelectDonoPubli = "SELECT cod_usu FROM publicacao WHERE cod_usu = '%s' AND cod_publi = '%s'";
 
@@ -312,19 +313,19 @@ class PublicacaoA extends PublicacaoM{
         return $res[0]['COUNT(*)'];
     }    
 
-    public function getIdsPubliNRespo($pagina = null){ //Pegar os ids da publicacoes nao respondidas
-        $sqlQtdNRespon = sprintf(
-            $this->sqlQtdNRespon,
+    public function getIdsPubliRespo($pagina = null, $tipoPubli){ //Pegar os ids da publicacoes nao respondidas ou Respondidas
+        $sqlQtd = sprintf(
+            $this->{$tipoPubli},
             'COUNT(*)',
             $this->whereListFromALL,
             'AND 1=1'
         ); // Preparar o sql da quantiade de publicacões
 
-        $sqlPaginacao = $this->controlarPaginacao($sqlQtdNRespon, null, 6, $pagina);
+        $sqlPaginacao = $this->controlarPaginacao($sqlQtd, null, 6, $pagina);
 
         $sql = sprintf(
-            $this->sqlQtdNRespon,
-            'cod_publi',
+            $this->{$tipoPubli},
+            'publicacao.cod_publi',
             $this->whereListFromALL,
             $sqlPaginacao
         );
@@ -362,17 +363,39 @@ class PublicacaoA extends PublicacaoM{
 
         $sql = sprintf(
             $sqlSe,
-            $this->getIdsPubliNRespo($pagina),
+            $this->getIdsPubliRespo($pagina, 'sqlQtdNRespon'), //N
             ' AND 1=1',
             ' AND 1=1'
         );
         $res = $this->runSelect($sql);
+        if(empty($res)){
+            return;
+        }
         if($indPerfil != null){
             $dadosTratados = $this->tratarInformacoes($res);  
             return $dadosTratados;
         }else{
             return $res; // Ids Na array;
         }
+        
+        
+    }
+
+    public function getPubliRespo($pagina = null){//Pegar os dados das publicacoes Respondidas
+        // Tive q fazer esta gambi
+        
+        $sql = sprintf(
+            $this->sqlSelect,
+            $this->getIdsPubliRespo($pagina, 'sqlQtdRespondidas'), //N
+            ' AND 1=1',
+            ' AND 1=1'
+        );
+        $res = $this->runSelect($sql);  
+        if(empty($res)){
+            return;
+        }      
+        $dadosTratados = $this->tratarInformacoes($res);  
+        return $dadosTratados;      
         
         
     }
