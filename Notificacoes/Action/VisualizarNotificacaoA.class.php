@@ -51,7 +51,7 @@ class VisualizarNotificacaoA extends GenericaM{
     }
 
     public function visualizarNotificacao($tipo, $idPubli, $codUsu){ // Quando o usuario clicou no icone notificacao        
-            $tipoAceitos = array('LikeComen', 'LikePubli', 'ResSalva', 'ResPrefei', 'ComentaPubli',);
+            $tipoAceitos = array('LikeComen', 'LikePubli', 'ResSalva', 'ResPrefei', 'ComentaPubli');
             if(in_array($tipo, $tipoAceitos)){ // Verifica se o valor do paramentro é aceito
                 switch($tipo){
                     case 'LikeComen':

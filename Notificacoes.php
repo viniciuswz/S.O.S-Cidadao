@@ -3,7 +3,7 @@ require_once('Config/Config.php');
 require_once(SITE_ROOT.DS.'autoload.php');
 
 use Notificacoes\GerenNotiComum;
-
+use Notificacoes\GerenNotiAdm;
 session_start();
 if(isset($_SESSION['id_user']) AND isset($_SESSION['tipo_usu'])){
     if(isset($_POST['indVisu'])){
@@ -17,21 +17,15 @@ if(isset($_SESSION['id_user']) AND isset($_SESSION['tipo_usu'])){
         $jaca = new GerenNotiComum($idUser,$indVisu);
         $resultado = $jaca->notificacoes();
         echo json_encode($resultado);
+    }else if($_SESSION['tipo_usu'] == 'Adm' OR $_SESSION['tipo_usu'] == 'Moderador'){
+        $jaca = new GerenNotiAdm();
+        //$das = $jaca->SelectDenunPubli();
+        $das2 = $jaca->notificacoes();
+        //var_dump($das);
+        var_dump($das2);
+        //resultado = $jaca->notificacoes();
     }
 }
 
-
-
-
-//var_dump($resultado);
-/*s
-foreach($resultado as $chaves => $valores){
-    foreach($valores as $chave => $valor){
-        if($chave == 'notificacao'){
-            echo $valor . "<br>";
-        }
-    }s
-}
-*/
 ?>
 

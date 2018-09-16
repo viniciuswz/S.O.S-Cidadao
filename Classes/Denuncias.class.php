@@ -136,4 +136,15 @@ class Denuncias extends DenunciasM{
         return $sqlPaginacao;
         
     }
+    /*
+    public function getDadosAtributo($nome){ // Pegar valor do atributo
+        $tipoAceitos = array('sqlDenunDebate', 'sqlDenunPubli', 'sqlDenunComen', 'countDenunDebate', 'countDenunPubli', 'countDenunComen');
+        if(in_array($nome, $tipoAceitos)){
+            return $this->{$nome};
+        }else{
+            return;
+        }
+        
+    }
+    */
 }
