@@ -1454,6 +1454,23 @@ margin-bottom :200px;
     font-weight: 600;
 }
 
+.form-config .desativar-btn{
+    font-family: 'Open-Sans-light';
+    display: block;
+    background-color: red;
+    border: 0;
+    color: white;
+    padding:7px;
+    width: 70%;
+    margin: 10px auto;
+    text-align: center;
+    font: "Open-Sans";
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+
+}
+
 .usuarios-debate-info{/*aqui*/
     order:3;
     overflow-y: scroll;
@@ -3047,3 +3064,76 @@ margin-bottom :200px;
     background-color:  rgb(255, 8, 152);  
     color: white;   
 }
+
+
+.modal-desativar{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 98;
+    display: block;
+    color:black;
+}
+
+.modal-desativar-fundo{
+    position: fixed;
+    background-color: rgba(0, 0, 0, .9);
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 98;
+}
+.modal-desativar-ativo{
+    display: block;
+}
+
+.box-desativar{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background-color: white;
+    width: 480px;
+    padding-bottom: 10px;
+    z-index: 99;
+}
+
+.box-desativar span{
+    font-family: arial;
+    font-size: 40px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.box-desativar div:nth-child(1){
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 15px;
+    
+}
+
+.box-desativar div h1{
+    font-size: 20px
+}
+
+
+.box-desativar div:nth-child(2){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 15px;
+    font-size: 14px;
+    flex-direction:column
+    
+}
+
+.box-desativar a{
+    display: block;
+    margin: 0 auto;
+    background-color: red;
+    co
+}
+
