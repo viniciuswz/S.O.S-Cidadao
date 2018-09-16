@@ -411,14 +411,14 @@ jQuery(function(){
      
       /*criar uma rotina para remover os outros menu aberto */
 
-      if(motivo == "motivo motivo-ativo"){
+      if(motivo == "motivo motivo-ativo"){ /* verificar de o motivo ta ativo, se for verdade ele não abre o mini menu */
       }else{
-        if(classe == "mini-menu-adm"){
-          alert($this.attr('class'))
+        if(classe == "mini-menu-adm"){/* se não se, se a classe or igual a: execulta */
+         
           $(this).find("td:nth-child(1)").find("div").toggleClass("mini-menu-adm-ativo");
-        }else{
-          $(this).siblings().find("td:nth-child(1) div").removeClass("mini-menu-adm-ativo");
-          $(this).find("td:nth-child(1) div").toggleClass("mini-menu-adm-ativo");
+        }else{ /* se não isso */
+          $(this).siblings().find("td:nth-child(1) div").removeClass("mini-menu-adm-ativo"); /* pegar os elementos que não corresponde aesse que esta sendo clicado, e remover a class*/
+          $(this).find("td:nth-child(1) div").toggleClass("mini-menu-adm-ativo"); /*  */
           
 
         }
@@ -433,19 +433,35 @@ jQuery(function(){
   
   
   jQuery(function($){
+    /*ativar quando clicar e remover tag de ativar */
     $(".motivo-ativar").click(function(){
-      $(this).parent().parent().parent().parent().find("div.motivo").addClass("motivo-ativo")
-      $(this).parent().parent().parent().parent().parent().removeClass("tabelinha-linha");
+      $(this).parents(":eq(3)").find("div.motivo").addClass("motivo-ativo")
+      $(this).parents(":eq(4)").removeClass("tabelinha-linha");
     })
+    /*fechar quando clicar e colocar de novo tag de ativar*/
     $(".fechar-motivo").click(function(){
-      $(this).parent().parent().parent().removeClass("motivo-ativo");
-      $(this).parent().parent().parent().parent().parent().addClass("tabelinha-linha")
+      $(this).parents(":eq(3)").removeClass("motivo-ativo");
+      $(this).parents(":eq(4)").addClass("tabelinha-linha")
     })
-
+    /*fechar quando clicar fora e adicionar class de ativar */
     $(".motivo").click(function(){
       $(this).removeClass("motivo-ativo");
-      $(this).parent().parent().parent().parent().parent().addClass("tabelinha-linha")
+      $(this).parents(":eq(4)").addClass("tabelinha-linha")
     })
   })
   
-  
+
+  jQuery(function($){
+    /* abrir quando */
+    $(".denunciar-item").click(function(){
+      $(this).parents(":eq(2)").find("div.modal-denunciar").addClass("modal-denunciar-ativo");
+    })
+    /* fechar quando clicar fora*/
+    $(".modal-denunciar").click(function(){
+      $(this).removeClass("modal-denunciar-ativo");
+    })
+    /* fechar quando clicar no X*/
+    $(".fechar-denuncia").click(function(){
+      $(this).parents(":eq(2)").removeClass("modal-denunciar-ativo");
+    })
+  })

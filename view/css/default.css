@@ -2082,7 +2082,7 @@ margin-bottom :200px;
 .cad-adm p{
     display: inline-block;
 }
-.cad-adm td div:first-child{ /*ta dando pau*/
+.cad-adm div:first-child{ /*ta dando pau*/
     width: 30px;
     height: 30px;
     background-color: darkgreen;
@@ -2971,10 +2971,8 @@ margin-bottom :200px;
     left: 0;
     top: 0;
     z-index: 98;
-    display: block;
+    display: none;
     color:black;
-    
-
 }
 
 .modal-denunciar-ativo{
@@ -2992,6 +2990,7 @@ margin-bottom :200px;
 }
 
 .box-denunciar span{
+    font-family: arial;
     font-size: 40px;
     font-weight: 600;
     cursor: pointer;
@@ -3002,6 +3001,10 @@ margin-bottom :200px;
     align-items: center;
     padding: 15px;
     
+}
+
+.box-denunciar div h1{
+    font-size: 20px
 }
 
 .box-denunciar form{
