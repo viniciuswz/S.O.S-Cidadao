@@ -2970,9 +2970,7 @@ margin-bottom :200px;
 }
 
 .modal-denunciar{
-    display: block;
     position: fixed;
-    background-color: rgba(0, 0, 0, .9);
     width: 100%;
     height: 100vh;
     left: 0;
@@ -2982,6 +2980,15 @@ margin-bottom :200px;
     color:black;
 }
 
+.modal-denunciar-fundo{
+    position: fixed;
+    background-color: rgba(0, 0, 0, .9);
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 98;
+}
 .modal-denunciar-ativo{
     display: block;
 }
@@ -2993,7 +3000,8 @@ margin-bottom :200px;
     transform: translateX(-50%) translateY(-50%);
     background-color: white;
     width: 480px;
-    padding-bottom: 10px
+    padding-bottom: 10px;
+    z-index: 99;
 }
 
 .box-denunciar span{

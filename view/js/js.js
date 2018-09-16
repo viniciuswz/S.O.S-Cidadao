@@ -457,8 +457,8 @@ jQuery(function(){
       $(this).parents(":eq(2)").find("div.modal-denunciar").addClass("modal-denunciar-ativo");
     })
     /* fechar quando clicar fora*/
-    $(".modal-denunciar").click(function(){
-      $(this).removeClass("modal-denunciar-ativo");
+    $(".modal-denunciar-fundo").click(function(){
+      $(this).parent().removeClass("modal-denunciar-ativo");
     })
     /* fechar quando clicar no X*/
     $(".fechar-denuncia").click(function(){
