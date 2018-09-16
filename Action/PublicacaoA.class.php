@@ -119,7 +119,7 @@ class PublicacaoA extends PublicacaoM{
         return $dadosTratados = $this->tratarInformacoes($res);
     }
 
-    public function ListByIdUser($pagina = null){ //Listar publicacoes de um usuario    
+    public function ListByIdUser($pagina = null, $idVisualizadorPerfil = false){ //Listar publicacoes de um usuario    
         $prepararWhereUser = sprintf($this->whereIdUser, $this->getCodUsu()); 
 
         $sqlPaginacao = $this->controlarPaginacao($this->sqlSelectQuantPubli,$prepararWhereUser,6,$pagina);
@@ -129,6 +129,11 @@ class PublicacaoA extends PublicacaoM{
                     $sqlPaginacao
         );  
         $res = $this->runSelect($sql);        
+        if($idVisualizadorPerfil != false){ // Se eu passar este parametro é pq alguem esta vendo esse perfil, e por isso preciso 
+            // verificar se esta pessoa denunciou a publicacao q esta nesse perfil
+            // antes estava verificando se o do tinha denunciado
+            $this->setCodUsu($idVisualizadorPerfil);
+        }
         return $dadosTratados = $this->tratarInformacoes($res);
     }
 

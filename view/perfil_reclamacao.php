@@ -51,12 +51,15 @@ session_start();
                 }
         }}    
                
-        $publi = new Publicacao();
+        $publi = new Publicacao();    
         $publi->setCodUsu($id);
+        $idVisualizador = isset($_SESSION['id_user']) ?: $idVisualizador = null;
         isset($_GET['pagina']) ?: $_GET['pagina'] = null; 
-        $resposta = $publi->ListByIdUser($_GET['pagina']);        
+        $resposta = $publi->ListByIdUser($_GET['pagina'], $idVisualizador);        
         $quantidadePaginas = $publi->getQuantidadePaginas();
         $pagina = $publi->getPaginaAtual();        
+
+        
 ?>
 <!DOCTYPE html>
 <html lang=pt-br>
