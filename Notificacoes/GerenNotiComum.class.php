@@ -61,7 +61,7 @@ class GerenNotiComum extends GenericaM{
         if($quantidade > 0){
             $contador = 0;
             while($contador < count($listaResposta)){                
-                $resultado[$contador]['notificacao'] = "A publicação salva <strong> " . $listaResposta[$contador][0]['titulo_publi'] . "</strong> foi respondida pela prefeitura";
+                $resultado[$contador]['notificacao'] = "A publicação salva <span class='negrito'> " . $listaResposta[$contador][0]['titulo_publi'] . "</span> foi respondida pela prefeitura";
                 $resultado[$contador]['id_publi'] = $listaResposta[$contador][0]['cod_publi']; 
                 $resultado[$contador]['tipo'] = 'icone-mail';
                 $resultado[$contador]['indTipo'] = 'ResSalva'; //dasdasdasdasdasdasd
@@ -91,7 +91,7 @@ class GerenNotiComum extends GenericaM{
                 if($getIdsComen != null){
                     $idsComen[$contador]['cod_comen'] = $listaResposta[$contador][0]['cod_comen'];       
                 }else{
-                    $resultado[$contador]['notificacao'] = " A prefeitura respondeu a publição <strong> " . $listaResposta[$contador][0]['titulo_publi'] . "</strong>";
+                    $resultado[$contador]['notificacao'] = " A prefeitura respondeu a publição <span class='negrito'> " . $listaResposta[$contador][0]['titulo_publi'] . "</span>";
                     $resultado[$contador]['id_publi'] = $listaResposta[$contador][0]['cod_publi']; 
                     $resultado[$contador]['tipo'] = 'icone-mail';
                     $resultado[$contador]['indTipo'] = 'ResPrefei'; //dasdasdasdasdasdasd
