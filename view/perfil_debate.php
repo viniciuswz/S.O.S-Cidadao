@@ -5,7 +5,7 @@ session_start();
     use Core\Usuario;
     use Core\Debate;
     use Classes\ValidarCampos;
-    
+    use Core\Publicacao;
     try{        
         $usuPerfil = new Usuario();
         if(isset($_SESSION['id_user'])){ // se estiver logado   
@@ -51,12 +51,31 @@ session_start();
                 }
         }}    
                
-        $debate = new Debate();
-        $debate->setCodUsu($id);
+        
         isset($_GET['pagina']) ?: $_GET['pagina'] = null; 
-        $resposta = $debate->ListByIdUser($_GET['pagina']);        
-        echo $quantidadePaginas = $debate->getQuantidadePaginas();
-        $pagina = $debate->getPaginaAtual();        
+        if($descPerfilVisu == 'Prefeitura'){
+            $publi = new Publicacao();    
+            $publi->setCodUsu($id);
+            $nomeLink1 = 'Reclamações Respondidas';
+            $nomeLink2 = 'Reclamações Não Respondidas'; 
+
+            $resposta = $publi->getPubliNRespo($_GET['pagina'], TRUE);  
+            $quantidadePaginas = $publi->getQuantidadePaginas();
+            $pagina = $publi->getPaginaAtual();  
+         }else{
+            $debate = new Debate();
+            $debate->setCodUsu($id);
+             //isset($_SESSION['id_user']) ? $idVisualizador = $_SESSION['id_user'] : $idVisualizador = null;
+             $nomeLink1 = 'Reclamação';
+             $nomeLink2 = 'Debate';
+             
+             $resposta = $debate->ListByIdUser($_GET['pagina']); 
+             $quantidadePaginas = $debate->getQuantidadePaginas();
+             $pagina = $debate->getPaginaAtual();      
+         }       
+        
+        //$resposta = $debate->ListByIdUser($_GET['pagina']);        
+           
 ?>
 <!DOCTYPE html>
 <html lang=pt-br>

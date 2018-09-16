@@ -50,14 +50,27 @@ session_start();
                         break; 
                 }
         }}    
-               
+
         $publi = new Publicacao();    
         $publi->setCodUsu($id);
-        isset($_SESSION['id_user']) ? $idVisualizador = $_SESSION['id_user'] : $idVisualizador = null;
-        var_dump($_SESSION['id_user']);
         isset($_GET['pagina']) ?: $_GET['pagina'] = null; 
-        $resposta = $publi->ListByIdUser($_GET['pagina'], $idVisualizador);     
-        var_dump($resposta);   
+
+        if($descPerfilVisu == 'Prefeitura'){
+           $nomeLink1 = 'Reclamações Não Respondidas';
+           $nomeLink2 = 'Reclamações Respondidas'; 
+           $resposta = $publi->getPubliNRespo($_GET['pagina'], TRUE);  
+        }else{
+            isset($_SESSION['id_user']) ? $idVisualizador = $_SESSION['id_user'] : $idVisualizador = null;
+            $nomeLink1 = 'Reclamação';
+            $nomeLink2 = 'Debate';
+            $resposta = $publi->ListByIdUser($_GET['pagina'], $idVisualizador);  
+        }       
+        
+        
+        //var_dump($_SESSION['id_user']);
+        
+           
+        //var_dump($resposta);   
         $quantidadePaginas = $publi->getQuantidadePaginas();
         $pagina = $publi->getPaginaAtual();        
 
@@ -190,13 +203,13 @@ session_start();
             </section>
             <nav class="menu-perfil">
                 <ul class="espacos">
-
-                    <li class="ativo"><a href="#r">Reclamações</a></li>
+                    
+                    <li class="ativo"><a href="#r"><?php echo $nomeLink1 ?></a></li>
                     <?php 
                         if(isset($_GET['ID'])){                    
-                            echo '<li><a href="perfil_debate.php?ID='.$dadosPerfil[0]['cod_usu'].'">Debates</a></li>';
+                            echo '<li><a href="perfil_debate.php?ID='.$dadosPerfil[0]['cod_usu'].'">'.$nomeLink2.'</a></li>';
                         }else{
-                            echo '<li><a href="perfil_debate.php">Debates</a></li>';
+                            echo '<li><a href="perfil_debate.php">'.$nomeLink2.'</a></li>';
                         }
                     ?>
                     

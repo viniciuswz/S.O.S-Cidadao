@@ -55,6 +55,11 @@ class PublicacaoA extends PublicacaoM{
                                 INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu) 
                                 WHERE  status_comen = 'A' AND (descri_tipo_usu = 'Prefeitura' or descri_tipo_usu = 'Funcionario') AND status_usu = 'A')
                                 AND %s %s";
+    private $sqlQtdRespondidas = "SELECT cod_publi FROM comentario INNER JOIN usuario on(usuario.cod_usu = comentario.cod_usu)
+                                        INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu) 
+                                        WHERE  status_comen = 'A' AND (descri_tipo_usu = 'Prefeitura' or descri_tipo_usu = 'Funcionario') 
+                                        AND status_usu = 'A'";
+                                        
     private $sqlSelectDonoPubli = "SELECT cod_usu FROM publicacao WHERE cod_usu = '%s' AND cod_publi = '%s'";
 
 
@@ -340,7 +345,7 @@ class PublicacaoA extends PublicacaoM{
               
     }
 
-    public function getPubliNRespo($pagina = null){//Pegar os dados das publicacoes nao respondidas
+    public function getPubliNRespo($pagina = null, $indPerfil = null){//Pegar os dados das publicacoes nao respondidas
         // Tive q fazer esta gambi
         $sqlSelect = "SELECT usuario.nome_usu, publicacao.cod_publi, descri_cate, titulo_publi
                         FROM publicacao 
@@ -348,13 +353,27 @@ class PublicacaoA extends PublicacaoM{
                         INNER JOIN categoria ON (publicacao.cod_cate = categoria.cod_cate)
                         INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu) 
                         WHERE descri_tipo_usu = 'Comum' AND %s  %s %s";
+
+        if($indPerfil != null){
+            $sqlSe = $this->sqlSelect;
+        }else{
+            $sqlSe = $sqlSelect;
+        }
+
         $sql = sprintf(
-                $sqlSelect,
-                $this->getIdsPubliNRespo($pagina),
-                ' AND 1=1',
-                ' AND 1=1'
+            $sqlSe,
+            $this->getIdsPubliNRespo($pagina),
+            ' AND 1=1',
+            ' AND 1=1'
         );
-        return $res = $this->runSelect($sql); // Ids Na array;
+        $res = $this->runSelect($sql);
+        if($indPerfil != null){
+            $dadosTratados = $this->tratarInformacoes($res);  
+            return $dadosTratados;
+        }else{
+            return $res; // Ids Na array;
+        }
+        
         
     }
 
