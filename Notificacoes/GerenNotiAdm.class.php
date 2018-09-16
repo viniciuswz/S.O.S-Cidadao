@@ -72,7 +72,7 @@ class GerenNotiAdm extends GenericaM{
     public function SelectDenunPubli(){ // Feito
         $ids = $this->selectIdsCoisasDenunciadas('countDenun', array('Publi'), "ID", "dataHora_denun_publi");
         $dados = $this->selectQuantDenun('countDenun', array('Publi'),' AND publicacao.cod_publi = ', $ids);     
-        $resultado = $this->gerarMensagem($dados, 'a publicacao','Publicacacao', 'likePubli');
+        $resultado = $this->gerarMensagem($dados, 'a publicação ','Publicacacao', 'likePubli');
         $this->resultados = array_merge_recursive($this->resultados, $resultado);        
         return $resultado;
 
@@ -81,7 +81,7 @@ class GerenNotiAdm extends GenericaM{
     public function SelectDenunDebate(){
         $ids = $this->selectIdsCoisasDenunciadas('countDenun', array('Debate'), 'ID', 'dataHora_denun_deba');        
         $dados = $this->selectQuantDenun('countDenun', array('Debate'),' AND debate.cod_deba = ', $ids);     
-        $resultado = $this->gerarMensagem($dados, 'o debate','Debate', 'likeDebate');        
+        $resultado = $this->gerarMensagem($dados, 'o debate ','Debate', 'likeDebate');        
         $this->resultados = array_merge_recursive($this->resultados, $resultado);        
         return $resultado;
     }
@@ -89,7 +89,7 @@ class GerenNotiAdm extends GenericaM{
     public function SelectDenunComen(){
         $ids = $this->selectIdsCoisasDenunciadas('countDenun', array('Comen'), 'ID', 'dataHora_denun_comen');        
         $dados = $this->selectQuantDenun('countDenun', array('Comen'),' AND comentario.cod_comen = ', $ids);     
-        $resultado = $this->gerarMensagem($dados, 'o comentario de(a)','Comentário', 'likeComen');        
+        $resultado = $this->gerarMensagem($dados, 'o comentario de ','Comentário', 'likeComen');        
         $this->resultados = array_merge_recursive($this->resultados, $resultado);        
         return $resultado;
     }
@@ -119,7 +119,7 @@ class GerenNotiAdm extends GenericaM{
                 }else if($chave == 'Nome'){
                     $quantidade[$contador]['Nome'] = $valor;     
                 }else if($chave == 'Titulo'){ // Apenas no select do comentario vai ter titulo, quando tiver ele vai concaternar
-                    $quantidade[$contador]['Nome'] = $quantidade[$contador]['Nome'] . " na publicação" . $valor;     
+                    $quantidade[$contador]['Nome'] = $quantidade[$contador]['Nome'] . " na publicação " . $valor;     
                 }else{
                     $quantidade[$contador]['id'] = $valor;
                     $quantidade[$contador]['qtd'] = $res[0]["COUNT(*)"];
@@ -160,7 +160,7 @@ class GerenNotiAdm extends GenericaM{
                     $resultado[$contador]['id_publi'] = $dados[$contador]['id'];
                     $resultado[$contador]['tipo'] = $tipoNoti;
                     $resultado[$contador]['indTipo'] = $indTipo; //dasdasdasdasdasdasd
-                    //$resultado[$contador]['classe'] = $this->nomeClasse($listaCurtidores[$contador][0]['ind_visu_dono_publi']);
+                    $resultado[$contador]['classe'] = "";//$this->nomeClasse($dados[$contador][0]['ind_visu_dono_publi']);
                     //$resultado[$contador]['Hora'] = strtotime($listaCurtidores[$contador][0]['dataHora']);
                     $resultado[$contador]['DataHora'] = $dados[$contador]['DataHora'];
                 $contador++;
@@ -201,6 +201,14 @@ class GerenNotiAdm extends GenericaM{
         
         //var_dump($OrderMaiorMenor);
         return $OrderMaiorMenor;
+    }
+
+    public function nomeClasse($ind){
+        if($ind == 'B'){
+            return 'Visualizado';
+        }else if($ind == 'N'){
+            return 'NVisualizado';
+        }
     }
    
 }
