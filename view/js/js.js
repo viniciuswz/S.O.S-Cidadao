@@ -465,3 +465,34 @@ jQuery(function(){
       $(this).parents(":eq(2)").removeClass("modal-denunciar-ativo");
     })
   })
+
+/* modal desativar */
+
+  jQuery(function($){
+
+    $(".desativar-btn").click(function(){
+      $(".modal-desativar").addClass("modal-desativar-ativo");
+    })
+    /* fechar quando clicar fora*/
+    $(".modal-desativar-fundo").click(function(){
+      $(this).parent().removeClass("modal-desativar-ativo");
+    })
+    /* fechar quando clicar no X*/
+    $(".fechar-desativar").click(function(){
+      $(this).parents(":eq(2)").removeClass("modal-desativar-ativo");
+    })
+  })
+
+  /* modal erro php */
+
+  jQuery(function($){
+
+    /* fechar quando clicar fora*/
+    $(".modal-erro-fundo").click(function(){
+      $(this).parent().remove();
+    })
+    /* fechar quando clicar no X*/
+    $(".fechar-erro").click(function(){
+      $(this).parents(":eq(2)").remove();
+    })
+  })
