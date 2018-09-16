@@ -5,50 +5,21 @@ use Notificacoes\Model\GenericaM;
 use Classes\Denuncias;
 
 class GerenNotiAdm extends GenericaM{
-    private $sqlDenunDebate = " %s SELECT %s
-                                cod_denun_deba AS cod_denun,
-                                dataHora_denun_deba AS dataHora, 
-                                debate.cod_usu AS cod_usu_denunciado, 
-                                debate_denun.cod_deba AS cod_publi_denun,                                 ,
-                                nome_usu AS nome_denunciado
-                                FROM debate_denun 
-                                INNER JOIN debate ON (debate_denun.cod_deba = debate.cod_deba)
-                                INNER JOIN usuario ON (debate.cod_usu = usuario.cod_usu)
-                                WHERE status_denun_deba = 'A' AND status_deba = 'A' AND status_usu = 'A'  AND
-                                ind_visu_adm_denun_publi != 'V' %s ";
-    private $sqlDenunPubli = " %s SELECT %s 
-                                cod_denun_publi AS cod_denun, 
-                                dataHora_denun_publi AS dataHora, 
-                                publicacao.cod_usu AS cod_usu_denunciado, 
-                                publicacao.cod_publi AS cod_publi_denun,                                 
-                                nome_usu AS nome_denunciado
-                                FROM publi_denun INNER JOIN publicacao ON (publi_denun.cod_publi = publicacao.cod_publi)
-                                INNER JOIN usuario ON (publicacao.cod_usu = usuario.cod_usu)
-                                WHERE status_denun_publi = 'A' AND status_publi = 'A' AND
-                                ind_visu_adm_denun_publi != 'V' %s ";
-
-    private $sqlDenunComen = " %s SELECT %s 
-                                cod_denun_comen AS cod_denun, 
-                                dataHora_denun_comen AS dataHora,
-                                comentario.cod_usu AS cod_usu_denunciado, 
-                                comen_denun.cod_comen AS cod_publi_denun,                                 
-                                nome_usu AS nome_denunciado
-                                FROM comen_denun INNER JOIN comentario ON (comen_denun.cod_comen = comentario.cod_comen)
-                                INNER JOIN usuario ON (comentario.cod_usu = usuario.cod_usu)
-                                WHERE status_denun_comen = 'A' AND status_comen = 'A' AND status_usu = 'A' AND status_usu = 'A' AND
-                                ind_visu_adm_denun_publi != 'V' %s";
     
+        
     private $countDenunDebate = " %s SELECT %s debate_denun.cod_deba AS ID, 
                                         dataHora_denun_deba as DataHora,
-                                        nome_deba as Nome
+                                        nome_deba as Nome,
+                                        ind_visu_adm_denun_deba AS ind
                                         FROM debate_denun                                    
                                         INNER JOIN debate ON (debate_denun.cod_deba = debate.cod_deba)
                                         INNER JOIN usuario ON (debate.cod_usu = usuario.cod_usu)
                                         WHERE status_denun_deba = 'A' AND status_deba = 'A' AND
                                         ind_visu_adm_denun_deba != 'V' %s";
     private $countDenunPubli = " %s SELECT %s publi_denun.cod_publi AS ID, 
-                                            dataHora_denun_publi as DataHora,
-                                            titulo_publi as Nome
+                                            dataHora_denun_publi AS DataHora,
+                                            titulo_publi AS Nome,
+                                            ind_visu_adm_denun_publi AS ind
                                             FROM publi_denun                                             
                                             INNER JOIN publicacao ON (publi_denun.cod_publi = publicacao.cod_publi)
                                             INNER JOIN usuario ON (publicacao.cod_usu = usuario.cod_usu)
@@ -57,7 +28,8 @@ class GerenNotiAdm extends GenericaM{
     private $countDenunComen = " %s SELECT %s comen_denun.cod_comen AS ID, 
                                               dataHora_denun_comen AS DataHora, 
                                               nome_usu AS Nome,
-                                              titulo_publi AS Titulo
+                                              titulo_publi AS Titulo,
+                                              ind_visu_adm AS ind
                                             FROM comen_denun
                                             INNER JOIN comentario ON (comen_denun.cod_comen = comentario.cod_comen)
                                             INNER JOIN publicacao ON (comentario.cod_publi = publicacao.cod_publi)
@@ -65,9 +37,12 @@ class GerenNotiAdm extends GenericaM{
                                             WHERE status_denun_comen = 'A' AND status_comen = 'A' AND
                                             ind_visu_adm != 'V' %s";
     
-    private $resultados = array();
-    
-    
+    private $resultados = array();  
+    private $indVisu;
+
+    public function __contruct($indVisu = null){
+        $this->indVisu = $indVisu;
+    }
     
     public function SelectDenunPubli(){ // Feito
         $ids = $this->selectIdsCoisasDenunciadas('countDenun', array('Publi'), "ID", "dataHora_denun_publi");
@@ -120,9 +95,12 @@ class GerenNotiAdm extends GenericaM{
                     $quantidade[$contador]['Nome'] = $valor;     
                 }else if($chave == 'Titulo'){ // Apenas no select do comentario vai ter titulo, quando tiver ele vai concaternar
                     $quantidade[$contador]['Nome'] = $quantidade[$contador]['Nome'] . " na publicação " . $valor;     
+                }else if($chave == 'ind'){
+                    $quantidade[$contador]['ind'] = $valor;
                 }else{
                     $quantidade[$contador]['id'] = $valor;
                     $quantidade[$contador]['qtd'] = $res[0]["COUNT(*)"];
+                    
                 }
                 
             }      
@@ -160,7 +138,7 @@ class GerenNotiAdm extends GenericaM{
                     $resultado[$contador]['id_publi'] = $dados[$contador]['id'];
                     $resultado[$contador]['tipo'] = $tipoNoti;
                     $resultado[$contador]['indTipo'] = $indTipo; //dasdasdasdasdasdasd
-                    $resultado[$contador]['classe'] = "";//$this->nomeClasse($dados[$contador][0]['ind_visu_dono_publi']);
+                    $resultado[$contador]['classe'] = $this->nomeClasse($dados[$contador]['ind']);
                     //$resultado[$contador]['Hora'] = strtotime($listaCurtidores[$contador][0]['dataHora']);
                     $resultado[$contador]['DataHora'] = $dados[$contador]['DataHora'];
                 $contador++;
@@ -175,7 +153,7 @@ class GerenNotiAdm extends GenericaM{
         $debate = $this->SelectDenunDebate();
         $comentario = $this->SelectDenunComen();  
 
-        //$this->visualizarNotificacao($this->indVisu,$this->idUser);
+        //$this->visualizarNotificacao($this->indVisu);
         $this->resultados = $this->ordenarArray();
         return $this->resultados;
     }
@@ -209,6 +187,23 @@ class GerenNotiAdm extends GenericaM{
         }else if($ind == 'N'){
             return 'NVisualizado';
         }
+    }
+
+    public function visualizarNotificacao($indVisu, $idUser){
+        if($indVisu != null){
+            if($indVisu == 'B'){            
+                $ids = array();
+                $ids['Publicacao'][] = $this->getCodPubli();
+                $ids['Comen'][] = $this->comentarioComum('QueroOsIds');
+                $ids['ComenCurti'][] = $this->getCodComen();
+                $ids['ComenPrefei'][] = $this->respostaPrefei('QueroOsIds');                 
+                $ids['PubliSalvas'][] = $this->getCodSalvos();
+                
+                //$visualizar = new VisualizarNotificacao();
+                //$visualizar->updateClickNoti($ids,$indVisu,$idUser);
+            }     
+        }
+        return;        
     }
    
 }

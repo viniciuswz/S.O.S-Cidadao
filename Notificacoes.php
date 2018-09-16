@@ -18,7 +18,7 @@ if(isset($_SESSION['id_user']) AND isset($_SESSION['tipo_usu'])){
         $resultado = $jaca->notificacoes();
         echo json_encode($resultado);
     }else if($_SESSION['tipo_usu'] == 'Adm' OR $_SESSION['tipo_usu'] == 'Moderador'){
-        $jaca = new GerenNotiAdm();
+        $jaca = new GerenNotiAdm($indVisu);
         //$das = $jaca->SelectDenunPubli();
         $resultado = $jaca->notificacoes();
         //var_dump($das);
