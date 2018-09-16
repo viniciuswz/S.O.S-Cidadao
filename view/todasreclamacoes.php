@@ -75,7 +75,7 @@ session_start();
                 </ul>
             </nav>
             <?php
-                if(isset($resultado) AND !empty($resultado)){  
+                if(!isset($resultado)){  
                     echo '<a href="login.php"><i class="icone-user" id="abrir"></i></a>';
                 }else{
                     echo '<i class="icone-user" id="abrir"></i>';
@@ -84,7 +84,7 @@ session_start();
             
         </header>
         <?php
-                if(isset($resultado)){   
+               if(isset($resultado) AND !empty($resultado)){    
         ?>
         <div class="user-menu">
            

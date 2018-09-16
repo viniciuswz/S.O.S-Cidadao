@@ -364,7 +364,7 @@ session_start();
 <?php
 }catch (Exception $exc){
         $erro = $exc->getCode();   
-        echo $mensagem = $exc->getMessage();  
+        $mensagem = $exc->getMessage();  
         switch($erro){
             case 9://Não foi possivel achar a publicacao  
                 echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes.php';</script>";

@@ -3,14 +3,14 @@
     require_once('../Config/Config.php');
     require_once(SITE_ROOT.DS.'autoload.php');
     use Core\Usuario;
-    if(isset($_SESSION['id_user']) AND !empty($_SESSION['id_user'])){
-        $dados = new Usuario();
-        $dados->setCodUsu($_SESSION['id_user']);
-        $resultado = $dados->getDadosUser();
-       
-      }    
+     
     try{  
-      
+        if(isset($_SESSION['id_user']) AND !empty($_SESSION['id_user'])){
+            $dados = new Usuario();
+            $dados->setCodUsu($_SESSION['id_user']);
+            $resultado = $dados->getDadosUser();
+           
+          }   
     
 ?>
 <!DOCTYPE html>
@@ -73,7 +73,7 @@
             
         </header>
         <?php
-                if(isset($resultado)){   
+                if(isset($resultado) AND !empty($resultado)){  
         ?>
         <div class="user-menu">
            
