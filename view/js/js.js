@@ -440,13 +440,13 @@ jQuery(function(){
     })
     /*fechar quando clicar e colocar de novo tag de ativar*/
     $(".fechar-motivo").click(function(){
-      $(this).parents(":eq(3)").removeClass("motivo-ativo");
+      $(this).parents(":eq(2)").removeClass("motivo-ativo");
       $(this).parents(":eq(4)").addClass("tabelinha-linha")
     })
     /*fechar quando clicar fora e adicionar class de ativar */
-    $(".motivo").click(function(){
-      $(this).removeClass("motivo-ativo");
-      $(this).parents(":eq(4)").addClass("tabelinha-linha")
+    $(".motivo-fundo").click(function(){
+      $(this).parent().removeClass("motivo-ativo");
+      $(this).parents(":eq(2)").addClass("tabelinha-linha")
     })
   })
   
