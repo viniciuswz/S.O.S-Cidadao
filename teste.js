@@ -1,4 +1,4 @@
-setInterval("jaca()", 5000);
+setInterval("jaca()", 10000);
 function jaca(){
     var jaq;
     $.ajax({
@@ -20,7 +20,7 @@ function teste(resposta){
     if(arr1.length > 0){
         document.getElementById('noti').innerHTML = "<span id='quantidade_de_not'>"+arr1.length+"</span>";
         for(i = 0; i < arr1.length; i++){            
-            document.getElementById('menu23').innerHTML += "<li class='"+arr1[i]['classe']+"'<a href='VerPublicacaoTemplate.php?ID="+ arr1[i]['id_publi'] +"&com=notificacao'><div><i class='"+arr1[i]['tipo']+"'></i></div><span>" + arr1[i]['notificacao'] + "</span></a></li>";            
+            document.getElementById('menu23').innerHTML += "<li class='" + arr1[i]['classe'] + "'> <a href='reclamacao.php?ID="+ arr1[i]['id_publi'] +"&com=notificacao'><div><i class='"+arr1[i]['tipo']+"'></i></div><span class=''>" + arr1[i]['notificacao'] + "</span></a></li>";            
         }   
     }else{
         document.getElementById('header').innerHTML = "Você nao tem nenhuma notificação";

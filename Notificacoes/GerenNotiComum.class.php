@@ -153,7 +153,7 @@ class GerenNotiComum extends GenericaM{
                 $quantidadeCurtidoresComen = count($listaCurtidores[$contador]);
                 $texto = "";
                 if($quantidadeCurtidoresComen == 1){
-                    $resultado[$contador]['notificacao'] = $listaCurtidores[$contador][0]['nome_usu'] . " $singular $complemento  <strong>" .  $listaCurtidores[$contador][0]['titulo_publi'] . "</strong>";
+                    $resultado[$contador]['notificacao'] = $listaCurtidores[$contador][0]['nome_usu'] . " $singular $complemento  <span class='negrito'>" .  $listaCurtidores[$contador][0]['titulo_publi'] . "</span>";
                     $resultado[$contador]['id_publi'] = $listaCurtidores[$contador][0]['cod_publi'];
                     $resultado[$contador]['tipo'] = $tipoPubli;
                     $resultado[$contador]['classe'] = $this->nomeClasse($listaCurtidores[$contador][0]['ind_visu_dono_publi']);
@@ -169,7 +169,7 @@ class GerenNotiComum extends GenericaM{
                         $texto .= $listaCurtidores[$contador][$contador2]['nome_usu'];
                         $contador2++;
                     }
-                    $resultado[$contador]['notificacao'] = $texto . " $plural $complemento  <strong>" .  $listaCurtidores[$contador][0]['titulo_publi'] . "</strong>";
+                    $resultado[$contador]['notificacao'] = $texto . " $plural $complemento  <span class='negrito'>" .  $listaCurtidores[$contador][0]['titulo_publi'] . "</span>";
                     $resultado[$contador]['id_publi'] = $listaCurtidores[$contador][0]['cod_publi'];
                     $resultado[$contador]['tipo'] = $tipoPubli;
                     $resultado[$contador]['classe'] = $this->nomeClasse($listaCurtidores[$contador][0]['ind_visu_dono_publi']);
@@ -190,9 +190,9 @@ class GerenNotiComum extends GenericaM{
                     }
                     $diferenca = $quantidadeCurtidoresComen - 2;
                     if($diferenca == 1){
-                        $resultado[$contador]['notificacao'] = $texto . " e outra ". $diferenca ." pessoa $plural $complemento   <strong>" .  $listaCurtidores[$contador][0]['titulo_publi'] . "</strong>";                        
+                        $resultado[$contador]['notificacao'] = $texto . " e outra ". $diferenca ." pessoa $plural $complemento   <span class='negrito'>" .  $listaCurtidores[$contador][0]['titulo_publi'] . "</span>";                        
                     }else{
-                        $resultado[$contador]['notificacao'] = $texto . " e outras ". $diferenca ." pessoas $plural $complemento  <strong>" .  $listaCurtidores[$contador][0]['titulo_publi'] . "</strong>";
+                        $resultado[$contador]['notificacao'] = $texto . " e outras ". $diferenca ." pessoas $plural $complemento  <span class='negrito'>" .  $listaCurtidores[$contador][0]['titulo_publi'] . "</span>";
                     }                    
                     $resultado[$contador]['id_publi'] = $listaCurtidores[$contador][0]['cod_publi'];
                     $resultado[$contador]['tipo'] = $tipoPubli;
