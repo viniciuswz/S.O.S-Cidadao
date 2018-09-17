@@ -10,11 +10,12 @@ session_start();
         $debate = new Debate();        
 
         if(isset($_SESSION['id_user']) AND !empty($_SESSION['id_user'])){
-            $debate->setCodUsu($_SESSION['id_user']);            
+            $debate->setCodUsu($_SESSION['id_user']); 
             $tipoUsu = $_SESSION['tipo_usu'];
             $dados = new Usuario();
             $dados->setCodUsu($_SESSION['id_user']);
             $resultado = $dados->getDadosUser();
+
         }
 
         $nomesCampos = array('ID');// Nomes dos campos que receberei da URL    
@@ -23,6 +24,12 @@ session_start();
 
         $debate->setCodDeba($_GET['ID']);        
         $resposta = $debate->listByIdDeba();   
+        
+        if($resposta[0]['indParticipa']){
+            $txtButton = 'Entrar no debate';
+        }else{
+            $txtButton = 'Participar do debate';
+        }        
         
 ?>
 <!DOCTYPE html>
@@ -170,7 +177,7 @@ session_start();
                                 <i class="icone-categoria-debate"></i><span><?php echo $resposta[0]['tema_deba']?></span>
                             </div>
                         </div>   
-                            <a href="#">Entrar no debate</a>
+                            <a href="#"><?php echo $txtButton ?></a>
                     </div>
                     
         

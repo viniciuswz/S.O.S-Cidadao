@@ -32,8 +32,7 @@ class DebateA extends DebateM{
                                                     INNER JOIN usuario ON (usuario.cod_usu = debate_participante.cod_usu)
                                                     INNER JOIN debate ON (debate_participante.cod_deba = debate.cod_deba)    
                                                     WHERE data_fim_lista is null AND debate_participante.cod_deba = '%s' 
-                                                    AND debate_participante.cod_usu = '%s' AND     
-                                                    debate.cod_usu != debate_participante.cod_usu";
+                                                    AND debate_participante.cod_usu = '%s' ";
 
     private $whereListFromALL = "status_usu = 'A' AND status_deba = 'A' ";
 
