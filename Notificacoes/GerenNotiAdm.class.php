@@ -26,6 +26,7 @@ class GerenNotiAdm extends GenericaM{
                                             WHERE status_denun_publi = 'A' AND status_publi = 'A'  AND
                                             ind_visu_adm_denun_publi != 'V' %s";
     private $countDenunComen = " %s SELECT %s comen_denun.cod_comen AS ID, 
+                                              comentario.cod_publi AS IDPubli,
                                               dataHora_denun_comen AS DataHora, 
                                               nome_usu AS Nome,
                                               titulo_publi AS Titulo,
@@ -47,7 +48,7 @@ class GerenNotiAdm extends GenericaM{
     public function SelectDenunPubli(){ // Feito
         $ids = $this->selectIdsCoisasDenunciadas('countDenun', array('Publi'), "ID", "dataHora_denun_publi");
         $dados = $this->selectQuantDenun('countDenun', array('Publi'),' AND publicacao.cod_publi = ', $ids);     
-        $resultado = $this->gerarMensagem($dados, 'a publicação ','Publicacacao', 'likePubli');
+        $resultado = $this->gerarMensagem($dados, 'a publicação ','Publicacacao', 'DenunPubli');
         $this->resultados = array_merge_recursive($this->resultados, $resultado);        
         return $resultado;
 
@@ -56,7 +57,7 @@ class GerenNotiAdm extends GenericaM{
     public function SelectDenunDebate(){
         $ids = $this->selectIdsCoisasDenunciadas('countDenun', array('Debate'), 'ID', 'dataHora_denun_deba');        
         $dados = $this->selectQuantDenun('countDenun', array('Debate'),' AND debate.cod_deba = ', $ids);     
-        $resultado = $this->gerarMensagem($dados, 'o debate ','Debate', 'likeDebate');        
+        $resultado = $this->gerarMensagem($dados, 'o debate ','Debate', 'DenunDeba');        
         $this->resultados = array_merge_recursive($this->resultados, $resultado);        
         return $resultado;
     }
@@ -64,7 +65,7 @@ class GerenNotiAdm extends GenericaM{
     public function SelectDenunComen(){
         $ids = $this->selectIdsCoisasDenunciadas('countDenun', array('Comen'), 'ID', 'dataHora_denun_comen');        
         $dados = $this->selectQuantDenun('countDenun', array('Comen'),' AND comentario.cod_comen = ', $ids);     
-        $resultado = $this->gerarMensagem($dados, 'o comentario de ','Comentário', 'likeComen');        
+        $resultado = $this->gerarMensagem($dados, 'o comentario de ','Comentário', 'DenunComen');        
         $this->resultados = array_merge_recursive($this->resultados, $resultado);        
         return $resultado;
     }
@@ -97,6 +98,8 @@ class GerenNotiAdm extends GenericaM{
                     $quantidade[$contador]['Nome'] = $quantidade[$contador]['Nome'] . " na publicação " . $valor;     
                 }else if($chave == 'ind'){
                     $quantidade[$contador]['ind'] = $valor;
+                }else if($chave == 'IDPubli'){
+                    $quantidade[$contador]['IDPubli'] = $valor;
                 }else{
                     $quantidade[$contador]['id'] = $valor;
                     $quantidade[$contador]['qtd'] = $res[0]["COUNT(*)"];
@@ -106,6 +109,7 @@ class GerenNotiAdm extends GenericaM{
             }      
                    
         }   
+        //var_dump($quantidade);
         return $quantidade;
     }
 
@@ -135,6 +139,10 @@ class GerenNotiAdm extends GenericaM{
                 }else if($quantidadeCurtidores >= 2){
                     $resultado[$contador]['notificacao'] = $quantidadeCurtidores ." denúncias relacionada com " . $complemento . " <span class='negrito'>" . $dados[$contador]['Nome']. "</span>";
                 }
+                    if(isset($dados[$contador]['IDPubli'])){ // Preciso inverter os valores quando for uma denuncia de comentario
+                        $idComen = $dados[$contador]['id'];
+                        $dados[$contador]['id'] = $dados[$contador]['IDPubli'] . "&IdComen=" . $idComen;                        
+                    }
                     $resultado[$contador]['id_publi'] = $dados[$contador]['id'];
                     $resultado[$contador]['tipo'] = $tipoNoti;
                     $resultado[$contador]['indTipo'] = $indTipo; //dasdasdasdasdasdasd

@@ -2,7 +2,7 @@
 
 namespace Notificacoes\Action;
 use Notificacoes\Model\GenericaM;
-
+use Core\Usuario;
 class VisualizarNotificacaoA extends GenericaM{ 
 
     private $cod_usu;
@@ -51,8 +51,11 @@ class VisualizarNotificacaoA extends GenericaM{
     }
 
     public function visualizarNotificacao($tipo, $idPubli, $codUsu){ // Quando o usuario clicou no icone notificacao        
-            $tipoAceitos = array('LikeComen', 'LikePubli', 'ResSalva', 'ResPrefei', 'ComentaPubli');
+            $tipoAceitos = array('LikeComen', 'LikePubli', 'ResSalva', 'ResPrefei', 'ComentaPubli','DenunPubli','DenunComen','DenunDeba');
             if(in_array($tipo, $tipoAceitos)){ // Verifica se o valor do paramentro é aceito
+                $usuario = new Usuario();
+                $usuario->setCodUsu($codUsu);
+                $tipoUsu = $usuario->getDescTipo();
                 switch($tipo){
                     case 'LikeComen':
                             $sqlUpdate = "UPDATE comen_curtida INNER JOIN comentario ON (comen_curtida.cod_comen = comentario.cod_comen) 
@@ -122,7 +125,39 @@ class VisualizarNotificacaoA extends GenericaM{
                             );
                             $executar = $this->runQuery($sql);   
                         break;
-                }
+                    case 'DenunPubli':                            
+                            if($tipoUsu == 'Adm' or $tipoUsu == 'Moderador'){
+                                $sqlUpdate = "UPDATE publi_denun SET ind_visu_adm_denun_publi = 'V'
+                                                    WHERE cod_publi = '%s' AND status_denun_publi = 'A'";
+                                $sql = sprintf(
+                                    $sqlUpdate,
+                                    $idPubli
+                                );    
+                            }
+                            
+                        break;
+                    case 'DenunComen':
+                            if($tipoUsu == 'Adm' or $tipoUsu == 'Moderador'){
+                                $sqlUpdate = "UPDATE comen_denun SET ind_visu_adm = 'V'
+                                            WHERE cod_comen = '%s' AND status_denun_comen = 'A'";
+                                $sql = sprintf(
+                                    $sqlUpdate,
+                                    $idPubli
+                                );    
+                            }
+                        break;
+                    case 'DenunDeba':
+                        if($tipoUsu == 'Adm' or $tipoUsu == 'Moderador'){
+                            $sqlUpdate = "UPDATE debate_denun SET ind_visu_adm_denun_deba = 'V'
+                                        WHERE cod_deba = '%s' AND status_denun_deba = 'A'";
+                            $sql = sprintf(
+                                $sqlUpdate,
+                                $idPubli
+                            );    
+                        }
+                        break;              
+                
+                    }
                 $executar = $this->runQuery($sql);
             }
                       
