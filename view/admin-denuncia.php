@@ -38,8 +38,7 @@ session_start();
                 }
                 
             }
-        }
-        var_dump($tipos);
+        }        
         //$tipos = array('Publi','Debate','Comen');         
         isset($_GET['pagina']) ?: $_GET['pagina'] = null;                      
         $res = $denun->select($tipos,$_GET['pagina']);   
@@ -48,7 +47,7 @@ session_start();
         $pagina = $denun->getPaginaAtual();
         if(empty($res)){
             echo 'Não há nenhuma denuncia para verificar<br>';
-        }
+        }        
         
         
 ?>
