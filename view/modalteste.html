@@ -28,38 +28,85 @@
         <!-- Font Awesome-->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
+        <!-- cropp-->
+
+        <link rel="stylesheet" href="lib/_croppie-master/croppie.css">
+        <script src="lib/_croppie-master/croppie.js"></script>
+
     </head>
     <body>
         
         <div id="container">
-            <div class="box-adicionar">
-                <div class="adicionar-modal">
-                    <div>
-                        já tem
-                    </div>
-                    <form>
-                        <div class="campo-envio">
-                            <label for="email">E-mail</label>
-                            <input type="email" id="email" placeholder="E-mail">
-                        </div>
-                        <div class="campo-envio">
-                            <label for="senha">Senha</label>
-                            <input type="password" id="senha" placeholder="Senha">
-                        </div>
-                        <div>
-                            <div>
-                                <label for="prefeitura">prefeitura</label>
-                                <input type="radio" value="prefeitura" name="funcao" id="prefeitura">
-                            </div>
-                            <div>
-                                <label for="moderador">moderador</label>
-                                <input type="radio" value="moderador" name="funcao" id="moderador">
-                            </div>
-                        </div>
-                        <button type="submit">Adicionar</button>
-                    </form>
-                </div>
+
+            <div>
+                <img class="my-image" src="imagens/capa.png">
+                
             </div>
+
+            <input type='button' id='x' value='Save Crop Info' />
+            <span id='result'></span>
+        
+            <div>Results:
+                    <div>
+                      <img id="results">
+                    </div>
+                  </div>
+                  
+                  <div id="width"></div>
+                  <div id="height"></div>
+
+            <script>
+
+
+              var  $uploadCrop = $('.my-image').croppie({
+                    enableExif: true,
+                    enforceBoundary:true,
+                    enableOrientation:true,
+                    enableResize:false,
+
+                    viewport: {
+                        width: 320,
+                        height: 150,
+                        
+                    },
+                    boundary: {
+                        width: 420,
+                        height: 200
+                    },
+                   
+                });
+                
+                // $('#x').click(function(){
+                //     var d = $uploadCrop.croppie().get();
+                    
+                //     $('#result').html(JSON.stringify(d));
+// });
+
+
+
+
+
+  $("#x").click(function(){
+      $('.my-image').croppie('result', { type: 'html', size: 'original', format: 'png' }).then(function (result) {
+        // In production code I double check the size here before passing the image to the server.
+        
+        $('.my-image').croppie('result', { type: 'base64', size: { width: 720, height: 350 }, format: 'png' }).then(function (result) {
+          // The server expects the image as a base64 string, so I then convert it to base64 and pass it via AJAX. The size is wrong at this point.
+          
+          $('#results').attr('src', result);
+
+          setTimeout(function(){
+            $('#width').text("Width: " + $('#results').width() + "px")
+            $('#height').text("Height: " + $('#results').height() + "px")
+          }, 50);
+        });
+      });
+  });
+
+
+            </script>
+           
+                
         </div>
     </body>
 </html>
