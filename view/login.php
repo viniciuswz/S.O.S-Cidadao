@@ -1,3 +1,12 @@
+<?php
+session_start();    
+    require_once('../Config/Config.php');
+    require_once(SITE_ROOT.DS.'autoload.php');
+       
+    use Core\Usuario;
+    try{        
+        Usuario::verificarLogin(0); // Nao pode estar logado
+?>
 <!DOCTYPE html>
 <html lang=pt-br>
     <head>
@@ -28,37 +37,43 @@
 
     </head>
     <body>
-       
-
-        <div id="container">
-           <div class="form-cad">
-                    <form action="" id="cadastro">
-                        <h3>Cadastro</h3>
-                        <div class="campo-texto-icone">
-                            <label for="user"><i class="icone-user"></i></label>
-                            <input type="text" name="user" id="user" placeholder="Nome">
-                        </div>
-                        <div class="campo-texto-icone">
-                            <label for="email"><i class="icone-mail"></i></label>
+           <div class="form-icone">
+               <section>
+                   <div>
+                   <h1>S.O.S Cidadão</h1>
+                   <p>conecte-se com a nossa comunidade e colabore</p>
+                   </div>                   
+                    <form action="../Login.php" id="login" method="POST">
+                        <h3>login</h3>
+                        <div class="campo-texto-icone"  >
+                            <label for="email" ><i class="icone-mail"></i></label>
                             <input type="email" name="email" id="email" placeholder="E-mail">
-                        </div>
 
-                        <div class="campo-texto-icone">
-                                <label for="senha"><i class="icone-senha"></i></label>
-                                <input type="password" name="senha" id="senha" placeholder="Senha">
                         </div>
                         <div class="campo-texto-icone">
-                                <label for="senhaC"><i class="icone-senha"></i> </label>
-                                <input type="password" name="senhaC" id="senhaC" placeholder="Confirmar senha">
+                            <label for="senha"><i class="icone-senha"></i></label>
+                            <input type="password" name="senha" id="senha" placeholder="Senha">
                         </div>
                         <div class="aviso-form-inicial">
                             <p>O campo tal e pa</p>
                         </div>
-                        <button type="submit">Cadastro</button>
-                    </form>
-           </div>
+                        <button type="submit">login</button>
 
-        </div>
+                    </form>
+               </section>                
+           </div>        
     </body>
 </html>
- 
+<?php
+    }catch (Exception $exc){
+        $erro = $exc->getCode();   
+        $mensagem = $exc->getMessage();
+        switch($erro){
+            case 2://Ja esta logado  
+            case 6://Ja esta logado 
+                echo "<script> alert('$mensagem');javascript:window.location='home.php';</script>";
+                break;
+           
+        }         
+    }
+?>
