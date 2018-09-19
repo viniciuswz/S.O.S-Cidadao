@@ -240,14 +240,11 @@ nav.menu{
 }
 
 nav.menu > ul > li > a{
-
-
     font-weight: 500;
     color:#fcfcfc;
     padding: 0 6px;
-    
     line-height: 100px;
-    }
+}
     
 nav.menu > ul > li > a > i > span{
     font-family: arial;
@@ -264,21 +261,20 @@ nav.menu > ul > li > a > i > span{
     border-radius: 50%;
     font-style: normal;
     text-align: center;
-
 }
 
 nav.menu > ul > li > a:hover{
     background-color: #0a5ac9;
     color:white;  
-    }
-    
-    nav.menu > ul > li > a:hover i{
-        background-position-y: -37.5px;
-    }
-    
-    nav.menu > ul > li > a:hover #quantidade_de_not{
-        background-color: #253137;
-    }
+}
+
+nav.menu > ul > li > a:hover i{
+    background-position-y: -37.5px;
+}
+
+nav.menu > ul > li > a:hover #quantidade_de_not{
+    background-color: #253137;
+}
 
 
 /*menu do usuario*/
@@ -305,8 +301,6 @@ nav.menu > ul > li > a:hover{
     border: 5px solid white;
     border-radius: 50%;
     z-index: 3;
-    
-
 }
 
 .user-menu p{
@@ -326,17 +320,12 @@ nav.menu > ul > li > a:hover{
     height: 200px;
 }
 
-
 .user-menu .mini-perfil img:nth-child(1){
-
-   
     width: 100px;
     position: relative;
     left: 50%;
     top: 50%;
     transform: translateY(-50%) translateX(-50%);
-
-   
 }
 
 .user-menu .mini-perfil img:nth-child(2){
@@ -348,7 +337,6 @@ nav.menu > ul > li > a:hover{
     z-index: 1;
 }
 
-
 .user-menu nav ul{
     display: flex;
     flex-direction: column;
@@ -356,8 +344,8 @@ nav.menu > ul > li > a:hover{
 }
 
 .user-menu nav ul li{
-overflow: hidden;
-width: 100vw;
+    overflow: hidden;
+    width: 100vw;
 }
 
 .user-menu ul li a{
@@ -367,15 +355,11 @@ width: 100vw;
     color: white;
     width: 100%;
     align-items: center;
-
-
     padding: 2px 0;
     padding-left: 19px;
 }
 
 .user-menu ul li a i.icone-user{
-
-
     background-size: 950px;
     background-position: 8px -30.5px;
 }
@@ -414,14 +398,13 @@ nav.notificacoes ul li a{
     font-size: 13.5px;
     border-bottom: 1px solid rgb(212, 212, 212);
     padding: 10px 3px;
-
     align-items: center;
 }
-
 
 nav.notificacoes ul li {
 width: 100%; 
 }
+
 nav.notificacoes ul li a span:first-of-type{
     word-wrap: break-word;
     width: 90%;
@@ -440,21 +423,16 @@ nav.notificacoes ul li a span:first-of-type{
     overflow: hidden;
     width: 100%; 
     background-color: red;
-    
-  
 }
 
 .perfil-base span p:first-child{
-    
     color: red;
     font-family: 'Open-Sans-Bold';
     max-width: 320px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    
 }
-
 
 .perfil > img{
     position: relative;
@@ -463,8 +441,6 @@ nav.notificacoes ul li a span:first-of-type{
     transform: translateY(-50%) translateX(-50%);
     width: 100%;
     align-self: center
-    
-   
 }
 
 #trocar-capa{
@@ -472,7 +448,6 @@ nav.notificacoes ul li a span:first-of-type{
     z-index: 1;
     left: 10px;
     top: 320px
-   
 }
 
 .perfil-info{
@@ -480,7 +455,6 @@ nav.notificacoes ul li a span:first-of-type{
     position: absolute;
     top: 0;
     right:30px
-
 }
 
 .perfil-info div{
@@ -495,9 +469,7 @@ nav.notificacoes ul li a span:first-of-type{
     left: 50%;
     top: 50%;
     transform: translateY(-50%) translateX(-50%);
-    
 }
-
 
 .perfil-info p{
     font-family: 'Open-Sans-Bold';
@@ -505,7 +477,6 @@ nav.notificacoes ul li a span:first-of-type{
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    
 }
 
 
@@ -526,12 +497,10 @@ nav.notificacoes ul li a span:first-of-type{
 }
 
 .perfil-info i{
-  
     position: relative;
     right: 40px;
     top: 60px;
     margin: 0 auto;
-       
 }
 
 .perfil form input{
@@ -568,14 +537,12 @@ nav.notificacoes ul li a span:first-of-type{
     justify-content: center;
     margin: 1px;
     max-width: calc(768px / 3);
-
 }
 
 .menu-perfil ul li a{
     font-weight: 600;
     display: inline-block;
     line-height: 45px;
-
     width: 100%;
     height: 45px;
     color: black;
@@ -588,12 +555,9 @@ nav.notificacoes ul li a span:first-of-type{
    
 }
 
-
-
 #linha {
     position: absolute;
     margin-top: 40px;
-   
     width: 165px;
     height: 4px;
     background: #00aeef;
@@ -601,20 +565,16 @@ nav.notificacoes ul li a span:first-of-type{
     z-index: 2;
   }
 
-
-  .criar-publicacao {
+.criar-publicacao {
     margin-top: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom:10px;
-    
 }
 
 .criar-publicacao div {
-    
     padding-right: 15px;
-  
     width: 84%;
     background-color: #0086ff;
     display: flex;
@@ -632,6 +592,7 @@ nav.notificacoes ul li a span:first-of-type{
     display: flex;
     align-items: center;
 }
+
  .criar-publicacao i{
      background-size: 1470px;
      background-position: -568px 5.9px;
@@ -650,12 +611,9 @@ nav.notificacoes ul li a span:first-of-type{
      display: flex;
      align-items: center;
      justify-content: center;
-    
      text-align: center;
      font-size: 14px;
      font-weight:600
-     
-     
  }
 
  .item-publicacao{
@@ -665,13 +623,10 @@ nav.notificacoes ul li a span:first-of-type{
      margin-top: 10px;
      margin-bottom: 10px;
      display: inline-block;
-     
-     
  }
 
 
  .item-publicacao.db{
-
     max-height: 348px;
     align-self: center;
     padding-bottom: 70px
@@ -688,7 +643,6 @@ nav.notificacoes ul li a span:first-of-type{
    height: 45px;
    overflow: hidden;
    border-radius: 50%;
-     
  } 
 
  .item-publicacao a{
@@ -714,11 +668,9 @@ nav.notificacoes ul li a span:first-of-type{
     text-overflow: ellipsis; 
     font-size: 15px;
     position: relative;
-
  }
 
  .item-publicacao .item-topo p span:after{
-
     background: linear-gradient(to right, rgba(255, 255, 255, 0), #0086ff 50%) repeat scroll 0 0 rgba(0, 0, 0, 0);
     bottom: 0;
     content: "...";
@@ -726,8 +678,6 @@ nav.notificacoes ul li a span:first-of-type{
     padding: 0 10px 0px 45px;
     position: absolute;
     right: 0;
-
-      
  }
  
  .item-publicacao .item-topo img{
@@ -764,14 +714,12 @@ nav.notificacoes ul li a span:first-of-type{
     white-space: nowrap;
     font-weight: 1000;
     padding: 6px;
-    
 }
 
  .item-publicacao .legenda{
     display: flex;
     justify-content: space-around;
     align-items: center;
-   
     width: 340px;
     height: 50px;
     background-color: rgba(000,000,000, 0.6);
@@ -779,7 +727,6 @@ nav.notificacoes ul li a span:first-of-type{
     margin-top: -50px;
     position: absolute;
     padding: 1px 4px
-
  }
 
  .item-publicacao .legenda p:first-of-type{
@@ -804,7 +751,6 @@ nav.notificacoes ul li a span:first-of-type{
      width: 100%;
      align-content: stretch;
      margin:0 auto;
-     
  }
 
 
@@ -827,7 +773,6 @@ nav.notificacoes ul li a span:first-of-type{
     width: 160px;
     margin-left: -116px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, .4);
-    
     display: none;
 }
 
@@ -860,7 +805,6 @@ nav.notificacoes ul li a span:first-of-type{
     font-size: 14px;
     cursor: pointer;
     padding-left:10px;
-    
     width: 100%;
     height: 100%;
     display: flex;
@@ -873,12 +817,10 @@ nav.notificacoes ul li a span:first-of-type{
 }
 .mini-menu-item.mini-menu-item-ativo ul{
     display: block;
-    
 }
 
 
 /*pag todas reclamacoes*/
-
  
 .item-baixo{
     width: 90%;
@@ -890,6 +832,7 @@ nav.notificacoes ul li a span:first-of-type{
     margin: 0 auto;
     
 }
+
 .item-baixo p{
    font-size: 14px;
    font-family: arial;
@@ -901,7 +844,6 @@ nav.notificacoes ul li a span:first-of-type{
    text-overflow: ellipsis;
    white-space: nowrap; 
    max-width: 230px;
- 
 }
 
 .item-baixo span{
@@ -909,64 +851,47 @@ nav.notificacoes ul li a span:first-of-type{
     font-size: 14px;
     display: flex;
     align-items: flex-start;
-   
     font-weight: bold;
-    
-    
 }
+
 .item-baixo div{
    display: flex;
    align-items: center;
    justify-content: space-between;
-
 }
+
 .item-baixo i{
-  
     width: 30px;
     height: 30px;
-
-
-    
 }
 
 .item-baixo i.icone-like{
-
         background-size:950px; 
         background-position: -460px 3px;
         position: relative;
         top: -5px
-       
-    
 }
 
 .item-baixo i.icone-comentario{
-
     background-size:950px; 
     background-position: -550px 3px;
     position: relative;
     top: -5px;
-   
-   
-
 }
 
 .item-baixo i.icone-local{
     background-size:950px ;
     background-position: -250px -1px;
- 
-    
     position: relative;
     top: -5px
-    
 }
-
 
 /*///////////////////////////////BLOCO PRINCIPAL////////////////////////////////////*/
 .formulario{
     background-color: white;
-   display: flex;
-   padding: 40px;
-    }
+    display: flex;
+    padding: 40px;
+}
 
 .formulario hr{
     border: 2px solid purple;
@@ -978,19 +903,16 @@ nav.notificacoes ul li a span:first-of-type{
 
 .informacoes{
     width: 45%;
-   
     display: block;
 }
 
 .informacoes h3{
     text-align: center;
-    
 }
 
 .informacoes hr{
     border: 0,3px solid black;
     margin-top: 3%
-    
 }
 
 .campo-envio{
@@ -998,7 +920,6 @@ nav.notificacoes ul li a span:first-of-type{
     display: flex;
     flex-direction: column;
     text-align: center;
-    
 }
 
 
@@ -1008,7 +929,6 @@ nav.notificacoes ul li a span:first-of-type{
     width: 100%;
     border: none;
     font-size: 16px;
-    
 }
 
 .campo-envio input:focus + span{
@@ -1020,7 +940,6 @@ width: 100%
     color: rgb(48, 47, 47);
     display: flex;
     padding: 15px 0px;
-    
     font-weight: 600;
 }
 
@@ -1053,8 +972,6 @@ width: 100%
     display: flex;
     flex-direction: column;
     align-items: center;
-  
-    
 }
 
 .imagem h3{
@@ -1073,22 +990,20 @@ width: 100%
     color: red;
     font-size: 1em;
     font-weight:600;
-    
 }
 
 .envio-img{
     display: flex;
     justify-content: center;
-    
 }
 
 .envio-img input{
     display: none;
 }
+
 .envio-img label{
     font-family: "Open-Sans";
     color: white;
-    
     cursor: pointer;
     font-weight: 600;
     display: flex;
@@ -1096,10 +1011,6 @@ width: 100%
     align-items: center;
     position: relative;
     background-color: #ff0898
-
-   
-    
-
 }
 
 .envio-img label p{
@@ -1114,11 +1025,9 @@ width: 100%
     z-index: 2;
     left: 150px;
     bottom:90px
-
 }
 
 .envio-img label i{
-
     line-height: 10px;
 }
 
@@ -1136,17 +1045,13 @@ width: 100%
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%)
-    
 }
 
 /*//////////////////////////////CAMPO "SOBRE"/////////////////////////////////////*/
 
 .campo-texto{   
     width: 100%;
-
     text-align: center;
-     
-
 }
 
 .campo-texto p{
@@ -1156,6 +1061,7 @@ width: 100%
     font-size: 1em;
     font-weight:600;
 }
+
 .linha{
     border: 0,3px solid black;
     margin: 10px 0;  
@@ -1165,7 +1071,6 @@ width: 100%
 .campo-texto h3{
     display: flex;
     justify-content: center;   
-    
 }
 
 .campo-texto hr{
@@ -1181,13 +1086,11 @@ width: 100%
     resize: none
 }
 
-
 .campo-texto input[type="submit"]{
     padding: 10px 30px;
     cursor: pointer;
     display: block;
     margin: 10px auto;
-  
 }
 
 .campo-texto input:hover{
@@ -1207,7 +1110,6 @@ form .categorias{
     display: flex;
     flex-direction: column;
     margin-top: 20px
-   
 }
 
 form .categorias p{
@@ -1223,7 +1125,6 @@ form .categorias h3{
 }
 
 form .categorias hr{
-   
     width: 50%;
     margin: 10px auto 0 auto
 }
@@ -1236,7 +1137,6 @@ form .categorias > div{
 }
 
 form .categorias div div{
-
     margin: 1px;
     display: flex;
     justify-content: center;
@@ -1244,14 +1144,12 @@ form .categorias div div{
     width: 120px;
     height: 120px;
     margin: 10px;
-    
 }
 
 form .categorias div div label{
     background-color: gray;
     padding: 29px 25px;
     cursor: pointer;
-
 }
 
 form .categorias div div label i{
@@ -1275,9 +1173,7 @@ background-color: pink;
     height: 100vh;
 }
 
-.form-icone section{
-   
-    
+.form-icone section{  
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -1294,7 +1190,6 @@ background-color: pink;
     background-color: #333;
     margin: 0;
     padding: 0;
-
 }
 .form-icone section > div{
  
@@ -1488,7 +1383,6 @@ background-color: pink;
     font-weight: 600;
     font-size: 13px;
     cursor: pointer;
-
 }
 
 .usuarios-debate-info{/*aqui*/
@@ -1502,11 +1396,9 @@ background-color: pink;
     max-width: 376px;
     display: block;
     transition: 0.5s
-    
 }
 
 .usuarios-debate-info .moldura-debate{
-    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1531,12 +1423,10 @@ background-color: pink;
 
 .usuarios-debate-info .moldura-debate div label{
     position: relative;
-    
-   bottom:40px;
-   left: 140px;
+    bottom:40px;
+    left: 140px;
     width: 30px;
     height: 60px;
-   
     cursor:pointer
 }
 
@@ -1575,7 +1465,6 @@ background-color: pink;
 
 .usuarios-debate-info .infos h3{
     overflow: hidden;
-    
     text-overflow: ellipsis;
     white-space: nowrap;
     max-width: 80%;
@@ -1583,29 +1472,25 @@ background-color: pink;
 
 .usuarios-debate-info .infos p{
     overflow: hidden;
-    
     text-overflow: ellipsis;
     white-space: nowrap;
     max-width: 80%;
 }
+
 .usuarios-debate-info .participantes{
     background-color: white;
-    
 }
 
 .usuarios-debate-info .participantes h4{
     border-bottom: 1px solid #ae00ff;
-   border-width: 3px;
-
+    border-width: 3px;
     padding: 9px;
     margin: 5px;
-
 }
 
 .usuarios-debate-info .participantes > div{
     display: flex;
     border-bottom: 1px solid #f2f2f2;
-   
     align-self: center;
     padding: 10px 4px;
     cursor: pointer;
@@ -1629,6 +1514,7 @@ background-color: pink;
     top: 50%;
     transform: translateX(-50%) translateY(-50%);
 }
+
 .usuarios-debate-info .participantes .img-participante + p {
     color: black;
     overflow: hidden;
@@ -1640,7 +1526,6 @@ background-color: pink;
     margin-left: 3px;
 }
 
-
 .contatos{
     width: 55vw;
     background-color: white;
@@ -1651,7 +1536,6 @@ background-color: pink;
     z-index: 95;
    
 }
-
 
 .contatos header{
     background-color: #4b2983;
@@ -1692,7 +1576,6 @@ background-color: pink;
     background-color: #f2f2f2
 }
 
-
 .contatos nav .contatinhos div.img-debate{
     display: block;
     overflow: hidden;
@@ -1729,7 +1612,6 @@ background-color: pink;
 .batepapo{
     width: 100%;
     background-color: rgba(76, 41, 131, 0.685)
-    
 }
 
 .batepapo header{
@@ -1754,15 +1636,12 @@ background-color: pink;
 
 
 .batepapo header h4{
-    
     flex-grow: 1;
     color: #E7E8EB;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-   
     width: 50px;
-    
 }
 
 .batepapo header i.icone-3pontos{
@@ -1775,7 +1654,6 @@ background-color: pink;
     display: flex;
     justify-content: center;
     align-items: center;
-    
 }
 .batepapo form input{
     width: 90%;
@@ -1785,6 +1663,7 @@ background-color: pink;
     border-radius: 20px;
     padding-left: 10px;
 }
+
 .batepapo form button{
     background-color: black;
     border: 0;
@@ -1819,6 +1698,7 @@ background-color: pink;
     color: #a9a9a9;
     float: right;
 }
+
 .mensagem_padrao span.nome{
     display: block;
     font-family: "Open-Sans";
@@ -1829,6 +1709,7 @@ background-color: pink;
     white-space: nowrap;
     font-size: .95em;
 }
+
 .mensagem_padrao span.nome + span{
     font-family: "Open-Sans";
     margin-top: 1px;
@@ -1849,7 +1730,6 @@ background-color: pink;
     max-width: 400px;
     flex-direction: column;
 }
-
 
 .linha-mensagem_padrao{
     display: flex;
@@ -1875,9 +1755,9 @@ background-color: pink;
 	border-right-color: #ffffff;
 	border-left: 0;
 	margin-top: -10px;
-	margin-left: -10px;
-        
+	margin-left: -10px; 
 }
+
 .linha-mensagem_padrao .usuario-msg-foto{
     overflow: hidden;
     width: 50px;
@@ -1894,15 +1774,12 @@ background-color: pink;
     transform: translateX(-50%) translateY(-50%)
 }
 
-
-
 .linha-mensagem_usuario{
     display: flex;
     width: 100%;
     margin-top: 20px;
     align-items: center;
     justify-content: flex-end;
-
 }
 
 .linha-mensagem_usuario div {
@@ -1911,8 +1788,7 @@ background-color: pink;
 	border-radius: .4em;
     padding:14px;
     margin-right: 10px;
-    max-width: 70%; 
-           
+    max-width: 70%;   
 }
 
 .linha-mensagem_usuario div span{
@@ -1921,16 +1797,13 @@ background-color: pink;
     word-wrap: break-word;
     width: 100%; 
     float: right;
-
 }
 
 .mensagem_usuario {
-    
     position: relative;
 	background: white;
 	border-radius: .4em;
     padding:14px;
-    
 }
 
 .linha-mensagem_sistema{
@@ -1939,16 +1812,12 @@ background-color: pink;
     margin-top: 20px;
     align-items: center;
     justify-content: center;
-   
-
 }
 
 .linha-mensagem_sistema div {
-	
 	background: rgba(225, 245, 254, 0.92);
 	border-radius: .4em;
     padding:14px;
-    
     word-wrap: break-word;
     max-width: 50%; 
     
@@ -1965,9 +1834,7 @@ background-color: pink;
 /*ATIVOS DA PAG DEBATES MENSAGENS*/
 
 .usuarios-debate-info.usuarios-debate-info-ativo{
-   
-    width: 100%;
-    
+    width: 100%;   
 }
 
 .salvos h4{
@@ -2061,7 +1928,6 @@ background-color: pink;
     border: none;
     color:white;
     background: #6495ed
-
 }
 
 
@@ -2078,13 +1944,12 @@ background-color: pink;
 .tabelinha-linha{
     cursor: pointer;
     max-height: 36px;
-
- 
 }
 
 .tabelinha-admin table tr{
     background-color: #0086ff
 }
+
 .tabelinha-admin table td,.tabelinha-admin table th {
     text-align: left;
     height: 36px;
@@ -2113,12 +1978,12 @@ background-color: pink;
     font-family: arial;
     font-weight: 600;
     flex-flow: wrap
-
 }
 
 .cad-adm p{
     display: inline-block;
 }
+
 .cad-adm div:first-child{ /*ta dando pau*/
     width: 30px;
     height: 30px;
@@ -2133,9 +1998,6 @@ background-color: pink;
     display: inline-block;
     margin-top: 1px
 }
-
-
-
 
 .tabelinha-admin table td p {
     white-space: nowrap; 
@@ -2278,7 +2140,6 @@ background-color: pink;
 .pag-reclamacao{
     display: flex;
     justify-content: center;
-    
 }
 
 .Reclamacao .publicacao-topo-aberta{
@@ -2289,21 +2150,17 @@ background-color: pink;
     padding: 4px;
     justify-content: space-around;
     border-bottom: 1px solid rgb(199, 199, 199);
-    
 }
 
 .Reclamacao .publicacao-conteudo{
     width: 90%;
     margin: 0 auto;
     overflow: hidden;
-  
-   
 }
 
 .Reclamacao .publicacao-conteudo div{ 
     overflow: hidden;
     width: calc(100% + 17px)
-    
 }
 
 .Reclamacao .publicacao-conteudo p{
@@ -2314,9 +2171,6 @@ background-color: pink;
     white-space: pre-wrap;
     word-wrap: break-word;
     padding-right: 7px;
-  
-   
-   
 }
 
 .Reclamacao .publicacao-conteudo div:after{
@@ -2357,7 +2211,6 @@ background-color: pink;
     overflow: hidden;
     width: 60%;
     max-width: 180px;
-     
  }
  
   .publicacao-topo-aberta img{
@@ -2501,11 +2354,9 @@ background-color: pink;
    font-family: arial;
    font-weight: 700;
    font-size: 19px;
-  
 }
 
 .barra-curtir-publicacao a{
-   
     display: flex;
     align-items: center;
     padding: 0 10px 0 5px;
@@ -2524,7 +2375,6 @@ background-color: pink;
 }
 
 .enviar-comentario-publicacao h3{
-
     margin-top: 10px;
 }
 .enviar-comentario-publicacao form{
@@ -2543,7 +2393,6 @@ background-color: pink;
     font-size: 14px;
     color: #2E2E2E;
     resize: none;
-
 }
 
 .enviar-comentario-publicacao form input{
@@ -2557,7 +2406,6 @@ background-color: pink;
     border: 0;
     margin: 0 auto;
     margin-top: 30px;
-
 }
 
 .comentarios{
@@ -2569,7 +2417,6 @@ background-color: pink;
 .comentarios .comentario-user{
     display: flex;
     flex-direction: column;
-   
     padding: 15px 0
 }
 
@@ -2582,8 +2429,6 @@ background-color: pink;
     width: 90%;
     align-self: flex-end;
     word-break: break-all;
-
-
 } 
 
 .comentarios .comentario-user .publicacao-topo-aberta{
@@ -2607,8 +2452,6 @@ background-color: pink;
     margin-left: 4px;
     font-size: 11px;
     font-weight: 600;
-
-    
  }
 
  .comentarios .comentario-user .publicacao-topo-aberta span{
@@ -2618,18 +2461,14 @@ background-color: pink;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap; 
-    
     width: 60%;
     max-width: 180px;
-  
-     
  }
 
 
 .pag-debate{
     display: flex;
     justify-content: center;
-   
     flex-wrap: wrap    
 }
 
@@ -2651,7 +2490,6 @@ background-color: pink;
 
 .publicacao-conteudo-debate{
     overflow: hidden;
-    
     width: 90%;
     height: 350px;
     margin: 0 auto;
@@ -2849,7 +2687,6 @@ background-color: pink;
     overflow: hidden;
     width: 100%;
     height:300px
-   
 }
 
 .landing-item div img:first-of-type{
@@ -2953,7 +2790,7 @@ background-color: pink;
 .mini-menu-adm ul li a:hover{
 
 }
-
+/*motivo*/
 .motivo{
     position: fixed;
     display: none;
@@ -2970,8 +2807,6 @@ background-color: pink;
     left: 0;
     top: 0;
     z-index: 98;
-   
-
 }
 
 
@@ -2991,7 +2826,6 @@ background-color: pink;
     flex-direction: column;
     padding: 25px;
     z-index: 99;
-
 }
 
 .motivo-box div{
@@ -3005,7 +2839,7 @@ background-color: pink;
     font-weight: 600;
     cursor: pointer;
 }
-
+/*Denuncia*/
 .modal-denunciar{
     position: fixed;
     width: 100%;
@@ -3085,7 +2919,7 @@ background-color: pink;
     color: white;   
 }
 
-
+/*Desativar*/
 .modal-desativar{
     position: fixed;
     width: 100%;
@@ -3158,6 +2992,8 @@ background-color: pink;
     padding: 10px;
     margin-top: 10px
 }
+
+/*Erro*/
 .modal-erro{
     position: fixed;
     width: 100%;
@@ -3230,6 +3066,162 @@ background-color: pink;
     padding: 10px;
     margin-top: 10px
 }
+/*troca foto*/
+
+.modal-troca-foto{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 98;
+    display: block;
+    color:black;
+}
+
+.modal-troca-foto-fundo{
+    position: fixed;
+    background-color: rgba(0, 0, 0, .9);
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 98;
+}
+.modal-troca-foto-ativo{
+    display: block;
+}
+
+.box-troca-foto{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background-color: white;
+    width: 480px;
+    padding-bottom: 10px;
+    z-index: 99;
+}
+
+.box-troca-foto span{
+    font-family: arial;
+    font-size: 40px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.box-troca-foto div:nth-child(1){
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 15px;
+}
+
+.box-troca-foto div h1{
+    font-size: 20px
+}
+
+
+.box-troca-foto div:nth-child(2){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 15px;
+    font-size: 14px;
+    flex-direction:column
+}
+.box-troca-foto form label{
+    display: block;
+    margin: 0 auto;
+    background-color: rgb(21, 228, 200);
+    color:white;
+    padding: 10px;
+    margin-top: 10px
+}
+.box-troca-foto div form input[type="file"]{
+    display:none
+}
+
+.box-troca-foto form ~ button{
+    display: block;
+    margin: 0 auto;
+    background-color: rgb(175, 60, 166);
+    color:white;
+    padding: 10px;
+    margin-top: 10px
+}
+
+/*troca preview*/
+
+.modal-troca-foto-previa{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 98;
+    display: block;
+    color:black;
+}
+
+.modal-troca-foto-previa-fundo{
+    position: fixed;
+    background-color: rgba(0, 0, 0, .9);
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 98;
+}
+.modal-troca-foto-previa-ativo{
+    display: block;
+}
+
+.box-troca-foto-previa{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background-color: white;
+    width: 480px;
+    padding-bottom: 10px;
+    z-index: 99;
+}
+
+.box-troca-foto-previa span{
+    font-family: arial;
+    font-size: 40px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.box-troca-foto-previa div:nth-child(1){
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 15px;
+}
+
+.box-troca-foto-previa div h1{
+    font-size: 20px
+}
+
+
+.box-troca-foto-previa div:nth-child(2){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 15px;
+    font-size: 14px;
+    flex-direction:column
+}
+.box-troca-foto-previa form ~ button{
+    display: block;
+    margin: 0 auto;
+    background-color: rgb(175, 60, 166);
+    color:white;
+    padding: 10px;
+    margin-top: 10px
+}
+/*possivel balao de form*/
 
 .balao-form {
 	position: absolute;
@@ -3252,9 +3244,9 @@ background-color: pink;
 	border-bottom: 0;
 	margin-left: -13px;
     margin-bottom: -13px;
-    
 }
 
+/*login/cad validacao*/
 .aviso-form-inicial{
     background-color: red;
     width: 100%;
@@ -3265,5 +3257,5 @@ background-color: pink;
 }
 
 .form-cad .aviso-form-inicial{
-margin-bottom: 15px
+    margin-bottom: 15px
 }
