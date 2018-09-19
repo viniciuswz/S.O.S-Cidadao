@@ -44,7 +44,7 @@ p,a{
     
 }
 header{
-    background-color: #3be7fd ;
+    background-color: #0086ff ;
     width: 100%;
 
 }
@@ -60,13 +60,15 @@ header form{
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 header form input[type=text]{
-background-color: #263238;
-outline: #263238 ;
+background-color: #0a5ac9;
+outline: #0a5ac9 ;
 border:0;
 color: white;
+padding-left: 5px
 }
 
 header form input[type=text]::placeholder{
@@ -74,7 +76,7 @@ header form input[type=text]::placeholder{
     opacity: 1;
 }
 header form button{
-    background-color: #263238 ;
+    background-color: #0a5ac9 ;
     border: 0;
     outline: none;
     cursor: pointer;
@@ -88,7 +90,7 @@ cursor: pointer
 }
 
 body{
-    background: #1d1d1d;
+    background: #fcfcfc;
 }
 
 li{
@@ -96,7 +98,7 @@ li{
 }
 
 i{
-    background-image: url("../imagens/icones-v2.png");
+    background-image: url("../imagens/icones-v3.png");
     background-repeat: no-repeat;
     display: inline-block;
     width: 40px;
@@ -241,7 +243,7 @@ nav.menu > ul > li > a{
 
 
     font-weight: 500;
-    color:#263238;
+    color:#fcfcfc;
     padding: 0 6px;
     
     line-height: 100px;
@@ -266,7 +268,7 @@ nav.menu > ul > li > a > i > span{
 }
 
 nav.menu > ul > li > a:hover{
-    background-color: #028aa2;
+    background-color: #0a5ac9;
     color:white;  
     }
     
@@ -378,7 +380,7 @@ width: 100vw;
     background-position: 8px -30.5px;
 }
 
-/*Notificações*/
+/*Notificao*/
 .notificacoes{
     display: block;
     position: absolute;
@@ -428,13 +430,17 @@ nav.notificacoes ul li a span:first-of-type{
 
 /*NÃO ALTERAR NADA DAQUI PARA CIMA*/
 
-
+.perfil-base{
+    position: relative;
+}
 
 .perfil{
+    position: relative;
     display: flex;
     overflow: hidden;
     width: 100%; 
-    background-color: white;
+    background-color: red;
+    
   
 }
 
@@ -455,30 +461,45 @@ nav.notificacoes ul li a span:first-of-type{
     left: 50%;
     top: 50%;
     transform: translateY(-50%) translateX(-50%);
+    width: 100%;
+    align-self: center
+    
    
 }
 
-
-.perfil > div{
-    display: flex;
+#trocar-capa{
     position: absolute;
+    z-index: 1;
+    left: 10px;
+    top: 320px
+   
 }
 
-.perfil div div{
+.perfil-info{
+    display: flex;
+    position: absolute;
+    top: 0;
+    right:30px
+
+}
+
+.perfil-info div{
     display: flex;
     overflow: hidden;
     border-radius: 50%;
+    
 }
 
-.perfil div div img{
+.perfil-info div img{
     position: relative;
     left: 50%;
     top: 50%;
     transform: translateY(-50%) translateX(-50%);
+    
 }
 
 
-.perfil-base div div p{
+.perfil-info p{
     font-family: 'Open-Sans-Bold';
     max-width: 320px;
     overflow: hidden;
@@ -488,16 +509,14 @@ nav.notificacoes ul li a span:first-of-type{
 }
 
 
-.perfil-base div div span{
+.perfil-info span{
     display: block;
     color: white;
     font-family: 'Open-Sans-Bold';
     margin-right: 10px;
-   
-   
 }
 
-.perfil i{
+.perfil-base i{
     background-color: white;
     border-radius: 6px;
     width: 30px;
@@ -506,7 +525,7 @@ nav.notificacoes ul li a span:first-of-type{
     cursor: pointer;
 }
 
-.perfil div i{
+.perfil-info i{
   
     position: relative;
     right: 40px;
@@ -527,8 +546,8 @@ nav.notificacoes ul li a span:first-of-type{
 }
 
 .perfil > form{
- z-index: 1;
-display: flex;
+    z-index: 1;
+    display: flex;
 }
 
 .menu-perfil{
@@ -597,10 +616,11 @@ display: flex;
     padding-right: 15px;
   
     width: 84%;
-    background-color: white;
+    background-color: #0086ff;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color:white
 }
 
 .criar-publicacao p{
@@ -623,7 +643,7 @@ display: flex;
  }
 
  .criar-publicacao a{
-     background-color: darkslateblue;
+     background-color:  rgb(255, 8, 152);     ;
      color:white;
      width: 200px;
      height: 35px;
@@ -639,12 +659,13 @@ display: flex;
  }
 
  .item-publicacao{
-     background-color: white;
+     background-color: #0086ff;
      width: 340px;
      border-radius: 4%;
      margin-top: 10px;
      margin-bottom: 10px;
      display: inline-block;
+     
      
  }
 
@@ -672,7 +693,7 @@ display: flex;
 
  .item-publicacao a{
     text-decoration: none;
-    color:black;
+    color:white;
  }
 
  .item-publicacao .item-topo p{
@@ -681,9 +702,10 @@ display: flex;
     margin-left: 4px;
     font-size: 12px;
     flex-grow: 1;
+    color:white
  }
 
- .item-publicacao .item-topo span{
+ .item-publicacao .item-topo p span{
     display: block;
     font-family: Open-Sans-Bold;
     white-space: nowrap; 
@@ -695,12 +717,12 @@ display: flex;
 
  }
 
- .item-publicacao .item-topo span:after{
+ .item-publicacao .item-topo p span:after{
 
-    background: linear-gradient(to right, rgba(255, 255, 255, 0), #fff 50%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), #0086ff 50%) repeat scroll 0 0 rgba(0, 0, 0, 0);
     bottom: 0;
     content: "...";
-    color: white;
+    color: #0086ff;
     padding: 0 10px 0px 45px;
     position: absolute;
     right: 0;
@@ -734,7 +756,7 @@ display: flex;
 
 .item-publicacao figure + p{
     font-family: 'Open-Sans-Bold';
-    border-bottom:1px solid grey;
+    border-bottom:1px solid #212121;
     width:90%;
     margin: 0 auto;
     overflow:hidden;
@@ -866,6 +888,7 @@ display: flex;
     font-size: 15px;
     font-family: arial;
     margin: 0 auto;
+    
 }
 .item-baixo p{
    font-size: 14px;
@@ -886,7 +909,7 @@ display: flex;
     font-size: 14px;
     display: flex;
     align-items: flex-start;
-    color: #2E2E2E;
+   
     font-weight: bold;
     
     
@@ -1072,7 +1095,7 @@ width: 100%
     justify-content: center;
     align-items: center;
     position: relative;
-    background-color: #011627
+    background-color: #ff0898
 
    
     
@@ -1136,7 +1159,7 @@ width: 100%
 .linha{
     border: 0,3px solid black;
     margin: 10px 0;  
-    background: #011627
+    background: #ff0898
 }
 
 .campo-texto h3{
@@ -1168,7 +1191,7 @@ width: 100%
 }
 
 .campo-texto input:hover{
-    background: #011627;
+    background: #ff0898;
     color: white;
 }
 
@@ -1275,15 +1298,15 @@ background-color: pink;
 }
 .form-icone section > div{
  
-margin-right:500px;
-margin-bottom :200px;
+    margin-right:500px;
+    margin-bottom :200px;
 }
 .form-icone section h1{
     color: #E7E8EB;
     font-size: 40px;
     text-shadow: 1px 1px 1px black
 }
-.form-icone section p{
+.form-icone section h1 ~ p{
     color: white;
     font-size: 20px;
     font-weight: 600;
@@ -1311,6 +1334,7 @@ margin-bottom :200px;
 }
 
 .campo-texto-icone{
+    position: relative;
     text-align: center;
     height:30px;
     display: flex;
@@ -1337,13 +1361,13 @@ margin-bottom :200px;
 .campo-texto-icone label i.icone-mail{
     background-size: 1000px;
     height:25px;
-    background-position: -285px -2px; 
+    background-position: -285px -35px; 
 }
 
 .campo-texto-icone label i.icone-senha{
     background-size: 1000px;
     height:25px;
-    background-position: -704px -2px;
+    background-position: -704px -35px;
 }
 
 .campo-texto-icone label i.icone-user{
@@ -1352,7 +1376,7 @@ margin-bottom :200px;
     margin: 0 7px;
     width: 26px;
     text-align: center;
-    background-position: 0px -0px;
+    background-position: 0px -27px;
 }
 
 .campo-texto-icone input:focus {
@@ -1366,7 +1390,8 @@ margin-bottom :200px;
     color: white;
     padding:7px;
     margin-top: 40px;
-    width: 80% 
+    width: 80%; 
+    cursor:pointer
 }
 
 .form-cad{
@@ -1384,6 +1409,7 @@ margin-bottom :200px;
     border-bottom-left-radius: 100px;
     padding: 70px 20px;
 }
+
 
 .form-cad form h3{
     width: 213px;
@@ -1446,6 +1472,23 @@ margin-bottom :200px;
     text-align: center;
     font: "Open-Sans";
     font-weight: 600;
+}
+
+.form-config .desativar-btn{
+    font-family: 'Open-Sans-light';
+    display: block;
+    background-color: red;
+    border: 0;
+    color: white;
+    padding:7px;
+    width: 70%;
+    margin: 10px auto;
+    text-align: center;
+    font: "Open-Sans";
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+
 }
 
 .usuarios-debate-info{/*aqui*/
@@ -1685,11 +1728,12 @@ margin-bottom :200px;
 
 .batepapo{
     width: 100%;
+    background-color: rgba(76, 41, 131, 0.685)
     
 }
 
 .batepapo header{
-    background-color: #263238 ;
+    background-color: #4b2983 ;
 }
 
 .batepapo header div:first-child{
@@ -1726,7 +1770,7 @@ margin-bottom :200px;
 }
 
 .batepapo form{
-    background-color: #263238 ;
+    background-color: #4b2983 ;
     height: 60px;
     display: flex;
     justify-content: center;
@@ -2031,16 +2075,28 @@ margin-bottom :200px;
     color:white;
 }
 
+.tabelinha-linha{
+    cursor: pointer;
+    max-height: 36px;
 
+ 
+}
+
+.tabelinha-admin table tr{
+    background-color: #0086ff
+}
 .tabelinha-admin table td,.tabelinha-admin table th {
     text-align: left;
     height: 36px;
     padding-left: 30px;
 }
 
+.tabelinha-admin table td{
+    position: relative;
+}
 
 
-.tabelinha-admin table tr:nth-child(even){background-color: #253137 ;}
+.tabelinha-admin table tr:nth-child(even){background-color: #0a5ac9 ;}
 
 .tabelinha-admin table th {
     
@@ -2063,7 +2119,7 @@ margin-bottom :200px;
 .cad-adm p{
     display: inline-block;
 }
-.tabelinha-admin table tr td div{
+.cad-adm div:first-child{ /*ta dando pau*/
     width: 30px;
     height: 30px;
     background-color: darkgreen;
@@ -2200,7 +2256,7 @@ margin-bottom :200px;
 .filtro-admin .botao-filtro{
     width: 90px;
     height: 40px;
-    background-color: #011627;
+    background-color: #ff0898;
     font-family: arial;
     color:white;
     border: 0;
@@ -2209,7 +2265,7 @@ margin-bottom :200px;
     position: relative;
 }
 
-/*pag reclamaçao*/
+/*pag reclamaÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ao*/
 
 .Reclamacao{
     width: 40%;
@@ -2222,7 +2278,7 @@ margin-bottom :200px;
 .pag-reclamacao{
     display: flex;
     justify-content: center;
-    color:white;
+    
 }
 
 .Reclamacao .publicacao-topo-aberta{
@@ -2232,7 +2288,7 @@ margin-bottom :200px;
     align-items: center;
     padding: 4px;
     justify-content: space-around;
-    border-bottom: 1px solid #2E2E2E;
+    border-bottom: 1px solid rgb(199, 199, 199);
     
 }
 
@@ -2265,7 +2321,7 @@ margin-bottom :200px;
 
 .Reclamacao .publicacao-conteudo div:after{
     display: block;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #1d1d1d 50%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #fcfcfc 50%) repeat scroll 0 0 rgba(0, 0, 0, 0);
     content: ".";
     width: 100%;
     position: relative;
@@ -2365,8 +2421,8 @@ margin-bottom :200px;
 .prefeitura-publicacao{
     margin: 0 auto;
     margin-top: 10px;
-    background-color: #263238;
-    border-top: 2px solid #2E2E2E;
+    background-color: #0a5ac9;
+    border-top: 2px solid #4a96ff;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -2429,10 +2485,11 @@ margin-bottom :200px;
     word-wrap: break-word;
 }
 .barra-curtir-publicacao{
-     background-color: #000a12;
+    color: white;
+     background-color: #0f73ff;
      width: 100%;
-     border-top: 2px solid #2E2E2E;
-     border-bottom: 2px solid #2E2E2E;
+     border-top: 2px solid #0f73ff;
+     border-bottom: 2px solid #0f73ff;
      display: flex;
     justify-content: space-around;
     align-items: center;
@@ -2467,7 +2524,7 @@ margin-bottom :200px;
 }
 
 .enviar-comentario-publicacao h3{
-    color:white;
+
     margin-top: 10px;
 }
 .enviar-comentario-publicacao form{
@@ -2490,7 +2547,7 @@ margin-bottom :200px;
 }
 
 .enviar-comentario-publicacao form input{
-    background-color: blue;
+    background-color:  rgb(170, 14, 105);;
     color: #E7E8EB;
     font-family: arial;
     font-size: 15px;
@@ -2506,7 +2563,7 @@ margin-bottom :200px;
 .comentarios{
     width: 50%;
     margin: 0 auto;
-    color:white
+    
 }
 
 .comentarios .comentario-user{
@@ -2524,13 +2581,15 @@ margin-bottom :200px;
     margin-top: 10px;
     width: 90%;
     align-self: flex-end;
-    word-break: break-all
+    word-break: break-all;
+
 
 } 
 
 .comentarios .comentario-user .publicacao-topo-aberta{
     display: flex;
     align-items: center;
+    
 }
 
 .comentarios .comentario-user .publicacao-topo-aberta div:first-child{
@@ -2548,17 +2607,21 @@ margin-bottom :200px;
     margin-left: 4px;
     font-size: 11px;
     font-weight: 600;
+
+    
  }
 
  .comentarios .comentario-user .publicacao-topo-aberta span{
     font-family: Open-Sans-Bold;
-    display: flex;
+    display: block;
     font-size: 15px;
+    overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap; 
-    overflow: hidden;
+    
     width: 60%;
     max-width: 180px;
+  
      
  }
 
@@ -2566,14 +2629,13 @@ margin-bottom :200px;
 .pag-debate{
     display: flex;
     justify-content: center;
-    color:white;
+   
     flex-wrap: wrap    
 }
 
 .debate{
     width: 50%;
-    
-    
+
 }
 
 .debate .publicacao-topo-aberta{
@@ -2619,7 +2681,7 @@ margin-bottom :200px;
 
 .debate-publicacao h3 ~ div:first-of-type::after{
     display: block;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #1d1d1d 50%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #fcfcfc 50%) repeat scroll 0 0 rgba(0, 0, 0, 0);
     content: ".";
     width: 100%;
     position: relative;
@@ -2642,8 +2704,9 @@ margin-bottom :200px;
 .debate-status{
     display: flex;
     justify-content: space-around;
-    background-color: rgb(77, 77, 77);
-    padding: 10px
+    background-color: #0a5ac9;
+    padding: 10px;
+    color: white
 }
 
 .debate-status div{
@@ -2667,13 +2730,14 @@ margin-bottom :200px;
 }
 
 .debate-publicacao a{
-    background-color: pink;
-    padding: 10px;
+    background-color: rgb(255, 68, 177);;
+    padding: 11px;
     width: 150px;
     text-align: center;
     border-radius: 10%/100px;
     align-self: center;
-    margin-top: 10px
+    margin-top: 10px;
+    color:white
     
 }
 
@@ -2721,14 +2785,16 @@ margin-bottom :200px;
     width: 100%;
     height: 100vh;
     background-image: url('../imagens/fundo-login.jpg');
-    background-size: cover
+    background-size: cover;
+    position:relative;
 }
 
 .landing-dobra h1{
     color:white;
     position: absolute;
     top: 100px;
-    left:100px
+    left:100px;
+    text-shadow:1px 1px 1px #000
 }
 
 .landing-dobra div{
@@ -2736,10 +2802,11 @@ margin-bottom :200px;
     position: absolute;
     top: 150px;
     left:100px;
-    
     width: 450px;
     display: flex;
     flex-direction: column;
+    text-shadow:1px 1px 1px #000
+
 }
 
 .cta{
@@ -2750,7 +2817,8 @@ margin-bottom :200px;
     width: 200px;
     text-align: center;
     border-radius: 10%/100px;
-    margin-top: 10px
+    margin-top: 10px;
+    text-shadow:none
 }
 
 .landing-dobra p{
@@ -2758,35 +2826,444 @@ margin-bottom :200px;
 }
 
 .landing-dobra a:last-child{
-   
     color:white;
 }
 
 
 .landing-funcionalidades{
-    background-color: red;
     display: flex;
     justify-content: space-around;
-    height: 100vh
+    padding:15px
+    
 }
 
 .landing-item{
-    width: 40%;
+    width: 50%;
     display: flex;
     flex-direction: column;
-   
-    align-items: center
+    align-items: center;
+    margin: 5px;
 }
 
 .landing-item div:first-of-type{
     overflow: hidden;
-    width: calc(100vw/2 - 100px);
+    width: 100%;
+    height:300px
    
+}
+
+.landing-item div img:first-of-type{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%)
 }
 .landing-item h3{
     flex-flow: 1;
+    margin:5px
     
 }
 .landing-item p{
-    width: 300px
+    width: 300px;
+    margin:5px
+}
+
+.landing-item a{
+    margin:15px
+}
+
+.landing-prefeitura{
+    background-color:pink;
+    height:100vh;
+    background-image: url('../imagens/fundo-login.jpg');
+    position:relative;
+    color:white;
+    text-shadow:1px 1px 1px black
+}
+
+.landing-prefeitura h1{
+    color:white;
+    position: absolute;
+    top: 30%;
+    left:50%;
+    transform: translateX(-50%)
+}
+
+.landing-prefeitura p{
+    color:white;
+    position: absolute;
+    top: 40%;
+    left:50%;
+    transform: translateX(-50%);
+}
+
+.landing-rodape{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:15px
+}
+
+.landing-rodape h1{
+    font-size: 21px
+}
+
+.mini-menu-adm{
+    position:absolute;
+    left: 0;
+    display: none;
+    z-index: 2;
+}
+
+.mini-menu-adm.mini-menu-adm-ativo{
+    display: block
+}
+.mini-menu-adm ul{
+    margin-top:30px;
+    font-size: 15px;
+    font-weight: normal;
+    width: 200px;
+    background-color: white;
+    display:flex;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif
+    
+}
+
+.mini-menu-adm ul li{
+
+    text-align: center;
+    margin: 0;
+}
+
+.mini-menu-adm ul li:hover{
+  background-color: #d1d1d1
+}
+
+
+.mini-menu-adm ul li a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 7px;
+    color: #000;
+}
+
+.mini-menu-adm ul li a:hover{
+
+}
+
+.motivo{
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100vh;
+    color:black;
+    z-index:97
+}
+.motivo-fundo{
+    position: fixed;
+    background-color: rgba(0, 0, 0, .4);
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 98;
+   
+
+}
+
+
+.motivo.motivo-ativo{
+    display: block
+}
+
+
+.motivo-box{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: 500px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    z-index: 99;
+
+}
+
+.motivo-box div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+.motivo-box div span{
+    font-size: 40px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.modal-denunciar{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 98;
+    display: none;
+    color:black;
+}
+
+.modal-denunciar-fundo{
+    position: fixed;
+    background-color: rgba(0, 0, 0, .9);
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 98;
+}
+.modal-denunciar-ativo{
+    display: block;
+}
+
+.box-denunciar{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background-color: white;
+    width: 480px;
+    padding-bottom: 10px;
+    z-index: 99;
+}
+
+.box-denunciar span{
+    font-family: arial;
+    font-size: 40px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.box-denunciar div:nth-child(1){
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    
+}
+
+.box-denunciar div h1{
+    font-size: 20px
+}
+
+.box-denunciar form{
+
+}
+
+.box-denunciar form textarea{
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+    height: 100px;
+    resize: none;
+    padding-left: 5px
+}
+
+.box-denunciar form button{
+    cursor: pointer;
+    display: block;
+    padding: 10px;
+    width: 80px;
+    border-radius: 10%/10px;
+    outline: none;
+    border: 0;
+    margin: 10px auto;
+    background-color:  rgb(255, 8, 152);  
+    color: white;   
+}
+
+
+.modal-desativar{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 98;
+    display: none;
+    color:black;
+}
+
+.modal-desativar-fundo{
+    position: fixed;
+    background-color: rgba(0, 0, 0, .9);
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 98;
+}
+.modal-desativar-ativo{
+    display: block;
+}
+
+.box-desativar{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background-color: white;
+    width: 480px;
+    padding-bottom: 10px;
+    z-index: 99;
+}
+
+.box-desativar span{
+    font-family: arial;
+    font-size: 40px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.box-desativar div:nth-child(1){
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 15px;
+    
+}
+
+.box-desativar div h1{
+    font-size: 20px
+}
+
+
+.box-desativar div:nth-child(2){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 15px;
+    font-size: 14px;
+    flex-direction:column
+    
+}
+
+.box-desativar a{
+    display: block;
+    margin: 0 auto;
+    background-color: red;
+    color:white;
+    padding: 10px;
+    margin-top: 10px
+}
+.modal-erro{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 98;
+    display: block;
+    color:black;
+}
+
+.modal-erro-fundo{
+    position: fixed;
+    background-color: rgba(0, 0, 0, .9);
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 98;
+}
+.modal-erro-ativo{
+    display: block;
+}
+
+.box-erro{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background-color: white;
+    width: 480px;
+    padding-bottom: 10px;
+    z-index: 99;
+}
+
+.box-erro span{
+    font-family: arial;
+    font-size: 40px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.box-erro div:nth-child(1){
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 15px;
+    
+}
+
+.box-erro div h1{
+    font-size: 20px
+}
+
+
+.box-erro div:nth-child(2){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 15px;
+    font-size: 14px;
+    flex-direction:column
+    
+}
+
+.box-erro a{
+    display: block;
+    margin: 0 auto;
+    background-color: red;
+    color:white;
+    padding: 10px;
+    margin-top: 10px
+}
+
+.balao-form {
+	position: absolute;
+	background: rgba(0, 0, 0, 0.5);
+    border-radius: 12px/100%;
+    padding: 4px;
+    color: white;
+    bottom: 50px
+}
+
+.balao-form:after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 0;
+	height: 0;
+	border: 13px solid transparent;
+	border-top-color: rgba(0, 0, 0, 0.5);
+	border-bottom: 0;
+	margin-left: -13px;
+    margin-bottom: -13px;
+    
+}
+
+.aviso-form-inicial{
+    background-color: red;
+    width: 100%;
+    color: white;
+    font-size: 14px;
+    padding: 4px;
+    display: none
+}
+
+.form-cad .aviso-form-inicial{
+margin-bottom: 15px
 }

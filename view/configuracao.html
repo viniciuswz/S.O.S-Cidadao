@@ -138,100 +138,64 @@
 
 
         <div id="container">
-            <section class="perfil-base">
-                <div class="perfil">
-                        <form>
-                                <label for="imagem"><i class="icone-edit-full"></i></label>
-                                <input type="file" id="imagem">
-                        </form>
-                    <img src="imagens/capa.png"> 
-                   
-                    <div>
-                        <p>Péricles Consagrado</p>
-                        <div>
-                            <img src="imagens/perfil.jpg">
-                        </div>
-                        <form>
-                            <label for="imagem"><i class="icone-edit-full" title="Alterar a foto de perfil"></i></label>
-                            <input type="file" id="imagem">
-                        </form>
+                <section class="perfil-base">
+                        <h3>Configurações da conta</h3>
+                        <div class="perfil" id="config">
+                            
+                                <div>
+                                        <span>usuário des de 15 de Dezembro de 2015</span>
+                                        
+                                        <div>
+                                            <img src="imagens/perfil.jpg">
+                                        </div>
+                                    </div>
+                                </div>
                        
-                        
-                    </div>
-                </div>
-               
-            </section>
+                    </section>
             <nav class="menu-perfil">
                 <ul class="espacos">
+                    <li class="ativo"><a href="configuracao.html">pessoais</a></li>
 
-                    <li class="ativo"><a href="#r">Reclamações</a></li>
+            <li><a href="configuracoes2.html">Segurança</a></li>
 
-                    <li><a href="#d">Debates</a></li>
+                    
                     
                 </ul>
             </nav>
-            <section class="alinha-item">
-
-                <div class="item-publicacao">
-                        <div class="item-topo">
-                            <a href="#">
-                            <div>
-                                <img src="imagens/perfil.jpg">
-                            </div>
-                            <p><span class="negrito">Pericles do Exalta Samba</a></span>Debate criado há <time>4 minutos</time></p>
-                            <div class="mini-menu-item">
-                                <i class="icone-3pontos"></i>
-                                <div>
-                                    <ul>
-                                        <li><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>
-                                        <li><a href="#"><i class="icone-fechar"></i></i>Remover</a></li>
-                                        <li><a href="#"><i class="icone-edit-full"></i></i>Alterar</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+            <section class="form-config">
+                
+                <form>
+                    <div class="campo-texto-config">
+                            <label for="user">Nome</label>
+                            <input type="text" name="user" id="user" placeholder="Nome" autocomplete ="off">
                         </div>
-                        <a href="#">
-                            <figure>
-                                <img src="imagens/RECLAMATION.png">
-                            </figure>
-                            <div class="legenda">
-                                    <p>Como os cadeirantes vão subir? aaaa</p><p>10</p><i class="icone-grupo"></i>
-                            </div>
-                            
-                        </a>
-                </div>
-
-                <div class="item-publicacao">
-                    <div class="item-topo">
-                        <a href="#">
+                        <div class="campo-texto-config">
+                            <label for="email">E-mail</i></label>
+                            <input type="email" name="email" id="email" placeholder="E-mail">
+                    </div>
+                    <button type="submit">Alterar</button>
+                    <span class="desativar-btn">
+                            Desativar conta
+                    </span>
+                </form>
+                <div class="modal-desativar">
+                    <div class="modal-desativar-fundo"></div>
+                    <div class="box-desativar">
                         <div>
-                            <img src="imagens/perfil.jpg">
+                            <h1>Vai desativar a conta?</h1>
+                            <span class="fechar-desativar">&times;</span>
                         </div>
-                        <p><span class="negrito">Pericles do Exalta Samba</a></span>Debate criado há <time>4 minutos</time></p>
-                        <div class="mini-menu-item">
-                            <i class="icone-3pontos"></i>
-                            <div>
-                                <ul>
-                                    <li><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>
-                                    <li><a href="#"><i class="icone-fechar"></i></i>Remover</a></li>
-                                    <li><a href="#"><i class="icone-edit-full"></i></i>Alterar</a></li>
-                                </ul>
-                            </div>
+                        <div>
+                            <p>Depois que confirmar, <strong style="text-transform :uppercase" >não</strong> vai mais poder recuperar sua conta de nenhuma forma, ainda quer desativar sua conta?</p>
+                            <a href="#">Desativar conta</a>
                         </div>
                     </div>
-                    <a href="#">
-                        <figure>
-                            <img src="imagens/RECLAMATION.png">
-                        </figure>
-                        <div class="legenda">
-                                <p>Como os cadeirantes vão subir? aaaa</p><p>10</p><i class="icone-grupo"></i>
-                        </div>
-                        
-                    </a>
                 </div>
-
-            </section>
+            </div>
                 
+                
+        </section>
+
         </div>
     </body>
 </html>
