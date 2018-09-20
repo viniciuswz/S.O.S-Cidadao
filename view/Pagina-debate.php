@@ -25,7 +25,7 @@ session_start();
         $debate->setCodDeba($_GET['ID']);        
         $resposta = $debate->listByIdDeba();   
         
-        if($resposta[0]['indParticipa']){
+        if(isset($resposta[0]['indParticipa'])){
             $txtButton = 'Entrar no debate';
         }else{
             $txtButton = 'Participar do debate';

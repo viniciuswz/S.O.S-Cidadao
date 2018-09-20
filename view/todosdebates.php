@@ -166,8 +166,9 @@ session_start();
                                             <span class="fechar-denuncia">&times;</span>
                                         </div>
                                        
-                                        <form>
-                                            <textarea placeholder="Qual o motivo?" id="motivo"></textarea>
+                                        <form form method="post" action="../DenunciarDebate.php">
+                                            <textarea placeholder="Qual o motivo?" id="motivo" name="texto"></textarea>
+                                            <input type="hidden" name="id_deba" value="<?php echo $resposta[$contador]['cod_deba'] ?>">                
                                             <button type="submit"> Denunciar</button>
                                         </form>
                                         
