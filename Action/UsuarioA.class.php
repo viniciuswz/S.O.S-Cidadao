@@ -150,7 +150,8 @@ class UsuarioA extends UsuarioM{
             $tipo = $this->getDescTipo($this->setCodUsu($id));
 
             $_SESSION['id_user'] = $id;
-            $_SESSION['tipo_usu'] = $tipo;        
+            $_SESSION['tipo_usu'] = $tipo;      
+            $_SESSION['indNovaConta'] = true;  
             return 3; 
         
         

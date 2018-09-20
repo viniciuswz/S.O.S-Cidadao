@@ -6,7 +6,11 @@ session_start();
     use Core\Publicacao;
     use Classes\ValidarCampos;
     
-    try{        
+    try{   
+        //$_SESSION['indNovaConta']  = true;
+        if(isset($_SESSION['indNovaConta'])){ // se por um acaso for usuario novo
+            unset($_SESSION['indNovaConta']);           
+        }
         $usuPerfil = new Usuario();
         if(isset($_SESSION['id_user'])){ // se estiver logado   
             $usu = new Usuario();  
