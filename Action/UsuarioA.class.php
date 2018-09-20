@@ -81,14 +81,14 @@ class UsuarioA extends UsuarioM{
         
     }      
 
-    public function getDadosUser($tempoDeCadastro = false){//PEgar dados do usuario        
+    public function getDadosUser($tempoDeCadastro = false, $indPerfil = false){//PEgar dados do usuario        
         $sql = sprintf($this->sqlPegarDados,
                             $this->getCodUsu()                            
                         );
         
         $consulta = $this->runSelect($sql);
         if(empty($consulta)){            
-            if(isset($_SESSION['id_user'])){ // Se por um acaso a conta dele for desativa e ele estiver logado, é pra desativar
+            if(isset($_SESSION['id_user']) AND $indPerfil == false){ // Se por um acaso a conta dele for desativa e ele estiver logado, é pra desativar
                 session_destroy();
             }else{
                 throw new \Exception("Não há registros",1);
@@ -98,8 +98,10 @@ class UsuarioA extends UsuarioM{
             $data = $this->tratarData($consulta[0]['dataHora_cadastro_usu']);
             $consulta[0]['dataHora_cadastro_usu'] = $data;
         }
+            return $consulta;
+        
 
-        return $consulta;
+        
     }
 
     public function gerarHash($senha){//Gerar hash

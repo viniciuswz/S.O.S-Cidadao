@@ -11,7 +11,7 @@ session_start();
         if(isset($_SESSION['id_user'])){ // se estiver logado   
             $usu = new Usuario();  
             $usu->setCodUsu($_SESSION['id_user']);         
-            $resultado = $usu->getDadosUser();
+            $resultado = $usu->getDadosUser(false,true);
 
             $tipoUsu = $_SESSION['tipo_usu'];
             if(isset($_GET['ID'])){ // quando for ver perfil de outras pessoas
@@ -19,7 +19,7 @@ session_start();
                 $validar->verificarTipoInt(array('ID'), $_GET); // Verificar se o parametro da url é um numero
                 $id = $_GET['ID'];
                 $usuPerfil->setCodUsu($_GET['ID']); 
-                $dadosPerfil =  $usuPerfil->getDadosUser();     
+                $dadosPerfil =  $usuPerfil->getDadosUser(false,true);     
             }else{ // seu propio perfil
                 $id = $_SESSION['id_user'];                
                 $dadosPerfil = $resultado;                            
@@ -29,7 +29,7 @@ session_start();
             $validar->verificarTipoInt(array('ID'), $_GET); // Verificar se o parametro da url é um numero
             $id = $_GET['ID'];   
             $usuPerfil->setCodUsu($_GET['ID']);    
-            $dadosPerfil =  $usuPerfil->getDadosUser();     
+            $dadosPerfil =  $usuPerfil->getDadosUser(false,true);     
         }        
         $descPerfilVisu = $dadosPerfil[0]['descri_tipo_usu'];
         if($descPerfilVisu != 'Comum' AND $descPerfilVisu != 'Prefeitura'){ // Vendo perfil restrito

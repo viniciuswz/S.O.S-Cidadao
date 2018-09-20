@@ -105,10 +105,11 @@ class Denuncias extends DenunciasM{
         $tirarEspacos = str_replace(" ", "", $semAcento);
         if($tirarEspacos == 'comentario'){ 
             $codPubli = $this->acharPubliDoComen($cod);
-            $link = 'VerPublicacaoTemplate.php?ID='.$codPubli.'%IdComen='.$cod;
-        }else{
-            $semAcentos = ucfirst($tirarEspacos);
-            $link = 'Ver'.$semAcentos.'Template.php?ID='.$cod;
+            $link = 'reclamacao.php?ID='.$codPubli.'&IdComen='.$cod;
+        }else if($tirarEspacos == 'debate'){            
+            $link = 'Pagina-debate.php?ID='.$cod;
+        }else if($tirarEspacos == 'publicacao'){
+            $link = 'reclamacao.php?ID='.$cod;
         }        
         return $link;
     }
