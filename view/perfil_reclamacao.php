@@ -168,17 +168,20 @@ session_start();
                         <?php 
                             if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $dadosPerfil[0]['cod_usu']){
                         ?>
+                            <i class="icone-edit-full" id="trocar-capa" title="Alterar a foto de capa"></i>
+                            <!-- 
                             <form action="../UpdateImagem.php" method="post" enctype="multipart/form-data">
                                     <label for="imagem"><i class="icone-edit-full"></i></label>
                                     <input type="file" id="imagem">
                                     <input type="hidden" value="capa" name="tipo">                                
                             </form>
+                            -->
                         <?php 
                             }
                         ?>
                     <img src="../Img/capa/<?php echo $dadosPerfil[0]['img_capa_usu'] ?>"> 
                    
-                    <div>
+                    <div class="perfil-info">
                         <p><?php echo $dadosPerfil[0]['nome_usu'] ?></p>
                         <div>
                             <img src="../Img/perfil/<?php echo $dadosPerfil[0]['img_perfil_usu'] ?>">
@@ -186,11 +189,13 @@ session_start();
                         <?php 
                             if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $dadosPerfil[0]['cod_usu']){
                         ?>
+                            <i class="icone-edit-full" id="trocar-perfil" title="Alterar a foto de perfil"></i>
+                            <!-- 
                             <form action="../UpdateImagem.php" method="post" enctype="multipart/form-data">
                                 <label for="imagem"><i class="icone-edit-full" title="Alterar a foto de perfil"></i></label>
                                 <input type="file" id="imagem">
                                 <input type="hidden" value="perfil" name="tipo">  
-                            </form>
+                            </form>-->
                         <?php 
                             }
                         ?>

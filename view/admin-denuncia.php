@@ -210,6 +210,19 @@ session_start();
                 </table>
             </div>      
         </div>
+        <?php
+            if($quantidadePaginas != 1){
+                $contador = 1;
+                while($contador <= $quantidadePaginas){
+                    if(isset($pagina) AND $pagina == $contador){
+                        echo '<li class="jaca"><a href="admin-denuncia.php?'.$parametro.'&pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;  
+                    }else{
+                        echo '<li><a href="admin-denuncia.php?'.$parametro.'&pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;
+                    }                    
+                    $contador++;        
+                }
+            }            
+        ?>
     </body>
     </html>
     <?php
