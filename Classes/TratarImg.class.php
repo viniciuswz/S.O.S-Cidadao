@@ -9,7 +9,7 @@ class TratarImg{
             throw new \Exception("Imagem muito pesada",10);  
         }               
         $novoNome = $this->gerarNome($dadosImagem['name']);
-        $mover = move_uploaded_file($dadosImagem['tmp_name'], 'IMG'. DIRECTORY_SEPARATOR . $pastaDestino . DIRECTORY_SEPARATOR. $novoNome);
+        $mover = move_uploaded_file($dadosImagem['tmp_name'], 'Img'. DIRECTORY_SEPARATOR . $pastaDestino . DIRECTORY_SEPARATOR. $novoNome);
         if(!$mover){
             throw new \Exception("Erro ao enviar a imagem",10);  
         }        
