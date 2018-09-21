@@ -22,7 +22,8 @@ class Denuncias extends DenunciasM{
                                 nome_usu AS nome_denunciado
                                 FROM publi_denun INNER JOIN publicacao ON (publi_denun.cod_publi = publicacao.cod_publi)
                                 INNER JOIN usuario ON (publicacao.cod_usu = usuario.cod_usu)
-                                WHERE status_denun_publi = 'A' AND status_publi = 'A' ";
+                                WHERE status_denun_publi = 'A' AND status_publi = 'A' 
+                                AND status_usu = 'A'";
 
     private $sqlDenunComen = " %s SELECT 'Comentário' AS Tipo, 
                                 cod_denun_comen AS cod_denun, motivo_denun_comen AS motivo , 
@@ -31,7 +32,9 @@ class Denuncias extends DenunciasM{
                                 nome_usu AS nome_denunciado
                                 FROM comen_denun INNER JOIN comentario ON (comen_denun.cod_comen = comentario.cod_comen)
                                 INNER JOIN usuario ON (comentario.cod_usu = usuario.cod_usu)
-                                WHERE status_denun_comen = 'A' AND status_comen = 'A' AND status_usu = 'A' AND status_usu = 'A' ";
+                                INNER JOIN publicacao ON (comentario.cod_publi = publicacao.cod_publi)
+                                WHERE status_denun_comen = 'A' AND status_comen = 'A' AND status_usu = 'A' AND status_usu = 'A' 
+                                AND status_publi = 'A'";
     
     private $countDenunDebate = " %s SELECT 'Debate' AS Tipo, debate_denun.cod_deba FROM debate_denun 
                                         INNER JOIN debate ON (debate_denun.cod_deba = debate.cod_deba)
@@ -44,7 +47,9 @@ class Denuncias extends DenunciasM{
     private $countDenunComen = " %s SELECT 'Comentário' AS Tipo, comen_denun.cod_comen FROM comen_denun
                                         INNER JOIN comentario ON (comen_denun.cod_comen = comentario.cod_comen)
                                         INNER JOIN usuario ON (comentario.cod_usu = usuario.cod_usu)
-                                        WHERE status_denun_comen = 'A' AND status_comen = 'A' ";
+                                        INNER JOIN publicacao ON (comentario.cod_publi = publicacao.cod_publi)
+                                        WHERE status_denun_comen = 'A' AND status_comen = 'A' 
+                                        AND status_publi = 'A'";
 
     public function select($tabelas = array(), $pagina = null){
         $sqlLimite = $this->controlarPaginacao($tabelas,$pagina);
