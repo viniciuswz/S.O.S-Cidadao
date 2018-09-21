@@ -130,7 +130,7 @@ session_start();
                                     <img src="../Img/perfil/<?php echo $resposta[$contador]['img_perfil_usu']?>">
                                 </div>
                                 <p><span class="negrito"><?php echo $resposta[$contador]['nome_usu']?></a></span><time><?php echo $resposta[$contador]['dataHora_publi']?></time></p>
-                                <div class="mini-menu-item mini-menu-item-ativo">
+                                <div class="mini-menu-item">
                                     <i class="icone-3pontos"></i>
                                     <div>
                                         <ul>
