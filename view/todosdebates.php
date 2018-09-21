@@ -21,7 +21,7 @@ session_start();
         $resposta = $debate->ListFromALL($_GET['pagina']);       
         $quantidadePaginas = $debate->getQuantidadePaginas();
         $pagina = $debate->getPaginaAtual();
-        //var_dump($resposta);
+       
        
         
 ?>
@@ -134,7 +134,7 @@ session_start();
                                     <ul>
                                     <?php
                                         if(isset($resposta[$contador]['indDenunComen']) AND $resposta[$contador]['indDenunComen'] == TRUE){ // Aparecer quando o user ja denunciou            
-                                            echo '<li><i class="icone-bandeira"></i><b>Denunciado</b></li>';        
+                                            echo '<li><i class="icone-bandeira"></i><span class="negrito">Denunciado</span></li>';        
                                         }else if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] != $resposta[$contador]['cod_usu']){ // Aparecer apenas naspublicaçoes q nao é do usuario
                                             if($tipoUsu == 'Comum' or $tipoUsu == 'Prefeitura' or $tipoUsu == 'Funcionario'){
                                                 //echo '<li><a href="../Templates/DenunciarDebateTemplate.php?ID='.$resposta[$contador]['cod_deba'].'"><i class="icone-bandeira"></i>Denunciar</a></li>';                                                        

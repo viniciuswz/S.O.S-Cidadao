@@ -185,8 +185,10 @@ class DebateA extends DebateM{
         return $res[0]['COUNT(*)'];
     }
 
-    public function getVerificarSeDenunciou(){
-        $idDeba = $this->getCodDeba();
+    public function getVerificarSeDenunciou($idDeba = false){       
+        if(!$idDeba){
+            $idDeba = $this->getCodDeba();
+        }
         $idUser = $this->getCodUsu();
 
         $denun = new DebateDenuncia();
