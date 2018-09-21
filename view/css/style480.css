@@ -999,7 +999,7 @@ width: 100vw;
     padding: 12px;
 }
 
-
+/*motivo*/
 .motivo{
     position: fixed;
     display: none;
@@ -1008,6 +1008,7 @@ width: 100vw;
     color:black;
     z-index:97
 }
+
 .motivo-fundo{
     position: fixed;
     background-color: rgba(0, 0, 0, .4);
@@ -1016,12 +1017,9 @@ width: 100vw;
     left: 0;
     top: 0;
     z-index: 98;
-   
-
 }
 
 .motivo-box{
-   
     left: 0%;
     top: 0%;
     transform: translateX(-0%) translateY(-0%);
@@ -1031,8 +1029,6 @@ width: 100vw;
     display: flex;
     flex-direction: column;
     padding: 25px;
-    
-
 }
 
 .motivo-box div{
@@ -1047,9 +1043,12 @@ width: 100vw;
     cursor: pointer;
 }
 
+/*Denuncia*/
+
 .box-denunciar div h1{
     font-size: 18px
 }
+
 .box-denunciar{
     background-color: white;
     width: 100%;
@@ -1058,15 +1057,19 @@ width: 100vw;
     margin: 5px;
 }
 
+/*Desativar*/
+
 .box-desativar div h1{
     font-size: 18px
 }
+
 .box-desativar{
     background-color: white;
     width: 100%;
     height: auto;
     margin: 5px;
 }
+/*Erro*/
 
 .box-erro div h1{
     font-size: 18px
@@ -1077,3 +1080,7 @@ width: 100vw;
     height: auto;
     margin: 5px;
 }
+
+/*troca foto*/
+
+/*preview*/
