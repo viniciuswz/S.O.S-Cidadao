@@ -124,6 +124,7 @@ class PublicacaoSalvaA extends PublicacaoSalvaM{
             }
             $in = $this->gerarIn($ids);
             $publicacao = new Publicacao();
+            $publicacao->setCodUsu($this->getCodUsu());
             $dadosPubli = $publicacao->ListFromALL($pagina, ' AND publicacao.cod_publi ' . $in, ' AND cod_publi ' . $in);
             $this->setQuantidadePaginas($publicacao->getQuantidadePaginas());
             $this->setPaginaAtual($publicacao->getPaginaAtual());

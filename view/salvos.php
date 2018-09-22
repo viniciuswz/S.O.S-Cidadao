@@ -21,6 +21,7 @@ session_start();
         $quantidadePaginas = $publiSalva->getQuantidadePaginas();
         $pagina = $publiSalva->getPaginaAtual();
         
+        
 ?>
 <!DOCTYPE html>
 <html lang=pt-br>
@@ -139,26 +140,46 @@ session_start();
                                                 echo '<li><i class="icone-bandeira"></i><span class="negrito">Denunciado</span></li>';        
                                             }else if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] != $resposta[$contador]['cod_usu']){ // Aparecer apenas naspublicaçoes q nao é do usuario
                                                 if($tipoUsu == 'Comum' or $tipoUsu == 'Prefeitura' or $tipoUsu == 'Funcionario'){
-                                                    echo '<li><a href="../Templates/DenunciarPublicacaoTemplate.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-bandeira"></i>Denunciar</a></li>';                                                        
+                                                    //echo '<li><a href="../Templates/DenunciarPublicacaoTemplate.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-bandeira"></i>Denunciar</a></li>';                                                        
+                                                    echo '<li class="denunciar-item"><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>';
+
                                                 }                    
                                             }else if(!isset($_SESSION['id_user'])){ // aparecer parar os usuario nao logado
-                                                    echo '<li><a href="../Templates/DenunciarPublicacaoTemplate.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-bandeira"></i>Denunciar</a></li>';
+                                                    //echo '<li><a href="../Templates/DenunciarPublicacaoTemplate.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-bandeira"></i>Denunciar</a></li>';
+                                                    echo '<li class="denunciar-item"><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>';
                                             } 
                                         ?>
+
                                         <?php
                                             if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $resposta[$contador]['cod_usu']){
-                                                echo '<li><a href="../ApagarPublicacao.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-fechar"></i></i>Remover</a></li>';
-                                                echo '<li><a href="../Templates/UpdatePublicacaoTemplate.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';                                                    
+                                                echo '<li><a href="../ApagarPublicacao.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-fechar"></i></i>Remover</a></li>';                                            
+                                                echo '<li><a href="reclamacao-update.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';
                                             }else if(isset($tipoUsu) AND ($tipoUsu == 'Adm' or $tipoUsu == 'Moderador')){
                                                 echo '<li><a href="../ApagarPublicacao.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-fechar"></i></i>Remover</a></li>';
                                                 // Icone para apagar usuaario
-                                                //echo '<a href="../ApagarUsuario.php?ID='.$resposta[0]['cod_usu'].'">Apagar Usuario</a>';                                                       
-                                                echo '<li><a href="../Templates/UpdatePublicacaoTemplate.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';                                                    
+                                                //echo '<a href="../ApagarUsuario.php?ID='.$resposta[0]['cod_usu'].'">Apagar Usuario</a>'; 
+                                                echo '<li><a href="reclamacao-update.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';
                                             }
                                         ?> 
                                         <li><a  href="../SalvarPublicacao.php?ID=<?php echo $resposta[$contador]['cod_publi'] ?>"><i class="icone-salvar-full"></i>Salvo</a></li>
                                         </ul>
                                     </div>
+                                    <div class="modal-denunciar">
+                                    <div class="modal-denunciar-fundo"></div>
+                                    <div class="box-denunciar">
+                                        <div>
+                                            <h1>Qual o motivo da denuncia?</h1>
+                                            <span class="fechar-denuncia">&times;</span>
+                                        </div>
+                                       
+                                        <form form method="post" action="../DenunciarPublicacao.php">
+                                            <textarea placeholder="Qual o motivo?" id="motivo" name="texto"></textarea>
+                                            <input type="hidden" name="id_publi" value="<?php echo $resposta[$contador]['cod_publi'] ?>">                
+                                            <button type="submit"> Denunciar</button>
+                                        </form>
+                                        
+                                    </div>
+                                </div>
                                 </div>
                             </div>
                             <a href="reclamacao.php?ID=<?php echo $resposta[$contador]['cod_publi'] ?>">
