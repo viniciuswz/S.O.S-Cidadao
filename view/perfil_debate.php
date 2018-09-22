@@ -66,11 +66,12 @@ session_start();
          }else{
             $debate = new Debate();
             $debate->setCodUsu($id);
-             //isset($_SESSION['id_user']) ? $idVisualizador = $_SESSION['id_user'] : $idVisualizador = null;
+             isset($_SESSION['id_user']) ? $idVisualizador = $_SESSION['id_user'] : $idVisualizador = null;
              $nomeLink1 = 'Debate';
              $nomeLink2 = 'Reclamação';
-
-             $resposta = $debate->ListByIdUser($_GET['pagina']); 
+             
+             $resposta = $debate->ListByIdUser($_GET['pagina'], $idVisualizador);
+             
              $quantidadePaginas = $debate->getQuantidadePaginas();
              $pagina = $debate->getPaginaAtual();      
          }       
@@ -261,7 +262,23 @@ session_start();
                                             }
                                         ?> 
                                     </ul>
-                                </div>                                
+                                </div>   
+                                <div class="modal-denunciar">
+                                    <div class="modal-denunciar-fundo"></div>
+                                    <div class="box-denunciar">
+                                        <div>
+                                            <h1>Qual o motivo da denuncia?</h1>
+                                            <span class="fechar-denuncia">&times;</span>
+                                        </div>
+                                       
+                                        <form form method="post" action="../DenunciarDebate.php">
+                                            <textarea placeholder="Qual o motivo?" id="motivo" name="texto"></textarea>
+                                            <input type="hidden" name="id_deba" value="<?php echo $resposta[$contador]['cod_deba'] ?>">                
+                                            <button type="submit"> Denunciar</button>
+                                        </form>
+                                        
+                                    </div>
+                                </div>                             
                             </div>
                         </div>
                         <a href="Pagina-debate.php?ID=<?php echo $resposta[$contador]['cod_deba'] ?>">

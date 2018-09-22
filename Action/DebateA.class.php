@@ -105,7 +105,7 @@ class DebateA extends DebateM{
         
     }
 
-    public function ListByIdUser($pagina = null){        
+    public function ListByIdUser($pagina = null, $idUserVisuali = null){        
         $prepararWhereUsu = sprintf($this->whereIdUser, $this->getCodUsu()); 
         $sqlPaginacao = $this->controlarPaginacao($pagina, $prepararWhereUsu );  
         $sql = sprintf($this->sqlSelect,
@@ -119,7 +119,9 @@ class DebateA extends DebateM{
             //throw new \Exception("Não foi possível fazer o select",9); 
             return;
         }  
-
+        if($idUserVisuali != null){ // Mudar o id usuario para o id do usuario q esta vendo o perfil
+            $this->setCodUsu($idUserVisuali);
+        }
         $dadosTratados = $this->tratarDados($res);
         //var_dump($dadosTratados);
         return $dadosTratados;
