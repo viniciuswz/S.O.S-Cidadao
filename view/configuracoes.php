@@ -134,13 +134,13 @@ session_start();
                             <input type="email" name="email" id="email" placeholder="E-mail" value="<?php echo $resultado[0]['email_usu'] ?>">
                     </div>
                     <button type="submit">Alterar</button>
-                    <?php if ($_SESSION['tipo_usu'] !== 'Prefeitura'){ ?>
+                    <?php if ($_SESSION['tipo_usu'] != 'Prefeitura' AND $_SESSION['tipo_usu'] != 'Funcionario'){ ?>
                         <span class="desativar-btn">
                                 Desativar conta
                         </span>
                     <?php } ?>
                 </form>
-                <?php if ($_SESSION['tipo_usu'] !== 'Prefeitura'){ ?>
+                <?php if ($_SESSION['tipo_usu'] != 'Prefeitura' AND $_SESSION['tipo_usu'] != 'Funcionario'){ ?>
 
                     <div class="modal-desativar">
                         <div class="modal-desativar-fundo"></div>
