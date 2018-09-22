@@ -147,7 +147,7 @@ session_start();
                         </div>
                         <div>
                             <p>Depois que confirmar, <strong style="text-transform :uppercase" >não</strong> vai mais poder recuperar sua conta de nenhuma forma, ainda quer desativar sua conta?</p>
-                            <a href="#">Desativar conta</a>
+                            <a href="../ApagarUsuario.php?ID=<?php echo$_SESSION['id_user']?>">Desativar conta</a>
                         </div>
                     </div>
                 </div>
