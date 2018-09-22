@@ -55,11 +55,12 @@ session_start();
         isset($_GET['pagina']) ?: $_GET['pagina'] = null; 
         if($descPerfilVisu == 'Prefeitura'){
             $publi = new Publicacao();    
-            $publi->setCodUsu($id);
+            $publi->setCodUsu($_SESSION['id_user']);
             $nomeLink1 = 'Reclamações Respondidas';
             $nomeLink2 = 'Reclamações Não Respondidas'; 
 
             $resposta = $publi->getPubliRespo($_GET['pagina'], TRUE);  
+            //var_dump($resposta);
             $quantidadePaginas = $publi->getQuantidadePaginas();
             $pagina = $publi->getPaginaAtual();  
          }else{
@@ -235,14 +236,18 @@ session_start();
                                     <ul>
                                         <?php
                                             if(isset($resposta[$contador]['indDenunComen']) AND $resposta[$contador]['indDenunComen'] == TRUE){ // Aparecer quando o user ja denunciou            
-                                                echo '<li><i class="icone-bandeira"></i><b>Denunciado</b></li>';        
+                                                echo '<li><i class="icone-bandeira"></i><span class="negrito">Denunciado</span></li>';        
                                             }else if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] != $resposta[$contador]['cod_usu']){ // Aparecer apenas naspublicaçoes q nao é do usuario
                                                 if($tipoUsu == 'Comum' or $tipoUsu == 'Prefeitura' or $tipoUsu == 'Funcionario'){
-                                                    echo '<li><a href="../Templates/DenunciarDebateTemplate.php?ID='.$resposta[$contador]['cod_deba'].'"><i class="icone-bandeira"></i>Denunciar</a></li>';                                                        
+                                                    //echo '<li><a href="../Templates/DenunciarPublicacaoTemplate.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-bandeira"></i>Denunciar</a></li>';                                                        
+                                                    echo '<li class="denunciar-item"><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>';
+
                                                 }                    
                                             }else if(!isset($_SESSION['id_user'])){ // aparecer parar os usuario nao logado
-                                                    echo '<li><a href="../Templates/DenunciarDebateTemplate.php?ID='.$resposta[$contador]['cod_deba'].'"><i class="icone-bandeira"></i>Denunciar</a></li>';
-                                            } 
+                                                    //echo '<li><a href="../Templates/DenunciarPublicacaoTemplate.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-bandeira"></i>Denunciar</a></li>';
+                                                    echo '<li class="denunciar-item"><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>';
+                                            }                                        
+                                            
                                         ?>
                                         <?php
                                             if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $resposta[$contador]['cod_usu']){
@@ -256,7 +261,7 @@ session_start();
                                             }
                                         ?> 
                                     </ul>
-                                </div>
+                                </div>                                
                             </div>
                         </div>
                         <a href="Pagina-debate.php?ID=<?php echo $resposta[$contador]['cod_deba'] ?>">
@@ -289,11 +294,14 @@ session_start();
                                             echo '<li><i class="icone-bandeira"></i><span class="negrito">Denunciado</span></li>';        
                                         }else if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] != $resposta[$contador]['cod_usu']){ // Aparecer apenas naspublicaçoes q nao é do usuario
                                             if($tipoUsu == 'Comum' or $tipoUsu == 'Prefeitura' or $tipoUsu == 'Funcionario'){
-                                                echo '<li><a href="../Templates/DenunciarPublicacaoTemplate.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-bandeira"></i>Denunciar</a></li>';                                                        
+                                                //echo '<li><a href="../Templates/DenunciarPublicacaoTemplate.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-bandeira"></i>Denunciar</a></li>';                                                        
+                                                echo '<li class="denunciar-item"><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>';
+
                                             }                    
                                         }else if(!isset($_SESSION['id_user'])){ // aparecer parar os usuario nao logado
-                                                echo '<li><a href="../Templates/DenunciarPublicacaoTemplate.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-bandeira"></i>Denunciar</a></li>';
-                                        } 
+                                                //echo '<li><a href="../Templates/DenunciarPublicacaoTemplate.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-bandeira"></i>Denunciar</a></li>';
+                                                echo '<li class="denunciar-item"><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>';
+                                        }         
                                     ?>
                                     <?php
                                         if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $resposta[$contador]['cod_usu']){
@@ -318,6 +326,22 @@ session_start();
                                     ?> 
                                 </ul>
                             </div>
+                            <div class="modal-denunciar">
+                                    <div class="modal-denunciar-fundo"></div>
+                                    <div class="box-denunciar">
+                                        <div>
+                                            <h1>Qual o motivo da denuncia?</h1>
+                                            <span class="fechar-denuncia">&times;</span>
+                                        </div>
+                                       
+                                        <form form method="post" action="../DenunciarPublicacao.php">
+                                            <textarea placeholder="Qual o motivo?" id="motivo" name="texto"></textarea>
+                                            <input type="hidden" name="id_publi" value="<?php echo $resposta[$contador]['cod_publi'] ?>">                
+                                            <button type="submit"> Denunciar</button>
+                                        </form>
+                                        
+                                    </div>
+                                </div>
                         </div>
                     </div>
                     <a href="reclamacao.php?ID=<?php echo $resposta[$contador]['cod_publi'] ?>">

@@ -134,23 +134,28 @@ session_start();
                             <input type="email" name="email" id="email" placeholder="E-mail" value="<?php echo $resultado[0]['email_usu'] ?>">
                     </div>
                     <button type="submit">Alterar</button>
-                    <span class="desativar-btn">
-                            Desativar conta
-                    </span>
+                    <?php if ($_SESSION['tipo_usu'] !== 'Prefeitura'){ ?>
+                        <span class="desativar-btn">
+                                Desativar conta
+                        </span>
+                    <?php } ?>
                 </form>
-                <div class="modal-desativar">
-                    <div class="modal-desativar-fundo"></div>
-                    <div class="box-desativar">
-                        <div>
-                            <h1>Vai desativar a conta?</h1>
-                            <span class="fechar-desativar">&times;</span>
-                        </div>
-                        <div>
-                            <p>Depois que confirmar, <strong style="text-transform :uppercase" >não</strong> vai mais poder recuperar sua conta de nenhuma forma, ainda quer desativar sua conta?</p>
-                            <a href="../ApagarUsuario.php?ID=<?php echo$_SESSION['id_user']?>">Desativar conta</a>
+                <?php if ($_SESSION['tipo_usu'] !== 'Prefeitura'){ ?>
+
+                    <div class="modal-desativar">
+                        <div class="modal-desativar-fundo"></div>
+                        <div class="box-desativar">
+                            <div>
+                                <h1>Vai desativar a conta?</h1>
+                                <span class="fechar-desativar">&times;</span>
+                            </div>
+                            <div>
+                                <p>Depois que confirmar, <strong style="text-transform :uppercase" >não</strong> vai mais poder recuperar sua conta de nenhuma forma, ainda quer desativar sua conta?</p>
+                                <a href="../ApagarUsuario.php?ID=<?php echo$_SESSION['id_user']?>">Desativar conta</a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                <?php } ?>
             </div>
                 
                 
