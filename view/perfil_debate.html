@@ -25,7 +25,11 @@
 
         <script src="lib/_jquery/jquery.js"></script>
         <script src="js/js.js"></script>
+        <!-- cropp-->
 
+        <link rel="stylesheet" href="lib/_croppie-master/croppie.css">
+        <script src="lib/_croppie-master/croppie.js"></script>
+        <script src="lib/_croppie-master/exif.js"></script>
     </head>
     <body>
         <header>
@@ -234,19 +238,22 @@
         <div class="modal-troca-foto">
             <div class="modal-troca-foto-fundo"></div>
             <div class="box-troca-foto">
-                <div>
-                    <h1>trocar foto de perfil</h1>
+                <div class="modal-titulo">
+                    <h1>trocar foto de capa</h1>
                     <span class="fechar-troca-foto">&times;</span>
                 </div>
+                <div class="img-capa-corta">
+                   <img src="">
+                </div>
                 <div>                 
-                    <form>
-                        <label for="fotoPerfil">Escolher foto</label>
-                        <input type="file" name="fotopefil" id="fotoPerfil">
+                    <form id="trocarcapa">
+                        <label for="fotoCapa"><p>Escolher foto</p></label>
+                        <input type="file" name="fotocapa" id="fotoCapa">
                     </form>
-                    <button>Cortar foto</button>
+                    <button id="cortar">Cortar foto</button>
                 </div>
             </div>
-        </div>
+        </div> 
 
         <div class="modal-troca-foto-previa">
             <div class="modal-troca-foto-previa-fundo"></div>
@@ -256,12 +263,47 @@
                     <span class="fechar-troca-foto-previa">&times;</span>
                 </div>
                 <div>                 
-                    <img src="" class="previewPerfil">
-                    <button>Alterar foto</button>
+                    <img src="" class="previewCapa" style="width: 100%">
+                    <button class="alterar-capa">enviar foto</button>
 
-                    <button>carregar outra foto</button>
+                    <button class="outra-capa">tentar de novo</button>
                 </div>
             </div>
         </div>
+        <script>
+    
+    var largura= $(document).width();
+                  if(largura < 420){
+                    var tela= $(document).width();
+                  }else{
+                    var tela= 420
+                  }
+                  var  $uploadCrop = $('.img-capa-corta').croppie({
+                    
+                    enableExif: true,
+                    enforceBoundary:true,
+                    enableOrientation:true,
+                    enableResize:false,
+                    viewport: {
+                      width: 320,
+                      height: 150,
+                      
+                    },
+                    boundary: {
+                      width: tela,
+                      height: 200
+                    },
+                  });
+
+
+            
+            // $('#x').click(function(){
+                //     var d = $uploadCrop.croppie().get();
+                
+                //     $('#result').html(JSON.stringify(d));
+                // });
+                
+
+            </script>
     </body>
 </html>

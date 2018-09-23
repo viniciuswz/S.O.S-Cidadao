@@ -140,23 +140,39 @@
             <section class="pag-reclamacao">
                 <div class="Reclamacao">   
                         <div class="publicacao-topo-aberta">
+                                <a href="">
                                 <div>
                                     <img src="imagens/perfil.jpg">
                                 </div>
-                                <p><span class="negrito">Périclessssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</span>Em Maio as <time>13 horas</time></p>
-                                <div class="mini-menu-item ">
-                                    
+                                
+                                <p><span class="negrito">aaaa aa</span></a>Em Maio as <time>13 horas</time></p>
+                                
+                                <div class="mini-menu-item">
                                     <i class="icone-3pontos"></i>
-                                        <div>
-                                            <ul>
-                                                <li><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>
-                                                <li><a href="#"><i class="icone-fechar"></i></i>Remover</a></li>
-                                                <li><a href="#"><i class="icone-edit-full"></i></i>Alterar</a></li>
-
-                                            </ul>
+                                    <div><!--DA PRA TIRAR A DIV-->
+                                        <ul>
+                                            <li class="denunciar-item"><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>
+                                            <li><a href="#"><i class="icone-fechar"></i>Remover</a></li>
+                                            <li><a href="#"><i class="icone-edit-full"></i>Alterar</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="modal-denunciar">
+                                        <div class="modal-denunciar-fundo"></div>
+                                        <div class="box-denunciar">
+                                            <div>
+                                                <h1>Qual o motivo da denuncia?</h1>
+                                                <span class="fechar-denuncia">&times;</span>
+                                            </div>
+                                           
+                                            <form>
+                                                <textarea placeholder="Qual o motivo?" id="motivo"></textarea>
+                                                <button type="submit"> Denunciar</button>
+                                            </form>
                                         </div>
+                                    </div>
                                 </div>
                         </div>
+                        
                         <div class="publicacao-conteudo">
                             <h2>Falta de rampa de acesso! nesse caralho de rua puta quepariu</h2>
                             <h5>acessbilidade</h5>
@@ -206,10 +222,11 @@ muito burro para fazer isso muito muito muito muito muito muito muito muito muit
             </section> 
             <section class="prefeitura-publicacao">
                 <div class="topo-prefeitura-publicacao">
+                    <a href="">
                     <div>
                         <img src="imagens/perfil.jpg">
                     </div>
-                    <p><span class="negrito">Périturaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>  Em Maio as <time>13 horassssssssssssssss</time></p>  
+                    <p><span class="negrito">Périturaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span></a>  Em Maio as <time>13 horassssssssssssssss</time></p>  
                 </div> 
                 <div class="conteudo-resposta">
                     <span>
@@ -250,10 +267,11 @@ Dir.Adm
                 </h3>
                 <div class="comentario-user">
                     <div class="publicacao-topo-aberta">
+                        <a href="">
                         <div>
                             <img src="imagens/perfil.jpg">
                         </div>
-                        <p><span class="negrito">Périclessssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</span>Em Maio as 13 horas</p>
+                        <p><span class="negrito">Périclessssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</span></a>Em Maio as 13 horas</p>
                         <div class="mini-menu-item ">
                             <i class="icone-3pontos"></i>
                             <div>
@@ -272,19 +290,47 @@ Dir.Adm
                 </div>
                 <div class="comentario-user">
                         <div class="publicacao-topo-aberta">
+                            <a href="">
                             <div>
                                 <img src="imagens/perfil.jpg">
                             </div>
-                            <p><span class="negrito">Périclessssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</span>Em Maio as 13 horas</p>
-                            <div class="mini-menu-item ">
+                            <p><span class="negrito">Périclessssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</span></a>Em Maio as 13 horas</p>
+                            <div class="mini-menu-item">
                                 <i class="icone-3pontos"></i>
-                                <div>
+                                <div><!--DA PRA TIRAR A DIV-->
                                     <ul>
-                                        <li><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>
-                                        <li><a href="#"><i class="icone-fechar"></i></i>Remover</a></li>
-                                        <li><a href="#"><i class="icone-edit-full"></i></i>Alterar</a></li>
-                                        
+                                        <li class="denunciar-item"><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>
+                                        <li><a href="#"><i class="icone-fechar"></i>Remover</a></li>
+                                        <li class="editar-comentario"><a href="#"><i class="icone-edit-full"></i>Alterar</a></li>
                                     </ul>
+                                </div>
+                                <div class="modal-denunciar">
+                                    <div class="modal-denunciar-fundo"></div>
+                                    <div class="box-denunciar">
+                                        <div>
+                                            <h1>Qual o motivo da denuncia?</h1>
+                                            <span class="fechar-denuncia">&times;</span>
+                                        </div>
+                                       
+                                        <form>
+                                            <textarea placeholder="Qual o motivo?" id="motivo"></textarea>
+                                            <button type="submit"> Denunciar</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="modal-editar-comentario">
+                                    <div class="modal-editar-comentario-fundo"></div>
+                                    <div class="box-editar-comentario">
+                                        <div>
+                                            <h1>Editar comentario</h1>
+                                            <span class="fechar-editar-comentario">&times;</span>
+                                        </div>
+                                       
+                                        <form>
+                                            <textarea placeholder="Qual o motivo?" id="motivo"></textarea>
+                                            <button type="submit"> editar</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>  

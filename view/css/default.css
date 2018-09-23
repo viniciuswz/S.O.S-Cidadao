@@ -373,6 +373,7 @@ nav.menu > ul > li > a:hover #quantidade_de_not{
     width: 390px;
     height: 0;
     transition: 0.5s;
+    box-shadow: 1px 1px 7px #000
 }
 
 nav.notificacoes h3{
@@ -742,6 +743,10 @@ nav.notificacoes ul li a span:first-of-type{
 
  .item-publicacao .legenda p:last-of-type{
     font-weight: 600
+ }
+
+ .item-publicacao .legenda i{
+     
  }
 
  .alinha-item{
@@ -1226,6 +1231,7 @@ background-color: pink;
 
 .form-icone form h3{
     width: 80%;
+    
 }
 
 .campo-texto-icone{
@@ -2141,6 +2147,9 @@ background-color: pink;
     display: flex;
     justify-content: center;
 }
+.publicacao-topo-aberta a{
+    color: black
+}
 
 .Reclamacao .publicacao-topo-aberta{
     margin: 0 auto;
@@ -2185,7 +2194,7 @@ background-color: pink;
     
 }
 
- .publicacao-topo-aberta div:first-child{
+ .publicacao-topo-aberta a div:first-child{
    display: inline-block;
    width: 45px;
    height: 45px;
@@ -2201,7 +2210,7 @@ background-color: pink;
     font-weight: 600;
  }
 
- .publicacao-topo-aberta span{
+ .publicacao-topo-aberta p span{
      display: block;
      font-family: Open-Sans-Bold;
      display: block;
@@ -2280,6 +2289,10 @@ background-color: pink;
     justify-content: center;
     flex-direction: column;
     color:white
+}
+
+.topo-prefeitura-publicacao a{
+    color:black
 }
 
 .prefeitura-publicacao .topo-prefeitura-publicacao{
@@ -2437,7 +2450,7 @@ background-color: pink;
     
 }
 
-.comentarios .comentario-user .publicacao-topo-aberta div:first-child{
+.comentarios .comentario-user .publicacao-topo-aberta a div:first-child{
     display: inline-block;
     width: 60px;
     height: 60px;
@@ -2454,7 +2467,7 @@ background-color: pink;
     font-weight: 600;
  }
 
- .comentarios .comentario-user .publicacao-topo-aberta span{
+ .comentarios .comentario-user .publicacao-topo-aberta p span{
     font-family: Open-Sans-Bold;
     display: block;
     font-size: 15px;
@@ -2918,7 +2931,85 @@ background-color: pink;
     background-color:  rgb(255, 8, 152);  
     color: white;   
 }
+/*Denuncia*/
+.modal-editar-comentario{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 98;
+    display: none;
+    color:black;
+}
 
+.modal-editar-comentario-fundo{
+    position: fixed;
+    background-color: rgba(0, 0, 0, .9);
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 98;
+}
+.modal-editar-comentario-ativo{
+    display: block;
+}
+
+.box-editar-comentario{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background-color: white;
+    width: 480px;
+    padding-bottom: 10px;
+    z-index: 99;
+}
+
+.box-editar-comentario span{
+    font-family: arial;
+    font-size: 40px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.box-editar-comentario div:nth-child(1){
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    
+}
+
+.box-editar-comentario div h1{
+    font-size: 20px
+}
+
+.box-editar-comentario form{
+
+}
+
+.box-editar-comentario form textarea{
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+    height: 100px;
+    resize: none;
+    padding-left: 5px
+}
+
+.box-editar-comentario form button{
+    cursor: pointer;
+    display: block;
+    padding: 10px;
+    width: 80px;
+    border-radius: 10%/10px;
+    outline: none;
+    border: 0;
+    margin: 10px auto;
+    background-color:  rgb(255, 8, 152);  
+    color: white;   
+}
 /*Desativar*/
 .modal-desativar{
     position: fixed;
@@ -3075,7 +3166,7 @@ background-color: pink;
     left: 0;
     top: 0;
     z-index: 98;
-    display: block;
+    display: none;
     color:black;
 }
 
@@ -3100,7 +3191,7 @@ background-color: pink;
     background-color: white;
     width: 480px;
     padding-bottom: 10px;
-    z-index: 99;
+    z-index: 98;
 }
 
 .box-troca-foto span{
@@ -3109,7 +3200,7 @@ background-color: pink;
     font-weight: 600;
     cursor: pointer;
 }
-.box-troca-foto div:nth-child(1){
+.modal-titulo{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -3121,7 +3212,8 @@ background-color: pink;
 }
 
 
-.box-troca-foto div:nth-child(2){
+.box-troca-foto .modal-titulo div ~ div{
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -3130,12 +3222,15 @@ background-color: pink;
     flex-direction:column
 }
 .box-troca-foto form label{
+    width: 120px;
     display: block;
     margin: 0 auto;
     background-color: rgb(21, 228, 200);
     color:white;
     padding: 10px;
-    margin-top: 10px
+    margin-top: 10px;
+    border: 0;
+    text-align: center
 }
 .box-troca-foto div form input[type="file"]{
     display:none
@@ -3147,7 +3242,8 @@ background-color: pink;
     background-color: rgb(175, 60, 166);
     color:white;
     padding: 10px;
-    margin-top: 10px
+    margin-top: 10px;
+    border: 0
 }
 
 /*troca preview*/
@@ -3159,7 +3255,7 @@ background-color: pink;
     left: 0;
     top: 0;
     z-index: 98;
-    display: block;
+    display: none;
     color:black;
 }
 
@@ -3213,13 +3309,24 @@ background-color: pink;
     font-size: 14px;
     flex-direction:column
 }
-.box-troca-foto-previa form ~ button{
+.box-troca-foto-previa img ~ button:first-of-type{
+    display: block;
+    margin: 0 auto;
+    background-color: rgb(60, 133, 175);
+    color:white;
+    padding: 10px;
+    margin: 10px 0;
+    border: 0
+}
+
+.box-troca-foto-previa button ~ button {
     display: block;
     margin: 0 auto;
     background-color: rgb(175, 60, 166);
     color:white;
     padding: 10px;
-    margin-top: 10px
+    margin: 10px 0;
+    border: 0
 }
 
 /*adicionar user*/
@@ -3330,7 +3437,7 @@ background-color: pink;
 /*login/cad validacao*/
 .aviso-form-inicial{
     background-color: red;
-    width: 100%;
+    width: 83%;
     color: white;
     font-size: 14px;
     padding: 4px;

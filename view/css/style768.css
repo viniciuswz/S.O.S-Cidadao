@@ -63,8 +63,9 @@ nav.menu{
     background-color: #0086ff;
     width: 100vw;
     position: fixed;
-    top: calc(100vh - 60px);
+    /* top: calc(100vh - 60px); */
     height: 60px;
+    bottom: 0
 }
 nav.menu > ul{
     display: flex;
@@ -213,21 +214,41 @@ width: 100vw;
 
 
 .perfil-base h3{
-  position: absolute;
+    position: absolute;
     color: aliceblue;
     font-size: 29px;
-   margin-top: 30px;
-   margin-left: 15px;
+    margin: 10px 0;
+    text-align: center;
+    width: 100%;
+    z-index: 1;
     }
 
        
 /*pag todos debates*/
 
 
+.criar-publicacao div{
+    padding: 10px
+}
 .criar-publicacao p{
     font-size: 16px;
 }
+ .criar-publicacao i{
+     display: block;
+     background-size: inherit;
+     background-position: -480px -5.6px;
+     width:50px;
+     height:30px;
+ }
 
+ .criar-publicacao a{
+    
+    width: 135px;
+    
+    font-size: 13px;
+    text-align: center;
+
+ }
 .item-publicacao{
     width: 340px;
 }

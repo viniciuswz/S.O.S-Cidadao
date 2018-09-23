@@ -450,7 +450,7 @@ jQuery(function(){
     })
   })
   
-
+/* denuncia */
   jQuery(function($){
     /* abrir quando */
     $(".denunciar-item").click(function(){
@@ -463,6 +463,22 @@ jQuery(function(){
     /* fechar quando clicar no X*/
     $(".fechar-denuncia").click(function(){
       $(this).parents(":eq(2)").removeClass("modal-denunciar-ativo");
+    })
+  })
+
+  /* modal editar comentario */
+  jQuery(function($){
+    /* abrir quando */
+    $(".editar-comentario").click(function(){
+      $(this).parents(":eq(2)").find("div.modal-editar-comentario").addClass("modal-editar-comentario-ativo");
+    })
+    /* fechar quando clicar fora*/
+    $(".modal-editar-comentario-fundo").click(function(){
+      $(this).parent().removeClass("modal-editar-comentario-ativo");
+    })
+    /* fechar quando clicar no X*/
+    $(".fechar-editar-comentario").click(function(){
+      $(this).parents(":eq(1)").removeClass("modal-editar-comentario-ativo");
     })
   })
 
@@ -496,6 +512,108 @@ jQuery(function(){
       $(this).parents(":eq(2)").remove();
     })
   })
+
+  /* alterar capa */
+  
+  jQuery(function($){
+    /* abrir quando clicar */
+    $("#trocar-capa").click(function(){
+      $(".modal-troca-foto").addClass("modal-troca-foto-ativo");
+      $(document).on("change", "#fotoCapa", function(){
+        var InputData = document.getElementById('fotoCapa');
+        var caminhoImagem = InputData.value;
+        // verificando a extensão
+        var extensao = caminhoImagem.substring(
+          caminhoImagem.lastIndexOf('.') + 1).toLowerCase();
+          //verificando se é uma img
+          if (extensao == "gif" || extensao == "png" || extensao == "bmp"
+          || extensao == "jpeg" || extensao == "jpg") {
+            // vai mostrar no preview
+            if (InputData.files && InputData.files[0]) {
+              var reader = new FileReader();
+              reader.onload = function(e) {
+                // $('.img-capa-corta').attr('src', e.target.result);
+                var caminhoprev = $(".img-capa-corta").attr('src');
+                //$(".imagem").find('p:last-child').text("");
+                //trocar toda vez que uma nova foto for colocada
+                $uploadCrop.croppie('bind', {
+                  url: e.target.result
+                }).then(function(){
+                  console.log('jQuery bind complete');
+                });
+              }
+              reader.readAsDataURL(InputData.files[0]);
+            }  
+          } 
+          //se não for uma imagem
+          else {
+            $('#fotoCapa').val("");
+            alert("não é uma img")
+            return false;
+          }
+        })
+      })
+      /* fechar quando clicar fora*/
+      $(".modal-troca-foto-fundo").click(function(){
+        $(this).parent().removeClass("modal-troca-foto-ativo");
+      })
+      /* fechar quando clicar no X*/
+      $(".fechar-troca-foto").click(function(){
+        $(this).parents(":eq(2)").removeClass("modal-troca-foto-ativo");
+      })
+      
+      $("#cortar").click(function (){
+        var InputData = document.getElementById('fotoCapa');
+        var caminhoImagem = InputData.value;
+       if(caminhoImagem == ""){
+         alert("selecione uma imagem")
+       }else{
+         cortar();
+       }
+      })
+
+      function cortar(){
+       
+        $(".modal-troca-foto").css("opacity", "0");
+        
+        $('.img-capa-corta').croppie('result', { type: 'html', size: 'original', format: 'png' }).then(function (result) {
+          
+          
+          $('.img-capa-corta').croppie('result', { type: 'canvas', size: { width: 720, height: 350 }, format: 'png' }).then(function (result) {
+            $(".modal-troca-foto-previa").addClass("modal-troca-foto-previa-ativo");
+            $('.previewCapa').attr('src', result);
+            
+          });
+        });
+        
+      }
+      jQuery(function($){
+        /* fechar quando clicar fora*/
+        $(".modal-troca-foto-previa-fundo").click(function(){
+          $(this).parent().removeClass("modal-troca-foto-previa-ativo");
+        })
+        /* fechar quando clicar no X*/
+        $(".fechar-troca-foto-previa").click(function(){
+          
+          $(".modal-troca-foto-previa").removeClass("modal-troca-foto-previa-ativo");
+        })
+        //fechar quando escolher outra capa
+        $(".outra-capa").click(function(){
+          $(".modal-troca-foto").css("opacity", "1");
+          $(".modal-troca-foto-previa").removeClass("modal-troca-foto-previa-ativo");
+        })
+      })
+    });
+    jQuery(function($){
+      $(".alterar-capa").click(function (){
+        $('.img-capa-corta').croppie('result', { type: 'canvas', size: { width: 720, height: 350 }, format: 'png' }).then(function (result) {
+          $("#fotoCapa").attr("value", result)
+          
+          $("#trocarcapa").submit()
+          });
+    
+      })
+    });
 
   /* verificação login */
 

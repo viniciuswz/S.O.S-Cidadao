@@ -205,11 +205,12 @@ nav.menu > ul > li > a:hover #quantidade_de_not{
 }
 
 .perfil-base h3{
-position: absolute;
-left: 0;
-color: aliceblue;
-font-size: 29px;
-margin: 30px 0px 0px 40px
+    position: absolute;
+    left: 0;
+    color: aliceblue;
+    font-size: 29px;
+    margin: 30px 0px 0px 40px;
+    z-index: 99
 }
 /*pag todos debates*/
 
