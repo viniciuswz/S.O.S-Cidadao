@@ -36,7 +36,7 @@ class GerenNotiAdm extends GenericaM{
                                             INNER JOIN publicacao ON (comentario.cod_publi = publicacao.cod_publi)
                                             INNER JOIN usuario ON (comentario.cod_usu = usuario.cod_usu)
                                             WHERE status_denun_comen = 'A' AND status_comen = 'A' AND
-                                            ind_visu_adm != 'V' %s";
+                                            status_publi = 'A' AND ind_visu_adm != 'V' %s";
     
     private $resultados = array();  
     private $indVisu;
@@ -49,6 +49,9 @@ class GerenNotiAdm extends GenericaM{
         $ids = $this->selectIdsCoisasDenunciadas('countDenun', array('Publi'), "ID", "dataHora_denun_publi");
         $dados = $this->selectQuantDenun('countDenun', array('Publi'),' AND publicacao.cod_publi = ', $ids);     
         $resultado = $this->gerarMensagem($dados, 'a publicação ','Publicacacao', 'DenunPubli');
+        if(empty($resultado)){
+            return;
+        }
         $this->resultados = array_merge_recursive($this->resultados, $resultado);        
         return $resultado;
 
@@ -57,15 +60,21 @@ class GerenNotiAdm extends GenericaM{
     public function SelectDenunDebate(){
         $ids = $this->selectIdsCoisasDenunciadas('countDenun', array('Debate'), 'ID', 'dataHora_denun_deba');        
         $dados = $this->selectQuantDenun('countDenun', array('Debate'),' AND debate.cod_deba = ', $ids);     
-        $resultado = $this->gerarMensagem($dados, 'o debate ','Debate', 'DenunDeba');        
+        $resultado = $this->gerarMensagem($dados, 'o debate ','Debate', 'DenunDeba');       
+        if(empty($resultado)){
+            return;
+        } 
         $this->resultados = array_merge_recursive($this->resultados, $resultado);        
         return $resultado;
     }
 
     public function SelectDenunComen(){
         $ids = $this->selectIdsCoisasDenunciadas('countDenun', array('Comen'), 'ID', 'dataHora_denun_comen');        
-        $dados = $this->selectQuantDenun('countDenun', array('Comen'),' AND comentario.cod_comen = ', $ids);     
+        $dados = $this->selectQuantDenun('countDenun', array('Comen'),' AND comentario.cod_comen = ', $ids);    
         $resultado = $this->gerarMensagem($dados, 'o comentario de ','Comentário', 'DenunComen');        
+        if(empty($resultado)){
+            return;
+        }
         $this->resultados = array_merge_recursive($this->resultados, $resultado);        
         return $resultado;
     }
@@ -148,11 +157,17 @@ class GerenNotiAdm extends GenericaM{
                     $resultado[$contador]['indTipo'] = $indTipo; //dasdasdasdasdasdasd
                     $resultado[$contador]['classe'] = $this->nomeClasse($dados[$contador]['ind']);
                     //$resultado[$contador]['Hora'] = strtotime($listaCurtidores[$contador][0]['dataHora']);
+                    if($tipoNoti == 'Publicacacao' OR $tipoNoti == 'Comentário'){
+                        $resultado[$contador]['link'] = 'reclamacao';
+                    }else if($tipoNoti == 'Debate'){
+                        $resultado[$contador]['link'] = 'Pagina-debate';
+                    }
                     $resultado[$contador]['DataHora'] = $dados[$contador]['DataHora'];
                 $contador++;
             }
+            return $resultado; 
         }        
-        return $resultado;        
+               
     }
 
     public function notificacoes(){
