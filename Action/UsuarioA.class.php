@@ -357,6 +357,9 @@ class UsuarioA extends UsuarioM{
         if(!$resposta->rowCount()){
             throw new \Exception("Não foi possível mudar o status",9);
         }
+        if($codReturn == 3){ // 3 = dono da conta q esta apagando
+            session_destroy(); // destruir sessao
+        }
         return $codReturn;
     }
 
