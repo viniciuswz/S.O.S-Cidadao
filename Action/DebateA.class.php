@@ -3,6 +3,7 @@ namespace Action;
 use Model\DebateM;
 use Core\DebateDenuncia;
 use Core\Usuario;
+use Core\Mensagens;
 use Classes\TratarImg;
 use Classes\Paginacao;
 use Classes\TratarDataHora;
@@ -84,7 +85,7 @@ class DebateA extends DebateM{
         $inserir = $this->runQuery($sql);
         $idInserido = $this->last();
         $this->setCodDeba($idInserido);
-        $this->inserirParticipante('I');//Aqui vai inserir o dono
+        $this->inserirParticipante('I',TRUE);//Aqui vai inserir o dono
         if(!$inserir->rowCount()){  // Se der erro cai nesse if          
             throw new \Exception("Não foi possível realizar o cadastro da publicacao",13);   
         }
@@ -299,10 +300,12 @@ class DebateA extends DebateM{
         
     }
 
-    public function inserirParticipante($status){
+    public function inserirParticipante($status, $indDono = null){
         $usuario = new Usuario();
         $usuario->setCodUsu($this->getCodUsu());
         $tipo = $usuario->getDescTipo();
+        
+
         if($tipo != 'Comum'){
             throw new \Exception("Você nao tem permissao",9);
         }
@@ -312,11 +315,29 @@ class DebateA extends DebateM{
                         $this->getCodUsu(),
                         $status
         );
-        $inserir = $this->runQuery($sql);
+        $inserir = $this->runQuery($sql);        
         if(!$inserir->rowCount()){  // Se der erro cai nesse if          
             throw new \Exception("Não foi possível realizar o cadastro da publicacao",13);   
+        }       
+        if($indDono == null){ // inserir a mensagem caso ele nao for o dono
+            $res = $usuario->getDadosUser();
+            $nome = $res[0]['nome_usu'];
+            $this->inserirMensagemSistema($nome . " entrou no debate");
         }
+        return;        
     }
+
+    public function inserirMensagemSistema($texto){ // inserir noticias como mensagens
+        $usuario = new Usuario();        
+        $tirar = array('in',')','(',"'");// tirar a parte q eu nao quero
+        $codUsuSistema = str_replace($tirar,"",$usuario->getCodUsuByTipoUsu("in('Sistema')")); // pegar id do usuario sistema
+        $mensagem = new Mensagens();
+        $mensagem->setCodUsu($codUsuSistema);
+        $mensagem->setCodDeba($this->getCodDeba());
+        $mensagem->setTextoMensa($texto);
+        $mensagem->inserirMensagem();
+    }
+
     public function updateStatusDeba($status){        
         $usuario = new Usuario();
         $usuario->setCodUsu($this->getCodUsu());
@@ -343,14 +364,16 @@ class DebateA extends DebateM{
         }
 
         return;
-    }
+    }    
     
     public function updateStatusParti($status,$codUsuApagar = null){ // mudar status do participante  
        
         if($codUsuApagar != null){ // dono esta eliminado um usuario
             $codUsu = $codUsuApagar; // codigo do usuario q tem q apagar
+            $ind = 1;
         }else{
             $codUsu = $this->getCodUsu(); // codigo do usuario q tem q apagar, o próprio usuario esta saindo
+            $ind = 2;
         }    
 
         $sql = sprintf(
@@ -362,6 +385,13 @@ class DebateA extends DebateM{
         $resposta = $this->runQuery($sql);
         if(!$resposta->rowCount()){
             throw new \Exception("Não foi possível mudar o status",9);
+        }
+        if($ind == 2){ // notificar
+            $usuario = new Usuario();
+            $usuario->setCodUsu($codUsu);
+            $res = $usuario->getDadosUser();
+            $nome = $res[0]['nome_usu'];
+            $this->inserirMensagemSistema($nome . " saiu do debate");
         }
         return;
     }    

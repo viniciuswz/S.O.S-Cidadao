@@ -16,7 +16,7 @@ try{
 
     $debate = new Debate();
     $debate->setCodUsu($_SESSION['id_user']);
-    $debate->setCodDeba($_GET['ID']);
+    $debate->setCodDeba($_GET['ID']);    
     $debate->sairDebate();
     echo "<script> alert('Até mais!!');javascript:window.location='./view/todosdebates.php';</script>";    
         

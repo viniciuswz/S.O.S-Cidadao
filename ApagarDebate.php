@@ -20,7 +20,7 @@ try{
     $publi->setCodUsu($_SESSION['id_user']);   
     $publi->updateStatusDeba('I');
 
-    echo "<script> alert('Status mudado');javascript:window.location='./view/todosDebate.php';</script>";
+    echo "<script> alert('Status mudado');javascript:window.location='./view/todosdebates.php';</script>";
         
 }catch(Exception $exc){  
     $erro = $exc->getCode();   
@@ -34,7 +34,7 @@ try{
             break;
         case 12://Mexeu no insprnsionar elemento, ou nao tem valores validos
         case 9://Erro no ao fazer a insercao
-            echo "<script> alert('$mensagem');javascript:window.location='./view/todosDebate.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='./view/todosdebates.php';</script>";
             break;        
         default: //Qualquer outro erro cai aqui
             echo "<script> alert('$mensagem');javascript:window.location='./view/login.php';</script>";
