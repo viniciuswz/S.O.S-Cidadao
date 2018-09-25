@@ -222,7 +222,8 @@ class DebateA extends DebateM{
         return $resultado;
     }
 
-    public function entrarDebate(){ // entrar no debate
+    public function entrarDebate(){ // entrar no debate        
+
         $verifi = $this->verificarSeParticipaOuNao($this->getCodDeba());        
         if($verifi){ // se ja participar estoura um erro
             throw new \Exception("Você ja participa", 9);
@@ -274,6 +275,13 @@ class DebateA extends DebateM{
     }
 
     public function inserirParticipante($status){
+        $usuario = new Usuario();
+        $usuario->setCodUsu($this->getCodUsu());
+        $tipo = $usuario->getDescTipo();
+        if($tipo != 'Comum'){
+            throw new \Exception("Você nao tem permissao",9);
+        }
+
         $sql = sprintf($this->sqlInserirPartici,
                         $this->getCodDeba(),
                         $this->getCodUsu(),
