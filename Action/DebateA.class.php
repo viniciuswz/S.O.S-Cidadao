@@ -61,6 +61,7 @@ class DebateA extends DebateM{
     private $sqlPaginaAtual;
 
     private $sqlUpdateStatusDeba = "UPDATE debate SET status_deba = '%s' WHERE cod_deba = '%s' AND cod_usu = '%s'";
+    private $sqlUpdateParticipante = "UPDATE debate_participante SET status_lista = '%s' WHERE cod_deba = '%s' AND cod_usu = '%s'";
 
     public function tratarImagem(){ // Mexer depois nessa funcao
         //Fazer a parada da thumb       
@@ -106,7 +107,7 @@ class DebateA extends DebateM{
         return $dadosTratados;
     }
 
-    public function listByIdDeba($atributo = 'sqlSelect'){ // Listar pelo id da publicacao
+    public function listByIdDeba($atributo = 'sqlSelect'){ // Listar pelo id da publicacao        
         $prepararWherePubli = sprintf($this->whereIdDeba, $this->getCodDeba());         
         $sql = sprintf($this->{$atributo},
                         $this->whereListFromALL,
@@ -189,11 +190,11 @@ class DebateA extends DebateM{
         if($quantidade > 0){ //Se for maior q zero é pq ele curtiu
             return TRUE;
         }
-        if($indErro != null){ // em alguns casos preciso de um erro
+        if($indErro != null){ // em alguns casos preciso de um erro            
             $usuario = new Usuario();
             $usuario->setCodUsu($this->getCodUsu());
             $tipo = $usuario->getDescTipo();
-            if($tipo == 'Adm' OR $tipo = 'Moderador'){ // se por um acaso for adm pode entrar tranquilamente
+            if($tipo == 'Adm' OR $tipo == 'Moderador'){ // se por um acaso for adm pode entrar tranquilamente               
                 return TRUE;
             }else{
                 throw new \Exception("Não participa do debate",9);
@@ -234,6 +235,18 @@ class DebateA extends DebateM{
         }
 
         $this->inserirParticipante('N');        
+    }
+
+    public function sairDebate($indRemoverUser = null,$codUsuApagar = null){
+        $res = $this->listByIdDeba('sqlListDebaQuandoAberto');
+        if($res[0]['cod_usu'] == $this->getCodUsu()){
+            if($indRemoverUser != null){ // dono do debate esta apagando usuario
+                $this->updateStatusParti('I', $codUsuApagar);
+            }
+            $this->updateStatusDeba('I'); // apagar debate, se o dono sair o debate é "apagado"
+        }else{
+            $this->updateStatusParti('I'); // NAO É O DONO
+        }
     }
 
     public function quantidadeTotalPubli($where){//Pegar a quantidade de debates
@@ -319,4 +332,25 @@ class DebateA extends DebateM{
 
         return;
     }
+    
+    public function updateStatusParti($status,$codUsuApagar = null){ // mudar status do participante  
+       
+        if($codUsuApagar != null){ // dono esta eliminado um usuario
+            $codUsu = $codUsuApagar; // codigo do usuario q tem q apagar
+        }else{
+            $codUsu = $this->getCodUsu(); // codigo do usuario q tem q apagar, o próprio usuario esta saindo
+        }    
+
+        $sql = sprintf(
+            $this->sqlUpdateParticipante,
+            $status,
+            $this->getCodDeba(),
+            $codUsu
+        );
+        $resposta = $this->runQuery($sql);
+        if(!$resposta->rowCount()){
+            throw new \Exception("Não foi possível mudar o status",9);
+        }
+        return;
+    }    
 }

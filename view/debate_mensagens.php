@@ -164,9 +164,9 @@ session_start();
                                     <li id="abrir-debate-info"><span>Dados do grupo</span></li>
                                     <?php
                                         if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $resposta[0]['cod_usu']){
-                                            echo '<li><a href="SairDebate.php?ID='. $resposta[0]['cod_deba'].'"><span>Apagar grupo</span></a></li>';
+                                            echo '<li><a href="../SairDebate.php?ID='. $resposta[0]['cod_deba'].'"><span>Apagar grupo</span></a></li>';
                                         }else{
-                                            echo '<li><a href="SairDebate.php?ID='. $resposta[0]['cod_deba'].'"><span>Sair do grupo</span></a></li>';
+                                            echo '<li><a href="../SairDebate.php?ID='. $resposta[0]['cod_deba'].'"><span>Sair do grupo</span></a></li>';
                                         }
                                     ?>
                                     
