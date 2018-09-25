@@ -245,7 +245,10 @@
                 <div class="img-capa-corta">
                    <img src="">
                 </div>
-                <div>                 
+                <div>  
+                <div class="aviso-form-inicial ">
+                        <p>O campo tal e pa</p>
+                    </div>               
                     <form id="trocarcapa">
                         <label for="fotoCapa"><p>Escolher foto</p></label>
                         <input type="file" name="fotocapa" id="fotoCapa">
@@ -270,6 +273,45 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal-troca-foto-perfil">
+                <div class="modal-troca-foto-perfil-fundo"></div>
+                <div class="box-troca-foto-perfil">
+                    <div class="modal-titulo">
+                        <h1>trocar foto de perfil</h1>
+                        <span class="fechar-troca-foto-perfil">&times;</span>
+                    </div>
+                    <div class="img-perfil-corta">
+                       <img src="">
+                    </div>
+                    <div>  
+                    <div class="aviso-form-inicial ">
+                            <p>O campo tal e pa</p>
+                        </div>               
+                        <form id="trocarperfil">
+                            <label for="fotoPerfil"><p>Escolher foto</p></label>
+                            <input type="file" name="fotoperfil" id="fotoPerfil">
+                        </form>
+                        <button id="cortarPerfil">Cortar foto</button>
+                    </div>
+                </div>
+            </div> 
+    
+            <div class="modal-troca-foto-perfil-previa">
+                <div class="modal-troca-foto-perfil-previa-fundo"></div>
+                <div class="box-troca-foto-perfil-previa">
+                    <div>
+                        <h1>Gostou?</h1>
+                        <span class="fechar-troca-foto-perfil-previa">&times;</span>
+                    </div>
+                    <div>                 
+                        <img src="" class="previewPerfil" style="width: 180px">
+                        <button class="alterar-perfil">enviar foto</button>
+    
+                        <button class="outra-perfil">tentar de novo</button>
+                    </div>
+                </div>
+            </div>
         <script>
     
     var largura= $(document).width();
@@ -278,6 +320,7 @@
                   }else{
                     var tela= 420
                   }
+
                   var  $uploadCrop = $('.img-capa-corta').croppie({
                     
                     enableExif: true,
@@ -292,6 +335,24 @@
                     boundary: {
                       width: tela,
                       height: 200
+                    },
+                  });
+
+var  $uploadCropPerfil = $('.img-perfil-corta').croppie({
+                    
+                    enableExif: true,
+                    enforceBoundary:true,
+                    enableOrientation:true,
+                    enableResize:false,
+                    viewport: {
+                      width: 200,
+                      height: 200,
+                      type: 'circle'
+                      
+                    },
+                    boundary: {
+                      width: tela,
+                      height: 300
                     },
                   });
 

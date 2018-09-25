@@ -528,6 +528,7 @@ jQuery(function(){
           //verificando se é uma img
           if (extensao == "gif" || extensao == "png" || extensao == "bmp"
           || extensao == "jpeg" || extensao == "jpg") {
+            $(".box-troca-foto").find(".aviso-form-inicial").css("display","none")
             // vai mostrar no preview
             if (InputData.files && InputData.files[0]) {
               var reader = new FileReader();
@@ -548,7 +549,10 @@ jQuery(function(){
           //se não for uma imagem
           else {
             $('#fotoCapa').val("");
-            alert("não é uma img")
+            
+            $(".box-troca-foto").find(".aviso-form-inicial").css("display","block")
+            $(".box-troca-foto").find(".aviso-form-inicial").find("p").text("Isso não é uma imagem")
+      
             return false;
           }
         })
@@ -591,11 +595,13 @@ jQuery(function(){
         /* fechar quando clicar fora*/
         $(".modal-troca-foto-previa-fundo").click(function(){
           $(this).parent().removeClass("modal-troca-foto-previa-ativo");
+          $(".modal-troca-foto").css("opacity", "1");
         })
         /* fechar quando clicar no X*/
         $(".fechar-troca-foto-previa").click(function(){
           
           $(".modal-troca-foto-previa").removeClass("modal-troca-foto-previa-ativo");
+          $(".modal-troca-foto").css("opacity", "1");
         })
         //fechar quando escolher outra capa
         $(".outra-capa").click(function(){
@@ -608,13 +614,123 @@ jQuery(function(){
       $(".alterar-capa").click(function (){
         $('.img-capa-corta').croppie('result', { type: 'canvas', size: { width: 720, height: 350 }, format: 'png' }).then(function (result) {
           $("#fotoCapa").attr("value", result)
-          
           $("#trocarcapa").submit()
           });
     
       })
     });
+    //trocar foto perfil
 
+    jQuery(function($){
+      /* abrir quando clicar */
+      $("#trocar-perfil").click(function(){
+        $("body").css("overflow","hidden")
+        $(".modal-troca-foto-perfil").addClass("modal-troca-foto-perfil-ativo");
+        $(document).on("change", "#fotoPerfil", function(){
+          var InputData = document.getElementById('fotoPerfil');
+          var caminhoImagem = InputData.value;
+          // verificando a extensão
+          var extensao = caminhoImagem.substring(
+            caminhoImagem.lastIndexOf('.') + 1).toLowerCase();
+            //verificando se é uma img
+            if (extensao == "gif" || extensao == "png" || extensao == "bmp"
+            || extensao == "jpeg" || extensao == "jpg") {
+              $(".box-troca-foto-perfil").find(".aviso-form-inicial").css("display","none")
+              // vai mostrar no preview
+              if (InputData.files && InputData.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                  // $('.img-capa-corta').attr('src', e.target.result);
+                  var caminhoprev = $(".img-perfil-corta").attr('src');
+                  //$(".imagem").find('p:last-child').text("");
+                  //trocar toda vez que uma nova foto for colocada
+                  $uploadCropPerfil.croppie('bind', {
+                    url: e.target.result
+                  }).then(function(){
+                    console.log('jQuery bind complete');
+                  });
+                }
+                reader.readAsDataURL(InputData.files[0]);
+              }  
+            } 
+            //se não for uma imagem
+            else {
+              $('#fotoCapa').val("");
+              
+              $(".box-troca-foto-perfil").find(".aviso-form-inicial").css("display","block")
+              $(".box-troca-foto-perfil").find(".aviso-form-inicial").find("p").text("Isso não é uma imagem")
+        
+              return false;
+            }
+          })
+        })
+        /* fechar quando clicar fora*/
+        $(".modal-troca-foto-perfil-fundo").click(function(){
+          $(this).parent().removeClass("modal-troca-foto-perfil-ativo");
+        })
+        /* fechar quando clicar no X*/
+        $(".fechar-troca-foto-perfil").click(function(){
+          $(this).parents(":eq(2)").removeClass("modal-troca-foto-perfil-ativo");
+        })
+        
+        $("#cortarPerfil").click(function (){
+          var InputData = document.getElementById('fotoPerfil');
+          var caminhoImagem = InputData.value;
+         if(caminhoImagem == ""){
+           alert("selecione uma imagem")
+         }else{
+           cortarP();
+         }
+        })
+  
+        function cortarP(){
+         
+          $(".modal-troca-foto-perfil").css("opacity", "0");
+          
+          $('.img-perfil-corta').croppie('result', { type: 'html', size: 'original', format: 'png' }).then(function (result) {
+            
+            
+            $('.img-perfil-corta').croppie('result', { type: 'canvas', size: { width: 180, height: 180 }, format: 'png' }).then(function (result) {
+              $(".modal-troca-foto-perfil-previa").addClass("modal-troca-foto-perfil-previa-ativo");
+              $('.previewPerfil').attr('src', result);
+              
+            });
+          });
+          
+        }
+        jQuery(function($){
+          /* fechar quando clicar fora*/
+          $(".modal-troca-foto-perfil-previa-fundo").click(function(){
+            
+            $(".modal-troca-foto-perfil modal-troca-foto-perfil-ativo").css("opacity", "0");
+            $(this).parent().removeClass("modal-troca-foto-previa-perfil-ativo");
+          })
+          /* fechar quando clicar no X*/
+          $(".fechar-troca-foto-perfil-previa").click(function(){
+         
+            
+            $(".modal-troca-foto-perfil-previa").removeClass("modal-troca-foto-perfil-previa-ativo");
+            $(".modal-troca-foto-perfil").css("opacity", "1");
+          })
+          //fechar quando escolher outra foto
+          $(".outra-perfil").click(function(){
+        
+           
+            $(".modal-troca-foto-perfil-previa").removeClass("modal-troca-foto-perfil-previa-ativo");
+            $(".modal-troca-foto-perfil").css("opacity", "1");
+          })
+        })
+      });
+      jQuery(function($){
+        $(".alterar-perfil").click(function (){
+          $('.img-perfil-corta').croppie('result', { type: 'canvas', size: { width: 720, height: 350 }, format: 'png' }).then(function (result) {
+           $("#fotoPerfil").attr("value", result)
+            $("#trocarperfil").submit()
+            });
+      
+        })
+      });
+  
   /* verificação login */
 
   jQuery(function($){
