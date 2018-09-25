@@ -165,8 +165,10 @@ session_start();
                                     <?php
                                         if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $resposta[0]['cod_usu']){
                                             echo '<li><a href="../SairDebate.php?ID='. $resposta[0]['cod_deba'].'"><span>Apagar grupo</span></a></li>';
-                                        }else{
+                                        }else if($_SESSION['tipo_usu'] == 'Comum'){
                                             echo '<li><a href="../SairDebate.php?ID='. $resposta[0]['cod_deba'].'"><span>Sair do grupo</span></a></li>';
+                                        }else if($_SESSION['tipo_usu'] == 'Adm' OR $_SESSION['tipo_usu'] == 'Moderador'){
+                                            echo '<li><a href="../SairDebate.php?ID='. $resposta[0]['cod_deba'].'"><span>Apagar Grupo</span></a></li>';
                                         }
                                     ?>
                                     

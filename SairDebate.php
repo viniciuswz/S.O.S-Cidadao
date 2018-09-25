@@ -7,7 +7,7 @@ use Classes\ValidarCampos;
 session_start();
   
 try{                     
-    $tipoUsuPermi = array('Comum');
+    $tipoUsuPermi = array('Comum','Adm','Moderador');
     Usuario::verificarLogin(1,$tipoUsuPermi);  // Tem q estar logado         
 
     $nomesCampos = array('ID');// Nomes dos campos que receberei do formulario

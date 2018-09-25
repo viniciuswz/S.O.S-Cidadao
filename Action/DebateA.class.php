@@ -238,14 +238,26 @@ class DebateA extends DebateM{
     }
 
     public function sairDebate($indRemoverUser = null,$codUsuApagar = null){
+        $usuario = new Usuario();
+        $usuario->setCodUsu($this->getCodUsu());
+        $tipo = $usuario->getDescTipo();   
+        if($tipo == 'Adm' or $tipo == 'Moderador'){ // Administracao apagando
+            $this->updateStatusDeba('I');
+            return;
+        }
+
         $res = $this->listByIdDeba('sqlListDebaQuandoAberto');
+
         if($res[0]['cod_usu'] == $this->getCodUsu()){
             if($indRemoverUser != null){ // dono do debate esta apagando usuario
                 $this->updateStatusParti('I', $codUsuApagar);
+                return;
             }
             $this->updateStatusDeba('I'); // apagar debate, se o dono sair o debate é "apagado"
+            return;
         }else{
             $this->updateStatusParti('I'); // NAO É O DONO
+            return;
         }
     }
 
