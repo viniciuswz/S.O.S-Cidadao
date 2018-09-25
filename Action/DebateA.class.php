@@ -32,7 +32,7 @@ class DebateA extends DebateM{
                                                     INNER JOIN usuario ON (usuario.cod_usu = debate_participante.cod_usu)
                                                     INNER JOIN debate ON (debate_participante.cod_deba = debate.cod_deba)    
                                                     WHERE data_fim_lista is null AND debate_participante.cod_deba = '%s' 
-                                                    AND debate_participante.cod_usu = '%s' ";
+                                                    AND debate_participante.cod_usu = '%s' AND status_lista = 'A'";
     
     private $sqlListarParticipantes = "SELECT usuario.cod_usu, nome_usu, img_perfil_usu, ind_visu_criador FROM debate_participante
                                                     INNER JOIN usuario ON (debate_participante.cod_usu = usuario.cod_usu)
@@ -222,9 +222,17 @@ class DebateA extends DebateM{
         return $resultado;
     }
 
-    public function getDadosDebate(){// quando estiver aberto
+    public function entrarDebate(){ // entrar no debate
+        $verifi = $this->verificarSeParticipaOuNao($this->getCodDeba());        
+        if($verifi){ // se ja participar estoura um erro
+            throw new \Exception("Você ja participa", 9);
+        }
+        $qtdParti = $this->quantidadeTotalParticipantes($this->getCodDeba());
+        if($qtdParti > 15){ // se tiver muitos participantes
+            throw new \Exception("Limite de participantes alcançado", 15);
+        }
 
-
+        $this->inserirParticipante('N');        
     }
 
     public function quantidadeTotalPubli($where){//Pegar a quantidade de debates
