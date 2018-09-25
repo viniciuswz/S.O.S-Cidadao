@@ -14,7 +14,7 @@ session_start();
             $debate->setCodUsu($_SESSION['id_user']); 
             $tipoUsu = $_SESSION['tipo_usu'];
             $dados = new Usuario();
-            $dados->setCodUsu($_SESSION['id_user']);
+            $dados->setCodUsu($_SESSION['id_user']); 
             $resultado = $dados->getDadosUser();
 
         }
@@ -24,13 +24,19 @@ session_start();
         $validar->verificarTipoInt($nomesCampos, $_GET); // Verificar se o parametro da url é um numero        
 
         $debate->setCodDeba($_GET['ID']);        
-        $resposta = $debate->listByIdDeba();   
+        $resposta = $debate->listByIdDeba(); 
+        //var_dump($resposta);  
         
-        if(isset($resposta[0]['indParticipa'])){
+        if(isset($resposta[0]['indParticipa']) AND $resposta[0]['indParticipa']
+        OR isset($tipoUsu) AND ($tipoUsu == 'Adm' OR $tipoUsu == 'Moderador')){
             $txtButton = 'Entrar no debate';
+            $link = 'debate_mensagens';
         }else{
             $txtButton = 'Participar do debate';
+            $link = 'InserirParticipante';
         }        
+
+        
         
 ?>
 <!DOCTYPE html>
@@ -173,7 +179,7 @@ session_start();
                                 <i class="icone-categoria-debate"></i><span><?php echo $resposta[0]['tema_deba']?></span>
                             </div>
                         </div>   
-                            <a href="#"><?php echo $txtButton ?></a>
+                            <a href="<?php echo $link ?>.php?ID=<?php echo $_GET['ID']?>"><?php echo $txtButton ?></a>
                     </div>
                     
         

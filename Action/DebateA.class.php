@@ -33,6 +33,24 @@ class DebateA extends DebateM{
                                                     INNER JOIN debate ON (debate_participante.cod_deba = debate.cod_deba)    
                                                     WHERE data_fim_lista is null AND debate_participante.cod_deba = '%s' 
                                                     AND debate_participante.cod_usu = '%s' ";
+    
+    private $sqlListarParticipantes = "SELECT usuario.cod_usu, nome_usu, img_perfil_usu, ind_visu_criador FROM debate_participante
+                                                    INNER JOIN usuario ON (debate_participante.cod_usu = usuario.cod_usu)
+                                                    INNER JOIN debate ON (debate_participante.cod_deba = debate.cod_deba)
+                                                    WHERE status_lista = 'A' AND
+                                                    data_fim_lista is null AND %s AND debate.cod_deba = '%s'";
+
+    private $sqlListarDebatesQParticipa = "SELECT img_deba, nome_deba, debate.cod_deba FROM debate 
+                                                INNER JOIN debate_participante ON (debate_participante.cod_deba = debate.cod_deba)
+                                                INNER JOIN usuario ON (debate_participante.cod_usu = usuario.cod_usu)
+                                                WHERE status_lista = 'A' AND 
+                                                data_fim_lista is null AND %s AND debate_participante.cod_usu = '%s'";
+    
+    private $sqlListDebaQuandoAberto = "SELECT img_deba, nome_deba, debate.cod_deba, debate.cod_usu,dataHora_deba, nome_usu 
+                                            FROM debate INNER JOIN usuario ON (usuario.cod_usu = debate.cod_usu) 
+                                            INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu) 
+                                            WHERE descri_tipo_usu = 'Comum' AND %s  %s %s";
+
 
     private $whereListFromALL = "status_usu = 'A' AND status_deba = 'A' ";
 
@@ -88,9 +106,9 @@ class DebateA extends DebateM{
         return $dadosTratados;
     }
 
-    public function listByIdDeba(){ // Listar pelo id da publicacao
+    public function listByIdDeba($atributo = 'sqlSelect'){ // Listar pelo id da publicacao
         $prepararWherePubli = sprintf($this->whereIdDeba, $this->getCodDeba());         
-        $sql = sprintf($this->sqlSelect,
+        $sql = sprintf($this->{$atributo},
                         $this->whereListFromALL,
                         $prepararWherePubli,
                         ' AND 1=1'
@@ -162,7 +180,7 @@ class DebateA extends DebateM{
         return $res[0]['COUNT(*)'];
     }
 
-    public function verificarSeParticipaOuNao($codDeba){ //Verifica se o usuario ja esta participando
+    public function verificarSeParticipaOuNao($codDeba, $indErro = null){ //Verifica se o usuario ja esta participando
         $sql = sprintf($this->sqlVerificarSeEstaParticipando,
                         $codDeba,
                         $this->getCodUsu());          
@@ -171,7 +189,42 @@ class DebateA extends DebateM{
         if($quantidade > 0){ //Se for maior q zero é pq ele curtiu
             return TRUE;
         }
+        if($indErro != null){ // em alguns casos preciso de um erro
+            $usuario = new Usuario();
+            $usuario->setCodUsu($this->getCodUsu());
+            $tipo = $usuario->getDescTipo();
+            if($tipo == 'Adm' OR $tipo = 'Moderador'){ // se por um acaso for adm pode entrar tranquilamente
+                return TRUE;
+            }else{
+                throw new \Exception("Não participa do debate",9);
+            }           
+        }
         return FALSE;
+    }
+
+    public function listarParticipantes(){ // listar participantes do debate
+        $sql = sprintf(
+            $this->sqlListarParticipantes,
+            $this->whereListFromALL,
+            $this->getCodDeba()
+        );
+        $resultado = $this->runSelect($sql);        
+        return $resultado;
+    }
+
+    public function listarDebatesQpartcipo(){
+        $sql = sprintf(
+            $this->sqlListarDebatesQParticipa,
+            $this->whereListFromALL,
+            $this->getCodUsu()
+        );
+        $resultado = $this->runSelect($sql);        
+        return $resultado;
+    }
+
+    public function getDadosDebate(){// quando estiver aberto
+
+
     }
 
     public function quantidadeTotalPubli($where){//Pegar a quantidade de debates
