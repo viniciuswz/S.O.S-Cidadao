@@ -5,13 +5,15 @@ session_start();
     
     use Core\Usuario;    
     use Core\Debate;
+    use Core\Mensagens;
     use Classes\ValidarCampos;
     try{        
 
         $tipoUsuPermi = array('Prefeitura','Adm','Funcionario','Moderador','Comum');
         Usuario::verificarLogin(1,$tipoUsuPermi);
 
-        $debate = new Debate();        
+        $debate = new Debate(); 
+        $mensagem = new Mensagens($_GET['ID']);       
 
         if(isset($_SESSION['id_user']) AND !empty($_SESSION['id_user'])){
             $debate->setCodUsu($_SESSION['id_user']); 
@@ -21,13 +23,16 @@ session_start();
         $validar = new ValidarCampos($nomesCampos, $_GET);
         $validar->verificarTipoInt($nomesCampos, $_GET); // Verificar se o parametro da url é um numero     
         $debate->setCodDeba($_GET['ID']);   
-        
-        
+        $mensagem->setCodDeba($_GET['ID']);   
+                
         $resposta = $debate->listByIdDeba('sqlListDebaQuandoAberto');
         $debate->verificarSeParticipaOuNao($_GET['ID'], TRUE);       
 
         $participantes = $debate->listarParticipantes();
         $listDeba = $debate->listarDebatesQpartcipo();
+        $mensagem->setCodUsu($_SESSION['id_user']);
+        $mensagem = $mensagem->getMensagens();
+        //var_dump($mensagem);
         
         //var_dump($resposta);
 ?>
@@ -179,7 +184,39 @@ session_start();
                 </header>
                 <div class="mensagens">
 
-                    <div class="linha-mensagem_padrao">
+
+                    <?php
+                        $contador = 0;
+                        while($contador < count($mensagem)){
+                            $classe = $mensagem[$contador]['classe']
+                    ?>     
+                        
+                        <div class="<?php echo $classe?>">
+
+                            <?php if($classe == 'linha-mensagem_padrao') { ?>  
+                                                          
+                                    <div class="usuario-msg-foto">
+                                        <img src="../Img/perfil/<?php echo $mensagem[$contador]['img_perfil_usu'] ?>">
+                                    </div>
+                                    <div class="mensagem_padrao">
+                                <a href="perfil_reclamacao.php?ID=<?php echo $mensagem[$contador]['cod_usu'] ?>">
+                                    <span class="nome"><?php echo $mensagem[$contador]['nome_usu'] ?></span>
+                                </a>
+                            <?php }else{ ?>
+                                <div>
+                            <?php } ?>   
+                                <span >
+                                    <?php echo $mensagem[$contador]['texto_mensa'] ?><sub><?php echo $mensagem[$contador]['hora'] ?></sub>
+                                </span>
+                            </div>
+                        </div>
+                    <?php
+                        $contador++;
+                        }
+
+                    ?>
+
+                    <!-- <div class="linha-mensagem_padrao">
                         <div class="usuario-msg-foto">
                             <img src="imagens/perfil.jpg">
                         </div>
@@ -281,7 +318,7 @@ session_start();
                                 teeeeeeeeeeeeeeeee<sub>16:55</sub>
                             </span>
                         </div>
-                    </div>
+                    </div> -->
                         
                 </div>
 
