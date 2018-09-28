@@ -1,6 +1,7 @@
 <?php
 namespace Action;
 use Core\Usuario;
+use Core\Debate;
 use Model\MensagensM;
 use Classes\Paginacao;
 
@@ -37,7 +38,7 @@ class MensagensA extends MensagensM{
         }      
     }
  
-    public function inserirMensagem(){
+    public function inserirMensagem($indSistema = null){
         $veri = $this->verificarMensagemDia();
         if(!$veri){
             $codUsuSitema = $this->getDadosUsuSistema();
@@ -47,8 +48,11 @@ class MensagensA extends MensagensM{
                 $codUsuSitema,
                 $this->getCodDeba()
             );
-            $res = $this->runQuery($sql);
+            $res = $this->runQuery($sql); 
         }
+        if($indSistema == null){
+            $this->verificarSeParticipa();
+        }        
         $sql = sprintf(
             $this->sqlInsertMensa,
             $this->getTextoMensa(),
@@ -133,6 +137,13 @@ class MensagensA extends MensagensM{
         return $res[0]['count(*)'];
     }
 
+    public function verificarSeParticipa(){
+        $debate = new Debate();
+        $debate->setCodUsu($this->getCodUsu());
+        $debate->verificarSeParticipaOuNao($this->getCodDeba(),true);
+        return;
+    }
+
     
 
     public function controlarPaginacao($pagina = null){ // Fazer o controle da paginacao       
@@ -141,7 +152,7 @@ class MensagensA extends MensagensM{
         
         $quantidadeTotalPubli = $this->getQuantMensagem();   //Pega a quantidade de publicacoes no total          
         
-        $sqlPaginacao = $paginacao->prapararSql('dataHora_mensa','ASC', $pagina, $quantidadeTotalPubli);//Prepare o sql
+        $sqlPaginacao = $paginacao->prapararSql('dataHora_mensa, mensagem.cod_mensa','ASC', $pagina, $quantidadeTotalPubli);//Prepare o sql
         $this->setQuantidadePaginas($paginacao->getQuantidadePaginas());//Seta a quantidade de paginas no total
         $this->setPaginaAtual($paginacao->getPaginaAtual());
         return $sqlPaginacao;

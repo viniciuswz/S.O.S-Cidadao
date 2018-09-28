@@ -13,7 +13,7 @@ session_start();
         Usuario::verificarLogin(1,$tipoUsuPermi);
 
         $debate = new Debate(); 
-        $mensagem = new Mensagens($_GET['ID']);       
+        $mensagemObj = new Mensagens($_GET['ID']);       
 
         if(isset($_SESSION['id_user']) AND !empty($_SESSION['id_user'])){
             $debate->setCodUsu($_SESSION['id_user']); 
@@ -23,15 +23,19 @@ session_start();
         $validar = new ValidarCampos($nomesCampos, $_GET);
         $validar->verificarTipoInt($nomesCampos, $_GET); // Verificar se o parametro da url é um numero     
         $debate->setCodDeba($_GET['ID']);   
-        $mensagem->setCodDeba($_GET['ID']);   
+        $mensagemObj->setCodDeba($_GET['ID']);   
                 
         $resposta = $debate->listByIdDeba('sqlListDebaQuandoAberto');
         $debate->verificarSeParticipaOuNao($_GET['ID'], TRUE);       
 
         $participantes = $debate->listarParticipantes();
         $listDeba = $debate->listarDebatesQpartcipo();
-        $mensagem->setCodUsu($_SESSION['id_user']);
-        $mensagem = $mensagem->getMensagens();
+        $mensagemObj->setCodUsu($_SESSION['id_user']);
+        isset($_GET['pagina']) ?: $_GET['pagina'] = 1; 
+        $mensagem = $mensagemObj->getMensagens($_GET['pagina']);
+
+        $quantidadePaginas = $mensagemObj->getQuantidadePaginas();
+        $pagina = $mensagemObj->getPaginaAtual();        
         //var_dump($mensagem);
         
         //var_dump($resposta);
@@ -323,12 +327,38 @@ session_start();
                 </div>
 
                      
-               <form>
-                   <input type="text" placeholder="digite aqui..." ><button type="submit"> ></button> 
+               <form action="../enviarMensagem.php" method="post">
+                        <input type="hidden" name="ID" value="<?php echo $_GET['ID']?>" />
+                        <input type="hidden" name="pagina" value="<?php echo $_GET['pagina']?>" />
+                   <input type="text" name="texto" placeholder="digite aqui..." ><button type="submit"> ></button> 
                </form>      
            </div>
         </section>
         </div>
+        <ul>
+        <?php
+            if($quantidadePaginas != 1){
+                $contador = 1;
+                while($contador <= $quantidadePaginas){
+                    if(isset($pagina) AND $pagina == $contador){
+                        if(isset($_GET['ID'])){
+                            echo '<li class="jaca"><a href="debate_mensagens.php?pagina='.$contador.'&ID='.$_GET['ID'].'">Pagina'.$contador.'</a></li>'  ; 
+                        }else{
+                            echo '<li class="jaca"><a href="debate_mensagens.php?pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ; 
+                        }                         
+                    }else{
+                        if(isset($_GET['ID'])){
+                            echo '<li class="jaca"><a href="debate_mensagens.php?pagina='.$contador.'&ID='.$_GET['ID'].'">Pagina'.$contador.'</a></li>'  ; 
+                        }else{
+                            echo '<li class="jaca"><a href="debate_mensagens.php?pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ; 
+                        }                         
+                    }                    
+                    $contador++;        
+                }
+            }
+            
+        ?>
+        </ul>
     </body>
 </html>
 <?php

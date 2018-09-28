@@ -33,7 +33,7 @@ class DebateA extends DebateM{
                                                     INNER JOIN usuario ON (usuario.cod_usu = debate_participante.cod_usu)
                                                     INNER JOIN debate ON (debate_participante.cod_deba = debate.cod_deba)    
                                                     WHERE data_fim_lista is null AND debate_participante.cod_deba = '%s' 
-                                                    AND debate_participante.cod_usu = '%s' AND status_lista = 'A'";
+                                                    AND debate_participante.cod_usu = '%s' AND status_lista = '%s'";
     
     private $sqlListarParticipantes = "SELECT usuario.cod_usu, nome_usu, img_perfil_usu, ind_visu_criador FROM debate_participante
                                                     INNER JOIN usuario ON (debate_participante.cod_usu = usuario.cod_usu)
@@ -182,10 +182,11 @@ class DebateA extends DebateM{
         return $res[0]['COUNT(*)'];
     }
 
-    public function verificarSeParticipaOuNao($codDeba, $indErro = null){ //Verifica se o usuario ja esta participando
+    public function verificarSeParticipaOuNao($codDeba, $indErro = null, $status = 'A'){ //Verifica se o usuario ja esta participando
         $sql = sprintf($this->sqlVerificarSeEstaParticipando,
                         $codDeba,
-                        $this->getCodUsu());          
+                        $this->getCodUsu(),
+                        $status);          
         $res = $this->runSelect($sql);
         $quantidade = $res[0]['COUNT(*)'];
         if($quantidade > 0){ //Se for maior q zero é pq ele curtiu
@@ -303,11 +304,16 @@ class DebateA extends DebateM{
     public function inserirParticipante($status, $indDono = null){
         $usuario = new Usuario();
         $usuario->setCodUsu($this->getCodUsu());
-        $tipo = $usuario->getDescTipo();
-        
+        $tipo = $usuario->getDescTipo();       
+       
 
         if($tipo != 'Comum'){
             throw new \Exception("Você nao tem permissao",9);
+        }
+        $ind = $this->verificarSeParticipaOuNao($this->getCodDeba(),null,'I');
+        if($ind > 0 ){ // mudar apenas o status e nao inserir outra linha
+            $this->updateStatusParti('A');            
+            return;
         }
 
         $sql = sprintf($this->sqlInserirPartici,
@@ -335,7 +341,7 @@ class DebateA extends DebateM{
         $mensagem->setCodUsu($codUsuSistema);
         $mensagem->setCodDeba($this->getCodDeba());
         $mensagem->setTextoMensa($texto);
-        $mensagem->inserirMensagem();
+        $mensagem->inserirMensagem(True);
     }
 
     public function updateStatusDeba($status){        
@@ -386,12 +392,17 @@ class DebateA extends DebateM{
         if(!$resposta->rowCount()){
             throw new \Exception("Não foi possível mudar o status",9);
         }
-        if($ind == 2){ // notificar
+        if($ind == 2){ // notificar            
             $usuario = new Usuario();
             $usuario->setCodUsu($codUsu);
             $res = $usuario->getDadosUser();
             $nome = $res[0]['nome_usu'];
-            $this->inserirMensagemSistema($nome . " saiu do debate");
+            if($status == 'A'){
+                $this->inserirMensagemSistema($nome . " entrou no debate");
+            }else{
+                $this->inserirMensagemSistema($nome . " saiu do debate");
+            }
+            
         }
         return;
     }    
