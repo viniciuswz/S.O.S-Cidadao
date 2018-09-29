@@ -347,7 +347,7 @@ class DebateA extends DebateM{
         $usuario = new Usuario();        
         $tirar = array('in',')','(',"'");// tirar a parte q eu nao quero
         $codUsuSistema = str_replace($tirar,"",$usuario->getCodUsuByTipoUsu("in('Sistema')")); // pegar id do usuario sistema
-        $mensagem = new Mensagens();
+        $mensagem = new Mensagens($this->getCodDeba());
         $mensagem->setCodUsu($codUsuSistema);
         $mensagem->setCodDeba($this->getCodDeba());
         $mensagem->setTextoMensa($texto);
