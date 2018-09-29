@@ -41,11 +41,16 @@ class DebateA extends DebateM{
                                                     WHERE status_lista = 'A' AND
                                                     data_fim_lista is null AND %s AND debate.cod_deba = '%s'";
 
-    private $sqlListarDebatesQParticipa = "SELECT img_deba, nome_deba, debate.cod_deba FROM debate 
+    private $sqlListarDebatesQParticipa = "SELECT img_deba, nome_deba, debate.cod_deba,
+                                                (SELECT COUNT(*) FROM mensagem INNER JOIN mensagem_visualizacao
+                                                    ON(mensagem_visualizacao.cod_mensa = mensagem.cod_mensa)
+                                                    WHERE mensagem.cod_deba = debate.cod_deba AND mensagem_visualizacao.cod_usu = '%s'
+                                                    AND status_visu = 'I') as quantidade  FROM debate 
                                                 INNER JOIN debate_participante ON (debate_participante.cod_deba = debate.cod_deba)
                                                 INNER JOIN usuario ON (debate_participante.cod_usu = usuario.cod_usu)
                                                 WHERE status_lista = 'A' AND 
-                                                data_fim_lista is null AND %s AND debate_participante.cod_usu = '%s'";
+                                                data_fim_lista is null AND %s AND debate_participante.cod_usu = '%s'
+                                                ORDER BY quantidade DESC ";
     
     private $sqlListDebaQuandoAberto = "SELECT img_deba, nome_deba, debate.cod_deba, debate.cod_usu,dataHora_deba, nome_usu 
                                             FROM debate INNER JOIN usuario ON (usuario.cod_usu = debate.cod_usu) 
@@ -62,6 +67,7 @@ class DebateA extends DebateM{
     private $sqlPaginaAtual;
 
     private $sqlUpdateStatusDeba = "UPDATE debate SET status_deba = '%s' WHERE cod_deba = '%s' AND cod_usu = '%s'";
+
     private $sqlUpdateParticipante = "UPDATE debate_participante SET status_lista = '%s' WHERE cod_deba = '%s' AND cod_usu = '%s'";
 
     public function tratarImagem(){ // Mexer depois nessa funcao
@@ -221,10 +227,11 @@ class DebateA extends DebateM{
     public function listarDebatesQpartcipo(){
         $sql = sprintf(
             $this->sqlListarDebatesQParticipa,
+            $this->getCodUsu(),
             $this->whereListFromALL,
             $this->getCodUsu()
         );
-        $resultado = $this->runSelect($sql);        
+        $resultado = $this->runSelect($sql);  
         return $resultado;
     }
 

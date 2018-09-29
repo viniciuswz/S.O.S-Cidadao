@@ -149,6 +149,7 @@ session_start();
                                             }else{
                                                 echo '<p>'.$listDeba[$contador]['nome_deba'].'</p>';
                                             }
+                                                echo '<p>'.$listDeba[$contador]['quantidade'].'</p>';
                                         ?>                                      
                                         
                                     </div>
