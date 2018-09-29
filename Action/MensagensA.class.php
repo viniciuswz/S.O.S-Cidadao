@@ -20,12 +20,15 @@ class MensagensA extends MensagensM{
                                         INNER JOIN tipo_usuario ON(usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu) 
                                         WHERE status_mensa = 'A' 
                                         AND mensagem.cod_deba = '%s' %s";
+    private $sqlInsertMensaVisu = "INSERT INTO mensagem_visualizacao(cod_usu, cod_mensa,status_visu,dataHora_mensa_visu)
+                                        VALUES %s";
 
     private $sqlSelectDonoDeba = "SELECT cod_usu FROM debate WHERE cod_deba = '%s'";
     
     private $sqlPaginaAtual;
 
     private $codDono;
+    private $inIdsPartici;
 
     public function __construct($codDeba = null){
         if($codDeba != null){ // setar o id do dono do debate
@@ -35,7 +38,13 @@ class MensagensA extends MensagensM{
             );
             $res = $this->runSelect($sql);              
             $this->codDono = $res[0]['cod_usu'];
-        }      
+        }  
+        
+        $debate = new Debate();
+        $debate->setCodDeba($codDeba);
+        $ids = $debate->listarParticipantes('usuario.cod_usu'); 
+        $this->inIdsPartici =  $this->gerarValue($ids, 3);           
+        
     }
  
     public function inserirMensagem($indSistema = null){
@@ -49,6 +58,7 @@ class MensagensA extends MensagensM{
                 $this->getCodDeba()
             );
             $res = $this->runQuery($sql); 
+            $this->insertMensagemVisualizacao($this->last());
         }
         if($indSistema == null){
             $this->verificarSeParticipa();
@@ -60,6 +70,7 @@ class MensagensA extends MensagensM{
             $this->getCodDeba()
         );
         $res2 = $this->runQuery($sql);
+        $this->insertMensagemVisualizacao($this->last());
         return;
     }
 
@@ -142,9 +153,56 @@ class MensagensA extends MensagensM{
         $debate->setCodUsu($this->getCodUsu());
         $debate->verificarSeParticipaOuNao($this->getCodDeba(),true);
         return;
+    }       
+
+    public function gerarValue($tipos = array(), $qtdCaracCoringa){
+        $in = array();
+        $contador = 1;
+        $contador2 = 0;   
+        $in2 = "";
+        while($qtdCaracCoringa > 0){
+            if($qtdCaracCoringa == 1){ // exemplo '%s','%s','%s',
+                $in2 .= "NOW()";
+            }else{
+                $in2 .= "'%s',";
+            }
+            $qtdCaracCoringa --;
+        }
+        foreach ($tipos as $valores){  
+            $in[$contador2] = "(";
+            foreach($valores as $valor){
+                $in[$contador2] .= "'".$valor."'," . $in2;
+                if($contador != count($tipos)){
+                    $in[$contador2] .= "),";
+                }else{
+                    $in[$contador2] .= ")";
+                }               
+                $contador2++;              
+            }            
+            $contador++;  
+        }
+        return $in;
     }
 
-    
+    public function insertMensagemVisualizacao($codMensa){ 
+        $contador = 0;        
+        $in = "";
+        while($contador < count($this->inIdsPartici)){
+            $in .= sprintf(
+                $this->inIdsPartici[$contador],
+                $codMensa,                
+                'I'
+            );
+            $contador++;
+        }
+       $sql = sprintf(
+           $this->sqlInsertMensaVisu,
+           $in
+       );
+       $this->runQuery($sql);
+       return;
+    }
+
 
     public function controlarPaginacao($pagina = null){ // Fazer o controle da paginacao       
         $paginacao = new Paginacao(); 

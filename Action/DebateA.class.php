@@ -35,7 +35,7 @@ class DebateA extends DebateM{
                                                     WHERE data_fim_lista is null AND debate_participante.cod_deba = '%s' 
                                                     AND debate_participante.cod_usu = '%s' AND status_lista = '%s'";
     
-    private $sqlListarParticipantes = "SELECT usuario.cod_usu, nome_usu, img_perfil_usu, ind_visu_criador FROM debate_participante
+    private $sqlListarParticipantes = "SELECT %s FROM debate_participante
                                                     INNER JOIN usuario ON (debate_participante.cod_usu = usuario.cod_usu)
                                                     INNER JOIN debate ON (debate_participante.cod_deba = debate.cod_deba)
                                                     WHERE status_lista = 'A' AND
@@ -205,15 +205,18 @@ class DebateA extends DebateM{
         return FALSE;
     }
 
-    public function listarParticipantes(){ // listar participantes do debate
+    public function listarParticipantes($campos){ // listar participantes do debate
         $sql = sprintf(
             $this->sqlListarParticipantes,
+            $campos,
             $this->whereListFromALL,
             $this->getCodDeba()
         );
+        
         $resultado = $this->runSelect($sql);        
         return $resultado;
     }
+    
 
     public function listarDebatesQpartcipo(){
         $sql = sprintf(

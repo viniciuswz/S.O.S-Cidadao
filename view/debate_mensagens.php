@@ -28,7 +28,7 @@ session_start();
         $resposta = $debate->listByIdDeba('sqlListDebaQuandoAberto');
         $debate->verificarSeParticipaOuNao($_GET['ID'], TRUE);       
 
-        $participantes = $debate->listarParticipantes();
+        $participantes = $debate->listarParticipantes(' usuario.cod_usu, nome_usu, img_perfil_usu, ind_visu_criador ');
         $listDeba = $debate->listarDebatesQpartcipo();
         $mensagemObj->setCodUsu($_SESSION['id_user']);
         isset($_GET['pagina']) ?: $_GET['pagina'] = 1; 

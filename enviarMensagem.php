@@ -14,7 +14,7 @@ try{
     $validar = new ValidarCampos($nomesCampos, $_POST);//Verificar se eles existem, se nao existir estoura um erro
     $validar->verificarTipoInt(array('ID','pagina'), $_POST); 
 
-    $mensagem = new Mensagens();
+    $mensagem = new Mensagens($_POST['ID']);
     $mensagem->setCodUsu($_SESSION['id_user']);
     $mensagem->setCodDeba($_POST['ID']);
     $mensagem->setTextoMensa($_POST['texto']);
@@ -23,7 +23,7 @@ try{
         
 }catch(Exception $exc){
     $erro = $exc->getCode();   
-    echo $mensagem = $exc->getMessage();
+    $mensagem = $exc->getMessage();
     switch($erro){
         case 2://Nao esta logado    
             echo "<script> alert('$mensagem');javascript:window.location='view/login.php';</script>";
