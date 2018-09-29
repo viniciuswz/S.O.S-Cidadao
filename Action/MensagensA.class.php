@@ -24,10 +24,15 @@ class MensagensA extends MensagensM{
                                         VALUES %s";
 
     private $sqlSelectDonoDeba = "SELECT cod_usu FROM debate WHERE cod_deba = '%s'";
+
+    private $sqlUpdateMensagemVisu = "UPDATE mensagem_visualizacao INNER JOIN mensagem ON(mensagem_visualizacao.cod_mensa = mensagem.cod_mensa)
+                                            SET status_visu = 'A' WHERE mensagem.cod_deba = '%s' AND mensagem_visualizacao.cod_usu = '%s'
+                                            AND status_visu = 'I'";
     
     private $sqlPaginaAtual;
 
     private $codDono;
+
     private $inIdsPartici;
 
     public function __construct($codDeba = null){
@@ -203,6 +208,14 @@ class MensagensA extends MensagensM{
        return;
     }
 
+    public function visualizarMensagem(){ // mudar status para visualizado na mensagem
+        $sql = sprintf(
+            $this->sqlUpdateMensagemVisu,
+            $this->getCodDeba(),
+            $this->getCodUsu()
+        );
+        $this->runQuery($sql);
+    }
 
     public function controlarPaginacao($pagina = null){ // Fazer o controle da paginacao       
         $paginacao = new Paginacao(); 

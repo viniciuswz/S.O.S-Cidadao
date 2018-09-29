@@ -29,13 +29,19 @@ session_start();
         $debate->verificarSeParticipaOuNao($_GET['ID'], TRUE);       
 
         $participantes = $debate->listarParticipantes(' usuario.cod_usu, nome_usu, img_perfil_usu, ind_visu_criador ');
-        $listDeba = $debate->listarDebatesQpartcipo();
         $mensagemObj->setCodUsu($_SESSION['id_user']);
+        $mensagemObj->visualizarMensagem();
+
+        $listDeba = $debate->listarDebatesQpartcipo();
+        
         isset($_GET['pagina']) ?: $_GET['pagina'] = 1; 
+        
         $mensagem = $mensagemObj->getMensagens($_GET['pagina']);
 
         $quantidadePaginas = $mensagemObj->getQuantidadePaginas();
         $pagina = $mensagemObj->getPaginaAtual();        
+
+        
         //var_dump($mensagem);
         
         //var_dump($resposta);

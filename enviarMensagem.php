@@ -19,6 +19,7 @@ try{
     $mensagem->setCodDeba($_POST['ID']);
     $mensagem->setTextoMensa($_POST['texto']);
     $mensagem->inserirMensagem();    
+    $mensagem->visualizarMensagem();
     echo "<script>javascript:window.location='./view/debate_mensagens.php?ID=".$_POST['ID']."&pagina=".$_POST['pagina']."';</script>";    
         
 }catch(Exception $exc){
