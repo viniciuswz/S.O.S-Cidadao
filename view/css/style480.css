@@ -1114,15 +1114,24 @@ width: 100vw;
 
 
 /*troca foto perfil*/
+.modal-troca-foto-perfil{
+    overflow: auto
+}
+
 .box-troca-foto-perfil div h1{
-    font-size: 18px
+    font-size: 18px;
+    
 }
 
 .box-troca-foto-perfil{
     background-color: white;
     width: 100%;
     padding-bottom: 10px;
-    height: 100vh;
+    height:auto;
+    top: 0%;
+    transform: translateX(-50%) translateY(-0%);
+    
+    
 }
 /*preview perfil*/
 
@@ -1131,8 +1140,10 @@ width: 100vw;
 }
 
 .box-troca-foto-perfil-previa{
+    
     background-color: white;
     width: 100%;
     padding-bottom: 10px;
     height: 100vh;
+    overflow: auto
 }

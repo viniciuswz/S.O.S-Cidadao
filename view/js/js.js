@@ -666,10 +666,13 @@ jQuery(function(){
         })
         /* fechar quando clicar fora*/
         $(".modal-troca-foto-perfil-fundo").click(function(){
+          $("body").css("overflow","auto")
           $(this).parent().removeClass("modal-troca-foto-perfil-ativo");
+          
         })
         /* fechar quando clicar no X*/
         $(".fechar-troca-foto-perfil").click(function(){
+          $("body").css("overflow","auto")
           $(this).parents(":eq(2)").removeClass("modal-troca-foto-perfil-ativo");
         })
         

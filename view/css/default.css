@@ -3173,6 +3173,7 @@ background-color: pink;
     z-index: 98;
     display: none;
     color:black;
+    overflow: auto;
 }
 
 .modal-troca-foto-fundo{
@@ -3337,20 +3338,21 @@ background-color: pink;
 /*troca foto perfil*/
 
 .modal-troca-foto-perfil{
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100vh;
     left: 0;
     top: 0;
     z-index: 98;
-    display: none;
+    display:none ;
     color:black;
+    overflow-y: scroll
 }
 
 .modal-troca-foto-perfil-fundo{
-    position: absolute;
+    position: fixed;
     background-color: rgba(0, 0, 0, .9);
-    width: 100%;
+    width: calc(100% - 15px);
     height: 100vh;
     left: 0;
     top: 0;
@@ -3362,10 +3364,13 @@ background-color: pink;
 
 .box-troca-foto-perfil{
     position: absolute;
+    
     left: 50%;
-    top: 50%;
-    transform: translateX(-50%) translateY(-50%);
+    top: 0%;
+    transform: translateX(-50%) translateY(-0%);
     background-color: white;
+    height: 100%;
+    min-height: 514px;
     width: 480px;
     padding-bottom: 10px;
     z-index: 98;
@@ -3379,7 +3384,7 @@ background-color: pink;
 }
 
 .box-troca-foto-perfil div h1{
-    font-size: 20px
+    font-size: 20px;
 }
 
 
