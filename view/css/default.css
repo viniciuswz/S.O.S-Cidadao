@@ -1151,15 +1151,31 @@ form .categorias div div{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 120px;
-    height: 120px;
+   
     margin: 10px;
+   
 }
 
 form .categorias div div label{
-    background-color: gray;
-    padding: 29px 25px;
+    border: 3px solid #0086ff;
+    border-radius: 5px;
+    padding: 25px 0px 0px;
+    max-width: 120px;
+    max-height: 120px;
+    min-width: 120px;
+    min-height: 120px;
+    background-color: #0086ff;
     cursor: pointer;
+    
+}
+
+form .categorias div div label span{
+    display: block;
+    word-wrap: break-word;
+    text-align: center;
+    line-height: 13px
+    
+
 }
 
 form .categorias div div label i{
@@ -1170,7 +1186,8 @@ form .categorias div div label i{
 }
 
 form input[type="radio"]:checked + label{
-background-color: pink;
+background-color: #0157a1;
+border: 3px solid #0157a1;
 }
 
 /*formularios 2*/
@@ -3173,13 +3190,13 @@ background-color: pink;
     z-index: 98;
     display: none;
     color:black;
-    overflow: auto;
+    overflow-y: scroll
 }
 
 .modal-troca-foto-fundo{
     position: fixed;
     background-color: rgba(0, 0, 0, .9);
-    width: 100%;
+    width: calc(100% - 15px);
     height: 100vh;
     left: 0;
     top: 0;
@@ -3190,11 +3207,13 @@ background-color: pink;
 }
 
 .box-troca-foto{
-    position: fixed;
+    position: absolute;
     left: 50%;
-    top: 50%;
-    transform: translateX(-50%) translateY(-50%);
+    top: 0%;
+    transform: translateX(-50%) translateY(-0%);
     background-color: white;
+    height: 100%;
+    min-height: 414px;
     width: 480px;
     padding-bottom: 10px;
     z-index: 98;
@@ -3261,14 +3280,15 @@ background-color: pink;
     left: 0;
     top: 0;
     z-index: 98;
-    display: none;
+    display:none ;
     color:black;
+    overflow-y: scroll
 }
 
 .modal-troca-foto-previa-fundo{
     position: fixed;
     background-color: rgba(0, 0, 0, .9);
-    width: 100%;
+    width: calc(100% - 15px);
     height: 100vh;
     left: 0;
     top: 0;
@@ -3279,7 +3299,7 @@ background-color: pink;
 }
 
 .box-troca-foto-previa{
-    position: fixed;
+    position: absolute;
     left: 50%;
     top: 50%;
     transform: translateX(-50%) translateY(-50%);
@@ -3433,6 +3453,7 @@ background-color: pink;
     z-index: 98;
     display: none;
     color:black;
+    
 }
 
 .modal-troca-foto-perfil-previa-fundo{
@@ -3504,6 +3525,184 @@ background-color: pink;
     margin: 10px 0;
     border: 0
 }
+
+
+/*troca reclamacao foto*/
+
+.modal-troca-foto-reclamacao{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 98;
+    display: none;
+    color:black;
+    overflow-y: scroll
+}
+
+.modal-troca-foto-reclamacao-fundo{
+    position: fixed;
+    background-color: rgba(0, 0, 0, .9);
+    width: calc(100% - 15px);
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 98;
+}
+.modal-troca-foto-reclamacao-ativo{
+    display: block;
+}
+
+.box-troca-foto-reclamacao{
+    position: absolute;
+    left: 50%;
+    top: 0%;
+    transform: translateX(-50%) translateY(-0%);
+    background-color: white;
+    height: 100%;
+    min-height: 414px;
+    width: 480px;
+    padding-bottom: 10px;
+    z-index: 98;
+}
+
+.box-troca-foto-reclamacao span{
+    font-family: arial;
+    font-size: 40px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.modal-titulo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 15px;
+}
+
+.box-troca-foto-reclamacao div h1{
+    font-size: 20px
+}
+
+
+.box-troca-foto-reclamacao .modal-titulo div ~ div{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 15px;
+    font-size: 14px;
+    flex-direction:column
+}
+.box-troca-foto-reclamacao label{
+    width: 120px;
+    display: block;
+    margin: 0 auto;
+    background-color: rgb(21, 228, 200);
+    color:white;
+    padding: 10px;
+    margin-top: 10px;
+    border: 0;
+    text-align: center
+}
+.box-troca-foto-reclamacao div form input[type="file"]{
+    display:none
+}
+
+.box-troca-foto-reclamacao button{
+    display: block;
+    margin: 0 auto;
+    background-color: rgb(175, 60, 166);
+    color:white;
+    padding: 10px;
+    margin-top: 10px;
+    border: 0
+}
+
+/*troca reclamacao preview*/
+
+.modal-troca-foto-reclamacao-previa{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 98;
+    display:none ;
+    color:black;
+    overflow-y: scroll
+}
+
+.modal-troca-foto-reclamacao-previa-fundo{
+    position: fixed;
+    background-color: rgba(0, 0, 0, .9);
+    width: calc(100% - 15px);
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 98;
+}
+.modal-troca-foto-reclamacao-previa-ativo{
+    display: block;
+}
+
+.box-troca-foto-reclamacao-previa{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background-color: white;
+    width: 480px;
+    padding-bottom: 10px;
+    z-index: 99;
+}
+
+.box-troca-foto-reclamacao-previa span{
+    font-family: arial;
+    font-size: 40px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.box-troca-foto-reclamacao-previa div:nth-child(1){
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 15px;
+}
+
+.box-troca-foto-reclamacao-previa div h1{
+    font-size: 20px
+}
+
+
+.box-troca-foto-reclamacao-previa div:nth-child(2){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 15px;
+    font-size: 14px;
+    flex-direction:column
+}
+.box-troca-foto-reclamacao-previa img ~ button:first-of-type{
+    display: block;
+    margin: 0 auto;
+    background-color: rgb(60, 133, 175);
+    color:white;
+    padding: 10px;
+    margin: 10px 0;
+    border: 0
+}
+
+.box-troca-foto-reclamacao-previa button ~ button {
+    display: block;
+    margin: 0 auto;
+    background-color: rgb(175, 60, 166);
+    color:white;
+    padding: 10px;
+    margin: 10px 0;
+    border: 0
+}
+
 
 /*adicionar user*/
 .modal-adicionar-user{

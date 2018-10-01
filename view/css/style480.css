@@ -1089,15 +1089,20 @@ width: 100vw;
 }
 
 /*troca foto capa*/
+.modal-troca-foto{
+    overflow: auto
+}
+
 .box-troca-foto div h1{
     font-size: 18px
 }
 
 .box-troca-foto{
-    background-color: white;
     width: 100%;
     padding-bottom: 10px;
-    height: 100vh;
+    height:auto;
+    top: 0%;
+    transform: translateX(-50%) translateY(-0%);
 }
 /*preview capa*/
 
@@ -1110,6 +1115,7 @@ width: 100vw;
     width: 100%;
     padding-bottom: 10px;
     height: 100vh;
+    overflow: auto
 }
 
 
@@ -1141,6 +1147,37 @@ width: 100vw;
 
 .box-troca-foto-perfil-previa{
     
+    background-color: white;
+    width: 100%;
+    padding-bottom: 10px;
+    height: 100vh;
+    overflow: auto
+}
+
+
+/*troca foto reclamacao*/
+.modal-troca-foto-reclamacao{
+    overflow: auto
+}
+
+.box-troca-foto-reclamacao div h1{
+    font-size: 18px
+}
+
+.box-troca-foto-reclamacao{
+    width: 100%;
+    padding-bottom: 10px;
+    height:auto;
+    top: 0%;
+    transform: translateX(-50%) translateY(-0%);
+}
+/*preview capa*/
+reclamacao
+.box-troca-foto-reclamacao-previa div h1{
+    font-size: 18px
+}
+
+.box-troca-foto-reclamacao-previa{
     background-color: white;
     width: 100%;
     padding-bottom: 10px;

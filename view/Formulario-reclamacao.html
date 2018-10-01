@@ -26,7 +26,12 @@
         <script src="lib/_jquery/jquery.js"></script>
         <script src="lib/_jquery/jquery.mask177.min.js"></script>
         <script src="js/js.js"></script>
+        <!-- cropp-->
 
+        <link rel="stylesheet" href="lib/_croppie-master/croppie.css">
+        <script src="lib/_croppie-master/croppie.js"></script>
+        <script src="lib/_croppie-master/exif.js"></script>
+    </head>
     </head>
     <body>
         <header>
@@ -177,8 +182,8 @@
                             <hr>
                         <div class="envio-img">
                             
-                            <input type="file" name="imagem" id="imagem">
-                            <label for="imagem"><p><i class="icone-camera"></i>Escolha foto</p>
+                             <input type="file" name="imagem" id="fotoReclamacao">
+                            <label id="colocar-foto-reclamacao"><p><i class="icone-camera"></i>Escolha foto</p>
                         
                         <div>
                             <img src="imagens/capa.png" id="imgPreview">
@@ -196,11 +201,27 @@
                     <div>
                         <div>
                             <input type="radio" name="categoria" id="categoria-1" value="categoria1">
-                            <label for="categoria-1"><i class="icone-mail"></i>categoria1</label>
+                            <label for="categoria-1"><i class="icone-mail"></i><span>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span></label>
                         </div>
                         <div>   
                             <input type="radio" name="categoria" id="categoria-2" value="categoria2">
-                            <label for="categoria-2"> <i class="icone-adm"></i>categoria2</label>
+                            <label for="categoria-2"> <i class="icone-adm"></i><span>aaaaaaaaaaaaaa</span></label>
+                        </div>
+                        <div>
+                            <input type="radio" name="categoria" id="categoria-1" value="categoria1">
+                            <label for="categoria-1"><i class="icone-mail"></i><span>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span></label>
+                        </div>
+                        <div>   
+                            <input type="radio" name="categoria" id="categoria-2" value="categoria2">
+                            <label for="categoria-2"> <i class="icone-adm"></i><span>aaaaaaaaaaaaaa</span></label>
+                        </div>
+                        <div>
+                            <input type="radio" name="categoria" id="categoria-1" value="categoria1">
+                            <label for="categoria-1"><i class="icone-mail"></i><span>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span></label>
+                        </div>
+                        <div>   
+                            <input type="radio" name="categoria" id="categoria-2" value="categoria2">
+                            <label for="categoria-2"> <i class="icone-adm"></i><span>aaaaaaaaaaaaaa</span></label>
                         </div>
                         
                     </div>
@@ -217,6 +238,69 @@
 
 
         </div>
+        <div class="modal-troca-foto-reclamacao">
+            <div class="modal-troca-foto-reclamacao-fundo"></div>
+            <div class="box-troca-foto-reclamacao">
+                <div class="modal-titulo">
+                    <h1>escolha uma foto para a reclamação</h1>
+                    <span class="fechar-troca-foto-reclamacao">&times;</span>
+                </div>
+                <div class="img-reclamacao-corta">
+                   <img src="">
+                </div>
+                <div>  
+                <div class="aviso-form-inicial ">
+                        <p>O campo tal e pa</p>
+                    </div>               
+                   
+                        <label for="fotoReclamacao"><p>Escolher foto</p></label>
+                    
+                    <button id="cortarReclamacao">Cortar foto</button>
+                </div>
+            </div>
+        </div> 
+
+        <div class="modal-troca-foto-reclamacao-previa">
+            <div class="modal-troca-foto-reclamacao-previa-fundo"></div>
+            <div class="box-troca-foto-reclamacao-previa">
+                <div>
+                    <h1>Gostou?</h1>
+                    <span class="fechar-troca-foto-reclamacao-previa">&times;</span>
+                </div>
+                <div>                 
+                    <img src="" class="previewReclamacao" style="width: 100%">
+                    <button class="alterar-reclamacao">Gostei</button>
+
+                    <button class="outra-reclamacao">tentar de novo</button>
+                </div>
+            </div>
+        </div>
+        <script>
+            
+            var largura= $(document).width();
+            if(largura < 420){
+                var tela= $(document).width();
+            }else{
+                var tela= 420
+            }
+            
+            var  $uploadCropReclamacao = $('.img-reclamacao-corta').croppie({
+                
+                enableExif: true,
+                enforceBoundary:true,
+                enableOrientation:true,
+                enableResize:false,
+                viewport: {
+                    width: 280,
+                    height: 190,
+                    
+                },
+                boundary: {
+                    width: tela,
+                    height: 300
+                },
+            });
+        </script>        
     </body>
 </html>
  
