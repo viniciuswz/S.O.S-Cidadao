@@ -45,12 +45,17 @@ class DebateA extends DebateM{
                                                 (SELECT COUNT(*) FROM mensagem INNER JOIN mensagem_visualizacao
                                                     ON(mensagem_visualizacao.cod_mensa = mensagem.cod_mensa)
                                                     WHERE mensagem.cod_deba = debate.cod_deba AND mensagem_visualizacao.cod_usu = '%s'
-                                                    AND status_visu = 'I') as quantidade  FROM debate 
+                                                    AND status_visu = 'I') as quantidade,
+                                                    (SELECT dataHora_mensa_visu FROM mensagem_visualizacao INNER JOIN mensagem 
+                                                    ON(mensagem_visualizacao.cod_mensa = mensagem.cod_mensa) 
+                                                    WHERE mensagem.cod_deba = debate.cod_deba AND mensagem_visualizacao.cod_usu = '%s' 
+                                                    AND status_visu = 'I' LIMIT 1) as HoraEnvio                                                    
+                                                      FROM debate 
                                                 INNER JOIN debate_participante ON (debate_participante.cod_deba = debate.cod_deba)
                                                 INNER JOIN usuario ON (debate_participante.cod_usu = usuario.cod_usu)
                                                 WHERE status_lista = 'A' AND 
                                                 data_fim_lista is null AND %s AND debate_participante.cod_usu = '%s'
-                                                ORDER BY quantidade DESC ";
+                                                ORDER BY HoraEnvio DESC ";
     
     private $sqlListDebaQuandoAberto = "SELECT img_deba, nome_deba, debate.cod_deba, debate.cod_usu,dataHora_deba, nome_usu 
                                             FROM debate INNER JOIN usuario ON (usuario.cod_usu = debate.cod_usu) 
@@ -79,6 +84,10 @@ class DebateA extends DebateM{
     } 
 
     public function insert(){
+        $usuario = new Usuario();
+        $usuario->setCodUsu($this->getCodUsu());
+        $tipo = $usuario->getDescTipo(); 
+
         $this->tratarImagem();
         $sql = sprintf($this->sqlInsert,
                         $this->getImgDeba(),
@@ -95,6 +104,12 @@ class DebateA extends DebateM{
         if(!$inserir->rowCount()){  // Se der erro cai nesse if          
             throw new \Exception("Não foi possível realizar o cadastro da publicacao",13);   
         }
+
+        $res = $usuario->getDadosUser();
+        $nome = $res[0]['nome_usu'];
+        $this->inserirMensagemSistema($nome . " criou o debate");
+
+        
         return;        
     }
 
@@ -227,6 +242,7 @@ class DebateA extends DebateM{
     public function listarDebatesQpartcipo(){
         $sql = sprintf(
             $this->sqlListarDebatesQParticipa,
+            $this->getCodUsu(),
             $this->getCodUsu(),
             $this->whereListFromALL,
             $this->getCodUsu()
