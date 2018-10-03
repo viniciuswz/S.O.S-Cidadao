@@ -25,7 +25,7 @@ h1,h2,h3,h4,h5,h6{
     font-family: "Open-Sans-Bold";
 }
 
-p,a{
+p,a,span{
     font-family: "Open-Sans";
 }
 
@@ -1423,7 +1423,7 @@ border: 3px solid #0157a1;
     width: 0;
     max-width: 376px;
     display: block;
-    transition: 0.5s
+    transition: 0.5s /*time*/
 }
 
 .usuarios-debate-info .moldura-debate{
@@ -1507,6 +1507,8 @@ border: 3px solid #0157a1;
 
 .usuarios-debate-info .participantes{
     background-color: white;
+  
+    width: 100%
 }
 
 .usuarios-debate-info .participantes h4{
@@ -1514,6 +1516,7 @@ border: 3px solid #0157a1;
     border-width: 3px;
     padding: 9px;
     margin: 5px;
+    min-width: 320px
 }
 
 .usuarios-debate-info .participantes > div{
@@ -1531,8 +1534,11 @@ border: 3px solid #0157a1;
 .usuarios-debate-info .participantes .img-participante{
     width: 56px;
     height: 56px;
+    min-width: 56px;
+    min-height: 56px;
     overflow: hidden;
     border-radius: 50%;
+    
 }
 
 .usuarios-debate-info .participantes .img-participante img{
@@ -1552,6 +1558,12 @@ border: 3px solid #0157a1;
     font-weight: 600;
     align-self: center;
     margin-left: 3px;
+}
+
+.usuarios-debate-info .participantes .img-participante + p ~ span{
+font-size: 13px;
+color:#a19f9f;
+margin-right:3px
 }
 
 .contatos{
@@ -1598,6 +1610,8 @@ border: 3px solid #0157a1;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    position: relative;
+
 }
 
 .contatos nav .contatinhos:hover{
@@ -1624,9 +1638,11 @@ border: 3px solid #0157a1;
 .contatos nav .contatinhos div.status-debate{
     display: flex;
     height: 70px;
-    width: 77%;
+    width: calc(100% );
+    max-width: calc(77% - 52px);
     align-items: center;
     border-bottom: 1px solid #f2f2f2;
+    
 }
 
 .contatos nav .contatinhos div.status-debate p{
@@ -1635,6 +1651,48 @@ border: 3px solid #0157a1;
     white-space: nowrap;
     text-overflow: ellipsis;
     width: 100%;
+}
+.info-contatinho{
+    position: absolute;
+    right: 7px;
+    
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 80%;
+    align-items: center
+    
+    
+}
+
+.data_mensagem p{
+    color: rgb(179, 178, 178);
+    font-size: 12px;
+    text-align: center;
+    padding-right: 2px
+    
+    
+}
+
+.qtd_mensagens{
+
+    
+   
+}
+
+.contatos nav .contatinhos .qtd_mensagens p{
+    position: absolute;
+    color: white;
+    font-size: 12px;
+    background-color:rgb(150, 1, 150);
+    border-radius: 50%;
+    text-align: center;
+    padding: 4px;
+    min-height: 26px;
+    min-width: 26px;
+    
+    bottom: 0;
+    
 }
 
 .batepapo{
@@ -1646,12 +1704,19 @@ border: 3px solid #0157a1;
     background-color: #4b2983 ;
 }
 
-.batepapo header div:first-child{
+.batepapo header a{
+    color: white;
+    font-weight: bold;
+    font-size: 33px;
+    padding: 0px 5px
+}
+.batepapo .ft_debate-mensagem{
     overflow: hidden;
     width: 60px;
     height: 60px;
     border-radius: 50%;
     margin:0 4px
+    
 }
 .batepapo header img{
     align-self: center;
@@ -1709,6 +1774,10 @@ border: 3px solid #0157a1;
 .debate-full{
     display: flex;
     flex-direction: row;
+}
+
+.mensagens a{
+color:black
 }
 
 .mensagens{
@@ -1816,7 +1885,7 @@ border: 3px solid #0157a1;
 	border-radius: .4em;
     padding:14px;
     margin-right: 10px;
-    max-width: 70%;   
+    max-width: 500px;   
 }
 
 .linha-mensagem_usuario div span{

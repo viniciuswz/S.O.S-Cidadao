@@ -447,7 +447,7 @@ font-size: 1.1em;
     font-size: 15px
 }
 
-.batepapo header div:first-child{
+.batepapo .ft_debate-mensagem{
     width: 50px;
     height: 50px;
 }
