@@ -69,19 +69,24 @@ class Denuncias extends DenunciasM{
         $sql .= ") as Total";
         
         $res = $this->runSelect($sql);
-        
-        return $res[0]['COUNT(*)'];
+        if(!empty($res)){
+            return $res[0]['COUNT(*)'];
+        }
+        return 0;
     }
 
     public function gerarSql($comecoQuery,$tabelas = array(), $priCoringa = " "){
         $sqlNPrepa = "";
         $contador = 0;
+        $vlrPermi = array('Comen','Debate','Publi');
         foreach ($tabelas as $valor){
-            if($contador == 0){ // Colocar alguma coisa no primeiro %s
-                $sqlNPrepa .=  sprintf($this->{$comecoQuery.$valor},$priCoringa); // $this->{$comecoQuery.$valor} gerar o nome do atributo dinamico
-            }else{
-                $sqlNPrepa .= sprintf($this->{$comecoQuery.$valor}," UNION ");
-            }              
+            if(in_array($valor,$vlrPermi)){
+                if($contador == 0){ // Colocar alguma coisa no primeiro %s
+                    $sqlNPrepa .=  sprintf($this->{$comecoQuery.$valor},$priCoringa); // $this->{$comecoQuery.$valor} gerar o nome do atributo dinamico
+                }else{
+                    $sqlNPrepa .= sprintf($this->{$comecoQuery.$valor}," UNION ");
+                }
+            }                          
             $contador++;
         }
         return $sqlNPrepa;
