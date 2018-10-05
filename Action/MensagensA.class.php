@@ -14,12 +14,13 @@ class MensagensA extends MensagensM{
                                                 WHERE mensagem.cod_deba = '%s' AND status_deba = 'A'";
     
     private $sqlSelectMensagens = "SELECT texto_mensa,TIME_FORMAT(dataHora_mensa, '%s') AS hora, 
-                                        mensagem.cod_usu, nome_usu, descri_tipo_usu,img_perfil_usu, 
+                                        mensagem.cod_usu, nome_usu, descri_tipo_usu,img_perfil_usu, status_visu,
                                         DATEDIFF(NOW(),dataHora_mensa) AS diferenca, TIME_FORMAT(dataHora_mensa, '%s') AS data
                                         FROM mensagem INNER JOIN usuario ON(mensagem.cod_usu = usuario.cod_usu)
+                                        INNER JOIN mensagem_visualizacao ON(mensagem_visualizacao.cod_mensa = mensagem.cod_mensa)
                                         INNER JOIN tipo_usuario ON(usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu) 
                                         WHERE status_mensa = 'A' 
-                                        AND mensagem.cod_deba = '%s' %s";
+                                        AND mensagem.cod_deba = '%s'  %s  %s";
     private $sqlInsertMensaVisu = "INSERT INTO mensagem_visualizacao(cod_usu, cod_mensa,status_visu,dataHora_mensa_visu)
                                         VALUES %s";
 
@@ -28,6 +29,11 @@ class MensagensA extends MensagensM{
     private $sqlUpdateMensagemVisu = "UPDATE mensagem_visualizacao INNER JOIN mensagem ON(mensagem_visualizacao.cod_mensa = mensagem.cod_mensa)
                                             SET status_visu = 'A' WHERE mensagem.cod_deba = '%s' AND mensagem_visualizacao.cod_usu = '%s'
                                             AND status_visu = 'I'";
+    
+    private $sqlQuantNVisu = "SELECT COUNT(*) FROM mensagem INNER JOIN mensagem_visualizacao
+                                        ON(mensagem_visualizacao.cod_mensa = mensagem.cod_mensa)
+                                        WHERE mensagem.cod_deba = '%s' AND mensagem_visualizacao.cod_usu = '%s'
+                                        AND status_visu = 'I'";
     
     private $sqlPaginaAtual;
 
@@ -98,14 +104,37 @@ class MensagensA extends MensagensM{
     }
 
     public function getMensagens($pagina = null){
+        //mensagem_visualizacao.cod_usu = '%s'
+        $usuario = new Usuario();
+        $usuario->setCodUsu($this->getCodUsu());
+        $tipo = $usuario->getDescTipo();
+
         $paginacao = $this->controlarPaginacao($pagina);
         $sql = sprintf(
             $this->sqlSelectMensagens,
-            '%H:%i',            // comando do sql pra data vir formatada
-            '%e/%c',            // comando do sql pra data vir formatada
+            '%s',            
+            '%s',            
             $this->getCodDeba(),
+            "%s",
             $paginacao
         );
+        
+        if($tipo == 'Adm' OR $tipo == 'Moderador'){
+            $sql = sprintf(
+                $sql,
+                '%H:%i', // comando do sql pra data vir formatada
+                '%e/%c', // comando do sql pra data vir formatada
+                ' '
+            );
+        }else{
+            $sql = sprintf(
+                $sql,
+                '%H:%i', // comando do sql pra data vir formatada
+                '%e/%c', // comando do sql pra data vir formatada
+                " AND mensagem_visualizacao.cod_usu = '".$this->getCodUsu()."' "
+            );
+        }
+        
         $res = $this->runSelect($sql); 
         $dados =   $this->getTratarMensagens($res);               
         return $dados;
@@ -113,35 +142,55 @@ class MensagensA extends MensagensM{
 
     public function getTratarMensagens($dados){
         $contador = 0;               
-        while($contador < count($dados)){//Nesse while so entra a parte q me interresa  
+        $contador2 = 0;
+        $dados2 = array();
+        while($contador < count($dados)){//Nesse while so entra a parte q me interresa    
+            if($dados[$contador]['status_visu'] == 'I' AND !isset($indVisu)){ // if pra escrever uma mensagem com o texto "tanta mensagens nao lidas"
+                $quat = $this->getQuantMensaNVIsu(); // so entra uma vez nesse if
+                if($quat == 1){
+                    $comple = " mensagem nao lida";
+                }else if($quat >= 2){
+                    $comple = " mensagens nao lidas";
+                }                
+                $dados2[$contador2]['texto_mensa'] = "$quat  $comple";
+                $dados2[$contador2]['classe'] = 'linha-mensagem_sistema';
+                $dados2[$contador2]['data'] = "";
+                $dados2[$contador2]['hora'] = "";
+                $indVisu = TRUE;
+                $contador2++;
+            }
+            $dados2[$contador2] = $dados[$contador];
             if($dados[$contador]['descri_tipo_usu'] == 'Sistema'){
-                $dados[$contador]['classe'] = 'linha-mensagem_sistema';     
+                $dados2[$contador2]['classe'] = 'linha-mensagem_sistema';     
                 if($dados[$contador]['texto_mensa'] == 'Primeira mensagem do dia'){
-                    $dados[$contador]['hora'] = ""; // nao quero q mostre a hora
+                    $dados2[$contador2]['hora'] = ""; // nao quero q mostre a hora
                     if($dados[$contador]['diferenca'] == 0){
-                        $dados[$contador]['texto_mensa'] = 'HOJE';
+                        $dados2[$contador2]['texto_mensa'] = 'HOJE';
                     }else if($dados[$contador]['diferenca'] == 1){
-                        $dados[$contador]['texto_mensa'] = 'ONTEM';
+                        $dados2[$contador2]['texto_mensa'] = 'ONTEM';
                     }else{
-                        $dados[$contador]['texto_mensa'] = $dados[$contador]['data']; // quando for maior q um dia coloca a data
+                        $dados2[$contador2]['texto_mensa'] = $dados[$contador]['data']; // quando for maior q um dia coloca a data
                     }                    
                 }         
             }else if($this->codDono == $this->getCodUsu()){ // dono do debate
                 if($this->codDono != $dados[$contador]['cod_usu']){ // Não é o dono
-                    $dados[$contador]['classe'] = 'linha-mensagem_padrao';                   
+                    $dados2[$contador2]['classe'] = 'linha-mensagem_padrao';                   
                 }else if($this->codDono == $dados[$contador]['cod_usu']){ // se for o dono
-                    $dados[$contador]['classe'] = 'linha-mensagem_usuario';                   
+                    $dados2[$contador2]['classe'] = 'linha-mensagem_usuario';                   
                 }  
             }else{ // nao é o dono do debate
                 if($this->getCodUsu() == $dados[$contador]['cod_usu']){ // dono da mensagem
-                    $dados[$contador]['classe'] = 'linha-mensagem_usuario';                    
+                    $dados2[$contador2]['classe'] = 'linha-mensagem_usuario';                    
                 }else if($this->getCodUsu() != $dados[$contador]['cod_usu']){ //nao é o dono
-                    $dados[$contador]['classe'] = 'linha-mensagem_padrao';                   
+                    $dados2[$contador2]['classe'] = 'linha-mensagem_padrao';                   
                 }  
-            }           
+            }   
+            
+            
+            $contador2++;
             $contador++;
-        }          
-        return $dados;
+        }                 
+        return $dados2;
     }
 
     public function getQuantMensagem(){ // pegar a quantidade de mensagens
@@ -206,6 +255,16 @@ class MensagensA extends MensagensM{
        );
        $this->runQuery($sql);
        return;
+    }
+
+    public function getQuantMensaNVIsu(){
+        $sql = sprintf(
+            $this->sqlQuantNVisu,
+            $this->getCodDeba(),
+            $this->getCodUsu()
+        );
+        $res = $this->runSelect($sql);        
+        return $res[0]['COUNT(*)'];
     }
 
     public function visualizarMensagem(){ // mudar status para visualizado na mensagem

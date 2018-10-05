@@ -30,18 +30,18 @@ session_start();
 
         $participantes = $debate->listarParticipantes(' usuario.cod_usu, nome_usu, img_perfil_usu, ind_visu_criador ');
         $mensagemObj->setCodUsu($_SESSION['id_user']);
-        $mensagemObj->visualizarMensagem();
+        //
 
         $listDeba = $debate->listarDebatesQpartcipo();
         
         isset($_GET['pagina']) ?: $_GET['pagina'] = 1; 
         
         $mensagem = $mensagemObj->getMensagens($_GET['pagina']);
-
+        $mensagemObj->visualizarMensagem();
         $quantidadePaginas = $mensagemObj->getQuantidadePaginas();
-        $pagina = $mensagemObj->getPaginaAtual();        
+        $pagina = $mensagemObj->getPaginaAtual();      
 
-        
+        //var_dump($ja);
         //var_dump($mensagem);
         
         //var_dump($resposta);
@@ -155,7 +155,7 @@ session_start();
                                             }else{
                                                 echo '<p>'.$listDeba[$contador]['nome_deba'].'</p>';
                                             }
-                                                echo '<p>'.$listDeba[$contador]['quantidade'].' '.$listDeba[$contador]['HoraEnvio'].'</p>';
+                                                echo '<p>'.$listDeba[$contador]['quantidade'].'</p>';
                                         ?>                                      
                                         
                                     </div>
