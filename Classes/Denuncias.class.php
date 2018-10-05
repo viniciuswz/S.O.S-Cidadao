@@ -170,15 +170,6 @@ class Denuncias extends DenunciasM{
         }
         throw new \Exception("Tipo nao permitido",20);
     }
-    /*
-    public function getDadosAtributo($nome){ // Pegar valor do atributo
-        $tipoAceitos = array('sqlDenunDebate', 'sqlDenunPubli', 'sqlDenunComen', 'countDenunDebate', 'countDenunPubli', 'countDenunComen');
-        if(in_array($nome, $tipoAceitos)){
-            return $this->{$nome};
-        }else{
-            return;
-        }
-        
-    }
-    */
+    
+    
 }
