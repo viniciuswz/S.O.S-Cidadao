@@ -148,12 +148,12 @@ session_start();
                                     <?php
                                         if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $resposta[$contador]['cod_usu']){
                                             echo '<li><a href="../ApagarDebate.php?ID='.$resposta[$contador]['cod_deba'].'"><i class="icone-fechar"></i></i>Remover</a></li>';
-                                            echo '<li><a href="#"><i class="icone-edit-full"></i></i>Alterar(Ñ feito)</a></li>';                                                    
+                                            echo '<li><a href="debate-update.php?ID='.$resposta[$contador]['cod_deba'].'"><i class="icone-edit-full"></i></i>Alterar(Ñ feito)</a></li>';                                                    
                                         }else if(isset($tipoUsu) AND ($tipoUsu == 'Adm' or $tipoUsu == 'Moderador')){
                                             echo '<li><a href="../ApagarDebate.php?ID='.$resposta[$contador]['cod_deba'].'"><i class="icone-fechar"></i></i>Remover</a></li>';
                                             // Icone para apagar usuaario
                                             //echo '<a href="../ApagarUsuario.php?ID='.$resposta[0]['cod_usu'].'">Apagar Usuario</a>';                                                       
-                                            echo '<li><a href="#"><i class="icone-edit-full"></i></i>Alterar(Ñ feito)</a></li>';                                                    
+                                            echo '<li><a href="debate-update.php?ID='.$resposta[$contador]['cod_deba'].'"><i class="icone-edit-full"></i></i>Alterar(Ñ feito)</a></li>';                                                    
                                         }
                                     ?> 
                                     </ul>

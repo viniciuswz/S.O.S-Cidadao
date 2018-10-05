@@ -129,16 +129,38 @@ class DebateA extends DebateM{
         return $dadosTratados;
     }
 
-    public function listByIdDeba($atributo = 'sqlSelect'){ // Listar pelo id da publicacao        
+    public function listByIdDeba($atributo = 'sqlSelect',$restricao = null){ // Listar pelo id da publicacao     
+        if(!empty($this->getCodUsu())){
+            $usuario = new Usuario();
+            $usuario->setCodUsu($this->getCodUsu());
+            $tipoUsu = $usuario->getDescTipo();
+        }     
+
         $prepararWherePubli = sprintf($this->whereIdDeba, $this->getCodDeba());         
         $sql = sprintf($this->{$atributo},
                         $this->whereListFromALL,
                         $prepararWherePubli,
-                        ' AND 1=1'
+                        ' %s '
         );  
+
+        if($restricao == null OR ($tipoUsu == 'Adm' OR $tipoUsu == 'Moderador')){ // Nao precisa ser o dono da publicacao
+            $sql = sprintf(
+                $sql,
+                ' AND 1=1'
+            );
+            $erro = "Não foi possível fazer o select"; // Se der erro aparece esta mensagem            
+        }else{ // precisa ser o dono
+            $sql = sprintf(
+                $sql,
+                sprintf(
+                    ' AND debate.cod_usu = ' . $this->getCodUsu()
+                )
+            );
+            $erro = "Você nao tem permissao para esta publicacao";// Se der erro aparece esta mensagem
+        }
         $res = $this->runSelect($sql);
         if(empty($res)){
-            throw new \Exception("Não foi possível fazer o select",9); 
+            throw new \Exception($erro,9); 
         }        
         $dadosTratados = $this->tratarDados($res); 
         //var_dump($dadosTratados);
