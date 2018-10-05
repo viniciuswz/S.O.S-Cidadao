@@ -7,6 +7,7 @@ session_start();
     use Core\Usuario;    
     use Core\Debate;
     use Classes\ValidarCampos;
+    use Notificacoes\Core\VisualizarNotificacao;
     try{        
         $debate = new Debate();        
 
@@ -36,6 +37,14 @@ session_start();
             $link = '../InserirParticipante';
         }        
 
+        if(isset($_GET['com'])){                            
+            if(isset($_SESSION['id_user'])){                
+                $visualizar = new VisualizarNotificacao();
+                
+                $idNoti = $_GET['ID'];                
+                $visualizar->visualizarNotificacao($_GET['com'], $idNoti, $_SESSION['id_user']);
+            }                  
+        }
         
         
 ?>
