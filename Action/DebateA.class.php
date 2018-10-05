@@ -75,6 +75,8 @@ class DebateA extends DebateM{
 
     private $sqlUpdateParticipante = "UPDATE debate_participante SET status_lista = '%s' WHERE cod_deba = '%s' AND cod_usu = '%s'";
 
+    private $sqlUpdateDebate = "UPDATE debate SET img_deba = '%s', nome_deba = '%s', tema_deba  = '%s', descri_deba = '%s' WHERE cod_deba = '%s' AND %s";
+
     public function tratarImagem(){ // Mexer depois nessa funcao
         //Fazer a parada da thumb       
         $tratar = new TratarImg();
@@ -392,6 +394,19 @@ class DebateA extends DebateM{
         $mensagem->inserirMensagem(True);
     }
 
+    public function verificarDadosIguais($NovosDados, $dadosOriginais){
+        $indIgual = 0;
+        foreach($NovosDados as $chave => $valor){
+            if($valor == $dadosOriginais[0][$chave]){                                 
+                $indIgual++;
+            }
+        }
+        if($indIgual == count($NovosDados)){
+            return true;
+        }
+        return false;
+    }
+
     public function updateStatusDeba($status){        
         $usuario = new Usuario();
         $usuario->setCodUsu($this->getCodUsu());
@@ -454,4 +469,55 @@ class DebateA extends DebateM{
         }
         return;
     }    
+
+    public function updateDebate(){
+        $dados = $this->listByIdDeba('sqlSelect', true); 
+        $novosDados = array(
+            "nome_deba" => $this->getNomeDeba(),
+            "tema_deba" => $this->getTemaDeba(),
+            "descri_deba" => $this->getDescriDeba(),                
+        );
+        if(empty($this->getImgDeba())){
+            $novosDados["img_deba"] = $dados[0]['img_deba'];
+        }
+        if($this->verificarDadosIguais($novosDados, $dados)){ // Verificar se os dados sao igual 
+            return $this->getCodDeba(); // se for igual nao precisa dar update
+        }
+
+        $usuario = new Usuario();
+        $usuario->setCodUsu($this->getCodUsu());
+        $tipoUsu = $usuario->getDescTipo(); 
+        if(!empty($this->getImgDeba())){ // se ele mudar a imagem
+            $this->tratarImagem();
+        }else{ // se nao mudar
+            $this->setImgDeba($dados[0]['img_deba']);
+        }        
+        $sql = sprintf(
+            $this->sqlUpdateDebate,
+            $this->getImgDeba(),
+            $this->getNomeDeba(),
+            $this->getTemaDeba(),
+            $this->getDescriDeba(),
+            $this->getCodDeba(),
+            ' %s '
+        );
+
+        if($tipoUsu == 'Adm' or $tipoUsu == 'Moderador'){  // Se for adn ou moderador pode editar tranquilamente
+            $sql = sprintf($sql, ' 1=1 ');            
+        }else{ // Se nao for, precisa ser o dono
+            $sql = sprintf(
+                $sql,                           
+                sprintf(
+                    " cod_usu = '%s' ", // Adiciona um campo
+                    $this->getCodUsu()
+                )                
+            );
+        }
+        
+        $resposta = $this->runQuery($sql);    
+        if($resposta->rowCount() <= 0 ){
+                throw new \Exception("Não foi possivel editar o debate",13);
+        }    
+        return $this->getCodDeba();    
+    }
 }
