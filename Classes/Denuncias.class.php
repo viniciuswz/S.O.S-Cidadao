@@ -51,6 +51,12 @@ class Denuncias extends DenunciasM{
                                         WHERE status_denun_comen = 'A' AND status_comen = 'A' 
                                         AND status_publi = 'A'";
 
+    private $updateDenunDebate = "UPDATE debate_denun SET status_denun_deba = 'I' WHERE cod_denun_deba = '%s'";
+
+    private $updateDenunPublicacao = "UPDATE publi_denun SET status_denun_publi = 'I' WHERE cod_denun_publi = '%s'";
+
+    private $updateDenunComentario = "UPDATE comen_denun SET status_denun_comen = 'I' WHERE cod_denun_comen = '%s'";
+
     public function select($tabelas = array(), $pagina = null){
         $sqlLimite = $this->controlarPaginacao($tabelas,$pagina);
         $sqlNPrepa = $this->gerarSql('sqlDenun',$tabelas);        
@@ -99,7 +105,8 @@ class Denuncias extends DenunciasM{
             $dados[$contador]['dataHora'] = $this->tratarData($dados[$contador]['dataHora']);//Calcular o tempo           
             $dados[$contador]['LinkVisita'] = $this->LinkParaVisita($dados[$contador]['Tipo'],$dados[$contador]['cod_publi_denun']);//Calcular o tempo    
             $dados[$contador]['LinkApagarPubli'] = $this->LinkParaDeletar($dados[$contador]['Tipo'],$dados[$contador]['cod_publi_denun']);//Calcular o tempo      
-            $dados[$contador]['LinkApagarUsu'] = $this->LinkParaDeletar('Usuario',$dados[$contador]['cod_usu_denunciado']);//Calcular o tempo                                  
+            $dados[$contador]['LinkApagarUsu'] = $this->LinkParaDeletar('Usuario',$dados[$contador]['cod_usu_denunciado']);//Calcular o tempo 
+            $dados[$contador]['tipoSemAcento'] = strtolower(preg_replace( '/[`^~\'"]/', null, iconv( 'UTF-8', 'ASCII//TRANSLIT', $dados[$contador]['Tipo'] )));                                
             $contador++;
         }          
         return $dados;
@@ -139,13 +146,29 @@ class Denuncias extends DenunciasM{
 
     public function controlarPaginacao($tabelas,$pagina = null){ // Fazer o controle da paginacao       
         $paginacao = new Paginacao(); //Instancinado a classe
-        $paginacao->setQtdPubliPaginas(6); //Quantos comentarios quero por pagina       
+        $paginacao->setQtdPubliPaginas(8); //Quantos comentarios quero por pagina       
         $quantidadeTotalPubli = $this->quantidadeTotalPubli($tabelas); //total de comentarios
         $sqlPaginacao = $paginacao->prapararSql('dataHora','desc', $pagina, $quantidadeTotalPubli);//Prepare o sql
         $this->setQuantidadePaginas($paginacao->getQuantidadePaginas());//Seta a quantidade de paginas no total
         $this->setPaginaAtual($paginacao->getPaginaAtual()); // Seta a pagina atual
         return $sqlPaginacao;
         
+    }
+
+    public function deletarDenun($tipo){
+        $tipoPermi = array('comentario','debate','publicacao');
+        if(in_array($tipo,$tipoPermi)){
+            $sql = sprintf(
+                $this->{'updateDenun'.ucfirst($tipo)},
+                $this->getCodDenun()
+            );
+            $res = $this->runQuery($sql);
+            if($res->rowCount() <= 0){
+                throw new \Exception("Erro ao apagar denúncia",20);
+            }
+            return;
+        }
+        throw new \Exception("Tipo nao permitido",20);
     }
     /*
     public function getDadosAtributo($nome){ // Pegar valor do atributo

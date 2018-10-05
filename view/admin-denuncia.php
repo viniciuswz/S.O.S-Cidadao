@@ -184,6 +184,7 @@ session_start();
                                             <li><a href="'.$res[$contador]['LinkVisita'].'">Visitar página</a></li>
                                             <li><a href="'.$res[$contador]['LinkApagarPubli'].'">Remover reclamação</a></li>
                                             <li><a href="'.$res[$contador]['LinkApagarUsu'].'">Bloquear usuário</a></li>
+                                            <li><a href="../RemoverDenuncia.php?ID='.$res[$contador]['cod_denun'].'&tipo='.$res[$contador]['tipoSemAcento'].'">Remover denuncia</a></li>
                                         </ul>                                        
                                     </div>
                                     <div class="motivo">
