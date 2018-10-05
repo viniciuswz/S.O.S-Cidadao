@@ -23,8 +23,35 @@ session_start();
         $pes->setTextoPesqui($_GET['pesquisa']);
         isset($_GET['pagina']) ?: $_GET['pagina'] = null;
         isset($_GET['tipo']) ?: $_GET['tipo'] = null;
-        $resPes = $pes->pesquisar($_GET['pagina'],$_GET['tipo']);
+        $parametro = "";
+        if(isset($_GET['tipo'])){
+            
+            $contador = 1;
+            foreach($_GET as $chaves => $valores){    
+                    if($chaves == 'tipo'){
+                        foreach($valores as $chave => $valor){
+                            $tipos[] = $valor;
+                            if($contador < count($_GET)){
+                                $parametro .= 'tipo[]=';
+                                $parametro .= $valor.'&';
+                            }else{                            
+                                $parametro .= 'tipo[]=';
+                                $parametro .= $valor;
+                            }
+                            $parametro .= '&';
+                            $contador++;  
+                        }
+                    }
+                    
+            }
+        }   
         
+
+
+
+        $resPes = $pes->pesquisar($_GET['pagina'],$_GET['tipo']);
+        $quantidadePaginas = $pes->getQuantidadePaginas();
+        $pagina = $pes->getPaginaAtual();
 ?>
 <!DOCTYPE html>
 <html lang=pt-br>
@@ -304,6 +331,24 @@ session_start();
                     }
                 ?>           
                     </section>
+
+        <ul>
+            <?php
+                if($quantidadePaginas != 1){
+                    $contador = 1;
+                    while($contador <= $quantidadePaginas){
+                        if(isset($pagina) AND $pagina == $contador){
+                            echo '<li class="jaca"><a href="pesquisa.php?pagina='.$contador.'&pesquisa='.$_GET['pesquisa'].'&'.$parametro.'">Pagina'.$contador.'</a></li>'  ;  
+                        }else{
+                            echo '<li><a href="pesquisa.php?pagina='.$contador.'&pesquisa='.$_GET['pesquisa'].'&'.$parametro.'">Pagina'.$contador.'</a></li>'  ;
+                        }
+                        
+                        $contador++;        
+                    }
+                }
+                
+            ?>
+        </ul>
                   
         </div>
     </body>

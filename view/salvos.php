@@ -56,7 +56,7 @@ session_start();
     <body>
         <header>
             <img src="imagens/logo_oficial.png" alt="logo">
-            <form>
+            <form action="pesquisa.php" method="get">
                 <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar">
                 <button type="submit"><i class="icone-pesquisa"></i></button>
             </form>
