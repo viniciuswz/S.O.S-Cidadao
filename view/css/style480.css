@@ -1088,6 +1088,19 @@ width: 100vw;
     margin: 5px;
 }
 
+/*adduser*/
+.box-denunciar div h1{
+    font-size: 18px
+}
+
+.box-adicionar-user{
+    background-color: white;
+    width: 100%;
+    padding-bottom: 10px;
+    height: 100vh;
+  
+}
+
 /*troca foto capa*/
 .modal-troca-foto{
     overflow: auto
@@ -1100,7 +1113,7 @@ width: 100vw;
 .box-troca-foto{
     width: 100%;
     padding-bottom: 10px;
-    height:auto;
+    height:100vh;
     top: 0%;
     transform: translateX(-50%) translateY(-0%);
 }
@@ -1133,7 +1146,7 @@ width: 100vw;
     background-color: white;
     width: 100%;
     padding-bottom: 10px;
-    height:auto;
+    height:100vh;
     top: 0%;
     transform: translateX(-50%) translateY(-0%);
     
@@ -1167,7 +1180,7 @@ width: 100vw;
 .box-troca-foto-reclamacao{
     width: 100%;
     padding-bottom: 10px;
-    height:auto;
+    height:100vh;
     top: 0%;
     transform: translateX(-50%) translateY(-0%);
 }

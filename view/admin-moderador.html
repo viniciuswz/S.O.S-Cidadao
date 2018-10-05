@@ -230,11 +230,11 @@
             <div class="modal-adicionar-user-fundo"></div>
             <div class="box-adicionar-user">
                 <div>
-                    <h1>Adicioar usuário</h1>
+                    <h1>Adicionar usuário</h1>
                     <span class="fechar-adicionar-user">&times;</span>
                 </div>
                
-                <form>
+                <form id="add-user-form">
 
                     <div class="campo-texto-icone"  >
                         <label for="email" ><i class="icone-mail"></i></label>
@@ -246,9 +246,18 @@
                         <input type="password" name="senha" id="senha" placeholder="Senha">
                     </div>
 
-                    <div>
-                        <input type="radio" value='moderador' name="funcao">
-                        <input type="radio" value='prefeitura' name="funcao">
+                    <div class="opcoes-user">
+                        <div>
+                            
+                            <input type="radio" value='moderador' name="funcao" id="moderador-input" checked>
+                            <label for="moderador-input">moderador</label>
+                        </div>
+                        <div>
+                            
+                            <input type="radio" value='prefeitura' name="funcao" id="prefeitura-input">
+                            <label for="prefeitura-input">prefeitura</label>
+                        </div>
+                        
                     </div>
 
                     <div class="aviso-form-inicial">

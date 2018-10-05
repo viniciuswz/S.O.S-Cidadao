@@ -768,6 +768,12 @@ nav.notificacoes ul li a span:first-of-type{
     /* background-color: red; */
     
  }
+ .mini-menu-item.sem-btn div{
+    position: absolute;
+    right: 15px;
+    width: 160px;
+    
+ }
 .mini-menu-item  ul{
     display: flex;
     position: absolute;
@@ -779,6 +785,10 @@ nav.notificacoes ul li a span:first-of-type{
     margin-left: -116px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, .4);
     display: none;
+}
+
+.mini-menu-item.sem-btn div ul{
+    margin-left: 0;
 }
 
 .mini-menu-item ul li{
@@ -1110,7 +1120,7 @@ width: 100%
 
 /* FORMULARIO CATEGORIAS */
 
-form input[type="radio"]{
+.formulario input[type="radio"]{
     display:  none;
 }
 
@@ -1185,7 +1195,7 @@ form .categorias div div label i{
     margin: 0 auto;
 }
 
-form input[type="radio"]:checked + label{
+.formulario input[type="radio"]:checked + label{
 background-color: #0157a1;
 border: 3px solid #0157a1;
 }
@@ -1511,6 +1521,9 @@ border: 3px solid #0157a1;
     width: 100%
 }
 
+.usuarios-debate-info .participantes .item-participante{
+    position: relative
+}
 .usuarios-debate-info .participantes h4{
     border-bottom: 1px solid #ae00ff;
     border-width: 3px;
@@ -3781,7 +3794,7 @@ color:black
     left: 0;
     top: 0;
     z-index: 98;
-    display: none;
+    display: block;
     color:black;
 }
 
@@ -3815,12 +3828,11 @@ color:black
     font-weight: 600;
     cursor: pointer;
 }
-.box-adicionar-user div:nth-child(1){
+.box-adicionar-user > div:nth-child(1){
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-    
 }
 
 .box-adicionar-user div h1{
@@ -3831,14 +3843,7 @@ color:black
 
 }
 
-.box-adicionar-user form textarea{
-    display: block;
-    width: 90%;
-    margin: 0 auto;
-    height: 100px;
-    resize: none;
-    padding-left: 5px
-}
+
 
 .box-adicionar-user form button{
     cursor: pointer;
@@ -3853,6 +3858,33 @@ color:black
     color: white;   
 }
 
+
+.box-adicionar-user form .opcoes-user{
+    
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 50%;
+    min-width: 260px;
+    margin: 0 auto
+
+    
+}
+
+.box-adicionar-user form .opcoes-user div input{
+   margin-right: 2px;
+   background-color: red;
+   color: pink;
+}
+
+.box-adicionar-user form .opcoes-user div{
+    display: flex;
+    align-items: center;
+}
+.box-adicionar-user form .opcoes-user div label{
+    font-family: 'Open-Sans';
+    font-size: 15px
+}
 /*possivel balao de form*/
 
 .balao-form {

@@ -1028,3 +1028,73 @@ jQuery(function(){
         }
       })
     })
+
+  jQuery(function($){
+    $(".item-participante").click(function(){
+
+      var $this = $(this);
+      $this.find(".mini-menu-item").toggleClass("mini-menu-item-ativo")
+    
+    })
+  })
+
+  // verficação add user
+
+  /* verificação login */
+
+  jQuery(function($){
+
+    $("#add-user-form").submit(function(){
+      
+      if($('input[name=categoria]:checked').length<=0)
+      {
+        $(".categorias").find('p').text("Escolha uma catgoria")
+      }else{
+        $(".categorias").find('p').text("")
+      }
+      
+    });
+    
+    $("#add-user-form").submit(function(){
+      var senha = $("#senha").val();
+      if( senha === ""){
+        $("#senha").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+        $("#senha").css("border-color" , 'rgba(256,000,000)');
+        $("#senha").focus();
+        return false;
+      }else{
+        $("#senha").parent().find("label").css("background-color" , 'dodgerblue' );
+        $("#senha").css("border-color" , 'dodgerblue');
+      }
+    });
+
+    $("#add-user-form").submit(function(){
+      var email = $("#email").val();
+      if( email === ""){
+        $("#email").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+        $("#email").css("border-color" , 'rgba(256,000,000)');
+        $("#email").focus();
+        return false;
+      }else{
+        $("#email").parent().find("label").css("background-color" , 'dodgerblue' );
+        $("#email").css("border-color" , 'dodgerblue');
+      }
+    });
+
+
+    $("#add-user-form").submit(function(){
+      var email = $("#email").val();
+      var senha = $("#senha").val();
+
+      if( email === "" && senha === ""){
+        $(".aviso-form-inicial").show();
+        $(".aviso-form-inicial").find("p").text("O email e a senha então vazios")
+      }else if( senha === ""){
+        $(".aviso-form-inicial").show();
+        $(".aviso-form-inicial").find("p").text("você precisa digitar um senha")
+      }else if(email === ""){
+        $(".aviso-form-inicial").show();
+        $(".aviso-form-inicial").find("p").text("você precisa digitar uma E-mail")
+      }
+    })
+  })
