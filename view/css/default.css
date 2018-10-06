@@ -695,6 +695,12 @@ nav.notificacoes ul li a span:first-of-type{
      height: 250px;
 }
 
+.item-publicacao.rc figure{
+    overflow: hidden;
+     width: 340px;
+     height: 215px;
+}
+
 .item-publicacao figure img{
     align-self: center;
     height: 540px;
@@ -2976,7 +2982,7 @@ color:black
     
 }
 
-.motivo-box
+
 /*Denuncia*/
 .modal-denunciar{
     position: fixed;
@@ -2985,7 +2991,7 @@ color:black
     left: 0;
     top: 0;
     z-index: 98;
-    display: none;
+    display: none ;
     color:black;
 }
 

@@ -498,6 +498,7 @@ $("#cep").blur(function(){
   jQuery(function($){
     /* abrir quando */
     $(".denunciar-item").click(function(){
+     
       $(this).parents(":eq(2)").find("div.modal-denunciar").addClass("modal-denunciar-ativo");
       $("body").css("overflow","hidden")
     })
@@ -842,6 +843,142 @@ $("#cep").blur(function(){
       
         })
       });
+//trocar foto reclamacao
+
+jQuery(function($){
+  /* abrir quando clicar */
+  $("#colocar-foto-reclamacao").click(function(){
+    $("body").css("overflow","hidden")
+    $(".modal-troca-foto-reclamacao").addClass("modal-troca-foto-reclamacao-ativo");
+    $(document).on("change", "#fotoReclamacao", function(){
+      var InputData = document.getElementById('fotoReclamacao');
+      var caminhoImagem = InputData.value;
+      // verificando a extensão
+      var extensao = caminhoImagem.substring(
+        caminhoImagem.lastIndexOf('.') + 1).toLowerCase();
+        //verificando se é uma img
+        if (extensao == "gif" || extensao == "png" || extensao == "bmp"
+        || extensao == "jpeg" || extensao == "jpg") {
+          $(".box-troca-foto-reclamacao").find(".aviso-form-inicial").css("display","none")
+          // vai mostrar no preview
+          if (InputData.files && InputData.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+              // $('.img-capa-corta').attr('src', e.target.result);
+              var caminhoprev = $(".img-reclamacao-corta").attr('src');
+              //$(".imagem").find('p:last-child').text("");
+              //trocar toda vez que uma nova foto for colocada
+              $uploadCropReclamacao.croppie('bind', {
+                url: e.target.result
+              }).then(function(){
+                console.log('jQuery bind complete');
+              });
+            }
+            reader.readAsDataURL(InputData.files[0]);
+          }  
+        } 
+        //se não for uma imagem
+        else {
+          $('#fotoReclamacao').val("");
+          $uploadCropReclamacao.croppie('destroy');
+          $uploadCropReclamacao.croppie({             
+            enableExif: true,
+                enforceBoundary:true,
+                enableOrientation:true,
+                enableResize:false,
+                viewport: {
+                  width: 200,
+                  height: 200,
+                  type: 'circle'
+                  
+                },
+                boundary: {
+                  width: tela,
+                  height: 300
+                },
+              });
+          $(".box-troca-foto-reclamacao").find(".aviso-form-inicial").css("display","block")
+          $(".box-troca-foto-reclamacao").find(".aviso-form-inicial").find("p").text("Isso não é uma imagem")
+    
+          return false;
+        }
+      })
+    })
+    /* fechar quando clicar fora*/
+    $(".modal-troca-foto-reclamacao-fundo").click(function(){
+      $("body").css("overflow","auto")
+      $(this).parent().removeClass("modal-troca-foto-reclamacao-ativo");
+      
+    })
+    /* fechar quando clicar no X*/
+    $(".fechar-troca-foto-reclamacao").click(function(){
+      $("body").css("overflow","auto")
+      $(this).parents(":eq(2)").removeClass("modal-troca-foto-reclamacao-ativo");
+    })
+    
+    $("#cortarReclamacao").click(function (){
+      var InputData = document.getElementById('fotoReclamacao');
+      var caminhoImagem = InputData.value;
+     if(caminhoImagem == ""){
+      $(".box-troca-foto-reclamacao").find(".aviso-form-inicial").css("display","block")
+      $(".box-troca-foto-reclamacao").find(".aviso-form-inicial").find("p").text("Selecione uma imagem")
+     }else{
+       cortarR();
+     }
+    })
+
+    function cortarR(){
+     
+      $(".modal-troca-foto-reclamacao").css("opacity", "0");
+      
+      $('.img-reclamacao-corta').croppie('result', { type: 'html', size: 'original', format: 'png' }).then(function (result) {
+        
+        
+        $('.img-reclamacao-corta').croppie('result', { type: 'canvas', size: { width: 500, height: 350 }, format: 'png' }).then(function (result) {
+          $(".modal-troca-foto-reclamacao-previa").addClass("modal-troca-foto-reclamacao-previa-ativo");
+          $('.previewReclamacao').attr('src', result);
+          
+        });
+      });
+      
+    }
+    jQuery(function($){
+      /* fechar quando clicar fora*/
+      $(".modal-troca-foto-reclamacao-previa-fundo").click(function(){
+        
+        $(".modal-troca-foto-reclamacao modal-troca-foto-reclamacao-ativo").css("opacity", "0");
+        $(this).parent().removeClass("modal-troca-foto-previa-reclamacao-ativo");
+      })
+      /* fechar quando clicar no X*/
+      $(".fechar-troca-foto-reclamacao-previa").click(function(){
+     
+        
+        $(".modal-troca-foto-reclamacao-previa").removeClass("modal-troca-foto-reclamacao-previa-ativo");
+        $(".modal-troca-foto-reclamacao").css("opacity", "1");
+      })
+      //fechar quando escolher outra foto
+      $(".outra-reclamacao").click(function(){
+    
+       
+        $(".modal-troca-foto-reclamacao-previa").removeClass("modal-troca-foto-reclamacao-previa-ativo");
+        $(".modal-troca-foto-reclamacao").css("opacity", "1");
+      })
+    })
+  });
+  jQuery(function($){
+    $(".alterar-reclamacao").click(function (){
+      $('.img-reclamacao-corta').croppie('result', { type: 'canvas', size: { width: 720, height: 350 }, format: 'png' }).then(function (result) {
+       $("#fotoReclamacao").attr("value", result)
+       $('#imgPreview').attr('src',result);
+       $(".imagem").find('p:last-child').text("");
+       $(".modal-troca-foto-reclamacao-previa").removeClass("modal-troca-foto-reclamacao-previa-ativo");
+       $(".modal-troca-foto-reclamacao").css("opacity", "1");
+       $(".modal-troca-foto-reclamacao").removeClass("modal-troca-foto-reclamacao-ativo");
+        $("body").css("overflow","auto")
+        });
+  
+    })
+  });
 
 //trocar foto debate
 
@@ -981,6 +1118,7 @@ $("#cep").blur(function(){
         })
       });
 
+      
 
   
   
