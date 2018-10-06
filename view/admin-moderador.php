@@ -11,6 +11,14 @@ session_start();
         $tipoUsuPermi = array('Adm');
         Usuario::verificarLogin(1,$tipoUsuPermi);  // Tem q estar logado         
         $usu = new Usuario();
+        $indUsuPref = $usu->verifyExistContPrefei();        
+        if($indUsuPref){
+            $inputPref = '<input type="radio" value="Prefeitura" name="tipo" id="prefeitura-input" disabled>
+                            <label for="prefeitura-input">prefeitura</label>';
+        }else{
+            $inputPref = '<input type="radio" value="Prefeitura" name="tipo" id="prefeitura-input">
+                            <label for="prefeitura-input">prefeitura</label>';
+        }
         $usu->setCodUsu($_SESSION['id_user']);
         $resultado = $usu->getDadosUser(true);
         $tipos = array();
@@ -48,6 +56,7 @@ session_start();
         }
        
 ?>
+
 <!DOCTYPE html>
 <html lang=pt-br>
     <head>
@@ -97,7 +106,7 @@ session_start();
                     <li><a href="todasreclamacoes.php"><i class="icone-reclamacao"></i>Reclamações</a></li>
                     <li><a href="todosdebates.php"><i class="icone-debate"></i>Debates</a></li>
                 </ul>
-            </nav>       
+            </nav>  
             <?php
                 if(!isset($resultado)){
                     echo '<a href="login.php"><i class="icone-user" id="abrir"></i></a>';
@@ -109,26 +118,23 @@ session_start();
         <?php
                 if(isset($resultado) AND !empty($resultado)){  
         ?>
-        <div class="user-menu">
-           
-            <a href="javascript:void(0)" class="fechar">&times;</a>            
-            <div class="mini-perfil">
-                <div>    
-                    <img src="../Img/perfil/<?php echo $resultado[0]['img_perfil_usu'] ?>" alt="perfil">
-                </div>    
-                    <img src="../Img/capa/<?php echo $resultado[0]['img_capa_usu'] ?>" alt="capa">
-                    <p><?php echo $resultado[0]['nome_usu'] ?></p>
-            </div>
-           
-            <nav>
-                <ul>
-                    <?php
-                       require_once('opcoes.php');                        
-                    ?>
-                </ul>
-            </nav>
-            
-        </div>       
+                <div class="user-menu">
+                    <a href="javascript:void(0)" class="fechar">&times;</a>
+                    <div class="mini-perfil">
+                        <div>    
+                            <img src="../Img/perfil/<?php echo $resultado[0]['img_perfil_usu'] ?>" alt="perfil">
+                        </div>    
+                            <img src="../Img/capa/<?php echo $resultado[0]['img_capa_usu'] ?>" alt="capa">
+                            <p><?php echo $resultado[0]['nome_usu'] ?></p>
+                    </div>
+                    <nav>
+                        <ul>
+                            <?php
+                            require_once('opcoes.php');                        
+                            ?>
+                        </ul>
+                    </nav>
+                </div>
         <?php
             }
         ?>
@@ -143,12 +149,12 @@ session_start();
                         <div>    
                                     
                             <label class="container"> Moderador 
-                                <input type="checkbox"  name="tipo[]" checked="checked" value="Moderador">
+                                <input type="checkbox" name="tipo[]" checked="checked" value="Moderador">
                                 <span class="checkmark"></span>
                             </label>
                                 
                             <label class="container"> Prefeitura 
-                                <input type="checkbox"  name="tipo[]" value="Prefeitura">
+                                <input type="checkbox" name="tipo[]" value="Prefeitura">
                                 <span class="checkmark"></span>
                             </label>
                                
@@ -182,28 +188,74 @@ session_start();
                                     $contador++;
                                     $contador2 = 0;
                                 }
-                            ?>
-                       
+                            ?>                            
                           </table>
                     </div>      
         </div>
+
+        <div class="modal-adicionar-user">
+            <div class="modal-adicionar-user-fundo"></div>
+            <div class="box-adicionar-user">
+                <div>
+                    <h1>Adicionar usuário</h1>
+                    <span class="fechar-adicionar-user">&times;</span>
+                </div>
+               
+                <form id="add-user-form" action="../CadastrarUser.php" method="POST">
+
+                    <div class="campo-texto-icone"  >
+                        <label for="user" ><i class="icone-user"></i></label>
+                        <input type="text" name="nome" id="user" placeholder="Nome">
+                    </div>
+
+                    <div class="campo-texto-icone"  >
+                        <label for="email" ><i class="icone-mail"></i></label>
+                        <input type="email" name="email" id="email" placeholder="E-mail">
+                    </div>
+
+                    <div class="campo-texto-icone">
+                        <label for="senha"><i class="icone-senha"></i></label>
+                        <input type="password" name="senha" id="senha" placeholder="Senha">
+                    </div>
+
+                    <div class="opcoes-user">
+                        <div>
+                            
+                            <input type="radio" value='Moderador' name="tipo" id="moderador-input" checked>
+                            <label for="moderador-input">moderador</label>
+                        </div>
+                        <div>                                                        
+                           <?php echo $inputPref ?>
+                        </div>
+                        
+                    </div>
+
+                    <div class="aviso-form-inicial">
+                        <p>O campo tal e pa</p>
+                    </div>
+
+                    <button type="submit">Cadastrar</button>
+                </form>
+                
+            </div>
+        </div>
         <ul>
-        <?php
-            if($quantidadePaginas != 1){
-                $contador = 1;
-                while($contador <= $quantidadePaginas){
-                    if(isset($pagina) AND $pagina == $contador){
-                        echo '<li class="jaca"><a href="admin-moderador.php?'.$parametro.'&pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;  
-                    }else{
-                        echo '<li><a href="admin-moderador.php?'.$parametro.'&pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;
-                    }                    
-                    $contador++;        
-                }
-            }            
-        ?>
+            <?php
+                if($quantidadePaginas != 1){
+                    $contador = 1;
+                    while($contador <= $quantidadePaginas){
+                        if(isset($pagina) AND $pagina == $contador){
+                            echo '<li class="jaca"><a href="admin-moderador.php?'.$parametro.'&pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;  
+                        }else{
+                            echo '<li><a href="admin-moderador.php?'.$parametro.'&pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;
+                        }                    
+                        $contador++;        
+                    }
+                }            
+            ?>
         </ul>
-    </body>
-    <?php
+</body>
+<?php
         
     }catch (Exception $exc){
         $erro = $exc->getCode();   
@@ -223,4 +275,4 @@ session_start();
         }   
     }
     
-    ?>
+?>

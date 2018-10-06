@@ -37,7 +37,6 @@ try{
 }catch (Exception $exc){
     $erro = $exc->getCode();   
     $mensagem = $exc->getMessage();
-
     switch($erro){
         case 2://Esta logado 
         case 6://Esta logado 
