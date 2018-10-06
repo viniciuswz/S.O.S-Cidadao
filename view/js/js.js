@@ -2,10 +2,12 @@ jQuery(function($)
 {
   function fechar(){
     $(".user-menu").css("width","0");
+    $("body").css("overflow","auto")
   }
   
   $("#abrir").click(function()
   {
+    
     var tela= $(document).width();
     if(tela<=480){
       $(".user-menu").css("width","100vw");
@@ -14,6 +16,7 @@ jQuery(function($)
       $(".user-menu").css("width","450px");
       $(window).resize(fechar);
     }
+    $("body").css("overflow","hidden")
   })
   $(".fechar").click(fechar);
   
@@ -25,14 +28,20 @@ jQuery(function($)
   
   var click = 0;
   $("#abrir-not").click(function(){
+   
     $(".notificacoes").toggleClass('ativo');
     var banana= $(".notificacoes").attr("class");
+    
     
     if(banana=='notificacoes ativo'){
       click++;
       $("#not-fechado").html(' fechou ' + click + 'vezes');
-      
+      $("body").css("overflow","auto");
+      $("body").css("overflow","hidden");
+    }else{
+      $("body").css("overflow","auto");
     }
+    return false;
     
   })
   
@@ -445,14 +454,17 @@ jQuery(function(){
     /* abrir quando */
     $(".denunciar-item").click(function(){
       $(this).parents(":eq(2)").find("div.modal-denunciar").addClass("modal-denunciar-ativo");
+      $("body").css("overflow","hidden")
     })
     /* fechar quando clicar fora*/
     $(".modal-denunciar-fundo").click(function(){
       $(this).parent().removeClass("modal-denunciar-ativo");
+      $("body").css("overflow","auto")
     })
     /* fechar quando clicar no X*/
     $(".fechar-denuncia").click(function(){
       $(this).parents(":eq(2)").removeClass("modal-denunciar-ativo");
+      $("body").css("overflow","auto")
     })
   })
 
@@ -478,14 +490,17 @@ jQuery(function(){
 
     $(".desativar-btn").click(function(){
       $(".modal-desativar").addClass("modal-desativar-ativo");
+      $("body").css("overflow","hidden")
     })
     /* fechar quando clicar fora*/
     $(".modal-desativar-fundo").click(function(){
       $(this).parent().removeClass("modal-desativar-ativo");
+      $("body").css("overflow","auto")
     })
     /* fechar quando clicar no X*/
     $(".fechar-desativar").click(function(){
       $(this).parents(":eq(2)").removeClass("modal-desativar-ativo");
+      $("body").css("overflow","auto")
     })
   })
 

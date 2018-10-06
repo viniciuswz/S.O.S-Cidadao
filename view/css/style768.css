@@ -124,7 +124,7 @@ nav.notificacoes{
 
 nav.notificacoes ul{
     width: calc(100vw + 30px);
-    height: calc(100vh - 160px);
+    height: calc(100vh - 95px);
     margin-right: -10px;
     padding-right: 3px;
     text-align: start;
@@ -135,7 +135,7 @@ width: 100vw;
 }
 
 .notificacoes.ativo{
-    height: calc(100vh - 120px);
+    height: calc(100vh - 60px);
 }
 
 /*NÃO ALTERAR NADA DAQUI PARA CIMA*/
@@ -196,9 +196,7 @@ width: 100vw;
 }
 
 .perfil-info span{
-
-    
-    color: black;
+   color: black;
     font-size: 1em;
     margin: 0px auto 0 auto;
     text-align: center

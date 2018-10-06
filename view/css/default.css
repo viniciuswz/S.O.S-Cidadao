@@ -816,15 +816,16 @@ nav.notificacoes ul li a span:first-of-type{
 }
 
 .mini-menu-item ul li span{
-    font-family: "arial";
-    font-size: 14px;
-    cursor: pointer;
-    padding-left:10px;
-    width: 100%;
-    height: 100%;
+    color: black;
+    font-family: arial;
     display: flex;
     align-items: center;
+    font-size: 15px;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
 }
+
 
 .mini-menu-item i{
     width: 40px;
