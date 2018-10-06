@@ -846,6 +846,25 @@ $("#cep").blur(function(){
 //trocar foto reclamacao
 
 jQuery(function($){
+  function recriarReclama (){
+    $uploadCropReclamacao.croppie('destroy');
+    $uploadCropReclamacao.croppie({             
+      enableExif: true,
+          enforceBoundary:true,
+          enableOrientation:true,
+          enableResize:false,
+          viewport: {
+            width: 200,
+            height: 200,
+            
+            
+          },
+          boundary: {
+            width: tela,
+            height: 300
+          },
+        });
+  }
   /* abrir quando clicar */
   $("#colocar-foto-reclamacao").click(function(){
     $("body").css("overflow","hidden")
@@ -880,23 +899,7 @@ jQuery(function($){
         //se não for uma imagem
         else {
           $('#fotoReclamacao').val("");
-          $uploadCropReclamacao.croppie('destroy');
-          $uploadCropReclamacao.croppie({             
-            enableExif: true,
-                enforceBoundary:true,
-                enableOrientation:true,
-                enableResize:false,
-                viewport: {
-                  width: 200,
-                  height: 200,
-                  type: 'circle'
-                  
-                },
-                boundary: {
-                  width: tela,
-                  height: 300
-                },
-              });
+          recriarReclama();
           $(".box-troca-foto-reclamacao").find(".aviso-form-inicial").css("display","block")
           $(".box-troca-foto-reclamacao").find(".aviso-form-inicial").find("p").text("Isso não é uma imagem")
     
@@ -908,12 +911,15 @@ jQuery(function($){
     $(".modal-troca-foto-reclamacao-fundo").click(function(){
       $("body").css("overflow","auto")
       $(this).parent().removeClass("modal-troca-foto-reclamacao-ativo");
-      
+      $('#fotoReclamacao').val("");
+      recriarReclama();
     })
     /* fechar quando clicar no X*/
     $(".fechar-troca-foto-reclamacao").click(function(){
       $("body").css("overflow","auto")
       $(this).parents(":eq(2)").removeClass("modal-troca-foto-reclamacao-ativo");
+      $('#fotoReclamacao').val("");
+      recriarReclama();
     })
     
     $("#cortarReclamacao").click(function (){
@@ -983,6 +989,26 @@ jQuery(function($){
 //trocar foto debate
 
     jQuery(function($){
+function recriaDb(){
+  $uploadCropReclamacao.croppie('destroy');
+  $uploadCropReclamacao.croppie({             
+    enableExif: true,
+        enforceBoundary:true,
+        enableOrientation:true,
+        enableResize:false,
+        viewport: {
+          width: 200,
+          height: 200,
+          
+          
+        },
+        boundary: {
+          width: tela,
+          height: 300
+        },
+      });
+}
+
       /* abrir quando clicar */
       $("#abrir-cortar").click(function(){
         $("body").css("overflow","hidden")
@@ -1017,23 +1043,7 @@ jQuery(function($){
             //se não for uma imagem
             else {
               $('#fotoReclamacao').val("");
-              $uploadCropReclamacao.croppie('destroy');
-              $uploadCropReclamacao.croppie({             
-                enableExif: true,
-                    enforceBoundary:true,
-                    enableOrientation:true,
-                    enableResize:false,
-                    viewport: {
-                      width: 200,
-                      height: 200,
-                      
-                      
-                    },
-                    boundary: {
-                      width: tela,
-                      height: 300
-                    },
-                  });
+              recriaDb();
               $(".box-troca-foto-reclamacao").find(".aviso-form-inicial").css("display","block")
               $(".box-troca-foto-reclamacao").find(".aviso-form-inicial").find("p").text("Isso não é uma imagem")
         
@@ -1053,18 +1063,18 @@ jQuery(function($){
           $(this).parents(":eq(2)").removeClass("modal-troca-foto-reclamacao-ativo");
         })
         
-        $("#cortarReclamacao").click(function (){
+        $("#cortarDebate").click(function (){
           var InputData = document.getElementById('imagemDebateInput');
           var caminhoImagem = InputData.value;
          if(caminhoImagem == ""){
           $(".box-troca-foto-reclamacao").find(".aviso-form-inicial").css("display","block")
           $(".box-troca-foto-reclamacao").find(".aviso-form-inicial").find("p").text("Selecione uma imagem")
          }else{
-           cortarR();
+           cortarD();
          }
         })
   
-        function cortarR(){
+        function cortarD(){
          
           $(".modal-troca-foto-reclamacao").css("opacity", "0");
           
