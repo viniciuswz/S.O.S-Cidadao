@@ -291,8 +291,9 @@
                             <h3>
                                 Envie um comentario
                             </h3>
-                            <form>
-                                <textarea placeholder="Escreva um comentário"></textarea>
+                            <form action="../Comentario.php" method="post">
+                                <textarea placeholder="Escreva um comentário" name="texto"></textarea>
+                                <input type="hidden" value="<?php echo $_GET['ID']?>" name="id">
                                 <input type="submit" value="Enviar Comentário">
                             </form>  
                         </section>
