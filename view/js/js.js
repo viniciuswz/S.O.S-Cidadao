@@ -139,41 +139,56 @@ jQuery(function(){
     
   });
   
-  $(".formulario").submit(function(){
+  $(".formulario ele-nao").submit(function(){
     var imgDebate = $("#imagemDebateInput").val();
     
     if(imgDebate == ""){
-      $(".imagem").find('p:last-child').text("uma imagem é obrigatoria");
+      $(".imagem").find('p:last-child').text("eae");
       return false;
     }
   })
-  
-  $(document).on("change", "#imagemDebateInput", function(){
-    var InputData = document.getElementById('imagemDebateInput');
-    var caminhoImagem = InputData.value;
-    // verificando a extensão
-    var extensao = caminhoImagem.substring(
-      caminhoImagem.lastIndexOf('.') + 1).toLowerCase();
-      //verificando se é uma img
-      if (extensao == "gif" || extensao == "png" || extensao == "bmp"
-      || extensao == "jpeg" || extensao == "jpg") {
-        // vai mostrar no preview
-        if (InputData.files && InputData.files[0]) {
-          var reader = new FileReader();
-          reader.onload = function(e) {
-            $('#imgPreview').attr('src', e.target.result);
-            $(".imagem").find('p:last-child').text("");
-          }
-          reader.readAsDataURL(InputData.files[0]);
-        }
-      } 
-      //se não for uma imagem
-      else {
-        $('#imagemDebateInput').val("");
-        $(".imagem").find('p:last-child').text("esse formato não é valido");
+
+  $(".formulario").submit(function(){
+
+    var id = $(this).attr('id');
+    if(! id == ""){
+      var imgDebate = $("#imagemDebateInput").val();
+      if(imgDebate == ""){
+        $(".imagem").find('p:last-child').text("uma imagem é obrigatoria");
         return false;
       }
-    })
+    }else{
+      
+    }
+    
+  })
+  
+  // $(document).on("change", "#imagemDebateInput", function(){
+  //   var InputData = document.getElementById('imagemDebateInput');
+  //   var caminhoImagem = InputData.value;
+  //   // verificando a extensão
+  //   var extensao = caminhoImagem.substring(
+  //     caminhoImagem.lastIndexOf('.') + 1).toLowerCase();
+  //     //verificando se é uma img
+  //     if (extensao == "gif" || extensao == "png" || extensao == "bmp"
+  //     || extensao == "jpeg" || extensao == "jpg") {
+  //       // vai mostrar no preview
+  //       if (InputData.files && InputData.files[0]) {
+  //         var reader = new FileReader();
+  //         reader.onload = function(e) {
+  //           $('#imgPreview').attr('src', e.target.result);
+  //           $(".imagem").find('p:last-child').text("");
+  //         }
+  //         reader.readAsDataURL(InputData.files[0]);
+  //       }
+  //     } 
+  //     //se não for uma imagem
+  //     else {
+  //       $('#imagemDebateInput').val("");
+  //       $(".imagem").find('p:last-child').text("esse formato não é valido");
+  //       return false;
+  //     }
+  //   })
     
     
     $(".formulario").submit(function(){
@@ -219,12 +234,33 @@ jQuery(function(){
       }else{
         
         
-        /*
+       
+      
+      
+      $("#cep").parent().find('p').text("");
+      $("#cep").parent().find('span').removeClass('verificar');
+      $("#cep").css("background" , 'white' )
+      $("#cep").val(CEP.replace('-',''))
+      
+      
+    }
+    
+  });
+  
+  $(document).ready(function(){
+    $("#cep").mask("99999-999");
+  });
+  
+$("#cep").blur(function(){
+   
         function limpa_formulário_cep() {
           // Limpa valores do formulário de cep.
           $("#local").val("");
           $("#bairro").val("");
         }
+
+              //Nova variável "cep" somente com dígitos.
+      var CEP = $("#cep").val().replace(/\D/g, '');
         //Nova variável "cep" somente com dígitos.
         var cep = CEP;
         
@@ -277,23 +313,9 @@ jQuery(function(){
           
         }
       } //end if.
-      */
       
-      
-      $("#cep").parent().find('p').text("");
-      $("#cep").parent().find('span').removeClass('verificar');
-      $("#cep").css("background" , 'white' )
-      $("#cep").val(CEP.replace('-',''))
-      
-      
-    }
-    
-  });
-  
-  $(document).ready(function(){
-    $("#cep").mask("99999-999");
-  });
-  
+})
+
   $(".formulario").submit(function(){
     
     var local = $("#local").val();
@@ -407,6 +429,7 @@ jQuery(function(){
       var $this = $(this);
       var classe = $this.attr('class');
       var motivo = $this.find('div.motivo').attr("class");
+      
      
       /*criar uma rotina para remover os outros menu aberto */
 
@@ -432,23 +455,45 @@ jQuery(function(){
   
   
   jQuery(function($){
+    
     /*ativar quando clicar e remover tag de ativar */
     $(".motivo-ativar").click(function(){
-      $(this).parents(":eq(3)").find("div.motivo").addClass("motivo-ativo")
+    
+      $(this).parents(":eq(3)").find("div.motivo").addClass("motivo-ativo");
       $(this).parents(":eq(4)").removeClass("tabelinha-linha");
+      $(this).promise().then(function(){
+        var $this = $(this);
+        var alturatela = $this.parents(":eq(3)").find('div.motivo').height();
+        var alturabox = $this.parents(":eq(3)").find('.motivo-box').height();
+        //alert(alturabox + " " + alturatela)
+   
+        if( alturabox > alturatela){
+          
+          $this.parents(":eq(3)").find('div.motivo .motivo-box').css({"top":"0%","transform":"translateX(-50%) translateY(-0%)"})
+        }else{
+          $this.parents(":eq(3)").find('div.motivo .motivo-box').css({"top":"50%","transform":"translateX(-50%) translateY(-50%)"})
+        }
+      });
+      $("body").css("overflow","hidden");
     })
+
+
     /*fechar quando clicar e colocar de novo tag de ativar*/
     $(".fechar-motivo").click(function(){
       $(this).parents(":eq(2)").removeClass("motivo-ativo");
       $(this).parents(":eq(4)").addClass("tabelinha-linha")
+      $("body").css("overflow","auto");
     })
     /*fechar quando clicar fora e adicionar class de ativar */
     $(".motivo-fundo").click(function(){
       $(this).parent().removeClass("motivo-ativo");
       $(this).parents(":eq(2)").addClass("tabelinha-linha")
+      $("body").css("overflow","auto");
     })
   })
-  
+  //ajustando altura do motivo
+
+
 /* denuncia */
   jQuery(function($){
     /* abrir quando */
@@ -503,6 +548,26 @@ jQuery(function(){
       $("body").css("overflow","auto")
     })
   })
+
+  // modal add user
+  jQuery(function($){
+
+  $(".cad-adm").click(function(){
+  
+    $(".modal-adicionar-user").addClass("modal-adicionar-user-ativo");
+    $("body").css("overflow","hidden")
+  })
+  /* fechar quando clicar fora*/
+  $(".modal-adicionar-user-fundo").click(function(){
+    $(this).parent().removeClass("modal-adicionar-user-ativo");
+    $("body").css("overflow","auto")
+  })
+  /* fechar quando clicar no X*/
+  $(".fechar-adicionar-user").click(function(){
+    $(this).parents(":eq(2)").removeClass("modal-adicionar-user-ativo");
+    $("body").css("overflow","auto")
+  })
+})
 
   /* modal erro php */
 
@@ -778,15 +843,15 @@ jQuery(function(){
         })
       });
 
-//trocar foto reclamacao
+//trocar foto debate
 
     jQuery(function($){
       /* abrir quando clicar */
-      $("#colocar-foto-reclamacao").click(function(){
+      $("#abrir-cortar").click(function(){
         $("body").css("overflow","hidden")
         $(".modal-troca-foto-reclamacao").addClass("modal-troca-foto-reclamacao-ativo");
-        $(document).on("change", "#fotoReclamacao", function(){
-          var InputData = document.getElementById('fotoReclamacao');
+        $(document).on("change", "#imagemDebateInput", function(){
+          var InputData = document.getElementById('imagemDebateInput');
           var caminhoImagem = InputData.value;
           // verificando a extensão
           var extensao = caminhoImagem.substring(
@@ -824,7 +889,7 @@ jQuery(function(){
                     viewport: {
                       width: 200,
                       height: 200,
-                      type: 'circle'
+                      
                       
                     },
                     boundary: {
@@ -852,7 +917,7 @@ jQuery(function(){
         })
         
         $("#cortarReclamacao").click(function (){
-          var InputData = document.getElementById('fotoReclamacao');
+          var InputData = document.getElementById('imagemDebateInput');
           var caminhoImagem = InputData.value;
          if(caminhoImagem == ""){
           $(".box-troca-foto-reclamacao").find(".aviso-form-inicial").css("display","block")
@@ -904,7 +969,8 @@ jQuery(function(){
         $(".alterar-reclamacao").click(function (){
           $('.img-reclamacao-corta').croppie('result', { type: 'canvas', size: { width: 720, height: 350 }, format: 'png' }).then(function (result) {
            $("#fotoReclamacao").attr("value", result)
-           $('#imgPreview').attr('src',result);
+           $('#imagemDebateInput').attr('src',result);
+           alert(result)
            $(".imagem").find('p:last-child').text("");
            $(".modal-troca-foto-reclamacao-previa").removeClass("modal-troca-foto-reclamacao-previa-ativo");
            $(".modal-troca-foto-reclamacao").css("opacity", "1");
@@ -914,6 +980,8 @@ jQuery(function(){
       
         })
       });
+
+
   
   
   /* verificação login */
@@ -956,7 +1024,7 @@ jQuery(function(){
       }else if( senha === ""){
         $(".aviso-form-inicial").show();
         $(".aviso-form-inicial").find("p").text("você precisa digitar um senha")
-      }else{
+      }else if(email === ""){
         $(".aviso-form-inicial").show();
         $(".aviso-form-inicial").find("p").text("você precisa digitar uma E-mail")
       }
@@ -1036,7 +1104,7 @@ jQuery(function(){
           }else if( senha === ""){
             $(".aviso-form-inicial").show();
             $(".aviso-form-inicial").find("p").text("você precisa digitar um senha")
-          }else{
+          }else if(Csenha === ""){
             $(".aviso-form-inicial").show();
             $(".aviso-form-inicial").find("p").text("você precisa comfirmar a senha")
           }

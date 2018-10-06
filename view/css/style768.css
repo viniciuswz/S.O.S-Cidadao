@@ -691,28 +691,4 @@ overflow: inherit
     padding: 10px;
 }
 
-.motivo-box{
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    width: 470px;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    padding: 25px;
-    z-index: 99;
-    color: black
-}
 
-.motivo-box div{
-    display: flex;
-    justify-content: space-between;
-    align-items: center
-}
-
-.motivo-box div span{
-    font-size: 40px;
-    font-weight: 600;
-    cursor: pointer;
-}
