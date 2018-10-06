@@ -1,3 +1,11 @@
+<?php
+    session_start();
+    require_once('../Config/Config.php');
+    require_once(SITE_ROOT.DS.'autoload.php');  
+    use Core\Usuario;    
+    try{        
+        Usuario::verificarLogin(0);  // Vai estourar um erro se ele ja estiver logado, ou se ele nao for adm
+?>
 <!DOCTYPE html>
 <html lang=pt-br>
     <head>
@@ -32,11 +40,11 @@
 
         <div id="container">
            <div class="form-cad">
-                    <form action="" id="cadastro">
+                    <form action="../CadastrarUser.php" id="cadastro" method="POST">
                         <h3>Cadastro</h3>
                         <div class="campo-texto-icone">
                             <label for="user"><i class="icone-user"></i></label>
-                            <input type="text" name="user" id="user" placeholder="Nome">
+                            <input type="text" name="nome" id="user" placeholder="Nome">
                         </div>
                         <div class="campo-texto-icone">
                             <label for="email"><i class="icone-mail"></i></label>
@@ -61,4 +69,14 @@
         </div>
     </body>
 </html>
- 
+<?php
+}catch (Exception $exc){
+    $erro = $exc->getCode();   
+    $mensagem = $exc->getMessage();
+    switch($erro){
+        case 2://Se ja estiver logado   
+        case 6://nao  tem permissao de adm
+            echo "<script> alert('$mensagem');javascript:window.location='index.php';</script>";
+            break;
+    }              
+}

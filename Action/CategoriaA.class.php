@@ -16,8 +16,10 @@ class CategoriaA extends CategoriaM{
         $options = array();
         $contador = 1;
         foreach($res as $chaves=>$valores){
-            $input = '<input type="radio" name="categoria" ';
-            $id = 'categoria'.$contador;
+            $input = '
+            <div>
+                <input type="radio" name="categoria" ';
+            $id = 'categoria-'.$contador;
             $input .= 'id="'.$id.'"';
             $label = '<label for='.$id.'> ';
             foreach($valores as $chave => $valor){                
@@ -27,12 +29,13 @@ class CategoriaA extends CategoriaM{
                     ';
                 }
                 if($chave == 'descri_cate'){
-                    $label .= '<i class="'.$this->tirarAcentos($valor).'" ></i>'.$valor.'</label> '; 
+                    // quando for colocar os icones oficiais usar este de baixo
+                    //$label .= '<i class="'.$this->tirarAcentos($valor).'" ></i><span>'.$valor.'</span></label></div> '; 
+                    $label .= '<i class="icone-mail"></i><span>'.$valor.'</span></label></div> '; 
                     if($selecionadoPadrao == $valor){                        
                         $input .= ' checked >';
                     }else{
-                        $input .='>
-                        
+                        $input .='>                        
                         ';
                         
                     }                           

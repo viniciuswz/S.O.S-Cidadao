@@ -1,4 +1,13 @@
-
+<?php
+    session_start();
+    require_once('../Config/Config.php');
+    require_once(SITE_ROOT.DS.'autoload.php');   
+    
+    use Core\Usuario;    
+    try{        
+        Usuario::verificarLogin(0);  // Vai estourar um erro se ele ja estiver logado, ou se ele nao for adm
+        
+?>
 <!DOCTYPE html>
 <html lang=pt-br>
     <head>
@@ -37,8 +46,8 @@
                         O S.O.S Cidadão é a melhor maneira de contar sobre o que esta
                         acontecento em Barueri, compartilhe sua experiência com outras pessoas!
                     </p>
-                    <a class="cta" href="#">Eu quero participar</a>
-                    <a href="#">ou faça login se já tem cadastro</a>
+                    <a class="cta" href="cadastro.php">Eu quero participar</a>
+                    <a href="login.php">ou faça login se já tem cadastro</a>
                 </div>
                 
            </section>
@@ -82,9 +91,19 @@
            </section>
            <footer class="landing-rodape">
                 <h1>Não perca o que acontece na sua cidade</h1>
-                <a class="cta">ver agora</a>
+                <a class="cta" href="todasreclamacoes.php">ver agora</a>
            </footer>
         </div>
     </body>
 </html>
- 
+<?php
+}catch (Exception $exc){
+    $erro = $exc->getCode();   
+    $mensagem = $exc->getMessage();
+    switch($erro){
+        case 2://Se ja estiver logado   
+        case 6://nao  tem permissao de adm
+            echo "<script> alert('$mensagem');javascript:window.location='index.php';</script>";
+            break;             
+    }              
+}

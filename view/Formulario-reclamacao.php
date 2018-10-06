@@ -1,3 +1,19 @@
+<?php
+    session_start();
+    require_once('../Config/Config.php');
+    require_once(SITE_ROOT.DS.'autoload.php');
+    
+    use Core\Usuario;
+    use Core\Categoria;
+    try{       
+        $tipoUsuPermi = array('Comum');
+        Usuario::verificarLogin(1,$tipoUsuPermi);
+        $cate = new Categoria();
+        $categorias = $cate->gerarOptions();     
+        $dados = new Usuario();
+        $dados->setCodUsu($_SESSION['id_user']);
+        $resultado = $dados->getDadosUser();    
+?>
 <!DOCTYPE html>
 <html lang=pt-br>
     <head>
@@ -26,6 +42,7 @@
         <script src="lib/_jquery/jquery.js"></script>
         <script src="lib/_jquery/jquery.mask177.min.js"></script>
         <script src="js/js.js"></script>
+        <script src="../teste.js"></script>
         <!-- cropp-->
 
         <link rel="stylesheet" href="lib/_croppie-master/croppie.css">
@@ -36,142 +53,85 @@
     <body>
         <header>
             <img src="imagens/logo_oficial.png" alt="logo">
-            <form>
+            <form action="pesquisa.php" method="get">
                 <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar">
                 <button type="submit"><i class="icone-pesquisa"></i></button>
             </form>
             <nav class="menu">
                 <ul>
                     <li><nav class="notificacoes">
-                        <h3>notificações</h3>
-                        <ul>
-                            <li>
-                                <a href="#">
-                                <div><i class="icone-comentario"></i></div>
-                                <span class="">
-                                    <span class="negrito">Corno do seu pai</span> , <span class="negrito">Rogerinho</span><span> E outras 4 pessoas comentaram na sua publicação</span>
-                                </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                <div><i class="icone-like-full"></i></div>
-                                <span class="">
-                                    <span class="negrito">Corno do seu pai</span> , <span class="negrito">Rogerinho</span><span> E outras 4 pessoas curtiram sua publicação aaaaaaaaaaaaaaaaaaa</span>
-                                </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                <div><i class="icone-mail"></i></div>
-                                <span class="">
-                                    A <span class="negrito">prefeitura </span>respondeu sua publicação:"associação dos cadeirantes de Barueri" aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
-                                </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                <div><i class="icone-mail"></i></div>
-                                <span class="">
-                                    A <span class="negrito">prefeitura </span>respondeu sua publicação:"associação dos cadeirantes de Barueri"</span>
-                                </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                <div><i class="icone-mail"></i></div>
-                                <span class="">
-                                    A <span class="negrito">prefeitura </span>respondeu sua publicação:"associação dos cadeirantes de Barueri"</span>
-                                </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                <div><i class="icone-mail"></i></div>
-                                <span class="">
-                                    A <span class="negrito">prefeitura </span>respondeu sua publicação:"associação dos cadeirantes de Barueri"</span>
-                                </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                <div><i class="icone-mail"></i></div>
-                                <span class="">
-                                    A <span class="negrito">prefeitura </span>respondeu sua publicação:"cortaram meu pau por acidente no SAMEB era só marca de batom quero meu pau de voltaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"</span>
-                                </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                <div><i class="icone-mail"></i></div>
-                                <span class="">
-                                    A <span class="negrito">prefeitura </span>respondeu sua publicação:"quero café"</span>
-                                </span>
-                                </a>
-                            </li>
+                        <h3>notificações<span id="not-fechado"></span></h3>
+                        <ul id="menu23">
+                            
                             <li>
                         </ul>
-                    </nav><a href="#" id="abrir-not"><i class="icone-notificacao"><span>99+</span></i>Notificações</a></li>
-                    <li><a href="todasreclamacoes.html"><i class="icone-reclamacao"></i>Reclamações</a></li>
-                    <li><a href="todosdebates.html"><i class="icone-debate"></i>Debates</a></li>
+                    </nav><a href="#" id="abrir-not"><i class="icone-notificacao" id="noti"></i>Notificações</a></li>
+                    <li><a href="todasreclamacoes.php"><i class="icone-reclamacao"></i>Reclamações</a></li>
+                    <li><a href="todosdebates.php"><i class="icone-debate"></i>Debates</a></li>
                 </ul>
-            </nav>
-            <i class="icone-user" id="abrir"></i>
+            </nav> 
+            <?php
+                if(!isset($resultado)){
+                    echo '<a href="login.php"><i class="icone-user" id="abrir"></i></a>';
+                }else{
+                    echo '<i class="icone-user" id="abrir"></i>';
+                }
+            ?>
         </header>
-        <div class="user-menu">
-            <a href="javascript:void(0)" class="fechar">&times;</a>
-            <div class="mini-perfil">
-                <div>    
-                    <img src="imagens/perfil.jpg" alt="perfil">
-                </div>    
-                    <img src="imagens/capa.png" alt="capa">
-                    <p>Pericles</p>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="perfil.html"><i class="icone-user"></i>Meu perfil</a></li>
-                    <li><a href="#"><i class="icone-salvar"></i>Salvos</a></li>
-                    <hr>
-                    <li><a href="#"><i class="icone-adm"></i>Area de administrador</a></li>
-                    <li><a href="#"><i class="icone-salvar"></i>Area da prefeitura </a></li>
-                    <hr>
-                    <li><a href="#"><i class="icone-config"></i>Configurações</a></li>
-                    <li><a href="#"><i class="icone-logout"></i>Log out</a></li>
-
-                </ul>
-            </nav>
-        </div>
+        <?php
+                if(isset($resultado) AND !empty($resultado)){  
+        ?>
+                    <div class="user-menu">
+                        <a href="javascript:void(0)" class="fechar">&times;</a>
+                        <div class="mini-perfil">
+                            <div>    
+                                <img src="../Img/perfil/<?php echo $resultado[0]['img_perfil_usu'] ?>" alt="perfil">
+                            </div>    
+                                <img src="../Img/capa/<?php echo $resultado[0]['img_capa_usu'] ?>" alt="capa">
+                                <p><?php echo $resultado[0]['nome_usu'] ?></p>
+                        </div>
+                        <nav>
+                        <ul>
+                            <?php
+                                require_once('opcoes.php');                        
+                            ?>
+                        </ul>
+                    </nav>
+                    </div>
+        <?php
+           }
+       ?>
 
         <div id="container">
 
             
-            <form class="formulario">
+            <form class="formulario" action="../enviarPublicacao.php" method="POST" enctype="multipart/form-data">
             <!--FORMULARIO ENVIO TITULO E TEMA-->
                 <div class="informacoes">
                     <h3>Informações importantes</h3>
                     <hr>
                         <div class="campo-envio">
                             <label for="titulo">Título<p></p></label>
-                            <input type="text" id="titulo" placeholder="ex. arvore caidar"  maxlength="20" autocomplete="off">
+                            <input type="text" id="titulo" name="titulo" placeholder="ex. arvore caidar"  maxlength="20" autocomplete="off">
                             <span></span>
                 
                     </div>
 
                     <div class="campo-envio">
                             <label for="cep">CEP<p></p></label>
-                            <input type="text" id="cep" placeholder="00000-000"  maxlength="20" >
+                            <input type="text" id="cep" name="cep" placeholder="00000-000"  maxlength="20" >
                             <span></span>
                         </div>
 
                         <div class="campo-envio">
                             <label for="local">local<p></p></label>
-                            <input type="text" id="local" placeholder="rua, Avenida..."  maxlength="20" autocomplete="off" disabled>
+                            <input type="text" id="local" name="local" placeholder="rua, Avenida..."  maxlength="20" autocomplete="off" >
                             <span></span>
                         </div>
 
                         <div class="campo-envio">
                                 <label for="bairro">Bairro<p></p></label>
-                                <input type="text" id="bairro" placeholder="Parque dos Churros"  maxlength="20" autocomplete="off" disabled>
+                                <input type="text" id="bairro" name="bairro" placeholder="Parque dos Churros"  maxlength="20" autocomplete="off" >
                                 <span></span>
                             </div>
                 </div>
@@ -199,6 +159,12 @@
                     <hr>
                     <p></p>
                     <div>
+                            <?php
+                                foreach($categorias as $valor){
+                                    echo $valor;
+                                }
+                            ?>
+                        <!--
                         <div>
                             <input type="radio" name="categoria" id="categoria-1" value="categoria1">
                             <label for="categoria-1"><i class="icone-mail"></i><span>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span></label>
@@ -223,14 +189,14 @@
                             <input type="radio" name="categoria" id="categoria-2" value="categoria2">
                             <label for="categoria-2"> <i class="icone-adm"></i><span>aaaaaaaaaaaaaa</span></label>
                         </div>
-                        
+                        -->
                     </div>
                 </div>
             <!--FORMULARIO DESCRIÇÃO DO DEBATE--> 
                 <div class="campo-texto"> 
                     <h3>sobre o que vai debater ?</h3>
                     <hr>
-                    <textarea placeholder="escreva aqui" id="sobre"></textarea>
+                    <textarea placeholder="escreva aqui" id="sobre" name="texto"></textarea>
                     <p></p>
                     <input type="submit" value="iniciar debate">
                 </div>     
@@ -303,4 +269,17 @@
         </script>        
     </body>
 </html>
- 
+<?php
+    }catch (Exception $exc){
+        $erro = $exc->getCode();   
+        $mensagem = $exc->getMessage();
+        switch($erro){
+            case 2://Nao esta logado    
+                echo "<script> alert('$mensagem');javascript:window.location='login.php';</script>";
+                break;
+            case 6://Não é usuario comum  
+                echo "<script> alert('$mensagem');javascript:window.location='index.php';</script>";
+                break;            
+        }            
+    }
+?>

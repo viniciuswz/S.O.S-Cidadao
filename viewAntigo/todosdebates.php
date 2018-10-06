@@ -74,7 +74,7 @@ session_start();
                     <li><a href="todasreclamacoes.php"><i class="icone-reclamacao"></i>Reclamações</a></li>
                     <li><a href="todosdebates.php"><i class="icone-debate"></i>Debates</a></li>
                 </ul>
-            </nav>
+        </nav>
             <?php
                 if(!isset($resultado)){
                     echo '<a href="login.php"><i class="icone-user" id="abrir"></i></a>';
