@@ -105,13 +105,14 @@ session_start();
             }
         ?>
         <div id="container">
-           
-            <section class="criar-publicacao">
-                <div>
-                   <i class="icone-edit"></i><p>  Gostaria de fazer uma reclamação?</p>
-                    <a href="Formulario-reclamacao.php">Fazer Reclamação</a>
-                </div>
-            </section>  
+        <?php if((isset($tipoUsu) AND ($tipoUsu == 'Comum')) OR !isset($tipoUsu)){?>
+                <section class="criar-publicacao">
+                    <div>
+                    <i class="icone-edit"></i><p>  Gostaria de fazer uma reclamação?</p>
+                        <a href="Formulario-reclamacao.php">Fazer Reclamação</a>
+                    </div>
+                </section>  
+        <?php } ?>
             <section class="alinha-item">
             <?php
                 $contador = 0;

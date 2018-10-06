@@ -108,13 +108,14 @@ session_start();
             }
         ?>
         <div id="container">
-            
-            <section class="criar-publicacao">
-                <div>
-                    <i class="icone-edit"></i><p>   Não encontrou um debate? </p>
-                    <a href="Formulario-debate.php">Criar Debate</a>
-                </div>
-            </section> 
+        <?php if((isset($tipoUsu) AND ($tipoUsu == 'Comum')) OR !isset($tipoUsu)){?>
+                <section class="criar-publicacao">
+                    <div>
+                        <i class="icone-edit"></i><p>   Não encontrou um debate? </p>
+                        <a href="Formulario-debate.php">Criar Debate</a>
+                    </div>
+                </section> 
+        <?php } ?>
             
             <section class="alinha-item">
             <?php
