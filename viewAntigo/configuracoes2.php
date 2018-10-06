@@ -42,12 +42,11 @@ session_start();
         <script src="lib/_jquery/jquery.js"></script>
         <script src="js/js.js"></script>
         <script src="../teste.js"></script>
-
     </head>
     <body>
         <header>
-            <img src="imagens/Ativo2.png" alt="logo">
-            <form>
+            <img src="imagens/logo_oficial.png" alt="logo">
+            <form action="pesquisa.php" method="get">
                 <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar">
                 <button type="submit"><i class="icone-pesquisa"></i></button>
             </form>
@@ -71,7 +70,6 @@ session_start();
                     echo '<i class="icone-user" id="abrir"></i>';
                 }
             ?>
-            
         </header>
         <?php
                 if(isset($resultado) AND !empty($resultado)){  
@@ -99,6 +97,7 @@ session_start();
         <?php
             }
         ?>
+
 
         <div id="container">
             <section class="perfil-base">
@@ -132,7 +131,7 @@ session_start();
                     </div>
                     <div class="campo-texto-config">
                             <label for="passNova">Nova senha</label>
-                            <input type="password" name="novaSenha" id="novaSenha" placeholder="Nova senha" autocomplete ="off">
+                            <input type="password" name="novaSenha" id="passNova" placeholder="Nova senha" autocomplete ="off">
                     </div>
                     <div class="campo-texto-config">
                             <label for="passNovaRepete">Repita a nova senha</label>

@@ -62,7 +62,7 @@ header i.icone-user{
 nav.menu{
     display: flex;
     justify-content: center;
-    background-color: #3be7fd;
+    background-color: #0086ff;
     width: 100vw;
     position: fixed;
     top: calc(100vh - 50px);
@@ -118,7 +118,7 @@ font-size:0.9rem;
 
 nav.menu > ul > li > a{
     font-weight: inherit;
-    color:#263238;
+    color:white;
     width: calc(var(--ajuste)/3);
     line-height: inherit;
 }
@@ -193,7 +193,11 @@ width: 100vw;
     justify-content: center;
 }
 
-.perfil-base h3{
+#trocar-capa{ 
+    top: 160px
+}
+
+.perfil-info h3{
     position: absolute;
     color: aliceblue;
     font-size: 20px;
@@ -212,14 +216,16 @@ width: 100vw;
 }
 
 
-.perfil > div{
+.perfil-info{
     margin-top: 100px;
     align-items: center;
     flex-direction: column-reverse;
+    right:0px;
+    left: 0
     
 }
 
-.perfil div div{
+.perfil-info div{
     height: 130px;
     width: 130px;
     border: 6px solid white;
@@ -227,22 +233,22 @@ width: 100vw;
    
 }
 
-.perfil div div img{
+.perfil-info div img{
     height: 135%;
 }
 
-.perfil-base div div p{
+.perfil-info p{
     margin-top: 40px;
     position: inherit;
    
-   text-align: center;
+    text-align: center;
     font-size: 1.3rem;
     color: black;
     margin: 40px auto 0 auto;
     padding: 0 15px;
 }
 
-.perfil-base div div span{
+.perfil-info div span{
     color: black;
     font-size: .9em;
     margin: 0px auto 0 auto;
@@ -251,10 +257,10 @@ width: 100vw;
     word-wrap: break-word;
 }
 
-.perfil div i{
+.perfil-info i{
     position: absolute;
-    margin-right: -40px;
-    margin-top: 30px;
+    left: 150px;
+    margin-top: 30px
 }
 
 
@@ -297,18 +303,21 @@ width: 100vw;
 
 
 .item-publicacao{
+    max-width: 320px;
     width:100%;
 }
 
-.item-publicacao .item-topo span{
+.item-publicacao .item-topo p span{
     width: 180px; 
  }
 
 .item-publicacao .legenda{
+    max-width: 320px;
     width:100%;
  }
 
  .item-publicacao figure{
+
     width:100%;
 }
 
@@ -429,7 +438,7 @@ width: 100vw;
     
 }
 
-.form-icone section p{
+.form-icone section h1 ~ p{
     width: 90%;
     font-size: 16px;
     margin: 0 auto;
@@ -592,6 +601,10 @@ width: 100vw;
     display: block;
 }
 
+.filtro-admin i{
+    cursor: pointer
+}
+
 .filtro-admin span:first-child{
     position: absolute;
     font-family: "Open-Sans";
@@ -639,9 +652,11 @@ width: 100vw;
     background-color: #fff;
     display: none;
     z-index: 98;
-
 }
 
+.filtro-admin form.filtro-ativo{
+    display: block
+}
 .filtro-admin form div{
     display: flex;
     flex-direction: column;
@@ -868,7 +883,7 @@ width: 100vw;
     margin-bottom:60px 
 }
 .debate-publicacao h3 ~ div:first-of-type{
-overflow: inherit
+    overflow: inherit
 }
 
 .debate-publicacao h3 ~ div:first-of-type::after{
@@ -903,4 +918,162 @@ overflow: inherit
 .debate-status div{
     flex-direction: column;
     justify-content: center
+}
+
+.landing-dobra h1{
+    top: 10%;
+    left:50%;
+    transform: translateX(-50%);
+    width: 100%;
+    font-size: 20px;
+    text-align: center
+}
+
+.landing-dobra div{
+    top: 90px;
+    left:50%;
+    transform: translateX(-50%);
+    width: 95%;
+    align-items: center;
+}
+
+.landing-dobra div p{
+    font-size: 15px;
+    text-align: center
+}
+
+.landing-funcionalidades{
+    flex-direction: column
+}
+
+.landing-item{
+    width: 100%;
+}
+
+.landing-prefeitura h1{
+    width: 100%;
+    text-align: center;
+    color:white;
+    position: absolute;
+    top: calc(50% - 10px);
+    left:50%;
+    transform: translateX(-50%) translateY(-50%)
+}
+
+.landing-prefeitura p{
+    color:white;
+    position: absolute;
+    width: 90%;
+    text-align: center;
+    top:calc(50% + 60px);
+    left:50%;
+    transform: translateX(-50%) translateY(-50%)
+}
+
+.landing-rodape h1{
+    font-size: 17px
+}
+
+
+.mini-menu-adm{
+    position: fixed;
+    
+    top: calc(0px + 50px);
+    width: 100%;
+    height: calc(100vh - 50px);
+    background-color: rgba(000, 000, 000, .5);
+    cursor: click
+}
+.mini-menu-adm ul{
+    margin-top:0px;
+    font-size: 15px;
+    font-weight: normal;
+    width: 100%;
+    background-color: white;
+    display:flex;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.mini-menu-adm ul li a{
+    padding: 12px;
+}
+
+
+.motivo{
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100vh;
+    color:black;
+    z-index:97
+}
+.motivo-fundo{
+    position: fixed;
+    background-color: rgba(0, 0, 0, .4);
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 98;
+   
+
+}
+
+.motivo-box{
+   
+    left: 0%;
+    top: 0%;
+    transform: translateX(-0%) translateY(-0%);
+    width: 100%;
+    height: 100vh;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    
+
+}
+
+.motivo-box div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+.motivo-box div span{
+    font-size: 40px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.box-denunciar div h1{
+    font-size: 18px
+}
+.box-denunciar{
+    background-color: white;
+    width: 100%;
+    padding-bottom: 10px;
+    height: 100vh;
+    margin: 5px;
+}
+
+.box-desativar div h1{
+    font-size: 18px
+}
+.box-desativar{
+    background-color: white;
+    width: 100%;
+    height: auto;
+    margin: 5px;
+}
+
+.box-erro div h1{
+    font-size: 18px
+}
+.box-erro{
+    background-color: white;
+    width: 100%;
+    height: auto;
+    margin: 5px;
 }

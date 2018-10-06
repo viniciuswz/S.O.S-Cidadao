@@ -1,3 +1,4 @@
+
 <?php
 session_start();
     require_once('../Config/Config.php');
@@ -91,7 +92,7 @@ session_start();
            </section>
            <footer class="landing-rodape">
                 <h1>Não perca o que acontece na sua cidade</h1>
-                <a class="cta">ver agora</a>
+                <a class="cta" href="todasreclamacoes.php">ver agora</a>
            </footer>
         </div>
     </body>

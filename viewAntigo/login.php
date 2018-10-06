@@ -36,25 +36,29 @@ session_start();
         <script src="js/js.js"></script>
 
     </head>
-    <body>       
+    <body>
            <div class="form-icone">
                <section>
                    <div>
                    <h1>S.O.S Cidadão</h1>
                    <p>conecte-se com a nossa comunidade e colabore</p>
-                   </div>
-                   
-                    <form action="../Login.php" method="POST">
+                   </div>                   
+                    <form action="../Login.php" id="login" method="POST">
                         <h3>login</h3>
-                        <div class="campo-texto-icone">
-                            <label for="email"><i class="icone-mail"></i></label>
+                        <div class="campo-texto-icone"  >
+                            <label for="email" ><i class="icone-mail"></i></label>
                             <input type="email" name="email" id="email" placeholder="E-mail">
+
                         </div>
                         <div class="campo-texto-icone">
                             <label for="senha"><i class="icone-senha"></i></label>
                             <input type="password" name="senha" id="senha" placeholder="Senha">
                         </div>
+                        <div class="aviso-form-inicial">
+                            <p>O campo tal e pa</p>
+                        </div>
                         <button type="submit">login</button>
+
                     </form>
                </section>                
            </div>        

@@ -39,12 +39,11 @@ session_start();
         <script src="lib/_jquery/jquery.js"></script>
         <script src="js/js.js"></script>
         <script src="../teste.js"></script>
-
     </head>
     <body>
         <header>
-            <img src="imagens/Ativo2.png" alt="logo">
-            <form>
+            <img src="imagens/logo_oficial.png" alt="logo">
+            <form action="pesquisa.php" method="get">
                 <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar">
                 <button type="submit"><i class="icone-pesquisa"></i></button>
             </form>
@@ -60,7 +59,7 @@ session_start();
                     <li><a href="todasreclamacoes.php"><i class="icone-reclamacao"></i>Reclamações</a></li>
                     <li><a href="todosdebates.php"><i class="icone-debate"></i>Debates</a></li>
                 </ul>
-            </nav>            
+            </nav>       
             <?php
                 if(!isset($resultado)){
                     echo '<a href="login.php"><i class="icone-user" id="abrir"></i></a>';
@@ -68,7 +67,6 @@ session_start();
                     echo '<i class="icone-user" id="abrir"></i>';
                 }
             ?>
-            
         </header>
         <?php
                 if(isset($resultado) AND !empty($resultado)){  
@@ -98,6 +96,7 @@ session_start();
             }
         ?>
 
+
         <div id="container">
                 <section class="perfil-base">
                         <h3>Configurações da conta</h3>
@@ -124,6 +123,7 @@ session_start();
                 </ul>
             </nav>
             <section class="form-config">
+                
                 <form action="../updateNomeEmail.php" method="post">
                     <div class="campo-texto-config">
                             <label for="user">Nome</label>
@@ -134,7 +134,31 @@ session_start();
                             <input type="email" name="email" id="email" placeholder="E-mail" value="<?php echo $resultado[0]['email_usu'] ?>">
                     </div>
                     <button type="submit">Alterar</button>
-            </form>
+                    <?php if ($_SESSION['tipo_usu'] != 'Prefeitura' AND $_SESSION['tipo_usu'] != 'Funcionario'){ ?>
+                        <span class="desativar-btn">
+                                Desativar conta
+                        </span>
+                    <?php } ?>
+                </form>
+                <?php if ($_SESSION['tipo_usu'] != 'Prefeitura' AND $_SESSION['tipo_usu'] != 'Funcionario'){ ?>
+
+                    <div class="modal-desativar">
+                        <div class="modal-desativar-fundo"></div>
+                        <div class="box-desativar">
+                            <div>
+                                <h1>Vai desativar a conta?</h1>
+                                <span class="fechar-desativar">&times;</span>
+                            </div>
+                            <div>
+                                <p>Depois que confirmar, <strong style="text-transform :uppercase" >não</strong> vai mais poder recuperar sua conta de nenhuma forma, ainda quer desativar sua conta?</p>
+                                <a href="../ApagarUsuario.php?ID=<?php echo$_SESSION['id_user']?>">Desativar conta</a>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+                
+                
         </section>
 
         </div>

@@ -6,12 +6,16 @@ session_start();
     use Core\Publicacao;
     use Classes\ValidarCampos;
     
-    try{        
+    try{   
+        //$_SESSION['indNovaConta']  = true;
+        if(isset($_SESSION['indNovaConta'])){ // se por um acaso for usuario novo
+            unset($_SESSION['indNovaConta']);           
+        }
         $usuPerfil = new Usuario();
         if(isset($_SESSION['id_user'])){ // se estiver logado   
             $usu = new Usuario();  
             $usu->setCodUsu($_SESSION['id_user']);         
-            $resultado = $usu->getDadosUser();
+            $resultado = $usu->getDadosUser(false,true);
 
             $tipoUsu = $_SESSION['tipo_usu'];
             if(isset($_GET['ID'])){ // quando for ver perfil de outras pessoas
@@ -19,7 +23,7 @@ session_start();
                 $validar->verificarTipoInt(array('ID'), $_GET); // Verificar se o parametro da url é um numero
                 $id = $_GET['ID'];
                 $usuPerfil->setCodUsu($_GET['ID']); 
-                $dadosPerfil =  $usuPerfil->getDadosUser();     
+                $dadosPerfil =  $usuPerfil->getDadosUser(false,true);     
             }else{ // seu propio perfil
                 $id = $_SESSION['id_user'];                
                 $dadosPerfil = $resultado;                            
@@ -29,7 +33,7 @@ session_start();
             $validar->verificarTipoInt(array('ID'), $_GET); // Verificar se o parametro da url é um numero
             $id = $_GET['ID'];   
             $usuPerfil->setCodUsu($_GET['ID']);    
-            $dadosPerfil =  $usuPerfil->getDadosUser();     
+            $dadosPerfil =  $usuPerfil->getDadosUser(false,true);     
         }        
         $descPerfilVisu = $dadosPerfil[0]['descri_tipo_usu'];
         if($descPerfilVisu != 'Comum' AND $descPerfilVisu != 'Prefeitura'){ // Vendo perfil restrito
@@ -108,8 +112,8 @@ session_start();
     </head>
     <body>
         <header>
-            <img src="imagens/Ativo2.png" alt="logo">
-            <form>
+            <img src="imagens/logo_oficial.png" alt="logo">
+            <form action="pesquisa.php" method="get">
                 <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar">
                 <button type="submit"><i class="icone-pesquisa"></i></button>
             </form>
@@ -125,7 +129,7 @@ session_start();
                     <li><a href="todasreclamacoes.php"><i class="icone-reclamacao"></i>Reclamações</a></li>
                     <li><a href="todosdebates.php"><i class="icone-debate"></i>Debates</a></li>
                 </ul>
-            </nav>                    
+            </nav>
             <?php
                 if(!isset($resultado)){
                     echo '<a href="login.php"><i class="icone-user" id="abrir"></i></a>';
@@ -133,35 +137,33 @@ session_start();
                     echo '<i class="icone-user" id="abrir"></i>';
                 }
             ?>
-            
         </header>
         <?php
-                if(isset($resultado) AND !empty($resultado)){  
+                if(isset($resultado) AND !empty($resultado)){
         ?>
         <div class="user-menu">
            
-            <a href="javascript:void(0)" class="fechar">&times;</a>            
-            <div class="mini-perfil">
-                <div>    
-                    <img src="../Img/perfil/<?php echo $resultado[0]['img_perfil_usu'] ?>" alt="perfil">
-                </div>    
-                    <img src="../Img/capa/<?php echo $resultado[0]['img_capa_usu'] ?>" alt="capa">
-                    <p><?php echo $resultado[0]['nome_usu'] ?></p>
-            </div>
+           <a href="javascript:void(0)" class="fechar">&times;</a>            
+           <div class="mini-perfil">
+               <div>    
+                   <img src="../Img/perfil/<?php echo $resultado[0]['img_perfil_usu'] ?>" alt="perfil">
+               </div>    
+                   <img src="../Img/capa/<?php echo $resultado[0]['img_capa_usu'] ?>" alt="capa">
+                   <p><?php echo $resultado[0]['nome_usu'] ?></p>
+           </div>
+          
+           <nav>
+               <ul>
+                   <?php
+                      require_once('opcoes.php');                        
+                   ?>
+               </ul>
+           </nav>
            
-            <nav>
-                <ul>
-                    <?php
-                       require_once('opcoes.php');                        
-                    ?>
-
-                </ul>
-            </nav>
-            
-        </div>       
-        <?php
-            }
-        ?>
+       </div>       
+       <?php
+           }
+       ?>
 
 
         <div id="container">
@@ -170,17 +172,20 @@ session_start();
                         <?php 
                             if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $dadosPerfil[0]['cod_usu']){
                         ?>
-                                <form action="../UpdateImagem.php" method="post" enctype="multipart/form-data">
-                                        <label for="imagem"><i class="icone-edit-full"></i></label>
-                                        <input type="file" id="imagem" name="imagem">
-                                        <input type="hidden" value="capa" name="tipo">                                
-                                </form>
+                            <i class="icone-edit-full" id="trocar-capa" title="Alterar a foto de capa"></i>
+                            <!-- 
+                            <form action="../UpdateImagem.php" method="post" enctype="multipart/form-data">
+                                    <label for="imagem"><i class="icone-edit-full"></i></label>
+                                    <input type="file" id="imagem">
+                                    <input type="hidden" value="capa" name="tipo">                                
+                            </form>
+                            -->
                         <?php 
                             }
                         ?>
                     <img src="../Img/capa/<?php echo $dadosPerfil[0]['img_capa_usu'] ?>"> 
                    
-                    <div>
+                    <div class="perfil-info">
                         <p><?php echo $dadosPerfil[0]['nome_usu'] ?></p>
                         <div>
                             <img src="../Img/perfil/<?php echo $dadosPerfil[0]['img_perfil_usu'] ?>">
@@ -188,22 +193,25 @@ session_start();
                         <?php 
                             if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $dadosPerfil[0]['cod_usu']){
                         ?>
-                                <form action="../UpdateImagem.php" method="post" enctype="multipart/form-data">
-                                    <label for="imagem"><i class="icone-edit-full" title="Alterar a foto de perfil"></i></label>
-                                    <input type="file" id="imagem" name="imagem">
-                                    <input type="hidden" value="perfil" name="tipo">                            
-                                </form>
+                            <i class="icone-edit-full" id="trocar-perfil" title="Alterar a foto de perfil"></i>
+                            <!-- 
+                            <form action="../UpdateImagem.php" method="post" enctype="multipart/form-data">
+                                <label for="imagem"><i class="icone-edit-full" title="Alterar a foto de perfil"></i></label>
+                                <input type="file" id="imagem">
+                                <input type="hidden" value="perfil" name="tipo">  
+                            </form>-->
                         <?php 
                             }
                         ?>
+                       
+                        
                     </div>
-
                 </div>
                
             </section>
             <nav class="menu-perfil">
                 <ul class="espacos">
-                    
+
                     <li class="ativo"><a href="#r"><?php echo $nomeLink1 ?></a></li>
                     <?php 
                         if(isset($_GET['ID'])){                    
@@ -211,8 +219,7 @@ session_start();
                         }else{
                             echo '<li><a href="perfil_debate.php">'.$nomeLink2.'</a></li>';
                         }
-                    ?>
-                    
+                    ?>                   
                     
                 </ul>
             </nav>
@@ -226,64 +233,82 @@ session_start();
                 while($contador < count($resposta)){                
             ?>  
                 <div class="item-publicacao">
-                
                     <div class="item-topo">
                         <a href="#">
                         <div>
                             <img src="../Img/perfil/<?php echo $resposta[$contador]['img_perfil_usu']?>">
                         </div>
                         <p><span class="negrito"><?php echo $resposta[$contador]['nome_usu']?></a></span><time><?php echo $resposta[$contador]['dataHora_publi']?></time></p>
-                        <div class="mini-menu-item mini-menu-item-ativo">
+                        <div class="mini-menu-item">
                             <i class="icone-3pontos"></i>
                             <div>
                                 <ul>
-                                <?php
+                                    <?php
                                         if(isset($resposta[$contador]['indDenunPubli']) AND $resposta[$contador]['indDenunPubli'] == TRUE){ // Aparecer quando o user ja denunciou            
-                                            echo '<li><i class="icone-bandeira"></i><b>Denunciado</b></li>';        
+                                            echo '<li><i class="icone-bandeira"></i><span class="negrito">Denunciado</span></li>';        
                                         }else if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] != $resposta[$contador]['cod_usu']){ // Aparecer apenas naspublicaçoes q nao é do usuario
                                             if($tipoUsu == 'Comum' or $tipoUsu == 'Prefeitura' or $tipoUsu == 'Funcionario'){
-                                                echo '<li><a href="../Templates/DenunciarPublicacaoTemplate.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-bandeira"></i>Denunciar</a></li>';                                                        
+                                                //echo '<li><a href="../Templates/DenunciarPublicacaoTemplate.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-bandeira"></i>Denunciar</a></li>';                                                        
+                                                echo '<li class="denunciar-item"><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>';
+
                                             }                    
                                         }else if(!isset($_SESSION['id_user'])){ // aparecer parar os usuario nao logado
-                                                 echo '<li><a href="../Templates/DenunciarPublicacaoTemplate.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-bandeira"></i>Denunciar</a></li>';
+                                                //echo '<li><a href="../Templates/DenunciarPublicacaoTemplate.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-bandeira"></i>Denunciar</a></li>';
+                                                echo '<li class="denunciar-item"><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>';
                                         } 
-                                ?>
-                                <?php
-                                        if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $resposta[$contador]['cod_usu']){
-                                            echo '<li><a href="../ApagarPublicacao.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-fechar"></i></i>Remover</a></li>';
-                                            echo '<li><a href="../Templates/UpdatePublicacaoTemplate.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';                                                    
-                                        }else if(isset($tipoUsu) AND ($tipoUsu == 'Adm' or $tipoUsu == 'Moderador')){
-                                            echo '<li><a href="../ApagarPublicacao.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-fechar"></i></i>Remover</a></li>';
-                                            // Icone para apagar usuaario
-                                            //echo '<a href="../ApagarUsuario.php?ID='.$resposta[0]['cod_usu'].'">Apagar Usuario</a>';                                                       
-                                            echo '<li><a href="../Templates/UpdatePublicacaoTemplate.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';                                                    
-                                        }
-                                ?> 
-                                
-                                <?php
-                                        if(isset($_SESSION['id_user']) AND isset($resposta[$contador]['indSalvaPubli']) AND $resposta[$contador]['indSalvaPubli'] == TRUE){//Salvou
-                                            echo '<li><a href="../SalvarPublicacao.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-salvar-full"></i>Salvo</a></li>';
-                                        }else if(isset($_SESSION['id_user']) AND isset($resposta[$contador]['indSalvaPubli']) AND $resposta[$contador]['indSalvaPubli'] == FALSE){//Nao salvou
-                                            echo '<li><a href="../SalvarPublicacao.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-salvar"></i>Salvar</a></li>';
-                                        }else if(!isset($_SESSION['id_user'])){ // aparecer parar os usuario nao logado
-                                            echo '<li><a href="../SalvarPublicacao.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-salvar"></i>Salvar</a></li>';
-                                        } 
-                                ?> 
+                                    ?>
+                                    <?php
+                                            if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $resposta[$contador]['cod_usu']){
+                                                echo '<li><a href="../ApagarPublicacao.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-fechar"></i></i>Remover</a></li>';                                                
+                                                echo '<li><a href="reclamacao-update.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';
+                                            }else if(isset($tipoUsu) AND ($tipoUsu == 'Adm' or $tipoUsu == 'Moderador')){
+                                                echo '<li><a href="../ApagarPublicacao.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-fechar"></i></i>Remover</a></li>';
+                                                // Icone para apagar usuaario
+                                                //echo '<a href="../ApagarUsuario.php?ID='.$resposta[0]['cod_usu'].'">Apagar Usuario</a>';
+                                                echo '<li><a href="reclamacao-update.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';
+                                            }
+                                    ?> 
+                                    
+                                    <?php
+                                            if(isset($_SESSION['id_user']) AND isset($resposta[$contador]['indSalvaPubli']) AND $resposta[$contador]['indSalvaPubli'] == TRUE){//Salvou
+                                                echo '<li><a href="../SalvarPublicacao.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-salvar-full"></i>Salvo</a></li>';
+                                            }else if(isset($_SESSION['id_user']) AND isset($resposta[$contador]['indSalvaPubli']) AND $resposta[$contador]['indSalvaPubli'] == FALSE){//Nao salvou
+                                                echo '<li><a href="../SalvarPublicacao.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-salvar"></i>Salvar</a></li>';
+                                            }else if(!isset($_SESSION['id_user'])){ // aparecer parar os usuario nao logado
+                                                echo '<li><a href="../SalvarPublicacao.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-salvar"></i>Salvar</a></li>';
+                                            } 
+                                    ?> 
 
                                 </ul>
                             </div>
+                            <div class="modal-denunciar">
+                                    <div class="modal-denunciar-fundo"></div>
+                                    <div class="box-denunciar">
+                                        <div>
+                                            <h1>Qual o motivo da denuncia?</h1>
+                                            <span class="fechar-denuncia">&times;</span>
+                                        </div>
+                                       
+                                        <form form method="post" action="../DenunciarPublicacao.php">
+                                            <textarea placeholder="Qual o motivo?" id="motivo" name="texto"></textarea>
+                                            <input type="hidden" name="id_publi" value="<?php echo $resposta[$contador]['cod_publi'] ?>">                
+                                            <button type="submit"> Denunciar</button>
+                                        </form>
+                                        
+                                    </div>
+                                </div>
                         </div>
                     </div>
                     <a href="reclamacao.php?ID=<?php echo $resposta[$contador]['cod_publi'] ?>">
                     <?php
                         if(!empty($resposta[$contador]['img_publi'])){
-                    ?>  
+                    ?> 
                         <figure>
                             <img src="../Img/publicacao/<?php echo $resposta[$contador]['img_publi']?>">
-                        </figure> 
+                        </figure>   
                     <?php
                         }
-                    ?>                        
+                    ?>  
                         <p><?php echo $resposta[$contador]['titulo_publi']?></p>
                         </a>
                         <div class="item-baixo">   
@@ -293,14 +318,12 @@ session_start();
                                 <span><?php echo $resposta[$contador]['quantidade_comen']?></span><i class="icone-comentario"></i>
                             </div>
                         </div>
-                          
-                </div>  
+                </div>
                 <?php                  
                     $contador++;
                     }
-                ?>                 
-            </section>
-            </div>
+                ?>                     
+            </section>            
         </div>
         <ul>
         <?php

@@ -1,3 +1,51 @@
+<?php
+session_start();
+    require_once('../Config/Config.php');
+    require_once(SITE_ROOT.DS.'autoload.php');    
+    
+    use Core\Usuario;    
+    use Core\Debate;
+    use Core\Mensagens;
+    use Classes\ValidarCampos;
+    try{        
+
+        $tipoUsuPermi = array('Prefeitura','Adm','Funcionario','Moderador','Comum');
+        Usuario::verificarLogin(1,$tipoUsuPermi);
+
+        $debate = new Debate(); 
+        $mensagemObj = new Mensagens($_GET['ID']);       
+
+        if(isset($_SESSION['id_user']) AND !empty($_SESSION['id_user'])){
+            $debate->setCodUsu($_SESSION['id_user']); 
+            $tipoUsu = $_SESSION['tipo_usu'];      
+        }
+        $nomesCampos = array('ID');// Nomes dos campos que receberei da URL    
+        $validar = new ValidarCampos($nomesCampos, $_GET);
+        $validar->verificarTipoInt($nomesCampos, $_GET); // Verificar se o parametro da url é um numero     
+        $debate->setCodDeba($_GET['ID']);   
+        $mensagemObj->setCodDeba($_GET['ID']);   
+                
+        $resposta = $debate->listByIdDeba('sqlListDebaQuandoAberto');
+        $debate->verificarSeParticipaOuNao($_GET['ID'], TRUE);       
+
+        $participantes = $debate->listarParticipantes(' usuario.cod_usu, nome_usu, img_perfil_usu, ind_visu_criador ');
+        $mensagemObj->setCodUsu($_SESSION['id_user']);
+        //
+
+        $listDeba = $debate->listarDebatesQpartcipo();
+        
+        isset($_GET['pagina']) ?: $_GET['pagina'] = 1; 
+        
+        $mensagem = $mensagemObj->getMensagens($_GET['pagina']);
+        $mensagemObj->visualizarMensagem();
+        $quantidadePaginas = $mensagemObj->getQuantidadePaginas();
+        $pagina = $mensagemObj->getPaginaAtual();      
+
+        //var_dump($ja);
+        //var_dump($mensagem);
+        
+        //var_dump($resposta);
+?>
 <!DOCTYPE html>
 <html lang=pt-br>
     <head>
@@ -40,52 +88,49 @@
                         <div class="moldura-debate">
                             <div>
                                 <div>
-                                    <img src="imagens/RECLAMATION.png">
+                                    <img src="../Img/debate/<?php echo $resposta[0]['img_deba']?>">
                                 </div>
-                                <form>
-                                    <label for="imagem"><i class="icone-edit-full" title="Alterar a foto de perfil"></i></label>
-                                    <input type="file" id="imagem">
-                                </form>
+                                <?php 
+                                    if($resposta[0]['cod_usu'] == $_SESSION['id_user']){
+                                ?>
+                                    <form>
+                                        <label for="imagem"><i class="icone-edit-full" title="Alterar a foto de perfil"></i></label>
+                                        <input type="file" id="imagem">
+                                    </form>
+                                <?php 
+                                    }
+                                ?>
                             </div>
                             
                         </div>
                         <div class="infos">
-                            <h3>tituloooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo</h3>
-                            <p>Criado por <span>Péricleeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeees</span></p>
+                            <h3><?php echo $resposta[0]['nome_deba']?></h3>
+                            <p>Criado por <span><?php echo $resposta[0]['nome_usu']?></span></p>
                         </div>
                         <div class="participantes">
-                            <h4>Participantes (22)</h4>
-                            <div>
-                                <div class="img-participante">
-                                    <img src="imagens/perfil.jpg">
-                                </div>
-                                <p>Pericles exaltassamasdasd</p>
-                            </div>
-                            <div>
-                                <div class="img-participante">
-                                    <img src="imagens/perfil.jpg">
-                                </div>
-                                <p>Pericles exaltassamasdasd</p>
-                            </div>
-                            <div>
-                                <div class="img-participante">
-                                    <img src="imagens/perfil.jpg">
-                                </div>
-                                <p>Pericles exaltassamasdasd</p>
-                            </div>
-                            <div>
-                                <div class="img-participante">
-                                    <img src="imagens/perfil.jpg">
-                                </div>
-                                <p>Pericles exaltassamasdasd</p>
-                            </div>
-                            <div>
-                                <div class="img-participante">
-                                    <img src="imagens/perfil.jpg">
-                                </div>
-                                <p>Pericles exaltassamasdasd</p>
-                            </div>
-                        </div>
+                            <h4>Participantes (<?php echo $resposta[0]['qtdParticipantes']?>)</h4>
+                            <?php
+                                $contador = 0;
+                                while($contador < count($participantes)){
+                            ?>                                   
+                                    <div>
+                                        <a href="perfil_reclamacao.php?ID=<?php echo $participantes[$contador]['cod_usu'] ?>">
+                                            <div class='img-participante'>
+                                                <img src='../Img/perfil/<?php echo $participantes[$contador]['img_perfil_usu'] ?>'>
+                                            </div>
+                                        </a>
+                                                <p><?php echo $participantes[$contador]['nome_usu'] ?></p>
+                                                <?php
+                                                    if($participantes[$contador]['ind_visu_criador'] == 'I'){
+                                                        echo 'dono';
+                                                    }
+                                                ?>
+                                        
+                                    </div>                                
+                            <?php
+                                    $contador++;
+                                }
+                            ?>             
                 </aside>
                 <aside class="contatos">
                     <header class="">
@@ -93,38 +138,56 @@
                             <p id="fechar-contatos">&times;</p>
                     </header>
                         <nav>
-                            <div class="contatinhos">
-                                <div class="img-debate">
-                                    <img src="imagens/RECLAMATION.png" alt="debate">
+                            <?php
+                                $contador = 0;
+                                while($contador < count($listDeba)){
+                            ?>
+                                <div class="contatinhos">
+                                    <a href="debate_mensagens.php?ID=<?php echo $listDeba[$contador]['cod_deba'] ?>&pagina=ultima">
+                                        <div class="img-debate">
+                                            <img src="../Img/debate/<?php echo $listDeba[$contador]['img_deba']?>" alt="debate">
+                                        </div>
+                                    </a>
+                                    <div class="status-debate">
+                                        <?php
+                                            if($_GET['ID'] == $listDeba[$contador]['cod_deba']){
+                                                echo '<p><span class="negrito">'.$listDeba[$contador]['nome_deba'] . '</span></p>';
+                                            }else{
+                                                echo '<p>'.$listDeba[$contador]['nome_deba'].'</p>';
+                                            }
+                                                echo '<p>'.$listDeba[$contador]['quantidade'].'</p>';
+                                        ?>                                      
+                                        
+                                    </div>
                                 </div>
-                                <div class="status-debate">
-                                    <p>Como assim cadeiranteeeeeeeeee</p>
-                                </div>
-                            </div>
-                            <div class="contatinhos">
-                                <div class="img-debate">
-                                    <img src="imagens/RECLAMATION.png" alt="debate">
-                                </div>
-                                <div class="status-debate">
-                                    <p>Como assim cadeiranteeeeeeeeee</p>
-                                </div>
-                            </div>
+                            <?php
+                                    $contador++;
+                                }
+                            ?>                             
                         </nav>
-                </aside>
-                
+                </aside>                
         
            <div class="batepapo">
                 <header>
                     <div>
-                        <img src="imagens/RECLAMATION.png" alt="debate">
+                        <img src="../Img/debate/<?php echo $resposta[0]['img_deba']?>" alt="debate">
                     </div>
-                    <h4>Como assim cadeiraaaaaaanteeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee?</h4>
+                    <h4><?php echo $resposta[0]['nome_deba']?></h4>
                     <div class="mini-menu-item">
                             <i class="icone-3pontos"></i>
                             <div>
                                 <ul>
                                     <li id="abrir-debate-info"><span>Dados do grupo</span></li>
-                                    <li><span>Sair do grupo</span></li>
+                                    <?php
+                                        if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $resposta[0]['cod_usu']){
+                                            echo '<li><a href="../SairDebate.php?ID='. $resposta[0]['cod_deba'].'"><span>Apagar grupo</span></a></li>';
+                                        }else if($_SESSION['tipo_usu'] == 'Comum'){
+                                            echo '<li><a href="../SairDebate.php?ID='. $resposta[0]['cod_deba'].'"><span>Sair do grupo</span></a></li>';
+                                        }else if($_SESSION['tipo_usu'] == 'Adm' OR $_SESSION['tipo_usu'] == 'Moderador'){
+                                            echo '<li><a href="../SairDebate.php?ID='. $resposta[0]['cod_deba'].'"><span>Apagar Grupo</span></a></li>';
+                                        }
+                                    ?>
+                                    
                                     <li id="abrir-contatos"><span>Suas conversas</span></li>
                                 </ul>
                             </div>
@@ -132,7 +195,39 @@
                 </header>
                 <div class="mensagens">
 
-                    <div class="linha-mensagem_padrao">
+
+                    <?php
+                        $contador = 0;
+                        while($contador < count($mensagem)){
+                            $classe = $mensagem[$contador]['classe']
+                    ?>     
+                        
+                        <div class="<?php echo $classe?>">
+
+                            <?php if($classe == 'linha-mensagem_padrao') { ?>  
+                                                          
+                                    <div class="usuario-msg-foto">
+                                        <img src="../Img/perfil/<?php echo $mensagem[$contador]['img_perfil_usu'] ?>">
+                                    </div>
+                                    <div class="mensagem_padrao">
+                                <a href="perfil_reclamacao.php?ID=<?php echo $mensagem[$contador]['cod_usu'] ?>">
+                                    <span class="nome"><?php echo $mensagem[$contador]['nome_usu'] ?></span>
+                                </a>
+                            <?php }else{ ?>
+                                <div>
+                            <?php } ?>   
+                                <span >
+                                    <?php echo $mensagem[$contador]['texto_mensa'] ?><sub><?php echo $mensagem[$contador]['hora'] ?></sub>
+                                </span>
+                            </div>
+                        </div>
+                    <?php
+                        $contador++;
+                        }
+
+                    ?>
+
+                    <!-- <div class="linha-mensagem_padrao">
                         <div class="usuario-msg-foto">
                             <img src="imagens/perfil.jpg">
                         </div>
@@ -234,17 +329,55 @@
                                 teeeeeeeeeeeeeeeee<sub>16:55</sub>
                             </span>
                         </div>
-                    </div>
+                    </div> -->
                         
                 </div>
 
                      
-               <form>
-                   <input type="text" placeholder="digite aqui..." ><button type="submit"> ></button> 
+               <form action="../enviarMensagem.php" method="post">
+                        <input type="hidden" name="ID" value="<?php echo $_GET['ID'] ?>" />
+                        <input type="hidden" name="pagina" value="<?php echo $pagina ?>" />
+                   <input type="text" name="texto" placeholder="digite aqui..." ><button type="submit"> ></button> 
                </form>      
            </div>
         </section>
         </div>
+        <ul>
+        <?php
+            if($quantidadePaginas != 1){
+                $contador = 1;
+                while($contador <= $quantidadePaginas){
+                    if(isset($pagina) AND $pagina == $contador){
+                        if(isset($_GET['ID'])){
+                            echo '<li class="jaca"><a href="debate_mensagens.php?pagina='.$contador.'&ID='.$_GET['ID'].'">Pagina'.$contador.'</a></li>'  ; 
+                        }else{
+                            echo '<li class="jaca"><a href="debate_mensagens.php?pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ; 
+                        }                         
+                    }else{
+                        if(isset($_GET['ID'])){
+                            echo '<li class="jaca"><a href="debate_mensagens.php?pagina='.$contador.'&ID='.$_GET['ID'].'">Pagina'.$contador.'</a></li>'  ; 
+                        }else{
+                            echo '<li class="jaca"><a href="debate_mensagens.php?pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ; 
+                        }                         
+                    }                    
+                    $contador++;        
+                }
+            }
+            
+        ?>
+        </ul>
     </body>
 </html>
- 
+<?php
+    }catch (Exception $exc){
+        $erro = $exc->getCode();   
+        $mensagem = $exc->getMessage();  
+        switch($erro){
+            case 9://Não foi possivel achar a publicacao  
+                echo "<script> alert('$mensagem');javascript:window.location='todosdebates.php';</script>";
+                break; 
+            default: //Qualquer outro erro cai aqui
+                echo "<script> alert('$mensagem');javascript:window.location='todosdebates.php';</script>";
+        }   
+    }  
+?> 

@@ -41,12 +41,12 @@ session_start();
         
         isset($_GET['pagina']) ?: $_GET['pagina'] = null;
                   
-        $comentarioComum = $comentario->SelecionarComentariosUserComum($_GET['pagina']);
+        
         
         $resposta = $publi->listByIdPubli(); 
         $comentarioPrefei = $comentario->SelecionarComentariosUserPrefei(TRUE);        
-        $quantidadePaginas = $comentario->getQuantidadePaginas();
-        $pagina = $comentario->getPaginaAtual();       
+           
+        
 
         
         if(isset($_GET['com'])){                            
@@ -54,16 +54,32 @@ session_start();
                 $visualizar = new VisualizarNotificacao();
                 if(isset($_GET['IdComen'])){
                     $idNoti = $_GET['IdComen'];
-                }else{
+                    $comentario->setCodComen($idNoti);
+                    $comentarioComum = $comentario->getDadosComenByIdComen(); // preciso do comenantario denunciado                    
+                }else{                                        
                     $idNoti = $_GET['ID'];
                 }
                 $visualizar->visualizarNotificacao($_GET['com'], $idNoti, $_SESSION['id_user']);
             }                  
         }
 
+        if(!isset($_GET['IdComen'])){ // quero todos os comentários
+            $comentarioComum = $comentario->SelecionarComentariosUserComum($_GET['pagina']); // quero todos os comenatários
+            if(empty($comentarioComum)){
+                $complemento = "Seja o primeiro a fazer um comentário !!";
+            }else{
+                $complemento = "Comentários";
+            }            
+        }else if(isset($_SESSION['id_user']) AND isset($_GET['IdComen'])){
+            $idNoti = $_GET['IdComen'];
+            $comentario->setCodComen($idNoti);
+            $comentarioComum = $comentario->getDadosComenByIdComen(); // preciso do comenantario denunciado  
+            $complemento = "Comentário Denunciado: ";
+        }
+        $quantidadePaginas = $comentario->getQuantidadePaginas();
+        $pagina = $comentario->getPaginaAtual(); 
         
 ?>
-
 <!DOCTYPE html>
 <html lang=pt-br>
     <head>
@@ -92,16 +108,15 @@ session_start();
         <script src="lib/_jquery/jquery.js"></script>
         <script src="js/js.js"></script>
         <script src="../teste.js"></script>
-
     </head>
     <body>
         <header>
-            <img src="imagens/Ativo2.png" alt="logo">
-            <form>
+            <img src="imagens/logo_oficial.png" alt="logo">
+            <form action="pesquisa.php" method="get">
                 <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar">
                 <button type="submit"><i class="icone-pesquisa"></i></button>
             </form>
-            <nav class="menu">
+            <nav class="menu">                
                 <ul>
                     <li><nav class="notificacoes">
                         <h3>notificações<span id="not-fechado"></span></h3>
@@ -112,8 +127,8 @@ session_start();
                     </nav><a href="#" id="abrir-not"><i class="icone-notificacao" id="noti"></i>Notificações</a></li>
                     <li><a href="todasreclamacoes.php"><i class="icone-reclamacao"></i>Reclamações</a></li>
                     <li><a href="todosdebates.php"><i class="icone-debate"></i>Debates</a></li>
-                </ul>
-            </nav>                   
+                </ul>            
+            </nav>       
             <?php
                 if(!isset($resultado)){
                     echo '<a href="login.php"><i class="icone-user" id="abrir"></i></a>';
@@ -121,7 +136,6 @@ session_start();
                     echo '<i class="icone-user" id="abrir"></i>';
                 }
             ?>
-            
         </header>
         <?php
                 if(isset($resultado) AND !empty($resultado)){   
@@ -154,48 +168,48 @@ session_start();
             <section class="pag-reclamacao">
                 <div class="Reclamacao">   
                         <div class="publicacao-topo-aberta">
-                        <a href="perfil_reclamacao.php?ID=<?php echo $resposta[0]['cod_usu'] ?>">
+                            <a href="perfil_reclamacao.php?ID=<?php echo $resposta[0]['cod_usu'] ?>">
                                 <div>
                                     <img src="../Img/perfil/<?php echo $resposta[0]['img_perfil_usu']?>">
                                 </div>
                                 <p><span class="negrito"><?php echo $resposta[0]['nome_usu']?></span><time><?php echo $resposta[0]['dataHora_publi']?></time></p>
-                        </a>
+                            </a>        
                                 <div class="mini-menu-item ">
                                     
                                     <i class="icone-3pontos"></i>
                                         <div>
                                             <ul>
-                                            <?php
-                                                if(isset($resposta[0]['indDenunPubli']) AND $resposta[0]['indDenunPubli'] == TRUE){ // Aparecer quando o user ja denunciou            
-                                                    echo '<li><i class="icone-bandeira"></i><span class="negrito">Denunciado</b></li>';        
-                                                }else if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] != $resposta[0]['cod_usu']){ // Aparecer apenas naspublicaçoes q nao é do usuario
-                                                    if($tipoUsu == 'Comum' or $tipoUsu == 'Prefeitura' or $tipoUsu == 'Funcionario'){
-                                                        echo '<li><a href="../Templates/DenunciarPublicacaoTemplate.php?ID='.$_GET['ID'].'"><i class="icone-bandeira"></i>Denunciar</a></li>';                                                        
-                                                    }                    
-                                                }else if(!isset($_SESSION['id_user'])){ // aparecer parar os usuario nao logado
-                                                    echo '<li><a href="../Templates/DenunciarPublicacaoTemplate.php?ID='.$_GET['ID'].'"><i class="icone-bandeira"></i>Denunciar</a></li>';
-                                                } 
-                                            ?>
-                                            <?php
-                                                if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $resposta[0]['cod_usu']){
-                                                    echo '<li><a href="../ApagarPublicacao.php?ID='.$_GET['ID'].'"><i class="icone-fechar"></i></i>Remover</a></li>';
-                                                    echo '<li><a href="../Templates/UpdatePublicacaoTemplate.php?ID='.$_GET['ID'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';                                                    
-                                                }else if(isset($tipoUsu) AND ($tipoUsu == 'Adm' or $tipoUsu == 'Moderador')){
-                                                    echo '<li><a href="../ApagarPublicacao.php?ID='.$_GET['ID'].'"><i class="icone-fechar"></i></i>Remover</a></li>';
-                                                    // Icone para apagar usuaario
-                                                    //echo '<a href="../ApagarUsuario.php?ID='.$resposta[0]['cod_usu'].'">Apagar Usuario</a>';                                                       
-                                                    echo '<li><a href="../Templates/UpdatePublicacaoTemplate.php?ID='.$_GET['ID'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';                                                    
-                                                }
-                                            ?> 
-                                            <?php                                             
-                                                if(isset($indSalva) AND !$indSalva){
-                                                    echo '<li><a href="../SalvarPublicacao.php?ID='.$_GET['ID'].'"><i class="icone-salvar"></i>Salvar</a></li>';
-                                                }else if(isset($indSalva) AND $indSalva){
-                                                    echo '<li><a href="../SalvarPublicacao.php?ID='.$_GET['ID'].'"><i class="icone-salvar-full"></i>Salvo</a></li>';
-                                                }else{
-                                                    echo '<li><a href="../SalvarPublicacao.php?ID='.$_GET['ID'].'"><i class="icone-salvar"></i>Salvar</a></li>';
-                                                }
-                                            ?>
+                                                <?php
+                                                    if(isset($resposta[0]['indDenunPubli']) AND $resposta[0]['indDenunPubli'] == TRUE){ // Aparecer quando o user ja denunciou            
+                                                        echo '<li><i class="icone-bandeira"></i><span class="negrito">Denunciado</b></li>';        
+                                                    }else if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] != $resposta[0]['cod_usu']){ // Aparecer apenas naspublicaçoes q nao é do usuario
+                                                        if($tipoUsu == 'Comum' or $tipoUsu == 'Prefeitura' or $tipoUsu == 'Funcionario'){
+                                                            echo '<li><a href="../Templates/DenunciarPublicacaoTemplate.php?ID='.$_GET['ID'].'"><i class="icone-bandeira"></i>Denunciar</a></li>';                                                        
+                                                        }                    
+                                                    }else if(!isset($_SESSION['id_user'])){ // aparecer parar os usuario nao logado
+                                                        echo '<li><a href="../Templates/DenunciarPublicacaoTemplate.php?ID='.$_GET['ID'].'"><i class="icone-bandeira"></i>Denunciar</a></li>';
+                                                    } 
+                                                ?>
+                                                <?php
+                                                    if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $resposta[0]['cod_usu']){
+                                                        echo '<li><a href="../ApagarPublicacao.php?ID='.$_GET['ID'].'"><i class="icone-fechar"></i></i>Remover</a></li>';                                                                                                           
+                                                        echo '<li><a href="reclamacao-update.php?ID='.$_GET['ID'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';
+                                                    }else if(isset($tipoUsu) AND ($tipoUsu == 'Adm' or $tipoUsu == 'Moderador')){
+                                                        echo '<li><a href="../ApagarPublicacao.php?ID='.$_GET['ID'].'"><i class="icone-fechar"></i></i>Remover</a></li>';
+                                                        // Icone para apagar usuaario
+                                                        //echo '<a href="../ApagarUsuario.php?ID='.$resposta[0]['cod_usu'].'">Apagar Usuario</a>';  
+                                                        echo '<li><a href="reclamacao-update.php?ID='.$_GET['ID'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';                                                
+                                                    }
+                                                ?> 
+                                                <?php                                             
+                                                    if(isset($indSalva) AND !$indSalva){
+                                                        echo '<li><a href="../SalvarPublicacao.php?ID='.$_GET['ID'].'"><i class="icone-salvar"></i>Salvar</a></li>';
+                                                    }else if(isset($indSalva) AND $indSalva){
+                                                        echo '<li><a href="../SalvarPublicacao.php?ID='.$_GET['ID'].'"><i class="icone-salvar-full"></i>Salvo</a></li>';
+                                                    }else{
+                                                        echo '<li><a href="../SalvarPublicacao.php?ID='.$_GET['ID'].'"><i class="icone-salvar"></i>Salvar</a></li>';
+                                                    }
+                                                ?>
                                             </ul>
                                         </div>
                                 </div>
@@ -229,20 +243,21 @@ session_start();
                 if(!empty($comentarioPrefei)){                
             ?>
             <section class="prefeitura-publicacao">
-                <a href="perfil_reclamacao.php?ID=<?php echo $comentarioPrefei[0]['cod_usu_prefei'] ?>">   
-                <div class="topo-prefeitura-publicacao">                     
+            <a href="perfil_reclamacao.php?ID=<?php echo $comentarioPrefei[0]['cod_usu_prefei'] ?>">  
+                <div class="topo-prefeitura-publicacao">
                     <div>
                         <img src="../Img/perfil/<?php echo $comentarioPrefei[0]['img_perfil_usu']?>">
                     </div>
+            
                     <p><span class="negrito"><?php echo $comentarioPrefei[0]['nome_usu_prefei']?></span><time><?php echo $comentarioPrefei[0]['dataHora_comen']?></time></p>  
                 </div> 
-                </a>
+            </a>
                 <div class="conteudo-resposta">
                     <span>
 <?php echo nl2br($comentarioPrefei[0]['texto_comen'])?>
                     </span>
                 </div>
-            
+
             </section>
             <?php
                 }
@@ -259,82 +274,80 @@ session_start();
                             echo '<a href="../CurtirPublicacao.php?ID='.$_GET['ID'].'"><i class="icone-like"></i> Like</a>';  
                         }
                     ?>
-
                 
-            </div>
+            </div> 
             <?php
                 if(isset($tipoUsu) AND ($tipoUsu == 'Funcionario' or $tipoUsu == 'Prefeitura')){
                     if(empty($comentarioPrefei)){
             ?>
-                        <section class="enviar-comentario-publicacao">
-                            <h3>
-                                Envie uma resposta
-                            </h3>
-                            <form action="../Comentario.php" method="post">
-                                <textarea placeholder="Escreva uma resposta" name="texto"></textarea>
-                                <input type="hidden" value="<?php echo $_GET['ID']?>" name="id">
-                                <input type="submit" value="Enviar Resposta">
-                            </form>  
-                        </section>
+                <section class="enviar-comentario-publicacao">
+                    <h3>
+                        Envie um comentario
+                    </h3>
+                    <form>
+                        <textarea placeholder="Escreva um comentário"></textarea>
+                        <input type="submit" value="Enviar Comentário">
+                    </form>  
+                </section>
             <?php
                     }
             }else if(isset($tipoUsu) AND ($tipoUsu == 'Comum')){  
             ?>
                 <section class="enviar-comentario-publicacao">
-                    <h3>
-                        Envie um comentário
-                    </h3>
-                    <form action="../Comentario.php" method="post">
-                        <textarea placeholder="Escreva um comentário" name="texto"></textarea>
-                        <input type="hidden" value="<?php echo $_GET['ID']?>" name="id">
-                        <input type="submit" value="Enviar Comentário">
-                    </form>  
-                </section>
+                        <h3>
+                            Envie um comentário
+                        </h3>
+                        <form action="../Comentario.php" method="post">
+                            <textarea placeholder="Escreva um comentário" name="texto"></textarea>
+                            <input type="hidden" value="<?php echo $_GET['ID']?>" name="id">
+                            <input type="submit" value="Enviar Comentário">
+                        </form>  
+                    </section>
             <?php
             }
             ?>
-            <section class="comentarios">                
+            <section class="comentarios">
+                <h3>
+                    <?php echo $complemento ?>
+                </h3>
                 <?php 
                     $contador = 0;
                     while($contador < count($comentarioComum)){
-                ?>   
-                <h3>
-                    comentarios
-                </h3>
+                ?>                
                 <div class="comentario-user">
                     <div class="publicacao-topo-aberta">
-                        <a href="perfil_reclamacao.php?ID=<?php echo $comentarioComum[$contador]['cod_usu'] ?>">
+                    <a href="perfil_reclamacao.php?ID=<?php echo $comentarioComum[$contador]['cod_usu'] ?>">
                             <div>
                                 <img src="../Img/perfil/<?php echo $comentarioComum[$contador]['img_perfil_usu']?>">
                             </div>
+                    </a>
                             <p><span class="negrito"><?php echo $comentarioComum[$contador]['nome_usu']?></span><?php echo $comentarioComum[$contador]['dataHora_comen']?></p>
-                        </a>
                         <div class="mini-menu-item ">
                             <i class="icone-3pontos"></i>
                             <div>
                                 <ul>
-                                <?php
-                                    if(isset($comentarioComum[$contador]['indDenunComen']) AND $comentarioComum[$contador]['indDenunComen'] == TRUE){ // Aparecer quando o user ja denunciou            
-                                        echo '<li><i class="icone-bandeira"></i><b>Denunciado</b></li>';            
-                                    }else if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] != $comentarioComum[$contador]['cod_usu']){ // Aparecer apenas naspublicaçoes q nao é do usuario
-                                        if($tipoUsu == 'Comum' or $tipoUsu == 'Prefeitura' or $tipoUsu == 'Funcionario'){
-                                            echo '<li><a href="../Templates/DenunciarComentarioTemplate.php?ID='.$comentarioComum[$contador]['cod_comen'].'&IDPubli='.$_GET['ID'].'&pagina='. $pagina.'"><i class="icone-bandeira"></i>Denunciar</a></li>';                                            
-                                        }                    
-                                    }else if(!isset($_SESSION['id_user'])){ // aparecer parar os usuario nao logado
-                                        echo '<li><a href="../Templates/DenunciarComentarioTemplate.php?ID='.$comentarioComum[$contador]['cod_comen'].'&IDPubli='.$_GET['ID'].'&pagina='. $pagina.'"><i class="icone-bandeira"></i>Denunciar</a></li>';                                            
-                                    }
-                                ?>
+                                    <?php
+                                        if(isset($comentarioComum[$contador]['indDenunComen']) AND $comentarioComum[$contador]['indDenunComen'] == TRUE){ // Aparecer quando o user ja denunciou            
+                                            echo '<li><i class="icone-bandeira"></i><span class="negrito">Denunciado</span></li>';            
+                                        }else if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] != $comentarioComum[$contador]['cod_usu']){ // Aparecer apenas naspublicaçoes q nao é do usuario
+                                            if($tipoUsu == 'Comum' or $tipoUsu == 'Prefeitura' or $tipoUsu == 'Funcionario'){
+                                                echo '<li><a href="../Templates/DenunciarComentarioTemplate.php?ID='.$comentarioComum[$contador]['cod_comen'].'&IDPubli='.$_GET['ID'].'&pagina='.$pagina.'"><i class="icone-bandeira"></i>Denunciar</a></li>';                                            
+                                            }                    
+                                        }else if(!isset($_SESSION['id_user'])){ // aparecer parar os usuario nao logado
+                                            echo '<li><a href="../Templates/DenunciarComentarioTemplate.php?ID='.$comentarioComum[$contador]['cod_comen'].'&IDPubli='.$_GET['ID'].'&pagina='.$pagina.'"><i class="icone-bandeira"></i>Denunciar</a></li>';                                            
+                                        }
+                                    ?>
 
-                                <?php
-                                    if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $comentarioComum[$contador]['cod_usu']){
-                                        echo '<li><a href="../ApagarComentario.php?ID='.$comentarioComum[$contador]['cod_comen'].'"><i class="icone-fechar"></i></i>Remover</a></li>';                                       
-                                        echo '<li><a href="../Templates/UpdateComentarioTemplate.php?ID='.$comentarioComum[$contador]['cod_comen'].'&IDPubli='.$_GET['ID'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';                                        
-                                    }else if(isset($tipoUsu) AND ($tipoUsu == 'Adm' or $tipoUsu == 'Moderador')){
-                                        echo '<li><a href="../ApagarComentario.php?ID='.$comentarioComum[$contador]['cod_comen'].'"><i class="icone-fechar"></i></i>Remover</a></li>';                                       
-                                        //Remover usuario ADM    
-                                        //echo '<a href="../ApagarUsuario.php?ID='.$comentarioComum[$contador]['cod_usu'].'">Apagar Usuario</a>';                            
-                                    }
-                                ?>                                    
+                                    <?php
+                                        if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $comentarioComum[$contador]['cod_usu']){
+                                            echo '<li><a href="../ApagarComentario.php?ID='.$comentarioComum[$contador]['cod_comen'].'"><i class="icone-fechar"></i></i>Remover</a></li>';                                       
+                                            echo '<li><a href="../Templates/UpdateComentarioTemplate.php?ID='.$comentarioComum[$contador]['cod_comen'].'&IDPubli='.$_GET['ID'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';                                        
+                                        }else if(isset($tipoUsu) AND ($tipoUsu == 'Adm' or $tipoUsu == 'Moderador')){
+                                            echo '<li><a href="../ApagarComentario.php?ID='.$comentarioComum[$contador]['cod_comen'].'"><i class="icone-fechar"></i></i>Remover</a></li>';                                       
+                                            //Remover usuario ADM    
+                                            //echo '<a href="../ApagarUsuario.php?ID='.$comentarioComum[$contador]['cod_usu'].'">Apagar Usuario</a>';                            
+                                        }
+                                    ?>    
                                 </ul>
                             </div>
                         </div>
@@ -349,6 +362,7 @@ session_start();
                 ?>
                 <ul>
                 <?php
+                
                     if($quantidadePaginas != 1){
                         $contador = 1;
                         while($contador <= $quantidadePaginas){
@@ -361,8 +375,11 @@ session_start();
                         }
                     }            
                 ?>
-                </ul>                
-            </section>                              
+                </ul>        
+                
+            </section>        
+                    
+                           
         </div>
     </body>
 </html>

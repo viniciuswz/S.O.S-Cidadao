@@ -54,11 +54,12 @@ session_start();
         <script src="lib/_jquery/jquery.js"></script>
         <script src="js/js.js"></script>
         <script src="../teste.js"></script>
+
     </head>
     <body>
         <header>
-            <img src="imagens/Ativo2.png" alt="logo">
-            <form>
+            <img src="imagens/logo_oficial.png" alt="logo">
+            <form action="pesquisa.php" method="get">
                 <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar">
                 <button type="submit"><i class="icone-pesquisa"></i></button>
             </form>
@@ -75,7 +76,6 @@ session_start();
                     <li><a href="todosdebates.php"><i class="icone-debate"></i>Debates</a></li>
                 </ul>
             </nav>
-                   
             <?php
                 if(!isset($resultado)){
                     echo '<a href="login.php"><i class="icone-user" id="abrir"></i></a>';
@@ -83,7 +83,6 @@ session_start();
                     echo '<i class="icone-user" id="abrir"></i>';
                 }
             ?>
-            
         </header>
         <?php
                 if(isset($resultado) AND !empty($resultado)){
@@ -133,7 +132,6 @@ session_start();
                             $contador++;                            
                             }
                         ?> 
-                    ?>
                     
                 </table>
             </section>  
@@ -153,10 +151,10 @@ session_start();
             }
             
         ?>
-        </ul>    
+        </ul>        
         </div>
-    </body>
-<?php
+        </body>
+        <?php
 }catch (Exception $exc){
     $erro = $exc->getCode();   
     $mensagem = $exc->getMessage();  

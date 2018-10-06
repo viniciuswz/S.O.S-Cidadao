@@ -24,5 +24,5 @@ switch($resultado[0]['descri_tipo_usu']){
 }
 ?>
 <li><a href="configuracoes.php"><i class="icone-config"></i>Configurações</a></li>
-<li><a href="../sair.php"><i class="icone-logout"></i>Log out</a></li>
+<li><a href="../Sair.php"><i class="icone-logout"></i>Log out</a></li>
    

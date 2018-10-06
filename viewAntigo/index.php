@@ -45,8 +45,8 @@
     </head>
     <body>
         <header>
-            <img src="imagens/logotop.png" alt="logo">
-            <form>
+            <img src="imagens/logo_oficial.png" alt="logo">
+            <form action="pesquisa.php" method="get">
                 <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar">
                 <button type="submit"><i class="icone-pesquisa"></i></button>
             </form>
@@ -55,7 +55,8 @@
                     <li><nav class="notificacoes">
                         <h3>notificações<span id="not-fechado"></span></h3>
                         <ul id="menu23">
-                            
+                          
+                         
                             <li>
                         </ul>
                     </nav><a href="#" id="abrir-not"><i class="icone-notificacao" id="noti"></i>Notificações</a></li>
@@ -70,14 +71,12 @@
                     echo '<i class="icone-user" id="abrir"></i>';
                 }
             ?>
-            
         </header>
         <?php
                 if(isset($resultado) AND !empty($resultado)){  
         ?>
         <div class="user-menu">
-           
-            <a href="javascript:void(0)" class="fechar">&times;</a>            
+            <a href="javascript:void(0)" class="fechar">&times;</a>
             <div class="mini-perfil">
                 <div>    
                     <img src="../Img/perfil/<?php echo $resultado[0]['img_perfil_usu'] ?>" alt="perfil">
@@ -85,7 +84,6 @@
                     <img src="../Img/capa/<?php echo $resultado[0]['img_capa_usu'] ?>" alt="capa">
                     <p><?php echo $resultado[0]['nome_usu'] ?></p>
             </div>
-           
             <nav>
                 <ul>
                     <?php
@@ -93,11 +91,11 @@
                     ?>
                 </ul>
             </nav>
-            
-        </div>       
+        </div>
         <?php
             }
         ?>
+
         <div id="container">
            
             <!--ESCREVA AQUI DENTRO DESSA TAG NÃO ALTERE NADA POR FORA-->

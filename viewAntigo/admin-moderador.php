@@ -12,7 +12,7 @@ session_start();
         Usuario::verificarLogin(1,$tipoUsuPermi);  // Tem q estar logado         
         $usu = new Usuario();
         $usu->setCodUsu($_SESSION['id_user']);
-        $resultado = $usu->getDadosUser();
+        $resultado = $usu->getDadosUser(true);
         $tipos = array();
         
         if(!isset($_GET['tipo']) AND empty($_GET['tipo'])){
@@ -76,11 +76,12 @@ session_start();
         <script src="lib/_jquery/jquery.js"></script>
         <script src="js/js.js"></script>
         <script src="../teste.js"></script>
+
     </head>
     <body>
         <header>
-            <img src="imagens/Ativo2.png" alt="logo">
-            <form>
+            <img src="imagens/logo_oficial.png" alt="logo">
+            <form action="pesquisa.php" method="get">
                 <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar">
                 <button type="submit"><i class="icone-pesquisa"></i></button>
             </form>
@@ -96,7 +97,7 @@ session_start();
                     <li><a href="todasreclamacoes.php"><i class="icone-reclamacao"></i>Reclamações</a></li>
                     <li><a href="todosdebates.php"><i class="icone-debate"></i>Debates</a></li>
                 </ul>
-            </nav>            
+            </nav>       
             <?php
                 if(!isset($resultado)){
                     echo '<a href="login.php"><i class="icone-user" id="abrir"></i></a>';
@@ -104,7 +105,6 @@ session_start();
                     echo '<i class="icone-user" id="abrir"></i>';
                 }
             ?>
-            
         </header>
         <?php
                 if(isset($resultado) AND !empty($resultado)){  
@@ -137,18 +137,18 @@ session_start();
 
                 <div class="filtro-admin ">
                     <i class="icone-filtro "></i>
-                    <form action="admin-moderador.php" method="get">
+                    <form>
                         <i class="icone-fechar"></i>
                         <h3>Tipo de usuario</h3>
                         <div>    
                                     
                             <label class="container"> Moderador 
-                                <input type="checkbox"  name="tipo[]" checked value="Moderador">
+                                <input type="checkbox"  name="tipo[]"checked="checked" value="Moderador">
                                 <span class="checkmark"></span>
                             </label>
                                 
                             <label class="container"> Prefeitura 
-                                <input type="checkbox" name="tipo[]" value="Prefeitura">
+                                <input type="checkbox"  name="tipo[]" value="Prefeitura">
                                 <span class="checkmark"></span>
                             </label>
                                
@@ -167,8 +167,8 @@ session_start();
                               <th>Data</th>
                             </tr>
                             <tr>
-                                    <td  colspan="3" class="cad-adm"><div>+</div><p><a href="../Templates/cadastrarUserTemplate.php">Cadastrar</a></p></td>
-                            </tr>                             
+                            <td  colspan="3" class="cad-adm"><div>+</div><p>Cadastrar</p></td>
+                            </tr> 
                             <?php
                                 $contador = 0;
                                 $contador2 = 0;
@@ -177,12 +177,13 @@ session_start();
                                         echo '<td>'.$res[$contador]['nome_usu'].'</td>';
                                         echo '<td>'.$res[$contador]['descri_tipo_usu'].'</td>';
                                         echo '<td>'.$res[$contador]['dataHora_cadastro_usu'].'</td>';                        
-                                        echo '<td>'.$res[$contador]['LinkApagarUsu'].'</td>'; 
+                                        //echo '<td>'.$res[$contador]['LinkApagarUsu'].'</td>'; 
                                     echo '</tr>';
                                     $contador++;
                                     $contador2 = 0;
                                 }
                             ?>
+                       
                           </table>
                     </div>      
         </div>
@@ -202,24 +203,24 @@ session_start();
         ?>
         </ul>
     </body>
-<?php
+    <?php
         
-}catch (Exception $exc){
-    $erro = $exc->getCode();   
-    $mensagem = $exc->getMessage();  
-    switch($erro){
-        case 2://Nao esta logado    
-            echo "<script> alert('$mensagem');javascript:window.location='login.php';</script>";
-            break;
-        case 6://Não é usuario prefeitura ou func  
-            echo "<script> alert('$mensagem');javascript:window.location='index.php';</script>";
-            break; 
-        case 9://Não foi possivel achar a publicacao  
-            echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes.php';</script>";
-            break; 
-        default: //Qualquer outro erro cai aqui
-            echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes.php';</script>";
-    }   
-}
-
-?>
+    }catch (Exception $exc){
+        $erro = $exc->getCode();   
+        $mensagem = $exc->getMessage();  
+        switch($erro){
+            case 2://Nao esta logado    
+                echo "<script> alert('$mensagem');javascript:window.location='login.php';</script>";
+                break;
+            case 6://Não é usuario prefeitura ou func  
+                echo "<script> alert('$mensagem');javascript:window.location='index.php';</script>";
+                break; 
+            case 9://Não foi possivel achar a publicacao  
+                echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes.php';</script>";
+                break; 
+            default: //Qualquer outro erro cai aqui
+                echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes.php';</script>";
+        }   
+    }
+    
+    ?>

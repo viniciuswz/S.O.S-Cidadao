@@ -43,12 +43,11 @@ session_start();
         
         <script src="js/js.js"></script>
         <script src="../teste.js"></script>
-
     </head>
     <body>
         <header>
-            <img src="imagens/Ativo2.png" alt="logo">
-            <form>
+            <img src="imagens/logo_oficial.png" alt="logo">
+            <form action="pesquisa.php" method="get">
                 <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar">
                 <button type="submit"><i class="icone-pesquisa"></i></button>
             </form>
@@ -64,7 +63,7 @@ session_start();
                     <li><a href="todasreclamacoes.php"><i class="icone-reclamacao"></i>Reclamações</a></li>
                     <li><a href="todosdebates.php"><i class="icone-debate"></i>Debates</a></li>
                 </ul>
-            </nav>            
+            </nav>  
             <?php
                 if(!isset($resultado)){
                     echo '<a href="login.php"><i class="icone-user" id="abrir"></i></a>';
@@ -72,7 +71,6 @@ session_start();
                     echo '<i class="icone-user" id="abrir"></i>';
                 }
             ?>
-            
         </header>
         <?php
                 if(isset($resultado) AND !empty($resultado)){  
@@ -130,7 +128,7 @@ session_start();
                         <hr>
                         <div class="envio-img">
                                             
-                            <input type="file" name="imagem" id="imagemDebateInput" accept="image/png, image/jpeg">
+                            <input type="file" name="imagem" id="imagemDebateInput" accept="image/png, image/jpeg"> 
                             <label for="imagemDebateInput"><p><i class="icone-camera"></i>Escolha foto</p>
                                 
                         <div>

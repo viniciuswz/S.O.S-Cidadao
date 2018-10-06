@@ -47,8 +47,8 @@ session_start();
     </head>
     <body>
         <header>
-            <img src="imagens/Ativo2.png" alt="logo">
-            <form>
+            <img src="imagens/logo_oficial.png" alt="logo">
+            <form action="pesquisa.php" method="get">
                 <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar">
                 <button type="submit"><i class="icone-pesquisa"></i></button>
             </form>
@@ -64,7 +64,7 @@ session_start();
                     <li><a href="todasreclamacoes.php"><i class="icone-reclamacao"></i>Reclamações</a></li>
                     <li><a href="todosdebates.php"><i class="icone-debate"></i>Debates</a></li>
                 </ul>
-            </nav>                    
+            </nav> 
             <?php
                 if(!isset($resultado)){
                     echo '<a href="login.php"><i class="icone-user" id="abrir"></i></a>';
@@ -72,39 +72,38 @@ session_start();
                     echo '<i class="icone-user" id="abrir"></i>';
                 }
             ?>
-            
         </header>
         <?php
                 if(isset($resultado) AND !empty($resultado)){  
         ?>
-        <div class="user-menu">
+       <div class="user-menu">
            
-            <a href="javascript:void(0)" class="fechar">&times;</a>            
-            <div class="mini-perfil">
-                <div>    
-                    <img src="../Img/perfil/<?php echo $resultado[0]['img_perfil_usu'] ?>" alt="perfil">
-                </div>    
-                    <img src="../Img/capa/<?php echo $resultado[0]['img_capa_usu'] ?>" alt="capa">
-                    <p><?php echo $resultado[0]['nome_usu'] ?></p>
-            </div>
+           <a href="javascript:void(0)" class="fechar">&times;</a>            
+           <div class="mini-perfil">
+               <div>    
+                   <img src="../Img/perfil/<?php echo $resultado[0]['img_perfil_usu'] ?>" alt="perfil">
+               </div>    
+                   <img src="../Img/capa/<?php echo $resultado[0]['img_capa_usu'] ?>" alt="capa">
+                   <p><?php echo $resultado[0]['nome_usu'] ?></p>
+           </div>
+          
+           <nav>
+               <ul>
+                   <?php
+                      require_once('opcoes.php');                        
+                   ?>
+               </ul>
+           </nav>
            
-            <nav>
-                <ul>
-                    <?php
-                       require_once('opcoes.php');                        
-                    ?>
-                </ul>
-            </nav>
-            
-        </div>       
-        <?php
-            }
-        ?>
+       </div>       
+       <?php
+           }
+       ?>
 
         <div id="container">
 
             
-            <form class="formulario" action="../enviarPublicacao.php" method="POST" enctype="multipart/form-data">
+            <form class="formulario"  action="../enviarPublicacao.php" method="POST" enctype="multipart/form-data">
             <!--FORMULARIO ENVIO TITULO E TEMA-->
                 <div class="informacoes">
                     <h3>Informações importantes</h3>
@@ -124,7 +123,7 @@ session_start();
 
                         <div class="campo-envio">
                             <label for="local">local<p></p></label>
-                            <input type="text" id="local"name="local" placeholder="rua, Avenida..."  maxlength="20" autocomplete="off">
+                            <input type="text" id="local" name="local" placeholder="rua, Avenida..."  maxlength="20" autocomplete="off">
                             <span></span>
                         </div>
 
@@ -160,11 +159,11 @@ session_start();
                     <div>
                         <div>
                             <?php
-                            foreach($categorias as $valor){
-                                echo $valor;
-                            }
+                                foreach($categorias as $valor){
+                                    echo $valor;
+                                }
                             ?>
-                        </div>  
+                        </div>                                                
                     </div>
                 </div>
             <!--FORMULARIO DESCRIÇÃO DO DEBATE--> 

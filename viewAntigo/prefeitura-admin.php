@@ -54,8 +54,8 @@ session_start();
     </head>
     <body>
         <header>
-            <img src="imagens/Ativo2.png" alt="logo">
-            <form>
+            <img src="imagens/logo_oficial.png" alt="logo">
+            <form action="pesquisa.php" method="get">
                 <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar">
                 <button type="submit"><i class="icone-pesquisa"></i></button>
             </form>
@@ -79,7 +79,6 @@ session_start();
                     echo '<i class="icone-user" id="abrir"></i>';
                 }
             ?>
-            
         </header>
         <?php
                 if(isset($resultado) AND !empty($resultado)){ 
@@ -119,8 +118,8 @@ session_start();
                             <th>Data</th>
                         </tr>
                         <tr>
-                                <td colspan="3" class="cad-adm"><div>+</div><p><a href="../Templates/cadastrarUserTemplate.php">Cadastrar</a></p></td>
-                        </tr>
+                                <td colspan="3" class="cad-adm"><div>+</div><p>Cadastrar</p></td>
+                        </tr>    
                         <?php
                         $contador = 0;                        
                         while($contador < count($res)){
@@ -132,7 +131,8 @@ session_start();
                             echo '</tr>';
                             $contador++;                            
                             }
-                        ?>                        
+                        ?>       
+                        
                     </table>
             </div>      
         </div>
@@ -153,7 +153,6 @@ session_start();
         </ul> 
     </body>
 </html>
-
 <?php
 
 }catch (Exception $exc){

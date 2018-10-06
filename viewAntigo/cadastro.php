@@ -42,11 +42,11 @@ session_start();
 
         <div id="container">
            <div class="form-cad">
-                    <form action="../CadastrarUser.php" method="POST">
+                    <form action="../CadastrarUser.php" method="POST" id="cadastro">
                         <h3>Cadastro</h3>
                         <div class="campo-texto-icone">
                             <label for="user"><i class="icone-user"></i></label>
-                            <input type="text" name="nome" id="user"placeholder="Nome">
+                            <input type="text" name="nome" id="user" placeholder="Nome">
                         </div>
                         <div class="campo-texto-icone">
                             <label for="email"><i class="icone-mail"></i></label>
@@ -58,8 +58,11 @@ session_start();
                                 <input type="password" name="senha" id="senha" placeholder="Senha">
                         </div>
                         <div class="campo-texto-icone">
-                                <label for="senha"><i class="icone-senha"></i> </label>
-                                <input type="password" name="confirm-senha" id="senha" placeholder="Confirmar senha">
+                                <label for="senhaC"><i class="icone-senha"></i> </label>
+                                <input type="password" name="senhaC" id="senhaC" placeholder="Confirmar senha">
+                        </div>
+                        <div class="aviso-form-inicial">
+                            <p>O campo tal e pa</p>
                         </div>
                         <button type="submit">Cadastro</button>
                     </form>

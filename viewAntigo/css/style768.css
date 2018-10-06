@@ -60,7 +60,7 @@ background-size: 1060px;
 nav.menu{
     display: flex;
     justify-content: center;
-    background-color: #3be7fd;
+    background-color: #0086ff;
     width: 100vw;
     position: fixed;
     top: calc(100vh - 60px);
@@ -86,7 +86,7 @@ nav.menu > ul > li > a > i{
 
 nav.menu > ul > li > a{
     font-weight: inherit;
-    color:#263238;
+    color:#fcfcfc;
     width: calc(var(--ajuste)/3);
     line-height: inherit;
 }
@@ -150,34 +150,42 @@ width: 100vw;
     justify-content: center;
 }
 
+#trocar-capa{
+    position: absolute;
+    z-index: 1;
+    left: 10px;
+    top: 229px
+   
+}
+
 .perfil > img{
-    height: 56.23vw;
-    max-height: 774px;
+    /* height: 56.23vw;
+    max-height: 774px; */
 }
 
 
-.perfil > div{
+.perfil-info{
     margin-top: 150px;
     align-items: center;
     flex-direction: column-reverse;
+    right:0px;
+    left: 0
+ 
     
 }
 
-.perfil div div{
+.perfil-info div{
     height: 150px;
     width: 150px;
     border: 6px solid white;
     
 }
 
-.perfil div div img{
+.perfil-info img{
     height: 135%;
 }
 
-
-
-
-.perfil-base div div p{
+.perfil-info p{
   
    
     text-align: center;
@@ -186,7 +194,7 @@ width: 100vw;
     margin: 0px auto 0 auto;
 }
 
-.perfil-base div div span{
+.perfil-info span{
 
     
     color: black;
@@ -195,10 +203,11 @@ width: 100vw;
     text-align: center
 }
 
-.perfil div i{
+.perfil-info i{
     position: absolute;
-    margin-right: 30px;
+    
     margin-top: 40px;
+    left: 160px;
 }
 
 
@@ -319,7 +328,7 @@ width: 100vw;
     
 }
 
-.form-icone section p{
+.form-icone section h1 ~ p{
  
     color: white;
     font-size: 16px;
@@ -606,3 +615,85 @@ overflow: inherit
     padding-bottom: 15px
 }
 
+.landing-dobra h1{
+    width: 100%;
+    text-align: center;
+    top: 10%;
+    left:50%;
+    transform: translateX(-50%);
+}
+
+.landing-dobra div{
+    top: 90px;
+    left:50%;
+    transform: translateX(-50%);
+    width: 450px;
+    align-items: center
+}
+
+
+.landing-funcionalidades{
+    flex-direction: column
+}
+
+.landing-item{
+    width: 100%;
+}
+
+
+.landing-prefeitura h1{
+    width: 100%;
+    text-align: center;
+    color:white;
+    position: absolute;
+    top: 30%;
+    left:50%;
+    transform: translateX(-50%)
+}
+
+.landing-prefeitura p{
+    color:white;
+    position: absolute;
+    top: 40%;
+    left:50%;
+    transform: translateX(-50%);
+}
+
+.landing-rodape h1{
+    font-size: 19px
+}
+
+
+.mini-menu-adm ul li{
+
+}
+
+.mini-menu-adm ul li a{
+    padding: 10px;
+}
+
+.motivo-box{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: 470px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    z-index: 99;
+    color: black
+}
+
+.motivo-box div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+.motivo-box div span{
+    font-size: 40px;
+    font-weight: 600;
+    cursor: pointer;
+}
