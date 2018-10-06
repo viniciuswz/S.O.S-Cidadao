@@ -151,14 +151,15 @@ jQuery(function(){
   $(".formulario").submit(function(){
 
     var id = $(this).attr('id');
-    if(! id == ""){
+    if(id == "elenao"){
+     
+    }else{
+      
       var imgDebate = $("#imagemDebateInput").val();
       if(imgDebate == ""){
         $(".imagem").find('p:last-child').text("uma imagem é obrigatoria");
         return false;
       }
-    }else{
-      
     }
     
   })
