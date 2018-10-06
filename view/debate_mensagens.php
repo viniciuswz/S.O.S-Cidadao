@@ -143,7 +143,7 @@ session_start();
                                 while($contador < count($listDeba)){
                             ?>
                                 <div class="contatinhos">
-                                    <a href="debate_mensagens.php?ID=<?php echo $listDeba[$contador]['cod_deba'] ?>">
+                                    <a href="debate_mensagens.php?ID=<?php echo $listDeba[$contador]['cod_deba'] ?>&pagina=ultima">
                                         <div class="img-debate">
                                             <img src="../Img/debate/<?php echo $listDeba[$contador]['img_deba']?>" alt="debate">
                                         </div>
@@ -335,8 +335,8 @@ session_start();
 
                      
                <form action="../enviarMensagem.php" method="post">
-                        <input type="hidden" name="ID" value="<?php echo $_GET['ID']?>" />
-                        <input type="hidden" name="pagina" value="<?php echo $_GET['pagina']?>" />
+                        <input type="hidden" name="ID" value="<?php echo $_GET['ID'] ?>" />
+                        <input type="hidden" name="pagina" value="<?php echo $pagina ?>" />
                    <input type="text" name="texto" placeholder="digite aqui..." ><button type="submit"> ></button> 
                </form>      
            </div>

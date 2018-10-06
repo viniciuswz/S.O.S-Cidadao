@@ -45,8 +45,7 @@ session_start();
         
         $resposta = $publi->listByIdPubli(); 
         $comentarioPrefei = $comentario->SelecionarComentariosUserPrefei(TRUE);        
-        $quantidadePaginas = $comentario->getQuantidadePaginas();
-        $pagina = $comentario->getPaginaAtual();     
+           
         
 
         
@@ -77,7 +76,8 @@ session_start();
             $comentarioComum = $comentario->getDadosComenByIdComen(); // preciso do comenantario denunciado  
             $complemento = "Comentário Denunciado: ";
         }
-
+        $quantidadePaginas = $comentario->getQuantidadePaginas();
+        $pagina = $comentario->getPaginaAtual(); 
         
 ?>
 <!DOCTYPE html>
@@ -360,8 +360,9 @@ session_start();
                     $contador++;
                 }
                 ?>
-                 <ul>
+                <ul>
                 <?php
+                
                     if($quantidadePaginas != 1){
                         $contador = 1;
                         while($contador <= $quantidadePaginas){

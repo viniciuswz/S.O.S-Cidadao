@@ -11,12 +11,16 @@ class Paginacao extends PaginacaoM{
         $quantidadePorPagina = $this->getQtdPubliPaginas();  
     
         if(!is_numeric($pagina) or $pagina <= 0 or $pagina == null){
+            $texto = $pagina; // guardar o texto, pra ser usado posteriomente
             $pagina = 1;
         }     
         
-        $this->setQuantidadePaginas($quantidadeTotal, $quantidadePorPagina);//Arrendonda pra cima, e seta
-
+        $this->setQuantidadePaginas($quantidadeTotal, $quantidadePorPagina);//Arrendonda pra cima, e seta        
         $quantidadePaginas = $this->getQuantidadePaginas();//Retorna
+
+        if(isset($texto) AND $texto == 'ultima'){ // quero q ele va pra ultima pagina quando for escrito ultima
+            $pagina = $quantidadePaginas;
+        }
 
         if($pagina <= $quantidadePaginas){
             $this->setPaginaAtual($pagina);

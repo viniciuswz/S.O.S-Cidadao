@@ -188,7 +188,7 @@ session_start();
                                 <i class="icone-categoria-debate"></i><span><?php echo $resposta[0]['tema_deba']?></span>
                             </div>
                         </div>   
-                            <a href="<?php echo $link ?>.php?ID=<?php echo $_GET['ID']?>"><?php echo $txtButton ?></a>
+                            <a href="<?php echo $link ?>.php?ID=<?php echo $_GET['ID']?>&pagina=ultima"><?php echo $txtButton ?></a>
                     </div>
                     
         

@@ -12,7 +12,7 @@ try{
 
     $nomesCampos = array('texto','ID','pagina');// Nomes dos campos que receberei do formulario
     $validar = new ValidarCampos($nomesCampos, $_POST);//Verificar se eles existem, se nao existir estoura um erro
-    $validar->verificarTipoInt(array('ID','pagina'), $_POST); 
+    $validar->verificarTipoInt(array('ID'), $_POST); 
 
     $mensagem = new Mensagens($_POST['ID']);
     $mensagem->setCodUsu($_SESSION['id_user']);
