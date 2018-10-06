@@ -41,12 +41,13 @@ session_start();
         
         isset($_GET['pagina']) ?: $_GET['pagina'] = null;
                   
-        $comentarioComum = $comentario->SelecionarComentariosUserComum($_GET['pagina']);
+        
         
         $resposta = $publi->listByIdPubli(); 
         $comentarioPrefei = $comentario->SelecionarComentariosUserPrefei(TRUE);        
         $quantidadePaginas = $comentario->getQuantidadePaginas();
-        $pagina = $comentario->getPaginaAtual();       
+        $pagina = $comentario->getPaginaAtual();     
+        
 
         
         if(isset($_GET['com'])){                            
@@ -54,11 +55,27 @@ session_start();
                 $visualizar = new VisualizarNotificacao();
                 if(isset($_GET['IdComen'])){
                     $idNoti = $_GET['IdComen'];
-                }else{
+                    $comentario->setCodComen($idNoti);
+                    $comentarioComum = $comentario->getDadosComenByIdComen(); // preciso do comenantario denunciado                    
+                }else{                                        
                     $idNoti = $_GET['ID'];
                 }
                 $visualizar->visualizarNotificacao($_GET['com'], $idNoti, $_SESSION['id_user']);
             }                  
+        }
+
+        if(!isset($_GET['IdComen'])){ // quero todos os comentários
+            $comentarioComum = $comentario->SelecionarComentariosUserComum($_GET['pagina']); // quero todos os comenatários
+            if(empty($comentarioComum)){
+                $complemento = "Seja o primeiro a fazer um comentário !!";
+            }else{
+                $complemento = "Comentários";
+            }            
+        }else if(isset($_SESSION['id_user']) AND isset($_GET['IdComen'])){
+            $idNoti = $_GET['IdComen'];
+            $comentario->setCodComen($idNoti);
+            $comentarioComum = $comentario->getDadosComenByIdComen(); // preciso do comenantario denunciado  
+            $complemento = "Comentário Denunciado: ";
         }
 
         
@@ -291,7 +308,7 @@ session_start();
             ?>
             <section class="comentarios">
                 <h3>
-                    comentarios
+                    <?php echo $complemento ?>
                 </h3>
                 <?php 
                     $contador = 0;
@@ -314,10 +331,10 @@ session_start();
                                             echo '<li><i class="icone-bandeira"></i><span class="negrito">Denunciado</span></li>';            
                                         }else if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] != $comentarioComum[$contador]['cod_usu']){ // Aparecer apenas naspublicaçoes q nao é do usuario
                                             if($tipoUsu == 'Comum' or $tipoUsu == 'Prefeitura' or $tipoUsu == 'Funcionario'){
-                                                echo '<li><a href="../Templates/DenunciarComentarioTemplate.php?ID='.$comentarioComum[$contador]['cod_comen'].'&IDPubli='.$_GET['ID'].'&pagina='. $pagina.'"><i class="icone-bandeira"></i>Denunciar</a></li>';                                            
+                                                echo '<li><a href="../Templates/DenunciarComentarioTemplate.php?ID='.$comentarioComum[$contador]['cod_comen'].'&IDPubli='.$_GET['ID'].'&pagina='.$pagina.'"><i class="icone-bandeira"></i>Denunciar</a></li>';                                            
                                             }                    
                                         }else if(!isset($_SESSION['id_user'])){ // aparecer parar os usuario nao logado
-                                            echo '<li><a href="../Templates/DenunciarComentarioTemplate.php?ID='.$comentarioComum[$contador]['cod_comen'].'&IDPubli='.$_GET['ID'].'&pagina='. $pagina.'"><i class="icone-bandeira"></i>Denunciar</a></li>';                                            
+                                            echo '<li><a href="../Templates/DenunciarComentarioTemplate.php?ID='.$comentarioComum[$contador]['cod_comen'].'&IDPubli='.$_GET['ID'].'&pagina='.$pagina.'"><i class="icone-bandeira"></i>Denunciar</a></li>';                                            
                                         }
                                     ?>
 

@@ -232,6 +232,14 @@ class ComentarioA extends ComentarioM{
                 $sql,
                 " AND (descri_tipo_usu = 'Prefeitura' or descri_tipo_usu = 'Funcionario')"
             );
+            $erro = "Você nao pode editar este comentario";
+        }else if($tipoUsu == 'Adm' OR $tipoUsu == 'Moderador'){ // adm
+            $sql = sprintf(
+                $sql,
+                " AND 1=1 "
+            );
+            $indDadosTratados = TRUE; // necessito q os dados sejam tratados
+            $erro = "Erro ao selecionar o comentário denunciado";
         }else{ // Se cair nesse if ele tem q ser o dono do comentario
             $whereVerifyDono = " AND comentario.cod_usu = '%s' ";
             $sql = sprintf(
@@ -241,10 +249,14 @@ class ComentarioA extends ComentarioM{
                     $this->getCodUsu()
                 )
             );
+            $erro = "Você nao pode editar este comentario";
         }
         $res = $this->runSelect($sql);
         if(empty($res)){
-            throw new \Exception("Você nao pode editar este comentario",16);
+            throw new \Exception($erro,16);
+        }
+        if(isset($indDadosTratados)){ // preciso q os dados sejam tratados
+            $res = $this->tratarDados($res);
         }
         return $res;        
     }

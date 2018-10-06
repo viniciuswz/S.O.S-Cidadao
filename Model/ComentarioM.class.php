@@ -87,6 +87,9 @@ class ComentarioM extends DbConnection{
     }
 
     public function getPaginaAtual(){// Pega a pagina atual
+        if($this->PaginaAtual == null){
+            return 1;
+        }
         return $this->PaginaAtual;
     }
     
