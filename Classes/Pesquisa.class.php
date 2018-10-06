@@ -97,7 +97,7 @@ class Pesquisa extends PesquisaM{
             return;
     }
 
-    public function getQuantPes($tabela){
+    public function getQuantPes($tabela){ // quantidade de itens pesquisados
         if($tabela == 'Publi'){
             $comple = '%'.$this->getTextoPesqui().'%';
         }else{
