@@ -1,8 +1,7 @@
 <?php
-session_start();
+    session_start();
     require_once('../Config/Config.php');
-    require_once(SITE_ROOT.DS.'autoload.php');
-    
+    require_once(SITE_ROOT.DS.'autoload.php');   
     
     use Core\Usuario;    
     use Core\Debate;
