@@ -477,7 +477,8 @@ class DebateA extends DebateM{
             "tema_deba" => $this->getTemaDeba(),
             "descri_deba" => $this->getDescriDeba(),                
         );
-        if(empty($this->getImgDeba())){
+        $dadosImg = $this->getImgDeba();
+        if(empty($dadosImg["name"])){
             $novosDados["img_deba"] = $dados[0]['img_deba'];
         }
         if($this->verificarDadosIguais($novosDados, $dados)){ // Verificar se os dados sao igual 
@@ -487,11 +488,12 @@ class DebateA extends DebateM{
         $usuario = new Usuario();
         $usuario->setCodUsu($this->getCodUsu());
         $tipoUsu = $usuario->getDescTipo(); 
-        if(!empty($this->getImgDeba())){ // se ele mudar a imagem
+        if(!empty($dadosImg["name"])){ // se ele mudar a imagem
             $this->tratarImagem();
         }else{ // se nao mudar
             $this->setImgDeba($dados[0]['img_deba']);
-        }        
+        }      
+
         $sql = sprintf(
             $this->sqlUpdateDebate,
             $this->getImgDeba(),

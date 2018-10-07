@@ -13,8 +13,7 @@ try{
 
     $nomesCampos = array('titulo', 'tema','imagem','descricao','ID');// Nomes dos campos que receberei do formulario
     $validar = new ValidarCampos($nomesCampos, $_POST, $_FILES);//Verificar se eles existem, se nao existir estoura um erro
-    $validar->verificarTipoInt(array('ID'), $_POST); 
-    
+    $validar->verificarTipoInt(array('ID'), $_POST);     
     $debate = new Debate();
     $debate->setNomeDeba($_POST['titulo']);    
     $debate->setTemaDeba($_POST['tema']);
@@ -29,20 +28,20 @@ try{
         
 }catch(Exception $exc){
     $erro = $exc->getCode();   
-    $mensagem = $exc->getMessage();
+    echo $mensagem = $exc->getMessage();
     switch($erro){
         case 2://Nao esta logado    
-            echo "<script> alert('$mensagem');javascript:window.location='./view/login.php';</script>";
+            //echo "<script> alert('$mensagem');javascript:window.location='./view/login.php';</script>";
             break;
         case 6://Não é usuario comum  
-            echo "<script> alert('$mensagem');javascript:window.location='./view/index.php';</script>";
+            //echo "<script> alert('$mensagem');javascript:window.location='./view/index.php';</script>";
             break;
         case 13:// Se der erro ao cadastrar
         case 12://Mexeu no insprnsionar elemento
-            echo "<script> alert('$mensagem');javascript:window.location='./view/index.php';</script>";
+            //echo "<script> alert('$mensagem');javascript:window.location='./view/index.php';</script>";
             break;        
         default: //Qualquer outro erro cai aqui
-           echo "<script> alert('$mensagem');javascript:window.location='./view/index.php';</script>";
+           //echo "<script> alert('$mensagem');javascript:window.location='./view/index.php';</script>";
     }   
             
             
