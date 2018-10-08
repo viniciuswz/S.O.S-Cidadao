@@ -1,30 +1,16 @@
-(document).ready(function (e) {
-    $('#imageUploadForm').on('submit',(function(e) {
-        e.preventDefault();
-        var formData = new FormData(this);
-
-        $.ajax({
-            type:'POST',
-            url: $(this).attr('action'),
-            data:formData,
-            cache:false,
-            contentType: false,
-            processData: false,
-            success:function(data){
-                console.log("success");
-                console.log(data);
-            },
-            error: function(data){
-                console.log("error");
-                console.log(data);
-            }
-        });
-    }));
-
-    $("#ImageBrowse").on("change", function() {
-        $("#imageUploadForm").submit();
-    });
-});
-compartilhar  melhorar esta resposta
-respondeu
-9 de 
+$('.crop_image').click(function(event){
+    $image_crop.croppie('result', {
+      type: 'canvas',
+      size: 'viewport'
+    }).then(function(response){
+      $.ajax({
+        url:"upload.php",
+        type: "POST",
+        data:{"image": response},
+        success:function(data)
+        {
+          $('#uploadimageModal').modal('hide');
+          $('#uploaded_image').html(data);
+        }
+      });
+ 
