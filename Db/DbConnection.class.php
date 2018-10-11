@@ -6,8 +6,8 @@ class DbConnection extends CfAcademicoLogin{ //Extender de uma classe é com ext
 
     private $conn;
     private $user = 'root';
-    private $pass = '12345678';
-    private $host = 'LAB2M19';
+    private $pass = '';
+    private $host = 'localhost';
     private $port = '3306';
     private $database = 'reclama1';
     private $lastId;
