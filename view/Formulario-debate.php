@@ -130,7 +130,7 @@
                         <hr>
                         <div class="envio-img">
                                             
-                            <input type="file" name="imagem" id="imagemDebateInput">
+                            <input type="file" id="imagemDebateInput">
                             <label id="abrir-cortar"><p><i class="icone-camera"></i>Escolha foto</p>
                             <input type="hidden" id="base64" name="base64" value="banana">
                                 

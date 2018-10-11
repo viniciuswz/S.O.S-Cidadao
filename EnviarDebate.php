@@ -11,8 +11,8 @@ try{
     Usuario::verificarLogin(1,$tipoUsuPermi);  // Tem q estar logado
 
     
-    $nomesCampos = array('imagem','titulo', 'tema','descricao');// Nomes dos campos que receberei do formulario
-    $validar = new ValidarCampos($nomesCampos, $_POST, $_FILES);//Verificar se eles existem, se nao existir estoura um erro
+    $nomesCampos = array('titulo', 'tema','descricao','base64');// Nomes dos campos que receberei do formulario
+    $validar = new ValidarCampos($nomesCampos, $_POST);//Verificar se eles existem, se nao existir estoura um erro
     $debate = new Debate();
     $debate->setNomeDeba($_POST['titulo']);
     $debate->setTemaDeba($_POST['tema']);
