@@ -160,11 +160,14 @@ session_start();
                                 </div>
                                 <div class="info-contatinho">
                                     <div class="data_mensagem">
-                                       <p>dasdsad</p>
+                                        <p>dasdsad</p>
                                     </div>
-                                    <div class="qtd_mensagens">
-                                        <p><?php echo $listDeba[$contador]['quantidade']?></p>
-                                    </div>
+                                        <?php if($listDeba[$contador]['quantidade'] > 0 ) { ?>
+                                                <div class="qtd_mensagens">
+                                                        <p><?php echo $listDeba[$contador]['quantidade']?></p>
+                                                </div>
+                                                        
+                                        <?php } ?>
                                 </div>
                             </div>                            
                             <?php

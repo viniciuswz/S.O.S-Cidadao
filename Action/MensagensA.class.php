@@ -278,11 +278,11 @@ class MensagensA extends MensagensM{
 
     public function controlarPaginacao($pagina = null){ // Fazer o controle da paginacao       
         $paginacao = new Paginacao(); 
-        $paginacao->setQtdPubliPaginas(20); // Setar a quantidade de publicacoes por pagina
+        $paginacao->setQtdPubliPaginas(10); // Setar a quantidade de publicacoes por pagina
         
         $quantidadeTotalPubli = $this->getQuantMensagem();   //Pega a quantidade de publicacoes no total          
-        
-        $sqlPaginacao = $paginacao->prapararSql('dataHora_mensa, mensagem.cod_mensa','ASC', $pagina, $quantidadeTotalPubli);//Prepare o sql
+        $QuantNVisu = $this->getQuantMensaNVIsu();
+        $sqlPaginacao = $paginacao->prapararSqlDebateMensa('dataHora_mensa, mensagem.cod_mensa','ASC', $pagina, $quantidadeTotalPubli, $QuantNVisu);//Prepare o sql
         $this->setQuantidadePaginas($paginacao->getQuantidadePaginas());//Seta a quantidade de paginas no total
         $this->setPaginaAtual($paginacao->getPaginaAtual());
         return $sqlPaginacao;

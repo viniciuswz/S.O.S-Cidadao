@@ -35,6 +35,8 @@ class PaginacaoM {
     public function getPaginaAtual(){// Pega a pagina atual
         return $this->PaginaAtual;
     }
+
+    
 }
 
 
