@@ -165,7 +165,7 @@
 
 
         <div id="container">
-            <section class="perfil-base" >
+            <section class="perfil-base" id="baconP">
                 
                 <div class="perfil">
                         <?php 
@@ -474,6 +474,7 @@
                         <form id="trocarperfil">
                             <label for="fotoPerfil"><p>Escolher foto</p></label>
                             <input type="file" name="fotoperfil" id="fotoPerfil">
+                            <input type="hidden" name="base64FotoPerfil" id="base64FotoPerfil" value="banana">
                         </form>
                         <button id="cortarPerfil">Cortar foto</button>
                     </div>

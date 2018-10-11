@@ -107,7 +107,7 @@
             <form class="formulario" name="envio debate" method="post" action="../EnviarDebate.php" enctype="multipart/form-data">
                 <!--FORMULARIO ENVIO TITULO E TEMA-->
                 <div class="informacoes">
-                    <h3>Informações importantes</h3>
+                    <h3 id="bacon">Informações importantes</h3>
                     <hr>
                         <div class="campo-envio">
                             <label for="titulo">Título<p></p></label>
@@ -132,6 +132,7 @@
                                             
                             <input type="file" name="imagem" id="imagemDebateInput">
                             <label id="abrir-cortar"><p><i class="icone-camera"></i>Escolha foto</p>
+                            <input type="hidden" id="base64" name="base64" value="banana">
                                 
                         <div>
                             <img src="imagens/capa.png" id="imgPreview">

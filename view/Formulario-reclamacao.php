@@ -144,6 +144,7 @@
                             
                              <input type="file" name="imagem" id="fotoReclamacao">
                             <label id="colocar-foto-reclamacao"><p><i class="icone-camera"></i>Escolha foto</p>
+                            <input type="hidden" id="base64" name="base64" value="banana">
                         
                         <div>
                             <img src="imagens/capa.png" id="imgPreview">
@@ -155,7 +156,7 @@
                 </div>
             <!-- FORMULARIO CATEGORIAS-->
                 <div class="categorias">
-                    <h3>Sobre o que vai reclamar?</h3>
+                    <h3 id="bacon">Sobre o que vai reclamar?</h3>
                     <hr>
                     <p></p>
                     <div>

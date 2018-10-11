@@ -23,7 +23,7 @@ try{
     $publicacao->setCodUsu($_SESSION['id_user']);
     $publicacao->setCodPubli($_POST['id_publi']);
     if(isset($_FILES['imagem']) AND !empty($_FILES['imagem']['name'])){
-        $publicacao->setImgPubli($_FILES['imagem']);
+        $publicacao->setImgPubli($_POST['base64']);
     }            
     $publicacao->updatePublicacao($_POST['bairro'], $_POST['local']);    
     echo "<script> alert('Publicacao edita com sucesso');javascript:window.location='./view/reclamacao.php?ID=".$_POST['id_publi']."';</script>";

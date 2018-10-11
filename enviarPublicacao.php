@@ -22,9 +22,30 @@ try{
     $publicacao->setCepLogra($_POST['cep']);
     $publicacao->setCodUsu($_SESSION['id_user']);
     if(isset($_FILES['imagem']) AND !empty($_FILES['imagem']['name'])){
-        $publicacao->setImgPubli($_FILES['imagem']);
+        $publicacao->setImgPubli($_POST['base64']);
     }            
     $publicacao->cadastrarPublicacao($_POST['bairro'], $_POST['local']);
+
+    //$baseFromJavascript = "data:image/png;base64,BBBFBfj42Pj4"; // $_POST['base64']; //your data in base64 'data:image/png....';
+    // We need to remove the "data:image/png;base64,"
+    //$base_to_php = explode(',', $_POST["base64"]);
+    // the 2nd item in the base_to_php array contains the content of the image
+    //$data = base64_decode($base_to_php[1]);
+    // here you can detect if type is png or jpg if you want
+    //$filepath = "/path/to/my-files/image.png"; // or image.jpg
+    
+    // Save the image in a defined path
+    //file_put_contents("/Img/Capa/.'image.jpg'",$data.".png");
+
+    // define('UPLOAD_DIR', 'Img/publicacao/');
+    // $img = $_POST['base64'] . 'asdfasdf';
+    // $img = str_replace('data:image/png;base64,', '', $img);
+    // $img = str_replace(' ', '+', $img);
+    // $data = base64_decode($img);
+    // $file = UPLOAD_DIR . uniqid() . '.png';
+    // $success = file_put_contents($file, $data);
+    // print $success ? $file : 'Unable to save the file.';
+
     $idPubli = $publicacao->last(); 
     echo "<script> alert('Publicacao enviada com sucesso');javascript:window.location='./view/reclamacao.php?ID=".$idPubli."';</script>";
         

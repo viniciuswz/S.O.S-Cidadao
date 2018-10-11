@@ -158,6 +158,7 @@
                             
                              <input type="file" name="imagem" id="fotoReclamacao">
                             <label id="colocar-foto-reclamacao"><p><i class="icone-camera"></i>Escolha foto</p>
+                            <input type="hidden" id="base64" name="base64" value="banana">
                         
                         <div>
                             <img src="../Img/publicacao/<?php echo $resposta[0]['img_publi']?>" id="imgPreview">

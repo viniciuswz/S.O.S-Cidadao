@@ -17,7 +17,7 @@ try{
     $debate->setNomeDeba($_POST['titulo']);
     $debate->setTemaDeba($_POST['tema']);
     $debate->setDescriDeba($_POST['descricao']);            
-    $debate->setImgDeba($_FILES['imagem']);
+    $debate->setImgDeba($_POST['base64']);
     $debate->setCodUsu($_SESSION['id_user']);
     $debate->insert();   
     $idDeba = $debate->getCodDeba(); // Pegar o codigo inserido, que a classe setou

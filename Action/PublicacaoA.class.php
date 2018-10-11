@@ -84,7 +84,7 @@ class PublicacaoA extends PublicacaoM{
                     );
         $inserir = $this->runQuery($sql);
         if(!$inserir->rowCount()){  // Se der erro cai nesse if          
-            throw new \Exception("Não foi possível realizar o cadastro da publicacao",9);   
+           throw new \Exception("Não foi possível realizar o cadastro da publicacao",9);   
         }
         return TRUE;
 

@@ -488,7 +488,7 @@ class DebateA extends DebateM{
         $usuario = new Usuario();
         $usuario->setCodUsu($this->getCodUsu());
         $tipoUsu = $usuario->getDescTipo(); 
-        if(!empty($dadosImg["name"])){ // se ele mudar a imagem
+        if(!empty($dadosImg)){ // se ele mudar a imagem
             $this->tratarImagem();
         }else{ // se nao mudar
             $this->setImgDeba($dados[0]['img_deba']);
