@@ -234,9 +234,10 @@ class DebateA extends DebateM{
                         $status);          
         $res = $this->runSelect($sql);
         $quantidade = $res[0]['COUNT(*)'];
-        if($quantidade > 0){ //Se for maior q zero é pq ele curtiu
-            return TRUE;
+        if($quantidade > 0){ //Se for maior q zero é pq ele curtiu            
+            return TRUE; // participa
         }
+
         if($indErro != null){ // em alguns casos preciso de um erro            
             $usuario = new Usuario();
             $usuario->setCodUsu($this->getCodUsu());
@@ -246,6 +247,16 @@ class DebateA extends DebateM{
             }else{
                 throw new \Exception("Não participa do debate",9);
             }           
+        }
+
+        $sql = sprintf($this->sqlVerificarSeEstaParticipando,
+                        $codDeba,
+                        $this->getCodUsu(),
+                        'B');          
+        $res = $this->runSelect($sql);
+        $quantidade = $res[0]['COUNT(*)'];
+        if($quantidade > 0){ //Se for maior q zero é pq ele foi banido            
+            return 'Banido'; // banido
         }
         return FALSE;
     }
@@ -280,7 +291,10 @@ class DebateA extends DebateM{
         $verifi = $this->verificarSeParticipaOuNao($this->getCodDeba());        
         if($verifi){ // se ja participar estoura um erro
             throw new \Exception("Você ja participa", 9);
+        }else if($verifi == 'Banido'){
+            throw new \Exception("Você não pode participar pois foi banido", 9);
         }
+
         $qtdParti = $this->quantidadeTotalParticipantes($this->getCodDeba());
         if($qtdParti > 15){ // se tiver muitos participantes
             throw new \Exception("Limite de participantes alcançado", 15);
@@ -294,7 +308,7 @@ class DebateA extends DebateM{
         $usuario->setCodUsu($this->getCodUsu());
         $tipo = $usuario->getDescTipo();   
         if($tipo == 'Adm' or $tipo == 'Moderador'){ // Administracao apagando
-            $this->updateStatusParti('I', $codUsuApagar,TRUE, 'Administracao');
+            $this->updateStatusParti('B', $codUsuApagar,TRUE, 'Administracao');
             return 1; // adm
         }
 
@@ -302,7 +316,7 @@ class DebateA extends DebateM{
 
         if($res[0]['cod_usu'] == $this->getCodUsu()){
             if($indRemoverUser != null){ // dono do debate esta apagando usuario
-                $this->updateStatusParti('I', $codUsuApagar);
+                $this->updateStatusParti('B', $codUsuApagar);
                 return 2; // dono que removeu
             }
             $this->updateStatusDeba('I'); // apagar debate, se o dono sair o debate é "apagado"

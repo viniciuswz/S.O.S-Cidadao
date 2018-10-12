@@ -25,13 +25,16 @@
         $debate->setCodDeba($_GET['ID']);        
         $resposta = $debate->listByIdDeba();          
         
-        if(isset($resposta[0]['indParticipa']) AND $resposta[0]['indParticipa']
-        OR isset($tipoUsu) AND ($tipoUsu == 'Adm' OR $tipoUsu == 'Moderador')){
+        if(isset($resposta[0]['indParticipa']) AND $resposta[0]['indParticipa'] === 'Banido' ){
+            $txtButton = 'Você foi Banido';
+            $link = '#';
+        }else if(isset($resposta[0]['indParticipa']) AND $resposta[0]['indParticipa'] == TRUE
+        OR isset($tipoUsu) AND ($tipoUsu == 'Adm' OR $tipoUsu == 'Moderador')){            
             $txtButton = 'Entrar no debate';
-            $link = 'debate_mensagens';
+            $link = 'debate_mensagens.php';
         }else{
             $txtButton = 'Participar do debate';
-            $link = '../InserirParticipante';
+            $link = '../InserirParticipante.php';
         }        
 
         if(isset($_GET['com'])){                            
@@ -40,8 +43,7 @@
                 $idNoti = $_GET['ID'];                
                 $visualizar->visualizarNotificacao($_GET['com'], $idNoti, $_SESSION['id_user']);
             }                  
-        }      
-        
+        }                    
 ?>
 <!DOCTYPE html>
 <html lang=pt-br>
@@ -204,7 +206,7 @@
                                 <i class="icone-categoria-debate"></i><span><?php echo $resposta[0]['tema_deba']?></span>
                             </div>
                         </div>   
-                            <a href="<?php echo $link ?>.php?ID=<?php echo $_GET['ID']?>&pagina=ultima"><?php echo $txtButton ?></a>
+                            <a href="<?php echo $link ?>?ID=<?php echo $_GET['ID']?>&pagina=ultima"><?php echo $txtButton ?></a>
                     </div>
                     
         
