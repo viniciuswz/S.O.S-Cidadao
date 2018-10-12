@@ -18,6 +18,7 @@ class DbConnection extends CfAcademicoLogin{ //Extender de uma classe é com ext
             $this->conn = new \PDO("mysql:host=$this->host;port=$this->port;dbname=$this->database", $this->user, $this->pass); // Barra invertida significa q a classe nao é sua
             if(isset($this->conn)){
                 $this->conn->exec("set names utf8"); // Metodo utf-8
+                //$this->conn->exec("SET @@global.time_zone = '+3:00'");
                 return $this->conn;
             }    
         

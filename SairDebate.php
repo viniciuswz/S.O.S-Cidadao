@@ -26,15 +26,12 @@ try{
         $ind = $debate->sairDebate();
     }
     
-    if($ind == 1){ // adm removeu
-        echo '1';
-        //echo "<script> alert('Usuario removido com sucesso!!');javascript:window.location='./view/debate_mensagens.php?ID=".$_GET['ID']."&pagina=ultima';</script>";    
-    }else if($ind == 2){ // dono removeu
-        echo '2';
-        //echo "<script> alert('Até mais!!');javascript:window.location='./view/todosdebates.php';</script>";    
-    }else{ // usuario saiu ou dono saiu
-        echo '3';
-        //echo "<script> alert('Até mais!!');javascript:window.location='./view/todosdebates.php';</script>";    
+    if($ind == 1){ // adm removeu        
+        echo "<script> alert('Usuario removido com sucesso!!');javascript:window.location='./view/debate_mensagens.php?ID=".$_GET['ID']."&pagina=ultima';</script>";    
+    }else if($ind == 2){ // dono removeu        
+        echo "<script> alert('Até mais!!');javascript:window.location='./view/todosdebates.php';</script>";    
+    }else{ // usuario saiu ou dono saiu        
+        echo "<script> alert('Até mais!!');javascript:window.location='./view/todosdebates.php';</script>";    
     }
     
         

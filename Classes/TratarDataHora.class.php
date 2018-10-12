@@ -114,6 +114,26 @@ class TratarDataHora{
     public function tempoDeCadastro(){
         return $msg = strftime('Usuário desde %d de %B de %Y', strtotime($this->dataHoraEnvio->format('d-m-Y H:i:s')));          
     }
+
+    public function tratarHoraDebateMensagem(){
+        $intervalo = $this->dataHoraAgora->diff($this->dataHoraEnvio);            
+
+        if($intervalo->y == 0){// mesmo ano
+            if($intervalo->m == 0){ // mesmo mes
+                if($intervalo->d == 0){ // mesmo dia
+                    return $this->dataHoraEnvio->format('H:i');
+               }else if($intervalo->d == 1){
+                    return 'Ontem';
+               }else{
+                   return $this->dataHoraEnvio->format('d/m/Y');
+               }
+            }else{
+                $this->dataHoraEnvio->format('d/m/Y');
+            }
+        }else{
+            $this->dataHoraEnvio->format('d/m/Y');
+        }        
+    }
 }
 
 // "debate", "N"

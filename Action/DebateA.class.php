@@ -49,7 +49,7 @@ class DebateA extends DebateM{
                                                     (SELECT dataHora_mensa_visu FROM mensagem_visualizacao INNER JOIN mensagem 
                                                     ON(mensagem_visualizacao.cod_mensa = mensagem.cod_mensa) 
                                                     WHERE mensagem.cod_deba = debate.cod_deba AND mensagem_visualizacao.cod_usu = '%s' 
-                                                    AND status_visu = 'I' LIMIT 1) as HoraEnvio                                                    
+                                                    ORDER BY dataHora_mensa_visu DESC LIMIT 1) as HoraEnvio                                                    
                                                       FROM debate 
                                                 INNER JOIN debate_participante ON (debate_participante.cod_deba = debate.cod_deba)
                                                 INNER JOIN usuario ON (debate_participante.cod_usu = usuario.cod_usu)
@@ -192,29 +192,38 @@ class DebateA extends DebateM{
         return $dadosTratados;
 
     }
-    public function tratarDados($dados){
+    public function tratarDados($dados, $indDebateMensa = null){
         $contador = 0;
                
         while($contador < count($dados)){//Nesse while so entra a parte q me interresa
+            if($indDebateMensa == null){
+                $dados[$contador]['dataHora_deba'] = $this->tratarHora($dados[$contador]['dataHora_deba']);//Calcular o tempo
+                $dados[$contador]['qtdParticipantes'] = $this->quantidadeTotalParticipantes($dados[$contador]['cod_deba']);//Calcular o total de participantes
             
-            $dados[$contador]['dataHora_deba'] = $this->tratarHora($dados[$contador]['dataHora_deba']);//Calcular o tempo
-            $dados[$contador]['qtdParticipantes'] = $this->quantidadeTotalParticipantes($dados[$contador]['cod_deba']);//Calcular o total de participantes
             
-            
-            if(!empty($this->getCodUsu())){//Só entar aqui se ele estiver logado
-                $dados[$contador]['indParticipa'] =  $this->verificarSeParticipaOuNao($dados[$contador]['cod_deba']);//Verificar se ele participa do debate
-                $dados[$contador]['indDenunComen'] =  $this->getVerificarSeDenunciou($dados[$contador]['cod_deba']);//Verificar se ele denunciou o debate
-                //Me retorna um bollenao
+                if(!empty($this->getCodUsu())){//Só entar aqui se ele estiver logado
+                    $dados[$contador]['indParticipa'] =  $this->verificarSeParticipaOuNao($dados[$contador]['cod_deba']);//Verificar se ele participa do debate
+                    $dados[$contador]['indDenunComen'] =  $this->getVerificarSeDenunciou($dados[$contador]['cod_deba']);//Verificar se ele denunciou o debate
+                    //Me retorna um bollenao
+                }
+            }else{
+                $dados[$contador]['dataHora_deba'] = $this->tratarHora($dados[$contador]['HoraEnvio'], TRUE);//Calcular o tempo
             }
+            
             $contador++;
         }  
         
         return $dados;
     }
 
-    public function tratarHora($hora){ 
+    public function tratarHora($hora, $indDebateMensa = null){ 
         $tratarHoras = new TratarDataHora($hora);
-        return $tratarHoras->calcularTempo('debate','N');
+        if($indDebateMensa == null){
+            return $tratarHoras->calcularTempo('debate','N');
+        }else{
+            return $tratarHoras->tratarHoraDebateMensagem();
+        }
+        
     }
 
     public function quantidadeTotalParticipantes($cod){ // Pegar quantidade total de participantes
@@ -269,9 +278,10 @@ class DebateA extends DebateM{
             $this->getCodDeba()
         );
         
-        $resultado = $this->runSelect($sql);        
+        $resultado = $this->runSelect($sql);          
         return $resultado;
     }
+
     
 
     public function listarDebatesQpartcipo(){
@@ -282,8 +292,9 @@ class DebateA extends DebateM{
             $this->whereListFromALL,
             $this->getCodUsu()
         );
-        $resultado = $this->runSelect($sql);  
-        return $resultado;
+        $resultado = $this->runSelect($sql); 
+        $resultado2 = $this->tratarDados($resultado, TRUE);  
+        return $resultado2;
     }
 
     public function entrarDebate(){ // entrar no debate        
