@@ -18,6 +18,9 @@ session_start();
         $tipos = array();
         if(!isset($_GET['tipo']) AND empty($_GET['tipo'])){
             $tipos[] = 'Comen';
+            $_GET['tipo'][0] = 'Comen';
+            $_GET['tipo'][1] = 'Debate';
+            $_GET['tipo'][2] = 'Publi';
         }else{
             $parametro = "";
             $contador = 1;
@@ -189,9 +192,9 @@ session_start();
                                         <ul>
                                             <li><a href="#" class="motivo-ativar">Motivo</a></li>
                                             <li><a href="'.$res[$contador]['LinkVisita'].'">Visitar página</a></li>
-                                            <li><a href="'.$res[$contador]['LinkApagarPubli'].'">Remover reclamação</a></li>
+                                            <li><a href="'.$res[$contador]['LinkApagarPubli'].'">Remover '.$res[$contador]['Tipo'].'</a></li>
                                             <li><a href="'.$res[$contador]['LinkApagarUsu'].'">Bloquear usuário</a></li>
-                                            <li><a href="../RemoverDenuncia.php?ID='.$res[$contador]['cod_denun'].'&tipo='.$res[$contador]['tipoSemAcento'].'">Remover denuncia</a></li>
+                                            <li><a href="../RemoverDenuncia.php?ID='.$res[$contador]['cod_denun'].'&tipo='.$res[$contador]['tipoSemAcento'].'">Remover denúncia</a></li>
                                         </ul>                                        
                                     </div>
                                     <div class="motivo">
