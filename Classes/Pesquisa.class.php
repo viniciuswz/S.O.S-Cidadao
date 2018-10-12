@@ -55,6 +55,9 @@ class Pesquisa extends PesquisaM{
 
     public function pesquisarPubli($pagina){
         $paginacao = $this->controlarPaginacao('Publi',$pagina); // paginacao
+        if($pagina > $this->getQuantidadePaginas()){ // exemplo pra publi so tem 7, mas pra deva tem 10 paginas, quando eu estiver na 8
+            return; // vai ficar carregando as publicacoes da pgina 9 da publi, ou seja repete, nao quero isso
+        }// por isso faco parar a execucao
             $sql = sprintf( // sql da publicacao
                 $this->sqlPesqPubli,
                 sprintf(
@@ -75,8 +78,11 @@ class Pesquisa extends PesquisaM{
             return;
     }
 
-    public function pesquisarDeba($pagina){
+    public function pesquisarDeba($pagina){        
         $paginacao = $this->controlarPaginacao('Deba',$pagina); // paginacao
+        if($pagina > $this->getQuantidadePaginas()){ // exemplo pra publi so tem 7, mas pra deva tem 10 paginas, quando eu estiver na 8
+            return; // vai ficar carregando as publicacoes da pgina 9 da publi, ou seja repete, nao quero isso
+        }// por isso faco parar a execucao
             $sql = sprintf( // sql do debate
                 $this->sqlPesqDeba,
                 sprintf(

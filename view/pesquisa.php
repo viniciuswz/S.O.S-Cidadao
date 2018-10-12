@@ -22,7 +22,7 @@ session_start();
         
         $pes->setTextoPesqui($_GET['pesquisa']);
         isset($_GET['pagina']) ?: $_GET['pagina'] = null;
-        isset($_GET['tipo']) ?: $_GET['tipo'] = null;
+        //isset($_GET['tipo']) ?: $_GET['tipo'] = null;
         $parametro = "";
         if(isset($_GET['tipo'])){            
             $contador = 1;
@@ -42,14 +42,13 @@ session_start();
                         }
                     }                    
             }
+        }else{
+            $_GET['tipo'][0] = "Deba";
+            $_GET['tipo'][1] = "Publi";
         }   
         $resPes = $pes->pesquisar($_GET['pagina'],$_GET['tipo']);
         $quantidadePaginas = $pes->getQuantidadePaginas();
-        $pagina = $pes->getPaginaAtual();
-        if(!isset($_GET['tipo'])){
-            $_GET['tipo'][0] = "Publi";
-            $_GET['tipo'][1] = "Deba";
-        }
+        $pagina = $pes->getPaginaAtual();        
 ?>
 <!DOCTYPE html>
 <html lang=pt-br>
