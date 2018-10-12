@@ -144,54 +144,60 @@ session_start();
                             ?> 
                         
                 </aside>
-                <aside class="contatos">
-                    <header class="">
-                            <h3>Suas conversas</h3>
-                            <p id="fechar-contatos">&times;</p>
-                    </header>
-                        <nav>
-                            <?php
-                                $contador = 0;
-                                while($contador < count($listDeba)){
-                            ?>
-                            <div class="contatinhos">
-                                <a href="debate_mensagens.php?ID=<?php echo $listDeba[$contador]['cod_deba'] ?>&pagina=ultima">
-                                    <div class="img-debate">
-                                        <img src="../Img/debate/<?php echo $listDeba[$contador]['img_deba']?>" alt="debate">
-                                    </div>
-                                </a>
-                                <div class="status-debate">
-                                        <?php
-                                            if($_GET['ID'] == $listDeba[$contador]['cod_deba']){
-                                                echo '<p><span class="negrito">'.$listDeba[$contador]['nome_deba'] . '</span></p>';
-                                            }else{
-                                                echo '<p>'.$listDeba[$contador]['nome_deba'].'</p>';
-                                            }                                                
-                                        ?>  
-                                </div>
-                                <div class="info-contatinho">
-                                    <div class="data_mensagem">
-                                        <p><?php echo $listDeba[$contador]['dataHora_deba'] ?></p>
-                                    </div>
-                                        <?php if($listDeba[$contador]['quantidade'] > 0 ) { ?>
-                                                <div class="qtd_mensagens">
-                                                        <p><?php echo $listDeba[$contador]['quantidade']?></p>
-                                                </div>
-                                                        
-                                        <?php } ?>
-                                </div>
-                            </div>                            
-                            <?php
-                                    $contador++;
-                                }
-                            ?>  
-                        </nav>
-                </aside>
+                <?php
+                        if($tipoUsu == 'Comum'){
+                ?>
+                                    <aside class="contatos">
+                                        <header class="">
+                                                <h3>Suas conversas</h3>
+                                                <p id="fechar-contatos">&times;</p>
+                                        </header>
+                                            <nav>
+                                                <?php
+                                                    $contador = 0;
+                                                    while($contador < count($listDeba)){
+                                                ?>
+                                                <div class="contatinhos">
+                                                    <a href="debate_mensagens.php?ID=<?php echo $listDeba[$contador]['cod_deba'] ?>&pagina=ultima">
+                                                        <div class="img-debate">
+                                                            <img src="../Img/debate/<?php echo $listDeba[$contador]['img_deba']?>" alt="debate">
+                                                        </div>
+                                                    </a>
+                                                    <div class="status-debate">
+                                                            <?php
+                                                                if($_GET['ID'] == $listDeba[$contador]['cod_deba']){
+                                                                    echo '<p><span class="negrito">'.$listDeba[$contador]['nome_deba'] . '</span></p>';
+                                                                }else{
+                                                                    echo '<p>'.$listDeba[$contador]['nome_deba'].'</p>';
+                                                                }                                                
+                                                            ?>  
+                                                    </div>
+                                                    <div class="info-contatinho">
+                                                        <div class="data_mensagem">
+                                                            <p><?php echo $listDeba[$contador]['dataHora_deba'] ?></p>
+                                                        </div>
+                                                            <?php if($listDeba[$contador]['quantidade'] > 0 ) { ?>
+                                                                    <div class="qtd_mensagens">
+                                                                            <p><?php echo $listDeba[$contador]['quantidade']?></p>
+                                                                    </div>
+                                                                            
+                                                            <?php } ?>
+                                                    </div>
+                                                </div>                            
+                                                <?php
+                                                        $contador++;
+                                                    }
+                                                ?>  
+                                            </nav>
+                                    </aside>
+                <?php
+                        }
+                ?>
                 
         
            <div class="batepapo">
                 <header>
-                    <a href="#">&#x21FD;</a>
+                    <a href="todosdebates.php">&#x21FD;</a>
                     <div class="ft_debate-mensagem">
                         <img src="../Img/debate/<?php echo $resposta[0]['img_deba']?>" alt="debate">
                     </div>
@@ -353,9 +359,15 @@ session_start();
 
                      
                <form action="../enviarMensagem.php" method="post">
-               <input type="hidden" name="ID" value="<?php echo $_GET['ID'] ?>" />
+                    <?php
+                        if($tipoUsu == 'Comum'){
+                    ?>
+                        <input type="hidden" name="ID" value="<?php echo $_GET['ID'] ?>" />
                         <input type="hidden" name="pagina" value="<?php echo $pagina ?>" />
-                   <input type="text" name="texto" placeholder="digite aqui..." ><button type="submit"> ></button> 
+                        <input type="text" name="texto" placeholder="digite aqui..." ><button type="submit"> ></button> 
+                   <?php
+                        }
+                    ?>
                </form>      
            </div>
         </section>
