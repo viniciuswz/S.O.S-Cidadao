@@ -64,6 +64,7 @@ class DebateA extends DebateM{
 
 
     private $whereListFromALL = "status_usu = 'A' AND status_deba = 'A' ";
+    private $sqlSelectDonoDeba = "SELECT cod_usu FROM debate WHERE cod_deba = '%s'";
 
     private $whereIdDeba = "AND cod_deba = '%s'";
 
@@ -280,9 +281,7 @@ class DebateA extends DebateM{
         
         $resultado = $this->runSelect($sql);          
         return $resultado;
-    }
-
-    
+    }   
 
     public function listarDebatesQpartcipo(){
         $sql = sprintf(
@@ -319,6 +318,15 @@ class DebateA extends DebateM{
         $usuario->setCodUsu($this->getCodUsu());
         $tipo = $usuario->getDescTipo();   
         if($tipo == 'Adm' or $tipo == 'Moderador'){ // Administracao apagando
+            $sql = sprintf(
+                $this->sqlSelectDonoDeba,
+                $this->getCodDeba()            
+            );
+            $res = $this->runSelect($sql);              
+            if($res[0]['cod_usu'] == $codUsuApagar){
+                throw new \Exception("Não é possivel remover o dono do debate");
+            }
+
             $this->updateStatusParti('B', $codUsuApagar,TRUE, 'Administracao');
             return 1; // adm
         }
