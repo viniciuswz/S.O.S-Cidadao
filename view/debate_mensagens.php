@@ -29,7 +29,7 @@ session_start();
         $debate->verificarSeParticipaOuNao($_GET['ID'], TRUE);       
 
         $participantes = $debate->listarParticipantes(' usuario.cod_usu, nome_usu, img_perfil_usu, ind_visu_criador ');
-        $mensagemObj->setCodUsu($_SESSION['id_user']);
+        $mensagemObj->setCodUsu($_SESSION['id_user']);        
         //
 
         $listDeba = $debate->listarDebatesQpartcipo();
@@ -118,16 +118,23 @@ session_start();
                                         echo '<span>DONO</span>';
                                     }
                                 ?>                                
-                                <div class="mini-menu-item sem-btn">                                    
-                                    <div>
-                                        <ul>
-                                            <li><span><a href="#">COISA</a></span></li>
-                                            
-                                        </ul>
-                                    </div>
-                                </div>
+                                        <div class="mini-menu-item sem-btn">                                    
+                                            <div>
+                                                <ul>
+                                                    <?php 
+                                                        if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $resposta[0]['cod_usu'] AND $_SESSION['id_user'] != $participantes[$contador]['cod_usu']
+                                                            OR ($tipoUsu == 'Adm' OR $tipoUsu == 'Moderador')){ // parei aqui link pra apagar
+                                                            echo '<li><span><a href="../SairDebate.php?ID='. $resposta[0]['cod_deba'].'&IDUsu='.$participantes[$contador]['cod_usu'].'">Remover Usuario</a></span></li>';
+                                                            echo "<li><span><a href='perfil_reclamacao.php?ID=". $participantes[$contador]['cod_usu']."'>Perfil</a></span></li>";
+                                                        }else if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] != $participantes[$contador]['cod_usu']){
+                                                            echo "<li><span><a href='perfil_reclamacao.php?ID=". $participantes[$contador]['cod_usu']."'>Perfil</a></span></li>";
+                                                        }                                                
+                                                    ?>                                                                                                        
+                                                </ul>
+                                            </div>
+                                        </div>                                   
                             </div>
-                            <?php
+                            <?php                                    
                                     $contador++;
                                 }
                             ?> 

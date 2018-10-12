@@ -136,16 +136,16 @@ class MensagensA extends MensagensM{
         }
         
         $res = $this->runSelect($sql); 
-        $dados =   $this->getTratarMensagens($res);               
+        $dados =   $this->getTratarMensagens($res,$tipo);               
         return $dados;
     }
 
-    public function getTratarMensagens($dados){
+    public function getTratarMensagens($dados, $tipoUsu){
         $contador = 0;               
         $contador2 = 0;
         $dados2 = array();
         while($contador < count($dados)){//Nesse while so entra a parte q me interresa    
-            if($dados[$contador]['status_visu'] == 'I' AND !isset($indVisu)){ // if pra escrever uma mensagem com o texto "tanta mensagens nao lidas"
+            if($dados[$contador]['status_visu'] == 'I' AND !isset($indVisu) AND ($tipoUsu != 'Adm' AND $tipoUsu != 'Moderador')){ // if pra escrever uma mensagem com o texto "tanta mensagens nao lidas"
                 $quat = $this->getQuantMensaNVIsu(); // so entra uma vez nesse if
                 if($quat == 1){
                     $comple = " mensagem nao lida";

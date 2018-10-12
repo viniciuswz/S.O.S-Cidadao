@@ -17,8 +17,26 @@ try{
     $debate = new Debate();
     $debate->setCodUsu($_SESSION['id_user']);
     $debate->setCodDeba($_GET['ID']);    
-    $debate->sairDebate();
-    echo "<script> alert('Até mais!!');javascript:window.location='./view/todosdebates.php';</script>";    
+
+    if(isset($_GET['IDUsu'])){
+        $validar = new ValidarCampos($nomesCampos, $_GET);//Verificar se eles existem, se nao existir estoura um erro
+        $validar->verificarTipoInt(array('IDUsu'), $_GET); 
+        $ind = $debate->sairDebate(TRUE,$_GET['IDUsu']); // dono ou adm removendo usuario
+    }else{
+        $ind = $debate->sairDebate();
+    }
+    
+    if($ind == 1){ // adm removeu
+        echo '1';
+        //echo "<script> alert('Usuario removido com sucesso!!');javascript:window.location='./view/debate_mensagens.php?ID=".$_GET['ID']."&pagina=ultima';</script>";    
+    }else if($ind == 2){ // dono removeu
+        echo '2';
+        //echo "<script> alert('Até mais!!');javascript:window.location='./view/todosdebates.php';</script>";    
+    }else{ // usuario saiu ou dono saiu
+        echo '3';
+        //echo "<script> alert('Até mais!!');javascript:window.location='./view/todosdebates.php';</script>";    
+    }
+    
         
 }catch(Exception $exc){
     $erro = $exc->getCode();   

@@ -294,8 +294,8 @@ class DebateA extends DebateM{
         $usuario->setCodUsu($this->getCodUsu());
         $tipo = $usuario->getDescTipo();   
         if($tipo == 'Adm' or $tipo == 'Moderador'){ // Administracao apagando
-            $this->updateStatusDeba('I');
-            return;
+            $this->updateStatusParti('I', $codUsuApagar,TRUE, 'Administracao');
+            return 1; // adm
         }
 
         $res = $this->listByIdDeba('sqlListDebaQuandoAberto');
@@ -303,13 +303,13 @@ class DebateA extends DebateM{
         if($res[0]['cod_usu'] == $this->getCodUsu()){
             if($indRemoverUser != null){ // dono do debate esta apagando usuario
                 $this->updateStatusParti('I', $codUsuApagar);
-                return;
+                return 2; // dono que removeu
             }
             $this->updateStatusDeba('I'); // apagar debate, se o dono sair o debate é "apagado"
-            return;
+            return 3;
         }else{
             $this->updateStatusParti('I'); // NAO É O DONO
-            return;
+            return 3; // usuario que esta saindo
         }
     }
 
@@ -435,9 +435,14 @@ class DebateA extends DebateM{
         return;
     }    
     
-    public function updateStatusParti($status,$codUsuApagar = null){ // mudar status do participante  
+    public function updateStatusParti($status,$codUsuApagar = null, $indRemocaoForcado = null, $tipoUsu = null){ // mudar status do participante  
        
-        if($codUsuApagar != null){ // dono esta eliminado um usuario
+        if($codUsuApagar != null){ // dono esta eliminado um usuario, ou administracao
+            if($tipoUsu == 'Administracao'){
+                $mensagem = "A administração removeu ";
+            }else{
+                $mensagem = "O dono do debate removeu ";
+            }
             $codUsu = $codUsuApagar; // codigo do usuario q tem q apagar
             $ind = 1;
         }else{
@@ -455,17 +460,18 @@ class DebateA extends DebateM{
         if(!$resposta->rowCount()){
             throw new \Exception("Não foi possível mudar o status",9);
         }
-        if($ind == 2){ // notificar            
-            $usuario = new Usuario();
-            $usuario->setCodUsu($codUsu);
-            $res = $usuario->getDadosUser();
-            $nome = $res[0]['nome_usu'];
+        $usuario = new Usuario();
+        $usuario->setCodUsu($codUsu);
+        $res = $usuario->getDadosUser();
+        $nome = $res[0]['nome_usu'];
+        if($ind == 2){ // notificar
             if($status == 'A'){
                 $this->inserirMensagemSistema($nome . " entrou no debate");
             }else{
                 $this->inserirMensagemSistema($nome . " saiu do debate");
-            }
-            
+            }            
+        }else if($ind == 1){ // admintracao ou dono do debate q esta apagando
+            $this->inserirMensagemSistema($mensagem . $nome);
         }
         return;
     }    
