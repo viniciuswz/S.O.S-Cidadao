@@ -24,8 +24,7 @@ session_start();
         isset($_GET['pagina']) ?: $_GET['pagina'] = null;
         isset($_GET['tipo']) ?: $_GET['tipo'] = null;
         $parametro = "";
-        if(isset($_GET['tipo'])){
-            
+        if(isset($_GET['tipo'])){            
             $contador = 1;
             foreach($_GET as $chaves => $valores){    
                     if($chaves == 'tipo'){
@@ -41,8 +40,7 @@ session_start();
                             $parametro .= '&';
                             $contador++;  
                         }
-                    }
-                    
+                    }                    
             }
         }   
         $resPes = $pes->pesquisar($_GET['pagina'],$_GET['tipo']);
