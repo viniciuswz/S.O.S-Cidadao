@@ -393,7 +393,7 @@
                                         
                                             <form action="../UpdateComentario.php" method="post">
                                                 <textarea placeholder="Qual o motivo?" id="motivo" name="texto">
-<?php echo nl2br($comentarioComum[$contador]['texto_comen'])?>
+<?php echo str_replace("<br/>","\n",$comentarioComum[$contador]['texto_comen'])?>
                                                 </textarea>
                                                 <input type="hidden" value="<?php echo $comentarioComum[$contador]['cod_comen'] ?>" name="id">
                                                 <button type="submit"> editar</button>
