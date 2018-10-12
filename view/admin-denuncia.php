@@ -141,17 +141,29 @@ session_start();
                     <h3>Tipo de Denuncia</h3>
                     <div>
                         <label class="container"> Comentários
-                            <input type="checkbox" checked="checked" name="tipo[]" value="Comen" >
+                            <?php if(isset($_GET['tipo']) AND in_array('Comen',$_GET['tipo'])) { ?>
+                                        <input type="checkbox" checked="checked" name="tipo[]" value="Comen" >
+                            <?php }else{  ?>
+                                        <input type="checkbox" name="tipo[]" value="Comen" >
+                            <?php }  ?>
                             <span class="checkmark"></span>
                         </label>
                         
-                        <label class="container"> Debates 
-                            <input type="checkbox" name="tipo[]" value="Debate">
+                        <label class="container"> Debates                         
+                                <?php if(isset($_GET['tipo']) AND in_array('Debate',$_GET['tipo'])) { ?>
+                                                <input type="checkbox" checked="checked" name="tipo[]" value="Debate">
+                                <?php }else{  ?>
+                                                <input type="checkbox" name="tipo[]" value="Debate">
+                                <?php }  ?>
                             <span class="checkmark"></span>
                         </label>
                         
                         <label class="container"> Reclamações
-                            <input type="checkbox" name="tipo[]" value="Publi">
+                            <?php if(isset($_GET['tipo']) AND in_array('Publi',$_GET['tipo'])) { ?>
+                                <input type="checkbox" checked="checked" name="tipo[]" value="Publi">
+                            <?php }else{  ?>
+                                <input type="checkbox" name="tipo[]" value="Publi">
+                            <?php }  ?>
                             <span class="checkmark"></span>
                         </label>
                         
