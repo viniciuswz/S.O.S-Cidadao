@@ -48,6 +48,10 @@ session_start();
         $resPes = $pes->pesquisar($_GET['pagina'],$_GET['tipo']);
         $quantidadePaginas = $pes->getQuantidadePaginas();
         $pagina = $pes->getPaginaAtual();
+        if(!isset($_GET['tipo'])){
+            $_GET['tipo'][0] = "Publi";
+            $_GET['tipo'][1] = "Deba";
+        }
 ?>
 <!DOCTYPE html>
 <html lang=pt-br>
@@ -83,7 +87,11 @@ session_start();
         <header>
             <img src="imagens/logo_oficial.png" alt="logo">
             <form action="pesquisa.php" method="get">
-                <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar">
+                <?php if(isset($_GET['pesquisa'])){?>
+                    <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar" value="<?php echo $_GET['pesquisa'] ?>">
+                <?php }else{ ?>
+                    <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar">
+                <?php } ?>
                 <button type="submit"><i class="icone-pesquisa"></i></button>
             </form>
             <nav class="menu">
@@ -143,12 +151,20 @@ session_start();
                         <div>
                                     
                             <label class="container"> Debates 
+                            <?php if(isset($_GET['tipo']) AND in_array('Deba',$_GET['tipo'])) { ?>
+                                <input type="checkbox" name="tipo[]" checked="checked" value="Deba">
+                            <?php }else{ ?>
                                 <input type="checkbox" name="tipo[]" value="Deba">
+                            <?php } ?>
                                 <span class="checkmark"></span>
                             </label>
 
                             <label class="container"> Reclamações
+                            <?php if(isset($_GET['tipo']) AND in_array('Publi',$_GET['tipo'])) { ?>
+                                <input type="checkbox" name="tipo[]" checked="checked" value="Publi">
+                            <?php }else{ ?>
                                 <input type="checkbox" name="tipo[]" value="Publi">
+                            <?php } ?>
                                 <span class="checkmark"></span>
                             </label>
                             <?php

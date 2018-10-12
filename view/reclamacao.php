@@ -105,7 +105,7 @@
         <header>
             <img src="imagens/logo_oficial.png" alt="logo">
             <form action="pesquisa.php" method="get">
-                <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar">
+                <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar">                
                 <button type="submit"><i class="icone-pesquisa"></i></button>
             </form>
             <nav class="menu">                
