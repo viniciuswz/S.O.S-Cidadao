@@ -218,7 +218,7 @@
             <?php
                 if(empty($resposta)){
                     echo '<span style="color:white">Não há reclamações para serem exibidos</span>';
-                    exit();
+                    //exit();
                 }
                 $contador = 0;
                 while($contador < count($resposta)){                

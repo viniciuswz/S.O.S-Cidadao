@@ -164,33 +164,7 @@
                                 foreach($categorias as $valor){
                                     echo $valor;
                                 }
-                            ?>
-                        <!--
-                        <div>
-                            <input type="radio" name="categoria" id="categoria-1" value="categoria1">
-                            <label for="categoria-1"><i class="icone-mail"></i><span>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span></label>
-                        </div>
-                        <div>   
-                            <input type="radio" name="categoria" id="categoria-2" value="categoria2">
-                            <label for="categoria-2"> <i class="icone-adm"></i><span>aaaaaaaaaaaaaa</span></label>
-                        </div>
-                        <div>
-                            <input type="radio" name="categoria" id="categoria-1" value="categoria1">
-                            <label for="categoria-1"><i class="icone-mail"></i><span>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span></label>
-                        </div>
-                        <div>   
-                            <input type="radio" name="categoria" id="categoria-2" value="categoria2">
-                            <label for="categoria-2"> <i class="icone-adm"></i><span>aaaaaaaaaaaaaa</span></label>
-                        </div>
-                        <div>
-                            <input type="radio" name="categoria" id="categoria-1" value="categoria1">
-                            <label for="categoria-1"><i class="icone-mail"></i><span>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span></label>
-                        </div>
-                        <div>   
-                            <input type="radio" name="categoria" id="categoria-2" value="categoria2">
-                            <label for="categoria-2"> <i class="icone-adm"></i><span>aaaaaaaaaaaaaa</span></label>
-                        </div>
-                        -->
+                            ?>                       
                     </div>
                 </div>
             <!--FORMULARIO DESCRIÇÃO DO DEBATE--> 
@@ -199,7 +173,7 @@
                     <hr>
                     <textarea placeholder="escreva aqui" id="sobre" name="texto"></textarea>
                     <p></p>
-                    <input type="submit" value="iniciar debate">
+                    <input type="submit" value="enviar reclamação">
                 </div>     
             </form>
 
