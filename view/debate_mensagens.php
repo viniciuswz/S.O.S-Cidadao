@@ -123,7 +123,12 @@ session_start();
                                                     <?php 
                                                         if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $resposta[0]['cod_usu'] AND $_SESSION['id_user'] != $participantes[$contador]['cod_usu']
                                                             OR ($tipoUsu == 'Adm' OR $tipoUsu == 'Moderador')){ // parei aqui link pra apagar
-                                                            echo '<li><span><a href="../SairDebate.php?ID='. $resposta[0]['cod_deba'].'&IDUsu='.$participantes[$contador]['cod_usu'].'">Remover Usuario</a></span></li>';
+                                                            if(($tipoUsu == 'Adm' OR $tipoUsu == 'Moderador') AND $participantes[$contador]['cod_usu'] != $resposta[0]['cod_usu']){
+                                                                echo '<li><span><a href="../SairDebate.php?ID='. $resposta[0]['cod_deba'].'&IDUsu='.$participantes[$contador]['cod_usu'].'">Remover Usuario</a></span></li>';
+                                                            }else if($tipoUsu == 'Comum'){
+                                                                echo '<li><span><a href="../SairDebate.php?ID='. $resposta[0]['cod_deba'].'&IDUsu='.$participantes[$contador]['cod_usu'].'">Remover Usuario</a></span></li>';
+                                                            }
+                                                            
                                                             echo "<li><span><a href='perfil_reclamacao.php?ID=". $participantes[$contador]['cod_usu']."'>Perfil</a></span></li>";
                                                         }else if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] != $participantes[$contador]['cod_usu']){
                                                             echo "<li><span><a href='perfil_reclamacao.php?ID=". $participantes[$contador]['cod_usu']."'>Perfil</a></span></li>";
