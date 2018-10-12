@@ -147,14 +147,22 @@ session_start();
                         <i class="icone-fechar"></i>
                         <h3>Tipo de usuario</h3>
                         <div>    
-                                    
+                        
                             <label class="container"> Moderador 
-                                <input type="checkbox" name="tipo[]" checked="checked" value="Moderador">
+                                <?php if(isset($_GET['tipo']) AND in_array('Moderador',$_GET['tipo'])) { ?>
+                                    <input type="checkbox" checked="checked" name="tipo[]" value="Moderador">
+                                <?php }else{ ?>
+                                    <input type="checkbox" name="tipo[]"  value="Moderador">
+                                <?php } ?>
                                 <span class="checkmark"></span>
                             </label>
                                 
                             <label class="container"> Prefeitura 
+                            <?php if(isset($_GET['tipo']) AND in_array('Prefeitura',$_GET['tipo'])) { ?>
+                                <input type="checkbox" checked="checked" name="tipo[]" value="Prefeitura">
+                            <?php }else{ ?>
                                 <input type="checkbox" name="tipo[]" value="Prefeitura">
+                            <?php } ?>
                                 <span class="checkmark"></span>
                             </label>
                                
