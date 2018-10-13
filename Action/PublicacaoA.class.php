@@ -12,7 +12,7 @@ use Classes\Paginacao;
 class PublicacaoA extends PublicacaoM{
     
     private $sqlInsert = "INSERT INTO publicacao(texto_publi, img_publi, titulo_publi, cod_usu, cod_cate, cep_logra,dataHora_publi)
-                            VALUES('%s','%s','%s','%s','%s','%s',now())";
+                            VALUES('%s','%s','%s','%s','%s','%s','%s')";
 
     private $sqlSelect = "SELECT usuario.cod_usu,usuario.nome_usu, img_perfil_usu, img_publi,titulo_publi, cod_publi, 
                                     texto_publi, dataHora_publi, descri_cate,categoria.cod_cate, endere_logra, nome_bai, logradouro.cep_logra      
@@ -74,13 +74,16 @@ class PublicacaoA extends PublicacaoM{
     public function cadastrarPublicacao($bairro, $local){
         $this->cadastrarLocal($bairro, $local);
         $this->tratarImagem();
+        $DataHora = new \DateTime('NOW');
+        $DataHoraFormatadaAmerica = $DataHora->format('Y-m-d H:i:s'); 
         $sql = sprintf($this->sqlInsert, 
                         $this->getTextoPubli(),
                         $this->getImgPubli(),
                         $this->getTituloPubli(),
                         $this->getCodUsu(),
                         $this->getCodCate(),
-                        $this->getCepLogra()
+                        $this->getCepLogra(),
+                        $DataHoraFormatadaAmerica
                     );
         $inserir = $this->runQuery($sql);
         if(!$inserir->rowCount()){  // Se der erro cai nesse if          
