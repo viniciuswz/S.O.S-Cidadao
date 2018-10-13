@@ -7,10 +7,10 @@ class CurtidaPublicacaoA extends CurtidaPublicacaoM{
 
     private $sqlUpdate = "UPDATE publicacao_curtida SET status_publi_curti = '%s',
                                                         ind_visu_dono_publi = '%s',
-                                                        dataHora_publi_curti = now()
+                                                        dataHora_publi_curti = '%s'
                                                         WHERE cod_usu = '%s' AND cod_publi='%s'";
     
-    private $sqlInsert = "INSERT into publicacao_curtida(cod_usu, cod_publi, ind_visu_dono_publi,dataHora_publi_curti) VALUES('%s', '%s', '%s',NOW())";
+    private $sqlInsert = "INSERT into publicacao_curtida(cod_usu, cod_publi, ind_visu_dono_publi,dataHora_publi_curti) VALUES('%s', '%s', '%s','%s')";
     private $selectCodUsu ="SELECT cod_usu FROM publicacao WHERE cod_publi = '%s' AND cod_usu = '%s'";
     public function select(){
       $sql = sprintf($this->sqlSelect,
@@ -28,9 +28,13 @@ class CurtidaPublicacaoA extends CurtidaPublicacaoM{
     }
 
     public function update($statusCurtida, $indVisuDonoPubli){ //se já tiver inserido, atualiza pra A/I no banco
+        $DataHora = new \DateTime('NOW');
+        $DataHoraFormatadaAmerica = $DataHora->format('Y-m-d H:i:s'); 
+
         $sql = sprintf($this->sqlUpdate,
                        $statusCurtida,
                        $indVisuDonoPubli,
+                       $DataHoraFormatadaAmerica,
                        $this->getCodUsu(),
                        $this->getCodPubli());
         $resultado = $this->runQuery($sql);
@@ -49,10 +53,14 @@ class CurtidaPublicacaoA extends CurtidaPublicacaoM{
     }
 
     public function insert(){ // se o usuario não tiver dado like, insere no banco
+        $DataHora = new \DateTime('NOW');
+        $DataHoraFormatadaAmerica = $DataHora->format('Y-m-d H:i:s'); 
+
         $sql = sprintf($this->sqlInsert,
                        $this->getCodUsu(),
                        $this->getCodPubli(),
-                       $this->selectDonoPubli());
+                       $this->selectDonoPubli(),
+                       $DataHoraFormatadaAmerica);
         $resultado = $this->runQuery($sql);
     }
 }

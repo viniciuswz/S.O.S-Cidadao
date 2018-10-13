@@ -10,7 +10,7 @@ class ComentarioDenunciaA extends ComentarioDenunciaM{
                                           AND status_comen = 'A' AND status_usu = 'A'";
 
     private $sqlInsert = "INSERT INTO comen_denun(motivo_denun_comen, dataHora_denun_comen, cod_usu, cod_comen) 
-        VALUES('%s',NOW(),'%s','%s')";
+        VALUES('%s','%s','%s','%s')";
 
     private $verificarSeJaDenuncio = "SELECT COUNT(*) FROM comen_denun INNER JOIN usuario ON (comen_denun.cod_usu = usuario.cod_usu)    
         WHERE comen_denun.cod_comen = '%s' AND comen_denun.cod_usu = '%s' AND status_denun_comen = 'A' AND status_usu = 'A'";
@@ -51,9 +51,13 @@ private $sqlVerifyDonoComen = "SELECT COUNT(*) FROM comentario WHERE  status_com
         if($verificarDonoComen or $verificar){ // Se ele for o dono nao faz nada           
             throw new \Exception("Você nao pode denunciar está publicação",14);
         }
+
+        $DataHora = new \DateTime('NOW');
+        $DataHoraFormatadaAmerica = $DataHora->format('Y-m-d H:i:s'); 
          $sql = sprintf(
                 $this->sqlInsert,
-                $this->getMotivoDenunComen(),                    
+                $this->getMotivoDenunComen(),  
+                $DataHoraFormatadaAmerica,                  
                 $this->getCodUsu(),
                 $this->getCodComen()
         );
