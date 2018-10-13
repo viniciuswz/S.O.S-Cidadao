@@ -13,7 +13,7 @@ class PublicacaoDenunciaA extends PublicacaoDenunciaM{
         WHERE publi_denun.cod_publi = '%s' AND publi_denun.cod_usu = '%s' AND status_denun_publi = 'A' AND status_usu = 'A'";
 
     private $sqlInsert = "INSERT INTO publi_denun(motivo_denun_publi, dataHora_denun_publi, cod_usu, cod_publi) 
-        VALUES('%s',NOW(),'%s','%s')";
+        VALUES('%s','%s','%s','%s')";
 
     private $sqlVerifyDonoPubli = "SELECT COUNT(*) FROM publicacao WHERE  status_publi = 'A' AND cod_usu = '%s' AND cod_publi = '%s'";
 
@@ -47,13 +47,15 @@ class PublicacaoDenunciaA extends PublicacaoDenunciaM{
     public function inserirDenuncia(){ // Inserir a denuncia
         $verificar = $this->verificarSeDenunciou(); // SE for true é pq ja denunciou
         $verificarDonoPubli = $this->verificarDonoPubli();// SE for true é pq ele é o no
-        if($verificarDonoPubli or $verificar){ // Se ele for o dono nao faz nada           
-            echo $verificarDonoPubli;
+        if($verificarDonoPubli or $verificar){ // Se ele for o dono nao faz nada  
             throw new \Exception("Você nao pode denunciar está publicação",14);
         }
-         $sql = sprintf(
+        $DataHora = new \DateTime('NOW');
+        $DataHoraFormatadaAmerica = $DataHora->format('Y-m-d H:i:s'); 
+        $sql = sprintf(
                 $this->sqlInsert,
-                $this->getMotivoDenunPubli(),                    
+                $this->getMotivoDenunPubli(),  
+                $DataHoraFormatadaAmerica,                  
                 $this->getCodUsu(),
                 $this->getCodPubli()
         );
