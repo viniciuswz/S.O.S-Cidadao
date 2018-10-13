@@ -19,8 +19,9 @@ session_start();
             $resultado = $dados->getDadosUser();
             $pes->setCodUsu($_SESSION['id_user']);
         }           
+        $_GET['pesquisa'] = str_replace("+"," ", $_GET['pesquisa']);
+        $pes->setTextoPesqui($_GET['pesquisa']);       
         
-        $pes->setTextoPesqui($_GET['pesquisa']);
         isset($_GET['pagina']) ?: $_GET['pagina'] = null;
         //isset($_GET['tipo']) ?: $_GET['tipo'] = null;
         $parametro = "";
@@ -166,7 +167,8 @@ session_start();
                             </label>
                             <?php
                                 if(isset($_GET['pesquisa'])){
-                                    echo '<input type="hidden" name="pesquisa" value='.$_GET['pesquisa'].'>';
+                                    $pl = $_GET['pesquisa'];
+                                    echo '<input type="hidden" name="pesquisa" value='.urlencode($pl).'>';
                                 }
                             ?>
 
