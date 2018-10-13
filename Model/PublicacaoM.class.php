@@ -52,7 +52,7 @@ class PublicacaoM extends DbConnection{
         return $this->cepLogra;
     }
     
-    public function setCodPubli($cod){
+    public function setCodPubli($cod){        
         $this->codPubli = $cod;
     }
 

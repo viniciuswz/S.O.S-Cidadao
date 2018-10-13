@@ -8,7 +8,7 @@ use Core\Usuario;
 class ComentarioA extends ComentarioM{
     private $sqlVerifyDonoPubli = "SELECT cod_publi FROM publicacao WHERE cod_usu = '%s' AND cod_publi = '%s'";
 
-    private $sqlInsert = "INSERT INTO comentario(texto_comen, dataHora_comen, ind_visu_dono_publi, cod_usu, cod_publi) VALUES ('%s', now(), '%s', '%s','%s')";
+    private $sqlInsert = "INSERT INTO comentario(texto_comen, dataHora_comen, ind_visu_dono_publi, cod_usu, cod_publi) VALUES ('%s', '%s', '%s', '%s','%s')";
 
     private $sqlSelectComen = "SELECT usuario.nome_usu, usuario.cod_usu, cod_comen, img_perfil_usu,texto_comen,dataHora_comen,descri_tipo_usu, publicacao.cod_publi
                                     FROM usuario INNER JOIN comentario ON (usuario.cod_usu = comentario.cod_usu) 
@@ -36,11 +36,14 @@ class ComentarioA extends ComentarioM{
 
     private $sqlUpdateComen = "UPDATE comentario SET texto_comen = '%s' WHERE cod_comen = '%s' %s";
 
-    public function inserirComen(){
+    public function inserirComen(){        
         $indVisuDono = $this->verifyDonoPubli();
-
+        $DataHora = new \DateTime('NOW');
+        $DataHoraFormatadaAmerica = $DataHora->format('Y-m-d H:i:s');    
+        
         $sql = sprintf($this->sqlInsert,
                         $this->getTextoComen(),
+                        $DataHoraFormatadaAmerica,
                         $indVisuDono,
                         $this->getCodUsu(),
                         $this->getCodPubli()
