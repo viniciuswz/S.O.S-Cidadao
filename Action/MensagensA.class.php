@@ -7,15 +7,15 @@ use Classes\Paginacao;
 
 class MensagensA extends MensagensM{
     private $sqlInsertMensa = "INSERT INTO mensagem(texto_mensa, dataHora_mensa, cod_usu, cod_deba)
-                                    VALUES('%s',NOW(),'%s','%s')";
-    private $sqlVerificarMensagemDia = "SELECT count(*) FROM mensagem WHERE cod_deba = '%s' AND DATEDIFF(NOW(),dataHora_mensa) = '0'";
+                                    VALUES('%s','%s','%s','%s')";
+    private $sqlVerificarMensagemDia = "SELECT count(*) FROM mensagem WHERE cod_deba = '%s' AND DATEDIFF('%s',dataHora_mensa) = '0'";
 
     private $sqlSelectCount = "SELECT count(*) FROM mensagem INNER JOIN debate ON(debate.cod_deba = mensagem.cod_deba)
                                                 WHERE mensagem.cod_deba = '%s' AND status_deba = 'A'";
     
     private $sqlSelectMensagens = "SELECT texto_mensa,TIME_FORMAT(dataHora_mensa, '%s') AS hora, 
                                         mensagem.cod_usu, nome_usu, descri_tipo_usu,img_perfil_usu, status_visu,
-                                        DATEDIFF(NOW(),dataHora_mensa) AS diferenca, TIME_FORMAT(dataHora_mensa, '%s') AS data
+                                        DATEDIFF('%s',dataHora_mensa) AS diferenca, TIME_FORMAT(dataHora_mensa, '%s') AS data
                                         FROM mensagem INNER JOIN usuario ON(mensagem.cod_usu = usuario.cod_usu)
                                         INNER JOIN mensagem_visualizacao ON(mensagem_visualizacao.cod_mensa = mensagem.cod_mensa)
                                         INNER JOIN tipo_usuario ON(usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu) 
@@ -60,11 +60,14 @@ class MensagensA extends MensagensM{
  
     public function inserirMensagem($indSistema = null){
         $veri = $this->verificarMensagemDia();
+        $DataHora = new \DateTime('NOW');
+        $DataHoraFormatadaAmerica = $DataHora->format('Y-m-d H:i:s'); 
         if(!$veri){
             $codUsuSitema = $this->getDadosUsuSistema();
             $sql = sprintf(
                 $this->sqlInsertMensa,
                 'Primeira mensagem do dia',
+                $DataHoraFormatadaAmerica,
                 $codUsuSitema,
                 $this->getCodDeba()
             );
@@ -77,6 +80,7 @@ class MensagensA extends MensagensM{
         $sql = sprintf(
             $this->sqlInsertMensa,
             $this->getTextoMensa(),
+            $DataHoraFormatadaAmerica,
             $this->getCodUsu(),
             $this->getCodDeba()
         );
@@ -92,9 +96,13 @@ class MensagensA extends MensagensM{
     }
 
     public function verificarMensagemDia(){ // verificar se alguma mensagem foi enviada neste dia
+        $DataHora = new \DateTime('NOW');
+        $DataHoraFormatadaAmerica = $DataHora->format('Y-m-d H:i:s'); 
+
         $sql = sprintf(
-            $this->sqlVerificarMensagemDia,
-            $this->getCodDeba()
+            $this->sqlVerificarMensagemDia,            
+            $this->getCodDeba(),
+            $DataHoraFormatadaAmerica
         );
         $res = $this->runSelect($sql);        
         if($res[0]['count(*)'] > 0){ // Ja existe uma mensagem hj
@@ -110,9 +118,12 @@ class MensagensA extends MensagensM{
         $tipo = $usuario->getDescTipo();
 
         $paginacao = $this->controlarPaginacao($pagina);
+        $DataHora = new \DateTime('NOW');
+        $DataHoraFormatadaAmerica = $DataHora->format('Y-m-d H:i:s'); 
         $sql = sprintf(
             $this->sqlSelectMensagens,
             '%s',            
+            $DataHoraFormatadaAmerica,
             '%s',            
             $this->getCodDeba(),
             "%s",
@@ -135,7 +146,7 @@ class MensagensA extends MensagensM{
             );
         }
         
-        $res = $this->runSelect($sql); 
+        $res = $this->runSelect($sql);         
         $dados =   $this->getTratarMensagens($res,$tipo);               
         return $dados;
     }
@@ -216,7 +227,7 @@ class MensagensA extends MensagensM{
         $in2 = "";
         while($qtdCaracCoringa > 0){
             if($qtdCaracCoringa == 1){ // exemplo '%s','%s','%s',
-                $in2 .= "NOW()";
+                $in2 .= "'%s'";
             }else{
                 $in2 .= "'%s',";
             }
@@ -241,11 +252,15 @@ class MensagensA extends MensagensM{
     public function insertMensagemVisualizacao($codMensa){ 
         $contador = 0;        
         $in = "";
+        $DataHora = new \DateTime('NOW');
+        $DataHoraFormatadaAmerica = $DataHora->format('Y-m-d H:i:s'); 
+
         while($contador < count($this->inIdsPartici)){
             $in .= sprintf(
                 $this->inIdsPartici[$contador],
                 $codMensa,                
-                'I'
+                'I',
+                $DataHoraFormatadaAmerica
             );
             $contador++;
         }
