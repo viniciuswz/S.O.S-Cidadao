@@ -10,10 +10,10 @@ use Classes\TratarDataHora;
 class DebateA extends DebateM{
     
     private $sqlInsert = "INSERT INTO debate(img_deba, nome_deba, dataHora_deba, tema_deba, descri_deba, cod_usu) 
-                VALUES ('%s','%s',now(),'%s','%s','%s')";
+                VALUES ('%s','%s','%s','%s','%s','%s')";
 
     private $sqlInserirPartici = "INSERT INTO debate_participante(cod_deba, cod_usu, data_inicio_lista, data_fim_lista, ind_visu_criador)
-                                        VALUES ('%s','%s',now(),null,'%s')";
+                                        VALUES ('%s','%s','%s',null,'%s')";
 
     private $sqlSelect = "SELECT cod_deba, img_deba, nome_deba, dataHora_deba, tema_deba, descri_deba, 
                                         debate.cod_usu,nome_usu, img_perfil_usu
@@ -92,9 +92,14 @@ class DebateA extends DebateM{
         $tipo = $usuario->getDescTipo(); 
 
         $this->tratarImagem();
+
+        $DataHora = new \DateTime('NOW');
+        $DataHoraFormatadaAmerica = $DataHora->format('Y-m-d H:i:s'); 
+
         $sql = sprintf($this->sqlInsert,
                         $this->getImgDeba(),
                         $this->getNomeDeba(),
+                        $DataHoraFormatadaAmerica,
                         $this->getTemaDeba(),
                         $this->getDescriDeba(),
                         $this->getCodUsu()
@@ -399,9 +404,13 @@ class DebateA extends DebateM{
             return;
         }
 
+        $DataHora = new \DateTime('NOW');
+        $DataHoraFormatadaAmerica = $DataHora->format('Y-m-d H:i:s'); 
+
         $sql = sprintf($this->sqlInserirPartici,
                         $this->getCodDeba(),
                         $this->getCodUsu(),
+                        $DataHoraFormatadaAmerica,
                         $status
         );
         $inserir = $this->runQuery($sql);        
