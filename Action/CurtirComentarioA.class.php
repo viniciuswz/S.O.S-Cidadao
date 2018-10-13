@@ -8,10 +8,10 @@ class CurtirComentarioA extends CurtirComentarioM{
 
     private $sqlUpdate = "UPDATE comen_curtida SET status_curte = '%s', 
                                                     ind_visu_dono_publi = '%s',
-                                                    dataHora_comen_curti = NOW()
+                                                    dataHora_comen_curti = '%s'
                                                WHERE cod_usu = '%s' AND cod_comen = '%s'";
 
-    private $sqlInsert = "INSERT into comen_curtida(cod_usu, cod_comen, ind_visu_dono_publi,dataHora_comen_curti) VALUES ('%s', '%s', '%s',NOW())";
+    private $sqlInsert = "INSERT into comen_curtida(cod_usu, cod_comen, ind_visu_dono_publi,dataHora_comen_curti) VALUES ('%s', '%s', '%s','%s')";
 
     private $selectCodUsu = "SELECT cod_usu FROM comentario WHERE cod_comen = '%s' AND cod_usu = '%s'";
 
@@ -35,9 +35,13 @@ class CurtirComentarioA extends CurtirComentarioM{
       
 
       public function update($statusCurte, $indVisuDonoPubli){ //se já tiver inserido, atualiza pra A/I no banco
+        $DataHora = new \DateTime('NOW');
+        $DataHoraFormatadaAmerica = $DataHora->format('Y-m-d H:i:s'); 
+
         $sql = sprintf($this->sqlUpdate,
                        $statusCurte,
                        $indVisuDonoPubli,
+                       $DataHoraFormatadaAmerica,
                        $this->getCodUsu(),
                        $this->getCodComen());
             $resultado=$this->runQuery($sql);
@@ -55,10 +59,14 @@ class CurtirComentarioA extends CurtirComentarioM{
           }}
 
           public function insert(){ // se o usuario não tiver dado like, insere no banco
+            $DataHora = new \DateTime('NOW');
+            $DataHoraFormatadaAmerica = $DataHora->format('Y-m-d H:i:s'); 
             $sql = sprintf($this->sqlInsert,
                            $this->getCodUsu(),
                            $this->getCodComen(),
-                           $this->selectDonoComen());
+                           $this->selectDonoComen(),
+                           $DataHoraFormatadaAmerica
+                        );
                 $resultado=$this->runQuery($sql);
         }
     
