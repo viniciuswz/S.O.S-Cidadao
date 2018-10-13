@@ -14,7 +14,7 @@ class DebateDenunciaA extends DebateDenunciaM{
 
 
     private $sqlInsert = "INSERT INTO debate_denun(motivo_denun_deba, dataHora_denun_deba, cod_usu, cod_deba) 
-        VALUES('%s',NOW(),'%s','%s')";
+        VALUES('%s','%s','%s','%s')";
 
     private $sqlVerifyDonoDeba = "SELECT COUNT(*) FROM debate WHERE  status_deba = 'A' AND cod_usu = '%s' AND cod_deba = '%s'";
     public function verificarSeDenunciou(){ // Verificar se o dono ja denunciou a publicacao
@@ -51,9 +51,12 @@ class DebateDenunciaA extends DebateDenunciaM{
         if($verificarDonoDeba or $verificar){ // Se ele for o dono nao faz nada           
             throw new \Exception("Você nao pode denunciar está publicação",14);
         }
-         $sql = sprintf(
+        $DataHora = new \DateTime('NOW');
+        $DataHoraFormatadaAmerica = $DataHora->format('Y-m-d H:i:s'); 
+        $sql = sprintf(
                 $this->sqlInsert,
-                $this->getMotivoDenunDeba(),                    
+                $this->getMotivoDenunDeba(),     
+                $DataHoraFormatadaAmerica,               
                 $this->getCodUsu(),
                 $this->getCodDeba()
         );
