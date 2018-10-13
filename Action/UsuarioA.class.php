@@ -17,7 +17,7 @@ class UsuarioA extends UsuarioM{
                                     WHERE status_usu = 'A' AND status_tipo_usu = 'A' AND usuario.cod_usu = '%s'";
 
     private $sqlInsert  = "INSERT INTO usuario(nome_usu, email_usu, senha_usu, img_capa_usu, img_perfil_usu, cod_tipo_usu, dataHora_cadastro_usu)
-                                VALUES('%s','%s','%s','%s','%s','%s',now())";
+                                VALUES('%s','%s','%s','%s','%s','%s','%s')";
                                 
     private $sqlVerifiEmail = "SELECT cod_usu,nome_usu FROM usuario WHERE email_usu = '%s'";
 
@@ -122,13 +122,17 @@ class UsuarioA extends UsuarioM{
             throw new \Exception("Não foi possível realizar o cadastro, pois você só tem permissao de cadastrar funcionario",3);
         }
 
+        $DataHora = new \DateTime('NOW');
+        $DataHoraFormatadaAmerica = $DataHora->format('Y-m-d H:i:s'); 
+
         $sql = sprintf($this->sqlInsert, // Junta o wher com o outra parte do select
                             $this->getNomeUsu(),
                             $this->getEmail(),
                             $this->getSenha(),
                             $this->getImgCapaUsu(),
                             $this->getImgPerfilUsu(),
-                            $this->getCodTipoUsu()                                                        
+                            $this->getCodTipoUsu(),    
+                            $DataHoraFormatadaAmerica                                                    
                         );
         
 
