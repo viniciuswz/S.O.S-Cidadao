@@ -11,13 +11,14 @@ class MensagensA extends MensagensM{
     private $sqlVerificarMensagemDia = "SELECT count(*) FROM mensagem WHERE cod_deba = '%s' AND DATEDIFF('%s',dataHora_mensa) = '0'";
 
     private $sqlSelectCount = "SELECT count(*) FROM mensagem INNER JOIN debate ON(debate.cod_deba = mensagem.cod_deba)
-                                                WHERE mensagem.cod_deba = '%s' AND status_deba = 'A'";
+                                                INNER JOIN mensagem_visualizacao ON(mensagem_visualizacao.cod_mensa = mensagem.cod_mensa)
+                                                WHERE mensagem.cod_deba = '%s' AND status_deba = 'A' %s";
     
     private $sqlSelectMensagens = "SELECT texto_mensa,TIME_FORMAT(dataHora_mensa, '%s') AS hora, 
-                                        mensagem.cod_usu, nome_usu, descri_tipo_usu,img_perfil_usu, status_visu,
+                                        mensagem.cod_usu, nome_usu, descri_tipo_usu,img_perfil_usu, %s
                                         DATEDIFF('%s',dataHora_mensa) AS diferenca, TIME_FORMAT(dataHora_mensa, '%s') AS data
                                         FROM mensagem INNER JOIN usuario ON(mensagem.cod_usu = usuario.cod_usu)
-                                        INNER JOIN mensagem_visualizacao ON(mensagem_visualizacao.cod_mensa = mensagem.cod_mensa)
+                                        %s
                                         INNER JOIN tipo_usuario ON(usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu) 
                                         WHERE status_mensa = 'A' 
                                         AND mensagem.cod_deba = '%s'  %s  %s";
@@ -123,7 +124,9 @@ class MensagensA extends MensagensM{
         $sql = sprintf(
             $this->sqlSelectMensagens,
             '%s',            
+            '%s', 
             $DataHoraFormatadaAmerica,
+            '%s',
             '%s',            
             $this->getCodDeba(),
             "%s",
@@ -134,19 +137,22 @@ class MensagensA extends MensagensM{
             $sql = sprintf(
                 $sql,
                 '%H:%i', // comando do sql pra data vir formatada
-                '%e/%c', // comando do sql pra data vir formatada
+                '',
+                '%e/%c',
+                '', // comando do sql pra data vir formatada
                 ' '
             );
         }else{
             $sql = sprintf(
                 $sql,
                 '%H:%i', // comando do sql pra data vir formatada
+                ' status_visu, ',
                 '%e/%c', // comando do sql pra data vir formatada
+                'INNER JOIN mensagem_visualizacao ON(mensagem_visualizacao.cod_mensa = mensagem.cod_mensa)',
                 " AND mensagem_visualizacao.cod_usu = '".$this->getCodUsu()."' "
             );
-        }
-        
-        $res = $this->runSelect($sql);         
+        }        
+        $res = $this->runSelect($sql); 
         $dados =   $this->getTratarMensagens($res,$tipo);               
         return $dados;
     }
@@ -156,7 +162,7 @@ class MensagensA extends MensagensM{
         $contador2 = 0;
         $dados2 = array();
         while($contador < count($dados)){//Nesse while so entra a parte q me interresa    
-            if($dados[$contador]['status_visu'] == 'I' AND !isset($indVisu) AND ($tipoUsu != 'Adm' AND $tipoUsu != 'Moderador')){ // if pra escrever uma mensagem com o texto "tanta mensagens nao lidas"
+            if(isset($dados[$contador]['status_visu']) AND $dados[$contador]['status_visu'] == 'I' AND !isset($indVisu) AND ($tipoUsu != 'Adm' AND $tipoUsu != 'Moderador')){ // if pra escrever uma mensagem com o texto "tanta mensagens nao lidas"
                 $quat = $this->getQuantMensaNVIsu(); // so entra uma vez nesse if
                 if($quat == 1){
                     $comple = " mensagem nao lida";
@@ -205,11 +211,21 @@ class MensagensA extends MensagensM{
     }
 
     public function getQuantMensagem(){ // pegar a quantidade de mensagens
+        $usuario = new Usuario();
+        $usuario->setCodUsu($this->getCodUsu());
+        $tipo = $usuario->getDescTipo();
+        if($tipo == 'Moderador' OR $tipo == 'Adm'){            
+            $comple = "";
+        }else{
+            $codUsu = $this->getCodUsu();
+            $comple = " AND mensagem_visualizacao.cod_usu = '$codUsu'";
+        }
         $sql = sprintf(
             $this->sqlSelectCount,
-            $this->getCodDeba()
-        );
-        $res = $this->runSelect($sql);        
+            $this->getCodDeba(),
+            $comple
+        );        
+        $res = $this->runSelect($sql);               
         return $res[0]['count(*)'];
     }
 
