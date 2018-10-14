@@ -105,7 +105,7 @@ jQuery(function($){
 
 
 
-//VERIFICAÇÃO DOS FORM
+//VERIFICAÇÃO DOS FORM MARIAOK
 jQuery(function(){
   $(".formulario").submit(function(){
     
@@ -495,7 +495,7 @@ $("#cep").blur(function(){
   //ajustando altura do motivo
 
 
-/* denuncia */
+/* denuncia MARIAOK*/
   jQuery(function($){
     /* abrir quando */
     $(".denunciar-item").click(function(){
