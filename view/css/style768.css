@@ -533,23 +533,38 @@ font-size: 1.1em;
 }
 
 .img-publicacao{
-    width: 90%;
-    background-color: orange
+    width: inherit;
+    background-color: orange;
+    display:block
 }
 
 .img-publicacao figure{
-    width: 100%;
+    width: 100vw;
+        overflow: hidden;
+    max-width: 500px;
+    height: 350px;
 }
 
 
 .img-publicacao figure img{
-    height: 250%;
-    background-color: red
+   width:100%;
+        align-self: center;
+    height: inherit;
+    position: inherit;
+    top: 0%;
+    left: 50%;
+    transform: translateX(-00%) translateY(-00%);
+    background-color: blueviolet;
+    min-width:500px;
  }
 
  .img-publicacao .item-baixo-publicacao{
      height: 60px;
      margin-top: -60px;
+}
+
+.img-publicacao figure img{
+
 }
 .enviar-comentario-publicacao{
     width: 100%;
