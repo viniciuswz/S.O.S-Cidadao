@@ -527,7 +527,7 @@ jQuery(function($){
   })
   /* fechar quando clicar no X*/
   $(".fechar-editar-comentario").click(function(){
-    $(this).parents(":eq(1)").removeClass("modal-editar-comentario-ativo");
+    $(this).parents(":eq(2)").removeClass("modal-editar-comentario-ativo");
   })
 })
 

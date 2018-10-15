@@ -312,6 +312,10 @@ nav.menu > ul > li > a:hover #quantidade_de_not{
     top: 130px;
     left: 110px;
     z-index: 2;
+    text-overflow: ellipsis;
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .user-menu .mini-perfil{
@@ -2343,7 +2347,7 @@ color:black
  }
 
  .img-publicacao{
-     width: 481px;
+     /* width: 481px; */
  }
 
 .img-publicacao figure{
@@ -2355,12 +2359,12 @@ color:black
 
 .img-publicacao figure img{
     align-self: center;
-    height: 680px;
+    /* height: 680px; */
     position: relative;
     top: 50%;
-    left: 46%;
-    transform: translateX(-50%) translateY(-40%);
-    background-color: blueviolet
+    left: 50%;
+    transform: translateX(-50%) translateY(-0%);
+    background-color: blueviolet;
 }
 
 
@@ -2370,7 +2374,7 @@ color:black
     align-items: center;
     font-size: 14px;
     width: 100%;
-    height: 50px;
+    /* height: 50px; */
     background-color: rgba(000,000,000, 0.6);
     color: #E7E8EB;
     margin-top: -50px;
