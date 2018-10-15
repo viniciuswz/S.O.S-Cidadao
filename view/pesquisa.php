@@ -144,7 +144,7 @@ session_start();
                     </div> -->
                     <i class="icone-filtro "></i>
                     <form action="pesquisa.php">
-                        <span>&times;</span>
+                        <span id="fechar-filtro">&times;</span>
                         <h3>estou procurando:</h3>
                         <div>
                                     
