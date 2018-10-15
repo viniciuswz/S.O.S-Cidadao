@@ -62,7 +62,7 @@ header i.icone-user{
 nav.menu{
     display: flex;
     justify-content: center;
-    background-color: #0086ff;
+    background-color: #009688;
     width: 100vw;
     position: fixed;
     /* top: calc(100vh - 50px); */

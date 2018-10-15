@@ -35,16 +35,20 @@ p,a,span{
     box-sizing: border-box;
 }
 
+.fundo-claro{
+    background-color: #fcfcfc;
+}
+
 #container{
 
-
+  
    width: 100%;
    max-width: 1366px;
    margin: 0 auto;
     
 }
 header{
-    background-color: #0086ff ;
+    background-color: #009688 ;
     width: 100%;
 
 }
@@ -64,8 +68,8 @@ header form{
 }
 
 header form input[type=text]{
-background-color: #0a5ac9;
-outline: #0a5ac9 ;
+background-color: #004C41;
+outline: #004C41 ;
 border:0;
 color: white;
 padding-left: 5px
@@ -76,7 +80,7 @@ header form input[type=text]::placeholder{
     opacity: 1;
 }
 header form button{
-    background-color: #0a5ac9 ;
+    background-color: #004C41 ;
     border: 0;
     outline: none;
     cursor: pointer;
@@ -90,7 +94,7 @@ cursor: pointer
 }
 
 body{
-    background: #fcfcfc;
+    background: #2C3A37;
 }
 
 li{
@@ -257,14 +261,14 @@ nav.menu > ul > li > a > i > span{
     width: 20px;
     height: 20px;
     font-size:12px;
-    background-color: #028aa2  ;
+    background-color: #EF3C1E  ;
     border-radius: 50%;
     font-style: normal;
     text-align: center;
 }
 
 nav.menu > ul > li > a:hover{
-    background-color: #0a5ac9;
+    background-color: #004C41;
     color:white;  
 }
 
@@ -581,7 +585,7 @@ nav.notificacoes ul li a span:first-of-type{
 .criar-publicacao div {
     padding-right: 15px;
     width: 84%;
-    background-color: #0086ff;
+    background-color: #009688;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -609,7 +613,7 @@ nav.notificacoes ul li a span:first-of-type{
  }
 
  .criar-publicacao a{
-     background-color:  rgb(255, 8, 152);     ;
+     background-color:  #EF3C1E;     ;
      color:white;
      width: 200px;
      height: 35px;
@@ -622,7 +626,7 @@ nav.notificacoes ul li a span:first-of-type{
  }
 
  .item-publicacao{
-     background-color: #0086ff;
+     background-color: #009688;
      width: 340px;
      border-radius: 4%;
      margin-top: 10px;
@@ -676,10 +680,10 @@ nav.notificacoes ul li a span:first-of-type{
  }
 
  .item-publicacao .item-topo p span:after{
-    background: linear-gradient(to right, rgba(255, 255, 255, 0), #0086ff 50%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), #009688 50%) repeat scroll 0 0 rgba(0, 0, 0, 0);
     bottom: 0;
     content: "...";
-    color: #0086ff;
+    color: #009688;
     padding: 0 10px 0px 45px;
     position: absolute;
     right: 0;
@@ -925,7 +929,7 @@ background-position-y: -40px
 }
 
 .formulario hr{
-    border: 2px solid purple;
+    border: 2px solid #EF3C1E;
     position: relative;
     bottom: 10px
 }
@@ -1041,7 +1045,7 @@ width: 100%
     justify-content: center;
     align-items: center;
     position: relative;
-    background-color: #ff0898
+    background-color: #EF3C1E
 }
 
 .envio-img label p{
@@ -1096,7 +1100,7 @@ width: 100%
 .linha{
     border: 0,3px solid black;
     margin: 10px 0;  
-    background: #ff0898
+    background: #EF3C1E
 }
 
 .campo-texto h3{
@@ -1125,7 +1129,7 @@ width: 100%
 }
 
 .campo-texto input:hover{
-    background: #ff0898;
+    background: #EF3C1E;
     color: white;
 }
 
@@ -1178,14 +1182,14 @@ form .categorias div div{
 }
 
 form .categorias div div label{
-    border: 3px solid #0086ff;
+    border: 3px solid #009688;
     border-radius: 5px;
     padding: 25px 0px 0px;
     max-width: 120px;
     max-height: 120px;
     min-width: 120px;
     min-height: 120px;
-    background-color: #0086ff;
+    background-color: #009688;
     cursor: pointer;
     
 }
@@ -1207,8 +1211,8 @@ form .categorias div div label i{
 }
 
 .formulario input[type="radio"]:checked + label{
-background-color: #0157a1;
-border: 3px solid #0157a1;
+background-color: #004C41;
+border: 3px solid #004C41;
 }
 
 /*formularios 2*/
@@ -1294,7 +1298,7 @@ border: 3px solid #0157a1;
 
 
 .campo-texto-icone label{
-    background-color: dodgerblue;
+    background-color: #009688;
     display: flex;
 }
 
@@ -1324,12 +1328,12 @@ border: 3px solid #0157a1;
 }
 
 .campo-texto-icone input:focus {
-    border: 2px solid dodgerblue;
+    border: 2px solid #009688;
 }
 
 
 .form-icone form button{
-    background-color: #00aeef;
+    background-color: #009688;
     border: 0;
     color: white;
     padding:7px;
@@ -1362,7 +1366,7 @@ border: 3px solid #0157a1;
 
 .form-cad form button{
     display: block;
-    background-color: #00aeef;
+    background-color: #009688;
     border: 0;
     color: white;
     padding:7px;
@@ -1602,7 +1606,7 @@ margin-right:3px
 }
 
 .contatos header{
-    background-color: #4b2983;
+    background-color: #004C41;
     justify-content: space-around
 }
 
@@ -1708,7 +1712,7 @@ margin-right:3px
     position: absolute;
     color: white;
     font-size: 12px;
-    background-color:rgb(150, 1, 150);
+    background-color:#EF3C1E;
     border-radius: 50%;
     text-align: center;
     padding: 4px;
@@ -1721,11 +1725,11 @@ margin-right:3px
 
 .batepapo{
     width: 100%;
-    background-color: rgba(76, 41, 131, 0.685)
+    background-color: #009688
 }
 
 .batepapo header{
-    background-color: #4b2983 ;
+    background-color: #004C41;
 }
 
 .batepapo header a{
@@ -1766,7 +1770,7 @@ margin-right:3px
 }
 
 .batepapo form{
-    background-color: #4b2983 ;
+    background-color: #004C41 ;
     height: 60px;
     display: flex;
     justify-content: center;
@@ -1782,7 +1786,7 @@ margin-right:3px
 }
 
 .batepapo form button{
-    background-color: black;
+    background-color: #EF3C1E;
     border: 0;
     width: 35px;
     height: 35px;
@@ -1959,7 +1963,7 @@ color:black
 }
 
 .salvos h4{
-    color :black;
+    color :#E7E8EB;
     padding: 6px;
 }
 .salvos{
@@ -1967,7 +1971,7 @@ color:black
     display: block;
     margin:10px auto;
     width: 95%;
-    background-color: white;
+
 }
 
 .autor{
@@ -2068,7 +2072,7 @@ color:black
 }
 
 .tabelinha-admin table tr{
-    background-color: #0086ff
+    background-color: #009688
 }
 
 .tabelinha-admin table td,.tabelinha-admin table th {
@@ -2082,17 +2086,16 @@ color:black
 }
 
 
-.tabelinha-admin table tr:nth-child(even){background-color: #0a5ac9 ;}
+.tabelinha-admin table tr:nth-child(even){background-color: #46AF9D ;}
 
 .tabelinha-admin table th {
     
-    background-color: rgb(121, 129, 121);
+    background-color: #004C41;
     color: white;
     border:0;
 }
 
 .cad-adm{
-  
     align-items: center;
     width: 100%;
     flex-grow: 1;
@@ -2240,7 +2243,7 @@ color:black
 .filtro-admin .botao-filtro{
     width: 90px;
     height: 40px;
-    background-color: #ff0898;
+    background-color: #EF3C1E;
     font-family: arial;
     color:white;
     border: 0;
@@ -2399,8 +2402,8 @@ color:black
 .prefeitura-publicacao{
     margin: 0 auto;
     margin-top: 10px;
-    background-color: #0a5ac9;
-    border-top: 2px solid #4a96ff;
+    background-color: #46AF9D;
+    border-top: 2px solid #009688;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -2468,10 +2471,10 @@ color:black
 }
 .barra-curtir-publicacao{
     color: white;
-     background-color: #0f73ff;
+     background-color: #009688;
      width: 100%;
-     border-top: 2px solid #0f73ff;
-     border-bottom: 2px solid #0f73ff;
+     border-top: 2px solid #009688;
+     border-bottom: 2px solid #009688;
      display: flex;
     justify-content: space-around;
     align-items: center;
@@ -2525,7 +2528,7 @@ color:black
 }
 
 .enviar-comentario-publicacao form input{
-    background-color:  rgb(170, 14, 105);;
+    background-color:  #EF3C1E;
     color: #E7E8EB;
     font-family: arial;
     font-size: 15px;
@@ -2671,7 +2674,7 @@ color:black
 .debate-status{
     display: flex;
     justify-content: space-around;
-    background-color: #0a5ac9;
+    background-color: #009688;
     padding: 10px;
     color: white
 }
@@ -2697,7 +2700,7 @@ color:black
 }
 
 .debate-publicacao a{
-    background-color: rgb(255, 68, 177);;
+    background-color: #EF3C1E;;
     padding: 11px;
     width: 150px;
     text-align: center;
@@ -2780,7 +2783,7 @@ color:black
     display: block;
     color:white;
     padding: 10px 15px;
-    background-color: pink;
+    background-color: #EF3C1E;
     width: 200px;
     text-align: center;
     border-radius: 10%/100px;
@@ -3063,7 +3066,7 @@ color:black
     outline: none;
     border: 0;
     margin: 10px auto;
-    background-color:  rgb(255, 8, 152);  
+    background-color:  #EF3C1E;  
     color: white;   
 }
 /*Denuncia*/
@@ -3142,7 +3145,7 @@ color:black
     outline: none;
     border: 0;
     margin: 10px auto;
-    background-color:  rgb(255, 8, 152);  
+    background-color:  #EF3C1E;  
     color: white;   
 }
 /*Desativar*/
@@ -3885,7 +3888,7 @@ color:black
     outline: none;
     border: 0;
     margin: 10px auto;
-    background-color:  rgb(255, 8, 152);  
+    background-color:  #EF3C1E;  
     color: white;   
 }
 
