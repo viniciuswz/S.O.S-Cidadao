@@ -52,3 +52,23 @@ function teste2(resposta){
     document.getElementById('contatosJs').innerHTML = mensa2;
     document.getElementById('pa').innerHTML = mensa;
 }
+
+jQuery(function(){
+    $("#formDebaMen").submit(function(){
+        id = document.getElementById("IdDeba").value;
+        texto = document.getElementById("texto").value;
+        $.ajax({
+            url: '../enviarMensagem.php',
+            type: "POST",
+            data: "ID="+id+"&texto="+texto,
+            success: function(data){            
+                //$('#lista').html(data);
+                jaquinha();
+            }        
+    
+        });           
+        document.getElementById("texto").value = "";
+        return false;
+    })
+});
+

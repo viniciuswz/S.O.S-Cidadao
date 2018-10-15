@@ -292,13 +292,13 @@ session_start();
                 </div>
 
                      
-               <form action="../enviarMensagem.php" method="post">
+               <form method="post" id="formDebaMen">
                     <?php
                         if($tipoUsu == 'Comum'){
                     ?>
                         <input type="hidden" name="ID" value="<?php echo $_GET['ID'] ?>" />
                         <input type="hidden" name="pagina" value="<?php echo $pagina ?>" />
-                        <input type="text" name="texto" placeholder="digite aqui..." ><button type="submit"> ></button> 
+                        <input type="text" name="texto" id="texto" placeholder="digite aqui..." ><button type="submit"> ></button> 
                    <?php
                         }
                     ?>

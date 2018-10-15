@@ -10,7 +10,7 @@ try{
     $tipoUsuPermi = array('Comum');
     Usuario::verificarLogin(1,$tipoUsuPermi);  // Tem q estar logado         
 
-    $nomesCampos = array('texto','ID','pagina');// Nomes dos campos que receberei do formulario
+    $nomesCampos = array('texto','ID');// Nomes dos campos que receberei do formulario
     $validar = new ValidarCampos($nomesCampos, $_POST);//Verificar se eles existem, se nao existir estoura um erro
     $validar->verificarTipoInt(array('ID'), $_POST); 
 
@@ -20,7 +20,7 @@ try{
     $mensagem->setTextoMensa($_POST['texto']);
     $mensagem->inserirMensagem();    
     $mensagem->visualizarMensagem();
-    echo "<script>javascript:window.location='./view/debate_mensagens.php?ID=".$_POST['ID']."&pagina=".$_POST['pagina']."';</script>";    
+    //echo "<script>javascript:window.location='./view/debate_mensagens.php?ID=".$_POST['ID']."&pagina=".$_POST['pagina']."';</script>";    
         
 }catch(Exception $exc){
     $erro = $exc->getCode();   
