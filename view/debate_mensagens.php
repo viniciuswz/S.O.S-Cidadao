@@ -68,13 +68,14 @@ session_start();
 
         <script src="lib/_jquery/jquery.js"></script>
         <script src="js/js.js"></script>
+        <script src="../TesteMensagem.js"></script>
 
     </head>
     <body>
         
 
         <div id="container">
-        
+        <input type="hidden" id="IdDeba" value = "<?php echo $_GET['ID']?>">
         <section class="debate-full">
                
           
@@ -82,8 +83,8 @@ session_start();
                         <span id="fechar-debate-info">&times;</span>
                         <div class="moldura-debate">
                             <div>
-                                <div>
-                                    <img src="../Img/debate/<?php echo $resposta[0]['img_deba']?>">
+                                <div id="ImgDeba">
+                                    
                                 </div>
                                 <?php 
                                     if($resposta[0]['cod_usu'] == $_SESSION['id_user']){
@@ -127,8 +128,7 @@ session_start();
                                                                 echo '<li><span><a href="../SairDebate.php?ID='. $resposta[0]['cod_deba'].'&IDUsu='.$participantes[$contador]['cod_usu'].'">Remover Usuario</a></span></li>';
                                                             }else if($tipoUsu == 'Comum'){
                                                                 echo '<li><span><a href="../SairDebate.php?ID='. $resposta[0]['cod_deba'].'&IDUsu='.$participantes[$contador]['cod_usu'].'">Remover Usuario</a></span></li>';
-                                                            }
-                                                            
+                                                            }                                                            
                                                             echo "<li><span><a href='perfil_reclamacao.php?ID=". $participantes[$contador]['cod_usu']."'>Perfil</a></span></li>";
                                                         }else if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] != $participantes[$contador]['cod_usu']){
                                                             echo "<li><span><a href='perfil_reclamacao.php?ID=". $participantes[$contador]['cod_usu']."'>Perfil</a></span></li>";
@@ -152,42 +152,7 @@ session_start();
                                                 <h3>Suas conversas</h3>
                                                 <p id="fechar-contatos">&times;</p>
                                         </header>
-                                            <nav>
-                                                <?php
-                                                    $contador = 0;
-                                                    while($contador < count($listDeba)){
-                                                ?>
-                                                <div class="contatinhos">
-                                                    <a href="debate_mensagens.php?ID=<?php echo $listDeba[$contador]['cod_deba'] ?>&pagina=ultima">
-                                                        <div class="img-debate">
-                                                            <img src="../Img/debate/<?php echo $listDeba[$contador]['img_deba']?>" alt="debate">
-                                                        </div>
-                                                    </a>
-                                                    <div class="status-debate">
-                                                            <?php
-                                                                if($_GET['ID'] == $listDeba[$contador]['cod_deba']){
-                                                                    echo '<p><span class="negrito">'.$listDeba[$contador]['nome_deba'] . '</span></p>';
-                                                                }else{
-                                                                    echo '<p>'.$listDeba[$contador]['nome_deba'].'</p>';
-                                                                }                                                
-                                                            ?>  
-                                                    </div>
-                                                    <div class="info-contatinho">
-                                                        <div class="data_mensagem">
-                                                            <p><?php echo $listDeba[$contador]['dataHora_deba'] ?></p>
-                                                        </div>
-                                                            <?php if($listDeba[$contador]['quantidade'] > 0 ) { ?>
-                                                                    <div class="qtd_mensagens">
-                                                                            <p><?php echo $listDeba[$contador]['quantidade']?></p>
-                                                                    </div>
-                                                                            
-                                                            <?php } ?>
-                                                    </div>
-                                                </div>                            
-                                                <?php
-                                                        $contador++;
-                                                    }
-                                                ?>  
+                                            <nav id="contatosJs">                                               
                                             </nav>
                                     </aside>
                 <?php
@@ -221,40 +186,9 @@ session_start();
                             </div>
                     </div>
                 </header>
-                <div class="mensagens">
+                <div id="pa" class="mensagens">
                     
-                    <?php
-                        $contador = 0;
-                        while($contador < count($mensagem)){
-                            $classe = $mensagem[$contador]['classe']
-                    ?>    
-
-                        <div class="<?php echo $classe?>">
-                            <?php if($classe == 'linha-mensagem_padrao') { ?> 
-                            
-                            <div class="usuario-msg-foto">
-                                <img src="../Img/perfil/<?php echo $mensagem[$contador]['img_perfil_usu'] ?>">
-                            </div>
-                            <div class="mensagem_padrao">
-                                <span class="nome"><a href="perfil_reclamacao.php?ID=<?php echo $mensagem[$contador]['cod_usu'] ?>"><?php echo $mensagem[$contador]['nome_usu'] ?></a></span>
-                            <?php }else{ ?>  
-                                <div>
-                            <?php } ?> 
-                                <span >
-                                <?php echo $mensagem[$contador]['texto_mensa'] ?>
-                                <?php if($classe == 'linha-mensagem_sistema') { 
-                                    echo '<span>'.$mensagem[$contador]['hora'].'</span>';
-                                }else{
-                                    echo '<sub>'.$mensagem[$contador]['hora'].'</sub>';
-                                } ?>                                
-                                </span>
-                            </div>
-                        </div>
-                    <?php
-                        $contador++;
-                        }
-
-                    ?>
+                   
 <!--
                     <div class="linha-mensagem_usuario">
                         <div>
@@ -372,8 +306,10 @@ session_start();
            </div>
         </section>
         </div>
+        <!--
         <ul>
             <?php
+            /*
                 if($quantidadePaginas != 1){
                     $contador = 1;
                     while($contador <= $quantidadePaginas){
@@ -392,9 +328,11 @@ session_start();
                         }                    
                         $contador++;        
                     }
-                }            
+                }    
+                */        
             ?>
         </ul>
+        -->
     </body>
 </html>
 <?php

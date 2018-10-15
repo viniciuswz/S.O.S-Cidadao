@@ -224,7 +224,8 @@ class MensagensA extends MensagensM{
             $this->sqlSelectCount,
             $this->getCodDeba(),
             $comple
-        );        
+        );
+                
         $res = $this->runSelect($sql);               
         return $res[0]['count(*)'];
     }
