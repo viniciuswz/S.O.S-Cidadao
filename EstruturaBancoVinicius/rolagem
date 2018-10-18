@@ -1,0 +1,82 @@
+// GENERATE FIRST BATCH OF MESSAGES
+//This will be where you do your SQL and PHP first
+for(var i=0;i<20;i++){
+    $('.inner').prepend('<div class="messages">First Batch messages<br/><span class="date">'+Date()+'</span> </div>');}
+
+
+$("#chatBox").scrollTop($("#chatBox")[0].scrollHeight);
+
+// Assign scroll function to chatBox DIV
+$('#chatBox').scroll(function(){
+    if ($('#chatBox').scrollTop() == 0){
+        // Display AJAX loader animation
+         $('#loader').show();
+  
+      // Youd do Something like this here
+      // Query the server and paginate results
+      // Then prepend
+      /*  $.ajax({
+            url:'getmessages.php',
+            dataType:'html',
+            success:function(data){
+                $('.inner').prepend(data);
+            };
+        });*/
+        //BUT FOR EXAMPLE PURPOSES......
+        // We'll just simulate generation on server
+
+       
+        //Simulate server delay;
+        setTimeout(function(){
+        // Simulate retrieving 4 messages
+        for(var i=0;i<4;i++){
+        $('.inner').prepend('<div class="messages">Newly Loaded messages<br/><span class="date">'+Date()+'</span> </div>');
+            }
+            // Hide loader on success
+            $('#loader').hide();
+            // Reset scroll
+            $('#chatBox').scrollTop(30);
+        },780); 
+    }
+});
+
+SEM SER CHAT
+
+$(window).scroll(function(){
+      if  ($(window).scrollTop() == $(document).height() - $(window).height()){
+          codigo ajax
+      }
+ }); 
+ 
+ 
+ 
+ AJAX DO BIG PERICLES
+ 
+ 
+ function ativa() {
+    
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", "js/baseCarros.json", true);
+    xmlhttp.send();
+    xmlhttp.onreadystatechange = function () {
+        
+        if (this.readyState === 4 && this.status === 200) {
+            
+            var myObj = JSON.parse(this.responseText);
+
+            for (var i = 0; i < myObj.length; i++) {
+                var vModelo = myObj[i].modelo;
+                var vCor = myObj[i].cor;
+                var vAno = myObj[i].ano;
+                var vValor = myObj[i].valor;
+                var vMontadora = myObj[i].montadora;
+                var vFoto = myObj[i].foto;
+
+                var strHTML = '<a href=javascript:alert("' + vMontadora + '")><figure><img src="' + vFoto + '" alt=""><figcaption>' + vModelo + '<br>' + vValor + '</figcaption></figure></a>';
+
+                document.getElementById('menu').innerHTML += strHTML;
+
+            }
+        }
+    };
+};

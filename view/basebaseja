@@ -1,0 +1,27 @@
+$(function(){
+  $('#croppie').croppie({
+    url: "https://raw.githubusercontent.com/mjhighto/tributePage/master/paintSplash.jpg",
+    viewport: {
+      width: "300",
+      height: "300",
+      type: 'square'
+    }
+  });
+
+  $("button").click(function(){
+      $('#croppie').croppie('result', { type: 'html', size: 'original', format: 'png' }).then(function (result) {
+        // In production code I double check the size here before passing the image to the server.
+        
+        $('#croppie').croppie('result', { type: 'base64', size: { width: 100, height: 100 }, format: 'png' }).then(function (result) {
+          // The server expects the image as a base64 string, so I then convert it to base64 and pass it via AJAX. The size is wrong at this point.
+          
+          $('#results').attr('src', result);
+
+          setTimeout(function(){
+            $('#width').text("Width: " + $('#results').width() + "px")
+            $('#height').text("Height: " + $('#results').height() + "px")
+          }, 50);
+        });
+      });
+  });
+});
