@@ -939,21 +939,12 @@ width: 100vw;
 }
 
 .publicacao-conteudo-debate{
-    overflow: inherit;
+    overflow: hidden;
     
-    width: 100%;
-    height: auto;
+    width: 95%;
+    height: 200px;
     margin: 0 auto;
    
-}
-
-.publicacao-conteudo-debate img {
-     width: 100%; 
-    position: inherit;
-    top: 0%;
-    left: 0%;
-    transform: translateX(-0%) translateY(-0%);
-    /* min-width: 410px; */
 }
 
 .debate-publicacao a{

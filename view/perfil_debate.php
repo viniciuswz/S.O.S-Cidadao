@@ -218,7 +218,7 @@
             <?php
                 if(empty($resposta)){
                     echo '<span style="color:white">Não há debates para serem exibidos</span>';
-                    exit();
+                    //exit();
                 }                
                 $contador = 0;
                 while($contador < count($resposta)){ 
@@ -435,6 +435,7 @@
                     <form id="trocarcapa">
                         <label for="fotoCapa"><p>Escolher foto</p></label>
                         <input type="file" name="fotocapa" id="fotoCapa">
+                        <input type="hidden" name="base64FotoCapa" id="base64FotoCapa" value="jaca">
                     </form>
                     <button id="cortar">Cortar foto</button>
                 </div>
