@@ -420,7 +420,7 @@ nav.notificacoes ul li a span:first-of-type{
 }
 
 
-/*NÃO ALTERAR NADA DAQUI PARA CIMA*/
+/*NÃƒO ALTERAR NADA DAQUI PARA CIMA*/
 
 .perfil-base{
     position: relative;
@@ -711,12 +711,12 @@ nav.notificacoes ul li a span:first-of-type{
 
 .item-publicacao figure img{
     align-self: center;
-    height: 540px;
+    height: 100%;
     position: relative;
     top: 50%;
     left: 50%;
-    transform: translateX(-50%) translateY(-40%);
-    background-color: blueviolet
+    transform: translateX(-50%) translateY(-50%);
+    background-color: blueviolet;
 }
 
 .item-publicacao figure + p{
@@ -2252,7 +2252,7 @@ color:black
     position: relative;
 }
 
-/*pag reclamaÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ao*/
+/*pag reclamaÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§ao*/
 
 .Reclamacao{
     width: 40%;
@@ -2299,6 +2299,7 @@ color:black
     white-space: pre-wrap;
     word-wrap: break-word;
     padding-right: 7px;
+    padding-bottom: 20px;
 }
 
 .Reclamacao .publicacao-conteudo div:after{
@@ -2366,7 +2367,7 @@ color:black
     position: relative;
     top: 50%;
     left: 50%;
-    transform: translateX(-50%) translateY(-0%);
+    transform: translateX(-50%) translateY(-50%);
     background-color: blueviolet;
 }
 
@@ -2610,14 +2611,13 @@ color:black
 }
 
 .debate .publicacao-topo-aberta{
-    margin: 0 auto;
+    margin: 10px auto;
     width: 90%;
     display: flex;
     align-items: center;
     padding: 4px;
     justify-content: space-around;
     border-bottom: 1px solid #2E2E2E;
-    
 }
 
 .publicacao-conteudo-debate{
@@ -2625,16 +2625,15 @@ color:black
     width: 90%;
     height: 350px;
     margin: 0 auto;
-   
 }
 
 .publicacao-conteudo-debate img {
-    width: 100%;
+    /* width: 100%; */
     position: relative;
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
-    min-width: 410px;
+    /* min-width: 410px; */
 }
 
 .debate-publicacao{
@@ -2700,15 +2699,14 @@ color:black
 }
 
 .debate-publicacao a{
-    background-color: #EF3C1E;;
+    background-color: #EF3C1E;
     padding: 11px;
-    width: 150px;
+    width: 200px;
     text-align: center;
     border-radius: 10%/100px;
     align-self: center;
     margin-top: 10px;
-    color:white
-    
+    color:white;
 }
 
 /* AGRADECIMENTO PAGE*/
