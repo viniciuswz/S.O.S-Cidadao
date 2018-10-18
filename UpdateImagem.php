@@ -11,15 +11,16 @@ try{
     Usuario::verificarLogin(1,$tipoUsuPermi);  // Tem q estar logado 
 
     $nomesCampos = array('imagem','tipo');// Nomes dos campos que receberei do formulario
-    $validar = new ValidarCampos($nomesCampos, $_POST, $_FILES);//Verificar se eles existem, se nao existir estoura um erro   
+    $validar = new ValidarCampos($nomesCampos, $_POST);//Verificar se eles existem, se nao existir estoura um erro   
 
     $usuario = new Usuario();
     $usuario->setCodUsu($_SESSION['id_user']);    
-    $usuario->updateImage($_FILES['imagem'],$_POST['tipo']);
+    $usuario->updateImage($_POST['imagem'],$_POST['tipo']);
     
-    echo "<script> alert('Imagem alterada com sucesso');javascript:window.location='view/index.php';</script>";
-    
+    //echo "<script> alert('Imagem alterada com sucesso');javascript:window.location='view/index.php';</script>";
+    echo 'dasda';
 }catch (Exception $exc){
+    echo 'e54325432';
     $erro = $exc->getCode();   
     $mensagem = $exc->getMessage();
     switch($erro){

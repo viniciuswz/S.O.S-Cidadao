@@ -706,8 +706,31 @@ jQuery(function($){
   jQuery(function($){
     $(".alterar-capa").click(function (){
       $('.img-capa-corta').croppie('result', { type: 'canvas', size: { width: 720, height: 350 }, format: 'png' }).then(function (result) {
-        $("#fotoCapa").attr("value", result)
-        $("#trocarcapa").submit()
+      
+        $("#base64FotoCapa").val(result);
+        //alert("blzCAPA")
+         $(".modal-troca-foto").removeClass("modal-troca-foto-ativo");
+          
+         $(".modal-troca-foto-previa").removeClass("modal-troca-foto-previa-ativo");
+         $(".modal-troca-foto").css("opacity", "1");
+       
+         $("#trocarcapa").submit();
+      });
+
+      $("#trocarcapa").submit(function(){
+        var img = $("#base64FotoCapa").val();
+        $.ajax({
+          url:"../UpdateImagem.php",
+          type: "post",
+          data: "tipo=capa"+"&imagem="+img,
+          success:function(result){
+            alert(result);
+            
+          }
+       })
+       alert("dasdasadsdas");       
+        return false
+        
       });
       
     })
@@ -839,34 +862,46 @@ jQuery(function($){
       $(".alterar-perfil").click(function (){
         $('.img-perfil-corta').croppie('result', { type: 'canvas', size: { width: 200, height: 200 }, format: 'png' }).then(function (result) {
           $("#base64FotoPerfil").val(result);
-          $("#trocarperfil").submit(function(){
             
-            $.ajax({
-              url:"../Login.php",
-              type: "post",
-              data: "email="+email+"&senha="+senha,
-              success:function(result){
-                if(result=="1"){
-                  location.href="index.php"
-                }else{
-                  $(".aviso-form-inicial").show();
-                  $(".aviso-form-inicial").find("p").text(result)
-                }
-              }
-            })
-            return false;
-            
-          });
-          })
+             $(".modal-troca-foto-perfil").removeClass("modal-troca-foto-perfil-ativo");
+             $(".modal-troca-foto-perfil-previa").removeClass("modal-troca-foto-perfil-previa-ativo");
+             $(".modal-troca-foto-perfil").css("opacity", "1");
+           
 
-        
-      })
-
+             $("#trocarperfil").submit();
       $("#baconP").click(function(){
         alert($("#base64FotoPerfil").val());
         
         
       })
+
+    
+      })
+      
+
+    
+  })
+
+  $("#trocarperfil").submit(function(){
+    
+    var img = $("#base64FotoPerfil").val();
+    alert('asa');
+    $.ajax({
+      
+      url:"../UpdateImagem.php",
+      type: "post",
+      data: "tipo=perfil"+"&imagem="+img,
+      success:function(result){
+        
+        alert("asas");
+      }
+    })
+    
+    
+
+  alert("blza")
+  return false;
+  });
     });
     //trocar foto reclamacao
     
