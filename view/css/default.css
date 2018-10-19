@@ -297,7 +297,7 @@ nav.menu > ul > li > a:hover #quantidade_de_not{
 
 .user-menu div div{
     position: absolute;
-    top: 100px;
+    top: 53px;
     left: 15px;
     overflow: hidden;
     width: 90px;
@@ -313,7 +313,7 @@ nav.menu > ul > li > a:hover #quantidade_de_not{
     font-size: 1.2rem;
     color: aliceblue;
     text-shadow: 0px 0px 10px black;
-    top: 130px;
+    top: 87px;
     left: 110px;
     z-index: 2;
     text-overflow: ellipsis;
@@ -325,7 +325,7 @@ nav.menu > ul > li > a:hover #quantidade_de_not{
 .user-menu .mini-perfil{
     overflow: hidden;
     width: 100%;
-    height: 200px;
+    height: 150px;
 }
 
 .user-menu .mini-perfil img:nth-child(1){
@@ -337,7 +337,7 @@ nav.menu > ul > li > a:hover #quantidade_de_not{
 }
 
 .user-menu .mini-perfil img:nth-child(2){
-    width: 480px;
+    width: 323px;
     /* height: 208px; */
     position: relative;
     left: 50%;
@@ -445,12 +445,12 @@ nav.notificacoes ul li a span:first-of-type{
 }
 
 .perfil > img{
-    position: relative;
+    /* position: relative; */
     left: 50%;
     top: 50%;
-    transform: translateY(-50%) translateX(-50%);
+    /* transform: translateY(-50%) translateX(-50%); */
     width: 100%;
-    align-self: center
+    align-self: center;
 }
 
 #trocar-capa{
@@ -1574,11 +1574,11 @@ border: 3px solid #004C41;
 }
 
 .usuarios-debate-info .participantes .img-participante img{
-    width: 150%;
-    position: relative;
-    left: 50%;
-    top: 50%;
-    transform: translateX(-50%) translateY(-50%);
+    width: 100%;
+    /* position: relative; */
+    /* left: 50%; */
+    /* top: 50%; */
+    /* transform: translateX(-50%) translateY(-50%); */
 }
 
 .usuarios-debate-info .participantes .img-participante + p {
