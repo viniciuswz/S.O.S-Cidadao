@@ -705,7 +705,7 @@ jQuery(function($){
   });
   jQuery(function($){
     $(".alterar-capa").click(function (){
-      $('.img-capa-corta').croppie('result', { type: 'canvas', size: { width: 720, height: 350 }, format: 'png' }).then(function (result) {
+      $('.img-capa-corta').croppie('result', { type: 'canvas', size: { width: 1000, height: 467 }, format: 'png' }).then(function (result) {
       
         $("#base64FotoCapa").val(result);
         $(".perfil").find("img").attr("src",result);
