@@ -75,7 +75,7 @@
         <script src="../teste.js"></script>
 
     </head>
-    <body>
+    <body style="background-color:white">
         <header>
             <img src="imagens/logo_oficial.png" alt="logo">
             <form action="pesquisa.php" method="get">

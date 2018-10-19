@@ -329,15 +329,16 @@ nav.menu > ul > li > a:hover #quantidade_de_not{
 }
 
 .user-menu .mini-perfil img:nth-child(1){
-    width: 100px;
-    position: relative;
-    left: 50%;
-    top: 50%;
-    transform: translateY(-50%) translateX(-50%);
+    width: 100%;
+    /* position: relative; */
+    /* left: 50%; */
+    /* top: 50%; */
+    /* transform: translateY(-50%) translateX(-50%); */
 }
 
 .user-menu .mini-perfil img:nth-child(2){
-    height: 280px;
+    width: 480px;
+    /* height: 208px; */
     position: relative;
     left: 50%;
     top: 50%;
@@ -431,7 +432,7 @@ nav.notificacoes ul li a span:first-of-type{
     display: flex;
     overflow: hidden;
     width: 100%; 
-    background-color: red;
+    
 }
 
 .perfil-base span p:first-child{
@@ -478,6 +479,9 @@ nav.notificacoes ul li a span:first-of-type{
     left: 50%;
     top: 50%;
     transform: translateY(-50%) translateX(-50%);
+    height: 100%;
+    /* width: 100%; */
+    align-self: center;
 }
 
 .perfil-info p{
@@ -690,11 +694,11 @@ nav.notificacoes ul li a span:first-of-type{
  }
  
  .item-publicacao .item-topo img{
-    height: 100px;
+    height: 100%;
     position: relative;
     top: 50%;
     left: 50%;
-    transform: translateX(-50%) translateY(-40%);
+    transform: translateX(-50%) translateY(-50%);
  }
 
 .item-publicacao figure{
@@ -1045,21 +1049,21 @@ width: 100%
     justify-content: center;
     align-items: center;
     position: relative;
-    background-color: #EF3C1E
+    background-color: white
 }
 
 .envio-img label p{
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    width: 150px;
+    position: absolute;
     height: 40px;
     background-color: #00aeef;
-    margin-left: -150px;
+    /* margin-left: -150px; */
     z-index: 2;
-    left: 150px;
-    bottom:90px
+    left: 0px;
+    bottom: 0;
+    top: 0;
 }
 
 .envio-img label i{
@@ -1069,17 +1073,17 @@ width: 100%
 .envio-img label div{
     overflow: hidden;
     width: 400px;
-    height: 220px;
+    height: auto;
 }
 
 .envio-img label div img{
     overflow: hidden;
-    width: 120%;
+    width: 100%;
     align-self: center;
     position: relative;
     top: 50%;
     left: 50%;
-    transform: translateX(-50%) translateY(-50%)
+    transform: translateX(-50%) translateY(-0%);
 }
 
 /*//////////////////////////////CAMPO "SOBRE"/////////////////////////////////////*/
@@ -1732,11 +1736,12 @@ margin-right:3px
     background-color: #004C41;
 }
 
-.batepapo header a{
+.batepapo header a {
     color: white;
     font-weight: bold;
     font-size: 33px;
-    padding: 0px 5px
+    padding: 0px 5px;
+    margin-bottom: 4px;
 }
 .batepapo .ft_debate-mensagem{
     overflow: hidden;
@@ -1892,7 +1897,7 @@ color:black
 }
 
 .linha-mensagem_padrao .usuario-msg-foto img{
-    height: 200%;
+    height: 100%;
     position: relative;
     top: 50%;
     left: 50%;
@@ -2343,11 +2348,11 @@ color:black
  }
  
   .publicacao-topo-aberta img{
-    height: 170%;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-40%);
+    height: 100%;
+    /* position: relative; */
+    /* top: 50%; */
+    /* left: 50%; */
+    /* transform: translateX(-50%) translateY(-40%); */
  }
 
  .img-publicacao{

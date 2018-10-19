@@ -185,8 +185,7 @@ width: 100vw;
 
 .perfil-base{
     background-color: white;
-    padding-bottom: 80px
-    
+    padding-bottom: 130px;
  }
 
  .perfil-info span{
@@ -207,12 +206,12 @@ width: 100vw;
  
 
 .perfil{
-    height: 190px;
+    height: 150px;
     justify-content: center;
 }
 
-#trocar-capa{ 
-    top: 160px
+#trocar-capa{
+    top: 120px;
 }
 
 .perfil-info h3{
@@ -228,9 +227,9 @@ width: 100vw;
 .perfil > img{
     align-self: center;
     justify-content: center;
-    height: 56.23vw;
-    max-height: 774px;
-    transform: translateY(-50%) translateX(-50%) scale(1.21);
+    /* height: 56.23vw; */
+    /* max-height: 774px; */
+    /* transform: translateY(-50%) translateX(-50%) scale(1.21); */
 }
 
 
@@ -252,7 +251,7 @@ width: 100vw;
 }
 
 .perfil-info div img{
-    height: 135%;
+    height: 100%;
 }
 
 .perfil-info p{
@@ -365,7 +364,7 @@ width: 100vw;
 
 .formulario hr{
    
-    border: 2px solid purple;
+    border: 2px solid #EF3C1E;
     position: relative;
     bottom: 10px
 }
@@ -417,7 +416,7 @@ width: 100vw;
     
 }
 .envio-img label div img{
- width: 140%;
+ width: 100%;
  position: relative;
 }
 
@@ -989,7 +988,7 @@ width: 100vw;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    background-color: rgb(77, 77, 77);
+    background-color: #009688;
 }
 
 .debate-status div{

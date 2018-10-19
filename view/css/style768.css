@@ -142,12 +142,12 @@ width: 100vw;
 
 .perfil-base{
    background-color: white;
-   padding-bottom: 90px
+   padding-bottom: 110px;
 }
 
 
 .perfil{
-    height: 260px;
+    height: 230px;
     justify-content: center;
 }
 
@@ -155,8 +155,7 @@ width: 100vw;
     position: absolute;
     z-index: 1;
     left: 10px;
-    top: 229px
-   
+    top: 199px;
 }
 
 .perfil > img{
@@ -274,7 +273,7 @@ width: 100vw;
 
 .formulario hr{
    
-    border: 2px solid purple;
+    border: 2px solid #EF3C1E;
     position: relative;
     bottom: 10px
 }

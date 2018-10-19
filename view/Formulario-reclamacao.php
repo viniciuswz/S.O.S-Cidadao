@@ -169,8 +169,8 @@
                 </div>
             <!--FORMULARIO DESCRIÇÃO DO DEBATE--> 
                 <div class="campo-texto"> 
-                    <h3>sobre o que vai debater ?</h3>
-                    <hr>
+                    <!-- <h3>sobre o que vai debater ?</h3> -->
+                    <!-- <hr> -->
                     <textarea placeholder="escreva aqui" id="sobre" name="texto"></textarea>
                     <p></p>
                     <input type="submit" value="enviar reclamação">

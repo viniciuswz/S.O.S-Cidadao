@@ -135,8 +135,8 @@ nav.menu > ul > li > a:hover i{
 }
 
 .perfil > img{
-    height: 56.23vw;
-    max-height: 774px;
+    /* height: 56.23vw; */
+    /* max-height: 774px; */
 }
 
 
@@ -154,7 +154,7 @@ nav.menu > ul > li > a:hover i{
 }
 
 .perfil-info div img{
-    height: 135%;
+    /* height: 135%; */
 }
 
 
@@ -227,6 +227,12 @@ font-size: 18px;
 
 width: 320px
   
+}
+
+/*reclamacao form*/
+
+.imagem h3{
+    font-size: 19px
 }
 
 /*DEBATES*/

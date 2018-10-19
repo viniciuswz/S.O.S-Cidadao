@@ -171,7 +171,7 @@ jQuery(function(){
   //   var extensao = caminhoImagem.substring(
   //     caminhoImagem.lastIndexOf('.') + 1).toLowerCase();
   //     //verificando se é uma img
-  //     if (extensao == "gif" || extensao == "png" || extensao == "bmp"
+  //     if (extensao == "gif" || extensao == "png"  || extensao == "webp" || extensao == "bmp"
   //     || extensao == "jpeg" || extensao == "jpg") {
   //       // vai mostrar no preview
   //       if (InputData.files && InputData.files[0]) {
@@ -368,7 +368,7 @@ $(".formulario").submit(function(){
 //   var extensao = caminhoImagem.substring(
 //     caminhoImagem.lastIndexOf('.') + 1).toLowerCase();
 //     //verificando se é uma img
-//     if (extensao == "gif" || extensao == "png" || extensao == "bmp"
+//     if (extensao == "gif" || extensao == "png"  || extensao == "webp" || extensao == "bmp"
 //     || extensao == "jpeg" || extensao == "jpg") {
 //       // vai mostrar no preview
 //       if (InputData.files && InputData.files[0]) {
@@ -599,7 +599,7 @@ jQuery(function($){
       var extensao = caminhoImagem.substring(
         caminhoImagem.lastIndexOf('.') + 1).toLowerCase();
         //verificando se é uma img
-        if (extensao == "gif" || extensao == "png" || extensao == "bmp"
+        if (extensao == "gif" || extensao == "png"  || extensao == "webp" || extensao == "bmp"
         || extensao == "jpeg" || extensao == "jpg") {
           $(".box-troca-foto").find(".aviso-form-inicial").css("display","none")
           // vai mostrar no preview
@@ -708,6 +708,8 @@ jQuery(function($){
       $('.img-capa-corta').croppie('result', { type: 'canvas', size: { width: 720, height: 350 }, format: 'png' }).then(function (result) {
       
         $("#base64FotoCapa").val(result);
+        $(".perfil").find("img").attr("src",result);
+        $(".mini-perfil").find("img:last").attr("src",result);
         //alert("blzCAPA")
          $(".modal-troca-foto").removeClass("modal-troca-foto-ativo");
           
@@ -724,11 +726,11 @@ jQuery(function($){
           type: "post",
           data: "tipo=capa"+"&imagem="+img,
           success:function(result){
-            alert(result);
+           // alert(result);
             
           }
        })
-       alert("dasdasadsdas");       
+      // alert("dasdasadsdas");       
         return false
         
       });
@@ -750,7 +752,7 @@ jQuery(function($){
         var extensao = caminhoImagem.substring(
           caminhoImagem.lastIndexOf('.') + 1).toLowerCase();
           //verificando se é uma img
-          if (extensao == "gif" || extensao == "png" || extensao == "bmp"
+          if (extensao == "gif" || extensao == "png"  || extensao == "webp" || extensao == "bmp"
           || extensao == "jpeg" || extensao == "jpg") {
             $(".box-troca-foto-perfil").find(".aviso-form-inicial").css("display","none")
             // vai mostrar no preview
@@ -860,8 +862,12 @@ jQuery(function($){
     });
     jQuery(function($){
       $(".alterar-perfil").click(function (){
-        $('.img-perfil-corta').croppie('result', { type: 'canvas', size: { width: 200, height: 200 }, format: 'png' }).then(function (result) {
+        $('.img-perfil-corta').croppie('result', { type: 'canvas', size: { width: 200, height: 200 }, format: 'png', circle:false }).then(function (result) {
           $("#base64FotoPerfil").val(result);
+          $(".perfil-info").find("img").attr("src",result);
+          $(".item-topo").find("img").attr("src",result);
+          $(".mini-perfil").find("img:first-child").attr("src",result);
+          
             
              $(".modal-troca-foto-perfil").removeClass("modal-troca-foto-perfil-ativo");
              $(".modal-troca-foto-perfil-previa").removeClass("modal-troca-foto-perfil-previa-ativo");
@@ -870,7 +876,7 @@ jQuery(function($){
 
              $("#trocarperfil").submit();
       $("#baconP").click(function(){
-        alert($("#base64FotoPerfil").val());
+        //alert($("#base64FotoPerfil").val());
         
         
       })
@@ -885,7 +891,7 @@ jQuery(function($){
   $("#trocarperfil").submit(function(){
     
     var img = $("#base64FotoPerfil").val();
-    alert('asa');
+   // alert('asa');
     $.ajax({
       
       url:"../UpdateImagem.php",
@@ -893,13 +899,13 @@ jQuery(function($){
       data: "tipo=perfil"+"&imagem="+img,
       success:function(result){
         
-        alert("asas");
+        //alert("asas");
       }
     })
     
     
 
-  alert("blza")
+  //alert("blza")
   return false;
   });
     });
@@ -936,7 +942,7 @@ jQuery(function($){
           var extensao = caminhoImagem.substring(
             caminhoImagem.lastIndexOf('.') + 1).toLowerCase();
             //verificando se é uma img
-            if (extensao == "gif" || extensao == "png" || extensao == "bmp"
+            if (extensao == "gif" || extensao == "png"  || extensao == "webp" || extensao == "bmp"
             || extensao == "jpeg" || extensao == "jpg") {
               $(".box-troca-foto-reclamacao").find(".aviso-form-inicial").css("display","none")
               // vai mostrar no preview
@@ -1049,11 +1055,11 @@ jQuery(function($){
         jQuery(function($){
           
           
-          $("#bacon").click(function(){
-            alert($("#base64").val());
+         // $("#bacon").click(function(){
+          //  alert($("#base64").val());
             
             
-          })
+          //})
         })
       });
       
@@ -1091,7 +1097,7 @@ jQuery(function($){
             var extensao = caminhoImagem.substring(
               caminhoImagem.lastIndexOf('.') + 1).toLowerCase();
               //verificando se é uma img
-              if (extensao == "gif" || extensao == "png" || extensao == "bmp"
+              if (extensao == "gif" || extensao == "png"  || extensao == "webp" || extensao == "bmp"
               || extensao == "jpeg" || extensao == "jpg") {
                 $(".box-troca-foto-reclamacao").find(".aviso-form-inicial").css("display","none")
                 // vai mostrar no preview
@@ -1188,7 +1194,7 @@ jQuery(function($){
             $('.img-reclamacao-corta').croppie('result', { type: 'canvas', size: { width: 500, height: 350 }, format: 'png' }).then(function (result) {
               $("#base64").val(result);
               $('#imagemDebateInput').attr('src',result);
-              alert(result)
+              //alert(result)
               $(".imagem").find('p:last-child').text("");
               $(".modal-troca-foto-reclamacao-previa").removeClass("modal-troca-foto-reclamacao-previa-ativo");
               $(".modal-troca-foto-reclamacao").css("opacity", "1");
