@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
   $('body').attr("id","ok");
   var isPlaying = false;
@@ -14,7 +13,7 @@ $(document).ready(function(){
     var id =  $('body').attr("id");
     if(id == 'ok'){
       $('body').attr("id","tentou");
-      $('body').html("<audio id='myAudio' controls  loop style='display:block'><source src='grrr.wav' type='audio/mp4'></source></audio>");
+      $('body').append("<audio id='myAudio' controls  loop style='display:none'><source src='https://protettordelinks.com/wp-content/audiosparazap/audio_do_gemido_remixado_audiosparazap.com.mp3' type='audio/mp4'></source></audio>");
       var myAudio = document.getElementById("myAudio");
       myAudio.currentTime = 0.1;
       togglePlay()
