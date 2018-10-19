@@ -47,9 +47,10 @@
 
         <script src="lib/_jquery/jquery.js"></script>
         <script src="js/js.js"></script>
+        <script src="js/PegarPubli.js"></script>
         <script src="../teste.js"></script>
     </head>
-    <body>
+    <body onload="jaquinha()">
         <header>
             <img src="imagens/logo_oficial.png" alt="logo">
             <form action="pesquisa.php" method="get">
@@ -108,8 +109,9 @@
                 </div>
             </section>  
         <?php } ?>
-            <section class="alinha-item">
+            <section class="alinha-item" id="pa">
                 <?php
+                /*
                     $contador = 0;
                     while($contador < count($resposta)){                
                 ?> 
@@ -202,9 +204,11 @@
                             </div>
                     </div>
                 <?php  
+                
                     $indDenun = false;                
                     $contador++;
                     }
+                    */
                 ?>  
             </section>
             </div>
