@@ -255,6 +255,7 @@ width: 100vw;
     width: 100%;
     flex-flow: column wrap;
     align-items: center;
+    padding-bottom: 60px;
 
 }
 /*pag todoas reclamacoes*/

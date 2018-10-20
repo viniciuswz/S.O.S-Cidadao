@@ -1,19 +1,54 @@
 
+var paginacao = 1;
+var validar = 0 // se for 0 roda o jaquinha se for outro valor não roda
 
-function jaquinha(){
-    var jaq;
+    function jaquinha(){
+        var jaq;
     
-    $.ajax({
-        url: '../PegarPublicacoes.php',
-        type: "get",
-        data: "pagina=1",
-        success: function(data){            
-            //$('#lista').html(data);
-            teste2(data);
-        }        
+        $.ajax({
+            url: '../PegarPublicacoes.php',
+            type: "get",
+            data: "pagina="+paginacao,
+            success: function(data){
+                if(data =="Maior"){ //Maior significa que não teve resultado para mostrar
+                    validar = 1 //então nao vamos mais rodar o jaquinha, pois chegamos ao final de todas as reclamações
+                    //alert("chegou no fim")
+                   
+                }else{//caso o resultado for outro roda normal e adiciona na paginação
+                    paginacao++ 
+                    $("#pa").append("<div style=' display:flex; justify-content:center; width:100%'>\
+                    <img src='imagens/gif2.gif' id='loader'></div>"); // adicionar a estrutura do gif no final da ultima publicação do momento no html
+                    $(window).scrollTop($(document).height()); // descer o scroll pro final
+                    setTimeout(function(){ //simular delay de carregamento
+                        $('#loader').remove();//remove a estrutura do gif do html
+                        teste2(data); //manda ver na criação de conteudo
+                    },1780); // tempo do delay
+    
+                   
+                }            
+                //$('#lista').html(data);
+                
+            }        
+    
+        });   
+    }
 
-    });   
-}
+
+
+$(document).ready(function(){
+    $(window).scroll(function() {
+        if($(window).scrollTop() == $(document).height() - $(window).height()) {
+            if(validar == 0){ // valida se roda o jaquinha ou não baseado no valor da vaiavel validar
+                jaquinha()
+            }else{
+              
+            }        
+
+        }
+        
+    });
+});
+
 
 function teste2(resposta){
     var arr1 = JSON.parse(resposta);   
@@ -115,7 +150,7 @@ function teste2(resposta){
             })
           })
       });
-    document.getElementById("pa").innerHTML = mensa;
+    //document.getElementById("pa").innerHTML = mensa;
+    $("#pa").append(mensa);
 }
-
 
