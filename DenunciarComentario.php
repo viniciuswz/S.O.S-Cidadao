@@ -11,9 +11,9 @@ try{
     $tipoUsuPermi = array('Comum','Funcionario','Prefeitura');
     Usuario::verificarLogin(1,$tipoUsuPermi);  // Tem q estar logado 
     
-    $nomesCampos = array('id_comen','texto','id_publi','pagina');// Nomes dos campos que receberei da URL    
+    $nomesCampos = array('id_comen','texto','id_publi');// Nomes dos campos que receberei da URL    
     $validar = new ValidarCampos($nomesCampos, $_POST);
-    $validar->verificarTipoInt(array('id_comen','id_publi','pagina'),$_POST); // Verificar se é um numero
+    $validar->verificarTipoInt(array('id_comen','id_publi'),$_POST); // Verificar se é um numero
     
     $denuncia = new ComentarioDenuncia();   
     $denuncia->setCodComen($_POST['id_comen']);
@@ -22,7 +22,7 @@ try{
     
     $denuncia->inserirDenuncia();
 
-    echo "<script> alert('Denuncia realizada com sucesso');javascript:window.location='./view/reclamacao.php?ID=".$_POST['id_publi']."&pagina=".$_POST['pagina']."';</script>";
+    echo "<script> alert('Denuncia realizada com sucesso');javascript:window.location='./view/reclamacao.php?ID=".$_POST['id_publi']."';</script>";
         
 }catch(Exception $exc){  
     $erro = $exc->getCode();   

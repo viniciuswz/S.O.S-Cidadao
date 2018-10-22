@@ -42,7 +42,7 @@
                    
         if(isset($_GET['com'])){                            
             if(isset($_SESSION['id_user'])){                
-                $visualizar = new VisualizarNotificacao();
+                //$visualizar = new VisualizarNotificacao();
                 if(isset($_GET['IdComen'])){
                     $idNoti = $_GET['IdComen'];
                     $comentario->setCodComen($idNoti);
@@ -50,22 +50,23 @@
                 }else{                                        
                     $idNoti = $_GET['ID'];
                 }
-                $visualizar->visualizarNotificacao($_GET['com'], $idNoti, $_SESSION['id_user']);
+                //$visualizar->visualizarNotificacao($_GET['com'], $idNoti, $_SESSION['id_user']);
             }                  
         }
 
-        if(!isset($_GET['IdComen'])){ // quero todos os comentários
+        if(isset($_SESSION['id_user']) AND isset($_GET['IdComen']) AND isset($tipoUsu) AND $tipoUsu == 'Adm' OR $tipoUsu == 'Moderador'){
+            $idNoti = $_GET['IdComen'];
+            $comentario->setCodComen($idNoti);
+            $comentarioComum = $comentario->getDadosComenByIdComen(); // preciso do comenantario denunciado  
+            $complemento = "Comentário Denunciado: ";
+        }else{ // quero todos os comentários
             $comentarioComum = $comentario->SelecionarComentariosUserComum($_GET['pagina']); // quero todos os comenatários
             if(empty($comentarioComum)){
                 $complemento = "Seja o primeiro a fazer um comentário !!";
             }else{
                 $complemento = "Comentários";
             }            
-        }else if(isset($_SESSION['id_user']) AND isset($_GET['IdComen'])){
-            $idNoti = $_GET['IdComen'];
-            $comentario->setCodComen($idNoti);
-            $comentarioComum = $comentario->getDadosComenByIdComen(); // preciso do comenantario denunciado  
-            $complemento = "Comentário Denunciado: ";
+            $_GET['IdComen'] = "";
         }
         $quantidadePaginas = $comentario->getQuantidadePaginas();
         $pagina = $comentario->getPaginaAtual(); 
@@ -98,10 +99,11 @@
 
         <script src="lib/_jquery/jquery.js"></script>
         <script src="js/js.js"></script>
+        <script src="js/PegarComen.js"></script>
         <script src="../teste.js"></script>
 
     </head>
-    <body style="background-color:white">
+    <body style="background-color:white" onload="jaquinha()">
         <header>
             <img src="imagens/logo_oficial.png" alt="logo">
             <form action="pesquisa.php" method="get">
@@ -154,6 +156,8 @@
         ?>
 
         <div id="container">
+            <input type="hidden" id="IdPublis" value="<?php echo $_GET['ID'] ?>">
+            <input type="hidden" id="IdComen" value="<?php echo $_GET['IdComen'] ?>">
             <section class="pag-reclamacao">
                 <div class="Reclamacao">   
                         <div class="publicacao-topo-aberta">
@@ -314,11 +318,12 @@
             <?php
                 }
             ?>
-            <section class="comentarios">
+            <section class="comentarios" id="pa">
                 <h3>
                     <?php echo $complemento ?>
                 </h3>
                 <?php 
+                /*
                     $indDenun = false;
                     $contador = 0;
                     while($contador < count($comentarioComum)){
@@ -411,10 +416,13 @@
                     $indDenun = false;
                     $indEditarComen = false;
                     $contador++;
+                   
                 }
+                 */
                 ?>
                 <ul>
-                    <?php                    
+                    <?php    
+                    /*                
                         if($quantidadePaginas != 1){
                             $contador = 1;
                             while($contador <= $quantidadePaginas){
@@ -425,7 +433,8 @@
                                 }                            
                                 $contador++;        
                             }
-                        }            
+                        }    
+                        */        
                     ?>
                 </ul> 
             </section>     

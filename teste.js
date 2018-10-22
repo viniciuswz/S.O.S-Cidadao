@@ -7,13 +7,13 @@ function jaca(){
 
         success: function(data){            
             //$('#lista').html(data);
-            teste(data);
+            escreverNoti(data);
         }        
 
     });   
 }
 
-function teste(resposta){
+function escreverNoti(resposta){
     var arr1 = JSON.parse(resposta);
     document.getElementById('menu23').innerHTML = "";
     document.getElementById('noti').innerHTML = "";
