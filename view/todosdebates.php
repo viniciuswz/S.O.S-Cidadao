@@ -4,22 +4,22 @@ session_start();
     require_once(SITE_ROOT.DS.'autoload.php');
     
     use Core\Usuario;    
-    use Core\Debate;    
+    //use Core\Debate;    
     try{
-        $debate = new Debate();
+        //$debate = new Debate();
         if(isset($_SESSION['id_user']) AND !empty($_SESSION['id_user'])){
-            $debate->setCodUsu($_SESSION['id_user']);
+            //$debate->setCodUsu($_SESSION['id_user']);
             $tipoUsu = $_SESSION['tipo_usu'];
 
             $dados = new Usuario();
             $dados->setCodUsu($_SESSION['id_user']);
             $resultado = $dados->getDadosUser();
         } 
-        isset($_GET['pagina']) ?: $_GET['pagina'] = null;        
+        //isset($_GET['pagina']) ?: $_GET['pagina'] = null;        
         
-        $resposta = $debate->ListFromALL($_GET['pagina']);       
-        $quantidadePaginas = $debate->getQuantidadePaginas();
-        $pagina = $debate->getPaginaAtual();        
+        //$resposta = $debate->ListFromALL($_GET['pagina']);       
+        //$quantidadePaginas = $debate->getQuantidadePaginas();
+        //$pagina = $debate->getPaginaAtual();        
 ?>
 <!DOCTYPE html>
 <html lang=pt-br>
@@ -195,6 +195,7 @@ session_start();
                 </div>
                 <ul>
                     <?php
+                    /*
                         if($quantidadePaginas != 1){
                             $contador = 1;
                             while($contador <= $quantidadePaginas){
@@ -205,7 +206,8 @@ session_start();
                                 }                                
                                 $contador++;        
                             }
-                        }                        
+                        }     
+                        */                   
                     ?>
                 </ul>
 </body>

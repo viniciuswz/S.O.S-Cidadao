@@ -4,21 +4,21 @@
     require_once(SITE_ROOT.DS.'autoload.php');
     
     use Core\Usuario;
-    use Core\Publicacao;    
+    //use Core\Publicacao;    
     try{        
-        $publi = new Publicacao();        
+        //$publi = new Publicacao();        
         if(isset($_SESSION['id_user']) AND !empty($_SESSION['id_user'])){
-            $publi->setCodUsu($_SESSION['id_user']);
+            //$publi->setCodUsu($_SESSION['id_user']);
             $tipoUsu = $_SESSION['tipo_usu'];
             $dados = new Usuario();
             $dados->setCodUsu($_SESSION['id_user']);
             $resultado = $dados->getDadosUser();
         }    
-        isset($_GET['pagina']) ?: $_GET['pagina'] = null;    
+        //isset($_GET['pagina']) ?: $_GET['pagina'] = null;    
                    
-        $resposta = $publi->ListFromALL($_GET['pagina']);        
-        $quantidadePaginas = $publi->getQuantidadePaginas();
-        $pagina = $publi->getPaginaAtual();   
+        //$resposta = $publi->ListFromALL($_GET['pagina']);        
+        //$quantidadePaginas = $publi->getQuantidadePaginas();
+        //$pagina = $publi->getPaginaAtual();   
 ?>
 <!DOCTYPE html>
 <html lang=pt-br>
