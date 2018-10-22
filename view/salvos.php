@@ -48,10 +48,11 @@ session_start();
 
         <script src="lib/_jquery/jquery.js"></script>
         <script src="js/js.js"></script>
+        <script src="js/PegarPubliSalva.js"></script>
         <script src="../teste.js"></script>
 
     </head>
-    <body>
+    <body onload="jaquinha()">
         <header>
             <img src="imagens/logo_oficial.png" alt="logo">
             <form action="pesquisa.php" method="get">
@@ -114,8 +115,9 @@ session_start();
                     }
                 ?>
             </div>
-            <section class="alinha-item">
+            <section class="alinha-item" id="pa">
             <?php
+            /*
                 $contador = 0;
                 while($contador < count($resposta)){                
             ?>  
@@ -201,6 +203,7 @@ session_start();
                         $indDenun = false;    
                         $contador++;
                         }
+                        */
                     ?>
             </section>
         </div>
