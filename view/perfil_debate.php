@@ -105,13 +105,25 @@
         <script src="lib/_jquery/jquery.js"></script>
         <script src="js/js.js"></script>
         <script src="../teste.js"></script>
+        <?php
+            if($descPerfilVisu == 'Prefeitura'){ 
+        ?>
+                <script src="js/PegarPubliPerfPrefei.js"></script>
+        <?php
+            }else{
+        ?>
+                <script src="js/PegarDebaPerfil.js"></script>
+        <?php
+            }
+        ?>
+        
         <!-- cropp-->
 
         <link rel="stylesheet" href="lib/_croppie-master/croppie.css">
         <script src="lib/_croppie-master/croppie.js"></script>
         <script src="lib/_croppie-master/exif.js"></script>
     </head>
-    <body>
+    <body onload="jaquinha()">
         <header>
             <img src="imagens/logo_oficial.png" alt="logo">
             <form action="pesquisa.php" method="get">
@@ -165,6 +177,7 @@
 
 
         <div id="container">
+        <input type="hidden" id="IDPefil" value="<?php echo $id?>">
             <section class="perfil-base" id="baconP">
                 
                 <div class="perfil">
@@ -214,12 +227,13 @@
                     
                 </ul>
             </nav>
-            <section class="alinha-item">
+            <section class="alinha-item" id="pa">
             <?php
                 if(empty($resposta)){
                     echo '<span style="color:white">Não há debates para serem exibidos</span>';
                     //exit();
-                }                
+                }            
+                /*    
                 $contador = 0;
                 while($contador < count($resposta)){ 
                     if($descPerfilVisu != 'Prefeitura'){               
@@ -414,7 +428,7 @@
                     $contador++;        
                 }
             }
-            
+            */
         ?>
         </ul>
 
