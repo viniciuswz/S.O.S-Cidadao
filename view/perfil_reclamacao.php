@@ -3,7 +3,7 @@
     require_once('../Config/Config.php');
     require_once(SITE_ROOT.DS.'autoload.php');   
     use Core\Usuario;
-    use Core\Publicacao;
+    //use Core\Publicacao;
     use Classes\ValidarCampos;
     
     try{   
@@ -55,23 +55,23 @@
                 }
         }}    
 
-        $publi = new Publicacao();    
-        $publi->setCodUsu($id);
+        //$publi = new Publicacao();    
+        //$publi->setCodUsu($id);
         isset($_GET['pagina']) ?: $_GET['pagina'] = null; 
 
         if($descPerfilVisu == 'Prefeitura'){
            $nomeLink1 = 'Reclamações Não Respondidas';
            $nomeLink2 = 'Reclamações Respondidas'; 
-           $resposta = $publi->getPubliNRespo($_GET['pagina'], TRUE);  
+           //$resposta = $publi->getPubliNRespo($_GET['pagina'], TRUE);  
         }else{
             isset($_SESSION['id_user']) ? $idVisualizador = $_SESSION['id_user'] : $idVisualizador = null;
             $nomeLink1 = 'Reclamação';
             $nomeLink2 = 'Debate';
-            $resposta = $publi->ListByIdUser($_GET['pagina'], $idVisualizador);  
+            //$resposta = $publi->ListByIdUser($_GET['pagina'], $idVisualizador);  
         }      
           
-        $quantidadePaginas = $publi->getQuantidadePaginas();
-        $pagina = $publi->getPaginaAtual();
+        //$quantidadePaginas = $publi->getQuantidadePaginas();
+        //$pagina = $publi->getPaginaAtual();
 ?>
 <!DOCTYPE html>
 <html lang=pt-br>
@@ -100,10 +100,11 @@
 
         <script src="lib/_jquery/jquery.js"></script>
         <script src="js/js.js"></script>
+        <script src="js/PegarPubliPerfil.js"></script>
         <script src="../teste.js"></script>
 
     </head>
-    <body>
+    <body onload="jaquinha()">
         <header>
             <img src="imagens/logo_oficial.png" alt="logo">
             <form action="pesquisa.php" method="get">
@@ -156,6 +157,7 @@
        ?>
 
         <div id="container">
+        <input type="hidden" id="IDPefil" value="<?php echo $id?>">
             <section class="perfil-base" >                
                 <div class="perfil">
                         <?php 
@@ -214,12 +216,10 @@
                     
                 </ul>
             </nav>
-            <section class="alinha-item">
+            <section class="alinha-item" id="pa">
             <?php
-                if(empty($resposta)){
-                    echo '<span style="color:white">Não há reclamações para serem exibidos</span>';
-                    //exit();
-                }
+                
+                /*
                 $contador = 0;
                 while($contador < count($resposta)){                
             ?>  
@@ -317,11 +317,13 @@
                     $indDenun = false;                 
                     $contador++;
                     }
+                    */
                 ?>                
             </section>            
         </div>
         <ul>
         <?php
+        /*
             if($quantidadePaginas != 1){
                 $contador = 1;
                 while($contador <= $quantidadePaginas){
@@ -340,7 +342,8 @@
                     }                    
                     $contador++;        
                 }
-            }            
+            }      
+            */      
         ?>
         </ul>
     </body>
