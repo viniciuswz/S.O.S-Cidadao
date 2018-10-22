@@ -3,7 +3,7 @@ session_start();
     require_once('../Config/Config.php');
     require_once(SITE_ROOT.DS.'autoload.php');   
     use Core\Usuario;
-    use Core\PublicacaoSalva;
+    //use Core\PublicacaoSalva;
     
     try{        
         $tipoUsuPermi = array('Prefeitura','Adm','Funcionario','Moderador','Comum');
@@ -14,12 +14,12 @@ session_start();
         $resultado = $usu->getDadosUser();
         $tipoUsu = $_SESSION['tipo_usu'];
         
-        $publiSalva = new PublicacaoSalva();
-        $publiSalva->setCodUsu($_SESSION['id_user']);
-        isset($_GET['pagina']) ?: $_GET['pagina'] = null;   
-        $resposta = $publiSalva->SelectPubliSalvaByIdUser($_GET['pagina']);        
-        $quantidadePaginas = $publiSalva->getQuantidadePaginas();
-        $pagina = $publiSalva->getPaginaAtual();   
+        //$publiSalva = new PublicacaoSalva();
+        //$publiSalva->setCodUsu($_SESSION['id_user']);
+        //isset($_GET['pagina']) ?: $_GET['pagina'] = null;   
+        //$resposta = $publiSalva->SelectPubliSalvaByIdUser($_GET['pagina']);        
+        //$quantidadePaginas = $publiSalva->getQuantidadePaginas();
+        //$pagina = $publiSalva->getPaginaAtual();   
 ?>
 <!DOCTYPE html>
 <html lang=pt-br>
@@ -209,6 +209,7 @@ session_start();
         </div>
         <ul>
             <?php
+            /*
                 if($quantidadePaginas != 1){
                     $contador = 1;
                     while($contador <= $quantidadePaginas){
@@ -219,7 +220,8 @@ session_start();
                         }                        
                         $contador++;        
                     }
-                }                
+                }        
+                */        
             ?>
         </ul>
     </body>
