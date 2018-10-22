@@ -1,7 +1,7 @@
 
 var paginacao = 1;
 var validar = 0 // se for 0 roda o jaquinha se for outro valor não roda
-var teste = false;
+
     function jaquinha(){
         var jaq;
     
@@ -25,16 +25,11 @@ var teste = false;
                     },1780); // tempo do delay
     
                    
-                    setTimeout(function(){ //simular delay de carregamento
-                        teste = false;
-                    },2000);
-                    teste = true;
                 }            
                 //$('#lista').html(data);
                 
             }        
-            
-
+    
         });   
     }
 
@@ -44,10 +39,7 @@ $(document).ready(function(){
     $(window).scroll(function() {
         if($(window).scrollTop() == $(document).height() - $(window).height()) {
             if(validar == 0){ // valida se roda o jaquinha ou não baseado no valor da vaiavel validar
-                if(teste == false){
-                    jaquinha()
-                }
-                
+                jaquinha()
             }else{
               
             }        
@@ -160,6 +152,5 @@ function teste2(resposta){
       });
     //document.getElementById("pa").innerHTML = mensa;
     $("#pa").append(mensa);
-    teste = true;
 }
 
