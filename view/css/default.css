@@ -715,12 +715,12 @@ nav.notificacoes ul li a span:first-of-type{
 
 .item-publicacao figure img{
     align-self: center;
-    height: 100%;
+    width: 100%;
     position: relative;
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
-    background-color: blueviolet;
+    /*background-color: blueviolet;*/
 }
 
 .item-publicacao figure + p{

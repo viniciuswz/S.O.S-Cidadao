@@ -20,7 +20,7 @@ var teste = false;
                     paginacao++ 
                     $("#pa").append("<div style=' display:flex; justify-content:center; width:100%'>\
                     <img src='imagens/gif2.gif' id='loader'></div>"); // adicionar a estrutura do gif no final da ultima publicação do momento no html
-                    $(window).scrollTop($(document).height()); // descer o scroll pro final
+                   // $(window).scrollTop($(document).height()); // descer o scroll pro final
                     setTimeout(function(){ //simular delay de carregamento
                         $('#loader').remove();//remove a estrutura do gif do html
                         teste2(data); //manda ver na criação de conteudo
@@ -136,51 +136,51 @@ function teste2(resposta){
                 </p></div>';
     }
 
-    $(document).ready(function(){
-        jQuery(function($){
+    // $(document).ready(function(){
+    //     jQuery(function($){
         
-          $(".icone-3pontos").click(function(){
-            var $this = $(this);
-            $this.parent().toggleClass('mini-menu-item-ativo')
-          })
-        });
+    //       $(".icone-3pontos").click(function(){
+    //         var $this = $(this);
+    //         $this.parent().toggleClass('mini-menu-item-ativo')
+    //       })
+    //     });
 
-        jQuery(function($){
-            /* abrir quando */
-            $(".denunciar-item").click(function(){
+    //     jQuery(function($){
+    //         /* abrir quando */
+    //         $(".denunciar-item").click(function(){
              
-              $(this).parents(":eq(2)").find("div.modal-denunciar").addClass("modal-denunciar-ativo");
-              $("body").css("overflow","hidden")
-            })
-            /* fechar quando clicar fora*/
-            $(".modal-denunciar-fundo").click(function(){
-              $(this).parent().removeClass("modal-denunciar-ativo");
-              $("body").css("overflow","auto")
-            })
-            /* fechar quando clicar no X*/
-            $(".fechar-denuncia").click(function(){
-              $(this).parents(":eq(2)").removeClass("modal-denunciar-ativo");
-              $("body").css("overflow","auto")
-            })
-          });
+    //           $(this).parents(":eq(2)").find("div.modal-denunciar").addClass("modal-denunciar-ativo");
+    //           $("body").css("overflow","hidden")
+    //         })
+    //         /* fechar quando clicar fora*/
+    //         $(".modal-denunciar-fundo").click(function(){
+    //           $(this).parent().removeClass("modal-denunciar-ativo");
+    //           $("body").css("overflow","auto")
+    //         })
+    //         /* fechar quando clicar no X*/
+    //         $(".fechar-denuncia").click(function(){
+    //           $(this).parents(":eq(2)").removeClass("modal-denunciar-ativo");
+    //           $("body").css("overflow","auto")
+    //         })
+    //       });
 
-          jQuery(function($){
-            /* abrir quando */
-            $(".editar-comentario").click(function(){
-              $(this).parents(":eq(2)").find("div.modal-editar-comentario").addClass("modal-editar-comentario-ativo");
-            })
-            /* fechar quando clicar fora*/
-            $(".modal-editar-comentario-fundo").click(function(){
-              $(this).parent().removeClass("modal-editar-comentario-ativo");
-            })
-            /* fechar quando clicar no X*/
-            $(".fechar-editar-comentario").click(function(){
-              $(this).parents(":eq(2)").removeClass("modal-editar-comentario-ativo");
-            })
-          })
+    //       jQuery(function($){
+    //         /* abrir quando */
+    //         $(".editar-comentario").click(function(){
+    //           $(this).parents(":eq(2)").find("div.modal-editar-comentario").addClass("modal-editar-comentario-ativo");
+    //         })
+    //         /* fechar quando clicar fora*/
+    //         $(".modal-editar-comentario-fundo").click(function(){
+    //           $(this).parent().removeClass("modal-editar-comentario-ativo");
+    //         })
+    //         /* fechar quando clicar no X*/
+    //         $(".fechar-editar-comentario").click(function(){
+    //           $(this).parents(":eq(2)").removeClass("modal-editar-comentario-ativo");
+    //         })
+    //       })
 
           
-      });
+    //   });
     //document.getElementById("pa").innerHTML = mensa;
     $("#pa").append(mensa);
     teste = true;

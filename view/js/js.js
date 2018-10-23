@@ -97,9 +97,12 @@ jQuery(function($) {
 
 jQuery(function($){
   
-  $(".icone-3pontos").click(function(){
-    var $this = $(this);
-    $this.parent().toggleClass('mini-menu-item-ativo')
+
+  
+  jQuery(document).on("click",".icone-3pontos", function(event){
+    //alert("oi");
+     var $this = $(this);
+     $this.parent().toggleClass('mini-menu-item-ativo')
   })
 })
 
@@ -426,7 +429,9 @@ jQuery(function($){
 
 
 jQuery(function($){
-  $(".tabelinha-linha").click(function(){
+
+  jQuery(document).on("click",".tabelinha-linha", function(event){
+  //$(".tabelinha-linha").click(function(){
     var $this = $(this);
     var classe = $this.attr('class');
     var motivo = $this.find('div.motivo').attr("class");
@@ -449,7 +454,9 @@ jQuery(function($){
     
     
   })
-  $(".mini-menu-adm").click(function(){
+
+  jQuery(document).on("click",".mini-menu-adm", function(event){
+  //$(".mini-menu-adm").click(function(){
     $(this).find("td:nth-child(1)").find("div").removeClass("mini-menu-adm-ativo")
   })
 })
@@ -458,7 +465,8 @@ jQuery(function($){
 jQuery(function($){
   
   /*ativar quando clicar e remover tag de ativar */
-  $(".motivo-ativar").click(function(){
+  jQuery(document).on("click",".motivo-ativar", function(event){
+  //$(".motivo-ativar").click(function(){
     
     $(this).parents(":eq(3)").find("div.motivo").addClass("motivo-ativo");
     $(this).parents(":eq(4)").removeClass("tabelinha-linha");
@@ -480,13 +488,15 @@ jQuery(function($){
   
   
   /*fechar quando clicar e colocar de novo tag de ativar*/
-  $(".fechar-motivo").click(function(){
+  jQuery(document).on("click",".fechar-motivo", function(event){
+  //$(".fechar-motivo").click(function(){
     $(this).parents(":eq(2)").removeClass("motivo-ativo");
     $(this).parents(":eq(4)").addClass("tabelinha-linha")
     $("body").css("overflow","auto");
   })
   /*fechar quando clicar fora e adicionar class de ativar */
-  $(".motivo-fundo").click(function(){
+  jQuery(document).on("click",".motivo-fundo", function(event){
+  //$(".motivo-fundo").click(function(){
     $(this).parent().removeClass("motivo-ativo");
     $(this).parents(":eq(2)").addClass("tabelinha-linha")
     $("body").css("overflow","auto");
@@ -498,18 +508,21 @@ jQuery(function($){
 /* denuncia */
 jQuery(function($){
   /* abrir quando */
-  $(".denunciar-item").click(function(){
+  jQuery(document).on("click",".denunciar-item", function(event){
+  //$(".denunciar-item").click(function(){
     
     $(this).parents(":eq(2)").find("div.modal-denunciar").addClass("modal-denunciar-ativo");
     $("body").css("overflow","hidden")
   })
   /* fechar quando clicar fora*/
-  $(".modal-denunciar-fundo").click(function(){
+  jQuery(document).on("click",".modal-denunciar-fundo", function(event){
+  //$(".modal-denunciar-fundo").click(function(){
     $(this).parent().removeClass("modal-denunciar-ativo");
     $("body").css("overflow","auto")
   })
   /* fechar quando clicar no X*/
-  $(".fechar-denuncia").click(function(){
+  jQuery(document).on("click",".fechar-denuncia", function(event){
+ // $(".fechar-denuncia").click(function(){
     $(this).parents(":eq(2)").removeClass("modal-denunciar-ativo");
     $("body").css("overflow","auto")
   })
@@ -518,15 +531,18 @@ jQuery(function($){
 /* modal editar comentario */
 jQuery(function($){
   /* abrir quando */
-  $(".editar-comentario").click(function(){
+  jQuery(document).on("click",".editar-comentario", function(event){
+ // $(".editar-comentario").click(function(){
     $(this).parents(":eq(2)").find("div.modal-editar-comentario").addClass("modal-editar-comentario-ativo");
   })
   /* fechar quando clicar fora*/
-  $(".modal-editar-comentario-fundo").click(function(){
+  jQuery(document).on("click",".modal-editar-comentario-fundo", function(event){
+//$(".modal-editar-comentario-fundo").click(function(){
     $(this).parent().removeClass("modal-editar-comentario-ativo");
   })
   /* fechar quando clicar no X*/
-  $(".fechar-editar-comentario").click(function(){
+  jQuery(document).on("click",".fechar-editar-comentario", function(event){
+  //$(".fechar-editar-comentario").click(function(){
     $(this).parents(":eq(2)").removeClass("modal-editar-comentario-ativo");
   })
 })
@@ -576,11 +592,13 @@ jQuery(function($){
 jQuery(function($){
   
   /* fechar quando clicar fora*/
-  $(".modal-erro-fundo").click(function(){
+  jQuery(document).on("click",".modal-erro-fundo", function(event){
+  //$(".modal-erro-fundo").click(function(){
     $(this).parent().remove();
   })
   /* fechar quando clicar no X*/
-  $(".fechar-erro").click(function(){
+  jQuery(document).on("click",".fechar-erro", function(event){
+ // $(".fechar-erro").click(function(){
     $(this).parents(":eq(2)").remove();
   })
 })

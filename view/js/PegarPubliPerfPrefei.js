@@ -131,34 +131,7 @@ function teste2(resposta){
                         </div>';
     }
 
-    $(document).ready(function(){
-        jQuery(function($){
-        
-          $(".icone-3pontos").click(function(){
-            var $this = $(this);
-            $this.parent().toggleClass('mini-menu-item-ativo')
-          })
-        });
 
-        jQuery(function($){
-            /* abrir quando */
-            $(".denunciar-item").click(function(){
-             
-              $(this).parents(":eq(2)").find("div.modal-denunciar").addClass("modal-denunciar-ativo");
-              $("body").css("overflow","hidden")
-            })
-            /* fechar quando clicar fora*/
-            $(".modal-denunciar-fundo").click(function(){
-              $(this).parent().removeClass("modal-denunciar-ativo");
-              $("body").css("overflow","auto")
-            })
-            /* fechar quando clicar no X*/
-            $(".fechar-denuncia").click(function(){
-              $(this).parents(":eq(2)").removeClass("modal-denunciar-ativo");
-              $("body").css("overflow","auto")
-            })
-          })
-      });
     //document.getElementById("pa").innerHTML = mensa;
     $("#pa").append(mensa);
     teste = true;
