@@ -14,7 +14,7 @@ class MensagensA extends MensagensM{
                                                 INNER JOIN mensagem_visualizacao ON(mensagem_visualizacao.cod_mensa = mensagem.cod_mensa)
                                                 WHERE mensagem.cod_deba = '%s' AND status_deba = 'A' %s";
     
-    private $sqlSelectMensagens = "SELECT texto_mensa,TIME_FORMAT(dataHora_mensa, '%s') AS hora, 
+    private $sqlSelectMensagens = "SELECT mensagem.cod_mensa,texto_mensa,TIME_FORMAT(dataHora_mensa, '%s') AS hora, 
                                         mensagem.cod_usu, nome_usu, descri_tipo_usu,img_perfil_usu, %s
                                         DATEDIFF('%s',dataHora_mensa) AS diferenca, TIME_FORMAT(dataHora_mensa, '%s') AS data
                                         FROM mensagem INNER JOIN usuario ON(mensagem.cod_usu = usuario.cod_usu)
