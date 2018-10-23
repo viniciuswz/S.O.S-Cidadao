@@ -22,22 +22,23 @@ jQuery(function($)
   
   $("#deiLike").click(function(){
    var id = $("#IdPublis").val();
-   var classe = $(this).find('i').attr("class")
-   //alert(classe)
+   var classe = $(this).find('i').attr("class");   
     $.ajax({
       url:"../CurtirPublicacao.php",
       type: "get",
       data: "ID="+id,
       success:function(result){
-       // alert(result);
-      if(classe =="icone-like-full"){
-        $("#deiLike").find("i").attr("class","icone-like"); 
-        $("#qtd_likes").text(result);      
-      }else{
-        $("#deiLike").find("i").attr("class","icone-like-full");         
-        $("#qtd_likes").text(result);
-        //alert(like);  
-      }
+          if(result == 'NLogado'){ // Nao esta logado, redirecionar pra fazer login
+            location.href="login.php";
+            return false;
+          }          
+          if(classe =="icone-like-full"){
+            $("#deiLike").find("i").attr("class","icone-like"); 
+            $("#qtd_likes").text(result);      
+          }else{
+            $("#deiLike").find("i").attr("class","icone-like-full");         
+            $("#qtd_likes").text(result);            
+          }
 
       }
    })
