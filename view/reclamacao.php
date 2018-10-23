@@ -54,7 +54,7 @@
             }                  
         }
 
-        if(isset($_SESSION['id_user']) AND isset($_GET['IdComen']) AND isset($tipoUsu) AND $tipoUsu == 'Adm' OR $tipoUsu == 'Moderador'){
+        if(isset($_SESSION['id_user']) AND isset($_GET['IdComen']) AND isset($tipoUsu) AND ($tipoUsu == 'Adm' OR $tipoUsu == 'Moderador')){
             $idNoti = $_GET['IdComen'];
             $comentario->setCodComen($idNoti);
             $comentarioComum = $comentario->getDadosComenByIdComen(); // preciso do comenantario denunciado  
@@ -276,13 +276,13 @@
             <div class="barra-curtir-publicacao"> 
                     <div>
                         <span><?php echo $resposta[0]['quantidade_comen']?></span><i class="icone-comentario-full"></i>
-                        <span><?php echo $resposta[0]['quantidade_curtidas']?></span><i class="icone-like"></i>
+                        <span id="qtd_likes"><?php echo $resposta[0]['quantidade_curtidas']?></span><i class="icone-like"></i>
                     </div>
                     <?php
                         if(isset($resposta[0]['indCurtidaDoUser']) AND $resposta[0]['indCurtidaDoUser'] == TRUE){            
-                            echo '<a href="../CurtirPublicacao.php?ID='.$_GET['ID'].'"><i class="icone-like-full"></i> Like</a>';            
+                            echo '<a href="../CurtirPublicacao.php?ID='.$_GET['ID'].'" id="deiLike"><i class="icone-like-full"></i> Like</a>';            
                         }else{                     
-                            echo '<a href="../CurtirPublicacao.php?ID='.$_GET['ID'].'"><i class="icone-like"></i> Like</a>';  
+                            echo '<a href="../CurtirPublicacao.php?ID='.$_GET['ID'].'" id="deiLike"><i class="icone-like"></i> Like</a>';  
                         }
                     ?>
                 
