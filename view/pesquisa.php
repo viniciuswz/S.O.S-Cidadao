@@ -46,6 +46,7 @@ session_start();
         }else{
             $_GET['tipo'][0] = "Deba";
             $_GET['tipo'][1] = "Publi";
+            $parametro = "tipo[]=Deba&tipo[]=Publi";
         }   
         $resPes = $pes->pesquisar($_GET['pagina'],$_GET['tipo']);
         $quantidadePaginas = $pes->getQuantidadePaginas();
@@ -78,10 +79,11 @@ session_start();
 
         <script src="lib/_jquery/jquery.js"></script>
         <script src="js/js.js"></script>
+        <script src="js/PegarPesquisa.js"></script>
         <script src="../teste.js"></script>
 
     </head>
-    <body>
+    <body onload="jaquinha()">
         <header>
             <img src="imagens/logo_oficial.png" alt="logo">
             <form action="pesquisa.php" method="get">
@@ -176,9 +178,10 @@ session_start();
                         <input type="submit" class="botao-filtro" value="Filtrar">
                     </form>
                 </section>
-                <section class="alinha-item">
-
+                <section class="alinha-item" id="pa">
+                    <input type="hidden" id="parametros" value="<?php echo $parametro?>">
                     <?php
+                    /*
                     $contador = 0;
                     while($contador < count($resPes)){       
                         if($resPes[$contador]['tipo'] == 'Debate'){
@@ -345,10 +348,12 @@ session_start();
                                 $indDenun = false;
                                 $contador++;
                                 }
+                                */
                             ?>    
                     </section>
                     <ul>
                             <?php
+                            /*
                                 if($quantidadePaginas != 1){
                                     $contador = 1;
                                     while($contador <= $quantidadePaginas){
@@ -361,7 +366,7 @@ session_start();
                                         $contador++;        
                                     }
                                 }
-                                
+                                */
                             ?>
                     </ul>                  
         </div>

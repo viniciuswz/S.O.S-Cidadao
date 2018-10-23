@@ -30,7 +30,10 @@ class Pesquisa extends PesquisaM{
                                     WHERE descri_tipo_usu = 'Comum' AND status_usu = 'A' AND status_deba = 'A' 
                                     AND (tema_deba LIKE '%s' OR descri_deba LIKE '%s' OR nome_deba LIKE '%s' %s)
                                     %s %s";
-    private $resultados = array();                     
+    private $resultados = array();             
+    
+    private $qtdDd;
+    private $qtdPubli;
 
     public function pesquisar($pagina = null,$filtro = array()){
         if(empty($filtro)){ // nao quero filtos
@@ -55,6 +58,7 @@ class Pesquisa extends PesquisaM{
 
     public function pesquisarPubli($pagina){
         $paginacao = $this->controlarPaginacao('Publi',$pagina); // paginacao
+        $this->setMaiorQuant($this->getQuantidadePaginas()); // setar quantidade de paginas
         if($pagina > $this->getQuantidadePaginas()){ // exemplo pra publi so tem 7, mas pra deva tem 10 paginas, quando eu estiver na 8
             return; // vai ficar carregando as publicacoes da pgina 9 da publi, ou seja repete, nao quero isso
         }// por isso faco parar a execucao
@@ -80,6 +84,7 @@ class Pesquisa extends PesquisaM{
 
     public function pesquisarDeba($pagina){        
         $paginacao = $this->controlarPaginacao('Deba',$pagina); // paginacao
+        $this->setMaiorQuant($this->getQuantidadePaginas());
         if($pagina > $this->getQuantidadePaginas()){ // exemplo pra publi so tem 7, mas pra deva tem 10 paginas, quando eu estiver na 8
             return; // vai ficar carregando as publicacoes da pgina 9 da publi, ou seja repete, nao quero isso
         }// por isso faco parar a execucao
