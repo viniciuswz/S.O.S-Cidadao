@@ -20,7 +20,30 @@ jQuery(function($)
   })
   $(".fechar").click(fechar);
   
-  
+  $("#deiLike").click(function(){
+   var id = $("#IdPublis").val();
+   var classe = $(this).find('i').attr("class")
+   //alert(classe)
+    $.ajax({
+      url:"../CurtirPublicacao.php",
+      type: "get",
+      data: "ID="+id,
+      success:function(result){
+       // alert(result);
+      if(classe =="icone-like-full"){
+        $("#deiLike").find("i").attr("class","icone-like"); 
+        $("#qtd_likes").text(result);      
+      }else{
+        $("#deiLike").find("i").attr("class","icone-like-full");         
+        $("#qtd_likes").text(result);
+        //alert(like);  
+      }
+
+      }
+   })
+   return false;
+  })
+ 
 })
 
 jQuery(function($)
