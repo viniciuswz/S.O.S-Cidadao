@@ -16,7 +16,7 @@ var teste = false;
                    
                 }else{//caso o resultado for outro roda normal e adiciona na paginação
                     paginacao++ 
-                    $("#pa").append("<div style=' display:flex; justify-content:center; width:100%'>\
+                   $("#pa").append("<div style=' display:flex; justify-content:center; width:100%' id='loader'>\
                     <img src='imagens/gif2.gif' id='loader'></div>"); // adicionar a estrutura do gif no final da ultima publicação do momento no html
                     $(window).scrollTop($(document).height()); // descer o scroll pro final
                     setTimeout(function(){ //simular delay de carregamento
