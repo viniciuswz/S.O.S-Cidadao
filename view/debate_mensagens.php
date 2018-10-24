@@ -68,7 +68,9 @@ session_start();
 
         <script src="lib/_jquery/jquery.js"></script>
         <script src="js/js.js"></script>
+     
         <script src="../TesteMensagem.js"></script>
+        <script src="js/rolagemChat.js"></script>
 
     </head>
     <body>
@@ -298,7 +300,7 @@ session_start();
                     ?>
                         <input type="hidden" name="ID" value="<?php echo $_GET['ID'] ?>" />
                         <input type="hidden" name="pagina" value="<?php echo $pagina ?>" />
-                        <input type="text" name="texto" id="texto" placeholder="digite aqui..." ><button type="submit"> ></button> 
+                        <input type="text" name="texto" id="texto" placeholder="digite aqui..." autocomplete="off"><button type="submit"> ></button> 
                    <?php
                         }
                     ?>

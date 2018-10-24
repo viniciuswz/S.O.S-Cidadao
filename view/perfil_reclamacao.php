@@ -103,6 +103,13 @@
         <script src="js/PegarPubliPerfil.js"></script>
         <script src="../teste.js"></script>
 
+                
+        <!-- cropp-->
+
+        <link rel="stylesheet" href="lib/_croppie-master/croppie.css">
+        <script src="lib/_croppie-master/croppie.js"></script>
+        <script src="lib/_croppie-master/exif.js"></script>
+
     </head>
     <body onload="jaquinha()">
         <header>
@@ -158,19 +165,14 @@
 
         <div id="container">
         <input type="hidden" id="IDPefil" value="<?php echo $id?>">
-            <section class="perfil-base" >                
+        <section class="perfil-base" id="baconP">
+                
                 <div class="perfil">
                         <?php 
                             if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $dadosPerfil[0]['cod_usu']){
+                                // vinicius esqueceu o formulario
                         ?>
-                        <i class="icone-edit-full" id="trocar-capa" title="Alterar a foto de capa"></i>
-                            <!-- 
-                            <form action="../UpdateImagem.php" method="post" enctype="multipart/form-data">
-                                    <label for="imagem"><i class="icone-edit-full"></i></label>
-                                    <input type="file" id="imagem">
-                                    <input type="hidden" value="capa" name="tipo">                                
-                            </form>
-                            -->    
+                            <i class="icone-edit-full" id="trocar-capa" title="Alterar a foto de capa"></i>
                         <?php 
                             }
                         ?>
@@ -184,21 +186,17 @@
                         <div>
                             <img src="../Img/perfil/<?php echo $dadosPerfil[0]['img_perfil_usu'] ?>">
                         </div>
+
                         <?php 
                             if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $dadosPerfil[0]['cod_usu']){
+                                // vinicius esqueceu o formulario
                         ?>
-                        
-                            <i class="icone-edit-full" id="trocar-perfil" title="Alterar a foto de perfil"></i>
-                            <!-- 
-                            <form action="../UpdateImagem.php" method="post" enctype="multipart/form-data">
-                                <label for="imagem"><i class="icone-edit-full" title="Alterar a foto de perfil"></i></label>
-                                <input type="file" id="imagem">
-                                <input type="hidden" value="perfil" name="tipo">  
-                            </form>-->
+                                <i class="icone-edit-full" id="trocar-perfil" title="Alterar a foto de perfil"></i>
                         <?php 
                             }
                         ?>
                 </div>
+
                
             </section>
             <nav class="menu-perfil">
@@ -346,6 +344,138 @@
             */      
         ?>
         </ul>
+        
+        <div class="modal-troca-foto">
+            <div class="modal-troca-foto-fundo"></div>
+            <div class="box-troca-foto">
+                <div class="modal-titulo">
+                    <h1>trocar foto de capa</h1>
+                    <span class="fechar-troca-foto">&times;</span>
+                </div>
+                <div class="img-capa-corta">
+                   <img src="">
+                </div>
+                <div>  
+                <div class="aviso-form-inicial ">
+                        <p>O campo tal e pa</p>
+                    </div>               
+                    <form id="trocarcapa">
+                        <label for="fotoCapa"><p>Escolher foto</p></label>
+                        <input type="file" name="fotocapa" id="fotoCapa">
+                        <input type="hidden" name="base64FotoCapa" id="base64FotoCapa" value="jaca">
+                    </form>
+                    <button id="cortar">Cortar foto</button>
+                </div>
+            </div>
+        </div> 
+
+        <div class="modal-troca-foto-previa">
+            <div class="modal-troca-foto-previa-fundo"></div>
+            <div class="box-troca-foto-previa">
+                <div>
+                    <h1>Gostou?</h1>
+                    <span class="fechar-troca-foto-previa">&times;</span>
+                </div>
+                <div>                 
+                    <img src="" class="previewCapa" style="width: 100%">
+                    <button class="alterar-capa">enviar foto</button>
+
+                    <button class="outra-capa">tentar de novo</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-troca-foto-perfil">
+                <div class="modal-troca-foto-perfil-fundo"></div>
+                <div class="box-troca-foto-perfil">
+                    <div class="modal-titulo">
+                        <h1>trocar foto de perfil</h1>
+                        <span class="fechar-troca-foto-perfil">&times;</span>
+                    </div>
+                    <div class="img-perfil-corta">
+                       <img src="">
+                    </div>
+                    <div>  
+                    <div class="aviso-form-inicial ">
+                            <p>O campo tal e pa</p>
+                        </div>               
+                        <form id="trocarperfil">
+                            <label for="fotoPerfil"><p>Escolher foto</p></label>
+                            <input type="file" name="fotoperfil" id="fotoPerfil">
+                            <input type="hidden" name="base64FotoPerfil" id="base64FotoPerfil" value="banana">
+                        </form>
+                        <button id="cortarPerfil">Cortar foto</button>
+                    </div>
+                </div>
+            </div> 
+    
+            <div class="modal-troca-foto-perfil-previa">
+                <div class="modal-troca-foto-perfil-previa-fundo"></div>
+                <div class="box-troca-foto-perfil-previa">
+                    <div>
+                        <h1>Gostou?</h1>
+                        <span class="fechar-troca-foto-perfil-previa">&times;</span>
+                    </div>
+                    <div>                 
+                        <img src="" class="previewPerfil" style="width: 180px">
+                        <button class="alterar-perfil">enviar foto</button>
+                        <button class="outra-perfil">tentar de novo</button>
+                    </div>
+                </div>
+            </div>
+        <script>
+    
+    var largura= $(document).width();
+                  if(largura < 420){
+                    var tela= $(document).width();
+                  }else{
+                    var tela= 420
+                  }
+                  var  $uploadCrop = $('.img-capa-corta').croppie({
+ 
+                    enableExif: true,
+                    enforceBoundary:true,
+                    enableOrientation:true,
+                    enableResize:false,
+                    viewport: {
+                      width: 320,
+                      height: 150,
+                      
+                    },
+                    boundary: {
+                      width: tela,
+                      height: 200
+                    },
+                  });
+
+var  $uploadCropPerfil = $('.img-perfil-corta').croppie({
+                    
+                    enableExif: true,
+                    enforceBoundary:true,
+                    enableOrientation:true,
+                    enableResize:false,
+                    viewport: {
+                      width: 200,
+                      height: 200,
+                      type: 'circle'
+                      
+                    },
+                    boundary: {
+                      width: tela,
+                      height: 300
+                    },
+                  });
+
+
+            
+            // $('#x').click(function(){
+                //     var d = $uploadCrop.croppie().get();
+                
+                //     $('#result').html(JSON.stringify(d));
+                // });
+                
+
+            </script>
     </body>
 </html>
 <?php

@@ -111,14 +111,14 @@
                     <hr>
                         <div class="campo-envio">
                             <label for="titulo">Título<p></p></label>
-                            <input type="text" id="titulo" name="titulo" placeholder="fora temer"  maxlength="20" autocomplete="off">
+                            <input type="text" id="titulo" name="titulo" placeholder="fora temer" autocomplete="off">
                             <span></span>
                 
                     </div>
                         
                         <div class="campo-envio">
                             <label for="tema">Tema<p></p></label>
-                            <input type="text" id="tema" name="tema" placeholder="algum tema ai"  maxlength="20" autocomplete="off">
+                            <input type="text" id="tema" name="tema" placeholder="algum tema ai" autocomplete="off">
                             <span></span>
                 
                         </div>

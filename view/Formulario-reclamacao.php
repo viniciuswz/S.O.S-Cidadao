@@ -112,26 +112,26 @@
                     <hr>
                         <div class="campo-envio">
                             <label for="titulo">Título<p></p></label>
-                            <input type="text" id="titulo" name="titulo" placeholder="ex. arvore caidar"  maxlength="20" autocomplete="off">
+                            <input type="text" id="titulo" name="titulo" placeholder="ex. arvore caidar" autocomplete="off">
                             <span></span>
                 
                     </div>
 
                     <div class="campo-envio">
                             <label for="cep">CEP<p></p></label>
-                            <input type="text" id="cep" name="cep" placeholder="00000-000"  maxlength="20" >
+                            <input type="text" id="cep" name="cep" placeholder="00000-000" >
                             <span></span>
                         </div>
 
                         <div class="campo-envio">
                             <label for="local">local<p></p></label>
-                            <input type="text" id="local" name="local" placeholder="rua, Avenida..."  maxlength="20" autocomplete="off" >
+                            <input type="text" id="local" name="local" placeholder="rua, Avenida..." autocomplete="off" >
                             <span></span>
                         </div>
 
                         <div class="campo-envio">
                                 <label for="bairro">Bairro<p></p></label>
-                                <input type="text" id="bairro" name="bairro" placeholder="Parque dos Churros"  maxlength="20" autocomplete="off" >
+                                <input type="text" id="bairro" name="bairro" placeholder="Parque dos Churros" autocomplete="off" >
                                 <span></span>
                             </div>
                 </div>

@@ -21,13 +21,13 @@ border:0;
 }
 
 header form input:focus{
-border: 3px solid pink;
+
 border-right: 0;
 }
 
 header input:focus + button{
-    border: 3px solid pink;
-    border-left: 0;
+    
+    
     height: 35px;
     width: 28px;
 }

@@ -322,6 +322,10 @@ nav.menu > ul > li > a:hover #quantidade_de_not{
     overflow: hidden;
 }
 
+.user-menu .fechar{
+    text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #fff;
+}
+
 .user-menu .mini-perfil{
     overflow: hidden;
     width: 100%;
@@ -337,7 +341,7 @@ nav.menu > ul > li > a:hover #quantidade_de_not{
 }
 
 .user-menu .mini-perfil img:nth-child(2){
-    width: 323px;
+    width: 450px;
     /* height: 208px; */
     position: relative;
     left: 50%;
@@ -715,7 +719,7 @@ nav.notificacoes ul li a span:first-of-type{
 
 .item-publicacao figure img{
     align-self: center;
-    width: 100%;
+    height: 100%;
     position: relative;
     top: 50%;
     left: 50%;

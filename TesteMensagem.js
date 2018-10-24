@@ -1,3 +1,6 @@
+
+var ultimo_id= 0;
+
 setInterval("jaquinha()",5000);
 
 function jaquinha(){
@@ -15,6 +18,10 @@ function jaquinha(){
     });   
 }
 
+$(document).ready(function(){
+    jaquinha();
+});
+
 function teste2(resposta){
     var arr1 = JSON.parse(resposta);   
     
@@ -29,28 +36,39 @@ function teste2(resposta){
         mensa2 += "</div></div>"
     }
     mensa = ""; 
+    
     for(contador=0; contador < arr1[3]['mensagens'].length; contador++){
         classe = arr1[3]['mensagens'][contador]['classe'];
+        var msg_id = arr1[3]['mensagens'][contador]['cod_mensa'];
+        if(ultimo_id < msg_id){
             mensa += "<div class=" + classe + ">";
-            
+        
         if(classe == 'linha-mensagem_padrao'){
+            ultimo_id = msg_id;
             mensa += "<div class=usuario-msg-foto><img src='../Img/perfil/"+arr1[3]['mensagens'][contador]['img_perfil_usu']+"'></div><div class=mensagem_padrao><span class=nome><a href=perfil_reclamacao.php?ID="+arr1[3]['mensagens'][contador]['cod_usu']+">"+arr1[3]['mensagens'][contador]['nome_usu']+"</a></span>";
         }else{
             mensa += "<div>";
         }
             mensa += "<span>"+arr1[3]['mensagens'][contador]['texto_mensa'];
         if(classe == 'linha-mensagem_sistema') { 
+            ultimo_id = msg_id;
             mensa += "<span>"+arr1[3]['mensagens'][contador]['hora']+"</span>"
         }else{
+            ultimo_id = msg_id;
             mensa += "<sub>"+arr1[3]['mensagens'][contador]['hora']+"</sub>";
         }
-            mensa += "</span></div></div>";            
-           
+            mensa += "</span></div></div>";
+        }else{
+
+        }
+            
+         //alert(ultimo_id)  
     }   
     
     //document.getElementsByClassName('mensagens').innerHTML = "";    
     document.getElementById('contatosJs').innerHTML = mensa2;
-    document.getElementById('pa').innerHTML = mensa;
+   // document.getElementById('pa').innerHTML = mensa;
+   $("#pa").append(mensa);
 }
 
 jQuery(function(){

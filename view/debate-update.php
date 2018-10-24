@@ -126,14 +126,14 @@
                     <hr>
                         <div class="campo-envio">
                             <label for="titulo">Título<p></p></label>
-                            <input type="text" id="titulo" name="titulo" placeholder="fora temer"  maxlength="20" autocomplete="off" value="<?php echo $resposta[0]['nome_deba']?>">
+                            <input type="text" id="titulo" name="titulo" placeholder="fora temer" autocomplete="off" value="<?php echo $resposta[0]['nome_deba']?>">
                             <span></span>
                 
                     </div>
                         
                         <div class="campo-envio">
                             <label for="tema">Tema<p></p></label>
-                            <input type="text" id="tema" name="tema" placeholder="algum tema ai"  maxlength="20" autocomplete="off" value="<?php echo $resposta[0]['tema_deba']?>">
+                            <input type="text" id="tema" name="tema" placeholder="algum tema ai" autocomplete="off" value="<?php echo $resposta[0]['tema_deba']?>">
                             <span></span>
                 
                         </div>

@@ -757,7 +757,7 @@ jQuery(function($){
           
          $(".modal-troca-foto-previa").removeClass("modal-troca-foto-previa-ativo");
          $(".modal-troca-foto").css("opacity", "1");
-       
+          $("body").css("overflow","auto")
          $("#trocarcapa").submit();
       });
 
@@ -914,6 +914,7 @@ jQuery(function($){
              $(".modal-troca-foto-perfil").removeClass("modal-troca-foto-perfil-ativo");
              $(".modal-troca-foto-perfil-previa").removeClass("modal-troca-foto-perfil-previa-ativo");
              $(".modal-troca-foto-perfil").css("opacity", "1");
+             $("body").css("overflow","auto")
            
 
              $("#trocarperfil").submit();
