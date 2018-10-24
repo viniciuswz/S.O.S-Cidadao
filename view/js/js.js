@@ -34,10 +34,10 @@ jQuery(function($)
           }          
           if(classe =="icone-like-full"){
             $("#deiLike").find("i").attr("class","icone-like"); 
-            $("#qtd_likes").text(result);      
+            //$("#qtd_likes").text(result);      
           }else{
             $("#deiLike").find("i").attr("class","icone-like-full");         
-            $("#qtd_likes").text(result);            
+           // $("#qtd_likes").text(result);            
           }
 
       }
