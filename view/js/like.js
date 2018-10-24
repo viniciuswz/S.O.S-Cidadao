@@ -13,7 +13,7 @@ function like(){
     //alert(id);
     
     $.ajax({
-        url: '../PegarQtdCurti.php',
+        url: '../PegarQtdCurtir.php',
         type: "get",
         data: "ID="+id,
         success: function(data){            

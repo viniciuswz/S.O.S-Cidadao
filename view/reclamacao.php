@@ -42,7 +42,7 @@
                    
         if(isset($_GET['com'])){                            
             if(isset($_SESSION['id_user'])){                
-                //$visualizar = new VisualizarNotificacao();
+                $visualizar = new VisualizarNotificacao();
                 if(isset($_GET['IdComen'])){
                     $idNoti = $_GET['IdComen'];
                     $comentario->setCodComen($idNoti);
@@ -50,7 +50,7 @@
                 }else{                                        
                     $idNoti = $_GET['ID'];
                 }
-                //$visualizar->visualizarNotificacao($_GET['com'], $idNoti, $_SESSION['id_user']);
+                $visualizar->visualizarNotificacao($_GET['com'], $idNoti, $_SESSION['id_user']);
             }                  
         }
 
