@@ -31,23 +31,33 @@ session_start();
         $debate->verificarSeParticipaOuNao($_GET['ID'], TRUE);       
 
         $participantes = $debate->listarParticipantes(' usuario.cod_usu, nome_usu, img_perfil_usu, ind_visu_criador ');
-        $mensagemObj->setCodUsu($_SESSION['id_user']);       
-        
+        $mensagemObj->setCodUsu($_SESSION['id_user']); 
 
-        $listDeba = $debate->listarDebatesQpartcipo();        
-        isset($_GET['pagina']) ?: $_GET['pagina'] = 'ultima'; 
-        $mensagem = $mensagemObj->getMensagens($_GET['pagina']); 
+        $listDeba = $debate->listarDebatesQpartcipo();         
         if($_GET['pagina'] < 0){
-            $_GET['pagina'] = $_GET['pagina'] * -1;
+            $_GET['pagina'] = ($_GET['pagina'] * -1); 
+            
+            if($_GET['pagina'] >= ceil($mensagemObj->getQuantMensagem() / 10)){
+                echo 'Maior';
+                exit();
+            }else{
+                $_GET['pagina'] = ceil($mensagemObj->getQuantMensagem() / 10) - $_GET['pagina'];
+                if($_GET['pagina'] < 0){                    
+                    echo 'Maior';
+                    exit();
+                }
+            }
+        }else if($_GET['pagina'] > 0){
+            echo 'Maior';
+                exit();
         }
+        isset($_GET['pagina']) ?: $_GET['pagina'] = 'ultima'; 
+        
         $mensagem = $mensagemObj->getMensagens($_GET['pagina']);        
         $mensagemObj->visualizarMensagem();
-        $quantidadePaginas = $mensagemObj->getQuantidadePaginas();
-        $pagina = $mensagemObj->getPaginaAtual();      
+        //$mensagem2 = $mensagemObj->getMensagens('ultima');       
         
-        if($_GET['pagina'] > $quantidadePaginas){
-            echo 'Maximo';
-        }
+        $pagina = $mensagemObj->getPaginaAtual();        
         
         $resposta[0]['sair'] = "../SairDebate.php?ID=".$resposta[0]['cod_deba'];
         if($resposta[0]['cod_usu'] == $_SESSION['id_user']){
@@ -79,12 +89,13 @@ session_start();
                     $participantes[$contador]['perfil'] = "";
                 }        
             $contador++;
-        }      
+        }     
+        
         $uniao[0]['dadosDeba'] = $resposta;
         $uniao[1]['participantes'] = $participantes;
         $uniao[2]['debateQParticipa'] = $listDeba;
         $uniao[3]['mensagens'] = $mensagem;
-
+        //$uniao[4]['mensagens2'] = $mensagem2;
         echo json_encode($uniao);
 ?>
 

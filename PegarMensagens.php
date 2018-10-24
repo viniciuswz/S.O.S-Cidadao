@@ -34,7 +34,7 @@ session_start();
         $mensagemObj->setCodUsu($_SESSION['id_user']);       
         
 
-        $listDeba = $debate->listarDebatesQpartcipo();        
+        $listDeba = $debate->listarDebatesQpartcipo();  
         isset($_GET['pagina']) ?: $_GET['pagina'] = 'ultima'; 
         
         $mensagem = $mensagemObj->getMensagens($_GET['pagina']);        

@@ -1,12 +1,11 @@
 
-var paginacao = 0
+var paginacao = 0;
+var validar = 0;
 
 setTimeout(function(){
 
     $(document).ready(function(){
-
-
-
+        
         //$//("#pa").scrollTop($("#pa")[0].scrollHeight);
         $('#pa').scrollTop($("#pa")[0].scrollHeight);
         // Assign scroll function to chatBox DIV
@@ -16,7 +15,7 @@ setTimeout(function(){
                // $('#loader').show();
          
            
-        
+               id = document.getElementById("IdDeba").value;
                paginacao--;
                //Simulate server delay;
                setTimeout(function(){
@@ -24,20 +23,29 @@ setTimeout(function(){
 
                 $.ajax({
                     
-                    url: '../PegarMensagens.php',
+                    url: '../PegarMensagem2.php',
                     type: "get",
-                    data: "pagina="+paginacao+"&ID=30",
-                    success: function(data){            
+                    data: "pagina="+paginacao+"&ID="+id,
+                    success: function(data){        
+                        if(data =="Maior"){ //Maior significa que não teve resultado para mostrar
+                            validar = 1 //então nao vamos mais rodar o jaquinha, pois chegamos ao final de todas as reclamações
+                            //alert("chegou no fim")     
+                            alert("Ta no final desgrac");                      
+                        }else{    
+                            teste3(data);
+                            scrollTop(50);
+                        }    
                         //$('#lista').html(data);
                         //$("#pa").prepend(data); 
-                        teste3(data);
+                        
                     }
                             
             
                 }); 
 
                    $('#pa').scrollTop(30);
-                   alert("ta no topo")
+                   
+                   
                },780); 
            }
         });
@@ -60,14 +68,12 @@ function teste3(resposta){
         }
         mensa2 += "</div></div>"
     }
-    mensa = ""; 
-    
+    mensa = "";     
     for(contador=0; contador < arr1[3]['mensagens'].length; contador++){
         classe = arr1[3]['mensagens'][contador]['classe'];
         var msg_id = arr1[3]['mensagens'][contador]['cod_mensa'];
 
-            mensa += "<div class=" + classe + ">";
-        
+        mensa += "<div class=" + classe + ">";        
         if(classe == 'linha-mensagem_padrao'){
             ultimo_id = msg_id;
             mensa += "<div class=usuario-msg-foto><img src='../Img/perfil/"+arr1[3]['mensagens'][contador]['img_perfil_usu']+"'></div><div class=mensagem_padrao><span class=nome><a href=perfil_reclamacao.php?ID="+arr1[3]['mensagens'][contador]['cod_usu']+">"+arr1[3]['mensagens'][contador]['nome_usu']+"</a></span>";
@@ -89,7 +95,10 @@ function teste3(resposta){
     
     
     //document.getElementsByClassName('mensagens').innerHTML = "";    
-    document.getElementById('contatosJs').innerHTML = mensa2;
+    if(mensa2 != ""){ // so vai ser executado se o user for comum
+        document.getElementById('contatosJs').innerHTML = mensa2;
+    }
+    
    // document.getElementById('pa').innerHTML = mensa;
    $("#pa").prepend(mensa);
 }

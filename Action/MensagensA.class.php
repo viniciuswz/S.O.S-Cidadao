@@ -11,7 +11,7 @@ class MensagensA extends MensagensM{
     private $sqlVerificarMensagemDia = "SELECT count(*) FROM mensagem WHERE cod_deba = '%s' AND DATEDIFF('%s',dataHora_mensa) = '0'";
 
     private $sqlSelectCount = "SELECT count(*) FROM mensagem INNER JOIN debate ON(debate.cod_deba = mensagem.cod_deba)
-                                                INNER JOIN mensagem_visualizacao ON(mensagem_visualizacao.cod_mensa = mensagem.cod_mensa)
+                                                %s
                                                 WHERE mensagem.cod_deba = '%s' AND status_deba = 'A' %s";
     
     private $sqlSelectMensagens = "SELECT mensagem.cod_mensa,texto_mensa,TIME_FORMAT(dataHora_mensa, '%s') AS hora, 
@@ -216,17 +216,20 @@ class MensagensA extends MensagensM{
         $tipo = $usuario->getDescTipo();
         if($tipo == 'Moderador' OR $tipo == 'Adm'){            
             $comple = "";
+            $comple2 = "";
         }else{
             $codUsu = $this->getCodUsu();
             $comple = " AND mensagem_visualizacao.cod_usu = '$codUsu'";
+            $comple2 = " INNER JOIN mensagem_visualizacao ON(mensagem_visualizacao.cod_mensa = mensagem.cod_mensa) ";
         }
         $sql = sprintf(
             $this->sqlSelectCount,
+            $comple2,
             $this->getCodDeba(),
             $comple
         );
                 
-        $res = $this->runSelect($sql);               
+        $res = $this->runSelect($sql);
         return $res[0]['count(*)'];
     }
 

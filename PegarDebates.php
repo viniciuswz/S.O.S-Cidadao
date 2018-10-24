@@ -53,8 +53,8 @@
                 // Icone para apagar usuaario
                 //echo '<a href="../ApagarUsuario.php?ID='.$resposta[0]['cod_usu'].'">Apagar Usuario</a>';                                                       
                 //echo '<li><a href="debate-update.php?ID='.$resposta[$contador]['cod_deba'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';                                                    
-                $resposta[$contador]['LinkApagar'] = "../ApagarDebate.php?ID='.$resposta[$contador]['cod_deba']";
-                $resposta[$contador]['LinkUpdate'] = "debate-update.php?ID='.$resposta[$contador]['cod_deba']";
+                $resposta[$contador]['LinkApagar'] = "../ApagarDebate.php?ID=".$resposta[$contador]['cod_deba'];
+                $resposta[$contador]['LinkUpdate'] = "debate-update.php?ID=".$resposta[$contador]['cod_deba'];
             }else{
                 $resposta[$contador]['LinkApagar'] = FALSE;
                 $resposta[$contador]['LinkUpdate'] = FALSE;

@@ -28,14 +28,17 @@ function teste2(resposta){
     document.getElementById('ImgDeba').innerHTML = "<img  src='../Img/debate/"+arr1[0]['dadosDeba'][0]['img_deba']+"'>";   
     var contador;
     mensa2 = "";
-    for(contador=0; contador < arr1[2]['debateQParticipa'].length; contador++){
-        mensa2 += "<div class=contatinhos><a href='debate_mensagens.php?ID="+arr1[2]['debateQParticipa'][contador]['cod_deba']+"&pagina=ultima'><div class=img-debate><img src='../Img/debate/"+arr1[2]['debateQParticipa'][contador]['img_deba']+"' alt=debate></div></a><div class=status-debate><p>"+arr1[2]['debateQParticipa'][contador]['nome_deba']+"</p></div><div class=info-contatinho><div class=data_mensagem><p>"+arr1[2]['debateQParticipa'][contador]['dataHora_deba']+"</p></div>";
-        if(arr1[2]['debateQParticipa'][contador]['quantidade'] > 0 ) {
-            mensa2 +="<div class=qtd_mensagens><p>"+arr1[2]['debateQParticipa'][contador]['quantidade']+"</p></div>";
+    if(arr1[2]['debateQParticipa'] != ""){
+        for(contador=0; contador < arr1[2]['debateQParticipa'].length; contador++){
+            mensa2 += "<div class=contatinhos><a href='debate_mensagens.php?ID="+arr1[2]['debateQParticipa'][contador]['cod_deba']+"&pagina=ultima'><div class=img-debate><img src='../Img/debate/"+arr1[2]['debateQParticipa'][contador]['img_deba']+"' alt=debate></div></a><div class=status-debate><p>"+arr1[2]['debateQParticipa'][contador]['nome_deba']+"</p></div><div class=info-contatinho><div class=data_mensagem><p>"+arr1[2]['debateQParticipa'][contador]['dataHora_deba']+"</p></div>";
+            if(arr1[2]['debateQParticipa'][contador]['quantidade'] > 0 ) {
+                mensa2 +="<div class=qtd_mensagens><p>"+arr1[2]['debateQParticipa'][contador]['quantidade']+"</p></div>";
+            }
+            mensa2 += "</div></div>"
         }
-        mensa2 += "</div></div>"
+         
     }
-    mensa = ""; 
+    mensa = "";
     
     for(contador=0; contador < arr1[3]['mensagens'].length; contador++){
         classe = arr1[3]['mensagens'][contador]['classe'];
@@ -66,7 +69,10 @@ function teste2(resposta){
     }   
     
     //document.getElementsByClassName('mensagens').innerHTML = "";    
-    document.getElementById('contatosJs').innerHTML = mensa2;
+    if(mensa2 != ""){
+document.getElementById('contatosJs').innerHTML = mensa2;
+    }
+    
    // document.getElementById('pa').innerHTML = mensa;
    $("#pa").append(mensa);
 }
