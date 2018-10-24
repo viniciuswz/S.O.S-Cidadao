@@ -101,6 +101,7 @@
         <script src="js/js.js"></script>
         <script src="js/PegarComen.js"></script>
         <script src="../teste.js"></script>
+       
 
     </head>
     <body style="background-color:white" onload="jaquinha()">
@@ -295,9 +296,9 @@
                             <h3>
                                 Envie um comentario
                             </h3>
-                            <form action="../Comentario.php" method="post">
-                                <textarea placeholder="Escreva um comentário" name="texto"></textarea>
-                                <input type="hidden" value="<?php echo $_GET['ID']?>" name="id">
+                            <form action="../Comentario.php" method="post" id="formComentario">
+                                <textarea id="comentarioUser" placeholder="Escreva um comentário" name="texto"></textarea>
+                                <input id="id_pub_comen"type="hidden" value="<?php echo $_GET['ID']?>" name="id">
                                 <input type="submit" value="Enviar Comentário">
                             </form>  
                         </section>
@@ -439,6 +440,7 @@
                 </ul> 
             </section>     
         </div>
+        <script src="js/like.js"></script>
     </body>
 </html>
 <?php
