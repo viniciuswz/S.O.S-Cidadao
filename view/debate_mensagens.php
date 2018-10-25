@@ -68,9 +68,9 @@ session_start();
 
         <script src="lib/_jquery/jquery.js"></script>
         <script src="js/js.js"></script>
-     
-        <script src="../TesteMensagem.js"></script>
         <script src="js/rolagemChat.js"></script>
+        <script src="../TesteMensagem.js"></script>
+        
 
     </head>
     <body>
