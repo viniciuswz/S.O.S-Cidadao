@@ -15,25 +15,28 @@ try{
     $usuario->setEmail($_POST['email']);
     $usuario->setSenha($_POST['senha']);
     $resultado = $usuario->logar();
+    /*
     if($resultado[0]['descri_tipo_usu'] == 'Comum'){
         //echo 'comum';
-        header("Location: ./view/index.php"); // Joga pra index
+        //header("Location: ./view/index.php"); // Joga pra index
     }else if($resultado[0]['descri_tipo_usu'] == 'Adm' or $resultado[0]['descri_tipo_usu'] == 'Moderador'){
         //echo 'administracao';
         //header("Location: ./Templates/indexTemplate.php");
-        header("Location: ./view/index.php");
+        //header("Location: ./view/index.php");
     }else if($resultado[0]['descri_tipo_usu'] == 'Prefeitura' or $resultado[0]['descri_tipo_usu'] == 'Funcionario'){
         //echo 'prefeitura';
         //header("Location: ./Templates/indexTemplate.php");
-        header("Location: ./view/index.php");
-    }
+        //header("Location: ./view/index.php");
+    }*/
+    echo 1;
 }catch (Exception $exc){
     $erro = $exc->getCode();   
     $mensagem = $exc->getMessage();
     switch($erro){
         case 1://Erro ao fazer login   
         case 12://Mexeu no insprnsionar elemento  ou entrou pela url
-            echo "<script> alert('$mensagem');javascript:window.location='./view/login.php';</script>";
+            echo $mensagem;
+            //echo "<script> alert('$mensagem');javascript:window.location='./view/login.php';</script>";
             break;
         case 2://Está logado  
         case 6://nao tem permissao

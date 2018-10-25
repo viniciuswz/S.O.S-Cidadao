@@ -1290,16 +1290,35 @@ jQuery(function($){
             if( email === "" && senha === ""){
               $(".aviso-form-inicial").show();
               $(".aviso-form-inicial").find("p").text("O email e a senha então vazios")
+              return false;
             }else if( senha === ""){
               $(".aviso-form-inicial").show();
               $(".aviso-form-inicial").find("p").text("você precisa digitar um senha")
+              return false;
             }else if(email === ""){
               $(".aviso-form-inicial").show();
               $(".aviso-form-inicial").find("p").text("você precisa digitar uma E-mail")
+              return false;
+            }else{ // se tudo estiver preenchido executa o ajax      
+              /* AJAX DE FAZER LOGIN */                                     
+                $.ajax({
+                    url:"../Login.php",
+                    type: "post",
+                    data: "email="+email+"&senha="+senha,
+                    success:function(result){
+                        if(result=="1"){
+                            location.href="index.php"
+                        }else{
+                            $(".aviso-form-inicial").show();
+                            $(".aviso-form-inicial").find("p").text(result)
+                        }
+                    }  
+              });
+              return false;
             }
-          })
-        })
-        
+          });      
+        });      
+    
         
         /* verificação cadastro */
         

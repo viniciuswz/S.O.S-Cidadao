@@ -43,7 +43,7 @@
                    <p>conecte-se com a nossa comunidade e colabore</p>
                    </div>
                    
-                    <form action="../Login.php" id="login" method="POST">
+                    <form id="login" method="POST">
                         <h3>login</h3>
                         <div class="campo-texto-icone"  >
                             <label for="email" ><i class="icone-mail"></i></label>
