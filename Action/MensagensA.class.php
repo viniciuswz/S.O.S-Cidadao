@@ -173,6 +173,7 @@ class MensagensA extends MensagensM{
                 $dados2[$contador2]['classe'] = 'linha-mensagem_sistema';
                 $dados2[$contador2]['data'] = "";
                 $dados2[$contador2]['hora'] = "";
+                $dados2[$contador2]['cod_mensa'] = "visu";
                 $indVisu = TRUE;
                 $contador2++;
             }

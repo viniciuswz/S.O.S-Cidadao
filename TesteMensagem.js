@@ -79,8 +79,13 @@ function teste2(resposta){
         }
             mensa += "<span>"+arr1[3]['mensagens'][contador]['texto_mensa'];
         if(classe == 'linha-mensagem_sistema') { 
-            ultimo_id = msg_id;
-            mensa += "<span>"+arr1[3]['mensagens'][contador]['hora']+"</span>"
+            if(msg_id == 'visu'){ // aqui entra quando for mensagem da quantidade nao visualizadas
+                $(".qtdNVisu").parent().parent().remove();// remove
+                mensa+= "<span class='qtdNVisu'></span>"; // adiciona
+            }else{
+                ultimo_id = msg_id;
+            }            
+            mensa += "<span>"+arr1[3]['mensagens'][contador]['hora']+"</span>";
         }else{
             ultimo_id = msg_id;
             mensa += "<sub>"+arr1[3]['mensagens'][contador]['hora']+"</sub>";
@@ -88,9 +93,7 @@ function teste2(resposta){
             mensa += "</span></div></div>";
         }else{
 
-        }
-            
-         //alert(ultimo_id)  
+        }       
     }   
     
     //document.getElementsByClassName('mensagens').innerHTML = "";    
