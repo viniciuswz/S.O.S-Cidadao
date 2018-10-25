@@ -8,7 +8,7 @@ setTimeout(function(){
         
         //$//("#pa").scrollTop($("#pa")[0].scrollHeight);
         $('#pa').scrollTop($("#pa")[0].scrollHeight);
-        // Assign scroll function to chatBox DIV
+        
         $('#pa').scroll(function(){
            if ($('#pa').scrollTop() == 0){
              
@@ -53,7 +53,7 @@ setTimeout(function(){
         })
         
         
-},1000); 
+},5000); 
 
 function teste3(resposta){
     var arr1 = JSON.parse(resposta);   
@@ -73,25 +73,28 @@ function teste3(resposta){
         classe = arr1[3]['mensagens'][contador]['classe'];
         var msg_id = arr1[3]['mensagens'][contador]['cod_mensa'];
 
+        
+
         mensa += "<div class=" + classe + ">";        
         if(classe == 'linha-mensagem_padrao'){
-            ultimo_id = msg_id;
+            //ultimo_id = msg_id;
             mensa += "<div class=usuario-msg-foto><img src='../Img/perfil/"+arr1[3]['mensagens'][contador]['img_perfil_usu']+"'></div><div class=mensagem_padrao><span class=nome><a href=perfil_reclamacao.php?ID="+arr1[3]['mensagens'][contador]['cod_usu']+">"+arr1[3]['mensagens'][contador]['nome_usu']+"</a></span>";
         }else{
             mensa += "<div>";
         }
             mensa += "<span>"+arr1[3]['mensagens'][contador]['texto_mensa'];
         if(classe == 'linha-mensagem_sistema') { 
-            ultimo_id = msg_id;
+           // ultimo_id = msg_id;
             mensa += "<span>"+arr1[3]['mensagens'][contador]['hora']+"</span>"
         }else{
-            ultimo_id = msg_id;
+           // ultimo_id = msg_id;
             mensa += "<sub>"+arr1[3]['mensagens'][contador]['hora']+"</sub>";
         }
             mensa += "</span></div></div>";
+           // alert(ultimo_id) 
         }
             
-         //alert(ultimo_id)  
+          
     
     
     //document.getElementsByClassName('mensagens').innerHTML = "";    

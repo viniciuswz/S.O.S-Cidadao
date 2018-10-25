@@ -19,7 +19,32 @@ function jaquinha(){
 }
 
 $(document).ready(function(){
+    
     jaquinha();
+    paginacao--;
+
+    $.ajax({                    
+    url: '../PegarMensagem2.php',
+    type: "get",
+    data: "pagina="+paginacao+"&ID="+id,
+    success: function(data){        
+        if(data =="Maior"){ //Maior significa que não teve resultado para mostrar
+            validar = 1 //então nao vamos mais rodar o jaquinha, pois chegamos ao final de todas as reclamações
+            //alert("chegou no fim")     
+            //alert("Ta no final desgrac");                      
+        }else{    
+            teste3(data);
+            
+            $('#pa').scrollTop($("#pa")[0].scrollHeight);
+            //alert("rolha")
+        }    
+        //$('#lista').html(data);
+        //$("#pa").prepend(data); 
+        
+    }
+            
+
+}); 
 });
 
 function teste2(resposta){
