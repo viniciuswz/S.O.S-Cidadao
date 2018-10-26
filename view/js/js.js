@@ -385,6 +385,7 @@ $(".formulario").submit(function(){
   
   if(imgDebate == ""){
     $(".imagem").find('p:last-child').text("uma imagem é obrigatoria");
+    return false;
   }
 })
 
@@ -1436,7 +1437,8 @@ jQuery(function($){
             
             if($('input[name=categoria]:checked').length<=0)
             {
-              $(".categorias").find('p').text("Escolha uma catgoria")
+              $(".categorias").find('p').text("Escolha uma categoria");
+              return false
             }else{
               $(".categorias").find('p').text("")
             }
