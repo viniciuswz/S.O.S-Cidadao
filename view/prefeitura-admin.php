@@ -129,6 +129,52 @@ session_start();
                     </table>
             </div>      
         </div>
+        <div class="modal-adicionar-user">
+            <div class="modal-adicionar-user-fundo"></div>
+            <div class="box-adicionar-user">
+                <div>
+                    <h1>Adicionar usuário</h1>
+                    <span class="fechar-adicionar-user">&times;</span>
+                </div>
+               
+                <form id="add-user-form" action="../CadastrarUser.php" method="POST">
+
+                    <div class="campo-texto-icone"  >
+                        <label for="user" ><i class="icone-user"></i></label>
+                        <input type="text" name="nome" id="user" placeholder="Nome">
+                    </div>
+
+                    <div class="campo-texto-icone"  >
+                        <label for="email" ><i class="icone-mail"></i></label>
+                        <input type="email" name="email" id="email" placeholder="E-mail">
+                    </div>
+
+                    <div class="campo-texto-icone">
+                        <label for="senha"><i class="icone-senha"></i></label>
+                        <input type="password" name="senha" id="senha" placeholder="Senha">
+                    </div>
+
+                    <div class="opcoes-user">
+                        <div>
+                            
+                            <input type="radio" value='Moderador' name="tipo" id="moderador-input" checked>
+                            <label for="moderador-input">moderador</label>
+                        </div>
+                        <div>                                                        
+                           <?php echo $inputPref ?>
+                        </div>
+                        
+                    </div>
+
+                    <div class="aviso-form-inicial">
+                        <p>O campo tal e pa</p>
+                    </div>
+
+                    <button type="submit">Cadastrar</button>
+                </form>
+                
+            </div>
+        </div>
         <ul>
             <?php
                 if($quantidadePaginas != 1){
