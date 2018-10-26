@@ -29,7 +29,8 @@ try{
     }else if($resultado == 2){
         echo "<script> alert('Funcionario cadastrado com sucesso!!!');javascript:window.location='./view/prefeitura-admin.php';</script>";
     }else{ // Usuario nao cadastrado
-        echo "<script> alert('Cadastro realizado com sucesso!!!');javascript:window.location='./view/Pagina-agradecimento.php';</script>";
+        //echo "<script> alert('Cadastro realizado com sucesso!!!');javascript:window.location='./view/Pagina-agradecimento.php';</script>";
+        echo 1;
     }
     
     
@@ -43,7 +44,9 @@ try{
            echo "<script> alert('$mensagem');javascript:window.location='./view/index.php';</script>";
             break;       
         case 3://Erro ao cadastrar usuario
-        case 12://Mexeu no insprnsionar elemento ou nao submeteu o formulario      
+            echo $mensagem;
+            break;
+        case 12://Mexeu no insprnsionar elemento ou nao submeteu o formulario
             echo "<script> alert('$mensagem');javascript:window.location='./view/cadastro.php';</script>";
             break;        
         default: //Qualquer outro erro cai aqui

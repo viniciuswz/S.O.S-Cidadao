@@ -34,9 +34,10 @@ try{
     $mensagem = $exc->getMessage();
     switch($erro){
         case 1://Erro ao fazer login   
-        case 12://Mexeu no insprnsionar elemento  ou entrou pela url
             echo $mensagem;
-            //echo "<script> alert('$mensagem');javascript:window.location='./view/login.php';</script>";
+        break;
+        case 12://Mexeu no insprnsionar elemento  ou entrou pela url            
+            echo "<script> alert('$mensagem');javascript:window.location='./view/login.php';</script>";
             break;
         case 2://Está logado  
         case 6://nao tem permissao

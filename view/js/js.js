@@ -1392,10 +1392,27 @@ jQuery(function($){
               }else if( senha === ""){
                 $(".aviso-form-inicial").show();
                 $(".aviso-form-inicial").find("p").text("você precisa digitar um senha")
-              }else if(Csenha === ""){
+              }else if(senhaC === ""){
                 $(".aviso-form-inicial").show();
                 $(".aviso-form-inicial").find("p").text("você precisa comfirmar a senha")
+              }else{ // AJAX CADASTRAR
+                /* AJAX CADASTRAR */
+                $.ajax({
+                  url:"../CadastrarUser.php",
+                  type: "post",
+                  data: "email="+email+"&senha="+senha+"&nome="+user,
+                  success:function(result){
+                      if(result=="1"){
+                          location.href="Pagina-agradecimento.php";
+                      }else{
+                          $(".aviso-form-inicial").show();
+                          $(".aviso-form-inicial").find("p").text(result)
+                      }
+                  }  
+                });
+                  return false;
               }
+              
             }
           })
         })
