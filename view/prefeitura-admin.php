@@ -133,7 +133,7 @@ session_start();
             <div class="modal-adicionar-user-fundo"></div>
             <div class="box-adicionar-user">
                 <div>
-                    <h1>Adicionar usuário</h1>
+                    <h1>Adicionar Funcionário</h1>
                     <span class="fechar-adicionar-user">&times;</span>
                 </div>
                
@@ -157,12 +157,9 @@ session_start();
                     <div class="opcoes-user">
                         <div>
                             
-                            <input type="radio" value='Moderador' name="tipo" id="moderador-input" checked>
-                            <label for="moderador-input">moderador</label>
-                        </div>
-                        <div>                                                        
-                           <?php echo $inputPref ?>
-                        </div>
+                            <input type="radio" value='Funcionario' name="tipo" id="moderador-input" checked>
+                            <label for="moderador-input">Funcionário</label>
+                        </div>                      
                         
                     </div>
 
