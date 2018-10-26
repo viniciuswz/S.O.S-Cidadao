@@ -38,7 +38,7 @@
         }                  
        
 
-        if(isset($_SESSION['id_user']) AND isset($_GET['IdComen']) AND is_numeric($_GET['IdComen']) AND isset($tipoUsu) AND $tipoUsu == 'Adm' OR $tipoUsu == 'Moderador'){            
+        if(isset($_SESSION['id_user']) AND isset($_GET['IdComen']) AND is_numeric($_GET['IdComen']) AND (isset($tipoUsu) AND ($tipoUsu == 'Adm' OR $tipoUsu == 'Moderador'))){            
             $comentario->setCodComen($idNoti);
             $comentarioComum = $comentario->getDadosComenByIdComen(); // preciso do comenantario denunciado            
         }else{ // quero todos os comentários
