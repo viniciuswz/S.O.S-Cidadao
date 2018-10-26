@@ -385,6 +385,7 @@ $(".formulario").submit(function(){
   
   if(imgDebate == ""){
     $(".imagem").find('p:last-child').text("uma imagem é obrigatoria");
+    return false;
   }
 })
 
@@ -1436,12 +1437,15 @@ jQuery(function($){
             
             if($('input[name=categoria]:checked').length<=0)
             {
-              $(".categorias").find('p').text("Escolha uma catgoria")
+              $(".categorias").find('p').text("Escolha uma categoria");
+              return false
             }else{
               $(".categorias").find('p').text("")
             }
             
           });
+          
+
           
           $("#add-user-form").submit(function(){
             var senha = $("#senha").val();
@@ -1468,15 +1472,30 @@ jQuery(function($){
               $("#email").css("border-color" , 'dodgerblue');
             }
           });
+
+          $("#add-user-form").submit(function(){
+            var user = $("#user").val();
+            if( user === ""){
+              $("#user").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+              $("#user").css("border-color" , 'rgba(256,000,000)');
+              $("#user").focus();
+              return false;
+            }else{
+              $("#user").parent().find("label").css("background-color" , 'dodgerblue' );
+              $("#user").css("border-color" , 'dodgerblue');
+            }
+          });
           
           
           $("#add-user-form").submit(function(){
+            var user = $("#user").val();
             var email = $("#email").val();
             var senha = $("#senha").val();
+
             
-            if( email === "" && senha === ""){
+            if( email === "" || senha === "" || user === ""){
               $(".aviso-form-inicial").show();
-              $(".aviso-form-inicial").find("p").text("O email e a senha então vazios")
+              $(".aviso-form-inicial").find("p").text("campos obrigatorios")
             }else if( senha === ""){
               $(".aviso-form-inicial").show();
               $(".aviso-form-inicial").find("p").text("você precisa digitar um senha")

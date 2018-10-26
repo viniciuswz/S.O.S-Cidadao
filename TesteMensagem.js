@@ -55,11 +55,11 @@ function teste2(resposta){
     mensa2 = "";
     if(arr1[2]['debateQParticipa'] != ""){
         for(contador=0; contador < arr1[2]['debateQParticipa'].length; contador++){
-            mensa2 += "<div class=contatinhos><a href='debate_mensagens.php?ID="+arr1[2]['debateQParticipa'][contador]['cod_deba']+"&pagina=ultima'><div class=img-debate><img src='../Img/debate/"+arr1[2]['debateQParticipa'][contador]['img_deba']+"' alt=debate></div></a><div class=status-debate><p>"+arr1[2]['debateQParticipa'][contador]['nome_deba']+"</p></div><div class=info-contatinho><div class=data_mensagem><p>"+arr1[2]['debateQParticipa'][contador]['dataHora_deba']+"</p></div>";
+            mensa2 += "<a class=contatinhos href='debate_mensagens.php?ID="+arr1[2]['debateQParticipa'][contador]['cod_deba']+"&pagina=ultima'><div class=img-debate><img src='../Img/debate/"+arr1[2]['debateQParticipa'][contador]['img_deba']+"' alt=debate></div><div class=status-debate><p>"+arr1[2]['debateQParticipa'][contador]['nome_deba']+"</p></div><div class=info-contatinho><div class=data_mensagem><p>"+arr1[2]['debateQParticipa'][contador]['dataHora_deba']+"</p></div>";
             if(arr1[2]['debateQParticipa'][contador]['quantidade'] > 0 ) {
                 mensa2 +="<div class=qtd_mensagens><p>"+arr1[2]['debateQParticipa'][contador]['quantidade']+"</p></div>";
             }
-            mensa2 += "</div></div>"
+            mensa2 += "</div></a>"
         }
          
     }
