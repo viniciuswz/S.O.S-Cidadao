@@ -21,6 +21,8 @@ session_start();
             $_GET['tipo'][0] = 'Comen';
             $_GET['tipo'][1] = 'Debate';
             $_GET['tipo'][2] = 'Publi';
+            $tipos = array('Comen','Debate','Publi');
+            $parametro = "tipo[]=Comen&tipo[]=Debate&tipo[]=Publi";            
         }else{
             $parametro = "";
             $contador = 1;

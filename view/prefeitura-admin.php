@@ -11,7 +11,7 @@ session_start();
         $usu->setCodUsu($_SESSION['id_user']);
         $resultado = $usu->getDadosUser();
         isset($_GET['pagina']) ?: $_GET['pagina'] = null;  
-        $res = $usu->getDadosUsuByTipoUsu(array('Funcionario'),$_GET['pagina']);
+        $res = $usu->getDadosUsuByTipoUsu(array('Funcionario'),$_GET['pagina'],TRUE);
         //var_dump($res);             
         
         $quantidadePaginas = $usu->getQuantidadePaginas();

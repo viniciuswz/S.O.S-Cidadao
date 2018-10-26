@@ -133,7 +133,7 @@ class MensagensA extends MensagensM{
             $paginacao
         );
         
-        if($tipo == 'Adm' OR $tipo == 'Moderador'){
+        if($tipo == 'Adm' OR $tipo == 'Moderador' OR $tipo == 'Funcionario' OR $tipo == 'Prefeitura'){
             $sql = sprintf(
                 $sql,
                 '%H:%i', // comando do sql pra data vir formatada
@@ -162,7 +162,7 @@ class MensagensA extends MensagensM{
         $contador2 = 0;
         $dados2 = array();
         while($contador < count($dados)){//Nesse while so entra a parte q me interresa    
-            if(isset($dados[$contador]['status_visu']) AND $dados[$contador]['status_visu'] == 'I' AND !isset($indVisu) AND ($tipoUsu != 'Adm' AND $tipoUsu != 'Moderador')){ // if pra escrever uma mensagem com o texto "tanta mensagens nao lidas"
+            if(isset($dados[$contador]['status_visu']) AND $dados[$contador]['status_visu'] == 'I' AND !isset($indVisu) AND ($tipoUsu != 'Adm' AND $tipoUsu != 'Moderador' AND $tipoUsu != 'Prefeitura' AND $tipoUsu != 'Funcionario')){ // if pra escrever uma mensagem com o texto "tanta mensagens nao lidas"
                 $quat = $this->getQuantMensaNVIsu(); // so entra uma vez nesse if
                 if($quat == 1){
                     $comple = " mensagem nao lida";
@@ -215,7 +215,7 @@ class MensagensA extends MensagensM{
         $usuario = new Usuario();
         $usuario->setCodUsu($this->getCodUsu());
         $tipo = $usuario->getDescTipo();
-        if($tipo == 'Moderador' OR $tipo == 'Adm'){            
+        if($tipo == 'Moderador' OR $tipo == 'Adm' OR $tipo == 'Prefeitura' OR $tipo == 'Funcionario'){            
             $comple = "";
             $comple2 = "";
         }else{

@@ -257,7 +257,7 @@ class DebateA extends DebateM{
             $usuario = new Usuario();
             $usuario->setCodUsu($this->getCodUsu());
             $tipo = $usuario->getDescTipo();
-            if($tipo == 'Adm' OR $tipo == 'Moderador'){ // se por um acaso for adm pode entrar tranquilamente               
+            if($tipo == 'Adm' OR $tipo == 'Moderador' OR $tipo == 'Prefeitura' OR $tipo == 'Funcionario'){ // se por um acaso for adm pode entrar tranquilamente               
                 return TRUE;
             }else{
                 throw new \Exception("Não participa do debate",9);

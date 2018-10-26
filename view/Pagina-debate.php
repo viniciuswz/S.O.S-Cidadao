@@ -29,7 +29,7 @@
             $txtButton = 'Você foi Banido';
             $link = '#';
         }else if(isset($resposta[0]['indParticipa']) AND $resposta[0]['indParticipa'] == TRUE
-        OR isset($tipoUsu) AND ($tipoUsu == 'Adm' OR $tipoUsu == 'Moderador')){            
+        OR isset($tipoUsu) AND ($tipoUsu == 'Adm' OR $tipoUsu == 'Moderador' OR $tipoUsu == 'Prefeitura' OR $tipoUsu == 'Funcionario')){            
             $txtButton = 'Entrar no debate';
             $link = 'debate_mensagens.php';
         }else{

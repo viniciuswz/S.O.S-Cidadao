@@ -240,7 +240,7 @@ class UsuarioA extends UsuarioM{
         }
     }    
 
-    public function getDadosUsuByTipoUsu($tipos = array(),$pagina = null){
+    public function getDadosUsuByTipoUsu($tipos = array(),$pagina = null, $indTabePrefei = null){
         $in = $this->gerarIn($tipos);
         $sqlLimite = $this->controlarPaginacao($in, $pagina);
         $sql = sprintf(
@@ -249,7 +249,7 @@ class UsuarioA extends UsuarioM{
             $sqlLimite
         );
         $consulta =  $this->runSelect($sql);
-        $DadosTratados = $this->tratarInformacoesListagem($consulta);
+        $DadosTratados = $this->tratarInformacoesListagem($consulta,$indTabePrefei);
         return $DadosTratados;
         
     }
@@ -268,11 +268,11 @@ class UsuarioA extends UsuarioM{
         return $in;
     }
 
-    public function tratarInformacoesListagem($dados){//Quando for listados os usuarios
+    public function tratarInformacoesListagem($dados, $indTabe = null){//Quando for listados os usuarios
 
         $contador = 0;               
         while($contador < count($dados)){//Nesse while so entra a parte q me interresa            
-            $dados[$contador]['dataHora_cadastro_usu'] = $this->tratarData($dados[$contador]['dataHora_cadastro_usu']);//Calcular o tempo           
+            $dados[$contador]['dataHora_cadastro_usu'] = $this->tratarData($dados[$contador]['dataHora_cadastro_usu'], $indTabe);//Calcular o tempo           
             //$dados[$contador]['LinkVisita'] = $this->LinkParaVisita($dados[$contador]['Tipo'],$dados[$contador]['cod_publi_denun']);//Calcular o tempo    
             //$dados[$contador]['LinkApagarPubli'] = $this->LinkParaDeletar($dados[$contador]['Tipo'],$dados[$contador]['cod_publi_denun']);//Calcular o tempo      
             $dados[$contador]['LinkApagarUsu'] = $this->LinkParaDeletar('Usuario',$dados[$contador]['cod_usu']);//Calcular o tempo                                  
@@ -281,9 +281,14 @@ class UsuarioA extends UsuarioM{
         return $dados;
     }
 
-    public function tratarData($data){
-        $novaData = new TratarDataHora($data);        
-        return $novaData->tempoDeCadastro();
+    public function tratarData($data,$indTabe = null){
+        $novaData = new TratarDataHora($data);     
+        if($indTabe == null){ // quero a data com o texto
+            return $novaData->tempoDeCadastro();
+        }else{ // so quero a dara
+            return $novaData->tempoDeCadastroTabelinha();
+        }   
+        
     }
 
     public function LinkParaDeletar($palavra,$cod){ // Deletar Usuario

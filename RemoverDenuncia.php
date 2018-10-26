@@ -17,10 +17,9 @@ try{
     
     $denuncia = new Denuncias();
     $denuncia->setCodDenun($_GET['ID']);
-    $denuncia->deletarDenun($_GET['tipo']);   
+    $denuncia->deletarDenun($_GET['tipo']);     
     
-    $tipo = ucfirst($_GET['tipo']);
-    echo "<script> alert('Denuncia removida com sucesso');javascript:window.location='view/admin-denuncia.php?tipo[]=".$tipo."';</script>";
+    echo "<script> alert('Denuncia removida com sucesso');javascript:window.location='view/admin-denuncia.php';</script>";
         
 }catch(Exception $exc){  
     $erro = $exc->getCode();   
