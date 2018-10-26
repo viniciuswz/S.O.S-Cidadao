@@ -188,7 +188,8 @@
                         </div>
 
                         <?php 
-                            if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $dadosPerfil[0]['cod_usu']){
+                            if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $dadosPerfil[0]['cod_usu'] 
+                            AND isset($tipoUsu) AND $tipoUsu != "Funcionario"){
                                 // vinicius esqueceu o formulario
                         ?>
                                 <i class="icone-edit-full" id="trocar-perfil" title="Alterar a foto de perfil"></i>
