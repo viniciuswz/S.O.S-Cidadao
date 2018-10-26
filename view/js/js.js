@@ -1435,12 +1435,14 @@ jQuery(function($){
           
           $("#add-user-form").submit(function(){
             
-            if($('input[name=categoria]:checked').length<=0)
-            {
-              $(".categorias").find('p').text("Escolha uma categoria");
+            if($('input[name=tipo]:checked').length<=0)
+            {              
+              $(".aviso-form-inicial").show();
+              $(".aviso-form-inicial").find("p").text("Escolha um tipo de usuário")              
               return false
             }else{
-              $(".categorias").find('p').text("")
+              //$(".aviso-form-inicial").show();
+              //$(".aviso-form-inicial").find("p").text("")    
             }
             
           });
@@ -1491,17 +1493,42 @@ jQuery(function($){
             var user = $("#user").val();
             var email = $("#email").val();
             var senha = $("#senha").val();
-
-            
-            if( email === "" || senha === "" || user === ""){
+            var tipo = $('input[name=tipo]:checked').val();
+            if( email === "" && senha === "" && user === ""){
               $(".aviso-form-inicial").show();
               $(".aviso-form-inicial").find("p").text("campos obrigatorios")
-            }else if( senha === ""){
-              $(".aviso-form-inicial").show();
-              $(".aviso-form-inicial").find("p").text("você precisa digitar um senha")
             }else if(email === ""){
               $(".aviso-form-inicial").show();
               $(".aviso-form-inicial").find("p").text("você precisa digitar uma E-mail")
+            }else if( senha === ""){
+              $(".aviso-form-inicial").show();
+              $(".aviso-form-inicial").find("p").text("você precisa digitar um senha")
+            }else{
+              $.ajax({
+                url:"../CadastrarUser.php",
+                type: "post",
+                data: "email="+email+"&senha="+senha+"&nome="+user+"&tipo="+tipo,
+                success:function(result){
+                   // 1 = adm q realizou o cadastro
+                   // 2 = prefeitura q realizou o cadastro
+                    if(result == "1" || result == "2"){
+                      /* Fechar o modal do cadastro*/
+                      $(this).parents(":eq(2)").removeClass("modal-adicionar-user-ativo"); 
+                      $("body").css("overflow","auto");
+                      /* aqui da pra abrir um modal pra falar q o cadastro deu certo */
+
+                      /* Da um submit no formulario de filto de usuario */
+                      if(result == "1"){
+                        $("#filtroUser").submit();     
+                      }
+                                       
+                    }else{
+                        $(".aviso-form-inicial").show();
+                        $(".aviso-form-inicial").find("p").text(result)
+                    }
+                }  
+              });
+                return false;
             }
           })
         })

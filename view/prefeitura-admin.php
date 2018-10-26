@@ -137,7 +137,7 @@ session_start();
                     <span class="fechar-adicionar-user">&times;</span>
                 </div>
                
-                <form id="add-user-form" action="../CadastrarUser.php" method="POST">
+                <form id="add-user-form" method="POST">
 
                     <div class="campo-texto-icone"  >
                         <label for="user" ><i class="icone-user"></i></label>

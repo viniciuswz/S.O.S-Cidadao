@@ -13,7 +13,7 @@ session_start();
         $usu = new Usuario();
         $indUsuPref = $usu->verifyExistContPrefei();        
         if($indUsuPref){
-            $inputPref = '<input type="radio" value="Prefeitura" name="tipo" id="prefeitura-input" disabled>
+            $inputPref = '<input type="radio" value="Prefeitura" name="tipo" id="prefeitura-input" disabled> 
                             <label for="prefeitura-input">prefeitura</label>';
         }else{
             $inputPref = '<input type="radio" value="Prefeitura" name="tipo" id="prefeitura-input">
@@ -143,7 +143,7 @@ session_start();
 
                 <div class="filtro-admin ">
                     <i class="icone-filtro "></i>
-                    <form>
+                    <form id="filtroUser">
                         <i class="icone-fechar"></i>
                         <h3>Tipo de usuario</h3>
                         <div>    
@@ -209,7 +209,7 @@ session_start();
                     <span class="fechar-adicionar-user">&times;</span>
                 </div>
                
-                <form id="add-user-form" action="../CadastrarUser.php" method="POST">
+                <form id="add-user-form" method="POST">
 
                     <div class="campo-texto-icone"  >
                         <label for="user" ><i class="icone-user"></i></label>
