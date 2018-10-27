@@ -1648,6 +1648,7 @@ margin-right:3px
     justify-content: center;
     cursor: pointer;
     position: relative;
+    color: #000
 
 }
 
@@ -1691,7 +1692,7 @@ margin-right:3px
 }
 .info-contatinho{
     position: absolute;
-    right: 7px;
+    right: 37px;
     
     display: flex;
     justify-content: space-between;
