@@ -1621,3 +1621,112 @@ jQuery(function($){
         })
 
        /* FIM VALIDACAO PARA EMAIL E NOME*/
+
+
+       /* VALIDACAO UPDATE SENHA*/
+
+       jQuery(function($){        
+
+        $("#formUpdateSenha").submit(function(){
+          var senhaAtual = $("#passAtual").val();            
+          if(senhaAtual === ""){
+            $("#passAtual").css("border-color" , 'rgba(256,000,000)');            
+            return false;
+          }else{              
+            $("#passAtual").css("border-color" , ''); // tirar a cor da borda
+          }
+        });
+
+        $("#formUpdateSenha").submit(function(){
+            var novaSenha = $("#passNova").val();
+            if(novaSenha === ""){
+              //$("#user").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+              $("#passNova").css("border-color" , 'rgba(256,000,000)');              
+              return false;
+            }else{
+              $("#passNova").css("border-color" , ''); // tirar a cor da borda
+            }
+        });
+
+        $("#formUpdateSenha").submit(function(){
+          var novaSenhaC = $("#passNovaRepete").val();
+          if(novaSenhaC === ""){
+            //$("#user").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+            $("#passNovaRepete").css("border-color" , 'rgba(256,000,000)');            
+            return false;
+          }else{
+            $("#passNovaRepete").css("border-color" , ''); // tirar a cor da borda
+          }
+      });
+
+        $("#formUpdateSenha").submit(function(){            
+          var senhaAtual = $("#passAtual").val();
+          var novaSenha = $("#passNova").val();
+          var novaSenhaC = $("#passNovaRepete").val();
+
+          if(senhaAtual === "" && novaSenha === "" && novaSenhaC == ""){
+            $(".aviso-form-inicial").css("background-color", "red");
+            $(".aviso-form-inicial").show();
+            $(".aviso-form-inicial").find("p").text("campos obrigatórios");
+            $("#passAtual").focus();
+          }else if(senhaAtual === ""){
+            $(".aviso-form-inicial").css("background-color", "red");
+            $(".aviso-form-inicial").show();
+            $(".aviso-form-inicial").find("p").text("você precisa digitar a senha atual");
+            $("#passAtual").focus();
+          }else if(novaSenha === ""){
+            $(".aviso-form-inicial").css("background-color", "red");
+            $(".aviso-form-inicial").show();
+            $(".aviso-form-inicial").find("p").text("você precisa digitar a nova senha");
+            $("#passNova").focus();
+          }else if(novaSenhaC === ""){
+            $(".aviso-form-inicial").css("background-color", "red");
+            $(".aviso-form-inicial").show();
+            $(".aviso-form-inicial").find("p").text("você precisa confirmar a nova senha");  
+            $("#passNovaRepete").focus();
+          }else if(novaSenha !== novaSenhaC){ // senhas nao sao iguais
+            $(".aviso-form-inicial").css("background-color", "red");
+            $(".aviso-form-inicial").show();
+            $(".aviso-form-inicial").find("p").text("confirmar senha não esta igual a senha");  
+            $("#passNovaRepete").css("border-color" , 'rgba(256,000,000)');
+            $("#passNovaRepete").focus();
+            return false;
+          }else if(novaSenha === senhaAtual){ // nao houve alteracoes
+            $(".aviso-form-inicial").css("background-color", "red");
+            $(".aviso-form-inicial").show();
+            $(".aviso-form-inicial").find("p").text("Não houve alterações");  
+            $("#passNovaRepete").css("border-color" , 'rgba(256,000,000)');
+            $("#passNova").css("border-color" , 'rgba(256,000,000)');            
+            $("#passNova").focus();
+            return false;
+          }else{    // tudo certo          
+            $.ajax({
+              url:"../updateSenha.php",
+              type: "post",
+              data: "senhaAntiga="+senhaAtual+"&novaSenha="+novaSenha,
+              success:function(result){                  
+                  if(result == "1"){ // alteracao realizada
+                    $(".aviso-form-inicial").css("background-color", "green");
+                    $("#passNovaRepete").css("border-color" , 'green');
+                    $("#passNova").css("border-color" , 'green');    
+                    $("#passAtual").css("border-color" , 'green');                      
+                    $(".aviso-form-inicial").show();
+                    $(".aviso-form-inicial").find("p").text("Alteração realizada com sucesso"); 
+                  }else if(result == "5"){
+                    $(".aviso-form-inicial").css("background-color", "red");
+                    $(".aviso-form-inicial").show();
+                    $(".aviso-form-inicial").find("p").text("Senha incorreta"); 
+                    $("#passAtual").css("border-color" , 'rgba(256,000,000)');          
+                  }else{
+                    $(".aviso-form-inicial").show();
+                    $(".aviso-form-inicial").find("p").text(result);
+                  }
+              }  
+            });              
+              return false;
+          }            
+        });            
+      })
+
+
+       /* FIM VALIDACAO UPDATE SENHA*/

@@ -16,14 +16,20 @@ try{
     $usuario->setCodUsu($_SESSION['id_user']);             
     $usuario->setSenha($_POST['senhaAntiga']);        
     $usuario->updateSenha($_POST['novaSenha']);
-    echo "<script> alert('Alteração realizada com sucesso');javascript:window.location='view/index.php';</script>";
+    //echo "<script> alert('Alteração realizada com sucesso');javascript:window.location='view/index.php';</script>";
+    echo 1;
     
 }catch (Exception $exc){
     $erro = $exc->getCode();   
-    $mensagem = $exc->getMessage();  
+    $mensagem = $exc->getMessage();     
     switch($erro){
-        case 1://Erro ao fazer update        
-            echo "<script> alert('$mensagem');javascript:window.location='./view/configuracoes2.php';</script>";
+        case 1://Erro ao fazer update 
+            echo $mensagem;       
+            //echo "<script> alert('$mensagem');javascript:window.location='./view/configuracoes2.php';</script>";
+            break;
+        case 5://Senha errada
+            echo 5;  
+            //echo "<script> alert('$mensagem');javascript:window.location='./view/configuracoes2.php';</script>";
             break;
         case 2://Não esta logado  
             echo "<script> alert('$mensagem');javascript:window.location='./view/login.php';</script>";

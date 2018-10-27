@@ -114,7 +114,7 @@
                 </ul>
             </nav>
             <section class="form-config">
-                <form action="../updateSenha.php" method="post">
+                <form method="post" id="formUpdateSenha">
                     <h3>Alterar senha</h3>
                     <div class="campo-texto-config">
                             <label for="passAtual">Senha atual</label>
@@ -128,7 +128,9 @@
                             <label for="passNovaRepete">Repita a nova senha</label>
                             <input type="password" name="novaSenhaRepete" id="passNovaRepete" placeholder="Repita a nova senha" autocomplete ="off">
                     </div>
-                        
+                    <div class="aviso-form-inicial">
+                        <p>O campo tal e pa</p>
+                    </div>
                     <button type="submit">Alterar</button>
             </form>
         </section>
