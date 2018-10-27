@@ -1712,11 +1712,12 @@ jQuery(function($){
                     $("#passAtual").css("border-color" , 'green');                      
                     $(".aviso-form-inicial").show();
                     $(".aviso-form-inicial").find("p").text("Alteração realizada com sucesso"); 
-                  }else if(result == "5"){
+                  }else if(result == "5"){ // senha incorreta
                     $(".aviso-form-inicial").css("background-color", "red");
                     $(".aviso-form-inicial").show();
                     $(".aviso-form-inicial").find("p").text("Senha incorreta"); 
-                    $("#passAtual").css("border-color" , 'rgba(256,000,000)');          
+                    $("#passAtual").css("border-color" , 'rgba(256,000,000)'); 
+                    $("#passAtual").focus();          
                   }else{
                     $(".aviso-form-inicial").show();
                     $(".aviso-form-inicial").find("p").text(result);
