@@ -17,17 +17,19 @@ try{
     $usuario->setEmail($_POST['email']);       
     $usuario->setNomeUsu($_POST['nome']);        
     $usuario->updateEmailNome();
-    echo "<script> alert('Alteração realizada com sucesso');javascript:window.location='view/index.php';</script>";
-    
+    echo 1;    
 }catch (Exception $exc){
     $erro = $exc->getCode();   
-    $mensagem = $exc->getMessage();
-    switch($erro){
-        case 1://Erro ao fazer update        
-            echo "<script> alert('$mensagem');javascript:window.location='./view/configuracoes.php';</script>";
-            break;
+    $mensagem = $exc->getMessage();    
+    switch($erro){        
+        case 1://Erro ao fazer update  
+            echo $mensagem;
+            break;                          
         case 2://Não esta logado  
             echo "<script> alert('$mensagem');javascript:window.location='./view/login.php';</script>";
+            break; 
+        case 4: // email ja existente
+            echo "emailExistente";
             break; 
         case 12://Mexeu no insprnsionar elemento  ou entrou pela url
             echo "<script> alert('$mensagem');javascript:window.location='./view/configuracoes.php';</script>";

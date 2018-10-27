@@ -118,7 +118,7 @@
             </nav>
             <section class="form-config">
                 
-                <form action="../updateNomeEmail.php" method="post">
+                <form id="FormUpdateNomeEmail" method="post">
                     <div class="campo-texto-config">
                             <label for="user">Nome</label>
                             <input type="text" name="nome" id="user" placeholder="Nome" autocomplete ="off" value="<?php echo $resultado[0]['nome_usu'] ?>">
@@ -126,6 +126,9 @@
                         <div class="campo-texto-config">
                             <label for="email">E-mail</i></label>
                             <input type="email" name="email" id="email" placeholder="E-mail" value="<?php echo $resultado[0]['email_usu'] ?>">
+                    </div>
+                    <div class="aviso-form-inicial">
+                        <p>O campo tal e pa</p>
                     </div>
                     <button type="submit">Alterar</button>
                     <?php if ($_SESSION['tipo_usu'] != 'Prefeitura' AND $_SESSION['tipo_usu'] != 'Funcionario'){ ?>

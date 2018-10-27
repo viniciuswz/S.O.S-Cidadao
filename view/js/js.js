@@ -1532,5 +1532,89 @@ jQuery(function($){
             }
           })
         })
-        Visualizado
-        
+
+
+        /* VALIDACAO PRA QUANDO O USUARIO FIZER A MUDANCA DE NOME E EMAIL */
+
+        jQuery(function($){
+          var emailAntigo = $("#email").val();
+          var nomeAntigo = $("#user").val();
+
+          $("#FormUpdateNomeEmail").submit(function(){
+            var email = $("#email").val();            
+            if(email === ""){
+              //$("#user").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+              $("#email").css("border-color" , 'rgba(256,000,000)');
+              $("#email").focus();
+              return false;
+            }
+          });
+
+          $("#FormUpdateNomeEmail").submit(function(){
+              var nome = $("#user").val();
+              if(nome === ""){
+                //$("#user").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+                $("#user").css("border-color" , 'rgba(256,000,000)');
+                $("#user").focus();
+                return false;
+              }
+          });
+
+          $("#FormUpdateNomeEmail").submit(function(){            
+            var email = $("#email").val(); 
+            var nome = $("#user").val();
+
+            if(email === "" && nome === ""){
+              $(".aviso-form-inicial").css("background-color", "red");
+              $(".aviso-form-inicial").show();
+              $(".aviso-form-inicial").find("p").text("campos obrigatórios");
+            }else if(email === ""){
+              $(".aviso-form-inicial").css("background-color", "red");
+              $(".aviso-form-inicial").show();
+              $(".aviso-form-inicial").find("p").text("você precisa digitar um E-mail");
+            }else if(nome === ""){
+              $(".aviso-form-inicial").css("background-color", "red");
+              $(".aviso-form-inicial").show();
+              $(".aviso-form-inicial").find("p").text("você precisa digitar um nome");
+            }else if(email === emailAntigo && nome === nomeAntigo){ // se nao houver nenhuma mudança
+              $(".aviso-form-inicial").css("background-color", "red");
+              $("#user").focus(); 
+              $("#user").css("border-color" , 'rgba(256,000,000)');
+              $("#email").css("border-color" , 'rgba(256,000,000)');
+              $(".aviso-form-inicial").show();
+              $(".aviso-form-inicial").find("p").text("não houve alterações");              
+              return false;
+            }else{
+              $("#user").css("border-color" , ''); // tirar a cor da borda
+              $("#email").css("border-color" , ''); // tirar a cor da borda
+              $.ajax({
+                url:"../updateNomeEmail.php",
+                type: "post",
+                data: "email="+email+"&nome="+nome,
+                success:function(result){                  
+                    if(result == "1"){ // alteracao realizada
+                      $(".mini-perfil").find("p").text(nome);
+                      $(".aviso-form-inicial").css("background-color", "green");
+                      $("#user").css("border-color" , 'green');
+                      $("#email").css("border-color" , 'green');                      
+                      $(".aviso-form-inicial").show();
+                      $(".aviso-form-inicial").find("p").text("Alteração realizada com sucesso");   
+                      emailAntigo = email;
+                      nomeAntigo = nome;
+                    }else if(result === "emailExistente" ){ // email ja existente
+                        $(".aviso-form-inicial").show();
+                        $(".aviso-form-inicial").find("p").text("Email ja existente");                        
+                        $("#email").css("border-color" , 'rgba(256,000,000)');
+                        $("#email").focus();                      
+                    }else{
+                      $(".aviso-form-inicial").show();
+                      $(".aviso-form-inicial").find("p").text(result);  
+                    }
+                }  
+              });              
+                return false;
+            }            
+          });            
+        })
+
+       /* FIM VALIDACAO PARA EMAIL E NOME*/
