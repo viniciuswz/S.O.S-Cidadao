@@ -36,7 +36,7 @@ session_start();
         isset($_GET['pagina']) ?: $_GET['pagina'] = 1; 
         
         $mensagem = $mensagemObj->getMensagens($_GET['pagina']);        
-        $mensagemObj->visualizarMensagem();
+        //$mensagemObj->visualizarMensagem();
         $quantidadePaginas = $mensagemObj->getQuantidadePaginas();
         $pagina = $mensagemObj->getPaginaAtual();      
 

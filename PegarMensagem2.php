@@ -54,7 +54,7 @@ session_start();
         isset($_GET['pagina']) ?: $_GET['pagina'] = 'ultima'; 
         
         $mensagem = $mensagemObj->getMensagens($_GET['pagina']);        
-        $mensagemObj->visualizarMensagem();
+        //$mensagemObj->visualizarMensagem();
         //$mensagem2 = $mensagemObj->getMensagens('ultima');       
         
         $pagina = $mensagemObj->getPaginaAtual();        
