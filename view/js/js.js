@@ -393,6 +393,26 @@ $("#cep").blur(function(){
     
     
   })
+
+
+  //para remover publicação
+
+  jQuery(function($){
+    $(document).on("click", ".remover_publicacao",function(){
+    var href = $(this).attr("href");
+    var id = href.substring(href.lastIndexOf('ID') + 3);
+    $(this).parents(":eq(5)").remove()
+     //AJAX
+     //caso dê certo e tem que dar
+    //pegar o id
+     // var id = $(this).data("id")
+    
+     
+     return false
+    })
+     
+    
+  })
   
   jQuery(function($){
     $("#abrir-debate-info").click(function(){
@@ -499,8 +519,11 @@ $("#cep").blur(function(){
   jQuery(function($){
     /* abrir quando */
     $(".denunciar-item").click(function(){
-     
-      $(this).parents(":eq(2)").find("div.modal-denunciar").addClass("modal-denunciar-ativo");
+      //pegar o id
+     var id=$(this).data("id");
+     //mandar o id 
+     $(".modal-denunciar").find("form input").val(id);
+      $("div.modal-denunciar").addClass("modal-denunciar-ativo");
       $("body").css("overflow","hidden")
     })
     /* fechar quando clicar fora*/
@@ -513,6 +536,29 @@ $("#cep").blur(function(){
       $(this).parents(":eq(2)").removeClass("modal-denunciar-ativo");
       $("body").css("overflow","auto")
     })
+$("#formdenuncia").submit(function(){
+  var txt = $("#motivo").val();
+  
+  if(txt ==""){
+    $(".aviso-form-inicial").show();
+    $(".aviso-form-inicial").find("p").text("você precisa digitar algo")
+    return false
+  }else{
+    $(".aviso-form-inicial").hide();
+
+    //ajax aqui
+
+    //Resetando VALORES do modal ao enviar o ajax
+    $("#motivo").val("");
+    $(".modal-denunciar").find("form input").val("")
+
+    return false
+  }
+
+  
+  
+})
+
   })
 
   /* modal editar comentario */

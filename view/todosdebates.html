@@ -162,25 +162,12 @@
                                     <i class="icone-3pontos"></i>
                                     <div><!--DA PRA TIRAR A DIV-->
                                         <ul>
-                                            <li class="denunciar-item"><span><i class="icone-bandeira"></i>Denunciar</span></li>
-                                            <li ><a href="#"><i class="icone-fechar"></i>Remover</a></li>
+                                            <li class="denunciar-item" data-id="1"><span><i class="icone-bandeira"></i>Denunciar</span></li>
+                                            <li ><a href="#" class="remover_publicacao"><i class="icone-fechar"></i>Remover</a></li>
                                             <li><a href="#"><i class="icone-edit-full"></i>Alterar</a></li>
                                         </ul>
                                     </div>
-                                    <div class="modal-denunciar">
-                                        <div class="modal-denunciar-fundo"></div>
-                                        <div class="box-denunciar">
-                                            <div>
-                                                <h1>Qual o motivo da denuncia?</h1>
-                                                <span class="fechar-denuncia">&times;</span>
-                                            </div>
-                                           
-                                            <form>
-                                                <textarea placeholder="Qual o motivo?" id="motivo"></textarea>
-                                                <button type="submit"> Denunciar</button>
-                                            </form>
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
                             <a href="#">
@@ -195,7 +182,24 @@
                     </div>
                         
                     </section>
-                    
+                    <div class="modal-denunciar">
+                        <div class="modal-denunciar-fundo"></div>
+                        <div class="box-denunciar">
+                            <div>
+                                <h1>Qual o motivo da denuncia?</h1>
+                                <span class="fechar-denuncia">&times;</span>
+                            </div>
+                           
+                            <form id="formdenuncia">
+                                <textarea placeholder="Qual o motivo?" id="motivo"></textarea>
+                                <input type="hidden" name="id_publi" value="">
+                                <div class="aviso-form-inicial ">
+                                    <p>O campo tal e pa</p>
+                                </div>
+                                <button type="submit"> Denunciar</button>
+                            </form>
+                        </div>
+                    </div>
                     
                 </div>
             </body>
