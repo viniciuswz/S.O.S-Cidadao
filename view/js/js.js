@@ -1547,6 +1547,8 @@ jQuery(function($){
               $("#email").css("border-color" , 'rgba(256,000,000)');
               $("#email").focus();
               return false;
+            }else{              
+              $("#email").css("border-color" , ''); // tirar a cor da borda
             }
           });
 
@@ -1557,6 +1559,8 @@ jQuery(function($){
                 $("#user").css("border-color" , 'rgba(256,000,000)');
                 $("#user").focus();
                 return false;
+              }else{
+                $("#user").css("border-color" , ''); // tirar a cor da borda
               }
           });
 
@@ -1584,9 +1588,7 @@ jQuery(function($){
               $(".aviso-form-inicial").show();
               $(".aviso-form-inicial").find("p").text("não houve alterações");              
               return false;
-            }else{
-              $("#user").css("border-color" , ''); // tirar a cor da borda
-              $("#email").css("border-color" , ''); // tirar a cor da borda
+            }else{              
               $.ajax({
                 url:"../updateNomeEmail.php",
                 type: "post",
@@ -1602,6 +1604,7 @@ jQuery(function($){
                       emailAntigo = email;
                       nomeAntigo = nome;
                     }else if(result === "emailExistente" ){ // email ja existente
+                      $(".aviso-form-inicial").css("background-color", "red");
                         $(".aviso-form-inicial").show();
                         $(".aviso-form-inicial").find("p").text("Email ja existente");                        
                         $("#email").css("border-color" , 'rgba(256,000,000)');
