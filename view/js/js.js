@@ -1744,7 +1744,7 @@ jQuery(function($){
      // var id = $(this).data("id")
     
      $.ajax({
-      url:"../../ApagarPublicacao.php",
+      url:"../ApagarPublicacao.php",
       type: "get",
       data: "ID="+id,
       success:function(result){
