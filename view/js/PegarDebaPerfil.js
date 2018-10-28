@@ -84,23 +84,7 @@ function teste2(resposta){
                                     mensa += '<li><a href='+arr1[contador]["LinkUpdate"]+'><i class="icone-edit-full"></i></i>Alterar</a></li>';
                                 }                                       
                             mensa+='</ul>\
-                            </div>';
-                            if(arr1[contador]["indCarregarModalDenun"] == true){ // so quero q carregue em alguns casos?>
-                               mensa+='<div class="modal-denunciar">\
-                                    <div class="modal-denunciar-fundo"></div>\
-                                    <div class="box-denunciar">\
-                                        <div>\
-                                            <h1>Qual o motivo da denuncia?</h1>\
-                                            <span class="fechar-denuncia">&times;</span>\
-                                        </div>\
-                                        <form form method="post" action="../DenunciarDebate.php">\
-                                            <textarea placeholder="Qual o motivo?" id="motivo" name="texto"></textarea>\
-                                            <input type="hidden" name="id_deba" value="'+arr1[contador]['cod_deba']+'">';                
-                                mensa+='<button type="submit"> Denunciar</button>\
-                                        </form>';                                       
-                                mensa +='</div>\
-                                </div>';
-                            }
+                            </div>';                           
                     mensa+='</div>\
                     </div>\
                     <a href="Pagina-debate.php?ID='+arr1[contador]['cod_deba']+'">\

@@ -178,11 +178,11 @@
                                                         echo '<li><i class="icone-bandeira"></i><span class="negrito">Denunciado</b></li>';        
                                                     }else if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] != $resposta[0]['cod_usu']){ // Aparecer apenas naspublicaçoes q nao é do usuario
                                                         if($tipoUsu == 'Comum' or $tipoUsu == 'Prefeitura' or $tipoUsu == 'Funcionario'){
-                                                            echo '<li class="denunciar-item"><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>';    
+                                                            echo '<li class="denunciar-item" data-id="'.$_GET['ID'].'.Publicacao"><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>';    
                                                             $indDenun = TRUE; // = carregar modal da denucia
                                                         }                    
                                                     }else if(!isset($_SESSION['id_user'])){ // aparecer parar os usuario nao logado
-                                                        echo '<li class="denunciar-item"><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>';
+                                                        echo '<li class="denunciar-item" ><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>';
                                                         $indDenun = TRUE; // = carregar modal da denucia
                                                     } 
                                                 ?>
@@ -209,21 +209,24 @@
                                         </ul>
                                     </div>
                                     <?php if(isset($indDenun) AND $indDenun == TRUE) { // so quero q carregue em alguns casos?>
-                                            <div class="modal-denunciar">
-                                                <div class="modal-denunciar-fundo"></div>
-                                                <div class="box-denunciar">
-                                                    <div>
-                                                        <h1>Qual o motivo da denuncia?</h1>
-                                                        <span class="fechar-denuncia">&times;</span>
-                                                    </div>
-                                            
-                                                    <form form method="post" action="../DenunciarPublicacao.php">
-                                                        <textarea placeholder="Qual o motivo?" id="motivo" name="texto"></textarea>
-                                                        <input type="hidden" name="id_publi" value="<?php echo $_GET['ID'] ?>">                
-                                                        <button type="submit"> Denunciar</button>
-                                                    </form>                                        
+                                        <div class="modal-denunciar">
+                                            <div class="modal-denunciar-fundo"></div>
+                                            <div class="box-denunciar">
+                                                <div>
+                                                    <h1>Qual o motivo da denuncia?</h1>
+                                                    <span class="fechar-denuncia">&times;</span>
                                                 </div>
+                                                
+                                                <form id="formdenuncia">
+                                                    <textarea placeholder="Qual o motivo?" id="motivo"></textarea>
+                                                    <input type="hidden" name="id_publi" value="">
+                                                    <div class="aviso-form-inicial ">
+                                                        <p>O campo tal e pa</p>
+                                                    </div>
+                                                    <button type="submit"> Denunciar</button>
+                                                </form>
                                             </div>
+                                        </div>
                                     <?php } ?>
                                 </div>
                         </div>

@@ -180,6 +180,24 @@ session_start();
                 </section>
                 <section class="alinha-item" id="pa">
                     <input type="hidden" id="parametros" value="<?php echo $parametro?>">
+                    <div class="modal-denunciar">
+                                            <div class="modal-denunciar-fundo"></div>
+                                            <div class="box-denunciar">
+                                                <div>
+                                                    <h1>Qual o motivo da denuncia?</h1>
+                                                    <span class="fechar-denuncia">&times;</span>
+                                                </div>
+                                                
+                                                <form id="formdenuncia">
+                                                    <textarea placeholder="Qual o motivo?" id="motivo"></textarea>
+                                                    <input type="hidden" name="id_publi" value="">
+                                                    <div class="aviso-form-inicial ">
+                                                        <p>O campo tal e pa</p>
+                                                    </div>
+                                                    <button type="submit"> Denunciar</button>
+                                                </form>
+                                            </div>
+                    </div>
                     <?php
                     /*
                     $contador = 0;
