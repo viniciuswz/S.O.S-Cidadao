@@ -521,6 +521,9 @@ $("#cep").blur(function(){
     $(".denunciar-item").click(function(){
       //pegar o id
      var id=$(this).data("id");
+     var final = id.substring(id.lastIndexOf('.')+1);
+     var id_certo = id.substring(0, id.lastIndexOf('.'));
+     alert(id_certo)
      //mandar o id 
      $(".modal-denunciar").find("form input").val(id);
       $("div.modal-denunciar").addClass("modal-denunciar-ativo");
