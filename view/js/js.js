@@ -1756,8 +1756,16 @@ jQuery(function($){
       //pegar o id
     id=$(this).data("id");
     $this = $(this);
-   final = id.substring(id.lastIndexOf('.')+1);
-   id_certo = id.substring(0, id.lastIndexOf('.'));
+    final = id.substring(id.lastIndexOf('.')+1);
+    id_certo = id.substring(0, id.lastIndexOf('.'));
+
+    if(final == 'Publicacao'){
+      final = "../Denunciar"+final+".php";
+    }else if(final == 'Debate'){
+      final = "../Denunciar"+final+".php";
+    }else{
+      return false;
+    }
     
     //mandar o id 
     $(".modal-denunciar").find("form input").val(id);
@@ -1784,10 +1792,10 @@ jQuery(function($){
     return false
   }else{
     $(".aviso-form-inicial").hide();
-
+    
     //ajax aqui
     $.ajax({
-      url:"../DenunciarPublicacao.php",
+      url:final,
       type: "post",
       data: "id="+id_certo+"&texto="+txt,
       success:function(result){
