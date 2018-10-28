@@ -27,8 +27,9 @@ try{
     $erro = $exc->getCode();   
     $mensagem = $exc->getMessage();
     switch($erro){
-        case 2://Nao esta logado    
-            echo "<script> alert('$mensagem');javascript:window.location='./view/login.php';</script>";
+        case 2://Nao esta logado  
+            echo 'NLogado';  
+            //echo "<script> alert('$mensagem');javascript:window.location='./view/login.php';</script>";
             break;
         case 6://Não é usuario comum, prefeitura ou func
             echo "<script> alert('$mensagem');javascript:window.location='./view/index.php';</script>";
