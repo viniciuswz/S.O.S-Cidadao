@@ -1712,18 +1712,21 @@ jQuery(function($){
     /* FIM VALIDACAO UPDATE SENHA*/
 
   /* REMOVER PUBLICACAO */
-   jQuery(function($){
+  jQuery(function($){
     $(document).on("click", ".remover_publicacao",function(){
     var href = $(this).attr("href");
     var id = href.substring(href.lastIndexOf('ID') + 3);
+    var tipo = href.substring(0,href.lastIndexOf('.'));
+    //alert(tipo)
     var $this = $(this);
+    
      //AJAX
      //caso dê certo e tem que dar
     //pegar o id
      // var id = $(this).data("id")
-    
+      
      $.ajax({
-      url:"../ApagarPublicacao.php",
+      url:tipo+".php",
       type: "get",
       data: "ID="+id,
       success:function(result){
