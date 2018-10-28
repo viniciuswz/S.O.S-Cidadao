@@ -1832,9 +1832,9 @@ jQuery(function($){
   var caminho = $(this).attr('action');
   var comentario = $("#comentarioTxt").val();
   var idPubli = $("#idPubli").val();
-  alert(comentario + idPubli)
+  //alert(comentario + idPubli)
   $.ajax({
-    url:caminho,
+    url:"../Comentario.php",
     type: "post",
     data: "id="+idPubli+"&comentario="+txt,
     success:function(result){
@@ -1842,7 +1842,7 @@ jQuery(function($){
           location.href="login.php";
           return false;
         }else{
-          //alert(result);
+          alert(result);
          
         
         }          
