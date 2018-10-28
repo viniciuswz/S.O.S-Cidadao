@@ -1748,11 +1748,12 @@ jQuery(function($){
   /* denuncia */
 jQuery(function($){
   id = "";
+  $this = "";
   /* abrir quando */
     $(document).on("click", ".denunciar-item", function(){
       //pegar o id
     id=$(this).data("id");
-    var $this = $(this);
+    $this = $(this);
     
     //mandar o id 
     $(".modal-denunciar").find("form input").val(id);
