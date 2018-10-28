@@ -1825,3 +1825,30 @@ jQuery(function($){
 
   })
 })
+
+jQuery(function($){
+  $("#enviar_comentario").submit(function(){
+    
+  var caminho = $(this).attr('action');
+  var comentario = $("#comentarioTxt").val();
+  var idPubli = $("#idPubli").val();
+  alert(comentario + idPubli)
+  $.ajax({
+    url:caminho,
+    type: "post",
+    data: "id="+idPubli+"&comentario="+txt,
+    success:function(result){
+        if(result == 'NLogado'){ // Nao esta logado, redirecionar pra fazer login
+          location.href="login.php";
+          return false;
+        }else{
+          //alert(result);
+         
+        
+        }          
+        
+    }
+ })
+    return false
+  })
+})
