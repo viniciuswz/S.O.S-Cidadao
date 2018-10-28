@@ -1731,3 +1731,34 @@ jQuery(function($){
 
 
        /* FIM VALIDACAO UPDATE SENHA*/
+
+    //para remover publicação
+   jQuery(function($){
+    $(document).on("click", ".remover_publicacao",function(){
+    var href = $(this).attr("href");
+    var id = href.substring(href.lastIndexOf('ID') + 3);
+    
+     //AJAX
+     //caso dê certo e tem que dar
+    //pegar o id
+     // var id = $(this).data("id")
+    
+     $.ajax({
+      url:"../../ApagarPublicacao.php",
+      type: "get",
+      data: "ID="+id,
+      success:function(result){
+          if(result == 'NLogado'){ // Nao esta logado, redirecionar pra fazer login
+            location.href="login.php";
+            return false;
+          }else{
+            alert("deu certo")
+            $(this).parents(":eq(5)").remove()
+          }          
+          
+      }
+   })
+     return false
+    })
+
+  })
