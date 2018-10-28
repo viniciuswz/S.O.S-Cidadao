@@ -1752,6 +1752,7 @@ jQuery(function($){
     $(document).on("click", ".denunciar-item", function(){
       //pegar o id
     id=$(this).data("id");
+    var $this = $(this);
     
     //mandar o id 
     $(".modal-denunciar").find("form input").val(id);
@@ -1789,8 +1790,11 @@ jQuery(function($){
             location.href="login.php";
             return false;
           }else{
-            alert("deu certo")
+            alert("deu certo");
            //Resetando VALORES do modal ao enviar o ajax
+           $("div.modal-denunciar").removeClass("modal-denunciar-ativo");
+           $this.attr('class','');
+           $this.find('a').text("<strong>Denunciado</strong>")
             $("#motivo").val("");
             $(".modal-denunciar").find("form input").val("")
           }          
