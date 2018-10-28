@@ -11,18 +11,18 @@ try{
     Usuario::verificarLogin(1,$tipoUsuPermi);  // Tem q estar logado
 
     
-    $nomesCampos = array('texto','id_deba');// Nomes dos campos que receberei da URL    
+    $nomesCampos = array('texto','id');// Nomes dos campos que receberei da URL    
     $validar = new ValidarCampos($nomesCampos, $_POST);
-    $validar->verificarTipoInt(array('id_deba'),$_POST); // Verificar se é um numero
+    $validar->verificarTipoInt(array('id'),$_POST); // Verificar se é um numero
     
     $denuncia = new DebateDenuncia();   
-    $denuncia->setCodDeba($_POST['id_deba']);
+    $denuncia->setCodDeba($_POST['id']);
     $denuncia->setCodUsu($_SESSION['id_user']);
     $denuncia->setMotivoDenunDeba($_POST['texto']);
     
     $denuncia->inserirDenuncia();
 
-    echo "<script> alert('Denuncia realizada com sucesso');javascript:window.location='./view/Pagina-debate.php?ID=".$_POST['id_deba']."';</script>";
+    echo "<script> alert('Denuncia realizada com sucesso');javascript:window.location='./view/Pagina-debate.php?ID=".$_POST['id']."';</script>";
         
 }catch(Exception $exc){  
     $erro = $exc->getCode();   

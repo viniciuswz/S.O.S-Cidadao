@@ -1789,7 +1789,7 @@ jQuery(function($){
     $.ajax({
       url:"../DenunciarPublicacao.php",
       type: "post",
-      data: "id_publi="+id_certo+"&texto="+txt,
+      data: "id="+id_certo+"&texto="+txt,
       success:function(result){
           if(result == 'NLogado'){ // Nao esta logado, redirecionar pra fazer login
             location.href="login.php";
