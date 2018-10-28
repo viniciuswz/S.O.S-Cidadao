@@ -1747,10 +1747,11 @@ jQuery(function($){
 
   /* denuncia */
 jQuery(function($){
+  id = "";
   /* abrir quando */
     $(document).on("click", ".denunciar-item", function(){
       //pegar o id
-    var id=$(this).data("id");
+    id=$(this).data("id");
     
     //mandar o id 
     $(".modal-denunciar").find("form input").val(id);
@@ -1767,6 +1768,7 @@ jQuery(function($){
       $(this).parents(":eq(2)").removeClass("modal-denunciar-ativo");
       $("body").css("overflow","auto")
     })
+
   $("#formdenuncia").submit(function(){
   var txt = $("#motivo").val();
 
@@ -1778,12 +1780,10 @@ jQuery(function($){
     $(".aviso-form-inicial").hide();
 
     //ajax aqui
-
-    
     $.ajax({
-      url:"../DenunciarPuclicacao.php",
-      type: "get",
-      data: "ID="+id,
+      url:"../DenunciarPublicacao.php",
+      type: "post",
+      data: "id_publi="+id+"&texto="+txt,
       success:function(result){
           if(result == 'NLogado'){ // Nao esta logado, redirecionar pra fazer login
             location.href="login.php";
