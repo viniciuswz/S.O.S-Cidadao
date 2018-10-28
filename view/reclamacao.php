@@ -61,10 +61,12 @@
             $complemento = "Comentário Denunciado: ";
         }else{ // quero todos os comentários
             $comentarioComum = $comentario->SelecionarComentariosUserComum($_GET['pagina']); // quero todos os comenatários
-            if(empty($comentarioComum)){
+            if(empty($comentarioComum) AND (isset($tipoUsu) AND $tipoUsu == 'Comum' )){
                 $complemento = "Seja o primeiro a fazer um comentário !!";
-            }else{
+            }else if(!empty($comentarioComum)){
                 $complemento = "Comentários";
+            }else{
+                $complemento = "";
             }            
             $_GET['IdComen'] = "";
         }
@@ -297,12 +299,12 @@
             ?>
                         <section class="enviar-comentario-publicacao">
                             <h3>
-                                Envie um comentario
+                                Envie uma resposta
                             </h3>
                             <form action="../Comentario.php" method="post" id="formComentario">
-                                <textarea id="comentarioUser" placeholder="Escreva um comentário" name="texto"></textarea>
+                                <textarea id="comentarioUser" placeholder="Escreva uma resposta" name="texto"></textarea>
                                 <input id="id_pub_comen"type="hidden" value="<?php echo $_GET['ID']?>" name="id">
-                                <input type="submit" value="Enviar Comentário">
+                                <input type="submit" value="Enviar Resposta">
                             </form>  
                         </section>
             <?php
