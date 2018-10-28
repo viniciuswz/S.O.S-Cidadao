@@ -1795,9 +1795,10 @@ jQuery(function($){
            //Resetando VALORES do modal ao enviar o ajax
            $("div.modal-denunciar").removeClass("modal-denunciar-ativo");
            $this.attr('class','');
-           $this.find('a').text("<strong>Denunciado</strong>")
+           $this.find('a').html('<li><i class="icone-bandeira"></i><span class="negrito">Denunciado</span></li>');
             $("#motivo").val("");
-            $(".modal-denunciar").find("form input").val("")
+            $(".modal-denunciar").find("form input").val("");
+            $("body").css("overflow","auto")
           }          
           
       }
