@@ -1737,7 +1737,7 @@ jQuery(function($){
     $(document).on("click", ".remover_publicacao",function(){
     var href = $(this).attr("href");
     var id = href.substring(href.lastIndexOf('ID') + 3);
-    
+    var $this = $(this);
      //AJAX
      //caso dê certo e tem que dar
     //pegar o id
@@ -1753,7 +1753,7 @@ jQuery(function($){
             return false;
           }else{
             alert("deu certo")
-            $(this).parents(":eq(5)").remove()
+            $this.parents(":eq(5)").remove()
           }          
           
       }
