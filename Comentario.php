@@ -20,15 +20,16 @@ try{
     $comentario->setCodUsu($_SESSION['id_user']);
     $comentario->setCodPubli($idPubli);
     $comentario->inserirComen();
-
-    echo "<script> javascript:window.location='view/reclamacao.php?ID=".$idPubli."';</script>";
+    echo $_SESSION['tipo_usu'].".".$comentario->last();    
+    //echo "<script> javascript:window.location='view/reclamacao.php?ID=".$idPubli."';</script>";
 
 }catch (Exception $exc){
     $erro = $exc->getCode();   
     $mensagem = $exc->getMessage();
     switch($erro){
         case 2://Não está logado  
-            echo "<script> alert('$mensagem');javascript:window.location='./view/login.php';</script>";
+            echo 'NLogado';
+            //echo "<script> alert('$mensagem');javascript:window.location='./view/login.php';</script>";
             break;  
         case 11:// Erro no comentario
         case 12://Mexeu no insprnsionar elemento ou nao submeteu o formulario      
