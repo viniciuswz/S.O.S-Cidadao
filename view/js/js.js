@@ -530,28 +530,7 @@ jQuery(function($){
 //ajustando altura do motivo
 
 
-/* denuncia */
-jQuery(function($){
-  /* abrir quando */
-  jQuery(document).on("click",".denunciar-item", function(event){
-  //$(".denunciar-item").click(function(){
-    
-    $(this).parents(":eq(2)").find("div.modal-denunciar").addClass("modal-denunciar-ativo");
-    $("body").css("overflow","hidden")
-  })
-  /* fechar quando clicar fora*/
-  jQuery(document).on("click",".modal-denunciar-fundo", function(event){
-  //$(".modal-denunciar-fundo").click(function(){
-    $(this).parent().removeClass("modal-denunciar-ativo");
-    $("body").css("overflow","auto")
-  })
-  /* fechar quando clicar no X*/
-  jQuery(document).on("click",".fechar-denuncia", function(event){
- // $(".fechar-denuncia").click(function(){
-    $(this).parents(":eq(2)").removeClass("modal-denunciar-ativo");
-    $("body").css("overflow","auto")
-  })
-})
+
 
 /* modal editar comentario */
 jQuery(function($){
@@ -1763,3 +1742,63 @@ jQuery(function($){
 
   })
   /* FIM REMOVER PUBLICACAO */
+
+
+
+  /* denuncia */
+jQuery(function($){
+  /* abrir quando */
+    $(document).on("click", ".denunciar-item", function(){
+      //pegar o id
+    var id=$(this).data("id");
+    
+    //mandar o id 
+    $(".modal-denunciar").find("form input").val(id);
+      $("div.modal-denunciar").addClass("modal-denunciar-ativo");
+      $("body").css("overflow","hidden")
+    })
+    /* fechar quando clicar fora*/
+    $(".modal-denunciar-fundo").click(function(){
+      $(this).parent().removeClass("modal-denunciar-ativo");
+      $("body").css("overflow","auto")
+    })
+    /* fechar quando clicar no X*/
+    $(".fechar-denuncia").click(function(){
+      $(this).parents(":eq(2)").removeClass("modal-denunciar-ativo");
+      $("body").css("overflow","auto")
+    })
+  $("#formdenuncia").submit(function(){
+  var txt = $("#motivo").val();
+
+  if(txt ==""){
+    $(".aviso-form-inicial").show();
+    $(".aviso-form-inicial").find("p").text("você precisa digitar algo")
+    return false
+  }else{
+    $(".aviso-form-inicial").hide();
+
+    //ajax aqui
+
+    
+    $.ajax({
+      url:"../DenunciarPuclicacao.php",
+      type: "get",
+      data: "ID="+id,
+      success:function(result){
+          if(result == 'NLogado'){ // Nao esta logado, redirecionar pra fazer login
+            location.href="login.php";
+            return false;
+          }else{
+            alert("deu certo")
+           //Resetando VALORES do modal ao enviar o ajax
+            $("#motivo").val("");
+            $(".modal-denunciar").find("form input").val("")
+          }          
+          
+      }
+   })
+    return false
+  }
+
+  })
+})

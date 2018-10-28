@@ -3057,13 +3057,13 @@ color:black
 
 }
 
-.box-denunciar form textarea{
+.box-denunciar form textarea {
     display: block;
     width: 90%;
-    margin: 0 auto;
-    height: 100px;
+    margin: 6px auto;
+    height: 99px;
     resize: none;
-    padding-left: 5px
+    padding-left: 5px;
 }
 
 .box-denunciar form button{
