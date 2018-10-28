@@ -401,7 +401,9 @@ $("#cep").blur(function(){
     $(document).on("click", ".remover_publicacao",function(){
     var href = $(this).attr("href");
     var id = href.substring(href.lastIndexOf('ID') + 3);
-    $(this).parents(":eq(5)").remove()
+    var tipo = href.substring(0,href.indexOf('.'));
+    alert(tipo)
+    //$(this).parents(":eq(5)").remove()
      //AJAX
      //caso dê certo e tem que dar
     //pegar o id
