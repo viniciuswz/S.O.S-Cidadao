@@ -77,7 +77,7 @@ function teste2(resposta){
                                         if(arr1[contador]["indDenun"] == true){
                                             mensa += '<li><i class="icone-bandeira"></i><span class="negrito">Denunciado</span></li>';
                                         }else if(arr1[contador]["indDenun"] == false){ // nao denunciou\
-                                            mensa += '<li class="denunciar-item"><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>';
+                                            mensa += '<li class="denunciar-item" data-id="'+arr1[contador]['cod_publi']+'"><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>';
                                         }
 
                                         if(arr1[contador]["LinkApagar"] != false && arr1[contador]["LinkUpdate"]){ // Denuncioou
@@ -92,6 +92,7 @@ function teste2(resposta){
                                         }                                                                     
                             mensa +=   '</ul>\
                                     </div>';
+                                    /*
                                     if(arr1[contador]["indCarregarModalDenun"] == true){ // so quero q carregue em alguns casos?>
                                         mensa += '<div class="modal-denunciar">\
                                             <div class="modal-denunciar-fundo"></div>\
@@ -109,6 +110,7 @@ function teste2(resposta){
                                         mensa += ' </div>\
                                         </div>';                                    
                                     } 
+                                    */
                                 mensa +='</div>\
                             </div>\
                             <a href="reclamacao.php?ID='+arr1[contador]['cod_publi']+'">';                          

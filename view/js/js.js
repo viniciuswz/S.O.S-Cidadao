@@ -1730,9 +1730,9 @@ jQuery(function($){
       })
 
 
-       /* FIM VALIDACAO UPDATE SENHA*/
+    /* FIM VALIDACAO UPDATE SENHA*/
 
-    //para remover publicação
+  /* REMOVER PUBLICACAO */
    jQuery(function($){
     $(document).on("click", ".remover_publicacao",function(){
     var href = $(this).attr("href");
@@ -1752,7 +1752,7 @@ jQuery(function($){
             location.href="login.php";
             return false;
           }else{
-            alert("deu certo")
+            //alert("deu certo")
             $this.parents(":eq(5)").remove()
           }          
           
@@ -1762,3 +1762,4 @@ jQuery(function($){
     })
 
   })
+  /* FIM REMOVER PUBLICACAO */

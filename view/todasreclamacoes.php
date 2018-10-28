@@ -110,7 +110,23 @@
             </section>  
         <?php } ?>
             <section class="alinha-item" id="pa">
-                            
+           
+           
+            <div class="modal-denunciar" id="formdenuncia">
+                <div class="modal-denunciar-fundo"></div>
+                <div class="box-denunciar">
+                    <div>
+                        <h1>Qual o motivo da denuncia?</h1>
+                        <span class="fechar-denuncia">&times;</span>
+                    </div>                                               
+                    <form method="post" action="../DenunciarPublicacao.php">
+                        <textarea placeholder="Qual o motivo?" id="motivo" name="texto"></textarea>
+                        <input type="hidden" name="id_publi">            
+                        <button type="submit"> Denunciar</button>
+                    </form>                                                        
+                </div>
+            </div>   
+            
             </section>
             </div>
         </div>
