@@ -254,3 +254,7 @@ nav.menu > ul > li > a:hover #quantidade_de_not{
     content: ' ';
     height:115px
 }
+
+.prefeitura-publicacao .topo-prefeitura-publicacao{
+    margin-top: 20px
+}

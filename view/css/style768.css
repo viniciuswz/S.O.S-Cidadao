@@ -579,8 +579,9 @@ font-size: 1.1em;
 
 .prefeitura-publicacao .topo-prefeitura-publicacao{
 
-    justify-content: flex-start;
-   margin-left: 20px
+justify-content: flex-start;
+
+/* margin-left: 20px */
 }
 
 .topo-prefeitura-publicacao span:first-child{
@@ -707,3 +708,26 @@ overflow: inherit
 }
 
 
+.prefeitura-publicacao .topo-prefeitura-publicacao{
+
+    margin-top: 20px;
+   
+    max-width:90%;
+  
+
+}
+
+.prefeitura-publicacao .conteudo-resposta{
+    width: 90%;
+}
+
+.prefeitura-publicacao .conteudo-resposta span{
+    display: block;
+    width: 100%;
+    font-size:14px;
+    font-family: arial;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+   
+    text-align: left;
+}

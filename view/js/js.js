@@ -1829,20 +1829,74 @@ jQuery(function($){
 jQuery(function($){
   $("#enviar_comentario").submit(function(){
     
-  var caminho = $(this).attr('action');
+  //var caminho = $(this).attr('action');
   var comentario = $("#comentarioTxt").val();
   var idPubli = $("#idPubli").val();
+  var img = $(".mini-perfil").find("img:first").attr("src");
+  var nome = $(".mini-perfil").find("p").html();
   //alert(comentario + idPubli)
   $.ajax({
     url:"../Comentario.php",
     type: "post",
-    data: "id="+idPubli+"&comentario="+txt,
+    data: "id="+idPubli+"&texto="+comentario,
     success:function(result){
         if(result == 'NLogado'){ // Nao esta logado, redirecionar pra fazer login
           location.href="login.php";
           return false;
         }else{
-          alert(result);
+          //alert(result);
+          $("#comentarioTxt").val('');
+          var usuario = result.substring(0, result.lastIndexOf('.'));
+          var id_comentario = result.substring(result.lastIndexOf('.') + 1);
+          if(usuario =="Comum"){
+            $(".comentarios").prepend('<div class="comentario-user" style="display:flex; order:-1">\
+            <div class="publicacao-topo-aberta">\
+            <a href="perfil_reclamacao.php">\
+              <div>\
+              <img src="'+img+'">\
+              </div>\
+            </a>\
+            <p>\
+            <a href="perfil_reclamacao.php?ID=139">\
+            <span class="negrito">'+nome+'</span>\
+            </a>Enviado agora</p>\
+            <div class="mini-menu-item ">\
+            <i class="icone-3pontos"></i>\
+            <div>\
+            <ul style="z-index: 98">\
+            <li>\
+            <a class="remover_publicacao" href="../ApagarComentario.php?ID='+id_comentario+'">\<i class="icone-fechar"></i>Remover</a>\
+            </li>\
+            <li class="editar-comentario"><a href="#"><i class="icone-edit-full"></i>Alterar</a></li>\
+            </ul>\
+            </div><div class="modal-editar-comentario">\
+            <div class="modal-editar-comentario-fundo"></div>\
+            <div class="box-editar-comentario">\
+            <div><h1>Editar comentario</h1><span class="fechar-editar-comentario">×</span></div>\
+            <form action="../UpdateComentario.php" method="post">\
+            <textarea placeholder="Qual o motivo?" id="motivo" name="texto">'+comentario+'</textarea>\
+            <input type="hidden" value="'+id_comentario+'" name="id">\
+            <button type="submit"> editar</button>\
+            </form>\
+            </div>\
+            </div>\
+            </div>\
+            </div>\
+            <p>'+comentario+'</p></div>');
+          }else{
+            $(".enviar-comentario-publicacao").remove();
+            $('<section class="prefeitura-publicacao">\
+            <div class="topo-prefeitura-publicacao">\
+            <a href="perfil_reclamacao.php">\
+            <div>\
+            <img src="'+img+'">\
+            </div>\
+            </a><p><a href="perfil_reclamacao.php?ID=132"><span class="negrito">'+nome+'</span></a><time>Enviado agora</time></p></div>\
+            <div class="conteudo-resposta">\
+            <span>'+comentario+'</span>\
+            <div>\
+            </section>').insertBefore('.barra-curtir-publicacao')
+          }
          
         
         }          

@@ -894,8 +894,12 @@ width: 100vw;
 }
 
 .prefeitura-publicacao .topo-prefeitura-publicacao{
-    justify-content: flex-start;
-    margin-left: 20px
+
+    margin-top: 20px;
+   
+    max-width:90%;
+  
+
 }
 
 .topo-prefeitura-publicacao a span:first-child{

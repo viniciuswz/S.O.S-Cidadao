@@ -323,3 +323,25 @@ width: 320px
 .Reclamacao{
     width: 55%
 }
+
+.prefeitura-publicacao .topo-prefeitura-publicacao{
+
+    margin-top: 20px;
+   
+    max-width:70%;
+
+}
+
+.prefeitura-publicacao .conteudo-resposta{
+    width: 70%;
+}
+
+.prefeitura-publicacao .conteudo-resposta span{
+    display: block;
+    width: 100%;
+    font-size:14px;
+    font-family: arial;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    text-align: left;
+}

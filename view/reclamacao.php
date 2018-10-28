@@ -301,9 +301,9 @@
                             <h3>
                                 Envie uma resposta
                             </h3>
-                            <form action="../Comentario.php" method="post" id="formComentario">
-                                <textarea id="comentarioUser" placeholder="Escreva uma resposta" name="texto"></textarea>
-                                <input id="id_pub_comen"type="hidden" value="<?php echo $_GET['ID']?>" name="id">
+                            <form id="enviar_comentario">
+                                <textarea placeholder="Escreva uma resposta" name="texto" id="comentarioTxt"></textarea>
+                                <input type="hidden" value="<?php echo $_GET['ID']?>" name="id" id="idPubli">
                                 <input type="submit" value="Enviar Resposta">
                             </form>  
                         </section>
@@ -325,7 +325,7 @@
                 }
             ?>
             <section class="comentarios" id="pa">
-                <h3>
+                <h3 style="display: flex;order: -2;">
                     <?php echo $complemento ?>
                 </h3>
                 <?php 
