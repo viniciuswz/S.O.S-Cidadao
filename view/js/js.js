@@ -1763,6 +1763,8 @@ jQuery(function($){
       final = "../Denunciar"+final+".php";
     }else if(final == 'Debate'){
       final = "../Denunciar"+final+".php";
+    }else if(final == 'Comentario'){
+      final = "../Denunciar"+final+".php";
     }else{
       return false;
     }

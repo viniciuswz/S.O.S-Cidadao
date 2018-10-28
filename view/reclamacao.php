@@ -208,7 +208,7 @@
                                                 ?>
                                         </ul>
                                     </div>
-                                    <?php if(isset($indDenun) AND $indDenun == TRUE) { // so quero q carregue em alguns casos?>
+                                    
                                         <div class="modal-denunciar">
                                             <div class="modal-denunciar-fundo"></div>
                                             <div class="box-denunciar">
@@ -227,7 +227,7 @@
                                                 </form>
                                             </div>
                                         </div>
-                                    <?php } ?>
+                                    
                                 </div>
                         </div>
                         

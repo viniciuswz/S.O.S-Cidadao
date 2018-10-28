@@ -11,25 +11,26 @@ try{
     $tipoUsuPermi = array('Comum','Funcionario','Prefeitura');
     Usuario::verificarLogin(1,$tipoUsuPermi);  // Tem q estar logado 
     
-    $nomesCampos = array('id_comen','texto','id_publi');// Nomes dos campos que receberei da URL    
+    $nomesCampos = array('id','texto');// Nomes dos campos que receberei da URL    
     $validar = new ValidarCampos($nomesCampos, $_POST);
-    $validar->verificarTipoInt(array('id_comen','id_publi'),$_POST); // Verificar se é um numero
+    $validar->verificarTipoInt(array('id'),$_POST); // Verificar se é um numero
     
     $denuncia = new ComentarioDenuncia();   
-    $denuncia->setCodComen($_POST['id_comen']);
+    $denuncia->setCodComen($_POST['id']);
     $denuncia->setCodUsu($_SESSION['id_user']);
     $denuncia->setMotivoDenunComen($_POST['texto']);
     
     $denuncia->inserirDenuncia();
 
-    echo "<script> alert('Denuncia realizada com sucesso');javascript:window.location='./view/reclamacao.php?ID=".$_POST['id_publi']."';</script>";
+    //echo "<script> alert('Denuncia realizada com sucesso');javascript:window.location='./view/reclamacao.php?ID=".$_POST['id_publi']."';</script>";
         
 }catch(Exception $exc){  
     $erro = $exc->getCode();   
     $mensagem = $exc->getMessage();
     switch($erro){
         case 2://Nao esta logado    
-            echo "<script> alert('$mensagem');javascript:window.location='./view/login.php';</script>";
+            echo 'NLogado';  
+            //echo "<script> alert('$mensagem');javascript:window.location='./view/login.php';</script>";
             break;
         case 6://Não é usuario comum, prefeitura ou func
             echo "<script> alert('$mensagem');javascript:window.location='./view/index.php';</script>";
