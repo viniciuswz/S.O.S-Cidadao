@@ -84,7 +84,7 @@ function teste2(resposta){
                                 }
 
                                 if(arr1[contador]["LinkApagar"] != false && arr1[contador]["LinkUpdate"] != false){ // Denuncioou
-                                    mensa += '<li><a href='+arr1[contador]["LinkApagar"]+'><i class="icone-fechar"></i></i>Remover</a></li>';                                            
+                                    mensa += '<li><a class="remover_publicacao" href='+arr1[contador]["LinkApagar"]+'><i class="icone-fechar"></i></i>Remover</a></li>';                                            
                                     mensa += '<li class="editar-comentario"><a href="#"><i class="icone-edit-full"></i>Alterar</a></li>';
                                 }else if(arr1[contador]["LinkApagar"] != false){ // carregar so o apagar pra adm
                                     mensa += '<li><a href='+arr1[contador]["LinkApagar"]+'><i class="icone-fechar"></i></i>Remover</a></li>';                                       
