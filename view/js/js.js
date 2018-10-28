@@ -1749,13 +1749,15 @@ jQuery(function($){
 jQuery(function($){
   id = "";
   $this = "";
-   final = "";
+  final = "";
+  id_certo =""
   /* abrir quando */
     $(document).on("click", ".denunciar-item", function(){
       //pegar o id
     id=$(this).data("id");
     $this = $(this);
    final = id.substring(id.lastIndexOf('.')+1);
+   id_certo = id.substring(0, id.lastIndexOf('.'));
     
     //mandar o id 
     $(".modal-denunciar").find("form input").val(id);
@@ -1787,7 +1789,7 @@ jQuery(function($){
     $.ajax({
       url:"../DenunciarPublicacao.php",
       type: "post",
-      data: "id_publi="+id+"&texto="+txt,
+      data: "id_publi="+id_certo+"&texto="+txt,
       success:function(result){
           if(result == 'NLogado'){ // Nao esta logado, redirecionar pra fazer login
             location.href="login.php";
