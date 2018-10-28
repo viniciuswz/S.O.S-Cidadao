@@ -1749,11 +1749,13 @@ jQuery(function($){
 jQuery(function($){
   id = "";
   $this = "";
+   final = "";
   /* abrir quando */
     $(document).on("click", ".denunciar-item", function(){
       //pegar o id
     id=$(this).data("id");
     $this = $(this);
+   final = id.substring(id.lastIndexOf('.')+1);
     
     //mandar o id 
     $(".modal-denunciar").find("form input").val(id);
