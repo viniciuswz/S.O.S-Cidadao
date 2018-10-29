@@ -532,25 +532,6 @@ jQuery(function($){
 
 
 
-/* modal editar comentario */
-jQuery(function($){
-  /* abrir quando */
-  jQuery(document).on("click",".editar-comentario", function(event){
- // $(".editar-comentario").click(function(){
-    $(this).parents(":eq(2)").find("div.modal-editar-comentario").addClass("modal-editar-comentario-ativo");
-  })
-  /* fechar quando clicar fora*/
-  jQuery(document).on("click",".modal-editar-comentario-fundo", function(event){
-//$(".modal-editar-comentario-fundo").click(function(){
-    $(this).parent().removeClass("modal-editar-comentario-ativo");
-  })
-  /* fechar quando clicar no X*/
-  jQuery(document).on("click",".fechar-editar-comentario", function(event){
-  //$(".fechar-editar-comentario").click(function(){
-    $(this).parents(":eq(2)").removeClass("modal-editar-comentario-ativo");
-  })
-})
-
 /* modal desativar */
 
 jQuery(function($){
@@ -1903,6 +1884,100 @@ jQuery(function($){
         
     }
  })
+    return false
+  })
+})
+
+jQuery(function($){
+$(document).on('click','.salvar',function(){
+  var tipo = $(this).data('tipo'); //data-tipo="remover"
+  var href =$(this).attr('href');
+  var id = href.substring(href.lastIndexOf('ID')+3);
+  var $this = $(this);
+
+
+
+  $.ajax({
+    url:'../SalvarPublicacao.php',
+    type: "get",
+    data: "ID="+id,
+    success:function(result){
+        if(result == 'NLogado'){ // Nao esta logado, redirecionar pra fazer login
+          location.href="login.php";
+          return false;
+        }else{
+        if(tipo == 'remover'){
+          $this.parents(':eq(5)').remove();
+        }else{
+        var classe =  $this.find('i').attr('class');
+        if(classe == 'icone-salvar'){
+          $this.parent().html('<li><a class="salvar" href="'+href+'"><i class="icone-salvar-full"></i>Salvo</a></li>');
+        }else if(classe == 'icone-salvar-full'){
+          $this.parent().html('<li><a class="salvar" href="'+href+'"><i class="icone-salvar"></i>Salvar</a></li>');
+        }
+        }
+        }          
+        
+    }
+ })
+
+  return false;
+  
+})
+
+})
+
+
+
+
+
+//AQUI DANIEL - UPDATECOEMNTARIO.PHP, PEGARCOMEN.JS, RECLAMACAO.PHP
+/* modal editar comentario */
+jQuery(function($){
+  var $this;
+  /* abrir quando */
+  jQuery(document).on("click",".editar-comentario", function(event){
+ // $(".editar-comentario").click(function(){
+    $("div.modal-editar-comentario").addClass("modal-editar-comentario-ativo");
+    $this = $(this);
+    var id = $(this).data('id');
+    $('#idEditar').val(id);
+    var txtAntigo = $this.parents(':eq(4)').find('p:last').text();
+ 
+    $("#motivoT").html(txtAntigo);
+  })
+  /* fechar quando clicar fora*/
+  jQuery(document).on("click",".modal-editar-comentario-fundo", function(event){
+//$(".modal-editar-comentario-fundo").click(function(){
+    $(this).parent().removeClass("modal-editar-comentario-ativo");
+  })
+  /* fechar quando clicar no X*/
+  jQuery(document).on("click",".fechar-editar-comentario", function(event){
+  //$(".fechar-editar-comentario").click(function(){
+    $(this).parents(":eq(2)").removeClass("modal-editar-comentario-ativo");
+  })
+
+  $("#editarComentario").submit(function(){
+    var txt =$("#motivoT").val();
+    var id = $("#idEditar").val();
+    
+  
+    
+    
+
+    
+    //ajax
+    $.ajax({
+      url:"../UpdateComentario.php",
+      type: "post",
+      data: "id="+id+"&texto="+txt,
+      success:function(result){
+        //alert($this.parents(':eq(4)').find('p:last').text());
+        $this.parents(':eq(4)').find('p:last').text(txt)
+        
+        
+      }
+   })
     return false
   })
 })
