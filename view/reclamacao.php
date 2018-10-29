@@ -201,11 +201,11 @@
                                                 ?> 
                                                 <?php                                             
                                                     if(isset($indSalva) AND !$indSalva){
-                                                        echo '<li><a href="../SalvarPublicacao.php?ID='.$_GET['ID'].'"><i class="icone-salvar"></i>Salvar</a></li>';
+                                                        echo '<li><a class="salvar" href="../SalvarPublicacao.php?ID='.$_GET['ID'].'"><i class="icone-salvar"></i>Salvar</a></li>';
                                                     }else if(isset($indSalva) AND $indSalva){
-                                                        echo '<li><a href="../SalvarPublicacao.php?ID='.$_GET['ID'].'"><i class="icone-salvar-full"></i>Salvo</a></li>';
+                                                        echo '<li><a class="salvar" href="../SalvarPublicacao.php?ID='.$_GET['ID'].'"><i class="icone-salvar-full"></i>Salvo</a></li>';
                                                     }else{
-                                                        echo '<li><a href="../SalvarPublicacao.php?ID='.$_GET['ID'].'"><i class="icone-salvar"></i>Salvar</a></li>';
+                                                        echo '<li><a class="salvar" href="../SalvarPublicacao.php?ID='.$_GET['ID'].'"><i class="icone-salvar"></i>Salvar</a></li>';
                                                     }
                                                 ?>
                                         </ul>
@@ -325,6 +325,20 @@
                 }
             ?>
             <section class="comentarios" id="pa">
+                        <div class="modal-editar-comentario">
+                            <div class="modal-editar-comentario-fundo"></div>
+                            <div class="box-editar-comentario">
+                                <div>
+                                    <h1>Editar comentario</h1>
+                                    <span class="fechar-editar-comentario">&times;</span>
+                                </div>                     
+                                <form action="../UpdateComentario.php" method="post" id="editarComentario">
+                                    <textarea placeholder="Qual o motivo?" id="motivoT" name="texto"> </textarea>
+                                    <input type="hidden" id="idEditar" value="" name="id">
+                                    <button type="submit">editar</button>
+                                </form>
+                            </div>
+                        </div>         
                 <h3 style="display: flex;order: -2;">
                     <?php echo $complemento ?>
                 </h3>
