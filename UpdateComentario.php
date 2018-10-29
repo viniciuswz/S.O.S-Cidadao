@@ -20,7 +20,7 @@ try{
     $comentario->setCodComen($_POST['id']);
     $idPubli = $comentario->updateComentario();
     
-    echo "<script> alert('Alteração realizada com sucesso');javascript:window.location='view/reclamacao.php?ID=".$idPubli."';</script>";
+    //echo "<script> alert('Alteração realizada com sucesso');javascript:window.location='view/reclamacao.php?ID=".$idPubli."';</script>";
     
 }catch (Exception $exc){
     $erro = $exc->getCode();   
