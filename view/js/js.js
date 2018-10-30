@@ -1859,18 +1859,8 @@ jQuery(function($){
             <li>\
             <a class="remover_publicacao" href="../ApagarComentario.php?ID='+id_comentario+'">\<i class="icone-fechar"></i>Remover</a>\
             </li>\
-            <li class="editar-comentario"><a href="#"><i class="icone-edit-full"></i>Alterar</a></li>\
+            <li class="editar-comentario" data-id="'+id_comentario+'"><a href="#"><i class="icone-edit-full"></i>Alterar</a></li>\
             </ul>\
-            </div><div class="modal-editar-comentario">\
-            <div class="modal-editar-comentario-fundo"></div>\
-            <div class="box-editar-comentario">\
-            <div><h1>Editar comentario</h1><span class="fechar-editar-comentario">×</span></div>\
-            <form action="../UpdateComentario.php" method="post">\
-            <textarea placeholder="Qual o motivo?" id="motivo" name="texto">'+comentario+'</textarea>\
-            <input type="hidden" value="'+id_comentario+'" name="id">\
-            <button type="submit"> editar</button>\
-            </form>\
-            </div>\
             </div>\
             </div>\
             </div>\
@@ -1973,11 +1963,6 @@ jQuery(function($){
   $("#editarComentario").submit(function(){
     var txt =$("#motivoT").val();
     var id = $("#idEditar").val();
-    
-  
-    
-    
-
     
     //ajax
     $.ajax({
