@@ -14,7 +14,7 @@ class MensagensA extends MensagensM{
                                                 %s
                                                 WHERE mensagem.cod_deba = '%s' AND status_deba = 'A' %s";
     
-    private $sqlSelectMensagens = "SELECT mensagem.cod_mensa,texto_mensa,TIME_FORMAT(dataHora_mensa, '%s') AS hora, 
+    private $sqlSelectMensagens = "SELECT dataHora_mensa,mensagem.cod_mensa,texto_mensa,TIME_FORMAT(dataHora_mensa, '%s') AS hora, 
                                         mensagem.cod_usu, nome_usu, descri_tipo_usu,img_perfil_usu, %s
                                         DATEDIFF('%s',dataHora_mensa) AS diferenca, TIME_FORMAT(dataHora_mensa, '%s') AS data
                                         FROM mensagem INNER JOIN usuario ON(mensagem.cod_usu = usuario.cod_usu)
@@ -187,7 +187,8 @@ class MensagensA extends MensagensM{
                     }else if($dados[$contador]['diferenca'] == 1){
                         $dados2[$contador2]['texto_mensa'] = 'ONTEM';
                     }else{
-                        $dados2[$contador2]['texto_mensa'] = $dados[$contador]['data']; // quando for maior q um dia coloca a data
+                        $dataHora = new \DateTime($dados[$contador]['dataHora_mensa']);
+                        $dados2[$contador2]['texto_mensa'] = $dataHora->format('d/m');//$dados[$contador]['data']; // quando for maior q um dia coloca a data
                     }                    
                 }         
             }else if($this->codDono == $this->getCodUsu()){ // dono do debate
