@@ -184,7 +184,7 @@
                                                             $indDenun = TRUE; // = carregar modal da denucia
                                                         }                    
                                                     }else if(!isset($_SESSION['id_user'])){ // aparecer parar os usuario nao logado
-                                                        echo '<li class="denunciar-item" ><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>';
+                                                        echo '<li class="denunciar-item" data-id="'.$_GET['ID'].'.Publicacao"><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>';
                                                         $indDenun = TRUE; // = carregar modal da denucia
                                                     } 
                                                 ?>
