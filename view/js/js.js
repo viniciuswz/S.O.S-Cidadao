@@ -1875,7 +1875,7 @@ jQuery(function($){
             <div>\
             <img src="'+img+'">\
             </div>\
-            </a><p><a href="perfil_reclamacao.php?ID=132"><span class="negrito">'+nome+'</span></a><time>Enviado agora</time></p></div>\
+            </a><p><a href="perfil_reclamacao.php?ID='+id_usu+'"><span class="negrito">'+nome+'</span></a><time>Enviado agora</time></p></div>\
             <div class="conteudo-resposta">\
             <span>'+comentario+'</span>\
             <div>\
