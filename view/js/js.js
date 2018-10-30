@@ -1720,8 +1720,8 @@ jQuery(function($){
             //alert("deu certo")
             
             $this.parents(":eq(5)").remove();
-            if(tipo == '../ApagarComentario'){              
-              $("#qtd_comen").text(result);
+            if(tipo == '../ApagarComentario'){ // se for apagar comentario, vai ter um retorno da qtd de comentarios dessa publi             
+              $("#qtd_comen").text(result); // ai altera
             }
           }          
           
@@ -1821,7 +1821,8 @@ jQuery(function($){
   var idPubli = $("#idPubli").val();
   var img = $(".mini-perfil").find("img:first").attr("src");
   var nome = $(".mini-perfil").find("p").html();
-   
+  var hrefIDUsu = $("#idPerfilUsu").attr('href');
+  var id_usu = hrefIDUsu.substring(hrefIDUsu.lastIndexOf('ID')+3); // pegar id do usuario
   //alert(comentario + idPubli)
   $.ajax({
     url:"../Comentario.php",
@@ -1832,12 +1833,11 @@ jQuery(function($){
           location.href="login.php";
           return false;
         }else{
-          //alert(result);
+          //alert(result);          
           $("#comentarioTxt").val('');
           var usuario = result.substring(0, result.lastIndexOf('.'));
           var id_comentario = result.substring(result.lastIndexOf('.') + 1,result.lastIndexOf(','));
-          var qtd = result.substring(result.lastIndexOf(',') + 1);
-          
+          var qtd = result.substring(result.lastIndexOf(',') + 1);          
           if(usuario =="Comum"){
             
             
@@ -1849,7 +1849,7 @@ jQuery(function($){
               </div>\
             </a>\
             <p>\
-            <a href="perfil_reclamacao.php?ID=139">\
+            <a href="perfil_reclamacao.php?ID='+id_usu+'">\
             <span class="negrito">'+nome+'</span>\
             </a>Enviado agora</p>\
             <div class="mini-menu-item ">\

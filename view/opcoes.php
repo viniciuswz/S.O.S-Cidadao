@@ -1,4 +1,4 @@
-<li><a href="perfil_reclamacao.php"><i class="icone-user"></i>Meu perfil</a></li>
+<li><a id="idPerfilUsu" href="perfil_reclamacao.php?ID=<?php echo $_SESSION['id_user']?>"><i class="icone-user"></i>Meu perfil</a></li>
 <li><a href="salvos.php"><i class="icone-salvar"></i>Salvos</a></li>
     <hr>
 <?php
