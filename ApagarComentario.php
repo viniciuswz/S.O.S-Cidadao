@@ -19,8 +19,8 @@ try{
     $publi->setCodComen($_GET['ID']);
     $publi->setCodUsu($_SESSION['id_user']);   
     $publi->updateStatusComen('I');
-
-    echo "<script> alert('Status mudado');javascript:window.location='./view/todasreclamacoes.php';</script>";
+    echo $publi->quantidadeTotalPubli();
+    //echo "<script> alert('Status mudado');javascript:window.location='./view/todasreclamacoes.php';</script>";
         
 }catch(Exception $exc){  
     $erro = $exc->getCode();   

@@ -8,6 +8,8 @@ use Core\Usuario;
 class ComentarioA extends ComentarioM{
     private $sqlVerifyDonoPubli = "SELECT cod_publi FROM publicacao WHERE cod_usu = '%s' AND cod_publi = '%s'";
 
+    private $sqlSelectCodPubli = " SELECT cod_publi FROM comentario WHERE cod_comen = '%s' ";
+
     private $sqlInsert = "INSERT INTO comentario(texto_comen, dataHora_comen, ind_visu_dono_publi, cod_usu, cod_publi) VALUES ('%s', '%s', '%s', '%s','%s')";
 
     private $sqlSelectComen = "SELECT usuario.nome_usu, usuario.cod_usu, cod_comen, img_perfil_usu,texto_comen,dataHora_comen,descri_tipo_usu, publicacao.cod_publi
@@ -187,11 +189,21 @@ class ComentarioA extends ComentarioM{
         
     }
 
+    public function getCodPubliByComen(){ // pegar id da publicacao pelo comentario
+        $sqlSelect = sprintf(
+            $this->sqlSelectCodPubli,
+            $this->getCodComen()
+        );
+        $res = $this->runSelect($sqlSelect);
+        $this->setCodPubli($res[0]['cod_publi']);
+        return;
+    }   
+
     public function updateStatusComen($status){        
         $usuario = new Usuario();
         $usuario->setCodUsu($this->getCodUsu());
         $tipo = $usuario->getDescTipo();       
-
+        $this->getCodPubliByComen();
         if($tipo == 'Adm' or $tipo == 'Moderador'){
             $sqlUpdateComen = "UPDATE comentario SET status_comen = '%s' WHERE cod_comen = '%s'"; //
             $sql = sprintf(

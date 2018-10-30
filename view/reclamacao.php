@@ -281,7 +281,7 @@
             ?>
             <div class="barra-curtir-publicacao"> 
                     <div>
-                        <span><?php echo $resposta[0]['quantidade_comen']?></span><i class="icone-comentario-full"></i>
+                        <span id="qtd_comen"><?php echo $resposta[0]['quantidade_comen']?></span><i class="icone-comentario-full"></i>
                         <span id="qtd_likes"><?php echo $resposta[0]['quantidade_curtidas']?></span><i class="icone-like"></i>
                     </div>
                     <?php

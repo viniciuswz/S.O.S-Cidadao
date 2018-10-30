@@ -1718,7 +1718,11 @@ jQuery(function($){
             return false;
           }else{
             //alert("deu certo")
-            $this.parents(":eq(5)").remove()
+            
+            $this.parents(":eq(5)").remove();
+            if(tipo == '../ApagarComentario'){              
+              $("#qtd_comen").text(result);
+            }
           }          
           
       }
@@ -1817,6 +1821,7 @@ jQuery(function($){
   var idPubli = $("#idPubli").val();
   var img = $(".mini-perfil").find("img:first").attr("src");
   var nome = $(".mini-perfil").find("p").html();
+   
   //alert(comentario + idPubli)
   $.ajax({
     url:"../Comentario.php",
@@ -1830,8 +1835,12 @@ jQuery(function($){
           //alert(result);
           $("#comentarioTxt").val('');
           var usuario = result.substring(0, result.lastIndexOf('.'));
-          var id_comentario = result.substring(result.lastIndexOf('.') + 1);
+          var id_comentario = result.substring(result.lastIndexOf('.') + 1,result.lastIndexOf(','));
+          var qtd = result.substring(result.lastIndexOf(',') + 1);
+          
           if(usuario =="Comum"){
+            
+            
             $(".comentarios").prepend('<div class="comentario-user" style="display:flex; order:-1">\
             <div class="publicacao-topo-aberta">\
             <a href="perfil_reclamacao.php">\
@@ -1866,6 +1875,8 @@ jQuery(function($){
             </div>\
             </div>\
             <p>'+comentario+'</p></div>');
+            $("#qtd_comen").text(qtd);
+
           }else{
             $(".enviar-comentario-publicacao").remove();
             $('<section class="prefeitura-publicacao">\

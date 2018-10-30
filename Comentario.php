@@ -20,7 +20,7 @@ try{
     $comentario->setCodUsu($_SESSION['id_user']);
     $comentario->setCodPubli($idPubli);
     $comentario->inserirComen();
-    echo $_SESSION['tipo_usu'].".".$comentario->last();    
+    echo $_SESSION['tipo_usu'].".".$comentario->last().",".$comentario->quantidadeTotalPubli();    
     //echo "<script> javascript:window.location='view/reclamacao.php?ID=".$idPubli."';</script>";
 
 }catch (Exception $exc){
