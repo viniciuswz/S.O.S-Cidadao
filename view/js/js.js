@@ -1979,3 +1979,29 @@ jQuery(function($){
     return false
   })
 })
+
+/* INICIO AJAX APAGAR USUARIO ADMIN*/
+jQuery(function($){
+  $(document).on('click','.remover-usuario',function(){
+    $this = $(this);
+    var href =$(this).attr('href');
+    var id = href.substring(href.lastIndexOf('ID')+3);   
+
+    $.ajax({
+      url:'../ApagarUsuario.php',
+      type: "get",
+      data: "ID="+id,
+      success:function(result){
+          if(result == 'NLogado'){ // Nao esta logado, redirecionar pra fazer login
+            location.href="login.php";
+            return false;
+          }else{
+              $this.parents(':eq(4)').remove();              
+          }   
+      }
+   })
+    return false;
+
+  });
+})
+/* FIM AJAX APAGAR USUARIO ADMIN*/

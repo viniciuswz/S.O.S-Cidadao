@@ -20,7 +20,8 @@ try{
     $resul = $usu->updateStatusUsu('I', $_SESSION['id_user']);
 
     if($resul == 1){ // Prefeitura apagou funcionario
-        echo "<script> alert('A funcão de funcionario para este usuario foi removida');javascript:window.location='./view/prefeitura-admin.php';</script>";
+        echo '1';
+        //echo "<script> alert('A funcão de funcionario para este usuario foi removida');javascript:window.location='./view/prefeitura-admin.php';</script>";
     }else if($resul == 2){
         echo "<script> alert('Status mudado');javascript:window.location='./view/admin-moderador.php?tipo1=Adm&tipo2=Moderador&tipo3=Prefeitura&tipo4=Funcionario';</script>";
     }else{

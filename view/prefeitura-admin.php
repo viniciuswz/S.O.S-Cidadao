@@ -117,8 +117,14 @@ session_start();
                         <?php
                         $contador = 0;                        
                         while($contador < count($res)){
-                            echo '<tr>';  
-                                echo '<td><p>'.$res[$contador]['nome_usu'].'</p></td>';                      
+                            echo '<tr class="tabelinha-linha">';  
+                                echo '<td>
+                                <div class="mini-menu-adm">
+                                        <ul>
+                                            <li><a href="../ApagarUsuario.php?ID='.$res[$contador]['cod_usu'].'" class="remover-usuario">Remover Funcionário</a></li>                                            
+                                        </ul>                                        
+                                </div>                                
+                                <p>'.$res[$contador]['nome_usu'].'</p></td>';                      
                                 echo '<td>'.$res[$contador]['email_usu'].'</td>'; 
                                 echo '<td><p>'.$res[$contador]['dataHora_cadastro_usu'].'</p></td>';                       
                                 //echo '<td<p> <a href="'.$res[$contador]['LinkApagarUsu'].'">Remover Funcao</p></td>'; 
