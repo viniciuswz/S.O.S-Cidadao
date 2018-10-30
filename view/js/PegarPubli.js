@@ -86,9 +86,9 @@ function teste2(resposta){
                                         }
 
                                         if(arr1[contador]["TextoLinkSalvar"] == "Salvo"){
-                                            mensa += '<li><a href='+arr1[contador]["LinkSalvar"]+'><i class="icone-salvar-full"></i>Salvo</a></li>';
+                                            mensa += '<li><a class="salvar" href='+arr1[contador]["LinkSalvar"]+'><i class="icone-salvar-full"></i>Salvo</a></li>';
                                         }else{
-                                            mensa += '<li><a href='+arr1[contador]["LinkSalvar"]+'><i class="icone-salvar"></i>Salvar</a></li>';
+                                            mensa += '<li><a class="salvar" href='+arr1[contador]["LinkSalvar"]+'><i class="icone-salvar"></i>Salvar</a></li>';
                                         }                                                                     
                             mensa +=   '</ul>\
                                     </div>';                                 
