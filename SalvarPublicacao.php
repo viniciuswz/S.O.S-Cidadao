@@ -20,7 +20,7 @@ try{
     $publicacoSalva->setCodPubli($_GET['ID']);
     $publicacoSalva->salvar();
     
-    echo "<script> javascript:window.location='view/reclamacao.php?ID=".$_GET['ID']."';</script>";
+    //echo "<script> javascript:window.location='view/reclamacao.php?ID=".$_GET['ID']."';</script>";
     
         
 }catch(Exception $exc){
