@@ -1359,6 +1359,7 @@ jQuery(function($){
                 $(".aviso-form-inicial").find("p").text("você precisa comfirmar a senha")
               }else{ // AJAX CADASTRAR
                 /* AJAX CADASTRAR */
+                $(".aviso-form-inicial").hide();
                 $.ajax({
                   url:"../CadastrarUser.php",
                   type: "post",
