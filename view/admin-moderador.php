@@ -187,8 +187,19 @@ session_start();
                                 $contador = 0;
                                 $contador2 = 0;
                                 while($contador < count($res)){
-                                    echo '<tr>';  
-                                        echo '<td>'.$res[$contador]['nome_usu'].'</td>';
+                                    echo '<tr class="tabelinha-linha">';  
+                                        echo '<td>
+                                            <div class="mini-menu-adm">
+                                                <ul>';
+                                                    if($res[$contador]['descri_tipo_usu'] != 'Prefeitura'){
+                                                        echo '<li><a href="../ApagarUsuario.php?ID='.$res[$contador]['cod_usu'].'" class="remover-usuario">Remover '.$res[$contador]['descri_tipo_usu'].'</a></li>';
+                                                    }else{
+                                                        echo '<li><a>Não é permitido remover</a></li>';                                            
+                                                    }
+                                                    
+                                                echo '</ul>                                        
+                                            </div>  
+                                        '.$res[$contador]['nome_usu'].'</td>';
                                         echo '<td>'.$res[$contador]['descri_tipo_usu'].'</td>';
                                         echo '<td>'.$res[$contador]['dataHora_cadastro_usu'].'</td>';                        
                                         //echo '<td>'.$res[$contador]['LinkApagarUsu'].'</td>'; 

@@ -345,7 +345,10 @@ class UsuarioA extends UsuarioM{
                 $codApagar                
             );           
             $codReturn = 1; // Prefeitura q esta apagando
-        }else if($tipo == 'Adm' or $tipo == 'Moderador'){   //Se for adm executa         
+        }else if($tipo == 'Adm' or $tipo == 'Moderador'){   //Se for adm executa        
+            if($tipoUserApagado == 'Prefeitura'){
+                throw new \Exception("Não foi possível mudar o status, pois não é permitido apagar a prefeitura",9);
+            } 
             $sql = sprintf(
                 $this->sqlDeleteUsu,
                 $status,
