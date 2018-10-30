@@ -1261,7 +1261,8 @@ jQuery(function($){
               $(".aviso-form-inicial").find("p").text("você precisa digitar uma E-mail")
               return false;
             }else{ // se tudo estiver preenchido executa o ajax      
-              /* AJAX DE FAZER LOGIN */                                     
+              /* AJAX DE FAZER LOGIN */           
+              $(".aviso-form-inicial").hide();                          
                 $.ajax({
                     url:"../Login.php",
                     type: "post",
@@ -1269,7 +1270,7 @@ jQuery(function($){
                     success:function(result){
                         if(result=="1"){
                             location.href="index.php"
-                        }else{
+                        }else{                            
                             $(".aviso-form-inicial").show();
                             $(".aviso-form-inicial").find("p").text(result)
                         }
