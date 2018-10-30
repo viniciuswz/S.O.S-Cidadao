@@ -87,7 +87,7 @@ function teste2(resposta){
                                     mensa += '<li><a class="remover_publicacao" href='+arr1[contador]["LinkApagar"]+'><i class="icone-fechar"></i></i>Remover</a></li>';                                            
                                     mensa += '<li class="editar-comentario" data-id="'+arr1[contador]['cod_comen']+'"><a href="#"><i class="icone-edit-full"></i>Alterar</a></li>';
                                 }else if(arr1[contador]["LinkApagar"] != false){ // carregar so o apagar pra adm
-                                    mensa += '<li><a href='+arr1[contador]["LinkApagar"]+'><i class="icone-fechar"></i></i>Remover</a></li>';                                       
+                                    mensa += '<li><a class="remover_publicacao" href='+arr1[contador]["LinkApagar"]+'><i class="icone-fechar"></i></i>Remover</a></li>';                                       
                                 }                               
   
                             mensa += '</ul>\
