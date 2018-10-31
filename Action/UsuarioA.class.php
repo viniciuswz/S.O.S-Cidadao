@@ -141,6 +141,7 @@ class UsuarioA extends UsuarioM{
         if(!$inserir->rowCount()){  // Se der erro cai nesse if          
             throw new \Exception("Não foi possível realizar o cadastro",3);   
         }  
+        $this->setDataHoraCadastro($DataHoraFormatadaAmerica); 
 
         if($tipoUsuCadastrador == 'Adm'){// Inserido pelo adm
             return 1; 
@@ -272,7 +273,7 @@ class UsuarioA extends UsuarioM{
 
         $contador = 0;               
         while($contador < count($dados)){//Nesse while so entra a parte q me interresa            
-            $dados[$contador]['dataHora_cadastro_usu'] = $this->tratarData($dados[$contador]['dataHora_cadastro_usu'], $indTabe);//Calcular o tempo           
+            $dados[$contador]['dataHora_cadastro_usu'] = $this->tratarData($dados[$contador]['dataHora_cadastro_usu'], $indTabe);//Calcular o tempo
             //$dados[$contador]['LinkVisita'] = $this->LinkParaVisita($dados[$contador]['Tipo'],$dados[$contador]['cod_publi_denun']);//Calcular o tempo    
             //$dados[$contador]['LinkApagarPubli'] = $this->LinkParaDeletar($dados[$contador]['Tipo'],$dados[$contador]['cod_publi_denun']);//Calcular o tempo      
             $dados[$contador]['LinkApagarUsu'] = $this->LinkParaDeletar('Usuario',$dados[$contador]['cod_usu']);//Calcular o tempo                                  
