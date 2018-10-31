@@ -25,10 +25,12 @@ try{
    
     //Pra disparar email ele vai aqui
     if($resultado == 1){ // Adm q cadastrou
-        echo 1;
+        $hora = $usuario->tratarData($usuario->getDataHoraCadastro());
+        echo '1.' . $usuario->last() . ',' . $hora;
         //echo "<script> alert('Cadastro realizado com sucesso!!!');javascript:window.location='./view/admin-moderador.php?tipo[]=Moderador&tipo[]=Prefeitura';</script>";
     }else if($resultado == 2){
-        echo 2;
+        $hora = $usuario->tratarData($usuario->getDataHoraCadastro());
+        echo '2.' . $usuario->last() . ',' . $hora;;
         //echo "<script> alert('Funcionario cadastrado com sucesso!!!');javascript:window.location='./view/prefeitura-admin.php';</script>";
     }else{ // Usuario nao cadastrado
         //echo "<script> alert('Cadastro realizado com sucesso!!!');javascript:window.location='./view/Pagina-agradecimento.php';</script>";
