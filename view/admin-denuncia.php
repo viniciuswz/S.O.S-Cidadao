@@ -49,10 +49,7 @@ session_start();
         $res = $denun->select($tipos,$_GET['pagina']);   
         //var_dump($res);
         $quantidadePaginas = $denun->getQuantidadePaginas();
-        $pagina = $denun->getPaginaAtual();
-        if(empty($res)){
-            echo 'Não há nenhuma denuncia para verificar<br>';
-        }       
+        $pagina = $denun->getPaginaAtual();            
 ?>
 <!DOCTYPE html>
 <html lang=pt-br>
@@ -185,6 +182,7 @@ session_start();
                         
                     </tr>  
                     <?php
+                      
                                 $contador = 0;
                                 $contador2 = 0;
                                 while($contador < count($res)){
@@ -220,6 +218,11 @@ session_start();
                                 }
                      ?>                      
                  </table>
+                 <?php
+                        if(empty($res)){
+                            echo 'Não há nenhuma denuncia para verificar';
+                         } 
+                 ?>
             </div>      
         </div>
         <?php
