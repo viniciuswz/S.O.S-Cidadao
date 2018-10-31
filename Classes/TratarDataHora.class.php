@@ -112,7 +112,7 @@ class TratarDataHora{
     }
 
     public function tempoDeCadastro(){
-        return $msg = strftime('Usuário desde %d de %B de %Y', strtotime($this->dataHoraEnvio->format('d-m-Y H:i:s')));          
+        return $msg = strftime('%d de %B de %Y', strtotime($this->dataHoraEnvio->format('d-m-Y H:i:s')));          
     }
 
     public function tempoDeCadastroTabelinha(){
