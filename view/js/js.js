@@ -1474,18 +1474,40 @@ jQuery(function($){
                 type: "post",
                 data: "email="+email+"&senha="+senha+"&nome="+user+"&tipo="+tipo,
                 success:function(result){
+                  //alert(result)
+                  var retorno = result;
+                  var id = retorno.substring(retorno.lastIndexOf('.') + 1, retorno.lastIndexOf(','));
+                  var tipoCadastrador = retorno.substring(0 ,retorno.lastIndexOf('.'));
+                  var data =  retorno.substring(retorno.lastIndexOf(',') + 1 );
+
+                  
+
+                  //alert(tipoCadastrador +'A'+ id+'A'+data)
                    // 1 = adm q realizou o cadastro
                    // 2 = prefeitura q realizou o cadastro
-                    if(result == "1" || result == "2"){
+                    if(tipoCadastrador == "1" || tipoCadastrador == "2"){
+                      if(tipoCadastrador == "2"){
+                        tipo = email;
+                      }
                       /* Fechar o modal do cadastro*/
-                      $(this).parents(":eq(2)").removeClass("modal-adicionar-user-ativo"); 
+                      $('.modal-adicionar-user').removeClass("modal-adicionar-user-ativo"); 
                       $("body").css("overflow","auto");
                       /* aqui da pra abrir um modal pra falar q o cadastro deu certo */
 
+                      $('<tr class="tabelinha-linha"><td>\
+                      <div class="mini-menu-adm">\
+                              <ul>\
+                                  <li><a href="../ApagarUsuario.php?ID='+id+'" class="remover-usuario">Remover</a></li>\
+                              </ul>\
+                      </div>\
+                      <p>'+user+'</p>\
+                  </td><td>'+tipo+'</td><td>'+data+'</td></tr>').insertBefore('.tabelinha-linha:nth-child(3)')
+                  var user = $("#user").val('');
+                  var email = $("#email").val('');
+                  var senha = $("#senha").val('');
+                  var tipo = $('input[name=tipo]').val('');
                       /* Da um submit no formulario de filto de usuario */
-                      if(result == "1"){
-                        $("#filtroUser").submit();     
-                      }
+        
                                        
                     }else{
                         $(".aviso-form-inicial").show();
