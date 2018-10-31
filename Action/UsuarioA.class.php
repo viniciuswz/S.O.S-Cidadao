@@ -53,7 +53,7 @@ class UsuarioA extends UsuarioM{
                     );
         $consulta = $this->runSelect($sql); // Executa
         if(empty($consulta)){ // Se nao retorna nada estoura um erro
-            throw new \Exception("Email ou senha invalidos(Nenhum registro)",1);            
+            throw new \Exception("email ou senha inválidos",1);            
         }
 
         if(count($consulta) == 1){
@@ -61,13 +61,13 @@ class UsuarioA extends UsuarioM{
                 $this->setCodUsu($consulta[0]['cod_usu']); // Setar o codigo do usuario
                 $tipoUsu = $this->getDescTipo(); // Selecionar o tipo de usuario
                 if($tipoUsu == 'Funcionario'){ // Se a conta desativada for de funcionario
-                    throw new \Exception("Infelizmente você nao faz mais parte do time de funcionarios da Prefeitura",1);
+                    throw new \Exception("Infelizmente você nao faz mais parte do time de funcionários da Prefeitura",1);
                 }
-                throw new \Exception("Sua conta foi bloquada, se acha que foi um engano entre em contato conosco",1);                
+                throw new \Exception("Sua conta foi bloquada, entre em contato conosco",1);                
             }
             $hash = $consulta[0]['senha_usu']; // Pego o hash q esta no banco
             if(!password_verify($this->getSenha(), $hash)){ // Verifico se o hash é igual a senha digitada
-                throw new \Exception("Email ou senha invalidos(Hash invalido)",1);
+                throw new \Exception("email ou senha inválidos",1);
             }
                 
             $_SESSION['id_user'] = $consulta[0]['cod_usu'];
@@ -76,7 +76,7 @@ class UsuarioA extends UsuarioM{
 
                 
         }else{ // Se por um acaso vir mais de um registro estoura um erro
-            throw new \Exception("Email ou senha invalidos(Mais de um registro)",1); 
+            throw new \Exception("email ou senha inválidos",1); 
         }
         
     }      
@@ -110,7 +110,7 @@ class UsuarioA extends UsuarioM{
 
     public function cadastrarUser($tipoUsuCadastrador){// Cadastrar Usuario
         if(!empty($this->verificarEmail())){
-            throw new \Exception("Não foi possível realizar o cadastro(Email ja existente)",3);
+            throw new \Exception("Email ja existente",3);
         } 
         $this->getCodTipoUsuSelect();
 
@@ -119,7 +119,7 @@ class UsuarioA extends UsuarioM{
         }
         
         if($tipoUsuCadastrador == 'Prefeitura' AND $this->getDescriTipoUsu() != 'Funcionario'){
-            throw new \Exception("Não foi possível realizar o cadastro, pois você só tem permissao de cadastrar funcionario",3);
+            throw new \Exception("Não foi possível realizar o cadastro, pois você só tem permissao de cadastrar funcionário",3);
         }
 
         $DataHora = new \DateTime('NOW');
