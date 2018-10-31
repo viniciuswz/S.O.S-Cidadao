@@ -1,6 +1,5 @@
-
 var ultimo_id= 0;
-var indMensaHora = 0;
+
 setInterval("jaquinha()",5000);
 
 function jaquinha(){
@@ -63,37 +62,36 @@ function teste2(resposta){
         }
          
     }
-    mensa = "";    
+    mensa = "";
+    
     for(contador=0; contador < arr1[3]['mensagens'].length; contador++){
         classe = arr1[3]['mensagens'][contador]['classe'];
         var msg_id = arr1[3]['mensagens'][contador]['cod_mensa'];
-        if(msg_id == 'visu' && indMensaHora > 0){
-            
-        }else if(ultimo_id < msg_id){
-            mensa += "<div class=" + classe + ">";            
-            if(classe == 'linha-mensagem_padrao'){
-                ultimo_id = msg_id;
-                mensa += "<div class=usuario-msg-foto><img src='../Img/perfil/"+arr1[3]['mensagens'][contador]['img_perfil_usu']+"'></div><div class=mensagem_padrao><span class=nome><a href=perfil_reclamacao.php?ID="+arr1[3]['mensagens'][contador]['cod_usu']+">"+arr1[3]['mensagens'][contador]['nome_usu']+"</a></span>";
-            }else{
-                mensa += "<div>";
-            }
-                mensa += "<span>"+arr1[3]['mensagens'][contador]['texto_mensa'];
-            if(classe == 'linha-mensagem_sistema') { 
-                if(msg_id == 'visu'){ // aqui entra quando for mensagem da quantidade nao visualizadas
-                    //$(".qtdNVisu").parent().parent().remove();// remove
-                    mensa+= "<span class='qtdNVisu'></span>"; // adiciona
-                    indMensaHora = 1;
-                }else{
-                    ultimo_id = msg_id;
-                }            
-                mensa += "<span>"+arr1[3]['mensagens'][contador]['hora']+"</span>";
+        if(( msg_id !='visu' && ultimo_id < msg_id )|| msg_id == 'visu'){
+            mensa += "<div class=" + classe + ">";
+        
+        if(classe == 'linha-mensagem_padrao'){
+            ultimo_id = msg_id;
+            mensa += "<div class=usuario-msg-foto><img src='../Img/perfil/"+arr1[3]['mensagens'][contador]['img_perfil_usu']+"'></div><div class=mensagem_padrao><span class=nome><a href=perfil_reclamacao.php?ID="+arr1[3]['mensagens'][contador]['cod_usu']+">"+arr1[3]['mensagens'][contador]['nome_usu']+"</a></span>";
+        }else{
+            mensa += "<div>";
+        }
+            mensa += "<span>"+arr1[3]['mensagens'][contador]['texto_mensa'];
+        if(classe == 'linha-mensagem_sistema') { 
+            if(msg_id == 'visu'){ // aqui entra quando for mensagem da quantidade nao visualizadas
+                $(".qtdNVisu").parent().parent().parent().remove();// remove
+                mensa+= "<span class='qtdNVisu'></span>"; // adiciona
             }else{
                 ultimo_id = msg_id;
-                mensa += "<sub>"+arr1[3]['mensagens'][contador]['hora']+"</sub>";
-            }
+            }            
+            mensa += "<span>"+arr1[3]['mensagens'][contador]['hora']+"</span>";
+        }else{
+            ultimo_id = msg_id;
+            mensa += "<sub>"+arr1[3]['mensagens'][contador]['hora']+"</sub>";
+        }
             mensa += "</span></div></div>";
         }else{
-
+         
         }       
     }   
     
@@ -116,6 +114,7 @@ jQuery(function(){
             data: "ID="+id+"&texto="+texto,
             success: function(data){            
                 //$('#lista').html(data);
+                $(".qtdNVisu").parent().parent().parent().remove();// remove
                 jaquinha();
             }        
     
@@ -124,4 +123,3 @@ jQuery(function(){
         return false;
     })
 });
-
