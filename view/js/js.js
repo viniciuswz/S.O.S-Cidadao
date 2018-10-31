@@ -1368,8 +1368,11 @@ jQuery(function($){
                       if(result=="1"){
                           location.href="Pagina-agradecimento.php";
                       }else{
-                          $(".aviso-form-inicial").show();
-                          $(".aviso-form-inicial").find("p").text(result)
+                        $("#email").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+                        $("#email").css("border-color" , 'rgba(256,000,000)');
+                        $("#email").focus();
+                        $(".aviso-form-inicial").show();
+                        $(".aviso-form-inicial").find("p").text(result)
                       }
                   }  
                 });
