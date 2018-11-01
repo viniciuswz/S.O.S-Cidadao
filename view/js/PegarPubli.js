@@ -49,7 +49,7 @@ $(window).on('scroll', rolagem);
         var tamanho = $(window).scrollTop();
         var tamanhon = $(window).scrollTop() + window.innerHeight;
         var diferenca = $(document).height() - $(window).height();
-        var diferencan=   window.innerHeight - document.body.scrollHeight;
+        var diferencan=    document.body.scrollHeight;
         $("#tamanho").text(tamanho +' nova:'+ tamanhon);
         $("#diferenca").text(diferenca +' nova:'+ diferencan);
         if( $(window).scrollTop() + window.innerHeight >= document.body.scrollHeight ) { 
