@@ -4,6 +4,7 @@ var validar = 0 // se for 0 roda o jaquinha se for outro valor não roda
 var teste = false;
     function jaquinha(){
         var jaq;
+        teste = true;
     
         $.ajax({
             url: '../PegarPublicacoes.php',
@@ -27,8 +28,8 @@ var teste = false;
                    
                     setTimeout(function(){ //simular delay de carregamento
                         teste = false;
-                    },2000);
-                    teste = true;
+                    },3000);
+                    
                 }            
                 //$('#lista').html(data);
                 
@@ -41,8 +42,19 @@ var teste = false;
 
 
 $(document).ready(function(){
-    $(window).scroll(function() {
-        if($(window).scrollTop() == $(document).height() - $(window).height()) {
+    $("body").prepend('<div style="width: 300px; height:50px; background-color:pink;position:fixed;top:0;z-index:999"><span id="tamanho"></span><span id="diferenca"></span></div>')
+$(document.body).on('touchmove', rolagem);
+$(window).on('scroll', rolagem); 
+    function rolagem() {
+        var tamanho = $(window).scrollTop();
+        var tamanhon = $(window).scrollTop() + window.innerHeight;
+        var diferenca = $(document).height() - $(window).height();
+        var diferencan=   window.innerHeight - document.body.scrollHeight;
+        $("#tamanho").text(tamanho +' nova:'+ tamanhon);
+        $("#diferenca").text(diferenca +' nova:'+ diferencan);
+        if( $(window).scrollTop() + window.innerHeight >= document.body.scrollHeight ) { 
+
+
             if(validar == 0){ // valida se roda o jaquinha ou não baseado no valor da vaiavel validar
                 if(teste == false){
                     jaquinha()
@@ -54,7 +66,7 @@ $(document).ready(function(){
 
         }
         
-    });
+    };
 });
 
 
