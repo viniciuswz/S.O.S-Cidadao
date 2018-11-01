@@ -19,10 +19,11 @@ var teste = false;
                     paginacao++ 
                    $("#pa").append("<div style=' display:flex; justify-content:center; width:100%' id='loader'>\
                     <img src='imagens/gif2.gif' id='loader'></div>"); // adicionar a estrutura do gif no final da ultima publicação do momento no html
-                    $(window).scrollTop($(document).height()); // descer o scroll pro final
+                    //$(window).scrollTop($(document).height()); // descer o scroll pro final
                     setTimeout(function(){ //simular delay de carregamento
                         $('#loader').remove();//remove a estrutura do gif do html
                         teste2(data); //manda ver na criação de conteudo
+                        $(window).scrollTop($(window).scrollTop() + 1)
                     },1780); // tempo do delay
     
                    
@@ -40,19 +41,27 @@ var teste = false;
     }
 
 
-
 $(document).ready(function(){
-    $("body").prepend('<div style="width: 300px; height:50px; background-color:pink;position:fixed;top:0;z-index:999"><span id="tamanho"></span><span id="diferenca"></span></div>')
+    var ultima_pub;
+    $("body").prepend('<div style="width: 300px; height:50px; background-color:pink;position:fixed;top:0;z-index:999"><span id="tamanho"></span>&nbsp;<span id="diferenca"></span>&nbsp;<span id="ultima"></span></div>')
 $(document.body).on('touchmove', rolagem);
 $(window).on('scroll', rolagem); 
     function rolagem() {
-        var tamanho = $(window).scrollTop();
+        $('.item-publicacao').each(function(){
+            $this = $(this)
+            if($(this).is('.item-publicacao:last')){
+            ultima_pub = $this.offset().top - $this.height() ;
+            
+        }
+    })
+        //var tamanho = $(window).scrollTop();
         var tamanhon = $(window).scrollTop() + window.innerHeight;
-        var diferenca = $(document).height() - $(window).height();
+        //var diferenca = $(document).height() - $(window).height();
         var diferencan=    document.body.scrollHeight;
-        $("#tamanho").text(tamanho +' nova:'+ tamanhon);
-        $("#diferenca").text(diferenca +' nova:'+ diferencan);
-        if( $(window).scrollTop() + window.innerHeight >= document.body.scrollHeight ) { 
+        $("#tamanho").text(' nova:'+ tamanhon);
+        $("#diferenca").text(' nova:'+ diferencan);
+        $('#ultima').text(ultima_pub + window.innerHeight)
+        if( $(window).scrollTop()  >= ultima_pub ) { //document.body.scrollHeight
 
 
             if(validar == 0){ // valida se roda o jaquinha ou não baseado no valor da vaiavel validar
