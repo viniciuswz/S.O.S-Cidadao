@@ -2,6 +2,20 @@
 var paginacao = 1;
 var validar = 0 // se for 0 roda o jaquinha se for outro valor não roda
 var teste = false;
+function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
+    var rolagem =   document.body.scrollHeight - window.innerHeight  ;
+   if(rolagem < 0 ){
+       rolagem = 0;
+   }
+// $(window).scrollTop() + window.innerHeight >= document.body.scrollHeight ) { 
+    //alert(ultima_pub)
+    if(rolagem < ultima_pub){
+        jaquinha();
+
+    }else{
+
+    }
+}
     function jaquinha(){
         var jaq;
         teste = true;
@@ -23,12 +37,21 @@ var teste = false;
                     setTimeout(function(){ //simular delay de carregamento
                         $('#loader').remove();//remove a estrutura do gif do html
                         teste2(data); //manda ver na criação de conteudo
-                        $(window).scrollTop($(window).scrollTop() + 1)
+                        //$(window).scrollTop($(window).scrollTop() + 1)
                     },1780); // tempo do delay
     
                    
                     setTimeout(function(){ //simular delay de carregamento
+
                         teste = false;
+                        $('.item-publicacao').each(function(){
+                            $this = $(this)
+                            if($(this).is('.item-publicacao:last')){
+                                ultima_pub = Math.abs($this.offset().top -  window.innerHeight + $this.innerHeight());
+                            
+                        }
+                    })
+                        verificarSeFazRolagem()
                     },3000);
                     
                 }            
@@ -50,17 +73,17 @@ $(window).on('scroll', rolagem);
         $('.item-publicacao').each(function(){
             $this = $(this)
             if($(this).is('.item-publicacao:last')){
-            ultima_pub = $this.offset().top - $this.height() ;
+                ultima_pub = Math.abs($this.offset().top -  window.innerHeight + $this.innerHeight());
             
         }
     })
         //var tamanho = $(window).scrollTop();
-        var tamanhon = $(window).scrollTop() + window.innerHeight;
+        var tamanhon = $(window).scrollTop() ;//+ window.innerHeight
         //var diferenca = $(document).height() - $(window).height();
         var diferencan=    document.body.scrollHeight;
         $("#tamanho").text(' nova:'+ tamanhon);
         $("#diferenca").text(' nova:'+ diferencan);
-        $('#ultima').text(ultima_pub + window.innerHeight)
+        $('#ultima').text(ultima_pub )
         if( $(window).scrollTop()  >= ultima_pub ) { //document.body.scrollHeight
 
 
@@ -69,8 +92,8 @@ $(window).on('scroll', rolagem);
                     jaquinha()
                 }
                 
-            }else{
-              
+            }else if($(window).scrollTop() = document.body.scrollHeight - window.innerHeight ){
+                $(window).scrollTop($(window).scrollTop() - 1)
             }        
 
         }

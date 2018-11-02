@@ -1741,8 +1741,10 @@ jQuery(function($){
             //alert("deu certo")
             
             $this.parents(":eq(5)").remove();
+            verificarSeFazRolagem();
             if(tipo == '../ApagarComentario'){ // se for apagar comentario, vai ter um retorno da qtd de comentarios dessa publi             
               $("#qtd_comen").text(result); // ai altera
+              
             }
           }          
           
