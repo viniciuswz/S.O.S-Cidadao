@@ -57,14 +57,14 @@ jQuery(function($)
     var banana= $(".notificacoes").attr("class");
     
     
-    if(banana=='notificacoes ativo'){
-      click++;
-      $("#not-fechado").html(' fechou ' + click + 'vezes');
-      $("body").css("overflow","auto");
-      $("body").css("overflow","hidden");
-    }else{
-      $("body").css("overflow","auto");
-    }
+    // if(banana=='notificacoes ativo'){
+    //   click++;
+    //   $("#not-fechado").html(' fechou ' + click + 'vezes');
+    //   $("body").css("overflow","auto");
+    //   $("body").css("overflow","hidden");
+    // }else{
+    //   $("body").css("overflow","auto");
+    // }
     return false;
     
   });
@@ -2038,6 +2038,7 @@ jQuery(function($){
         $("#motivoT").html('');
         $(".aviso-form-inicial").hide();
         $this.parents(':eq(2)').addClass('mini-menu-item-ativo');
+        alerta ('Certo', 'Comentário editado');
 
         
         

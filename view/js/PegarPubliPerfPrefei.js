@@ -2,7 +2,22 @@
 var paginacao = 1;
 var validar = 0 // se for 0 roda o jaquinha se for outro valor não roda
 var teste = false;
+function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
+    var rolagem =   document.body.scrollHeight - window.innerHeight  ;
+   if(rolagem < 0 ){
+       rolagem = 0;
+   }
+// $(window).scrollTop() + window.innerHeight >= document.body.scrollHeight ) { 
+    //alert(ultima_pub)
+    if(rolagem < ultima_pub){
+        jaquinha();
+
+    }else{
+
+    }
+}
     function jaquinha(){
+        teste = true;
         var jaq;
         var id = document.getElementById("IDPefil").value;
         
@@ -19,21 +34,31 @@ var teste = false;
                     paginacao++ 
                    $("#pa").append("<div style=' display:flex; justify-content:center; width:100%' id='loader'>\
                     <img src='imagens/gif2.gif' id='loader'></div>"); // adicionar a estrutura do gif no final da ultima publicação do momento no html
-                    $(window).scrollTop($(document).height()); // descer o scroll pro final
+                    //$(window).scrollTop($(document).height()); // descer o scroll pro final
                     setTimeout(function(){ //simular delay de carregamento
                         $('#loader').remove();//remove a estrutura do gif do html
                         teste2(data); //manda ver na criação de conteudo
+                        //$(window).scrollTop($(window).scrollTop() + 1)
                     },1780); // tempo do delay
     
                    
                     setTimeout(function(){ //simular delay de carregamento
+
                         teste = false;
-                    },2000);
-                    teste = true;
+                        $('.item-publicacao').each(function(){
+                            $this = $(this)
+                            if($(this).is('.item-publicacao:last')){
+                                ultima_pub = Math.abs($this.offset().top -  window.innerHeight + $this.innerHeight());
+                            
+                        }
+                    })
+                        verificarSeFazRolagem()
+                    },3000);
+                    
                 }            
                 //$('#lista').html(data);
                 
-            }        
+            }     
             
 
         });   
@@ -41,23 +66,43 @@ var teste = false;
 
 
 
-$(document).ready(function(){
-    $(window).scroll(function() {
-        if($(window).scrollTop() == $(document).height() - $(window).height()) {
-            if(validar == 0){ // valida se roda o jaquinha ou não baseado no valor da vaiavel validar
-                if(teste == false){
-                    jaquinha()
-                }
+    $(document).ready(function(){
+        var ultima_pub;
+        $("body").prepend('<div style="width: 300px; height:50px; background-color:pink;position:fixed;top:0;z-index:999"><span id="tamanho"></span>&nbsp;<span id="diferenca"></span>&nbsp;<span id="ultima"></span></div>')
+    $(document.body).on('touchmove', rolagem);
+    $(window).on('scroll', rolagem); 
+        function rolagem() {
+            $('.item-publicacao').each(function(){
+                $this = $(this)
+                if($(this).is('.item-publicacao:last')){
+                    ultima_pub = Math.abs($this.offset().top -  window.innerHeight + $this.innerHeight());
                 
-            }else{
-              
-            }        
-
-        }
-        
+            }
+        })
+            //var tamanho = $(window).scrollTop();
+            var tamanhon = $(window).scrollTop() ;//+ window.innerHeight
+            //var diferenca = $(document).height() - $(window).height();
+            var diferencan=    document.body.scrollHeight;
+            $("#tamanho").text(' nova:'+ tamanhon);
+            $("#diferenca").text(' nova:'+ diferencan);
+            $('#ultima').text(ultima_pub )
+            if( $(window).scrollTop()  >= ultima_pub ) { //document.body.scrollHeight
+    
+    
+                if(validar == 0){ // valida se roda o jaquinha ou não baseado no valor da vaiavel validar
+                    if(teste == false){
+                        jaquinha()
+                    }
+                    
+                }else if($(window).scrollTop() = document.body.scrollHeight - window.innerHeight ){
+                    $(window).scrollTop($(window).scrollTop() - 1)
+                }        
+    
+            }
+            
+        };
     });
-});
-
+    
 
 function teste2(resposta){
     var arr1 = JSON.parse(resposta);   
