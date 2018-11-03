@@ -1491,6 +1491,7 @@ jQuery(function($){
                       /* Fechar o modal do cadastro*/
                       $('.modal-adicionar-user').removeClass("modal-adicionar-user-ativo"); 
                       $("body").css("overflow","auto");
+                     //alerta ('Certo', 'Denuncia feita com sucesso');
                       /* aqui da pra abrir um modal pra falar q o cadastro deu certo */
 
                       $('<tr class="tabelinha-linha"><td>\
@@ -1724,6 +1725,7 @@ jQuery(function($){
     var href = $(this).attr("href");
     var id = href.substring(href.lastIndexOf('ID') + 3);
     var tipo = href.substring(0,href.lastIndexOf('.'));
+    //var tipoMensagem = tipo.substring(6)
     //alert(tipo)
     var $this = $(this);
     
@@ -1742,9 +1744,11 @@ jQuery(function($){
             return false;
           }else{
             //alert("deu certo")
-            
+            alerta ('Errado','removido');
             $this.parents(":eq(5)").remove();
             verificarSeFazRolagem();
+            //alerta ('Errado', 'removido');
+
             if(tipo == '../ApagarComentario'){ // se for apagar comentario, vai ter um retorno da qtd de comentarios dessa publi             
               $("#qtd_comen").text(result); // ai altera
               
@@ -1821,7 +1825,8 @@ jQuery(function($){
             location.href="login.php";
             return false;
           }else{
-            alert("deu certo");
+            //alert("deu certo");
+            alerta ('Certo', 'Denuncia feita com sucesso');
            //Resetando VALORES do modal ao enviar o ajax
            $("div.modal-denunciar").removeClass("modal-denunciar-ativo");
            $this.attr('class','');
@@ -1943,10 +1948,13 @@ $(document).on('click','.salvar',function(){
         var classe =  $this.find('i').attr('class');
         if(classe == 'icone-salvar'){
           $this.parent().html('<li><a class="salvar" href="'+href+'"><i class="icone-salvar-full"></i>Salvo</a></li>');
+          alerta ('Certo', 'reclamação adicionada aos seus salvos');
         }else if(classe == 'icone-salvar-full'){
           $this.parent().html('<li><a class="salvar" href="'+href+'"><i class="icone-salvar"></i>Salvar</a></li>');
+          alerta ('Errado', 'reclamação removida dos seus salvos');
         }
         }
+        
         }          
         
     }
@@ -2056,7 +2064,8 @@ jQuery(function($){
             location.href="login.php";
             return false;
           }else{
-              $this.parents(':eq(4)').remove();              
+              $this.parents(':eq(4)').remove();
+              alerta ('Errado', 'O usuário removido');           
           }   
       }
    });
@@ -2078,3 +2087,25 @@ $(document).on('keyup', '#comentarioTxt', function(){
     $('#btn-reclama').removeAttr('disabled')
   }
 })
+
+function alerta (tipo, mensagem){
+
+
+if(tipo == 'Errado'){
+var bola ='bola bolaErro';
+
+}else if(tipo=='Certo'){
+  var bola ='bola';
+}
+
+var estruturaDeAlerta = '<div class="alerta deu'+tipo+'">\
+<div class="'+bola+'">\
+    <span class="'+tipo+'"></span>\
+</div>\
+<p>'+mensagem+'</p>\
+</div>'
+
+// return estruturaDeAlerta
+$('body').append(estruturaDeAlerta);
+
+}
