@@ -3959,3 +3959,100 @@ color:black
 .form-cad .aviso-form-inicial{
     margin-bottom: 15px
 }
+
+@keyframes aparecerDesaparecer{
+    0%{top: -100px;}
+    25%{top: 50px;}
+    75%{top: 50px;}
+    100%{top: -100px;}
+}
+
+.alerta{
+    z-index: 999;
+display: flex;
+align-items: center;
+
+width: 300px;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 16px;
+position: fixed;
+top: -100px;
+left: 50%;
+transform:  translateX(-50%);
+
+border-radius: 5px;
+padding: 10px;
+color:white;
+animation-name: aparecerDesaparecer;
+animation-duration: 4s;
+animation-iteration-count:infinite;
+
+
+
+}
+
+.alerta.deuCerto{
+background-color: #22e677;
+border-left: 5px solid #09d261;
+}
+
+.alerta.deuErrado{
+    
+    background-color: #f32723;
+border-left: 5px solid #ce0c08;
+}
+.alerta p{
+display: inline-block
+}
+
+.alerta .certo{
+
+}
+
+.certo{
+    display:inline-block;
+}
+
+.errado::after{
+    display: block;
+    content: 'x';
+    line-height: 13px;
+    font-weight: bold;
+}
+
+.certo:after{
+/*Add another block-level blank space*/
+content: '';
+display: block;
+
+/*Make it a small rectangle so the border will create an L-shape*/
+width: 7px;
+height:10px;
+position: relative;
+bottom: 1px;
+
+/*Add a white border on the bottom and left, creating that 'L' */
+border: solid white;
+border-width: 0 2.5px 2.5px 0;
+
+/*Rotate the L 45 degrees to turn it into a checkmark*/
+transform: rotate(45deg);
+
+}
+
+.bola{
+    background-color: #09d261;
+    margin-right: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    width: 23px;
+    border-radius: 50%
+}
+
+.bolaErro{
+    background-color: #ce0c08;
+
+
+}
