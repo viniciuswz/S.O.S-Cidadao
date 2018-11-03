@@ -4056,3 +4056,29 @@ transform: rotate(45deg);
 
 
 }
+
+.paginacao{
+    
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap
+
+}
+.paginacao li{
+    background-color: #09d261;
+   
+    margin: 1px;
+    margin-top: 10px;
+    
+    
+}
+
+.paginacao li a{
+    display: block;
+    padding: 9px 20px;
+    color: white
+}
+
+.paginacao li.jaca{
+    background-color: #0a9948;
+}
