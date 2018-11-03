@@ -1479,6 +1479,8 @@ jQuery(function($){
                   var tipoCadastrador = retorno.substring(0 ,retorno.lastIndexOf('.'));
                   var data =  retorno.substring(retorno.lastIndexOf(',') + 1 );
 
+               user = $("#user").val();
+               email = $("#email").val();
                   
 
                   //alert(tipoCadastrador +'A'+ id+'A'+data)
@@ -1502,10 +1504,11 @@ jQuery(function($){
                       </div>\
                       <p>'+user+'</p>\
                   </td><td>'+tipo+'</td><td>'+data+'</td></tr>').insertBefore('.tabelinha-linha:nth-child(3)');
-                  var user = $("#user").val('');
-                  var email = $("#email").val('');
-                  var senha = $("#senha").val('');
-                  var tipo = $('input[name=tipo]').val('');
+                user = $("#user").val('');
+                email = $("#email").val('');
+                senha = $("#senha").val('');
+                tipo = $('input[name=tipo]').val('');
+                alerta('Certo','Usuário adicionado')
                       /* Da um submit no formulario de filto de usuario */
         
                                        
