@@ -126,8 +126,11 @@ jQuery(function($){
   jQuery(document).on("click",".icone-3pontos", function(event){
     //alert("oi");
      var $this = $(this);
-     $this.parent().toggleClass('mini-menu-item-ativo');
-  });
+     $this.parents(':eq(2)').siblings().find('div.mini-menu-item').removeClass('mini-menu-item-ativo');
+    $this.parent().toggleClass('mini-menu-item-ativo');
+    
+     //$('.mini-menu-item-ativo').siblings().find('.mini-menu-item-ativo').remove()
+  });//$(this).siblings().find("td:nth-child(1) div").removeClass("mini-menu-adm-ativo");
 });
 
 
@@ -1840,7 +1843,9 @@ jQuery(function($){
   $("#enviar_comentario").submit(function(){
     
   //var caminho = $(this).attr('action');
-  var comentario = $("#comentarioTxt").val();
+  var comentario = $("#comentarioTxt").val().replace(/(^\s*)|(\s*$)/gi,"");
+  comentario = comentario.replace(/[ ]{2,}/gi," ");
+  comentario = comentario.replace(/\n /,"\n");
   var idPubli = $("#idPubli").val();
   var img = $(".mini-perfil").find("img:first").attr("src");
   var nome = $(".mini-perfil").find("p").html();
@@ -1962,30 +1967,54 @@ $(document).on('click','.salvar',function(){
 jQuery(function($){
   var $this;
   /* abrir quando */
+
   jQuery(document).on("click",".editar-comentario", function(event){
  // $(".editar-comentario").click(function(){
+
     $("div.modal-editar-comentario").addClass("modal-editar-comentario-ativo");
     $this = $(this);
+
+    $this.parents(':eq(2)').removeClass('mini-menu-item-ativo');
     var id = $(this).data('id');
     $('#idEditar').val(id);
     var txtAntigo = $this.parents(':eq(4)').find('p:last').text();
+    var txtAntigo = $this.parents(':eq(4)').find('p:last').text().replace(/(^\s*)|(\s*$)/gi,"");
+    txtAntigo = txtAntigo.replace(/[ ]{2,}/gi," ");
+    txtAntigo = txtAntigo.replace(/\n /,"\n");
+    //alert(txtAntigo)
  
-    $("#motivoT").html(txtAntigo);
+    $("#motivoT").remove();
+    $('#editarComentario').prepend('<textarea placeholder="Qual o motivo?" id="motivoT" name="texto">'+txtAntigo+'</textarea>');
+
+      
+    
   });
   /* fechar quando clicar fora*/
   jQuery(document).on("click",".modal-editar-comentario-fundo", function(event){
 //$(".modal-editar-comentario-fundo").click(function(){
     $(this).parent().removeClass("modal-editar-comentario-ativo");
+    $this.parents(':eq(2)').addClass('mini-menu-item-ativo');
   });
   /* fechar quando clicar no X*/
   jQuery(document).on("click",".fechar-editar-comentario", function(event){
   //$(".fechar-editar-comentario").click(function(){
     $(this).parents(":eq(2)").removeClass("modal-editar-comentario-ativo");
+    $this.parents(':eq(2)').addClass('mini-menu-item-ativo');
   });
 
   $("#editarComentario").submit(function(){
     var txt =$("#motivoT").val();
     var id = $("#idEditar").val();
+    var txtAntigo = $this.parents(':eq(4)').find('p:last').text();
+    if(txt == ''){
+      $(".aviso-form-inicial").show();
+      $(".aviso-form-inicial").find("p").text("você precisa digitar algo");
+      return false
+    }else if(txtAntigo == txt){
+      $(".aviso-form-inicial").show();
+      $(".aviso-form-inicial").find("p").text("você precisa alterar o texto");
+      return false
+    }else{
     
     //ajax
     $.ajax({
@@ -1995,10 +2024,18 @@ jQuery(function($){
       success:function(result){
         //alert($this.parents(':eq(4)').find('p:last').text());
         $this.parents(':eq(4)').find('p:last').text(txt);
+        $('.modal-editar-comentario').removeClass("modal-editar-comentario-ativo");
+        //$("#motivoT").val('');
+        txtAntigo ='';
+        $("#motivoT").html('');
+        $(".aviso-form-inicial").hide();
+        $this.parents(':eq(2)').addClass('mini-menu-item-ativo');
+
         
         
       }
    });
+  }
     return false;
   });
 });
@@ -2028,3 +2065,16 @@ jQuery(function($){
   });
 });
 /* FIM AJAX APAGAR USUARIO ADMIN*/
+
+
+$(document).on('keyup', '#comentarioTxt', function(){
+  $this = $(this);
+  //alert($this.val().length)
+  if($this.val().length < 1 ){
+    //alert('jaca')
+    $('#btn-reclama').attr('disabled' , 'disabled')
+  }else{
+    //alert($this.val().length)
+    $('#btn-reclama').removeAttr('disabled')
+  }
+})

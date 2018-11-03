@@ -1227,20 +1227,16 @@ border: 3px solid #004C41;
 /*formularios 2*/
 
 .form-icone{
-    background-color: green;
+    /* background-color: green; */
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    /* height: 100vh; */
 }
 
-.form-icone section{  
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
+.login-bg{  
+   
+    
     background-image: url("../imagens/fundo-login.jpg");
     background-position: center center;
     background-attachment: fixed;
@@ -1251,6 +1247,15 @@ border: 3px solid #004C41;
     background-color: #333;
     margin: 0;
     padding: 0;
+}
+
+.form-icone section{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
 }
 .form-icone section > div{
  
@@ -1302,11 +1307,13 @@ border: 3px solid #004C41;
 .campo-texto-icone input{
     padding-left: 5px;
     outline: none;
+    height: 30px;
     border: 2px solid grey;
 }
 
 
 .campo-texto-icone label{
+    height: 30px;
     background-color: #009688;
     display: flex;
 }
@@ -1346,7 +1353,7 @@ border: 3px solid #004C41;
     border: 0;
     color: white;
     padding:7px;
-    margin-top: 40px;
+    margin-top: 10px;
     width: 80%; 
     cursor:pointer
 }
@@ -2376,7 +2383,7 @@ color:black
     align-self: center;
     /* height: 680px; */
     position: relative;
-    top: 50%;
+    top: 0%;
     left: 50%;
     transform: translateX(-50%) translateY(-0%);
     background-color: blueviolet;
@@ -2547,6 +2554,8 @@ color:black
     font-size: 14px;
     color: #2E2E2E;
     resize: none;
+    padding-left: 5px;
+    padding-top: 5px;
 }
 
 .enviar-comentario-publicacao form input{
@@ -2560,6 +2569,10 @@ color:black
     border: 0;
     margin: 0 auto;
     margin-top: 30px;
+}
+
+.enviar-comentario-publicacao form input:disabled{
+    background-color: #c6c6c6
 }
 
 .comentarios{
@@ -2585,6 +2598,7 @@ color:black
     width: 90%;
     align-self: flex-end;
     word-break: break-all;
+    white-space: pre-wrap;
 } 
 
 .comentarios .comentario-user .publicacao-topo-aberta{
@@ -3154,7 +3168,8 @@ color:black
     margin: 0 auto;
     height: 100px;
     resize: none;
-    padding-left: 5px
+    padding-left: 5px;
+    border-color: rgb(169, 169, 170)
 }
 
 .box-editar-comentario form button{

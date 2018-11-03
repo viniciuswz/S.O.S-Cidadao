@@ -35,7 +35,7 @@
         <script src="js/js.js"></script>
 
     </head>
-    <body>
+    <body class="login-bg">
            <div class="form-icone">
                <section>
                    <div>
@@ -57,7 +57,9 @@
                         <div class="aviso-form-inicial ">
                             <p>O campo tal e pa</p>
                         </div>
+
                         <button type="submit">login</button>
+                        <a href="cadastro.php" style="margin-top: 10px;  font-size: 1em; font-family: arial;"><span style="color:black">Sem conta?</span> Inscreva-se!</a>
 
                     </form>
                </section>

@@ -64,7 +64,11 @@ function teste2(resposta){
     var arr1 = JSON.parse(resposta);   
     var idPubli = document.getElementById("IdPublis").value;
     var mensa = "";
+    var txt = '';
     for(contador = 0; contador < arr1.length; contador++){
+        txt = arr1[contador]['texto_comen'];
+
+       
             mensa +=  '<div class="comentario-user">\
                 <div class="publicacao-topo-aberta">\
                     <a href="perfil_reclamacao.php?ID='+arr1[contador]['cod_usu']+'">\
@@ -114,9 +118,7 @@ function teste2(resposta){
                         */                    
                     mensa += '</div>\
                 </div>  \
-                <p>\
-                '+arr1[contador]['texto_comen']+'\
-                </p></div>';
+                <p>'+txt+'\</p></div>';
     }
 
     // $(document).ready(function(){

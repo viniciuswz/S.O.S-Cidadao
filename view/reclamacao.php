@@ -304,7 +304,7 @@
                             <form id="enviar_comentario">
                                 <textarea placeholder="Escreva uma resposta" name="texto" id="comentarioTxt"></textarea>
                                 <input type="hidden" value="<?php echo $_GET['ID']?>" name="id" id="idPubli">
-                                <input type="submit" value="Enviar Resposta">
+                                <input type="submit" id="btn-reclama" value="Enviar Resposta" disabled>
                             </form>  
                         </section>
             <?php
@@ -316,9 +316,9 @@
                                         Envie um comentário
                                     </h3>
                                     <form id="enviar_comentario">
-                                        <textarea placeholder="Escreva um comentário" name="texto" id="comentarioTxt"></textarea>
+                                        <textarea placeholder="Escreva um comentário" name="texto" id="comentarioTxt" ></textarea>
                                         <input type="hidden" value="<?php echo $_GET['ID']?>" name="id" id="idPubli">
-                                        <input type="submit" value="Enviar Comentário">
+                                        <input type="submit" id="btn-reclama" value="Enviar Comentário" disabled>
                                     </form>  
                         </section>
             <?php
@@ -335,6 +335,9 @@
                                 <form action="../UpdateComentario.php" method="post" id="editarComentario">
                                     <textarea placeholder="Qual o motivo?" id="motivoT" name="texto"> </textarea>
                                     <input type="hidden" id="idEditar" value="" name="id">
+                                    <div class="aviso-form-inicial " style="margin-top:10px;">
+                            <p>O campo tal e pa</p>
+                        </div>
                                     <button type="submit">editar</button>
                                 </form>
                             </div>

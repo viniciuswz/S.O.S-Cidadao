@@ -1,4 +1,9 @@
 
+body{
+    background-color: white
+}
+
+
 header{
     display: flex;
 
