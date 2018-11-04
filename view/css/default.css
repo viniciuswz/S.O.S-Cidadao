@@ -1816,6 +1816,10 @@ margin-right:3px
     cursor: pointer
 }
 
+.batepapo form button:disabled{
+    background-color: rgb(175, 173, 173);
+}
+
 
 .debate-full{
     display: flex;
@@ -4116,4 +4120,40 @@ transform: rotate(45deg);
 
 .paginacao li.jaca{
     background-color: #0a9948;
+}
+
+
+.not{
+    background-image: url("../imagens/sprite-not.png");
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 54px;
+    height: 54px;
+    position: relative;
+    top:1px;
+}
+
+.not.icone-not-comentou{
+    background-position: 0 0;
+
+}
+
+.not.icone-not-respondeu{
+    background-position: -54px 0;
+
+}
+
+.not.icone-not-like{
+    background-position: -108px 0;
+
+}
+
+.not.icone-not-denuncia{
+    background-position: -161px 0;
+
+}
+
+.not.icone-not-respondaisso{
+    background-position: -216px 0;
+
 }

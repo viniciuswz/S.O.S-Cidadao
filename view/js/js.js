@@ -2092,6 +2092,22 @@ $(document).on('keyup', '#comentarioTxt', function(){
   }
 })
 
+
+
+
+$(document).on('keyup', '#texto', function(){
+  $this = $(this);
+  //alert($this.val().length)
+  if($this.val().length < 1 ){
+    //alert('jaca')
+    $('#btn-debate').attr('disabled' , 'disabled')
+  }else{
+    //alert($this.val().length)
+    $('#btn-debate').removeAttr('disabled')
+  }
+})
+
+
 function alerta (tipo, mensagem){
 
 

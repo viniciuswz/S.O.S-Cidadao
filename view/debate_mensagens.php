@@ -300,7 +300,7 @@ session_start();
                     ?>
                         <input type="hidden" name="ID" value="<?php echo $_GET['ID'] ?>" />
                         <input type="hidden" name="pagina" value="<?php echo $pagina ?>" />
-                        <input type="text" name="texto" id="texto" placeholder="digite aqui..." autocomplete="off"><button type="submit"> ></button> 
+                        <input type="text" name="texto" id="texto" placeholder="digite aqui..." autocomplete="off"><button id="btn-debate" type="submit" disabled> ></button> 
                    <?php
                         }
                     ?>
