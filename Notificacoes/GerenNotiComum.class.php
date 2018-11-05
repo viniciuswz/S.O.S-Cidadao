@@ -33,7 +33,7 @@ class GerenNotiComum extends GenericaM{
         $listaRegistros = $registros->select(); // Não preciso me preocupar com registros duplicados        
         //var_dump($listaRegistros); 
         if(count($listaRegistros) > 0){
-            $resultado = $this->Mensagem($listaRegistros, "curtiu", "curtiram" ,"seu comentario na publicacao", "icone-like-full", "LikeComen");   
+            $resultado = $this->Mensagem($listaRegistros, "curtiu", "curtiram" ,"seu comentario na publicacao", "not icone-not-like", "LikeComen");   
             $this->resultados = array_merge_recursive($this->resultados, $resultado);        
             return $resultado;
         }       
@@ -45,7 +45,7 @@ class GerenNotiComum extends GenericaM{
         $publicacoes->setCodPubli($this->getCodPubli());
         $lista_de_curtidores = $publicacoes->select();     
         if(count($lista_de_curtidores) > 0){
-            $resultado = $this->Mensagem($lista_de_curtidores, "curtiu", "curtiram" ,"a publicação", "icone-like-full", "LikePubli"); 
+            $resultado = $this->Mensagem($lista_de_curtidores, "curtiu", "curtiram" ,"a publicação", "not icone-not-like", "LikePubli"); 
             $this->resultados = array_merge_recursive($this->resultados, $resultado);
             return $resultado;
         }           
@@ -63,7 +63,7 @@ class GerenNotiComum extends GenericaM{
             while($contador < count($listaResposta)){                
                 $resultado[$contador]['notificacao'] = "A publicação salva <span class='negrito'> " . $listaResposta[$contador][0]['titulo_publi'] . "</span> foi respondida pela prefeitura";
                 $resultado[$contador]['id_publi'] = $listaResposta[$contador][0]['cod_publi']; 
-                $resultado[$contador]['tipo'] = 'icone-mail';
+                $resultado[$contador]['tipo'] = 'not icone-not-respondeu';
                 $resultado[$contador]['indTipo'] = 'ResSalva'; //dasdasdasdasdasdasd
                 $resultado[$contador]['classe'] = $this->nomeClasse($listaResposta[$contador][0]['indicador']);
                 $resultado[$contador]['Hora'] = strtotime($listaResposta[$contador][0]['dataHora']);
@@ -94,7 +94,7 @@ class GerenNotiComum extends GenericaM{
                 }else{
                     $resultado[$contador]['notificacao'] = " A prefeitura respondeu a publição <span class='negrito'> " . $listaResposta[$contador][0]['titulo_publi'] . "</span>";
                     $resultado[$contador]['id_publi'] = $listaResposta[$contador][0]['cod_publi']; 
-                    $resultado[$contador]['tipo'] = 'icone-mail';
+                    $resultado[$contador]['tipo'] = 'not icone-not-respondeu';
                     $resultado[$contador]['indTipo'] = 'ResPrefei'; //dasdasdasdasdasdasd
                     $resultado[$contador]['Hora'] = strtotime($listaResposta[$contador][0]['dataHora']);  
                     $resultado[$contador]['DataHora'] = $listaResposta[$contador][0]['dataHora'];               
@@ -140,7 +140,7 @@ class GerenNotiComum extends GenericaM{
         if(count($listaComentarios) > 0){
             $novaLista = $publicacaoComentario->retirarComentariosIguais($listaComentarios);  
             //var_dump($novaLista);          
-            $resultado = $this->Mensagem($novaLista, "comentou", "comentaram" ,"na sua publicacao", "icone-comentario","ComentaPubli"); 
+            $resultado = $this->Mensagem($novaLista, "comentou", "comentaram" ,"na sua publicacao", "not icone-not-comentou","ComentaPubli"); 
             $this->resultados = array_merge_recursive($this->resultados, $resultado);
             return $resultado;
         }
