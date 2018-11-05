@@ -2108,6 +2108,7 @@ $(document).on('keyup', '#texto', function(){
 })
 
 
+
 function alerta (tipo, mensagem){
 
 
@@ -2129,3 +2130,9 @@ var estruturaDeAlerta = '<div class="alerta deu'+tipo+'">\
 $('body').append(estruturaDeAlerta);
 
 }
+
+// $('.linha-mensagem_padrao').each(function(){
+//   $this = $(this)
+//  var banas= $this.next().find('div.usuario-msg-foto').data('id-user');
+//   alert(banas)
+// })
