@@ -153,7 +153,7 @@ class GerenNotiAdm extends GenericaM{
                         $dados[$contador]['id'] = $dados[$contador]['IDPubli'] . "&IdComen=" . $idComen;                        
                     }
                     $resultado[$contador]['id_publi'] = $dados[$contador]['id'];
-                    $resultado[$contador]['tipo'] = $tipoNoti;
+                    $resultado[$contador]['tipo'] = 'not icone-not-denuncia';//$tipoNoti;  
                     $resultado[$contador]['indTipo'] = $indTipo; //dasdasdasdasdasdasd
                     $resultado[$contador]['classe'] = $this->nomeClasse($dados[$contador]['ind']);
                     //$resultado[$contador]['Hora'] = strtotime($listaCurtidores[$contador][0]['dataHora']);
