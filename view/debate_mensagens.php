@@ -218,8 +218,8 @@ session_start();
                             <div class="usuario-msg-foto">
                                 <img src="imagens/perfil.jpg">
                             </div>
-                    <div class="mensagem_padrao">
-                        <span class="nome"><a href="#">Péricles alexandre santoaaaaaaaaaaaaaaaaaaaaaaaaaaas</a></span>
+                        <div class="mensagem_padrao">
+                            <span class="nome"><a href="#">Péricles alexandre santoaaaaaaaaaaaaaaaaaaaaaaaaaaas</a></span>
                             <span >
                                 teseeeeeeeeeeeeeeeeeeeeeeeee<sub>16:55</sub>
                             </span>

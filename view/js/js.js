@@ -1869,7 +1869,8 @@ jQuery(function($){
           location.href="login.php";
           return false;
         }else{
-          //alert(result);          
+          //alert(result);
+
           $("#comentarioTxt").val('');
           var usuario = result.substring(0, result.lastIndexOf('.'));
           var id_comentario = result.substring(result.lastIndexOf('.') + 1,result.lastIndexOf(','));
@@ -1902,7 +1903,7 @@ jQuery(function($){
             </div>\
             <p>'+comentario+'</p></div>');
             $("#qtd_comen").text(qtd);
-
+            $('#btn-reclama').attr('disabled','disabled')
           }else{
             $(".enviar-comentario-publicacao").remove();
             $('<section class="prefeitura-publicacao">\
@@ -2090,6 +2091,7 @@ $(document).on('keyup', '#comentarioTxt', function(){
     //alert($this.val().length)
     $('#btn-reclama').removeAttr('disabled')
   }
+  
 })
 
 
@@ -2132,7 +2134,15 @@ $('body').append(estruturaDeAlerta);
 }
 
 // $('.linha-mensagem_padrao').each(function(){
-//   $this = $(this)
-//  var banas= $this.next().find('div.usuario-msg-foto').data('id-user');
-//   alert(banas)
+//   $this = $(this);
+//   var idAtual = $this.data('id-user')
+//   var idDoProximo = $this.next().find('div.usuario-msg-foto').data('id-user');
+
+//   if( idAtual == idDoProximo){
+//     $this.find('div.usuario-msg-foto').html('');
+//     $this.find('div.mensagem_padrao span.nome').remove();
+
+//   }else{
+
+//   }
 // })
