@@ -67,7 +67,7 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
 
     $(document).ready(function(){
         var ultima_pub;
-        $("body").prepend('<div style="width: 300px; height:50px; background-color:pink;position:fixed;top:0;z-index:999"><span id="tamanho"></span>&nbsp;<span id="diferenca"></span>&nbsp;<span id="ultima"></span></div>')
+       // $("body").prepend('<div style="width: 300px; height:50px; background-color:pink;position:fixed;top:0;z-index:999"><span id="tamanho"></span>&nbsp;<span id="diferenca"></span>&nbsp;<span id="ultima"></span></div>')
     $(document.body).on('touchmove', rolagem);
     $(window).on('scroll', rolagem); 
         function rolagem() {
@@ -79,12 +79,12 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
             }
         })
             //var tamanho = $(window).scrollTop();
-            var tamanhon = $(window).scrollTop() ;//+ window.innerHeight
+           // var tamanhon = $(window).scrollTop() ;//+ window.innerHeight
             //var diferenca = $(document).height() - $(window).height();
             var diferencan=    document.body.scrollHeight;
-            $("#tamanho").text(' nova:'+ tamanhon);
-            $("#diferenca").text(' nova:'+ diferencan);
-            $('#ultima').text(ultima_pub )
+          //  $("#tamanho").text(' nova:'+ tamanhon);
+          //  $("#diferenca").text(' nova:'+ diferencan);
+          //  $('#ultima').text(ultima_pub )
             if( $(window).scrollTop()  >= ultima_pub ) { //document.body.scrollHeight
     
     
