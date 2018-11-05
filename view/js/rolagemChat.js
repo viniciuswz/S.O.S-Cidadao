@@ -77,8 +77,14 @@ function teste3(resposta){
 
         mensa += "<div class=" + classe + ">";        
         if(classe == 'linha-mensagem_padrao'){
-            //ultimo_id = msg_id;
-            mensa += "<div class=usuario-msg-foto><img src='../Img/perfil/"+arr1[3]['mensagens'][contador]['img_perfil_usu']+"'></div><div class=mensagem_padrao><span class=nome><a href=perfil_reclamacao.php?ID="+arr1[3]['mensagens'][contador]['cod_usu']+">"+arr1[3]['mensagens'][contador]['nome_usu']+"</a></span>";
+           if(ultimo_usu == arr1[3]['mensagens'][contador]['cod_usu']){
+                //alert(arr1[3]['mensagens'][contador]['cod_usu']);
+                mensa += "<div class=usuario-msg-foto data-id-user="+ultimo_usu+"></div><div class=mensagem_padrao><span class=nome><a href=perfil_reclamacao.php?ID="+arr1[3]['mensagens'][contador]['cod_usu']+">"+arr1[3]['mensagens'][contador]['nome_usu']+"</a></span>";
+
+           }else{                
+                mensa += "<div class=usuario-msg-foto><img src='../Img/perfil/"+arr1[3]['mensagens'][contador]['img_perfil_usu']+"'></div><div class=mensagem_padrao><span class=nome><a href=perfil_reclamacao.php?ID="+arr1[3]['mensagens'][contador]['cod_usu']+">"+arr1[3]['mensagens'][contador]['nome_usu']+"</a></span>";
+                ultimo_usu = arr1[3]['mensagens'][contador]['cod_usu']
+           }
         }else{
             mensa += "<div>";
         }
