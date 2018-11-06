@@ -43,8 +43,8 @@
                 <h1>Sua opinião é importante!</h1>
                 <div>
                     <p>
-                        O S.O.S Cidadão é a melhor maneira de contar sobre o que esta
-                        acontecento em Barueri, compartilhe sua experiência com outras pessoas!
+                        O S.O.S Cidadão é a melhor maneira de ficar sabendo o que esta
+                        acontecento em Barueri, compartilhe sua experiência na cidade com outras pessoas!
                     </p>
                     <a class="cta" href="cadastro.php">Eu quero participar</a>
                     <a href="login.php">ou faça login se já tem cadastro</a>
@@ -54,31 +54,28 @@
            <section class="landing-funcionalidades">
                 <div class="landing-item" >
                     <div>
-                        <img src="imagens/reclama-pessoa.jpg">
+                        <img src="imagens/carapistola.jpg">
                     </div>
                     <h3>Reclamações</h3>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing
-                        elit. Recusandae voluptas aperiam beatae laboriosam
-                        odit et tempora aliquid explicabo tenetur dolorum sed
-                        repellat autem culpa porro voluptatum, iste consequatur
-                        ipsum suscipit.
+                    Uma reclamação é uma forma de expressar a insatisfação pública. 
+                        Aqui no sos cidadão você pode mostrar sua opinião sobre o que acontece 
+                        na cidade de Barueri e buscar uma solução para os problemas. 
                     </p>
-                    <a class="cta">Reclamar</a>
+                    <a class="cta">Tente agora mesmo!</a>
                 </div>
                 <div class="landing-item" >
                     <div>
-                        <img src="imagens/reclama-pessoa.jpg">
+                        <img src="imagens/pessaos-comunidade.jpg">
                     </div>
-                    <h3>Reclamações</h3>
+                    <h3>Colabore</h3>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing
-                        elit. Recusandae voluptas aperiam beatae laboriosam
-                        odit et tempora aliquid explicabo tenetur dolorum sed
-                        repellat autem culpa porro voluptatum, iste consequatur
-                        ipsum suscipit.
+                        Colabore com outros moradores! O sos cidadao é a melhor maneira de 
+                        saber como andam as coisas em nossa cidade. Existem muitas maneiras
+                        de se ajudar em conjunto, então compartilhe suas experiências.
+
                     </p>
-                    <a class="cta">Reclamar</a>
+                    <a class="cta">Participar</a>
                 </div>                
            </section>
            <section class="landing-prefeitura">
