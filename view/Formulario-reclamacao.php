@@ -173,7 +173,7 @@
                     <!-- <hr> -->
                     <textarea placeholder="escreva aqui" id="sobre" name="texto"></textarea>
                     <p></p>
-                    <input type="submit" value="enviar reclamação">
+                    <input type="submit" value="enviar reclamação" class="cta">
                 </div>     
             </form>
 

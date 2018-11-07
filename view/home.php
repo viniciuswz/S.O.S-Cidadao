@@ -37,7 +37,7 @@
         <script src="js/js.js"></script>
 
     </head>
-    <body>
+    <body class="sempre-branco">
         <div id="container">
            <section class="landing-dobra">
                 <h1>Sua opinião é importante!</h1>
@@ -46,7 +46,7 @@
                         O S.O.S Cidadão é a melhor maneira de ficar sabendo o que esta
                         acontecento em Barueri, compartilhe sua experiência na cidade com outras pessoas!
                     </p>
-                    <a class="cta" href="cadastro.php">Eu quero participar</a>
+                    <a class="cta" href="cadastro.php">Participe</a>
                     <a href="login.php">ou faça login se já tem cadastro</a>
                 </div>
                 
@@ -62,7 +62,7 @@
                         Aqui no sos cidadão você pode mostrar sua opinião sobre o que acontece 
                         na cidade de Barueri e buscar uma solução para os problemas. 
                     </p>
-                    <a class="cta">Tente agora mesmo!</a>
+                    <a class="cta" href="cadastro.php" >Tente agora mesmo!</a>
                 </div>
                 <div class="landing-item" >
                     <div>
@@ -75,7 +75,7 @@
                         de se ajudar em conjunto, então compartilhe suas experiências.
 
                     </p>
-                    <a class="cta">Participar</a>
+                    <a class="cta" href="cadastro.php">Participar</a>
                 </div>                
            </section>
            <section class="landing-prefeitura">
@@ -83,7 +83,7 @@
                 <p>
                     A partir do momento em que estiver online, a Prefeitura tera a possibilidade de
                     responder a reclamação, daremos ela essa possibilidade, caso ela não queira sua
-                    imagem manchada ela tera como responder de forma publica
+                    imagem manchada ela tera como responder de forma publica 
                 </p>
            </section>
            <footer class="landing-rodape">

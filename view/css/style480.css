@@ -999,17 +999,23 @@ width: 100vw;
     justify-content: center
 }
 
+.landing-dobra{
+    background-position: 65% 0
+}
+
 .landing-dobra h1{
-    top: 10%;
+    bottom: 214px;
     left:50%;
     transform: translateX(-50%);
     width: 100%;
     font-size: 20px;
-    text-align: center
+    text-align: center;
+    top: inherit;
 }
 
 .landing-dobra div{
-    top: 90px;
+    bottom: 10px;
+    top: inherit;
     left:50%;
     transform: translateX(-50%);
     width: 95%;
@@ -1027,30 +1033,33 @@ width: 100vw;
 
 .landing-item{
     width: 100%;
+    margin: 0;
+    text-align: center
 }
 
 .landing-prefeitura h1{
     width: 100%;
     text-align: center;
     color:white;
-    position: absolute;
-    top: calc(50% - 10px);
-    left:50%;
-    transform: translateX(-50%) translateY(-50%)
+    /* position: absolute; */
+    /* top: calc(30% - 10px); */
+    /* left:50%; */
+    /* transform: translateX(-50%) translateY(-50%) */
 }
 
 .landing-prefeitura p{
     color:white;
-    position: absolute;
-    width: 90%;
+    /* position: absolute; */
+    /* width: 90%; */
     text-align: center;
-    top:calc(50% + 60px);
-    left:50%;
-    transform: translateX(-50%) translateY(-50%)
+    /* top:calc(50% + 60px); */
+    /* left:50%; */
+    /* transform: translateX(-50%) translateY(-50%) */
 }
 
 .landing-rodape h1{
-    font-size: 17px
+    font-size: 17px;
+    text-align: center
 }
 
 

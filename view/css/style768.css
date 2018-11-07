@@ -654,7 +654,7 @@ overflow: inherit
 .landing-dobra h1{
     width: 100%;
     text-align: center;
-    top: 10%;
+    top: 5%;
     left:50%;
     transform: translateX(-50%);
 }
@@ -674,6 +674,7 @@ overflow: inherit
 
 .landing-item{
     width: 100%;
+    margin: 0;
 }
 
 
@@ -681,18 +682,18 @@ overflow: inherit
     width: 100%;
     text-align: center;
     color:white;
-    position: absolute;
-    top: 30%;
-    left:50%;
-    transform: translateX(-50%)
+    /* position: absolute; */
+    /* top: 30%; */
+    /* left:50%; */
+    /* transform: translateX(-50%); */
 }
 
 .landing-prefeitura p{
     color:white;
-    position: absolute;
-    top: 40%;
-    left:50%;
-    transform: translateX(-50%);
+    /* position: absolute; */
+    /* top: 40%; */
+    /* left:50%; */
+    /* transform: translateX(-50%); */
 }
 
 .landing-rodape h1{

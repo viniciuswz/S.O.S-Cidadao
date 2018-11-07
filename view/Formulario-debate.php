@@ -151,7 +151,7 @@
                         
                             <textarea placeholder="escreva aqui" id="sobre" name="descricao"></textarea>
                                 <p></p>
-                                <input type="submit" value="iniciar debate">
+                                <input type="submit" value="iniciar debate" class="cta">
                     
                         </div>     
             </form>

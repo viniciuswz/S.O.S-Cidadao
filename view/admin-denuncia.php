@@ -81,7 +81,7 @@ session_start();
     <script src="../teste.js"></script>
     
 </head>
-<body>
+<body class="sempre-branco">
     <header>
         <img src="imagens/logo_oficial.png" alt="logo">
         <form action="pesquisa.php" method="get">
