@@ -80,8 +80,12 @@ session_start();
         <input type="hidden" id="IdDeba" value = "<?php echo $_GET['ID']?>">
         <section class="debate-full">
                <?php
-                    if(isset($_GET['atu']) AND $_GET['atu'] == '1' AND !empty($_SESSION['atu'])){ // mensagem de bem-vindo
-                        echo '<script>alerta("Certo","Bem-vindo ao debate")</script>';
+                    if(isset($_GET['atu']) AND  !empty($_SESSION['atu'])){ // mensagem de bem-vindo
+                        if($_GET['atu'] == '1'){
+                            echo '<script>alerta("Certo","Bem-vindo ao debate")</script>';
+                        }else if($_GET['atu'] == '2'){
+                            echo '<script>alerta("Certo","Usuário Removido")</script>';
+                        }                        
                         unset($_SESSION['atu']);
                     }
                ?>

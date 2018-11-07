@@ -347,7 +347,7 @@ class DebateA extends DebateM{
             return 3;
         }else{
             $this->updateStatusParti('I'); // NAO É O DONO
-            return 3; // usuario que esta saindo
+            return 4; // usuario que esta saindo
         }
     }
 

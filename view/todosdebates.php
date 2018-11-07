@@ -81,6 +81,17 @@ session_start();
         ?>
         </header>
         <?php
+            if(isset($_GET['atu']) AND !empty($_SESSION['atu'])){
+                if($_GET['atu'] == '1'){
+                    echo '<script>alerta("Certo","Você apagou o debate")</script>';
+                }else if($_GET['atu'] == '2'){
+                    echo '<script>alerta("Certo","Você saiu do debate")</script>';
+                }
+                
+                unset($_SESSION['atu']);
+            }
+
+
             if(isset($resultado) AND !empty($resultado)){   
         ?>
                 <div class="user-menu">
