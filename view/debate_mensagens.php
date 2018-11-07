@@ -79,7 +79,12 @@ session_start();
         <div id="container">
         <input type="hidden" id="IdDeba" value = "<?php echo $_GET['ID']?>">
         <section class="debate-full">
-               
+               <?php
+                    if(isset($_GET['atu']) AND $_GET['atu'] == '1' AND !empty($_SESSION['atu'])){ // mensagem de bem-vindo
+                        echo '<script>alerta("Certo","Bem-vindo ao debate")</script>';
+                        unset($_SESSION['atu']);
+                    }
+               ?>
           
                 <aside class="usuarios-debate-info">
                         <span id="fechar-debate-info">&times;</span>

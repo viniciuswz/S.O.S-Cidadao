@@ -18,7 +18,8 @@ try{
     $debate->setCodUsu($_SESSION['id_user']);
     $debate->setCodDeba($_GET['ID']);
     $debate->entrarDebate();
-    echo "<script> alert('Bem-vindo ao debate');javascript:window.location='./view/debate_mensagens.php?ID=".$_GET['ID']."&pagina=ultima';</script>";    
+    $_SESSION['atu'] = 1;
+    echo "<script>javascript:window.location='./view/debate_mensagens.php?ID=".$_GET['ID']."&pagina=ultima&atu=1';</script>";    
         
 }catch(Exception $exc){
     $erro = $exc->getCode();   
