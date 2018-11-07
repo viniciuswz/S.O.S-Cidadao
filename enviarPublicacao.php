@@ -31,7 +31,7 @@ try{
           
     $publicacao->cadastrarPublicacao($_POST['bairro'], $_POST['local']);  
     $idPubli = $publicacao->last(); 
-    echo "<script> alert('Publicacao enviada com sucesso');javascript:window.location='./view/reclamacao.php?ID=".$idPubli."';</script>";
+    echo "<script>javascript:window.location='./view/reclamacao.php?ID=".$idPubli."';</script>";
         
 }catch(Exception $exc){
     $erro = $exc->getCode();   
