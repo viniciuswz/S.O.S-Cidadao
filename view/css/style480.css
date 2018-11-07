@@ -1000,7 +1000,7 @@ width: 100vw;
 }
 
 .landing-dobra{
-    background-position: 65% 0
+    background-position: 75% 0;
 }
 
 .landing-dobra h1{
@@ -1028,7 +1028,9 @@ width: 100vw;
 }
 
 .landing-funcionalidades{
-    flex-direction: column
+    flex-direction: column;
+    margin-top: 20px;
+    padding: 0;
 }
 
 .landing-item{
@@ -1055,6 +1057,7 @@ width: 100vw;
     /* top:calc(50% + 60px); */
     /* left:50%; */
     /* transform: translateX(-50%) translateY(-50%) */
+    font-size: 15px;
 }
 
 .landing-rodape h1{
