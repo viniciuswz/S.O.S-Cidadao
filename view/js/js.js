@@ -1763,6 +1763,9 @@ jQuery(function($){
 
             if(tipo == '../ApagarComentario'){ // se for apagar comentario, vai ter um retorno da qtd de comentarios dessa publi             
               $("#qtd_comen").text(result); // ai altera
+              if($('.comentario-user').length == 0){
+                $('.comentarios').find('h3:first').text('Seja o primeiro a fazer um comentário')
+              }
               
             }
           }          
@@ -1912,7 +1915,12 @@ jQuery(function($){
             </div>\
             <p>'+comentario+'</p></div>');
             $("#qtd_comen").text(qtd);
-            $('#btn-reclama').attr('disabled','disabled')
+            $('#btn-reclama').attr('disabled','disabled');
+            if($('.comentario-user').length == 1){
+              //alert('oi')
+              $('.comentarios').find('h3:first').text('Comentários')
+            }
+            
           }else{
             $(".enviar-comentario-publicacao").remove();
             $('<section class="prefeitura-publicacao">\

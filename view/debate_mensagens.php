@@ -51,6 +51,7 @@ session_start();
         <meta name=description content="Site de reclamações para a cidade de Barueri">
         <meta name=keywords content="Reclamação, Barueri"> <!-- Opcional -->
         <meta name=author content='equipe 4 INI3A'>
+        <meta name="theme-color" content="#089E8E" />
 
         <!-- favicon, arquivo de imagem podendo ser 8x8 - 16x16 - 32x32px com extensão .ico -->
         <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
@@ -63,6 +64,7 @@ session_start();
         <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)" href="css/style768.css">
         <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)" href="css/style1024.css">
         <link rel=stylesheet media="screen and (min-width:1025px)" href="css/style1025.css">
+        
 
         <!-- JS-->
 

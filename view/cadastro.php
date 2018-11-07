@@ -63,6 +63,7 @@
                             <p>O campo tal e pa</p>
                         </div>
                         <button type="submit">Cadastro</button>
+                        <a href="login.php" style="margin-top: 10px; text-align:center; font-size: 1em; font-family: arial; display:block"><span style="color:black">já tem conta?</span> Faça Login!</a>
                     </form>
            </div>
 

@@ -31,6 +31,7 @@ session_start();
         <meta name=description content="Site de reclamações para a cidade de Barueri">
         <meta name=keywords content="Reclamação, Barueri"> <!-- Opcional -->
         <meta name=author content='equipe 4 INI3A'>
+        <meta name="theme-color" content="#089E8E" />
 
         <!-- favicon, arquivo de imagem podendo ser 8x8 - 16x16 - 32x32px com extensão .ico -->
         <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
