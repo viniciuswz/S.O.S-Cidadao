@@ -102,7 +102,7 @@ li{
 }
 
 i{
-    background-image: url("../imagens/icones-v3.png");
+    background-image: url("../imagens/icon.png");
     background-repeat: no-repeat;
     display: inline-block;
     width: 40px;
@@ -475,6 +475,7 @@ nav.notificacoes ul li a span:first-of-type{
     display: flex;
     overflow: hidden;
     border-radius: 50%;
+    box-shadow: 0px 0px 10px 0px rgb(158, 158, 158);
     
 }
 
@@ -768,7 +769,7 @@ nav.notificacoes ul li a span:first-of-type{
  }
 
  .item-publicacao .legenda i{
-     
+    background-position-y: -40px;
  }
 
  .alinha-item{
@@ -1744,7 +1745,9 @@ margin-right:3px
 
 .batepapo{
     width: 100%;
-    background-color: #009688
+    background-color: #009688;
+    background-image: url(../imagens/FUNDO-ZIPZOP.png);
+    background-size: 400px;
 }
 
 .batepapo header{
@@ -2763,7 +2766,6 @@ color:black
     display: flex;
     justify-content: center;
     align-items: center;
-    background-size: 1341px;
     background-position: 0 130px;
     background-repeat: no-repeat;
 }
