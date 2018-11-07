@@ -119,7 +119,7 @@
         <div id="container">
 
             
-            <form class="formulario" action="../UpdatePublicacao.php" method="POST" enctype="multipart/form-data">
+            <form class="formulario" action="../UpdatePublicacao.php" method="POST" enctype="multipart/form-data" id="elenao">
             <!--FORMULARIO ENVIO TITULO E TEMA-->
                 <div class="informacoes">
                     <h3>Informações importantes</h3>
