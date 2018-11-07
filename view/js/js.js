@@ -179,17 +179,31 @@ jQuery(function(){
   });
   
   $(".formulario").submit(function(){
+    $this = $(this);
+    
     
     var id = $(this).attr('id');
+    //alert(id);
+    //return false
     if(id == "elenao"){
       
     }else{
-      
-      var imgDebate = $("#imagemDebateInput").val();
-      if(imgDebate == ""){
-        $(".imagem").find('p:last-child').text("uma imagem é obrigatoria");
-        return false;
+
+      if($this.attr('action') == '../enviarPublicacao.php'){
+        var imgDebate = $("#fotoReclamacao").val();
+        if(imgDebate == ""){
+          $(".imagem").find('p:last-child').text("uma imagem é obrigatoria");
+          return false;
+        }
+      }else{
+        var imgDebate = $("#imagemDebateInput").val();
+        if(imgDebate == ""){
+          $(".imagem").find('p:last-child').text("uma imagem é obrigatoria");
+          return false;
+        }
       }
+      
+
     }
     
   });
@@ -383,14 +397,9 @@ $(".formulario").submit(function(){
   
 });
 
-$(".formulario").submit(function(){
-  var imgDebate = $("#fotoReclamacao").val();
+// $(".formulario").submit(function(){
   
-  if(imgDebate == ""){
-    $(".imagem").find('p:last-child').text("uma imagem é obrigatoria");
-    return false;
-  }
-});
+// });
 
 // $(document).on("change", "#fotoReclamacao", function(){
 //   var InputData = document.getElementById('fotoReclamacao');
