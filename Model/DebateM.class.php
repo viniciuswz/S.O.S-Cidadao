@@ -64,7 +64,7 @@ class DebateM extends DbConnection{
         $this->temaDeba =  ucfirst(filter_var($tema, FILTER_SANITIZE_STRING));
     }
     public function setDescriDeba($descri){
-        $this->descriDeba =  ucfirst(filter_var($descri, FILTER_SANITIZE_STRING));
+        $this->descriDeba =  trim(ucfirst(filter_var($descri, FILTER_SANITIZE_STRING)));
     }
     public function setCodUsu($cod){
         $this->codUsu = $cod;
