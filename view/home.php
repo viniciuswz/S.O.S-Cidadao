@@ -38,8 +38,7 @@
 
     </head>
     <body class="sempre-branco">
-        <div id="container">
-           <section class="landing-dobra">
+    <section class="landing-dobra">
                 <h1>Sua opinião é importante!</h1>
                 <div>
                     <p>
@@ -51,6 +50,8 @@
                 </div>
                 
            </section>
+        <div id="container">
+
            <section class="landing-funcionalidades">
                 <div class="landing-item" >
                     <div>
@@ -78,7 +79,9 @@
                     <a class="cta" href="cadastro.php">Participar</a>
                 </div>                
            </section>
-           <section class="landing-prefeitura">
+
+        </div>
+        <section class="landing-prefeitura">
                 <h1>A prefeitura responde?</h1>
                 <p>
                     A partir do momento em que estiver online, a Prefeitura tera a possibilidade de
@@ -90,7 +93,6 @@
                 <h1>Não perca o que acontece na sua cidade</h1>
                 <a class="cta" href="todasreclamacoes.php">ver agora</a>
            </footer>
-        </div>
     </body>
 </html>
 <?php
