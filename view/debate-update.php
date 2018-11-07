@@ -25,7 +25,7 @@
 
         $debate->setCodDeba($_GET['ID']);        
         $resposta = $debate->listByIdDeba('sqlSelect', true); 
-       
+        
 ?>
 <!DOCTYPE html>
 <html lang=pt-br>
@@ -145,8 +145,9 @@
                         <hr>
                         <div class="envio-img">
                                             
-                            <input type="file" name="imagem" id="imagemDebateInput">
+                            <input type="file" id="imagemDebateInput">
                             <label id="abrir-cortar"><p><i class="icone-camera"></i>Escolha foto</p>
+                            <input type="hidden" id="base64" name="base64" value="banana">
                                 
                         <div>
                             <img src="../Img/debate/<?php echo $resposta[0]['img_deba'] ?>" id="imgPreview">
