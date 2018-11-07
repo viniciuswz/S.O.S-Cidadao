@@ -26,7 +26,9 @@ try{
         $publicacao->setImgPubli($_POST['base64']);
     }            
     $publicacao->updatePublicacao($_POST['bairro'], $_POST['local']);    
-    echo "<script> alert('Publicacao edita com sucesso');javascript:window.location='./view/reclamacao.php?ID=".$_POST['id_publi']."';</script>";
+
+    $_SESSION['atu'] = 1;
+    echo "<script>javascript:window.location='./view/reclamacao.php?ID=".$_POST['id_publi']."&atu=1';</script>";
         
 }catch(Exception $exc){
     $erro = $exc->getCode();   
