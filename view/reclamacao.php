@@ -132,6 +132,11 @@
                 }else{
                     echo '<i class="icone-user" id="abrir"></i>';
                 }
+
+                if(isset($_GET['atu']) AND $_GET['atu'] == '1' AND !empty($_SESSION['atu'])){
+                    echo '<script>alerta("Certo","Atualizado")</script>';
+                    unset($_SESSION['atu']);
+                }
             ?>
         </header>
         <?php
