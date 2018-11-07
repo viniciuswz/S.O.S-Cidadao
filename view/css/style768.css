@@ -654,13 +654,15 @@ overflow: inherit
 .landing-dobra h1{
     width: 100%;
     text-align: center;
-    top: 5%;
+    bottom: 214px;
+    top: inherit;
     left:50%;
     transform: translateX(-50%);
 }
 
 .landing-dobra div{
-    top: 90px;
+    bottom: 10px;
+    top: inherit;
     left:50%;
     transform: translateX(-50%);
     width: 450px;
@@ -669,7 +671,9 @@ overflow: inherit
 
 
 .landing-funcionalidades{
-    flex-direction: column
+    flex-direction: column;
+    margin-top: 20px;
+    padding: 0;
 }
 
 .landing-item{
