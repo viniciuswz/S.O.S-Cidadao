@@ -11,20 +11,20 @@ try{
     Usuario::verificarLogin(1,$tipoUsuPermi);  // Tem q estar logado
          
 
-    $nomesCampos = array('titulo', 'tema','imagem','descricao','ID');// Nomes dos campos que receberei do formulario
-    $validar = new ValidarCampos($nomesCampos, $_POST, $_FILES);//Verificar se eles existem, se nao existir estoura um erro
+    $nomesCampos = array('titulo', 'tema','descricao','ID','base64');// Nomes dos campos que receberei do formulario
+    $validar = new ValidarCampos($nomesCampos, $_POST);//Verificar se eles existem, se nao existir estoura um erro
     $validar->verificarTipoInt(array('ID'), $_POST);     
     $debate = new Debate();
     $debate->setNomeDeba($_POST['titulo']);    
     $debate->setTemaDeba($_POST['tema']);
     $debate->setDescriDeba($_POST['descricao']);
     $debate->setCodUsu($_SESSION['id_user']);
-    $debate->setImgDeba($_FILES['imagem']);
+    $debate->setImgDeba($_POST['base64']);
     $debate->setCodDeba($_POST['ID']);    
     $debate->updateDebate();
       
-      
-    echo "<script> alert('Debate editado com sucesso');javascript:window.location='./view/Pagina-debate.php?ID=".$_POST['ID']."';</script>";
+    $_SESSION['atu'] = 1;
+    echo "<script>javascript:window.location='./view/Pagina-debate.php?ID=".$_POST['ID']."&atu=1';</script>";
         
 }catch(Exception $exc){
     $erro = $exc->getCode();   
