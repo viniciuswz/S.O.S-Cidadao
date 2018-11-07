@@ -441,6 +441,8 @@ class DebateA extends DebateM{
         foreach($NovosDados as $chave => $valor){
             if($valor == $dadosOriginais[0][$chave]){                                 
                 $indIgual++;
+            }else{
+                $chave;
             }
         }
         if($indIgual == count($NovosDados)){
@@ -523,25 +525,27 @@ class DebateA extends DebateM{
         $novosDados = array(
             "nome_deba" => $this->getNomeDeba(),
             "tema_deba" => $this->getTemaDeba(),
-            "descri_deba" => $this->getDescriDeba(),                
+            "descri_deba" => trim($this->getDescriDeba()),                
         );
-        $dadosImg = $this->getImgDeba();
-        if(empty($dadosImg["name"])){
+        $dadosImg = $this->getImgDeba();       
+        if($dadosImg == 'banana'){ // banana é o nome padrao q vem
             $novosDados["img_deba"] = $dados[0]['img_deba'];
+        }else{
+            $novosDados["img_deba"] = 'diferente';
+        }        
+        if($this->verificarDadosIguais($novosDados, $dados)){ // Verificar se os dados sao igual             
+            return $this->getCodDeba(); // se for igual nao precisa dar update            
         }
-        if($this->verificarDadosIguais($novosDados, $dados)){ // Verificar se os dados sao igual 
-            return $this->getCodDeba(); // se for igual nao precisa dar update
-        }
-
+        
         $usuario = new Usuario();
         $usuario->setCodUsu($this->getCodUsu());
         $tipoUsu = $usuario->getDescTipo(); 
-        if(!empty($dadosImg)){ // se ele mudar a imagem
+        if($dadosImg != 'banana'){ // se ele mudar a imagem           
             $this->tratarImagem();
-        }else{ // se nao mudar
+        }else{ // se nao mudar             
             $this->setImgDeba($dados[0]['img_deba']);
         }      
-
+        
         $sql = sprintf(
             $this->sqlUpdateDebate,
             $this->getImgDeba(),
