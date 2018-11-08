@@ -16,15 +16,20 @@ if(isset($_SESSION['id_user']) AND isset($_SESSION['tipo_usu'])){
     if($_SESSION['tipo_usu'] == 'Comum'){
         $jaca = new GerenNotiComum($idUser,$indVisu);
         $resultado = $jaca->notificacoes();
-        echo json_encode($resultado);
+        
     }else if($_SESSION['tipo_usu'] == 'Adm' OR $_SESSION['tipo_usu'] == 'Moderador'){
         $jaca = new GerenNotiAdm($indVisu);
         //$das = $jaca->SelectDenunPubli();
-        $resultado = $jaca->notificacoes();
-        //var_dump($das);
-        echo json_encode($resultado);
-        //resultado = $jaca->notificacoes();
+        $resultado = $jaca->notificacoes();        
     }
+
+    if(empty($resultado)){
+        echo 0;
+    }else{
+        echo json_encode($resultado);
+    }        
+
+    
 }
 
 ?>
