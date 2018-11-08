@@ -1,5 +1,9 @@
 jQuery(function($)
 {
+  $('#abrir-pesquisa').click(function(){
+    //alert('jaca')
+    $('#form-pesquisa').toggleClass('pesquisando')
+  })
   function fechar(){
     $(".user-menu").css("width","0");
     $("body").css("overflow","auto")
@@ -1381,3 +1385,4 @@ function recriaDb(){
       }
     })
   })
+

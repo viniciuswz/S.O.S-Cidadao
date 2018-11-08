@@ -66,7 +66,9 @@ header form{
     align-items: center;
     
 }
-
+.pesquisa-mobile{
+    display: none
+}
 header form input[type=text]{
 background-color: #004C41;
 outline: #004C41 ;
