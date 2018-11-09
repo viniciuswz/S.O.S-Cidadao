@@ -1516,7 +1516,7 @@ jQuery(function($){
                 user = $("#user").val('');
                 email = $("#email").val('');
                 senha = $("#senha").val('');
-                tipo = $('input[name=tipo]').val('');
+                //tipo = $('input[name=tipo]').val('');
                 alerta('Certo','Usuário adicionado')
                       /* Da um submit no formulario de filto de usuario */
         

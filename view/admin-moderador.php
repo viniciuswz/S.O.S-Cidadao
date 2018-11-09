@@ -145,7 +145,7 @@ session_start();
                 <div class="filtro-admin ">
                     <i class="icone-filtro "></i>
                     <form id="filtroUser">
-                        <i class="icone-fechar"></i>
+                    <span id="fechar-filtro">×</span>
                         <h3>Tipo de usuario</h3>
                         <div>    
                         

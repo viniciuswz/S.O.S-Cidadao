@@ -514,6 +514,10 @@ nav.notificacoes ul li a span:first-of-type{
     cursor: pointer;
 }
 
+.perfil-base h3{
+    text-shadow: 1px 0px 10px #000
+}
+
 .perfil-info i{
     position: relative;
     right: 40px;
@@ -1437,12 +1441,12 @@ border: 3px solid #004C41;
     width: 70%;
     margin: 10px auto;
     text-align: center;
-    font: "Open-Sans";
+    font-family: "Arial";
     font-weight: 600;
 }
 
 .form-config .desativar-btn{
-    font-family: 'Open-Sans-light';
+    font-family: 'Arial';
     display: block;
     background-color: red;
     border: 0;
@@ -1451,7 +1455,7 @@ border: 3px solid #004C41;
     width: 70%;
     margin: 10px auto;
     text-align: center;
-    font: "Open-Sans";
+    /* font: "Open-Sans"; */
     font-weight: 600;
     font-size: 13px;
     cursor: pointer;
