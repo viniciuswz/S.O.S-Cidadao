@@ -1,30 +1,50 @@
 header{
-    
+  
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 50px;
+    height: 55px;
+    
    
 }
 header img{
-    height: 43px;
-    margin-left: 10px;
-    
+    height: 45px;
+    order: 2
+}
+
+header > a {
+    order: 2
 }
 header form{
-   
-    width: 50%;
+   order: 1;
+  
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 10px;
+   
+    position: absolute;;
+    top: 55px;
+    height:0px;
+
+    width: 100vw;
+    background-color: #009688;
+    overflow: hidden;
+    transition: 0.5s
+  
+}
+.pesquisa-mobile{
+    display: block;
+    margin-left: 10px
+}
+header form.pesquisando{
+    height: 60px;
 }
 
 header form input[type=text]{
 width: 80%;
 
 outline: white;
-height: 28px;
+height: 38px;
 border:0;
 
 
@@ -38,12 +58,16 @@ border-right: 0;
 header form button{
    
     border: 0;
-    height: 28px;
-    width: 28px;
+    height: 38px;
+    width: 38px;
     outline: none;
     cursor: pointer;
 }
-
+i.icone-pesquisa{
+ /*tamanho do icone*/
+ background-position: -140px 5px; /*posição que se encontra, esqueda/direita e cima/baixo*/
+ background-size: 1100px
+}
 header form button i.icone-pesquisa{
     height: 28px; /*tamanho do espaço que a altura ocupa na tela*/
     width: 28px; /*tamanho do espaço que a largura ocupa na tela*/
@@ -52,6 +76,7 @@ header form button i.icone-pesquisa{
     background-position: -123.9px -2px ; /*posição que se encontra, esqueda/direita e cima/baixo*/
 }
 header i.icone-user{
+    order: 3;
     margin:0 10px;
     width: 30px;
     height: 30px;
