@@ -1758,14 +1758,16 @@ jQuery(function($){
             //alert("deu certo")
             alerta ('Errado','removido');
             $this.parents(":eq(5)").remove();
-            verificarSeFazRolagem();
+            alert(tipo);
+            
             //alerta ('Errado', 'removido');
-
+            
             if(tipo == '../ApagarComentario'){ // se for apagar comentario, vai ter um retorno da qtd de comentarios dessa publi             
               $("#qtd_comen").text(result); // ai altera
-              if($('.comentario-user').length == 0){
-                $('.comentarios').find('h3:first').text('Seja o primeiro a fazer um comentário')
+              if($('.comentario-user').length == 0){//$(document).
+                $('.comentarios').find('h3:first').text('Seja o primeiro a fazer um comentário');
               }
+              verificarSeFazRolagem();
               
             }
           }          
