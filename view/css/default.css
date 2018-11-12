@@ -47,6 +47,10 @@ p,a,span{
    margin: 0 auto;
     
 }
+
+.pesquisa-mobile{
+    display: none
+}
 header{
     background-color: #009688 ;
     width: 100%;

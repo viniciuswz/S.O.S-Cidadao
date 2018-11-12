@@ -67,8 +67,11 @@
     </head>
     <body>
         <header>
-            <img src="imagens/logo_oficial.png" alt="logo">
-            <form action="pesquisa.php" method="get">
+            <a href="todasreclamacoes.php">
+                <img src="imagens/logo_oficial.png" alt="logo">
+            </a>   
+            <i class="icone-pesquisa pesquisa-mobile" id="abrir-pesquisa"></i>
+            <form action="pesquisa.php" method="get" id="form-pesquisa">
                 <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar">
                 <button type="submit"><i class="icone-pesquisa"></i></button>
             </form>
@@ -217,7 +220,7 @@
                     </textarea>
                     <input type="hidden" name="id_publi" value="<?php echo $_GET['ID']?>">
                     <p></p>
-                    <input type="submit" value="alterar publicação">
+                    <input type="submit" value="alterar publicação" class="cta">
                 </div>     
             </form>
 
