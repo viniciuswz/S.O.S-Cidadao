@@ -64,7 +64,7 @@ $(document).ready(function(){
 $(document.body).on('touchmove', rolagem);
 $(window).on('scroll', rolagem); 
     function rolagem() {
-    //     ultima_pub = Math.abs($('.item-publicacao:last').offset().top -  window.innerHeight + ($('.item-publicacao:last').innerHeight() / 2));
+         ultima_pub = Math.abs($('.item-publicacao:last').offset().top -  window.innerHeight + ($('.item-publicacao:last').innerHeight() / 2));
     //     var tamanho = $(window).scrollTop();
     //    var tamanhon = $(window).scrollTop() ;//+ window.innerHeight
     //     var diferenca = $(document).height() - $(window).height();
