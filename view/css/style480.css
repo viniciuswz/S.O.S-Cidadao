@@ -1027,7 +1027,8 @@ width: 100vw;
 }
 
 .landing-dobra{
-    background-position: 75% 0;
+    background-image: url('../imagens/nova-ima-mobile.jpg');
+    background-position: 0% 0;
 }
 
 .landing-dobra h1{
