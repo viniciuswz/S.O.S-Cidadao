@@ -4,6 +4,7 @@ header{
     justify-content: space-between;
     align-items: center;
     height: 55px;
+    transition: .5s
     
    
 }

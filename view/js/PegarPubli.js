@@ -44,13 +44,7 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
                     setTimeout(function(){ //simular delay de carregamento
 
                         teste = false;
-                        $('.item-publicacao').each(function(){
-                            $this = $(this)
-                            if($(this).is('.item-publicacao:last')){
-                                ultima_pub = Math.abs($this.offset().top -  window.innerHeight + $this.innerHeight());
-                            
-                        }
-                    })
+                        ultima_pub = Math.abs($('.item-publicacao:last').offset().top -  window.innerHeight + ($('.item-publicacao:last').innerHeight() / 2));
                         verificarSeFazRolagem()
                     },3000);
                     
@@ -70,20 +64,14 @@ $(document).ready(function(){
 $(document.body).on('touchmove', rolagem);
 $(window).on('scroll', rolagem); 
     function rolagem() {
-        $('.item-publicacao').each(function(){
-            $this = $(this)
-            if($(this).is('.item-publicacao:last')){
-                ultima_pub = Math.abs($this.offset().top -  window.innerHeight + $this.innerHeight());
-            
-        }
-    })
-        //var tamanho = $(window).scrollTop();
-       // var tamanhon = $(window).scrollTop() ;//+ window.innerHeight
-        //var diferenca = $(document).height() - $(window).height();
-       // var diferencan=    document.body.scrollHeight;
-       // $("#tamanho").text(' nova:'+ tamanhon);
-       // $("#diferenca").text(' nova:'+ diferencan);
-      //  $('#ultima').text(ultima_pub )
+    //     ultima_pub = Math.abs($('.item-publicacao:last').offset().top -  window.innerHeight + ($('.item-publicacao:last').innerHeight() / 2));
+    //     var tamanho = $(window).scrollTop();
+    //    var tamanhon = $(window).scrollTop() ;//+ window.innerHeight
+    //     var diferenca = $(document).height() - $(window).height();
+    //    var diferencan=    document.body.scrollHeight;
+    //    $("#tamanho").text(' nova:'+ tamanhon);
+    //    $("#diferenca").text(' nova:'+ diferencan);
+    //    $('#ultima').text(ultima_pub )
         if( $(window).scrollTop()  >= ultima_pub ) { //document.body.scrollHeight
 
 
@@ -92,9 +80,7 @@ $(window).on('scroll', rolagem);
                     jaquinha()
                 }
                 
-            }else if($(window).scrollTop() = document.body.scrollHeight - window.innerHeight ){
-                $(window).scrollTop($(window).scrollTop() - 1)
-            }        
+            }      
 
         }
         
