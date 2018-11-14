@@ -4,7 +4,18 @@ jQuery(function($)
     $(".user-menu").css("width","0");
     $("body").css("overflow","auto");
   }
-  
+  $('#abrir-pesquisa').click(function(){
+    //alert('jaca')
+    $('#pesquisa').parent().toggleClass('pesquisando');
+    //$('#pesquisa').parent().css('margin-bottom','70px');
+    var classi = $('#pesquisa').parent().attr('class');
+    //alert(classi)
+     if(classi =='pesquisando'){
+    $('#pesquisa').parents(':eq(1)').css('margin-bottom','70px');
+     }else{
+      $('#pesquisa').parents(':eq(1)').css('margin-bottom','0px');
+     }
+  })
   $("#abrir").click(function()
   {
     
@@ -263,6 +274,7 @@ jQuery(function(){
     if($('input[name=categoria]:checked').length<=0)
     {
       $(".categorias").find('p').text("Escolha uma categoria");
+      return false
     }else{
       $(".categorias").find('p').text("");
     }
@@ -947,14 +959,13 @@ jQuery(function($){
           enableOrientation:true,
           enableResize:false,
           viewport: {
-            width: 200,
-            height: 200,
-            
-            
+              width: 280,
+              height: 190,
+              
           },
           boundary: {
-            width: tela,
-            height: 300
+              width: tela,
+              height: 300
           },
         });
       }
@@ -1095,19 +1106,19 @@ jQuery(function($){
         function recriaDb(){
           $uploadCropReclamacao.croppie('destroy');
           $uploadCropReclamacao.croppie({             
+                
             enableExif: true,
             enforceBoundary:true,
             enableOrientation:true,
             enableResize:false,
             viewport: {
-              width: 200,
-              height: 200,
-              
-              
+                width: 280,
+                height: 190,
+                
             },
             boundary: {
-              width: tela,
-              height: 300
+                width: tela,
+                height: 300
             },
           });
         }
@@ -1771,14 +1782,16 @@ jQuery(function($){
             //alert("deu certo")
             alerta('Errado','removido');
             $this.parents(":eq(5)").remove();
-            verificarSeFazRolagem();
-            //alerta('Errado', 'removido');
-
+            //alert(tipo);
+            
+            //alerta ('Errado', 'removido');
+            
             if(tipo == '../ApagarComentario'){ // se for apagar comentario, vai ter um retorno da qtd de comentarios dessa publi             
               $("#qtd_comen").text(result); // ai altera
-              if($('.comentario-user').length == 0){
-                $('.comentarios').find('h3:first').text('Seja o primeiro a fazer um comentário')
+              if($('.comentario-user').length == 0){//$(document).
+                $('.comentarios').find('h3:first').text('Seja o primeiro a fazer um comentário');
               }
+              verificarSeFazRolagem();
               
             }
           }          

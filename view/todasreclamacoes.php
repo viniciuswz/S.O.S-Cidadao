@@ -52,8 +52,11 @@
         <script src="../teste.js"></script>
     </head>
     <body onload="jaquinha()">
-        <header>
-            <img src="imagens/logo_oficial.png" alt="logo">
+    <header>
+            <a href="todasreclamacoes.php">
+                <img src="imagens/logo_oficial.png" alt="logo">
+            </a>   
+            <i class="icone-pesquisa pesquisa-mobile" id="abrir-pesquisa"></i>
             <form action="pesquisa.php" method="get">
                 <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar">
                 <button type="submit"><i class="icone-pesquisa"></i></button>
