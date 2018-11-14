@@ -44,6 +44,12 @@
         <script src="lib/_jquery/jquery.mask177.min.js"></script>
         <script src="js/js.js"></script>
         <script src="../teste.js"></script>
+
+        <script>
+            $(document).ready(function(){
+                $("#cep").mask("99999-999");
+            });
+        </script>
         <!-- cropp-->
 
         <link rel="stylesheet" href="lib/_croppie-master/croppie.css">

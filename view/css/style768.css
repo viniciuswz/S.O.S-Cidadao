@@ -2,7 +2,9 @@ header{
     height: 60px;
 }
 header img{
-    height: 60px;
+    height: 45px;
+    margin-top: 5px;
+    margin-left: 5px;
 }
 header form{
     width: 60%;
@@ -16,6 +18,7 @@ outline: white;
 height: 35px;
 border:0;
 }
+
 
 /* header form input:focus{
 border: 3px solid pink;
@@ -64,15 +67,16 @@ nav.menu{
     width: 100vw;
     position: fixed;
     /* top: calc(100vh - 60px); */
-    height: 60px;
-    bottom: 0
+    height: 68px;
+    bottom: 0;
+    border-top: 2px solid white;
 }
 nav.menu > ul{
     display: flex;
     justify-content: space-around;
     text-align: center;
     width: 100vw;
-
+    margin-top: 2px;
 }
 
 nav.menu > ul > li{
@@ -118,6 +122,7 @@ nav.notificacoes{
     right: 0;
     
     width: 100vw;
+    box-shadow: none;
   
 }
 

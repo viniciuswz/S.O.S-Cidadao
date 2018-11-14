@@ -33,10 +33,12 @@ jQuery(function($)
             return false;
           }          
           if(classe =="icone-like-full"){
-            $("#deiLike").find("i").attr("class","icone-like"); 
+            $("#deiLike").find("i").attr("class","icone-like");
+            //
             $("#qtd_likes").text(result);      
           }else{
-            $("#deiLike").find("i").attr("class","icone-like-full");         
+            $("#deiLike").find("i").attr("class","icone-like-full"); 
+            //        
             $("#qtd_likes").text(result);            
           }
 
@@ -53,17 +55,21 @@ jQuery(function($)
   var click = 0;
   $("#abrir-not").click(function(){
     
+    
     $(".notificacoes").toggleClass('ativo');
     var banana= $(".notificacoes").attr("class");
     
-    
     // if(banana=='notificacoes ativo'){
-    //   click++;
-    //   $("#not-fechado").html(' fechou ' + click + 'vezes');
-    //   $("body").css("overflow","auto");
-    //   $("body").css("overflow","hidden");
+    // $("#abrir-not").css("background-color", "#009688");
+    // $("#abrir-not").find("i").css('background-position-y','0px');
+    // click++;
+    // $("#not-fechado").html(' fechou ' + click + 'vezes');
+    // $("body").css("overflow","auto");
+    // $("body").css("overflow","hidden");
     // }else{
-    //   $("body").css("overflow","auto");
+    // $("body").css("overflow","auto");
+    // $("#abrir-not").css("background-color", "#004C41");
+    // $("#abrir-not").find("i").css('background-position-y','-37.5px');
     // }
     return false;
     
@@ -92,7 +98,7 @@ jQuery(function($) {
     /* trocar cor do a ativo */
     $('.espacos li a').click(function() {
       var $this = $(this); //o elemento que vai ser clicado
-      $this.parent().addClass('ativo').siblings().removeClass('ativo');// vai pegar o elemento pai do a que acabu de ser clicado e mandar a classe ativo para ele em seguida remover a classe ativo dos elementos que não estiver selecionado
+      $this.parent().addClass('ativo').siblings().removeClass('ativo');// vai pegar o elemento pai do a que acabou de ser clicado e mandar a classe ativo para ele em seguida remover a classe ativo dos elementos que não estiver selecionado
       $linha
       .data('origLeft', $this.position().left) //armazena o valor da posição left elemento que esta sendo clicado
       .data('origWidth', $this.parent().width());//armazena o valor do width do elemento que esta sendo clicado
@@ -215,7 +221,7 @@ jQuery(function(){
   //   var extensao = caminhoImagem.substring(
   //     caminhoImagem.lastIndexOf('.') + 1).toLowerCase();
   //     //verificando se é uma img
-  //     if (extensao == "gif" || extensao == "png"  || extensao == "webp" || extensao == "bmp"
+  //     if (extensao == "gif" || extensao == "png"  || extensao == "bmp"
   //     || extensao == "jpeg" || extensao == "jpg") {
   //       // vai mostrar no preview
   //       if (InputData.files && InputData.files[0]) {
@@ -256,7 +262,7 @@ jQuery(function(){
     
     if($('input[name=categoria]:checked').length<=0)
     {
-      $(".categorias").find('p').text("Escolha uma catgoria");
+      $(".categorias").find('p').text("Escolha uma categoria");
     }else{
       $(".categorias").find('p').text("");
     }
@@ -292,13 +298,11 @@ jQuery(function(){
     
   });
   
-  $(document).ready(function(){
-    $("#cep").mask("99999-999");
-  });
+
   
   $("#cep").blur(function(){
     
-    function limpa_formulário_cep() {
+    function limpa_formulario_cep() {
       // Limpa valores do formulário de cep.
       $("#local").val("");
       $("#bairro").val("");
@@ -327,14 +331,23 @@ jQuery(function(){
         $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
         
         if (!("erro" in dados)) {
+          if(dados.localidade !='Barueri'){
+            limpa_formulario_cep();
+            $("#cep").parent().find('p').text("O CEP não é de Barueri");
+            $("#cep").parent().find('span').addClass('verificar');
+            $("#cep").css("background" , 'rgba(256,000,000,.1)' );
+
+          }else{
           //Atualiza os campos com os valores da consulta.
           $("#local").val(dados.logradouro);
           $("#bairro").val(dados.bairro);
+          }
+
           
         } //end if.
         else {
           //CEP pesquisado não foi encontrado.
-          limpa_formulário_cep();
+          limpa_formulario_cep();
           $("#cep").parent().find('p').text("CEP não encontrado");
           $("#cep").parent().find('span').addClass('verificar');
           $("#cep").css("background" , 'rgba(256,000,000,.1)' );
@@ -351,7 +364,7 @@ jQuery(function(){
     } //end if.
     else {
       //cep é inválido.
-      limpa_formulário_cep();
+      limpa_formulario_cep();
       $("#cep").parent().find('p').text(" o CEP é invalido");
       $("#cep").parent().find('span').addClass('verificar');
       $("#cep").css("background" , 'rgba(256,000,000,.1)' );
@@ -408,7 +421,7 @@ $(".formulario").submit(function(){
 //   var extensao = caminhoImagem.substring(
 //     caminhoImagem.lastIndexOf('.') + 1).toLowerCase();
 //     //verificando se é uma img
-//     if (extensao == "gif" || extensao == "png"  || extensao == "webp" || extensao == "bmp"
+//     if (extensao == "gif" || extensao == "png"  || extensao == "bmp"
 //     || extensao == "jpeg" || extensao == "jpg") {
 //       // vai mostrar no preview
 //       if (InputData.files && InputData.files[0]) {
@@ -614,7 +627,7 @@ jQuery(function($){
       var extensao = caminhoImagem.substring(
         caminhoImagem.lastIndexOf('.') + 1).toLowerCase();
         //verificando se é uma img
-        if (extensao == "gif" || extensao == "png"  || extensao == "webp" || extensao == "bmp"        || extensao == "jpeg" || extensao == "jpg") {
+        if (extensao == "gif" || extensao == "png"  || extensao == "bmp"  || extensao == "jpeg" || extensao == "jpg") {
           $(".box-troca-foto").find(".aviso-form-inicial").css("display","none");
           // vai mostrar no preview
           if (InputData.files && InputData.files[0]) {
@@ -766,7 +779,7 @@ jQuery(function($){
         var extensao = caminhoImagem.substring(
           caminhoImagem.lastIndexOf('.') + 1).toLowerCase();
           //verificando se é uma img
-          if (extensao == "gif" || extensao == "png"  || extensao == "webp" || extensao == "bmp" || extensao == "jpeg" || extensao == "jpg") {
+          if (extensao == "gif" || extensao == "png"  || extensao == "bmp" || extensao == "jpeg" || extensao == "jpg") {
             $(".box-troca-foto-perfil").find(".aviso-form-inicial").css("display","none");
             // vai mostrar no preview
             if (InputData.files && InputData.files[0]) {
@@ -956,7 +969,7 @@ jQuery(function($){
           var extensao = caminhoImagem.substring(
             caminhoImagem.lastIndexOf('.') + 1).toLowerCase();
             //verificando se é uma img
-            if (extensao == "gif" || extensao == "png"  || extensao == "webp" || extensao == "bmp"|| extensao == "jpeg" || extensao == "jpg") {
+            if (extensao == "gif" || extensao == "png"  || extensao == "bmp"|| extensao == "jpeg" || extensao == "jpg") {
               $(".box-troca-foto-reclamacao").find(".aviso-form-inicial").css("display","none");
               // vai mostrar no preview
               if (InputData.files && InputData.files[0]) {
@@ -1110,7 +1123,7 @@ jQuery(function($){
             var extensao = caminhoImagem.substring(
               caminhoImagem.lastIndexOf('.') + 1).toLowerCase();
               //verificando se é uma img
-              if (extensao == "gif" || extensao == "png"  || extensao == "webp" || extensao == "bmp" || extensao == "jpeg" || extensao == "jpg") {
+              if (extensao == "gif" || extensao == "png"  || extensao == "bmp" || extensao == "jpeg" || extensao == "jpg") {
                 $(".box-troca-foto-reclamacao").find(".aviso-form-inicial").css("display","none");
                 // vai mostrar no preview
                 if (InputData.files && InputData.files[0]) {
@@ -1502,7 +1515,7 @@ jQuery(function($){
                       /* Fechar o modal do cadastro*/
                       $('.modal-adicionar-user').removeClass("modal-adicionar-user-ativo"); 
                       $("body").css("overflow","auto");
-                     //alerta ('Certo', 'Denuncia feita com sucesso');
+                     //alerta('Certo', 'Denuncia feita com sucesso');
                       /* aqui da pra abrir um modal pra falar q o cadastro deu certo */
 
                       $('<tr class="tabelinha-linha"><td>\
@@ -1547,7 +1560,7 @@ jQuery(function($){
               $("#email").focus();
               return false;
             }else{              
-              $("#email").css("border-color" , ''); // tirar a cor da borda
+              $("#email").css("border-color" , 'none'); // tirar a cor da borda
             }
           });
 
@@ -1559,7 +1572,7 @@ jQuery(function($){
                 $("#user").focus();
                 return false;
               }else{
-                $("#user").css("border-color" , ''); // tirar a cor da borda
+                $("#user").css("border-color" , 'none'); // tirar a cor da borda
               }
           });
 
@@ -1632,7 +1645,7 @@ jQuery(function($){
             $("#passAtual").css("border-color" , 'rgba(256,000,000)');            
             return false;
           }else{              
-            $("#passAtual").css("border-color" , ''); // tirar a cor da borda
+            $("#passAtual").css("border-color" , 'none'); // tirar a cor da borda
           }
         });
 
@@ -1756,10 +1769,10 @@ jQuery(function($){
             return false;
           }else{
             //alert("deu certo")
-            alerta ('Errado','removido');
+            alerta('Errado','removido');
             $this.parents(":eq(5)").remove();
             verificarSeFazRolagem();
-            //alerta ('Errado', 'removido');
+            //alerta('Errado', 'removido');
 
             if(tipo == '../ApagarComentario'){ // se for apagar comentario, vai ter um retorno da qtd de comentarios dessa publi             
               $("#qtd_comen").text(result); // ai altera
@@ -1841,7 +1854,7 @@ jQuery(function($){
             return false;
           }else{
             //alert("deu certo");
-            alerta ('Certo', 'Denuncia feita com sucesso');
+            alerta('Certo', 'Denuncia feita com sucesso');
            //Resetando VALORES do modal ao enviar o ajax
            $("div.modal-denunciar").removeClass("modal-denunciar-ativo");
            $this.attr('class','');
@@ -1965,14 +1978,15 @@ $(document).on('click','.salvar',function(){
         }else{
         if(tipo == 'remover'){
           $this.parents(':eq(5)').remove();
+          alerta('Errado', 'removido dos salvos');
         }else{
         var classe =  $this.find('i').attr('class');
         if(classe == 'icone-salvar'){
           $this.parent().html('<li><a class="salvar" href="'+href+'"><i class="icone-salvar-full"></i>Salvo</a></li>');
-          alerta ('Certo', 'reclamação adicionada aos seus salvos');
+          alerta('Certo', 'adicionado aos salvos');
         }else if(classe == 'icone-salvar-full'){
           $this.parent().html('<li><a class="salvar" href="'+href+'"><i class="icone-salvar"></i>Salvar</a></li>');
-          alerta ('Errado', 'reclamação removida dos seus salvos');
+          alerta('Errado', 'removido dos salvos');
         }
         }
         
@@ -2059,10 +2073,8 @@ jQuery(function($){
         $("#motivoT").html('');
         $(".aviso-form-inicial").hide();
         $this.parents(':eq(2)').addClass('mini-menu-item-ativo');
-        alerta ('Certo', 'Comentário editado');
+        alerta('Certo', 'Comentário editado');
 
-        
-        
       }
    });
   }
@@ -2087,7 +2099,7 @@ jQuery(function($){
             return false;
           }else{
               $this.parents(':eq(4)').remove();
-              alerta ('Errado', 'O usuário removido');           
+              alerta('Errado', 'O usuário removido');           
           }   
       }
    });
@@ -2128,7 +2140,7 @@ $(document).on('keyup', '#texto', function(){
 
 
 
-function alerta (tipo, mensagem){
+function alerta(tipo, mensagem){
 
 
 if(tipo == 'Errado'){

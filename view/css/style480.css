@@ -4,12 +4,14 @@ header{
     justify-content: space-between;
     align-items: center;
     height: 55px;
+    transition: .5s
     
    
 }
 header img{
     height: 45px;
-    order: 2
+    order: 2;
+    margin-top: 6px;
 }
 
 header > a {
@@ -65,8 +67,8 @@ header form button{
 }
 i.icone-pesquisa{
  /*tamanho do icone*/
- background-position: -140px 5px; /*posição que se encontra, esqueda/direita e cima/baixo*/
- background-size: 1100px
+ background-position: -140px 3px; /*posição que se encontra, esqueda/direita e cima/baixo*/
+ background-size: 1100px;
 }
 header form button i.icone-pesquisa{
     height: 28px; /*tamanho do espaço que a altura ocupa na tela*/
@@ -91,15 +93,16 @@ nav.menu{
     width: 100vw;
     position: fixed;
     /* top: calc(100vh - 50px); */
-    height: 50px;
-    bottom: 0px
+    height: 55px;
+    bottom: 0px;
+    border-top: 2px solid white;
 }
 nav.menu >ul{
     display: flex;
     justify-content: space-around;
     text-align: center;
     width: 100vw;
-
+    margin-top: 2px;
 }
 
 nav.menu > ul > li{
@@ -184,6 +187,7 @@ nav.notificacoes{
     right: 0;
     
     width: 100vw;
+    box-shadow: none;
    
 }
 
@@ -1026,7 +1030,8 @@ width: 100vw;
 }
 
 .landing-dobra{
-    background-position: 75% 0;
+    background-image: url('../imagens/nova-ima-mobile.jpg');
+    background-position: 0% 0;
 }
 
 .landing-dobra h1{
@@ -1150,7 +1155,7 @@ width: 100vw;
 .motivo-box div{
     display: flex;
     justify-content: space-between;
-    align-items: center
+    align-items: center;
 }
 
 .motivo-box div span{
@@ -1162,7 +1167,7 @@ width: 100vw;
 /*Denuncia*/
 
 .box-denunciar div h1{
-    font-size: 18px
+    font-size: 16px;
 }
 
 .box-denunciar{
@@ -1176,7 +1181,7 @@ width: 100vw;
 /*Desativar*/
 
 .box-desativar div h1{
-    font-size: 18px
+    font-size: 16px;
 }
 
 .box-desativar{
@@ -1188,7 +1193,7 @@ width: 100vw;
 /*Erro*/
 
 .box-erro div h1{
-    font-size: 18px
+    font-size: 16px;
 }
 .box-erro{
     background-color: white;
@@ -1199,7 +1204,7 @@ width: 100vw;
 
 /*adduser*/
 .box-denunciar div h1{
-    font-size: 18px
+    font-size: 16px;
 }
 
 .box-adicionar-user{
@@ -1212,11 +1217,11 @@ width: 100vw;
 
 /*troca foto capa*/
 .modal-troca-foto{
-    overflow: auto
+    overflow: auto;
 }
 
 .box-troca-foto div h1{
-    font-size: 18px
+    font-size: 16px;
 }
 
 .box-troca-foto{
@@ -1229,7 +1234,7 @@ width: 100vw;
 /*preview capa*/
 
 .box-troca-foto-previa div h1{
-    font-size: 18px
+    font-size: 16px;
 }
 
 .box-troca-foto-previa{
@@ -1247,7 +1252,7 @@ width: 100vw;
 }
 
 .box-troca-foto-perfil div h1{
-    font-size: 18px;
+    font-size: 16px;
     
 }
 
@@ -1283,7 +1288,7 @@ width: 100vw;
 }
 
 .box-troca-foto-reclamacao div h1{
-    font-size: 18px
+    font-size: 16px
 }
 
 .box-troca-foto-reclamacao{
@@ -1297,7 +1302,7 @@ width: 100vw;
 /*preview reclamacao*/
 reclamacao
 .box-troca-foto-reclamacao-previa div h1{
-    font-size: 18px
+    font-size: 16px
 }
 
 .box-troca-foto-reclamacao-previa{
@@ -1311,7 +1316,7 @@ reclamacao
 /*modal editar comentario*/
 
 .box-editar-comentario div h1{
-    font-size: 18px
+    font-size: 16px
 }
 
 .box-editar-comentario{
