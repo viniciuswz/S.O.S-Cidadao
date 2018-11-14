@@ -801,7 +801,6 @@ nav.notificacoes ul li a span:first-of-type{
  }
  .mini-menu-item div{
     /* background-color: red; */
-    
  }
  .mini-menu-item.sem-btn div{
     position: absolute;
@@ -869,16 +868,14 @@ nav.notificacoes ul li a span:first-of-type{
 }
 
 .mini-menu-item i.icone-salvar{
-
-background-position-y: -40px
+    background-position-y: -40px
 }
 .mini-menu-item.mini-menu-item-ativo ul{
     display: block;
 }
 
-
 /*pag todas reclamacoes*/
- 
+
 .item-baixo{
     width: 90%;
     height: 40px;
@@ -887,7 +884,6 @@ background-position-y: -40px
     font-size: 15px;
     font-family: arial;
     margin: 0 auto;
-    
 }
 
 .item-baixo p{
@@ -923,10 +919,10 @@ background-position-y: -40px
 }
 
 .item-baixo i.icone-like{
-        background-size:950px; 
-        background-position: -460px 3px;
-        position: relative;
-        top: -5px
+    background-size:950px; 
+    background-position: -460px 3px;
+    position: relative;
+    top: -5px
 }
 
 .item-baixo i.icone-comentario{
@@ -942,7 +938,6 @@ background-position-y: -40px
     position: relative;
     top: -5px
 }
-
 /*///////////////////////////////BLOCO PRINCIPAL////////////////////////////////////*/
 .formulario{
     background-color: white;
@@ -978,7 +973,6 @@ background-position-y: -40px
     flex-direction: column;
     text-align: center;
 }
-
 
 .campo-envio input{
     outline: none;
@@ -1251,8 +1245,6 @@ border: 3px solid #004C41;
 }
 
 .login-bg{  
-   
-    
     background-image: url("../imagens/img-login.jpeg");
     background-position: center center;
     background-attachment: fixed;
@@ -1274,7 +1266,6 @@ border: 3px solid #004C41;
     height: 100vh;
 }
 .form-icone section > div{
- 
     margin-right:500px;
     margin-bottom :200px;
 }
@@ -1672,7 +1663,6 @@ margin-right:3px
     cursor: pointer;
     position: relative;
     color: #000
-
 }
 
 .contatos nav .contatinhos:hover{
@@ -1703,7 +1693,6 @@ margin-right:3px
     max-width: calc(77% - 52px);
     align-items: center;
     border-bottom: 1px solid #f2f2f2;
-    
 }
 
 .contatos nav .contatinhos div.status-debate p{
@@ -1716,14 +1705,11 @@ margin-right:3px
 .info-contatinho{
     position: absolute;
     right: 37px;
-    
     display: flex;
     justify-content: space-between;
     flex-direction: column;
     height: 80%;
     align-items: center
-    
-    
 }
 
 .data_mensagem p{
@@ -1731,8 +1717,6 @@ margin-right:3px
     font-size: 12px;
     text-align: center;
     padding-right: 2px
-    
-    
 }
 
 .qtd_mensagens{
@@ -1751,9 +1735,7 @@ margin-right:3px
     padding: 4px;
     min-height: 26px;
     min-width: 26px;
-    
     bottom: 0;
-    
 }
 
 .batepapo{
@@ -1985,7 +1967,6 @@ color:black
     padding:14px;
     word-wrap: break-word;
     max-width: 50%; 
-    
 }
 
 .linha-mensagem_sistema div span{
@@ -2007,7 +1988,6 @@ color:black
     padding: 6px;
 }
 .salvos{
-    
     display: block;
     margin:10px auto;
     width: 95%;
@@ -2075,7 +2055,7 @@ color:black
 .texto{
     height: 40%;
     width: 60%;
-    margin: 60px auto
+    margin: 60px auto;
 }
 .texto h2{
     font-size: 15pt;
@@ -2092,7 +2072,7 @@ color:black
     margin: 20px auto;
     border: none;
     color:white;
-    background: #6495ed
+    background: #6495ed;
 }
 
 
@@ -2124,7 +2104,7 @@ color:black
 }
 
 .tabelinha-admin a{
-    color:white
+    color:white;
 }
 
 
@@ -2132,7 +2112,7 @@ color:black
     display: none;
 }
 .tabelinha-admin table tr{
-    background-color: #009688
+    background-color: #009688;
 }
 
 .tabelinha-admin table td,.tabelinha-admin table th {
@@ -2148,7 +2128,6 @@ color:black
 .tabelinha-admin table tr:nth-child(even){background-color: #46AF9D ;}
 
 .tabelinha-admin table th {
-    
     background-color: #004C41;
     color: white;
     border:0;
@@ -2196,20 +2175,17 @@ color:black
     flex-wrap: wrap
 }
 
-
 .filtro-admin form{
     display: flex;
     justify-content: center;
     width: 100%;
     height: 60px;
     align-items: center;
-    
 }
 
 .filtro-admin form div{
     padding-right: 100px;
     display: block
-   
 }
 
 .filtro-admin div label{
@@ -2238,6 +2214,7 @@ color:black
 .filtro-admin > div:first-of-type p{
     background-color: pink
 }
+
 .container {
     position: relative;
     padding-left: 20px;
@@ -2251,14 +2228,12 @@ color:black
     color:#999b9c;
   }
   
- 
   .container input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
   }
   
- 
   .checkmark {
     position: absolute;
     top: 0;
@@ -2311,7 +2286,7 @@ color:black
     position: relative;
 }
 
-/*pag reclamaÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§ao*/
+/*pag reclamacao*/
 
 .Reclamacao{
     width: 40%;
@@ -2392,12 +2367,12 @@ color:black
  }
 
  .publicacao-topo-aberta p span{
-     display: block;
-     font-family: Open-Sans-Bold;
-     display: block;
-     font-size: 15px;
-     text-overflow: ellipsis;
-     white-space: nowrap; 
+    display: block;
+    font-family: Open-Sans-Bold;
+    display: block;
+    font-size: 15px;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
     overflow: hidden;
     width: 60%;
     max-width: 180px;
@@ -2449,7 +2424,7 @@ color:black
 
  .img-publicacao .item-baixo-publicacao i{
      margin-bottom: 10px;
-     background-position-y: -40px
+     background-position-y: -40px;
  }
 
  .img-publicacao .item-baixo-publicacao p{
@@ -2459,7 +2434,6 @@ color:black
     align-items: center;
     width: 80%;
     height: 100%;
-
 }
 
 .prefeitura-publicacao{
@@ -2470,7 +2444,7 @@ color:black
     display: flex;
     justify-content: center;
     flex-direction: column;
-    color:white
+    color:white;
 }
 
 .topo-prefeitura-publicacao a{
@@ -2479,14 +2453,11 @@ color:black
 }
 
 .prefeitura-publicacao .topo-prefeitura-publicacao{
-    
     display: flex;
     /* justify-content: center; */
     align-items: center;
-    
     width: 90%;
     max-width:50%;
-    
     margin: 0 auto;
 }
 
@@ -2496,7 +2467,6 @@ color:black
     height: 55px;
     margin-right: 10px;
     overflow: hidden;
-    
 }
 .prefeitura-publicacao .topo-prefeitura-publicacao img{
     height: 170%;
@@ -2515,13 +2485,11 @@ color:black
     overflow: hidden;
     width: 100%; 
     max-width: 300px;
-    
 }
 
 .prefeitura-publicacao p{
     font-family: arial;
     font-size: 13px;
-    
 }
 
 .prefeitura-publicacao .conteudo-resposta{
@@ -2531,27 +2499,24 @@ color:black
 
 .prefeitura-publicacao .conteudo-resposta span{
     display: block;
-        width: 55%;
-    
-     
+    width: 55%;
     font-size:14px;
     font-family: arial;
     white-space: pre-wrap;
     word-wrap: break-word;
-   
     text-align: left;
     margin:10px auto;
 }
 .barra-curtir-publicacao{
     color: white;
-     background-color: #009688;
-     width: 100%;
-     border-top: 2px solid #009688;
-     border-bottom: 2px solid #009688;
-     display: flex;
+    background-color: #009688;
+    width: 100%;
+    border-top: 2px solid #009688;
+    border-bottom: 2px solid #009688;
+    display: flex;
     justify-content: space-around;
     align-items: center;
- } 
+} 
 
 .barra-curtir-publicacao div{
    display: flex;
@@ -2565,10 +2530,10 @@ color:black
     display: flex;
     align-items: center;
     padding: 0 10px 0 5px;
-    color: white
+    color: white;
 }
 .barra-curtir-publicacao a:hover{
-    background-color: #263238
+    background-color: #263238;
 }
 
 .barra-curtir-publicacao a i{
@@ -2576,7 +2541,7 @@ color:black
 }
 .enviar-comentario-publicacao{
     width: 50%;
-    margin: 0 auto
+    margin: 0 auto;
 }
 
 .enviar-comentario-publicacao h3{
@@ -2623,18 +2588,18 @@ color:black
     width: 50%;
     margin: 0 auto;
     display:flex;
-    flex-direction:column
+    flex-direction:column;
     
 }
 
 .comentarios .comentario-user{
     display: flex;
     flex-direction: column;
-    padding: 15px 0
+    padding: 15px 0;
 }
 
 .comentarios .comentario-user:last-child{
-    border: none
+    border: none;
 }
 
 .comentarios .comentario-user > p{
@@ -2648,7 +2613,6 @@ color:black
 .comentarios .comentario-user .publicacao-topo-aberta{
     display: flex;
     align-items: center;
-    
 }
 
 .comentarios .comentario-user .publicacao-topo-aberta a div:first-child{
@@ -2688,7 +2652,6 @@ color:black
 
 .debate{
     width: 50%;
-
 }
 
 .debate .publicacao-topo-aberta{
@@ -2739,7 +2702,6 @@ color:black
     height: 50px;
     color: #1d1d1d;
     margin-bottom: -24px
-    
 }
 
 .debate-publicacao div:nth-child(2) p{
@@ -2815,6 +2777,7 @@ color:black
     /* box-shadow: 0px 0px 12px #000; */
     border: 3px solid #00d3be;
 }
+
 .agradecimento div div{
     display: flex;
     justify-content: center;
@@ -2861,8 +2824,7 @@ color:black
     width: 450px;
     display: flex;
     flex-direction: column;
-    text-shadow:1px 1px 1px #797979
-
+    text-shadow:1px 1px 1px #797979;
 }
 
 .cta{
@@ -2875,7 +2837,7 @@ color:black
     border-radius: 10%/100px;
     margin-top: 10px;
     text-shadow:none;
-    border: 0
+    border: 0;
 }
 
 .landing-dobra p{
@@ -2890,7 +2852,7 @@ color:black
 .landing-funcionalidades{
     display: flex;
     justify-content: space-around;
-    padding:15px
+    padding:15px;
     
 }
 
@@ -2900,14 +2862,12 @@ color:black
     flex-direction: column;
     align-items: center;
     margin: 5px;
-    
 }
 
 .landing-item div:first-of-type{
     overflow: hidden;
     width: 100%;
     height:300px;
-    
 }
 
 .landing-item div img:first-of-type{
@@ -2916,12 +2876,10 @@ color:black
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
     width: 700px;
-    
 }
 .landing-item h3{
     flex-flow: 1;
     margin:5px
-    
 }
 .landing-item p{
     width: 300px;
@@ -2994,17 +2952,15 @@ color:black
     display:flex;
     flex-direction: column;
     font-family: Arial, Helvetica, sans-serif
-    
 }
 
 .mini-menu-adm ul li{
-
     text-align: center;
     margin: 0;
 }
 
 .mini-menu-adm ul li:hover{
-  background-color: #d1d1d1
+  background-color: #d1d1d1;
 }
 
 
@@ -3031,7 +2987,6 @@ color:black
     z-index:98;
     left: 0;
     top: 0;
-   
 }
 .motivo-fundo{
     position: fixed;
@@ -3043,18 +2998,15 @@ color:black
     z-index: 99;
 }
 
-
 .motivo.motivo-ativo{
     display: block
 }
-
 
 .motivo-box{
     position: absolute;
     left: 50%;
     top: 0%;
     transform: translateX(-50%) translateY(-0%);
-    
     width: 500px;
     background-color: white;
     display: flex;
@@ -3062,7 +3014,6 @@ color:black
     max-height: auto;
     padding: 25px;
     z-index: 99;
-    
 }
 
 .motivo-box div{
@@ -3081,10 +3032,7 @@ color:black
 
 .motivo-box div ~ span{
     font-size: 13px;
-   
     cursor: pointer;
-  
-    
 }
 
 
@@ -3109,6 +3057,7 @@ color:black
     top: 0;
     z-index: 98;
 }
+
 .modal-denunciar-ativo{
     display: block;
 }
@@ -3135,7 +3084,6 @@ color:black
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-    
 }
 
 .box-denunciar div h1{
@@ -3167,6 +3115,7 @@ color:black
     background-color:  #EF3C1E;  
     color: white;   
 }
+
 /*Denuncia*/
 .modal-editar-comentario{
     position: fixed;
@@ -3188,6 +3137,7 @@ color:black
     top: 0;
     z-index: 98;
 }
+
 .modal-editar-comentario-ativo{
     display: block;
 }
@@ -3214,7 +3164,6 @@ color:black
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-    
 }
 
 .box-editar-comentario div h1{
@@ -3232,7 +3181,7 @@ color:black
     height: 100px;
     resize: none;
     padding-left: 5px;
-    border-color: rgb(169, 169, 170)
+    border-color: rgb(169, 169, 170);
 }
 
 .box-editar-comentario form button{
@@ -3268,6 +3217,7 @@ color:black
     top: 0;
     z-index: 98;
 }
+
 .modal-desativar-ativo{
     display: block;
 }
@@ -3298,9 +3248,8 @@ color:black
 }
 
 .box-desativar div h1{
-    font-size: 20px
+    font-size: 20px;
 }
-
 
 .box-desativar div:nth-child(2){
     display: flex;
@@ -3308,8 +3257,7 @@ color:black
     align-items: center;
     padding: 0px 15px;
     font-size: 14px;
-    flex-direction:column
-    
+    flex-direction:column;
 }
 
 .box-desativar a{
@@ -3368,7 +3316,6 @@ color:black
     justify-content: space-between;
     align-items: center;
     padding: 0px 15px;
-    
 }
 
 .box-erro div h1{
@@ -3383,7 +3330,6 @@ color:black
     padding: 0px 15px;
     font-size: 14px;
     flex-direction:column
-    
 }
 
 .box-erro a{
@@ -3417,6 +3363,7 @@ color:black
     top: 0;
     z-index: 98;
 }
+
 .modal-troca-foto-ativo{
     display: block;
 }
@@ -3451,9 +3398,7 @@ color:black
     font-size: 20px
 }
 
-
 .box-troca-foto .modal-titulo div ~ div{
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -3461,6 +3406,7 @@ color:black
     font-size: 14px;
     flex-direction:column
 }
+
 .box-troca-foto form label{
     width: 120px;
     display: block;
@@ -3472,6 +3418,7 @@ color:black
     border: 0;
     text-align: center
 }
+
 .box-troca-foto div form input[type="file"]{
     display:none
 }
@@ -3483,11 +3430,10 @@ color:black
     color:white;
     padding: 10px;
     margin-top: 10px;
-    border: 0
+    border: 0;
 }
 
 /*troca preview*/
-
 .modal-troca-foto-previa{
     position: fixed;
     width: 100%;
@@ -3509,6 +3455,7 @@ color:black
     top: 0;
     z-index: 98;
 }
+
 .modal-troca-foto-previa-ativo{
     display: block;
 }
@@ -3622,7 +3569,6 @@ color:black
     font-size: 20px;
 }
 
-
 .box-troca-foto-perfil .modal-titulo div ~ div{
 
     display: flex;
@@ -3668,7 +3614,6 @@ color:black
     z-index: 98;
     display: none;
     color:black;
-    
 }
 
 .modal-troca-foto-perfil-previa-fundo{
@@ -3740,7 +3685,6 @@ color:black
     margin: 10px 0;
     border: 0
 }
-
 
 /*troca reclamacao foto*/
 
@@ -3918,7 +3862,6 @@ color:black
     border: 0
 }
 
-
 /*adicionar user*/
 .modal-adicionar-user{
     position: fixed;
@@ -3976,8 +3919,6 @@ color:black
 
 }
 
-
-
 .box-adicionar-user form button{
     cursor: pointer;
     display: block;
@@ -3993,15 +3934,12 @@ color:black
 
 
 .box-adicionar-user form .opcoes-user{
-    
     display: flex;
     justify-content: space-around;
     align-items: center;
     width: 50%;
     min-width: 260px;
-    margin: 0 auto
-
-    
+    margin: 0 auto;
 }
 
 .box-adicionar-user form .opcoes-user div input{
@@ -4052,7 +3990,7 @@ color:black
     padding: 4px;
     display: none;
     margin: 0 auto;
-    text-align:center
+    text-align:center;
 }
 
 .form-cad .aviso-form-inicial{
@@ -4070,7 +4008,6 @@ color:black
     z-index: 999;
     display: flex;
     align-items: center;
-
     width: 300px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
@@ -4078,30 +4015,26 @@ color:black
     top: -100px;
     left: 50%;
     transform:  translateX(-50%);
-
     border-radius: 5px;
     padding: 10px;
     color:white;
     animation-name: aparecerDesaparecer;
     animation-duration: 4s;
     /* animation-iteration-count:infinite; */
-
-
-
 }
 
 .alerta.deuCerto{
-background-color: #22e677;
-border-left: 5px solid #09d261;
+    background-color: #22e677;
+    border-left: 5px solid #09d261;
 }
 
 .alerta.deuErrado{
-    
     background-color: #f32723;
-border-left: 5px solid #ce0c08;
+    border-left: 5px solid #ce0c08;
 }
+
 .alerta p{
-display: inline-block
+    display: inline-block
 }
 
 .alerta .Certo{
@@ -4120,22 +4053,15 @@ display: inline-block
 }
 
 .Certo:after{
-
-content: '';
-display: block;
-
-
-width: 7px;
-height:10px;
-position: relative;
-bottom: 1px;
-
-border: solid white;
-border-width: 0 2.5px 2.5px 0;
-
-
-transform: rotate(45deg);
-
+    content: '';
+    display: block;
+    width: 7px;
+    height:10px;
+    position: relative;
+    bottom: 1px;
+    border: solid white;
+    border-width: 0 2.5px 2.5px 0;
+    transform: rotate(45deg);
 }
 
 .bola{
@@ -4151,12 +4077,9 @@ transform: rotate(45deg);
 
 .bolaErro{
     background-color: #ce0c08;
-
-
 }
 
 .paginacao{
-    
     display: flex;
     justify-content: center;
     flex-wrap: wrap
@@ -4164,11 +4087,8 @@ transform: rotate(45deg);
 }
 .paginacao li{
     background-color: #09d261;
-   
     margin: 1px;
     margin-top: 10px;
-    
-    
 }
 
 .paginacao li a{
@@ -4180,7 +4100,6 @@ transform: rotate(45deg);
 .paginacao li.jaca{
     background-color: #0a9948;
 }
-
 
 .not{
     background-image: url("../imagens/sprite-not.png");
@@ -4194,27 +4113,22 @@ transform: rotate(45deg);
 
 .not.icone-not-comentou{
     background-position: 0 0;
-
 }
 
 .not.icone-not-respondeu{
     background-position: -54px 0;
-
 }
 
 .not.icone-not-like{
     background-position: -108px 0;
-
 }
 
 .not.icone-not-denuncia{
     background-position: -161px 0;
-
 }
 
 .not.icone-not-respondaisso{
     background-position: -216px 0;
-
 }
 
 .sempre-branco{

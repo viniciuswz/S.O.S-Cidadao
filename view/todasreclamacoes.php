@@ -109,7 +109,7 @@
             <section class="criar-publicacao">
                 <div>
                    <i class="icone-edit"></i><p>  Gostaria de fazer uma reclamação?</p>
-                    <a href="Formulario-reclamacao.php">Fazer Reclamação</a>
+                    <a href="Formulario-reclamacao.php">Reclamar</a>
                 </div>
             </section>  
         <?php } ?>
