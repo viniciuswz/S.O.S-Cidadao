@@ -1003,7 +1003,7 @@ width: 100%
 .campo-envio label p{
     color: red;
     margin-left: 10px;
-    font-size: 1em
+    font-size: .9em
 }
 
 .campo-envio span{
