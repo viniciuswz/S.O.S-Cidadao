@@ -72,8 +72,11 @@
     $mensagem = $exc->getMessage();
     switch($erro){
         case 2://Não está logado  
-            echo "<script> alert('$mensagem');javascript:window.location='login.php';</script>";
-            break;  
+            echo "<script>javascript:window.location='login.php';</script>";
+            break; 
+        case 6://Ja esta logado 
+            echo "<script>javascript:window.location='index.php';</script>";
+            break;
         case 11:// Erro no comentario
         case 12://Mexeu no insprnsionar elemento ou nao submeteu o formulario      
             echo "<script> alert('$mensagem');javascript:window.location='index.php';</script>";
