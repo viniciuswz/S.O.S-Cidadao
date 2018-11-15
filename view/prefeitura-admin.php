@@ -129,7 +129,7 @@ session_start();
                                         </ul>                                        
                                 </div>                                
                                 <p>'.$res[$contador]['nome_usu'].'</p></td>';                      
-                                echo '<td>'.$res[$contador]['email_usu'].'</td>'; 
+                                echo '<td><p>'.$res[$contador]['email_usu'].'</p></td>'; 
                                 echo '<td><p>'.$res[$contador]['dataHora_cadastro_usu'].'</p></td>';                       
                                 //echo '<td<p> <a href="'.$res[$contador]['LinkApagarUsu'].'">Remover Funcao</p></td>'; 
                             echo '</tr>';
