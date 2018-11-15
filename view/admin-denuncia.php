@@ -229,19 +229,21 @@ session_start();
                  ?>
             </div>      
         </div>
-        <?php
-            if($quantidadePaginas != 1){
-                $contador = 1;
-                while($contador <= $quantidadePaginas){
-                    if(isset($pagina) AND $pagina == $contador){
-                        echo '<li class="jaca"><a href="admin-denuncia.php?'.$parametro.'&pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;  
-                    }else{
-                        echo '<li><a href="admin-denuncia.php?'.$parametro.'&pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;
-                    }                    
-                    $contador++;        
-                }
-            }            
-        ?>
+        <ul class="paginacao">
+            <?php
+                if($quantidadePaginas != 1){
+                    $contador = 1;
+                    while($contador <= $quantidadePaginas){
+                        if(isset($pagina) AND $pagina == $contador){
+                            echo '<li class="jaca"><a href="admin-denuncia.php?'.$parametro.'&pagina='.$contador.'">'.$contador.'</a></li>'  ;  
+                        }else{
+                            echo '<li><a href="admin-denuncia.php?'.$parametro.'&pagina='.$contador.'">'.$contador.'</a></li>'  ;
+                        }                    
+                        $contador++;        
+                    }
+                }            
+            ?>
+        </ul>
     </body>
 </html>
 <?php
