@@ -79,7 +79,7 @@
             break;
         case 11:// Erro no comentario
         case 12://Mexeu no insprnsionar elemento ou nao submeteu o formulario      
-            echo "<script> alert('$mensagem');javascript:window.location='index.php';</script>";
+            echo "<script>javascript:window.location='index.php';</script>";
             break;             
         default: //Qualquer outro erro cai aqui
             echo "<script> alert('$mensagem');javascript:window.location='index.php';</script>";

@@ -184,213 +184,25 @@ session_start();
                 </section>
                 <section class="alinha-item" id="pa">
                     <input type="hidden" id="parametros" value="<?php echo $parametro?>">
-                    <div class="modal-denunciar">
-                                            <div class="modal-denunciar-fundo"></div>
-                                            <div class="box-denunciar">
-                                                <div>
-                                                    <h1>Qual o motivo da denuncia?</h1>
-                                                    <span class="fechar-denuncia">&times;</span>
-                                                </div>
-                                                
-                                                <form id="formdenuncia">
-                                                    <textarea placeholder="Qual o motivo?" id="motivo"></textarea>
-                                                    <input type="hidden" name="id_publi" value="">
-                                                    <div class="aviso-form-inicial ">
-                                                        <p>O campo tal e pa</p>
-                                                    </div>
-                                                    <button type="submit"> Denunciar</button>
-                                                </form>
-                                            </div>
-                    </div>
-                    <?php
-                    /*
-                    $contador = 0;
-                    while($contador < count($resPes)){       
-                        if($resPes[$contador]['tipo'] == 'Debate'){
-                    ?> 
-                    <div class="item-publicacao db">
-                        <div class="item-topo">
-                            <a href="perfil_debate.php?ID=<?php echo $resPes[$contador]['cod_usu']?>">
-                                <div>
-                                    <img src="../Img/perfil/<?php echo $resPes[$contador]['img_perfil_usu']?>">
-                                </div>
-                                <p><span class="negrito"><?php echo $resPes[$contador]['nome_usu']?></a></span><time><?php echo $resPes[$contador]['dataHora_deba']?></time></p>
-                                <div class="mini-menu-item">
-                                    <i class="icone-3pontos"></i>
+                        <div class="modal-denunciar">
+                                <div class="modal-denunciar-fundo"></div>
+                                <div class="box-denunciar">
                                     <div>
-                                        <ul>
-                                        <?php
-                                                    if(isset($resPes[$contador]['indDenunComen']) AND $resPes[$contador]['indDenunComen'] == TRUE){ // Aparecer quando o user ja denunciou            
-                                                        echo '<li><i class="icone-bandeira"></i><span class="negrito">Denunciado</span></li>';        
-                                                    }else if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] != $resPes[$contador]['cod_usu']){ // Aparecer apenas naspublicaçoes q nao é do usuario
-                                                        if($tipoUsu == 'Comum' or $tipoUsu == 'Prefeitura' or $tipoUsu == 'Funcionario'){                                                       
-                                                            echo '<li class="denunciar-item"><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>';
-                                                            $indDenun = TRUE; // = carregar modal da denucia
-                                                        }                    
-                                                    }else if(!isset($_SESSION['id_user'])){ // aparecer parar os usuario nao logado]
-                                                        echo '<li class="denunciar-item"><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>';
-                                                        $indDenun = TRUE; // = carregar modal da denucia
-                                                    } 
-                                                ?>
-
-                                                <?php
-                                                    if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $resPes[$contador]['cod_usu']){
-                                                        echo '<li><a href="../ApagarDebate.php?ID='.$resPes[$contador]['cod_deba'].'"><i class="icone-fechar"></i></i>Remover</a></li>';
-                                                        echo '<li><a href="debate-update.php?ID='.$resPes[$contador]['cod_deba'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';                                                    
-                                                    }else if(isset($tipoUsu) AND ($tipoUsu == 'Adm' or $tipoUsu == 'Moderador')){
-                                                        echo '<li><a href="../ApagarDebate.php?ID='.$resPes[$contador]['cod_deba'].'"><i class="icone-fechar"></i></i>Remover</a></li>';
-                                                        // Icone para apagar usuaario
-                                                        //echo '<a href="../ApagarUsuario.php?ID='.$resPes[0]['cod_usu'].'">Apagar Usuario</a>';                                                       
-                                                        echo '<li><a href="debate-update.php?ID='.$resPes[$contador]['cod_deba'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';                                                    
-                                                    }
-                                                ?>      
-                                        </ul>
+                                        <h1>Qual o motivo da denuncia?</h1>
+                                        <span class="fechar-denuncia">&times;</span>
                                     </div>
-                                    <?php if(isset($indDenun) AND $indDenun == TRUE) { // so quero q carregue em alguns casos?>
-                                            <div class="modal-denunciar">
-                                                <div class="modal-denunciar-fundo"></div>
-                                                <div class="box-denunciar">
-                                                    <div>
-                                                        <h1>Qual o motivo da denuncia?</h1>
-                                                        <span class="fechar-denuncia">&times;</span>
-                                                    </div>
-                                            
-                                                    <form form method="post" action="../DenunciarDebate.php">
-                                                        <textarea placeholder="Qual o motivo?" id="motivo" name="texto"></textarea>
-                                                        <input type="hidden" name="id_deba" value="<?php echo $resPes[$contador]['cod_deba'] ?>">                
-                                                        <button type="submit"> Denunciar</button>
-                                                    </form>                                        
-                                                </div>
-                                            </div>
-                                    <?php } ?>
-                                </div>
-                            </div>
-                            <a href="Pagina-debate.php?ID=<?php echo $resPes[$contador]['cod_deba'] ?>">
-                                <figure>
-                                    <img src="../Img/debate/<?php echo $resPes[$contador]['img_deba']?>">
-                                </figure>
-                                <div class="legenda">
-                                    <p><?php echo $resPes[$contador]['nome_deba']?></p><p><?php echo $resPes[$contador]['qtdParticipantes']?></p><i class="icone-grupo"></i>
-                                </div>                                
-                            </a>
+                                    
+                                <form id="formdenuncia">
+                                    <textarea placeholder="Qual o motivo?" id="motivo"></textarea>
+                                    <input type="hidden" name="id_publi" value="">
+                                    <div class="aviso-form-inicial ">
+                                        <p>O campo tal e pa</p>
+                                    </div>
+                                    <button type="submit"> Denunciar</button>
+                                </form>
                         </div>
-                        <?php                  
-                            }else if($resPes[$contador]['tipo'] == 'Publicacao'){
-                        ?>               
-                        <div class="item-publicacao rc">
-                                <div class="item-topo">
-                                    <a href="perfil_reclamacao.php?ID=<?php echo $resPes[$contador]['cod_usu'] ?>">
-                                    <div>
-                                        <img src="../Img/perfil/<?php echo $resPes[$contador]['img_perfil_usu']?>">
-                                    </div>
-                                    <p><span class="negrito"><?php echo $resPes[$contador]['nome_usu']?></a></span><time><?php echo $resPes[$contador]['dataHora_publi']?></time></p>
-                                    <div class="mini-menu-item">
-                                        <i class="icone-3pontos"></i>
-                                        <div>
-                                            <ul>
-                                            <?php
-                                                if(isset($resPes[$contador]['indDenunPubli']) AND $resPes[$contador]['indDenunPubli'] == TRUE){ // Aparecer quando o user ja denunciou            
-                                                    echo '<li><i class="icone-bandeira"></i><span class="negrito">Denunciado</span></li>';        
-                                                }else if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] != $resPes[$contador]['cod_usu']){ // Aparecer apenas naspublicaçoes q nao é do usuario
-                                                    if($tipoUsu == 'Comum' or $tipoUsu == 'Prefeitura' or $tipoUsu == 'Funcionario'){                                                             
-                                                        echo '<li class="denunciar-item"><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>';
-                                                        $indDenun = TRUE; // = carregar modal da denucia
-                                                    }                    
-                                                }else if(!isset($_SESSION['id_user'])){ // aparecer parar os usuario nao logado                                            
-                                                    echo '<li class="denunciar-item"><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>';
-                                                    $indDenun = TRUE; // = carregar modal da denucia
-                                                } 
-                                            ?>
-
-                                            <?php
-                                                if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $resPes[$contador]['cod_usu']){
-                                                    echo '<li><a href="../ApagarPublicacao.php?ID='.$resPes[$contador]['cod_publi'].'"><i class="icone-fechar"></i></i>Remover</a></li>';                                            
-                                                    echo '<li><a href="reclamacao-update.php?ID='.$resPes[$contador]['cod_publi'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';
-                                                }else if(isset($tipoUsu) AND ($tipoUsu == 'Adm' or $tipoUsu == 'Moderador')){
-                                                    echo '<li><a href="../ApagarPublicacao.php?ID='.$resPes[$contador]['cod_publi'].'"><i class="icone-fechar"></i></i>Remover</a></li>';
-                                                    // Icone para apagar usuaario
-                                                    //echo '<a href="../ApagarUsuario.php?ID='.$resPes[0]['cod_usu'].'">Apagar Usuario</a>'; 
-                                                    echo '<li><a href="reclamacao-update.php?ID='.$resPes[$contador]['cod_publi'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';
-                                                }
-                                            ?> 
-
-                                            <?php
-                                                if(isset($_SESSION['id_user']) AND isset($resPes[$contador]['indSalvaPubli']) AND $resPes[$contador]['indSalvaPubli'] == TRUE){//Salvou
-                                                    echo '<li><a href="../SalvarPublicacao.php?ID='.$resPes[$contador]['cod_publi'].'"><i class="icone-salvar-full"></i>Salvo</a></li>';
-                                                }else if(isset($_SESSION['id_user']) AND isset($resPes[$contador]['indSalvaPubli']) AND $resPes[$contador]['indSalvaPubli'] == FALSE){//Nao salvou
-                                                    echo '<li><a href="../SalvarPublicacao.php?ID='.$resPes[$contador]['cod_publi'].'"><i class="icone-salvar"></i>Salvar</a></li>';
-                                                }else if(!isset($_SESSION['id_user'])){ // aparecer parar os usuario nao logado
-                                                    echo '<li><a href="../SalvarPublicacao.php?ID='.$resPes[$contador]['cod_publi'].'"><i class="icone-salvar"></i>Salvar</a></li>';
-                                                } 
-                                            ?>          
-                                            </ul>
-                                        </div>
-                                        <?php if(isset($indDenun) AND $indDenun == TRUE) { // so quero q carregue em alguns casos?>
-                                            <div class="modal-denunciar">
-                                                <div class="modal-denunciar-fundo"></div>
-                                                <div class="box-denunciar">
-                                                    <div>
-                                                        <h1>Qual o motivo da denuncia?</h1>
-                                                        <span class="fechar-denuncia">&times;</span>
-                                                    </div>
-                                                    
-                                                    <form form method="post" action="../DenunciarPublicacao.php">
-                                                        <textarea placeholder="Qual o motivo?" id="motivo" name="texto"></textarea>
-                                                        <input type="hidden" name="id_publi" value="<?php echo $resPes[$contador]['cod_publi'] ?>">                
-                                                        <button type="submit"> Denunciar</button>
-                                                    </form>
-                                                        
-                                                </div>
-                                            </div>
-                                        <?php } ?>
-                                    </div>
-                                </div>
-                                <a href="reclamacao.php?ID=<?php echo $resPes[$contador]['cod_publi'] ?>">
-                                <?php
-                                    if(!empty($resPes[$contador]['img_publi'])){
-                                ?>
-                                    <figure>
-                                        <img src="../Img/publicacao/<?php echo $resPes[$contador]['img_publi']?>">
-                                    </figure>   
-                                <?php
-                                    }
-                                ?>   
-                                    <p><?php echo $resPes[$contador]['titulo_publi']?></p>
-                                    </a>
-                                    <div class="item-baixo">   
-                                        <i class="icone-local"></i><p><?php echo $resPes[$contador]['endereco_organizado_fechado']?></p>
-                                        <div>    
-                                            <span><?php echo $resPes[$contador]['quantidade_curtidas']?></span><i class="icone-like"></i>
-                                            <span><?php echo $resPes[$contador]['quantidade_comen']?></span><i class="icone-comentario"></i>
-                                        </div>
-                                    </div>
-                            </div>
-                            <?php   
-                                }
-                                $indDenun = false;
-                                $contador++;
-                                }
-                                */
-                            ?>    
-                    </section>
-                    <ul>
-                            <?php
-                            /*
-                                if($quantidadePaginas != 1){
-                                    $contador = 1;
-                                    while($contador <= $quantidadePaginas){
-                                        if(isset($pagina) AND $pagina == $contador){
-                                            echo '<li class="jaca"><a href="pesquisa.php?pagina='.$contador.'&pesquisa='.$_GET['pesquisa'].'&'.$parametro.'">Pagina'.$contador.'</a></li>'  ;  
-                                        }else{
-                                            echo '<li><a href="pesquisa.php?pagina='.$contador.'&pesquisa='.$_GET['pesquisa'].'&'.$parametro.'">Pagina'.$contador.'</a></li>'  ;
-                                        }
-                                        
-                                        $contador++;        
-                                    }
-                                }
-                                */
-                            ?>
-                    </ul>                  
+                    </div>                   
+                </section>                     
         </div>
     </body>
 </html>
