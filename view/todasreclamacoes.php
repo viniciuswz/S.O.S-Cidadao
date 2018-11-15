@@ -82,6 +82,13 @@
             ?>
         </header>
         <?php
+            if(isset($_GET['atu']) AND !empty($_SESSION['atu'])){
+                if($_GET['atu'] == '1'){
+                    echo '<script>alerta("Certo","Você apagou a reclamação")</script>';
+                }                
+                unset($_SESSION['atu']);
+            }
+
         if(isset($resultado) AND !empty($resultado)){    
         ?>
             <div class="user-menu">
