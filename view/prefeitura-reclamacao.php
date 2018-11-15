@@ -134,15 +134,15 @@ session_start();
                     ?>                    
                 </table>
             </section>   
-            <ul>
+            <ul class="paginacao">
                 <?php
                     if($quantidadePaginas != 1){
                         $contador = 1;
                         while($contador <= $quantidadePaginas){
                             if(isset($pagina) AND $pagina == $contador){
-                                echo '<li class="jaca"><a href="prefeitura-reclamacao.php?pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;  
+                                echo '<li class="jaca"><a href="prefeitura-reclamacao.php?pagina='.$contador.'">'.$contador.'</a></li>'  ;  
                             }else{
-                                echo '<li><a href="prefeitura-reclamacao.php?pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;
+                                echo '<li><a href="prefeitura-reclamacao.php?pagina='.$contador.'">'.$contador.'</a></li>'  ;
                             }
                             
                             $contador++;        

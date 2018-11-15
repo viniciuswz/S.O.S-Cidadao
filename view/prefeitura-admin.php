@@ -182,15 +182,15 @@ session_start();
                 
             </div>
         </div>
-        <ul>
+        <ul class="paginacao">
             <?php
                 if($quantidadePaginas != 1){
                     $contador = 1;
                     while($contador <= $quantidadePaginas){
                         if(isset($pagina) AND $pagina == $contador){
-                            echo '<li class="jaca"><a href="prefeitura-admin.php">Pagina'.$contador.'</a></li>'  ;  
+                            echo '<li class="jaca"><a href="prefeitura-admin.php">'.$contador.'</a></li>'  ;  
                         }else{
-                            echo '<li><a href="prefeitura-admin.php?pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;
+                            echo '<li><a href="prefeitura-admin.php?pagina='.$contador.'">'.$contador.'</a></li>'  ;
                         }                    
                         $contador++;        
                     }
