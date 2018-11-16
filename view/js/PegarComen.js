@@ -72,13 +72,7 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
     $(document.body).on('touchmove', rolagem);
     $(window).on('scroll', rolagem); 
         function rolagem() {
-            $('.comentario-user').each(function(){
-                $this = $(this)
-                if($(this).is('.comentario-user:last')){
-                    ultima_pub = Math.abs($this.offset().top -  window.innerHeight + $this.innerHeight());
-                
-            }
-        })
+            ultima_pub = Math.abs($('.comentario-user:last').offset().top -  window.innerHeight + $('.comentario-user:last').innerHeight());
             //var tamanho = $(window).scrollTop();
             //var tamanhon = $(window).scrollTop() ;//+ window.innerHeight
             //var diferenca = $(document).height() - $(window).height();
