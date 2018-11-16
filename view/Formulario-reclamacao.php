@@ -135,13 +135,15 @@
 
                         <div class="campo-envio">
                             <label for="local">local<p></p></label>
-                            <input type="text" id="local" name="local" placeholder="rua, Avenida..." autocomplete="off" >
+                            <input type="text" id="input-disabled-local" placeholder="rua, Avenida..." autocomplete="off" disabled >
+                            <input type="hidden" id="local" name="local" autocomplete="off" >
                             <span></span>
                         </div>
 
                         <div class="campo-envio">
                                 <label for="bairro">Bairro<p></p></label>
-                                <input type="text" id="bairro" name="bairro" placeholder="Parque dos Churros" autocomplete="off" >
+                                <input type="text" id="input-disabled-bairro" placeholder="Parque dos Churros" autocomplete="off" disabled>
+                                <input type="hidden" id="bairro" name="bairro" autocomplete="off" >
                                 <span></span>
                             </div>
                 </div>

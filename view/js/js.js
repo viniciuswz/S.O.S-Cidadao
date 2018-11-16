@@ -316,6 +316,7 @@ jQuery(function(){
     
     function limpa_formulario_cep() {
       // Limpa valores do formulário de cep.
+      $("#cep").val("")
       $("#local").val("");
       $("#bairro").val("");
     }
@@ -353,6 +354,11 @@ jQuery(function(){
           //Atualiza os campos com os valores da consulta.
           $("#local").val(dados.logradouro);
           $("#bairro").val(dados.bairro);
+
+          $("#input-disabled-local").val(dados.logradouro);
+          $("#input-disabled-bairro").val(dados.bairro);
+
+
           }
 
           
@@ -364,13 +370,13 @@ jQuery(function(){
           $("#cep").parent().find('span').addClass('verificar');
           $("#cep").css("background" , 'rgba(256,000,000,.1)' );
           
-          $("#bairro").parent().find('p').text("CEP não encontrado");
-          $("#bairro").parent().find('span').addClass('verificar');
-          $("#bairro").css("background" , 'rgba(256,000,000,.1)' );
+          // $("#bairro").parent().find('p').text("CEP não encontrado");
+          // $("#bairro").parent().find('span').addClass('verificar');
+          // $("#bairro").css("background" , 'rgba(256,000,000,.1)' );
           
-          $("#local").parent().find('p').text("CEP não encontrado");
-          $("#local").parent().find('span').addClass('verificar');
-          $("#local").css("background" , 'rgba(256,000,000,.1)' );
+          // $("#local").parent().find('p').text("CEP não encontrado");
+          // $("#local").parent().find('span').addClass('verificar');
+          // $("#local").css("background" , 'rgba(256,000,000,.1)' );
         }
       });
     } //end if.
@@ -390,8 +396,8 @@ $(".formulario").submit(function(){
   
   var local = $("#local").val();
   
-  if( local === "" ){
-    $("#local").parent().find('p').text("este campo não pode ser vazio ");
+  if( local == "" || local!==dados.logradouro ){
+    $("#local").parent().find('p').text("mexeu no inspecionar");
     $("#local").parent().find('span').addClass('verificar');
     $("#local").css("background" , 'rgba(256,000,000,.1)' );
     return false;
@@ -408,8 +414,8 @@ $(".formulario").submit(function(){
   
   var bairro = $("#bairro").val();
   
-  if( bairro === "" ){
-    $("#bairro").parent().find('p').text("este campo não pode ser vazio ");
+  if( bairro == "" || local!== dados.bairro ){
+    $("#bairro").parent().find('p').text("mexeu no inspecionar");
     $("#bairro").parent().find('span').addClass('verificar');
     $("#bairro").css("background" , 'rgba(256,000,000,.1)' );
     return false;
