@@ -120,7 +120,7 @@ session_start();
                                 $contador = 0;
                                 while($contador < count($participantes)){
                             ?>  
-                            <div class="item-participante">
+                            <div class="item-participante" <?php if($participantes[$contador]['ind_visu_criador'] == 'I'){echo 'style="order:1"';}else{echo 'style="order:2"';}?> >
                                 <div class="img-participante">
                                     <img src="../Img/perfil/<?php echo $participantes[$contador]['img_perfil_usu'] ?>">
                                 </div>
@@ -175,12 +175,12 @@ session_start();
         
            <div class="batepapo">
                 <header>
-                    <a href="todosdebates.php">&#x21FD;</a>
-                    <div class="ft_debate-mensagem">
+                    <a href="todosdebates.php" style="order:1">&#x21FD;</a>
+                    <div class="ft_debate-mensagem" style="order:2">
                         <img src="../Img/debate/<?php echo $resposta[0]['img_deba']?>" alt="debate">
                     </div>
-                    <h4><?php echo $resposta[0]['nome_deba']?></h4>
-                    <div class="mini-menu-item">
+                    <h4 style="order:3"><?php echo $resposta[0]['nome_deba']?></h4>
+                    <div class="mini-menu-item" style="order:4">
                             <i class="icone-3pontos"></i>
                             <div>
                                 <ul>
@@ -200,6 +200,7 @@ session_start();
                     </div>
                 </header>
                 <div id="pa" class="mensagens">
+                <img src="imagens/gif2.gif" style="margin: 0 auto;display: none;width: 70px;position:fixed;top:60px;left: 50%;transform: translateX(-50%);" id="loader" >
                     
                    
 <!--

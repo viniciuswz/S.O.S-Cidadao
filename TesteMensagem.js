@@ -1,5 +1,4 @@
 var ultimo_id= 0;
-var ultimo_usu= 0;
 
 setInterval("jaquinha()",5000);
 
@@ -68,23 +67,12 @@ function teste2(resposta){
     for(contador=0; contador < arr1[3]['mensagens'].length; contador++){
         classe = arr1[3]['mensagens'][contador]['classe'];
         var msg_id = arr1[3]['mensagens'][contador]['cod_mensa'];
-        //var user_id = arr1[3]['mensagens'][contador]['cod_usu'];
         if(( msg_id !='visu' && ultimo_id < msg_id )|| msg_id == 'visu'){
             mensa += "<div class=" + classe + ">";
         
         if(classe == 'linha-mensagem_padrao'){
             ultimo_id = msg_id;
-
-           
-           
-           if(ultimo_usu == arr1[3]['mensagens'][contador]['cod_usu']){
-                //alert(arr1[3]['mensagens'][contador]['cod_usu']);
-                mensa += "<div class=usuario-msg-foto data-id-user="+ultimo_usu+"></div><div class=mensagem_padrao><span class=nome><a href=perfil_reclamacao.php?ID="+arr1[3]['mensagens'][contador]['cod_usu']+">"+arr1[3]['mensagens'][contador]['nome_usu']+"</a></span>";
-           }else{                
-                mensa += "<div class=usuario-msg-foto><img src='../Img/perfil/"+arr1[3]['mensagens'][contador]['img_perfil_usu']+"'></div><div class=mensagem_padrao><span class=nome><a href=perfil_reclamacao.php?ID="+arr1[3]['mensagens'][contador]['cod_usu']+">"+arr1[3]['mensagens'][contador]['nome_usu']+"</a></span>";
-                ultimo_usu = arr1[3]['mensagens'][contador]['cod_usu']
-           }
-           
+            mensa += "<div class=usuario-msg-foto><img src='../Img/perfil/"+arr1[3]['mensagens'][contador]['img_perfil_usu']+"'></div><div class=mensagem_padrao><span class=nome><a href=perfil_reclamacao.php?ID="+arr1[3]['mensagens'][contador]['cod_usu']+">"+arr1[3]['mensagens'][contador]['nome_usu']+"</a></span>";
         }else{
             mensa += "<div>";
         }
@@ -128,7 +116,6 @@ jQuery(function(){
                 //$('#lista').html(data);
                 $(".qtdNVisu").parent().parent().parent().remove();// remove
                 jaquinha();
-                $('#btn-debate').attr('disabled','disabled')
             }        
     
         });           

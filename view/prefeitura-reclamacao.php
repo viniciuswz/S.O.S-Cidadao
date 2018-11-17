@@ -124,8 +124,15 @@ session_start();
                     <?php
                         $contador = 0;
                         while($contador < count($resposta)){                           
-                            echo '<tr>';  
-                                echo '<td><a href="reclamacao.php?ID='.$resposta[$contador]['cod_publi'].'"><p>'.$resposta[$contador]['titulo_publi'].'</p></a></td>';                      
+                            echo '<tr class="tabelinha-linha">';  
+                                echo '<td>
+                                <div class="mini-menu-adm">
+                                    <ul>
+                                    <li><a href="reclamacao.php?ID='.$resposta[$contador]['cod_publi'].'">Visitar Página</a>
+                                    </ul>
+                                </div>
+                                <p>'.$resposta[$contador]['titulo_publi'].'</p>
+                                </td>';                      
                                 echo '<td><p>'.$resposta[$contador]['descri_cate'].'</p></td>'; 
                                 echo '<td><p>'.$resposta[$contador]['nome_usu'].'</p></td>'; 
                             echo '</tr>';                            

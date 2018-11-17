@@ -500,9 +500,19 @@ jQuery(function($){
 
   jQuery(document).on("click",".tabelinha-linha", function(event){
   //$(".tabelinha-linha").click(function(){
-    var $this = $(this);
-    var classe = $this.attr('class');
-    var motivo = $this.find('div.motivo').attr("class");
+    var $thisMenu = $(this);
+    var classe = $thisMenu.attr('class');
+    var motivo = $thisMenu.find('div.motivo').attr("class");
+    
+   
+    var estilo = $(this).find("td:nth-child(1)").find("div").attr('class');
+    //alert(estilo);
+
+    if(estilo =='mini-menu-adm'){
+      $('body').css('overflow','hidden');
+    }else{
+      $('body').css('overflow','auto');
+    }
     
     
     /*criar uma rotina para remover os outros menu aberto */
@@ -511,7 +521,7 @@ jQuery(function($){
     }else{
       if(classe == "mini-menu-adm"){/* se não se, se a classe or igual a: execulta */
         
-        $(this).find("td:nth-child(1)").find("div").toggleClass("mini-menu-adm-ativo");
+        $(this).find("td:nth-child(1)").find("div.mini-menu-adm").toggleClass("mini-menu-adm-ativo"); //fecha
       }else{ /* se não isso */
         $(this).siblings().find("td:nth-child(1) div").removeClass("mini-menu-adm-ativo"); /* pegar os elementos que não corresponde aesse que esta sendo clicado, e remover a class*/
         $(this).find("td:nth-child(1) div").toggleClass("mini-menu-adm-ativo"); /*  */
@@ -524,8 +534,11 @@ jQuery(function($){
   });
 
   jQuery(document).on("click",".mini-menu-adm", function(event){
+    $('body').css('overflow','auto');
   //$(".mini-menu-adm").click(function(){
     $(this).find("td:nth-child(1)").find("div").removeClass("mini-menu-adm-ativo");
+    
+    
   });
 });
 
@@ -560,6 +573,7 @@ jQuery(function($){
   //$(".fechar-motivo").click(function(){
     $(this).parents(":eq(2)").removeClass("motivo-ativo");
     $(this).parents(":eq(4)").addClass("tabelinha-linha");
+    
     $("body").css("overflow","auto");
   });
   /*fechar quando clicar fora e adicionar class de ativar */

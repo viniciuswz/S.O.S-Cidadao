@@ -12,41 +12,47 @@ setTimeout(function(){
         $('#pa').scroll(function(){
            if ($('#pa').scrollTop() == 0){
              
-               // $('#loader').show();
+                
          
            
                id = document.getElementById("IdDeba").value;
                paginacao--;
                //Simulate server delay;
-               setTimeout(function(){
+               if(validar == '1'){
                 
+               }else{
+                $('#loader').show();
+                setTimeout(function(){
 
-                $.ajax({
-                    
-                    url: '../PegarMensagem2.php',
-                    type: "get",
-                    data: "pagina="+paginacao+"&ID="+id,
-                    success: function(data){        
-                        if(data =="Maior"){ //Maior significa que não teve resultado para mostrar
-                            validar = 1 //então nao vamos mais rodar o jaquinha, pois chegamos ao final de todas as reclamações
-                            //alert("chegou no fim")     
-                            alert("Ta no final desgrac");                      
-                        }else{    
-                            teste3(data);
-                            scrollTop(50);
-                        }    
-                        //$('#lista').html(data);
-                        //$("#pa").prepend(data); 
+                    $.ajax({
                         
-                    }
+                        url: '../PegarMensagem2.php',
+                        type: "get",
+                        data: "pagina="+paginacao+"&ID="+id,
+                        success: function(data){        
+                            if(data =="Maior"){ //Maior significa que não teve resultado para mostrar
+                                validar = 1 //então nao vamos mais rodar o jaquinha, pois chegamos ao final de todas as reclamações
+                                //alert("chegou no fim")     
+                                //alert("Ta no final desgrac");   
+                                $('#loader').hide();                   
+                            }else{    
+                                teste3(data);
+                                scrollTop(50);
+                            }    
+                            //$('#lista').html(data);
+                            //$("#pa").prepend(data); 
                             
-            
-                }); 
+                        }
+                                
+                
+                    }); 
+    
+                       $('#pa').scrollTop(30);
+                       $('#loader').hide();
+                       
+                   },780); 
+               }
 
-                   $('#pa').scrollTop(30);
-                   
-                   
-               },780); 
            }
         });
         
@@ -77,14 +83,8 @@ function teste3(resposta){
 
         mensa += "<div class=" + classe + ">";        
         if(classe == 'linha-mensagem_padrao'){
-           if(ultimo_usu == arr1[3]['mensagens'][contador]['cod_usu']){
-                //alert(arr1[3]['mensagens'][contador]['cod_usu']);
-                mensa += "<div class=usuario-msg-foto data-id-user="+ultimo_usu+"></div><div class=mensagem_padrao><span class=nome><a href=perfil_reclamacao.php?ID="+arr1[3]['mensagens'][contador]['cod_usu']+">"+arr1[3]['mensagens'][contador]['nome_usu']+"</a></span>";
-
-           }else{                
-                mensa += "<div class=usuario-msg-foto><img src='../Img/perfil/"+arr1[3]['mensagens'][contador]['img_perfil_usu']+"'></div><div class=mensagem_padrao><span class=nome><a href=perfil_reclamacao.php?ID="+arr1[3]['mensagens'][contador]['cod_usu']+">"+arr1[3]['mensagens'][contador]['nome_usu']+"</a></span>";
-                ultimo_usu = arr1[3]['mensagens'][contador]['cod_usu']
-           }
+            //ultimo_id = msg_id;
+            mensa += "<div class=usuario-msg-foto><img src='../Img/perfil/"+arr1[3]['mensagens'][contador]['img_perfil_usu']+"'></div><div class=mensagem_padrao><span class=nome><a href=perfil_reclamacao.php?ID="+arr1[3]['mensagens'][contador]['cod_usu']+">"+arr1[3]['mensagens'][contador]['nome_usu']+"</a></span>";
         }else{
             mensa += "<div>";
         }
