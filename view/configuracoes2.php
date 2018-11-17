@@ -149,7 +149,7 @@
     switch($erro){
         case 2://Ja esta logado  
         case 6://Ja esta logado 
-            echo "<script> alert('$mensagem');javascript:window.location='index.php';</script>";
+            echo "<script>javascript:window.location='index.php';</script>";
             break;       
     }      
 }

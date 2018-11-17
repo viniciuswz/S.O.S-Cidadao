@@ -58,6 +58,12 @@
         <script src="lib/_jquery/jquery.mask177.min.js"></script>
         <script src="js/js.js"></script>
         <script src="../teste.js"></script>
+
+        <script>
+            $(document).ready(function(){
+                $("#cep").mask("99999-999");
+            });
+        </script>
         <!-- cropp-->
 
         <link rel="stylesheet" href="lib/_croppie-master/croppie.css">
@@ -138,18 +144,21 @@
                     <div class="campo-envio">
                             <label for="cep">CEP<p></p></label>
                             <input type="text" id="cep" name="cep" placeholder="00000-000" value="<?php echo $resposta[0]['cep_logra']?>">
+                            <input type="hidden" id="local" name="local" autocomplete="off" >
                             <span></span>
                         </div>
 
                         <div class="campo-envio">
                             <label for="local">local<p></p></label>
-                            <input type="text" id="local" name="local" placeholder="rua, Avenida..." autocomplete="off" value="<?php echo $resposta[0]['endere_logra']?>">
+                            <input type="text" id="input-disabled-local" name="local" placeholder="rua, Avenida..." autocomplete="off" value="<?php echo $resposta[0]['endere_logra']?>">
+
                             <span></span>
                         </div>
 
                         <div class="campo-envio">
                                 <label for="bairro">Bairro<p></p></label>
-                                <input type="text" id="bairro" name="bairro" placeholder="Parque dos Churros" autocomplete="off" value="<?php echo $resposta[0]['nome_bai']?>">
+                                <input type="text" id="input-disabled-bairro" name="bairro" placeholder="Parque dos Churros" autocomplete="off" value="<?php echo $resposta[0]['nome_bai']?>">
+                                <input type="hidden" id="bairro" name="bairro" autocomplete="off" >
                                 <span></span>
                             </div>
                 </div>
@@ -298,10 +307,10 @@
         $mensagem = $exc->getMessage();
         switch($erro){
             case 2://Nao esta logado    
-                echo "<script> alert('$mensagem');javascript:window.location='login.php';</script>";
+                echo "<script>javascript:window.location='login.php';</script>";
                 break;
             case 6://Não é usuario comum  
-                echo "<script> alert('$mensagem');javascript:window.location='index.php';</script>";
+                echo "<script>javascript:window.location='index.php';</script>";
             default:
                 echo "<script> alert('$mensagem');javascript:window.location='index.php';</script>";
                 break;            

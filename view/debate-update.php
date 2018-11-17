@@ -256,6 +256,10 @@
         $erro = $exc->getCode();   
         $mensagem = $exc->getMessage();  
         switch($erro){
+            case 2://Ja esta logado  
+            case 6://Ja esta logado 
+                echo "<script>javascript:window.location='index.php';</script>";
+                break;
             case 9://Não foi possivel achar a publicacao  
                 echo "<script> alert('$mensagem');javascript:window.location='todosdebates.php';</script>";
                 break; 

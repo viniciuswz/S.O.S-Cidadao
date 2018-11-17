@@ -199,7 +199,7 @@ class UsuarioA extends UsuarioM{
                 break;
             default:
                 $this->setImgCapaUsu('imgcapapadrao.png');// Imagem padrao user comum
-                $this->setImgPerfilUsu('imgperfilpadrao.jpg'); // Imagem padrao comum
+                $this->setImgPerfilUsu('perfil_usu_padrao.png'); // Imagem padrao comum
             break;
         }
         $this->setCodTipoUsu($consulta[0]['cod_tipo_usu']);

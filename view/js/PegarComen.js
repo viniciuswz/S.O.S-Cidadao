@@ -10,13 +10,7 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
 // $(window).scrollTop() + window.innerHeight >= document.body.scrollHeight ) { 
     //alert(ultima_pub)
     if(rolagem < ultima_pub){
-        $('.comentario-user').each(function(){
-            $this = $(this)
-            if($(this).is('.comentario-user:last')){
-                ultima_pub = Math.abs($this.offset().top -  window.innerHeight + $this.innerHeight());
-            
-        }
-    })
+        ultima_pub = Math.abs($('.comentario-user:last').offset().top -  window.innerHeight + $('.comentario-user:last').innerHeight());
 
     }else{
 
@@ -52,13 +46,11 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
                     setTimeout(function(){ //simular delay de carregamento
 
                         teste = false;
-            $('.comentario-user').each(function(){
-                $this = $(this)
-                if($(this).is('.comentario-user:last')){
-                    ultima_pub = Math.abs($this.offset().top -  window.innerHeight + $this.innerHeight());
+
+        
+                    ultima_pub = Math.abs($('.comentario-user:last').offset().top -  window.innerHeight + $('.comentario-user:last').innerHeight());
                 
-            }
-        })
+     
                         verificarSeFazRolagem()
                     },3000);
                     
@@ -80,13 +72,7 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
     $(document.body).on('touchmove', rolagem);
     $(window).on('scroll', rolagem); 
         function rolagem() {
-            $('.comentario-user').each(function(){
-                $this = $(this)
-                if($(this).is('.comentario-user:last')){
-                    ultima_pub = Math.abs($this.offset().top -  window.innerHeight + $this.innerHeight());
-                
-            }
-        })
+            ultima_pub = Math.abs($('.comentario-user:last').offset().top -  window.innerHeight + $('.comentario-user:last').innerHeight());
             //var tamanho = $(window).scrollTop();
             //var tamanhon = $(window).scrollTop() ;//+ window.innerHeight
             //var diferenca = $(document).height() - $(window).height();
@@ -102,9 +88,7 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
                         jaquinha()
                     }
                     
-                }else if($(window).scrollTop() = document.body.scrollHeight - window.innerHeight ){
-                    $(window).scrollTop($(window).scrollTop() - 1)
-                }        
+                }   
     
             }
             

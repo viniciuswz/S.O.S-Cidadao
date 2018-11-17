@@ -9,7 +9,9 @@ header{
     height: 100px;
 }
 header img{
-    height: 100px;
+    height: 80px;
+    margin-left: 10px;
+    margin-top: 10px;
 }
 header form{
     margin: 0 2vw;
@@ -122,6 +124,8 @@ nav.menu > ul > li > a:hover i{
     background-position-y: -37.5px;
 }
 
+.clicado
+
 nav.menu > ul > li > a:hover #quantidade_de_not{
     background-color: #253137;
 }
@@ -138,7 +142,6 @@ nav.menu > ul > li > a:hover #quantidade_de_not{
 }
 
 .user-menu .fechar{
-    
     color: aliceblue;
     font-size: 50px;
     font-weight: bold;

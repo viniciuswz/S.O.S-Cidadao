@@ -234,10 +234,10 @@
         $mensagem = $exc->getMessage();  
         switch($erro){
             case 2://Nao esta logado   
-                echo "<script> alert('$mensagem');javascript:window.location='login.php';</script>";
+                echo "<script>javascript:window.location='login.php';</script>";
                 break;
             case 6://Não é usuario comum                 
-                echo "<script> alert('$mensagem');javascript:window.location='index.php';</script>";
+                echo "<script>javascript:window.location='index.php';</script>";
                 break;            
         }        
     }

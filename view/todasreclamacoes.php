@@ -82,6 +82,13 @@
             ?>
         </header>
         <?php
+            if(isset($_GET['atu']) AND !empty($_SESSION['atu'])){
+                if($_GET['atu'] == '1'){
+                    echo '<script>alerta("Certo","Você apagou a reclamação")</script>';
+                }                
+                unset($_SESSION['atu']);
+            }
+
         if(isset($resultado) AND !empty($resultado)){    
         ?>
             <div class="user-menu">
@@ -109,7 +116,7 @@
             <section class="criar-publicacao">
                 <div>
                    <i class="icone-edit"></i><p>  Gostaria de fazer uma reclamação?</p>
-                    <a href="Formulario-reclamacao.php">Fazer Reclamação</a>
+                    <a href="Formulario-reclamacao.php">Reclamar</a>
                 </div>
             </section>  
         <?php } ?>

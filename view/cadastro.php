@@ -77,7 +77,7 @@
     switch($erro){
         case 2://Se ja estiver logado   
         case 6://nao  tem permissao de adm
-            echo "<script> alert('$mensagem');javascript:window.location='index.php';</script>";
+            echo "<script>javascript:window.location='index.php';</script>";
             break;
     }              
 }

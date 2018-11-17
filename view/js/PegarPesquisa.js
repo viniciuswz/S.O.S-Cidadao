@@ -27,9 +27,13 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
             type: "get",
             data: "pagina="+paginacao+"&pesquisa="+textoPes+"&"+parametros,
             success: function(data){
-                if(data =="Maior"){ //Maior significa que não teve resultado para mostrar
-                    validar = 1 //então nao vamos mais rodar o jaquinha, pois chegamos ao final de todas as reclamações
-                    //alert("chegou no fim")
+                if(data =="Maior" || data == "Vazio"){ //Maior significa que não teve resultado para mostrar
+                    if(data == "Vazio"){
+                        mensa = '<img class="img-pesquisa-vazia" src="imagens/pesquisaVazia.jpg" >';
+                        $("#pa").append(mensa);
+                        teste = true;
+                    }                   
+                    validar = 1 //então nao vamos mais rodar o jaquinha, pois chegamos ao final de todas as reclamações                   
                    
                 }else{//caso o resultado for outro roda normal e adiciona na paginação
                     paginacao++ 
@@ -91,9 +95,8 @@ $(window).on('scroll', rolagem);
     };
 });
 
-function teste2(resposta){
-    var arr1 = JSON.parse(resposta);   
-    
+function teste2(resposta){    
+    var arr1 = JSON.parse(resposta);
     var mensa = "";
     for(contador = 0; contador < arr1.length; contador++){
                 if(arr1[contador]['tipo'] == 'Publicacao'){

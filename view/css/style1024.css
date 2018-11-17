@@ -11,7 +11,9 @@ header{
     height: 80px;
 }
 header img{
-    height: 80px;
+    height: 60px;
+    margin-left: 10px;
+    margin-top: 10px;
 }
 header form{
     margin:0 1vw;

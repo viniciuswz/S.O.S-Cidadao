@@ -129,7 +129,7 @@ session_start();
                                         </ul>                                        
                                 </div>                                
                                 <p>'.$res[$contador]['nome_usu'].'</p></td>';                      
-                                echo '<td>'.$res[$contador]['email_usu'].'</td>'; 
+                                echo '<td><p>'.$res[$contador]['email_usu'].'</p></td>'; 
                                 echo '<td><p>'.$res[$contador]['dataHora_cadastro_usu'].'</p></td>';                       
                                 //echo '<td<p> <a href="'.$res[$contador]['LinkApagarUsu'].'">Remover Funcao</p></td>'; 
                             echo '</tr>';
@@ -182,15 +182,15 @@ session_start();
                 
             </div>
         </div>
-        <ul>
+        <ul class="paginacao">
             <?php
                 if($quantidadePaginas != 1){
                     $contador = 1;
                     while($contador <= $quantidadePaginas){
                         if(isset($pagina) AND $pagina == $contador){
-                            echo '<li class="jaca"><a href="prefeitura-admin.php">Pagina'.$contador.'</a></li>'  ;  
+                            echo '<li class="jaca"><a href="prefeitura-admin.php">'.$contador.'</a></li>'  ;  
                         }else{
-                            echo '<li><a href="prefeitura-admin.php?pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;
+                            echo '<li><a href="prefeitura-admin.php?pagina='.$contador.'">'.$contador.'</a></li>'  ;
                         }                    
                         $contador++;        
                     }
@@ -205,10 +205,10 @@ session_start();
     $mensagem = $exc->getMessage();  
     switch($erro){
         case 2://Nao esta logado    
-            echo "<script> alert('$mensagem');javascript:window.location='login.php';</script>";
+            echo "<script>javascript:window.location='login.php';</script>";
             break;
         case 6://Não é usuario prefeitura ou func  
-            echo "<script> alert('$mensagem');javascript:window.location='index.php';</script>";
+            echo "<script>javascript:window.location='index.php';</script>";
             break; 
         case 9://Não foi possivel achar a publicacao  
             echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes.php';</script>";

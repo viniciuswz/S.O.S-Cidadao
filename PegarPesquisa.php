@@ -48,10 +48,17 @@ try{
     $quantidadePaginas = $pes->getQuantidadeTotalPaginas();
     //$pagina = $pes->getPaginaAtual();  
 
-    if($_GET['pagina'] > $quantidadePaginas) {        
-        echo 'Maior';
+    if($_GET['pagina'] > $quantidadePaginas) {       
+        if($quantidadePaginas == 0){
+            echo 'Vazio';
+        }else{
+            echo 'Maior';
+        } 
+       
         exit();
     }
+
+    
     $contador = 0;
     while($contador < count($resPes)){
         if($resPes[$contador]['tipo'] == 'Publicacao'){

@@ -20,7 +20,8 @@ try{
     $publi->setCodUsu($_SESSION['id_user']);   
     $publi->updateStatusDeba('I');
 
-    echo "<script> alert('Status mudado');javascript:window.location='./view/todosdebates.php';</script>";
+    $_SESSION['atu'] = 1;   
+    echo "<script>javascript:window.location='./view/todosdebates.php?atu=1';</script>";    
         
 }catch(Exception $exc){  
     $erro = $exc->getCode();   
