@@ -922,9 +922,7 @@ jQuery(function($){
       $(".alterar-perfil").click(function (){
         $('.img-perfil-corta').croppie('result', { type: 'canvas', size: { width: 200, height: 200 }, format: 'png', circle:false }).then(function (result) {
           $("#base64FotoPerfil").val(result);
-          $(".perfil-info").find("img").attr("src",result);
-          $(".item-topo").find("img").attr("src",result);
-          $(".mini-perfil").find("img:first-child").attr("src",result);
+         
           
             
              $(".modal-troca-foto-perfil").removeClass("modal-troca-foto-perfil-ativo");
@@ -948,7 +946,7 @@ jQuery(function($){
   });
 
   $("#trocarperfil").submit(function(){
-    
+    var tipoPerfil =$(".ativo").find("a").text();
     var img = $("#base64FotoPerfil").val();
    // alert('asa');
     $.ajax({
@@ -957,8 +955,18 @@ jQuery(function($){
       type: "post",
       data: "tipo=perfil"+"&imagem="+img,
       success:function(result){
+
+      
+        $(".perfil-info").find("img").attr("src",img);
         
-        //alert("asas");
+        $(".mini-perfil").find("img:first-child").attr("src",img);
+        if(tipoPerfil == "Reclamação" || tipoPerfil == "Debate"){
+         // alert("comum")
+          $(".item-topo").find("img").attr("src",img);
+        }else{
+          //alert("pref")
+        }
+       // alert("asas");
       }
     });
     
