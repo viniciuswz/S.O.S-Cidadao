@@ -146,7 +146,7 @@ class Denuncias extends DenunciasM{
 
     public function controlarPaginacao($tabelas,$pagina = null){ // Fazer o controle da paginacao       
         $paginacao = new Paginacao(); //Instancinado a classe
-        $paginacao->setQtdPubliPaginas(8); //Quantos comentarios quero por pagina       
+        $paginacao->setQtdPubliPaginas(12); //Quantos comentarios quero por pagina       
         $quantidadeTotalPubli = $this->quantidadeTotalPubli($tabelas); //total de comentarios
         $sqlPaginacao = $paginacao->prapararSql('dataHora','desc', $pagina, $quantidadeTotalPubli);//Prepare o sql
         $this->setQuantidadePaginas($paginacao->getQuantidadePaginas());//Seta a quantidade de paginas no total

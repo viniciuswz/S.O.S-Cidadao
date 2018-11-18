@@ -73,7 +73,12 @@
          }
 
         if($_GET['pagina'] > $quantidadePaginas) {        
-            echo 'Maior';
+            if($quantidadePaginas == 0){
+                echo 'Vazio.'.$tipoUsu;
+            }else{
+                echo 'Maior';
+            } 
+           
             exit();
         }
         

@@ -22,7 +22,12 @@ try{
         //$pagina = $publiSalva->getPaginaAtual();   
 
         if($_GET['pagina'] > $quantidadePaginas) {        
-            echo 'Maior';
+            if($quantidadePaginas == 0){
+                echo 'Vazio';
+            }else{
+                echo 'Maior';
+            } 
+           
             exit();
         }
         
