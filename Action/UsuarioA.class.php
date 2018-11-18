@@ -254,8 +254,11 @@ class UsuarioA extends UsuarioM{
             $sqlLimite
         );
         $consulta =  $this->runSelect($sql);
-        $DadosTratados = $this->tratarInformacoesListagem($consulta,$indTabePrefei);
-        return $DadosTratados;
+        if(!empty($consulta)){
+            $DadosTratados = $this->tratarInformacoesListagem($consulta,$indTabePrefei);
+            return $DadosTratados;
+        }        
+        return;
         
     }
 

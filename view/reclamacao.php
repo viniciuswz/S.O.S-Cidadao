@@ -25,9 +25,11 @@
             $dados->setCodUsu($_SESSION['id_user']);
             $resultado = $dados->getDadosUser();
             $tipoUsu = $_SESSION['tipo_usu'];            
+
+            $dadosPrefei = $dados->getDadosUsuByTipoUsu(array('Prefeitura'));   
             
         }             
-
+        
         $nomesCampos = array('ID');// Nomes dos campos que receberei da URL    
         $validar = new ValidarCampos($nomesCampos, $_GET);
         $validar->verificarTipoInt($nomesCampos, $_GET); // Verificar se o parametro da url é um numero
@@ -181,6 +183,7 @@
         <div id="container">
             <input type="hidden" id="IdPublis" value="<?php echo $_GET['ID'] ?>">
             <input type="hidden" id="IdComen" value="<?php echo $_GET['IdComen'] ?>">
+            <input type="hidden" id="nomePref" value="<?php echo $dadosPrefei[0]['nome_usu'] ?>">
             <section class="pag-reclamacao">
                 <div class="Reclamacao">   
                         <div class="publicacao-topo-aberta">
