@@ -1923,6 +1923,7 @@ jQuery(function($){
   comentario = comentario.replace(/[ ]{2,}/gi," ");
   comentario = comentario.replace(/\n /,"\n");
   var idPubli = $("#idPubli").val();
+  var nomePref = $("#nomePref").val();
   var img = $(".mini-perfil").find("img:first").attr("src");
   var nome = $(".mini-perfil").find("p").html();
   var hrefIDUsu = $("#idPerfilUsu").attr('href');
@@ -1985,7 +1986,7 @@ jQuery(function($){
             <div>\
             <img src="'+img+'">\
             </div>\
-            </a><p><a href="perfil_reclamacao.php?ID='+id_usu+'"><span class="negrito">'+nome+'</span></a><time>Enviado agora</time></p></div>\
+            </a><p><a href="perfil_reclamacao.php?ID='+idPref+'"><span class="negrito">'+nomePref+'</span></a><time>Enviado agora</time></p></div>\
             <div class="conteudo-resposta">\
             <span>'+comentario+'</span>\
             <div>\

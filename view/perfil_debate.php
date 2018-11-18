@@ -255,7 +255,7 @@
 
             <?php
                 if(empty($resposta)){
-                    echo '<span style="color:white">Não há debates para serem exibidos</span>';
+                    echo '';
                     //exit();
                 }            
                 /*    

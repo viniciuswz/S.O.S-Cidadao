@@ -4151,6 +4151,7 @@ color:black
 }
 
 .empty-state{
+    margin-top: 10px;
     background-color: white;
     /* height:100vh; */
     display:flex;

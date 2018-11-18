@@ -2,6 +2,20 @@
 var paginacao = 1;
 var validar = 0 // se for 0 roda o jaquinha se for outro valor não roda
 var teste = false;
+
+
+function criarEmpty(emptyStateMensagem,emptyStateCta){
+$("#pa").append("<div class='empty-state'>\
+<div>\
+    <div>\
+       <img src='imagens/comentario-sem.png'>\
+    </div>\
+    <div>\
+        <p>"+emptyStateMensagem+"</p>"+emptyStateCta+"\
+    </div>\
+</div>\
+</div>")
+}
 function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
     var rolagem =   document.body.scrollHeight - window.innerHeight  ;
    if(rolagem < 0 ){
@@ -26,10 +40,21 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
             type: "get",
             data: "pagina="+paginacao+"&ID="+id,
             success: function(data){
-                if(data =="Maior"){ //Maior significa que não teve resultado para mostrar
+                var tipoUsuPaginacao = data.substring(data.lastIndexOf('.') + 1);
+                var tipoPubPaginacao = data.substring(0, data.lastIndexOf('.'));
+                //alert(tipoPubPaginacao)
+                if(tipoPubPaginacao =="Maior" || tipoPubPaginacao =="Vazio" ){ //Maior significa que não teve resultado para mostrar
                     validar = 1 //então nao vamos mais rodar o jaquinha, pois chegamos ao final de todas as reclamações
-                    //alert("chegou no fim")
-                   
+                    //alert("jaca")
+                    if(tipoUsuPaginacao == "Comum"){
+                        //var emptyStateMensagem = "Descobrimos que você não tem nenhuma publicação, que tal postar uma reclamação?";
+                        //var emptyStateCta = 
+                       criarEmpty('Descobrimos que você não tem nenhuma publicação, que tal postar uma reclamação?','<a href="formulario-reclamacao.php" class="cta">reclamar</a>');
+                    }else if(tipoUsuPaginacao == "Prefeitura"){
+                        criarEmpty('Ora ora, não tem nenhuma reclamação, que tal tirar um dia de folga?','<a href="../Sair.php" class="cta">Log out</a>');
+                    }else{
+                        criarEmpty('Você não pode postar reclamações, entre com sua conta de usuário comum!','<a href="../Sair.php" class="cta">Log out</a>');
+                    }
                 }else{//caso o resultado for outro roda normal e adiciona na paginação
                     paginacao++ 
                    $("#pa").append("<div style=' display:flex; justify-content:center; width:100%' id='loader'>\
