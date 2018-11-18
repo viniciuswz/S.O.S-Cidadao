@@ -1201,16 +1201,18 @@ form .categorias div div{
 }
 
 form .categorias div div label{
-    border: 3px solid #009688;
+    display:flex;
+    flex-direction:column;
+    align-self:center;
+    justify-content:center;
+    border: 3px solid #28AEA0;
     border-radius: 5px;
-    padding: 25px 0px 0px;
     max-width: 120px;
     max-height: 120px;
     min-width: 120px;
     min-height: 120px;
-    background-color: #009688;
+    background-color: #28AEA0;
     cursor: pointer;
-    
 }
 
 form .categorias div div label span{
@@ -1232,6 +1234,11 @@ form .categorias div div label i{
 .formulario input[type="radio"]:checked + label{
 background-color: #004C41;
 border: 3px solid #004C41;
+color: white
+}
+
+.formulario input[type="radio"]:checked + label i {
+    background-position-y: -60px
 }
 
 /*formularios 2*/
@@ -4181,4 +4188,61 @@ color:black
 .empty-state > div > div:nth-child(2) a{
     margin: 10px auto;
 }
+
+
+.ico-cat{
+    background-image: url("../imagens/icos-cataasd.png");
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    position: relative;
+    top:1px;
+}
+
+.ico-cat.acessibilidade{
+    background-position: -0px 0
+}
+
+.ico-cat.saude{
+    background-position: -60px 0
+}
+
+.ico-cat.culturaesporteelazer{
+    background-position: -120px 0
+}
+
+.ico-cat.meioambiente{
+    background-position: -180px 0
+}
+
+.ico-cat.mobilidadeurbana{
+    background-position: -240px 0
+}
+
+.ico-cat.poluicaosonora{
+    background-position: -300px 0
+}
+
+    
+.ico-cat.educacao{
+    background-position: -360px 0
+}
+
+.ico-cat.iluminacaopublica{
+    background-position: -420px 0
+}
+
+.ico-cat.obraspublicas{
+    background-position: -480px 0
+}
+
+.ico-cat.lixoepoluicao{
+    background-position: -540px 0
+}
+
+.ico-cat.seguranca{
+    background-position: -600px 0
+}
+
 

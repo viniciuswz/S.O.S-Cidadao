@@ -30,8 +30,8 @@ class CategoriaA extends CategoriaM{
                 }
                 if($chave == 'descri_cate'){
                     // quando for colocar os icones oficiais usar este de baixo
-                    //$label .= '<i class="'.$this->tirarAcentos($valor).'" ></i><span>'.$valor.'</span></label></div> '; 
-                    $label .= '<i class="icone-mail"></i><span>'.$valor.'</span></label></div> '; 
+                    $label .= '<i class="ico-cat '.$this->tirarAcentos($valor).'" ></i><span>'.$valor.'</span></label></div> '; 
+                   // $label .= '<i class="icone-mail"></i><span>'.$valor.'</span></label></div> '; 
                     if($selecionadoPadrao == $valor){                        
                         $input .= ' checked >';
                     }else{
@@ -50,7 +50,7 @@ class CategoriaA extends CategoriaM{
     }
 
     public function tirarAcentos($palavra){ // Tirar acentos de palavras
-        $semAcento = strtolower(preg_replace( '/[`^~\'"]/', null, iconv( 'UTF-8', 'ASCII//TRANSLIT', $palavra )));       
+        $semAcento = strtolower(preg_replace( '/[`,^~\'"]/', null, iconv( 'UTF-8', 'ASCII//TRANSLIT', $palavra )));       
         $tirarEspacos = str_replace(" ", "", $semAcento);
         return $tirarEspacos;
     }
