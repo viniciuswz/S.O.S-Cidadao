@@ -4152,15 +4152,15 @@ color:black
 
 .empty-state{
     background-color: white;
-    height:100vh;
+    /* height:100vh; */
     display:flex;
     align-items: center;
     justify-content: center;
-    min-width:300px;
+    /* min-width:300px; */
 }
 
 .empty-state > div{
-    width:90%;
+    /* width:90%; */
     margin: 0 auto;
     display: flex;
     justify-content: space-around;
@@ -4170,10 +4170,15 @@ color:black
 }
 
 .empty-state > div > div:nth-child(1){
-    width: 100px;
-    height: 100px;
-    background-color: red;
+    /* width: 100px;
+    height: 100px; */
+    /* background-color: red; */
     margin: 0 auto;
+}
+
+.empty-state > div > div:nth-child(1) img{
+    width: 100%;
+    max-width: 300px
 }
 
 .empty-state > div > div:nth-child(2){
@@ -4182,7 +4187,9 @@ color:black
 
 .empty-state > div > div:nth-child(2) p{
     text-align:center;
-    font-size:15px
+    font-weight: 500;
+    font-size: 16px;
+
 }
 
 .empty-state > div > div:nth-child(2) a{

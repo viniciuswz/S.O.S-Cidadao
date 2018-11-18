@@ -1809,7 +1809,17 @@ jQuery(function($){
             if(tipo == '../ApagarComentario'){ // se for apagar comentario, vai ter um retorno da qtd de comentarios dessa publi             
               $("#qtd_comen").text(result); // ai altera
               if($('.comentario-user').length == 0){//$(document).
-                $('.comentarios').find('h3:first').text('Seja o primeiro a fazer um comentário');
+                $('.comentarios').find('h3:first').html("<div class='empty-state'>\
+                <div>\
+                    <div>\
+                       <img src='imagens/comentario-sem.png'>\
+                    </div>\
+                    <div>\
+                        <p>Parace que ninguém deixou sua marca aqui, seja o primerio a fazer um comentário </p>\
+                        <a id='scrollcomentario' class='cta'> Comentar</a>\
+                    </div>\
+                </div>\
+            </div>");
               }
               verificarSeFazRolagem();
               
@@ -2208,3 +2218,11 @@ $('body').append(estruturaDeAlerta);
 
 //   }
 // })
+
+jQuery(function($){
+  $(document).on("click","#scrollcomentario",function(){
+    $('html, body').animate({scrollTop: $('#comentarioTxt').offset().top - 100}, 'slow');
+    $('#comentarioTxt').focus();
+  })
+ 
+})
