@@ -29,7 +29,7 @@ class UsuarioA extends UsuarioM{
     private $sqlUpdateSenha = "UPDATE usuario SET senha_usu = '%s' WHERE cod_usu = '%s'";
 
     private $sqlSelectDados2 = "SELECT usuario.cod_usu, nome_usu, email_usu, 
-                                    descri_tipo_usu, dataHora_cadastro_usu
+                                    descri_tipo_usu, dataHora_cadastro_usu,img_perfil_usu,img_capa_usu
                                     FROM usuario INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu)
                                     WHERE status_usu = 'A' AND status_tipo_usu = 'A' AND descri_tipo_usu %s %s ";
     
@@ -193,9 +193,13 @@ class UsuarioA extends UsuarioM{
         }          
         switch($this->getDescriTipoUsu()){ // Imagens padrao, se quiser mudar é aqui
             case 'Prefeitura':
-            case 'Funcionario':
                 $this->setImgCapaUsu('concursobarueri4.jpg');// Imagem padrao prefeitura
                 $this->setImgPerfilUsu('concursobarueri4.jpg'); // Imagem padrao prefeitura
+                break;
+            case 'Funcionario':
+                $dadosPrefei = $this->getDadosUsuByTipoUsu(array('Prefeitura'));                
+                $this->setImgCapaUsu($dadosPrefei[0]['img_capa_usu']);// Imagem padrao prefeitura
+                $this->setImgPerfilUsu($dadosPrefei[0]['img_perfil_usu']); // Imagem padrao prefeitura
                 break;
             default:
                 $this->setImgCapaUsu('imgcapapadrao.png');// Imagem padrao user comum
