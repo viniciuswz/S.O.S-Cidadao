@@ -473,7 +473,7 @@
                     </div>               
                     <form id="trocarcapa">
                         <label for="fotoCapa"><p>Escolher foto</p></label>
-                        <input type="file" name="fotocapa" id="fotoCapa">
+                        <input type="file" accept="image/*" name="fotocapa" id="fotoCapa">
                         <input type="hidden" name="base64FotoCapa" id="base64FotoCapa" value="jaca">
                     </form>
                     <button id="cortar">Cortar foto</button>
@@ -513,7 +513,7 @@
                         </div>               
                         <form id="trocarperfil">
                             <label for="fotoPerfil"><p>Escolher foto</p></label>
-                            <input type="file" name="fotoperfil" id="fotoPerfil">
+                            <input type="file" accept="image/*" name="fotoperfil" id="fotoPerfil">
                             <input type="hidden" name="base64FotoPerfil" id="base64FotoPerfil" value="banana">
                         </form>
                         <button id="cortarPerfil">Cortar foto</button>

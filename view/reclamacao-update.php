@@ -169,7 +169,7 @@
                             <hr>
                         <div class="envio-img">
                             
-                             <input type="file" name="imagem" id="fotoReclamacao">
+                             <input type="file" accept="image/*" name="imagem" id="fotoReclamacao">
                             <label id="colocar-foto-reclamacao"><p><i class="icone-camera"></i>Escolha foto</p>
                             <input type="hidden" id="base64" name="base64" value="banana">
                         
