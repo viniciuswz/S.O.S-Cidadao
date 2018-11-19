@@ -325,7 +325,7 @@ width: 100vw;
 
 
 .alinha-item{
-    padding-bottom: 60px;
+    padding-bottom: 55px;
 }
 .criar-publicacao div{
     padding: 5px
@@ -424,6 +424,26 @@ width: 100vw;
    
 }
     
+form .categorias{
+    width: 95%;
+}
+form .categorias > div{
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-y: scroll;
+    padding-right: 10px;
+    height:140px
+}
+
+form .categorias div div{
+    margin: 0;
+    margin-right: 10px;
+}
+
+form .categorias div div:last-child{
+     margin-right: 0px
+}
+
 .imagem{
     width: 100%;
 
@@ -1335,5 +1355,9 @@ reclamacao
 .paginacao{
     
     margin-bottom: 70px
-    
-    }
+
+}
+
+.gamb{
+    width: 100vw !important;
+}

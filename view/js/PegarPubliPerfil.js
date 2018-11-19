@@ -5,13 +5,13 @@ var teste = false;
 
 
 function criarEmpty(emptyStateMensagem,emptyStateCta){
-$("#pa").append("<div class='empty-state'>\
+$("#pa").append("<div class='empty-state' style='padding-bottom:50px; width: 100%;'>\
 <div>\
     <div>\
-       <img src='imagens/comentario-sem.png'>\
+       <img src='imagens/reclama-sem.png'>\
     </div>\
     <div>\
-        <p>"+emptyStateMensagem+"</p>"+emptyStateCta+"\
+        <p style='margin: 0 auto; width:90%; max-width:500px'>"+emptyStateMensagem+"</p>"+emptyStateCta+"\
     </div>\
 </div>\
 </div>")
@@ -46,15 +46,22 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
                 if(tipoPubPaginacao =="Maior" || tipoPubPaginacao =="Vazio" ){ //Maior significa que não teve resultado para mostrar
                     validar = 1 //então nao vamos mais rodar o jaquinha, pois chegamos ao final de todas as reclamações
                     //alert("jaca")
-                    if(tipoUsuPaginacao == "Comum"){
-                        //var emptyStateMensagem = "Descobrimos que você não tem nenhuma publicação, que tal postar uma reclamação?";
-                        //var emptyStateCta = 
-                       criarEmpty('Descobrimos que você não tem nenhuma publicação, que tal postar uma reclamação?','<a href="formulario-reclamacao.php" class="cta">reclamar</a>');
-                    }else if(tipoUsuPaginacao == "Prefeitura"){
-                        criarEmpty('Ora ora, não tem nenhuma reclamação, que tal tirar um dia de folga?','<a href="../Sair.php" class="cta">Log out</a>');
+
+                    if(tipoPubPaginacao =="Maior"){
+
                     }else{
-                        criarEmpty('Você não pode postar reclamações, entre com sua conta de usuário comum!','<a href="../Sair.php" class="cta">Log out</a>');
+                        //$("body").css("background","white");
+                        if(tipoUsuPaginacao == "Comum"){
+                            //var emptyStateMensagem = "Descobrimos que você não tem nenhuma publicação, que tal postar uma reclamação?";
+                            //var emptyStateCta = 
+                           criarEmpty('Descobrimos que você não tem nenhuma publicação, que tal postar uma reclamação?','<a href="formulario-reclamacao.php" class="cta">reclamar</a>');
+                        }else if(tipoUsuPaginacao == "Prefeitura"){
+                            criarEmpty('Ora ora, não tem nenhuma reclamação, que tal tirar um dia de folga?','<a href="../Sair.php" class="cta">Log out</a>');
+                        }else{
+                            criarEmpty('Você não pode postar reclamações, entre com sua conta de usuário comum!','<a href="../Sair.php" class="cta">Log out</a>');
+                        }
                     }
+                   
                 }else{//caso o resultado for outro roda normal e adiciona na paginação
                     paginacao++ 
                    $("#pa").append("<div style=' display:flex; justify-content:center; width:100%' id='loader'>\

@@ -2,6 +2,20 @@
 var paginacao = 1;
 var validar = 0 // se for 0 roda o jaquinha se for outro valor não roda
 var teste = false;
+
+function criarEmpty(emptyStateMensagem,emptyStateCta){
+    $("#pa").append("<div class='empty-state' style='padding-bottom:50px; width: 100%; '>\
+    <div>\
+        <div>\
+           <img src='imagens/salvos-sem.png'>\
+        </div>\
+        <div>\
+            <p style='margin: 0 auto; width:90%; max-width:500px'>"+emptyStateMensagem+"</p>"+emptyStateCta+"\
+        </div>\
+    </div>\
+    </div>")
+    }
+
 function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
     var rolagem =   document.body.scrollHeight - window.innerHeight  ;
    if(rolagem < 0 ){
@@ -25,9 +39,28 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
             type: "get",
             data: "pagina="+paginacao,
             success: function(data){
-                if(data =="Maior"){ //Maior significa que não teve resultado para mostrar
+                var tipoUsuPaginacao = data.substring(data.lastIndexOf('.') + 1);
+                var tipoPubPaginacao = data.substring(0, data.lastIndexOf('.'));
+                //alert(tipoPubPaginacao)
+                if(tipoPubPaginacao =="Maior" || tipoPubPaginacao =="Vazio" ){ //Maior significa que não teve resultado para mostrar
                     validar = 1 //então nao vamos mais rodar o jaquinha, pois chegamos ao final de todas as reclamações
-                    //alert("chegou no fim")
+                    //alert("jaca")
+
+                    if(tipoPubPaginacao =="Maior"){
+
+                    }else{
+                        $("body").css("background","white");
+                        $("h4").css("color","black");
+                        if(tipoUsuPaginacao == "Comum"){
+                            //var emptyStateMensagem = "Descobrimos que você não tem nenhuma publicação, que tal postar uma reclamação?";
+                            //var emptyStateCta = 
+                           criarEmpty('<strong style="font-size: 25px;">Ops!</strong><br><br>Não tem nenhuma publicação salva, você consegue salvar publicações para ver mais tarde, quando ela forem respondidas você será notificado, legal né? começe a salvar coisas do seu interesse! ','<a href="todasreclamacao.php" style="margin-top:20px" class="cta">ir para reclamações</a>');
+                        }else if(tipoUsuPaginacao == "Prefeitura"){
+                            criarEmpty('<strong style="font-size: 25px;">Ops!</strong><br><br>Não tem nenhuma publicação salva, você consegue salvar publicações para ver mais tarde, começe a salvar coisas do seu interesse!','<a href="todasreclamacao.php" style="margin-top:20px" class="cta">ir para reclamações</a>');
+                        }else{
+                            criarEmpty('Você não pode salvar reclamações, entre com sua conta de usuário comum!','<a href="../Sair.php" style="margin-top:20px" class="cta">Log out</a>');
+                        }
+                    }
                    
                 }else{//caso o resultado for outro roda normal e adiciona na paginação
                     paginacao++ 
