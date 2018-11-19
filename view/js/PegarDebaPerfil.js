@@ -4,13 +4,13 @@ var validar = 0 // se for 0 roda o jaquinha se for outro valor não roda
 var teste = false;
 
 function criarEmpty(emptyStateMensagem,emptyStateCta){
-    $("#pa").append("<div class='empty-state' style='padding-bottom:50px '>\
+    $("#pa").append("<div class='empty-state' style='padding-bottom:50px; width: 100%;'>\
     <div>\
         <div>\
            <img src='imagens/debate-sem.png'>\
         </div>\
         <div>\
-            <p>"+emptyStateMensagem+"</p>"+emptyStateCta+"\
+        <p style='margin: 0 auto; width:90%; max-width:500px'>"+emptyStateMensagem+"</p>"+emptyStateCta+"\
         </div>\
     </div>\
     </div>")

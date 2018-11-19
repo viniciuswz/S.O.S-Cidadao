@@ -5,13 +5,13 @@ var teste = false;
 
 
 function criarEmpty(emptyStateMensagem,emptyStateCta){
-$("#pa").append("<div class='empty-state' style='padding-bottom:50px '>\
+$("#pa").append("<div class='empty-state' style='padding-bottom:50px; width: 100%;'>\
 <div>\
     <div>\
        <img src='imagens/reclama-sem.png'>\
     </div>\
     <div>\
-        <p>"+emptyStateMensagem+"</p>"+emptyStateCta+"\
+        <p style='margin: 0 auto; width:90%; max-width:500px'>"+emptyStateMensagem+"</p>"+emptyStateCta+"\
     </div>\
 </div>\
 </div>")
