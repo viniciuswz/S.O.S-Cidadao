@@ -108,7 +108,7 @@
         <div id="container">
 
    
-            <form class="formulario" name="envio debate" method="post" action="../EnviarDebate.php" enctype="multipart/form-data">
+            <form class="formulario debateForm" name="envio debate" method="post" action="../EnviarDebate.php" enctype="multipart/form-data">
                 <!--FORMULARIO ENVIO TITULO E TEMA-->
                 <div class="informacoes">
                     <h3 id="bacon">Informações importantes</h3>

@@ -190,7 +190,7 @@ jQuery(function(){
     var imgDebate = $("#imagemDebateInput").val();
     
     if(imgDebate == ""){
-      $(".imagem").find('p:last-child').text("eae");
+      //$(".imagem").find('p:last-child').text("eae");
       return false;
     }
   });
@@ -269,7 +269,7 @@ jQuery(function(){
     
   });
   
-  $(".formulario").submit(function(){
+  $(".reclamaForm").submit(function(){
     
     if($('input[name=categoria]:checked').length<=0)
     {
@@ -282,7 +282,7 @@ jQuery(function(){
   });
   
   
-  $(".formulario").submit(function(){
+  $(".reclamaForm").submit(function(){
     
     //Nova variável "cep" somente com dígitos.
     var CEP = $("#cep").val().replace(/\D/g, '');
@@ -392,30 +392,30 @@ jQuery(function(){
   
 });
 
-$(".formulario").submit(function(){
+$(".reclamaForm").submit(function(){
   
   var local = $("#local").val();
   
-  if( local == "" || local!==dados.logradouro ){
-    $("#local").parent().find('p').text("mexeu no inspecionar");
-    $("#local").parent().find('span').addClass('verificar');
-    $("#local").css("background" , 'rgba(256,000,000,.1)' );
+  if( local == ""){
+   // $("#local").parent().find('p').text("");
+    //$("#local").parent().find('span').addClass('verificar');
+    //$("#local").css("background" , 'rgba(256,000,000,.1)' );
     return false;
   }else{
-    $("#local").parent().find('p').text("");
-    $("#local").parent().find('span').removeClass('verificar');
-    $("#local").css("background" , 'white' );
+   // $("#local").parent().find('p').text("");
+   // $("#local").parent().find('span').removeClass('verificar');
+    //$("#local").css("background" , 'white' );
     
   }
   
 });
 
-$(".formulario").submit(function(){
+$(".reclamaForm").submit(function(){
   
   var bairro = $("#bairro").val();
   
-  if( bairro == "" || local!== dados.bairro ){
-    $("#bairro").parent().find('p').text("mexeu no inspecionar");
+  if( bairro == "" ){
+    $("#bairro").parent().find('p').text("");
     $("#bairro").parent().find('span').addClass('verificar');
     $("#bairro").css("background" , 'rgba(256,000,000,.1)' );
     return false;
