@@ -14,17 +14,17 @@
             $resultado = $usu->getDadosUser();
 
             $tipoUsu = $_SESSION['tipo_usu'];
-            if(isset($_GET['ID'])){ // quando for ver perfil de outras pessoas
+            if(isset($_GET['ID'])){ // quando for ver perfil de outras pessoas               
                 $validar = new ValidarCampos(array('ID'), $_GET);
                 $validar->verificarTipoInt(array('ID'), $_GET); // Verificar se o parametro da url é um numero
                 $id = $_GET['ID'];
                 $usuPerfil->setCodUsu($_GET['ID']); 
                 $dadosPerfil =  $usuPerfil->getDadosUser();     
-            }else{ // seu propio perfil
+            }else{ // seu propio perfil               
                 $id = $_SESSION['id_user'];                
                 $dadosPerfil = $resultado;                            
-            }      
-        }else{ // Nao esta logado
+            }                
+        }else{ // Nao esta logado            
             $validar = new ValidarCampos(array('ID'), $_GET);
             $validar->verificarTipoInt(array('ID'), $_GET); // Verificar se o parametro da url é um numero
             $id = $_GET['ID'];   
@@ -74,11 +74,17 @@
 
         if($_GET['pagina'] > $quantidadePaginas) {        
             if($quantidadePaginas == 0){
-                echo 'Vazio.'.$tipoUsu;
+                if(!isset($tipoUsu)){
+                    $tipoUsu = 'Comum';
+                }
+                if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $id){
+                    echo 'Vazio.'.$tipoUsu.',Dono';
+                }else{
+                    echo 'Vazio.'.$tipoUsu.',NDono';
+                }  
             }else{
                 echo 'Maior';
-            } 
-           
+            }            
             exit();
         }
         

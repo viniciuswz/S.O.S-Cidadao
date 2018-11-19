@@ -173,7 +173,7 @@ session_start();
                             </label>
                             <?php
                                 if(isset($_GET['pesquisa'])){
-                                    $pl = $_GET['pesquisa'];
+                                    $pl = strtolower(preg_replace( '/[`,^~\'"]/', null, iconv( 'UTF-8', 'ASCII//TRANSLIT', $_GET['pesquisa'] )));      
                                     echo '<input type="hidden" name="pesquisa" value='.urlencode($pl).'>';
                                 }
                             ?>
