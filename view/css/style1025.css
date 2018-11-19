@@ -270,3 +270,8 @@ nav.menu > ul > li > a:hover #quantidade_de_not{
     color: #000;
   
 }
+
+.gamb{
+    width: 100vw !important;
+    max-width: 390px
+}

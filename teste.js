@@ -15,7 +15,16 @@ function jaca(){
 
 function escreverNoti(resposta){    
     if(resposta == 0){        
-        document.getElementById('menu23').innerHTML = "Não ha nenhuma notificação";
+        document.getElementById('menu23').innerHTML = "<div class='empty-state gamb' style='padding-bottom:50px;'>\
+        <div>\
+            <div>\
+               <img src='imagens/notifica-sem.png' style='display:block; margin:0 auto; height:100%; width:50%;'>\
+            </div>\
+            <div>\
+                <p>Você não tem nenhuma notificação, continue navegando, pode chegar uma mais tarde!</p>\
+            </div>\
+        </div>\
+        </div>";
         return;
     }
     var arr1 = JSON.parse(resposta);
