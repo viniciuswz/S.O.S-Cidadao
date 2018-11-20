@@ -40,21 +40,29 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
             type: "get",
             data: "pagina="+paginacao+"&ID="+id,
             success: function(data){
-                var tipoUsuPaginacao = data.substring(data.lastIndexOf('.') + 1);
+                var tipoUsuPaginacao = data.substring(data.lastIndexOf('.') + 1, data.lastIndexOf(',') );
                 var tipoPubPaginacao = data.substring(0, data.lastIndexOf('.'));
-                //alert(tipoPubPaginacao)
-                if(tipoPubPaginacao =="Maior" || tipoPubPaginacao =="Vazio" ){ //Maior significa que não teve resultado para mostrar
-                    validar = 1 //então nao vamos mais rodar o jaquinha, pois chegamos ao final de todas as reclamações
+                var tipoDonoPaginacao = data.substring(data.lastIndexOf(',') + 1 );
+                //alert(tipoDonoPaginacao +"  : "+ tipoPubPaginacao +"  "+ tipoUsuPaginacao )
+                if(tipoPubPaginacao == "Maior" || tipoPubPaginacao =="Vazio" || data =="Maior" ){ //Maior significa que não teve resultado para mostrar
+                     //então nao vamos mais rodar o jaquinha, pois chegamos ao final de todas as reclamações
                     //alert("jaca")
-
-                    if(tipoPubPaginacao =="Maior"){
-
+                    //alert(data)
+                    validar = 1
+                    if(tipoPubPaginacao =="Maior" || data =="Maior"){
+                        //alert('foi')
+                     
                     }else{
                         //$("body").css("background","white");
                         if(tipoUsuPaginacao == "Comum"){
                             //var emptyStateMensagem = "Descobrimos que você não tem nenhuma publicação, que tal postar uma reclamação?";
                             //var emptyStateCta = 
-                           criarEmpty('Descobrimos que você não tem nenhuma publicação, que tal postar uma reclamação?','<a href="formulario-reclamacao.php" class="cta">reclamar</a>');
+                            if(tipoDonoPaginacao == "Dono"){
+                                criarEmpty('Descobrimos que você não tem nenhuma publicação, que tal postar uma reclamação?','<a href="formulario-reclamacao.php" class="cta">reclamar</a>');
+                            }else{
+                                criarEmpty('Esse usuário não tem nenhuma reclamação :(','');
+                            }
+                          
                         }else if(tipoUsuPaginacao == "Prefeitura"){
                             criarEmpty('Ora ora, não tem nenhuma reclamação, que tal tirar um dia de folga?','<a href="../Sair.php" class="cta">Log out</a>');
                         }else{

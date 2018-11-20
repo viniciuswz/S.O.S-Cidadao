@@ -625,7 +625,7 @@ nav.notificacoes ul li a span:first-of-type{
 
  .criar-publicacao i{
      background-size: 1470px;
-     background-position: -568px 5.9px;
+     background-position: -562px 5.9px;
      width:60px;
      height: 65px;
      position: relative;
@@ -3451,7 +3451,7 @@ color:black
     left: 0;
     top: 0;
     z-index: 98;
-    display:none ;
+    display: none;
     color:black;
     overflow-y: scroll
 }
@@ -3473,9 +3473,11 @@ color:black
 .box-troca-foto-previa{
     position: absolute;
     left: 50%;
-    top: 50%;
-    transform: translateX(-50%) translateY(-50%);
+    top: 0%;
+    transform: translateX(-50%) translateY(-0%);
     background-color: white;
+    height: 100%;
+    min-height: 414px;
     width: 480px;
     padding-bottom: 10px;
     z-index: 99;
@@ -3624,6 +3626,7 @@ color:black
     z-index: 98;
     display: none;
     color:black;
+    overflow-y: scroll;
 }
 
 .modal-troca-foto-perfil-previa-fundo{
@@ -3640,11 +3643,13 @@ color:black
 }
 
 .box-troca-foto-perfil-previa{
-    position: fixed;
+    position: absolute;
     left: 50%;
-    top: 50%;
-    transform: translateX(-50%) translateY(-50%);
+    top: 0%;
+    transform: translateX(-50%) translateY(-0%);
     background-color: white;
+    height: 100%;
+    min-height: 384px;
     width: 480px;
     padding-bottom: 10px;
     z-index: 99;
@@ -3818,9 +3823,11 @@ color:black
 .box-troca-foto-reclamacao-previa{
     position: absolute;
     left: 50%;
-    top: 50%;
-    transform: translateX(-50%) translateY(-50%);
+    top: 0%;
+    transform: translateX(-50%) translateY(-0%);
     background-color: white;
+    height: 100%;
+    min-height: 414px;
     width: 480px;
     padding-bottom: 10px;
     z-index: 99;
