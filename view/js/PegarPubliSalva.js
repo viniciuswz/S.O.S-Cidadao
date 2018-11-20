@@ -42,11 +42,11 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
                 var tipoUsuPaginacao = data.substring(data.lastIndexOf('.') + 1);
                 var tipoPubPaginacao = data.substring(0, data.lastIndexOf('.'));
                 //alert(tipoPubPaginacao)
-                if(tipoPubPaginacao =="Maior" || tipoPubPaginacao =="Vazio" ){ //Maior significa que não teve resultado para mostrar
+                if(tipoPubPaginacao =="Maior" || tipoPubPaginacao =="Vazio" || data =="Maior" ){ //Maior significa que não teve resultado para mostrar
                     validar = 1 //então nao vamos mais rodar o jaquinha, pois chegamos ao final de todas as reclamações
                     //alert("jaca")
 
-                    if(tipoPubPaginacao =="Maior"){
+                    if(tipoPubPaginacao =="Maior" || data =="Maior" ){
 
                     }else{
                         $("body").css("background","white");
