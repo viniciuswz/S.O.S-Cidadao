@@ -76,26 +76,28 @@ nav.menu > ul > li{
 
 nav.menu > ul > li > a > i{
    
-    top:8px;
-    margin: 0 auto; 
-    height: 35px;
-    width: 35px;
-    background-size: 1080px;
+top:8px;
    
- 
- 
+margin: 0 auto;
+   
+min-height: 35px;
+   
+min-width: 35px;
+   
+background-size: 3507%;
+   
+/* background-color: red; */
  }
  
  nav.menu > ul > li > a > i.icone-reclamacao{
-    background-position: -34px -1.6px;
- 
+    background-position: -117px 0.4px;
+    /* background-size: 3400%; */
  }
  nav.menu ul li a i.icone-notificacao{
-     background-position: -68px -1.6px;
+     background-position: -150px 0.4px;
  }
  nav.menu ul li a i.icone-debate{
-     background-position: -102px -1.6px;
-     
+     background-position: -185px 0.4px;
  }
 
 
@@ -121,7 +123,7 @@ color:white;
 }
 
 nav.menu > ul > li > a:hover i{
-    background-position-y: -37.5px;
+    background-position-y: -35px;
 }
 
 .clicado

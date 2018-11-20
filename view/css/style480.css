@@ -67,24 +67,28 @@ header form button{
 }
 i.icone-pesquisa{
  /*tamanho do icone*/
- background-position: -140px 3px; /*posição que se encontra, esqueda/direita e cima/baixo*/
+ background-position: -140px 1px; /*posiÃ§Ã£o que se encontra, esqueda/direita e cima/baixo*/
  background-size: 1100px;
 }
 header form button i.icone-pesquisa{
-    height: 28px; /*tamanho do espaço que a altura ocupa na tela*/
-    width: 28px; /*tamanho do espaço que a largura ocupa na tela*/
-
+    min-height: 33px; /*tamanho do espaÃ§o que a altura ocupa na tela*/
+    min-width: 28px; /*tamanho do espaÃ§o que a largura ocupa na tela*/
     background-size: 950px; /*tamanho do icone*/
-    background-position: -123.9px -2px ; /*posição que se encontra, esqueda/direita e cima/baixo*/
+    background-position: -123.9px 2px; /*posiÃ§Ã£o que se encontra, esqueda/direita e cima/baixo*/
 }
 header i.icone-user{
     order: 3;
     margin:0 10px;
     width: 30px;
-    height: 30px;
+    height: 28px;
+    min-height: 30px;
+    min-width: 30px;
     background-size: 950px;
-  
-    background-position-x: -2px
+    background-position-x: -2px;
+    /* background-color: red; */
+    /* background-position-y: 8px; */
+    align-self: center;
+    top: 0;
 }
 nav.menu{
     display: flex;
@@ -112,15 +116,18 @@ nav.menu > ul > li{
 }
 nav.menu > ul > li > a > i{
    display: block;
-   margin: 0 auto; 
+   margin: 0 auto;
+   min-width: 30px;
+   min-height: 30px;
    width: 30px;
    height: 30px;
-   background-size: 980px; 
+   /* background-color: green; */
+   background-size: 3301% !important;
 }
 
 
 nav.menu > ul li > a > i.icone-reclamacao{
-    background-position: -32.5px -1.6px;
+    background-position: -33.5px -1.6px;
     }
     
     
@@ -129,7 +136,7 @@ nav.menu > ul li > a > i.icone-reclamacao{
     }
     
     nav.menu ul li a i.icone-debate{
-        background-position: -96px -1.6px;
+        background-position: -97px -1.6px;
     }
     
     nav.menu > ul > li > a > i > span{
@@ -174,7 +181,7 @@ nav.menu > ul > li > a > i > span{
     z-index: 2;
 }
 
-/*notificações*/
+/*notificaÃ§Ãµes*/
 
 .notificacoes ul::-webkit-scrollbar{
     display:none
@@ -210,7 +217,7 @@ width: 100vw;
     height: calc(100vh - 50px);
 }
 
-/*NÃO ALTERAR NADA DAQUI PARA CIMA*/
+/*NÃƒO ALTERAR NADA DAQUI PARA CIMA*/
 
 .perfil-base{
     background-color: white;
@@ -336,12 +343,10 @@ width: 100vw;
  .criar-publicacao i{
      display: block;
      background-size: inherit;
-     background-position: -480px -5.6px;
-     width:60px;
-     height:30px;
-
-
-
+     background-position: -474px -3.6px;
+     min-width: 30px;
+     min-height: 30px;
+     background-size: 4043%;
  }
 
  .criar-publicacao a{
@@ -799,7 +804,7 @@ form .categorias div div:last-child{
 }
 
 
-/*PAG RECLAMAÇAO*/
+/*PAG RECLAMAÃ‡AO*/
 
 .pag-reclamacao{
     display: flex;
@@ -892,17 +897,14 @@ form .categorias div div:last-child{
  }
 
 .img-publicacao .item-baixo-publicacao{
-    display: block;
-    justify-content: space-between;
+    display: flex;
+    justify-content: space-around;
     align-items: center;
     font-size: 14px;
     height: initial;
     margin: 10px 0;
     position: inherit;
     background-color: inherit;
-  
-   
-    
  }
 
  .img-publicacao .item-baixo-publicacao p{
@@ -915,14 +917,12 @@ form .categorias div div:last-child{
  }
  .img-publicacao .item-baixo-publicacao i{
      display: inline-block;
-    
      background-size: 1000px;
      background-position: -260px 0px;
-     width: 30px;
-     height: 30px;
-    
-     margin: 0
-     
+     min-width: 30px;
+     min-height: 30px;
+     margin: 0;
+     /* background-color: red; */
  }
 
 

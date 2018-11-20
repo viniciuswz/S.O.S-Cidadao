@@ -90,9 +90,7 @@ header form button{
     cursor: pointer;
 }
 
-header i.icone-user{
-cursor: pointer
-}
+header i.icone-user{cursor: pointer;display: block;height: 40px;width: 40px;background-size: 2700%;/* background-color: red; */background-position: 4px -2px;}
 .negrito{
     font-weight: 600
 }
@@ -106,13 +104,17 @@ li{
 }
 
 i{
-    background-image: url("../imagens/icon.png");
+    background-image: url("../imagens/icones-principais.svg");
     background-repeat: no-repeat;
     display: inline-block;
-    width: 40px;
-    height: 40px;
+    /* width: 40px; */
+    /* height: 40px; */
     position: relative;
-    top:1px;
+    top: -3px;
+    /* bottom: -16px; */
+    min-width: 40px;
+    min-height: 40px;
+    background-size: 3100%;
 }
 
 i.icone-user{
@@ -144,7 +146,8 @@ i.icone-salvar-full{
 }
 
 i.icone-salvar{
-    background-position: -280px 0
+    background-position: -280px 0;
+    background-size: 3100%;
 }
 
 i.icone-local{
@@ -171,11 +174,13 @@ i.icone-lapis{
 
 
 i.icone-like{
-    background-position: -560px 0
+    background-position: -635px -6px;
+    background-size: 3500%;
 }
 
 i.icone-like-full{
-    background-position: -600px 0
+    background-position: -681px 0;
+    background-size: 3500%;
 }
 
 i.icone-olho{
@@ -433,7 +438,7 @@ nav.notificacoes ul li a span:first-of-type{
 }
 
 
-/*NÃƒO ALTERAR NADA DAQUI PARA CIMA*/
+/*NÃƒÆ’Ã†â€™O ALTERAR NADA DAQUI PARA CIMA*/
 
 .perfil-base{
     position: relative;
@@ -516,10 +521,13 @@ nav.notificacoes ul li a span:first-of-type{
 .perfil-base i{
     background-color: white;
     border-radius: 6px;
-    width: 30px;
+    min-width: 30px;
+    min-height: 30px;
     height: 30px;
-    background-position: -445px -5.7px;
+    width: 30px;
+    background-position: -410px -4px;
     cursor: pointer;
+    background-size: 3820%;
 }
 
 .perfil-base h3{
@@ -626,8 +634,8 @@ nav.notificacoes ul li a span:first-of-type{
  .criar-publicacao i{
      background-size: 1470px;
      background-position: -562px 5.9px;
-     width:60px;
-     height: 65px;
+     min-width: 60px;
+     min-height: 65px;
      position: relative;
      display: flex;
      margin-left: 5px;
@@ -796,8 +804,9 @@ nav.notificacoes ul li a span:first-of-type{
 
  .mini-menu-item > i{
     
-     margin-right: 15px;
-     cursor:pointer
+margin-right: 15px;
+    
+cursor:pointer;
  }
  .mini-menu-item div{
     /* background-color: red; */
@@ -863,6 +872,8 @@ nav.notificacoes ul li a span:first-of-type{
 
 
 .mini-menu-item i{
+    min-width: 40px;
+    min-height: 40px;
     width: 40px;
     height: 40px;
 }
@@ -914,8 +925,8 @@ nav.notificacoes ul li a span:first-of-type{
 }
 
 .item-baixo i{
-    width: 30px;
-    height: 30px;
+    min-width: 30px;
+    min-height: 30px;
 }
 
 .item-baixo i.icone-like{
@@ -933,10 +944,15 @@ nav.notificacoes ul li a span:first-of-type{
 }
 
 .item-baixo i.icone-local{
-    background-size:950px ;
-    background-position: -250px -1px;
+    background-size:950px;
+    background-position: -245px -1px;
     position: relative;
-    top: -5px
+    top: -5px;
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    min-height: 30px;
+    /* background-color: red; */
 }
 /*///////////////////////////////BLOCO PRINCIPAL////////////////////////////////////*/
 .formulario{
@@ -1773,6 +1789,8 @@ margin-right:3px
     margin:0 4px
     
 }
+
+.batepapo .mini-menu-item i{top:2px}
 .batepapo header img{
     align-self: center;
     height: 160%;
@@ -2546,7 +2564,8 @@ color:black
 }
 
 .barra-curtir-publicacao a i{
-    /* background-position-y: -40px; */
+    background-position-y: -7px;
+    /* background-color: red; */
 }
 .enviar-comentario-publicacao{
     width: 50%;
@@ -2738,14 +2757,14 @@ color:black
 .debate-status div i.icone-categoria-debate{
     background-size: 1300px;
     background-position: -1222px -7px;
-    width: 30px;
+    width: 20px;
     height: 30px;
 }
 
 .debate-status div i.icone-grupo{
     background-size: 1000px;
-    background-position: -162px 0;
-    width: 30px;
+    background-position: -159px 0;
+    width: 20px;
     height: 30px;
     margin-left: 5px;
 }
@@ -4119,13 +4138,14 @@ color:black
 }
 
 .not{
-    background-image: url("../imagens/sprite-not.png");
+    background-image: url("../imagens/notificacao.svg");
     background-repeat: no-repeat;
     display: inline-block;
     width: 54px;
     height: 54px;
     position: relative;
     top:1px;
+    background-size: 500%;
 }
 
 .not.icone-not-comentou{
@@ -4206,13 +4226,14 @@ color:black
 
 
 .ico-cat{
-    background-image: url("../imagens/icos-cataasd.png");
+    background-image: url("../imagens/categoriasf.svg");
     background-repeat: no-repeat;
     display: inline-block;
     width: 60px;
     height: 60px;
     position: relative;
     top:1px;
+    background-size: 722px;
 }
 
 .ico-cat.acessibilidade{

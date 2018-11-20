@@ -44,11 +44,13 @@ header form button{
 
 header form button i.icone-pesquisa{
 
-    height: 28px;
-    width: 28px;
+min-height: 30px;
 
-    background-size: 950px;
-    background-position: -123.9px -2px ;
+min-width: 28px;
+
+background-size: 950px;
+
+background-position: -123.9px -1px;
 }
 header i.icone-user{
   
@@ -86,7 +88,11 @@ nav.menu > ul > li{
 }
 nav.menu > ul > li > a > i{
    display: block;
-   margin: 0 auto; 
+   margin: 0 auto;
+   width: 40px;
+   min-height: 40px;
+   /* background-color: red; */
+   background-position-y: -5px;
 }
 
 nav.menu > ul > li > a{
@@ -97,7 +103,7 @@ nav.menu > ul > li > a{
 }
 
 nav.menu > ul > li > a:hover i{
-    background-position-y: -41.1px;
+    background-position-y: -46.1px;
 }
 
 
@@ -238,9 +244,10 @@ width: 100vw;
  .criar-publicacao i{
      display: block;
      background-size: inherit;
-     background-position: -480px -5.6px;
-     width:50px;
-     height:30px;
+     background-position: -457px -1.6px;
+     min-width: 30px;
+     min-height: 30px;
+     background-size: 3900%;
  }
 
  .criar-publicacao a{
