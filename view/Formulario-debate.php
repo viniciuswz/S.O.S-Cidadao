@@ -108,7 +108,7 @@
         <div id="container">
 
    
-            <form class="formulario" name="envio debate" method="post" action="../EnviarDebate.php" enctype="multipart/form-data">
+            <form class="formulario debateForm" name="envio debate" method="post" action="../EnviarDebate.php" enctype="multipart/form-data">
                 <!--FORMULARIO ENVIO TITULO E TEMA-->
                 <div class="informacoes">
                     <h3 id="bacon">Informações importantes</h3>
@@ -134,7 +134,7 @@
                         <hr>
                         <div class="envio-img">
                                             
-                            <input type="file" id="imagemDebateInput">
+                            <input type="file" accept="image/*" id="imagemDebateInput">
                             <label id="abrir-cortar"><p><i class="icone-camera"></i>Escolha foto</p>
                             <input type="hidden" id="base64" name="base64" value="banana">
                                 
