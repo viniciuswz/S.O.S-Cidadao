@@ -68,7 +68,14 @@ session_start();
 
     if($_GET['pagina'] > $quantidadePaginas) {        
         if($quantidadePaginas == 0){
-            echo 'Vazio.'.$tipoUsu;
+            if(!isset($tipoUsu)){
+                $tipoUsu = 'Comum';
+            }
+            if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $id){
+                echo 'Vazio.'.$tipoUsu.',Dono';
+            }else{
+                echo 'Vazio.'.$tipoUsu.',NDono';
+            }  
         }else{
             echo 'Maior';
         } 
