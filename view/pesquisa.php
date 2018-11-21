@@ -144,7 +144,7 @@ session_start();
         <div id="container">
 
             
-                <section class="filtro-admin">
+                <section class="filtro-admin" style="background-color:white">
                     <!-- <div>
                         <h3>você pesquisou por:</h3><p>Churroooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooos</p>
                     </div> -->

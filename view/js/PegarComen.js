@@ -10,7 +10,13 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
 // $(window).scrollTop() + window.innerHeight >= document.body.scrollHeight ) { 
     //alert(ultima_pub)
     if(rolagem < ultima_pub){
-        ultima_pub = Math.abs($('.comentario-user:last').offset().top -  window.innerHeight + $('.comentario-user:last').innerHeight());
+       
+        if($('.comentario-user').length == 0){
+
+        }else{
+            ultima_pub = Math.abs($('.comentario-user:last').offset().top -  window.innerHeight + $('.comentario-user:last').innerHeight());
+        }
+   
 
     }else{
 
@@ -47,8 +53,12 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
 
                         teste = false;
 
-        
-                    ultima_pub = Math.abs($('.comentario-user:last').offset().top -  window.innerHeight + $('.comentario-user:last').innerHeight());
+                        if($('.comentario-user').length == 0){
+
+                        }else{
+                            ultima_pub = Math.abs($('.comentario-user:last').offset().top -  window.innerHeight + $('.comentario-user:last').innerHeight());
+                        }
+                   
                 
      
                         verificarSeFazRolagem()
@@ -72,7 +82,13 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
     $(document.body).on('touchmove', rolagem);
     $(window).on('scroll', rolagem); 
         function rolagem() {
-            ultima_pub = Math.abs($('.comentario-user:last').offset().top -  window.innerHeight + $('.comentario-user:last').innerHeight());
+           
+            if($('.comentario-user').length == 0){
+
+            }else{
+                ultima_pub = Math.abs($('.comentario-user:last').offset().top -  window.innerHeight + $('.comentario-user:last').innerHeight());
+            }
+       
             //var tamanho = $(window).scrollTop();
             //var tamanhon = $(window).scrollTop() ;//+ window.innerHeight
             //var diferenca = $(document).height() - $(window).height();

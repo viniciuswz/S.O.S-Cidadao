@@ -2,6 +2,21 @@
 var paginacao = 1;
 var validar = 0 // se for 0 roda o jaquinha se for outro valor não roda
 var teste = false;
+
+function criarEmpty(emptyStateMensagem,emptyStateCta){
+    $("#pa").append("<div class='empty-state' style='padding-bottom:50px; width: 100%;'>\
+    <div>\
+    <div style='overflow: hidden; border-radius: 50%; width: 280px; height: 280px;'>\
+           <img src='imagens/pesquisa.svg' style='width:280px'>\
+        </div>\
+        <div>\
+        <p style='margin: 0 auto; width:90%; max-width:500px'>"+emptyStateMensagem+"</p>"+emptyStateCta+"\
+        </div>\
+    </div>\
+    </div>")
+    }
+
+
 function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
     var rolagem =   document.body.scrollHeight - window.innerHeight  ;
    if(rolagem < 0 ){
@@ -29,8 +44,7 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
             success: function(data){
                 if(data =="Maior" || data == "Vazio"){ //Maior significa que não teve resultado para mostrar
                     if(data == "Vazio"){
-                        mensa = '<img class="img-pesquisa-vazia" src="imagens/pesquisaVazia.jpg" >';
-                        $("#pa").append(mensa);
+                        criarEmpty('<strong style="font-size: 25px;">Ops!</strong><br><br><strong>Não encontramos o caminho para a sua pesquisa.</strong><br><br>Tente um nome de uma categoria, de um usuário ou um endereço, pode ser que você encontre o que precise.','');
                         teste = true;
                     }                   
                     validar = 1 //então nao vamos mais rodar o jaquinha, pois chegamos ao final de todas as reclamações                   
@@ -50,7 +64,12 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
                     setTimeout(function(){ //simular delay de carregamento
 
                         teste = false;
-                        ultima_pub = Math.abs($('.item-publicacao:last').offset().top -  window.innerHeight + ($('.item-publicacao:last').innerHeight() / 2));
+                        if($('.item-publicacao').length == "0"){
+
+                        }else{
+                            ultima_pub = Math.abs($('.item-publicacao:last').offset().top -  window.innerHeight + ($('.item-publicacao:last').innerHeight() / 2));
+                        }
+                        
                         verificarSeFazRolagem()
                     },3000);
                     
@@ -70,7 +89,11 @@ $(document).ready(function(){
 $(document.body).on('touchmove', rolagem);
 $(window).on('scroll', rolagem); 
     function rolagem() {
-        ultima_pub = Math.abs($('.item-publicacao:last').offset().top -  window.innerHeight + ($('.item-publicacao:last').innerHeight() / 2));
+        if($('.item-publicacao').length == "0"){
+
+        }else{
+            ultima_pub = Math.abs($('.item-publicacao:last').offset().top -  window.innerHeight + ($('.item-publicacao:last').innerHeight() / 2));
+        }
         //var tamanho = $(window).scrollTop();
        // var tamanhon = $(window).scrollTop() ;//+ window.innerHeight
         //var diferenca = $(document).height() - $(window).height();

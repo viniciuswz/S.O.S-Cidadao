@@ -54,9 +54,9 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
                         if(tipoUsuPaginacao == "Comum"){
                             //var emptyStateMensagem = "Descobrimos que você não tem nenhuma publicação, que tal postar uma reclamação?";
                             //var emptyStateCta = 
-                           criarEmpty('<strong style="font-size: 25px;">Ops!</strong><br><br>Não tem nenhuma publicação salva, você consegue salvar publicações para ver mais tarde, quando ela forem respondidas você será notificado, legal né? começe a salvar coisas do seu interesse! ','<a href="todasreclamacao.php" style="margin-top:20px" class="cta">ir para reclamações</a>');
+                           criarEmpty('<strong style="font-size: 25px;">Ops!</strong><br><br>Não tem nenhuma publicação salva, você consegue salvar publicações para ver mais tarde, quando ela forem respondidas você será notificado, legal né? começe a salvar coisas do seu interesse! ','<a href="todasreclamacoes.php" style="margin-top:20px" class="cta">ir para reclamações</a>');
                         }else if(tipoUsuPaginacao == "Prefeitura"){
-                            criarEmpty('<strong style="font-size: 25px;">Ops!</strong><br><br>Não tem nenhuma publicação salva, você consegue salvar publicações para ver mais tarde, começe a salvar coisas do seu interesse!','<a href="todasreclamacao.php" style="margin-top:20px" class="cta">ir para reclamações</a>');
+                            criarEmpty('<strong style="font-size: 25px;">Ops!</strong><br><br>Não tem nenhuma publicação salva, você consegue salvar publicações para ver mais tarde, começe a salvar coisas do seu interesse!','<a href="todasreclamacoes.php" style="margin-top:20px" class="cta">ir para reclamações</a>');
                         }else{
                             criarEmpty('Você não pode salvar reclamações, entre com sua conta de usuário comum!','<a href="../Sair.php" style="margin-top:20px" class="cta">Log out</a>');
                         }

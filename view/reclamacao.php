@@ -64,13 +64,13 @@
         }else{ // quero todos os comentários
             $comentarioComum = $comentario->SelecionarComentariosUserComum($_GET['pagina']); // quero todos os comenatários
             if(empty($comentarioComum) AND (isset($tipoUsu) AND $tipoUsu == 'Comum' )){
-                $complemento = "<div class='empty-state'>
+                $complemento = "<div class='empty-state' style='margin: 0 auto;'>
                 <div>
-                    <div>
-                       <img src='imagens/comentario-sem.png'>
+                    <div style='overflow: hidden; border-radius: 50%; width: 280px; height: 280px;'>
+                       <img src='imagens/comentario-sem.png' style='width: 280px;'>
                     </div>
                     <div>
-                        <p>Parace que ninguém deixou sua marca aqui, seja o primerio a fazer um comentário </p>
+                        <p style='margin: 0 auto; width:90%;'>Parece que ninguém deixou sua marca aqui, seja o primerio a fazer uma, deixe um comentário </p>
                         <a id='scrollcomentario' class='cta'> Comentar</a>
                     </div>
                 </div>

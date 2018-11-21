@@ -58,7 +58,7 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
                         if(tipoDonoPaginacao == "Dono"){
                             criarEmpty('Você não criou nenhum debate, sempre tem algo na cidade sobre o que discutir, crie um debate e chame a galera!','<a href="formulario-debate.php" class="cta">começar</a>');
                         }else{
-                            criarEmpty('Esse usuário não possui debates criado :(','');
+                            criarEmpty('Esse usuário não possui debates criados :(','');
                         }
                        
                     }else if(tipoUsuPaginacao == "Prefeitura"){
@@ -82,7 +82,11 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
                     setTimeout(function(){ //simular delay de carregamento
 
                         teste = false;
-                        ultima_pub = Math.abs($('.item-publicacao:last').offset().top -  window.innerHeight + ($('.item-publicacao:last').innerHeight() / 2));
+                        if($('.item-publicacao').length == "0"){
+
+                        }else{
+                            ultima_pub = Math.abs($('.item-publicacao:last').offset().top -  window.innerHeight + ($('.item-publicacao:last').innerHeight() / 2));
+                        }
                         verificarSeFazRolagem()
                     },3000);
                     
@@ -102,7 +106,11 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
     $(document.body).on('touchmove', rolagem);
     $(window).on('scroll', rolagem); 
         function rolagem() {
-            ultima_pub = Math.abs($('.item-publicacao:last').offset().top -  window.innerHeight + ($('.item-publicacao:last').innerHeight() / 2));
+            if($('.item-publicacao').length == "0"){
+
+            }else{
+                ultima_pub = Math.abs($('.item-publicacao:last').offset().top -  window.innerHeight + ($('.item-publicacao:last').innerHeight() / 2));
+            }
             //var tamanho = $(window).scrollTop();
            // var tamanhon = $(window).scrollTop() ;//+ window.innerHeight
             //var diferenca = $(document).height() - $(window).height();
