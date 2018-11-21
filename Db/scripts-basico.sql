@@ -20,7 +20,8 @@ INSERT INTO `categoria`(`cod_cate`, `descri_cate`, `status_cate`) VALUES (NULL,'
 INSERT INTO `categoria`(`cod_cate`, `descri_cate`, `status_cate`) VALUES (NULL,'Educação','A');
 INSERT INTO `categoria`(`cod_cate`, `descri_cate`, `status_cate`) VALUES (NULL,'Iluminação Pública','A');
 INSERT INTO `categoria`(`cod_cate`, `descri_cate`, `status_cate`) VALUES (NULL,'Lixo e Poluição','A');
-INSERT INTO `categoria`(`cod_cate`, `descri_cate`, `status_cate`) VALUES (NULL,'Obras Pública','A');
+INSERT INTO `categoria`(`cod_cate`, `descri_cate`, `status_cate`) VALUES (NULL,'Obras Públicas','A');
 INSERT INTO `categoria`(`cod_cate`, `descri_cate`, `status_cate`) VALUES (NULL,'Segurança','A');
 INSERT INTO `categoria`(`cod_cate`, `descri_cate`, `status_cate`) VALUES (NULL,'Meio Ambiente','A');
 INSERT INTO `categoria`(`cod_cate`, `descri_cate`, `status_cate`) VALUES (NULL,'Poluição sonora','A');
+INSERT INTO `categoria`(`cod_cate`, `descri_cate`, `status_cate`) VALUES (NULL,'Outros','A');
