@@ -56,8 +56,8 @@
         if($descPerfilVisu == 'Prefeitura'){
             $publi = new Publicacao();    
             $publi->setCodUsu($_SESSION['id_user']);
-            $nomeLink1 = 'Reclamações Respondidas';
-            $nomeLink2 = 'Reclamações Não Respondidas'; 
+            $nomeLink1 = 'Respondidas';
+            $nomeLink2 = 'Sem resposta'; 
 
             $resposta = $publi->getPubliRespo($_GET['pagina'], TRUE);  
             //var_dump($resposta);
