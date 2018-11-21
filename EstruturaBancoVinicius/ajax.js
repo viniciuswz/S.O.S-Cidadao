@@ -12,7 +12,7 @@ $(document).ready(function(){
             data: "email="+email+"&senha="+senha,
             success:function(result){
                 if(result=="1"){
-                    location.href="index.php"
+                    location.href="todasreclamacoes.php"
                 }else{
                     $(".aviso-form-inicial").show();
                     $(".aviso-form-inicial").find("p").text(result)

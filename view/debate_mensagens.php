@@ -200,6 +200,7 @@ session_start();
                     </div>
                 </header>
                 <div id="pa" class="mensagens">
+                <div class="fundo-zipzop"></div>
                 <img src="imagens/gif2.gif" style="margin: 0 auto;display: none;width: 70px;position:fixed;top:60px;left: 50%;transform: translateX(-50%);" id="loader" >
                     
                    

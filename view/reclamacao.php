@@ -70,7 +70,7 @@
                        <img src='imagens/comentario-sem.png' style='width: 280px;'>
                     </div>
                     <div>
-                        <p style='margin: 0 auto; width:90%;'>Parece que ninguém deixou sua marca aqui, seja o primerio a fazer uma, deixe um comentário </p>
+                        <p style='margin: 0 auto; width:90%;'>Parece que ninguém deixou sua marca aqui, seja o primerio a deixar uma, deixe um comentário </p>
                         <a id='scrollcomentario' class='cta'> Comentar</a>
                     </div>
                 </div>
@@ -96,7 +96,7 @@
         <meta name=viewport content="width=device-width, initial-scale=1.0">
         <meta name=description content="Site de reclamações para a cidade de Barueri">
         <meta name=keywords content="Reclamação, Barueri"> <!-- Opcional -->
-        <meta name=author content='equipe 4 INI3A'>
+        <meta name=author content='equipe 4 INI2A'>
         <meta name="theme-color" content="#089E8E" />
 
         <!-- favicon, arquivo de imagem podendo ser 8x8 - 16x16 - 32x32px com extensão .ico -->

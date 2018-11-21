@@ -732,10 +732,10 @@ jQuery(function($){
       
       $(".modal-troca-foto").css("opacity", "0");
       
-      $('.img-capa-corta').croppie('result', { type: 'html', size: 'original', format: 'png' }).then(function (result) {
+      $('.img-capa-corta').croppie('result', { type: 'html', size: 'original', format: 'jpeg' }).then(function (result) {
         
         
-        $('.img-capa-corta').croppie('result', { type: 'canvas', size: { width: 720, height: 350 }, format: 'png' }).then(function (result) {
+        $('.img-capa-corta').croppie('result', { type: 'canvas', size: { width: 720, height: 350 }, format: 'jpeg' }).then(function (result) {
           $(".modal-troca-foto-previa").addClass("modal-troca-foto-previa-ativo");
           $('.previewCapa').attr('src', result);
           
@@ -764,7 +764,7 @@ jQuery(function($){
   });
   jQuery(function($){
     $(".alterar-capa").click(function (){
-      $('.img-capa-corta').croppie('result', { type: 'canvas', size: { width: 1000, height: 467 }, format: 'png' }).then(function (result) {
+      $('.img-capa-corta').croppie('result', { type: 'canvas', size: { width: 1000, height: 467 }, format: 'jpeg' }).then(function (result) {
       
         $("#base64FotoCapa").val(result);
         $(".perfil").find("img").attr("src",result);
@@ -884,10 +884,10 @@ jQuery(function($){
         
         $(".modal-troca-foto-perfil").css("opacity", "0");
         
-        $('.img-perfil-corta').croppie('result', { type: 'html', size: 'original', format: 'png' }).then(function (result) {
+        $('.img-perfil-corta').croppie('result', { type: 'html', size: 'original', format: 'jpeg' }).then(function (result) {
           
           
-          $('.img-perfil-corta').croppie('result', { type: 'canvas', size: { width: 180, height: 180 }, format: 'png' }).then(function (result) {
+          $('.img-perfil-corta').croppie('result', { type: 'canvas', size: { width: 180, height: 180 }, format: 'jpeg' }).then(function (result) {
             $(".modal-troca-foto-perfil-previa").addClass("modal-troca-foto-perfil-previa-ativo");
             $('.previewPerfil').attr('src', result);
             
@@ -920,7 +920,7 @@ jQuery(function($){
     });
     jQuery(function($){
       $(".alterar-perfil").click(function (){
-        $('.img-perfil-corta').croppie('result', { type: 'canvas', size: { width: 200, height: 200 }, format: 'png', circle:false }).then(function (result) {
+        $('.img-perfil-corta').croppie('result', { type: 'canvas', size: { width: 200, height: 200 }, format: 'jpeg', circle:false }).then(function (result) {
           $("#base64FotoPerfil").val(result);
          
           
@@ -1068,10 +1068,10 @@ jQuery(function($){
           
           $(".modal-troca-foto-reclamacao").css("opacity", "0");
           
-          $('.img-reclamacao-corta').croppie('result', { type: 'html', size: 'original', format: 'png' }).then(function (result) {
+          $('.img-reclamacao-corta').croppie('result', { type: 'html', size: 'original', format: 'jpeg' }).then(function (result) {
             
             
-            $('.img-reclamacao-corta').croppie('result', { type: 'canvas', size: { width: 500, height: 350 }, format: 'png' }).then(function (result) {
+            $('.img-reclamacao-corta').croppie('result', { type: 'canvas', size: { width: 500, height: 350 }, format: 'jpeg' }).then(function (result) {
               $(".modal-troca-foto-reclamacao-previa").addClass("modal-troca-foto-reclamacao-previa-ativo");
               $('.previewReclamacao').attr('src', result);
               
@@ -1104,7 +1104,7 @@ jQuery(function($){
       });
       jQuery(function($){
         $(".alterar-reclamacao").click(function (){
-          $('.img-reclamacao-corta').croppie('result', { type: 'canvas', size: { width: 500, height: 350 }, format: 'png' }).then(function (result) {
+          $('.img-reclamacao-corta').croppie('result', { type: 'canvas', size: { width: 500, height: 350 }, format: 'jpeg' }).then(function (result) {
             //$("#fotoReclamacao").attr("value", result)
             $("#base64").val(result);
             $('#imgPreview').attr('src',result);
@@ -1219,10 +1219,10 @@ jQuery(function($){
             
             $(".modal-troca-foto-reclamacao").css("opacity", "0");
             
-            $('.img-reclamacao-corta').croppie('result', { type: 'html', size: 'original', format: 'png' }).then(function (result) {
+            $('.img-reclamacao-corta').croppie('result', { type: 'html', size: 'original', format: 'jpeg' }).then(function (result) {
               
               
-              $('.img-reclamacao-corta').croppie('result', { type: 'canvas', size: { width: 500, height: 350 }, format: 'png' }).then(function (result) {
+              $('.img-reclamacao-corta').croppie('result', { type: 'canvas', size: { width: 500, height: 350 }, format: 'jpeg' }).then(function (result) {
                 $(".modal-troca-foto-reclamacao-previa").addClass("modal-troca-foto-reclamacao-previa-ativo");
                 $('.previewReclamacao').attr('src', result);
                 
@@ -1255,7 +1255,7 @@ jQuery(function($){
         });
         jQuery(function($){
           $(".alterar-reclamacao").click(function (){
-            $('.img-reclamacao-corta').croppie('result', { type: 'canvas', size: { width: 500, height: 350 }, format: 'png' }).then(function (result) {
+            $('.img-reclamacao-corta').croppie('result', { type: 'canvas', size: { width: 500, height: 350 }, format: 'jpeg' }).then(function (result) {
               $("#base64").val(result);
               $('#imagemDebateInput').attr('src',result);
               //alert(result)
@@ -1329,7 +1329,7 @@ jQuery(function($){
                     data: "email="+email+"&senha="+senha,
                     success:function(result){
                         if(result=="1"){
-                            location.href="index.php";
+                            location.href="perfil_reclamacao.php";
                         }else{                            
                             $(".aviso-form-inicial").show();
                             $(".aviso-form-inicial").find("p").text(result);

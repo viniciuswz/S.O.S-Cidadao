@@ -1366,11 +1366,12 @@ color: white
 
 .campo-texto-icone label i.icone-user{
     background-size: 830px;
-    height:28px;
+    min-height: 26px;
     margin: 0 7px;
-    width: 26px;
+    min-width: 26px;
     text-align: center;
-    background-position: 0px -27px;
+    background-position: 0px -31px;
+    top: 0;
 }
 
 .campo-texto-icone input:focus {
@@ -1767,7 +1768,7 @@ margin-right:3px
     width: 100%;
     background-color: #009688;
     background-image: url(../imagens/FUNDO-ZIPZOP.png);
-    background-size: 400px;
+    background-size: 285px;
 }
 
 .batepapo header{
