@@ -62,9 +62,21 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
                         }
                        
                     }else if(tipoUsuPaginacao == "Prefeitura"){
-                        criarEmpty('Ora ora, não tem nenhuma reclamação respondida, que tal responder uma?','<a href="prefeitura-reclamacao.php" class="cta">responder</a>');
+
+                        
+                        if(tipoDonoPaginacao == "Dono"){
+                            criarEmpty('Ora ora, não tem nenhuma reclamação respondida, que tal responder uma?','<a href="prefeitura-reclamacao.php" class="cta">responder</a>');
+                        }else{
+                            criarEmpty('Esse usuário não possui debate criado :(','');
+                        }
                     }else{
-                        criarEmpty('Você não pode postar debates, entre com sua conta de usuário comum!','<a href="../Sair.php" class="cta">Log out</a>');
+
+                        
+                        if(tipoDonoPaginacao == "Dono"){
+                            criarEmpty('Você não pode postar debates, entre com sua conta de usuário comum!','<a href="../Sair.php" class="cta">Log out</a>');
+                        }else{
+                            criarEmpty('Esse usuário não possui debate criado :(','');
+                        }
                     }
                 }
                 }else{//caso o resultado for outro roda normal e adiciona na paginação

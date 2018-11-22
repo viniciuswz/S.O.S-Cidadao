@@ -64,9 +64,18 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
                             }
                           
                         }else if(tipoUsuPaginacao == "Prefeitura"){
-                            criarEmpty('Ora ora, não tem nenhuma reclamação, que tal tirar um dia de folga?','<a href="../Sair.php" class="cta">Log out</a>');
+                            if(tipoDonoPaginacao == "Dono"){
+                                criarEmpty('Ora ora, não tem nenhuma reclamação, que tal tirar um dia de folga?','<a href="../Sair.php" class="cta">Log out</a>');
+                            }else{
+                                criarEmpty('Esse usuário não tem nenhuma reclamação :(','');
+                            }
+                            
                         }else{
-                            criarEmpty('Você não pode postar reclamações, entre com sua conta de usuário comum!','<a href="../Sair.php" class="cta">Log out</a>');
+                            if(tipoDonoPaginacao == "Dono"){
+                                criarEmpty('Você não pode postar reclamações, entre com sua conta de usuário comum!','<a href="../Sair.php" class="cta">Log out</a>');
+                            }else{
+                                criarEmpty('Esse usuário não tem nenhuma reclamação :(','');
+                            }
                         }
                     }
                    
