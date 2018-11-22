@@ -14,7 +14,7 @@ class GerenNotiAdm extends GenericaM{
                                         FROM debate_denun                                    
                                         INNER JOIN debate ON (debate_denun.cod_deba = debate.cod_deba)
                                         INNER JOIN usuario ON (debate.cod_usu = usuario.cod_usu)
-                                        WHERE status_denun_deba = 'A' AND status_deba = 'A' AND
+                                        WHERE status_denun_deba = 'A' AND status_deba = 'A' AND status_usu = 'A' AND
                                         ind_visu_adm_denun_deba != 'V' %s";
     private $countDenunPubli = " %s SELECT %s publi_denun.cod_publi AS ID, 
                                             dataHora_denun_publi AS DataHora,
@@ -23,7 +23,7 @@ class GerenNotiAdm extends GenericaM{
                                             FROM publi_denun                                             
                                             INNER JOIN publicacao ON (publi_denun.cod_publi = publicacao.cod_publi)
                                             INNER JOIN usuario ON (publicacao.cod_usu = usuario.cod_usu)
-                                            WHERE status_denun_publi = 'A' AND status_publi = 'A'  AND
+                                            WHERE status_denun_publi = 'A' AND status_publi = 'A'  AND status_usu = 'A' AND
                                             ind_visu_adm_denun_publi != 'V' %s";
     private $countDenunComen = " %s SELECT %s comen_denun.cod_comen AS ID, 
                                               comentario.cod_publi AS IDPubli,
@@ -35,7 +35,7 @@ class GerenNotiAdm extends GenericaM{
                                             INNER JOIN comentario ON (comen_denun.cod_comen = comentario.cod_comen)
                                             INNER JOIN publicacao ON (comentario.cod_publi = publicacao.cod_publi)
                                             INNER JOIN usuario ON (comentario.cod_usu = usuario.cod_usu)
-                                            WHERE status_denun_comen = 'A' AND status_comen = 'A' AND
+                                            WHERE status_denun_comen = 'A' AND status_comen = 'A' AND status_usu = 'A' AND
                                             status_publi = 'A' AND ind_visu_adm != 'V' %s";
     
     private $resultados = array();  

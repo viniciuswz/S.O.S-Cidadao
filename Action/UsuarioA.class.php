@@ -318,7 +318,7 @@ class UsuarioA extends UsuarioM{
 
     public function controlarPaginacao($in,$pagina = null){ // Fazer o controle da paginacao       
         $paginacao = new Paginacao(); //Instancinado a classe
-        $paginacao->setQtdPubliPaginas(5); //Quantos comentarios quero por pagina       
+        $paginacao->setQtdPubliPaginas(12); //Quantos comentarios quero por pagina       
         $quantidadeTotalPubli = $this->quantidadeTotalPubli($in); //total de comentarios
         $sqlPaginacao = $paginacao->prapararSql('dataHora_cadastro_usu','desc', $pagina, $quantidadeTotalPubli);//Prepare o sql
         $this->setQuantidadePaginas($paginacao->getQuantidadePaginas());//Seta a quantidade de paginas no total
