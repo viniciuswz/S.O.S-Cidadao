@@ -1032,7 +1032,7 @@ jQuery(function($){
               $('#fotoReclamacao').val("");
               recriarReclama();
               $(".box-troca-foto-reclamacao").find(".aviso-form-inicial").css("display","block");
-
+              $(".box-troca-foto-reclamacao").find(".aviso-form-inicial").find("p").text("Isso não é uma imagem");
               
               return false;
             }
