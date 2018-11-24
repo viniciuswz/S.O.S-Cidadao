@@ -5,7 +5,7 @@ class TratarImg{
 
     public function tratarImagem($dadosImagem, $pastaDestino){ // Mexer depois nessa funcao       //Fazer a parada da thumb 
 
-        $img = str_replace('data:image/png;base64,', '', $dadosImagem);
+        $img = str_replace('data:image/jpeg;base64,', '', $dadosImagem);
         $img = str_replace(' ', '+', $img); 
         $data = base64_decode($img);                
         $novoNome = $this->gerarNome();             
