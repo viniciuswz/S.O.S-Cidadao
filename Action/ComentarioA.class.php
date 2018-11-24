@@ -227,7 +227,7 @@ class ComentarioA extends ComentarioM{
         return;
     }
 
-    public function getDadosComenByIdComen(){ // Pegar dados do comentario
+    public function getDadosComenByIdComen($indErro = false){ // Pegar dados do comentario
         
         $usuario = new Usuario();
         $usuario->setCodUsu($this->getCodUsu());
@@ -248,6 +248,7 @@ class ComentarioA extends ComentarioM{
                 " AND (descri_tipo_usu = 'Prefeitura' or descri_tipo_usu = 'Funcionario')"
             );
             $erro = "Você nao pode editar este comentario";
+            $indErro = 16;
         }else if($tipoUsu == 'Adm' OR $tipoUsu == 'Moderador'){ // adm
             $sql = sprintf(
                 $sql,
@@ -255,6 +256,7 @@ class ComentarioA extends ComentarioM{
             );
             $indDadosTratados = TRUE; // necessito q os dados sejam tratados
             $erro = "Erro ao selecionar o comentário denunciado";
+            $indErro = 22;
         }else{ // Se cair nesse if ele tem q ser o dono do comentario
             $whereVerifyDono = " AND comentario.cod_usu = '%s' ";
             $sql = sprintf(
@@ -265,10 +267,11 @@ class ComentarioA extends ComentarioM{
                 )
             );
             $erro = "Você nao pode editar este comentario";
+            $indErro = 16;
         }
         $res = $this->runSelect($sql);
         if(empty($res)){
-            throw new \Exception($erro,16);
+            throw new \Exception($erro,$indErro);
         }
         if(isset($indDadosTratados)){ // preciso q os dados sejam tratados
             $res = $this->tratarDados($res);

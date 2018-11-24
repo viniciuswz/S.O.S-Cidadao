@@ -59,7 +59,7 @@
         if(isset($_SESSION['id_user']) AND isset($_GET['IdComen']) AND isset($tipoUsu) AND ($tipoUsu == 'Adm' OR $tipoUsu == 'Moderador')){
             $idNoti = $_GET['IdComen'];
             $comentario->setCodComen($idNoti);
-            $comentarioComum = $comentario->getDadosComenByIdComen(); // preciso do comenantario denunciado  
+            //$comentarioComum = $comentario->getDadosComenByIdComen(); // preciso do comenantario denunciado  
             $complemento = "Comentário Denunciado: ";
         }else{ // quero todos os comentários
             $comentarioComum = $comentario->SelecionarComentariosUserComum($_GET['pagina']); // quero todos os comenatários
