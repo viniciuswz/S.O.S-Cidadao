@@ -441,7 +441,7 @@
                         <span class="fechar-troca-foto-perfil-previa">&times;</span>
                     </div>
                     <div>                 
-                        <img src="" class="previewPerfil" style="width: 180px">
+                        <img src="" class="previewPerfil" style="width: 180px;border-radius: 50%;">
                         <button class="alterar-perfil">enviar foto</button>
                         <button class="outra-perfil">tentar de novo</button>
                     </div>

@@ -342,6 +342,9 @@
                                         <textarea placeholder="Escreva um comentário" name="texto" id="comentarioTxt" ></textarea>
                                         <input type="hidden" value="<?php echo $_GET['ID']?>" name="id" id="idPubli">
                                         <input type="submit" id="btn-reclama" value="Enviar Comentário" disabled>
+                                        <div class="aviso-form-inicial " style="margin-top:10px;">
+                                        <p>O campo tal e pa</p>
+                                    </div>
                                     </form>  
                         </section>
             <?php
@@ -359,8 +362,8 @@
                                     <textarea placeholder="Qual o motivo?" id="motivoT" name="texto"> </textarea>
                                     <input type="hidden" id="idEditar" value="" name="id">
                                     <div class="aviso-form-inicial " style="margin-top:10px;">
-                            <p>O campo tal e pa</p>
-                        </div>
+                                        <p>O campo tal e pa</p>
+                                    </div>
                                     <button type="submit">editar</button>
                                 </form>
                             </div>

@@ -319,6 +319,10 @@ jQuery(function(){
       $("#cep").val("")
       $("#local").val("");
       $("#bairro").val("");
+      $("#input-disabled-local").val("");
+      $("#input-disabled-bairro").val("");
+    
+
     }
     
     //Nova variável "cep" somente com dígitos.
@@ -350,8 +354,17 @@ jQuery(function(){
             $("#cep").parent().find('span').addClass('verificar');
             $("#cep").css("background" , 'rgba(256,000,000,.1)' );
 
+            $("#local").val('');
+            $("#bairro").val('');
+  
+            $("#input-disabled-local").val('');
+            $("#input-disabled-bairro").val('');
+
           }else{
           //Atualiza os campos com os valores da consulta.
+          $("#cep").parent().find('span').removeClass('verificar');
+          $("#cep").css("background" , 'white' );
+          $("#cep").parent().find('p').text("");
           $("#local").val(dados.logradouro);
           $("#bairro").val(dados.bairro);
 
@@ -394,10 +407,32 @@ jQuery(function(){
 
 $(".reclamaForm").submit(function(){
   
+  var CEPFora = $("#cep").val();
+  //alert(CEPFora)
+  if( CEPFora == ""){
+    $("#cep").parent().find('p').text("Você precisa colocar um CEP");
+    $("#cep").parent().find('span').addClass('verificar');
+    $("#cep").css("background" , 'rgba(256,000,000,.1)' );
+    //return false;
+  }else if(CEPFora.length < 8){
+    $("#cep").parent().find('p').text("Você precisa colocar um Válido");
+    $("#cep").parent().find('span').addClass('verificar');
+    $("#cep").css("background" , 'rgba(256,000,000,.1)' );
+    return false;
+  }else{
+    $("#cep").parent().find('span').removeClass('verificar');
+    $("#cep").css("background" , 'white' );
+    $("#cep").parent().find('p').text("");
+  }
+  
+});
+
+$(".reclamaForm").submit(function(){
+  
   var local = $("#local").val();
   
   if( local == ""){
-   // $("#local").parent().find('p').text("");
+    //$("#local").parent().find('p').text("jaca");
     //$("#local").parent().find('span').addClass('verificar');
     //$("#local").css("background" , 'rgba(256,000,000,.1)' );
     return false;
@@ -416,13 +451,13 @@ $(".reclamaForm").submit(function(){
   
   if( bairro == "" ){
     $("#bairro").parent().find('p').text("");
-    $("#bairro").parent().find('span').addClass('verificar');
-    $("#bairro").css("background" , 'rgba(256,000,000,.1)' );
+    //$("#bairro").parent().find('span').addClass('verificar');
+    //$("#bairro").css("background" , 'rgba(256,000,000,.1)' );
     return false;
   }else{
-    $("#bairro").parent().find('p').text("");
-    $("#bairro").parent().find('span').removeClass('verificar');
-    $("#bairro").css("background" , 'white' );
+   // $("#bairro").parent().find('p').text("");
+   // $("#bairro").parent().find('span').removeClass('verificar');
+    //$("#bairro").css("background" , 'white' );
     
   }
   
@@ -1930,16 +1965,40 @@ jQuery(function($){
   $("#enviar_comentario").submit(function(){
     
   //var caminho = $(this).attr('action');
+
+  
   var comentario = $("#comentarioTxt").val().replace(/(^\s*)|(\s*$)/gi,"");
   comentario = comentario.replace(/[ ]{2,}/gi," ");
   comentario = comentario.replace(/\n /,"\n");
+
+  if(comentario == '' || comentario == ' '){
+    
+    $("#enviar_comentario").find(".aviso-form-inicial").show();
+    $(".aviso-form-inicial").find("p").text("você não pode comentar só espaço");
+    return false
+  }else{
+    comentario = comentario.replace(/<\/?[^>]+(>|$)/g, "");
+  
+    if(comentario == ''){
+      $("#enviar_comentario").find(".aviso-form-inicial").show();
+     
+      $(".aviso-form-inicial").find("p").text("você não pode comentar com caracteres especiais");
+      return false
+    }else{
+      $("#enviar_comentario").find(".aviso-form-inicial").hide();
+    }
+  }
+
+
+
+
+
   var idPubli = $("#idPubli").val();
   var nomePref = $("#nomePref").val();
   var img = $(".mini-perfil").find("img:first").attr("src");
   var nome = $(".mini-perfil").find("p").html();
   var hrefIDUsu = $("#idPerfilUsu").attr('href');
   var id_usu = hrefIDUsu.substring(hrefIDUsu.lastIndexOf('ID')+3); // pegar id do usuario
-  //alert(comentario + idPubli)
   $.ajax({
     url:"../Comentario.php",
     type: "post",
@@ -2083,6 +2142,9 @@ jQuery(function($){
     var txtAntigo = $this.parents(':eq(4)').find('p:last').text().replace(/(^\s*)|(\s*$)/gi,"");
     txtAntigo = txtAntigo.replace(/[ ]{2,}/gi," ");
     txtAntigo = txtAntigo.replace(/\n /,"\n");
+
+
+    
     //alert(txtAntigo)
  
     $("#motivoT").remove();
@@ -2108,15 +2170,42 @@ jQuery(function($){
     var txt =$("#motivoT").val();
     var id = $("#idEditar").val();
     var txtAntigo = $this.parents(':eq(4)').find('p:last').text();
+  if(txtAntigo == txt){
+    $(".aviso-form-inicial").show();
+    $(".aviso-form-inicial").find("p").text("você precisa alterar o texto");
+    return false
+  }
     if(txt == ''){
-      $(".aviso-form-inicial").show();
+      $("#editarComentario").find(".aviso-form-inicial").show();
       $(".aviso-form-inicial").find("p").text("você precisa digitar algo");
-      return false
-    }else if(txtAntigo == txt){
-      $(".aviso-form-inicial").show();
-      $(".aviso-form-inicial").find("p").text("você precisa alterar o texto");
-      return false
+      return false;
+
+
     }else{
+      txt.replace(/(^\s*)|(\s*$)/gi,"");
+      txt = txt.replace(/[ ]{2,}/gi," ");
+      txt = txt.replace(/\n /,"\n");
+
+      if(txt == '' || txt == ' '){
+    //alert('leandro')
+        $("#editarComentario").find(".aviso-form-inicial").show();
+        $(".aviso-form-inicial").find("p").text("você não pode comentar só espaço");
+        return false
+      }else{
+        txt = txt.replace(/<\/?[^>]+(>|$)/g, "");
+      
+        if(txt == '' || txt ==' '){
+          //alert('leandro branco')
+          $("#editarComentario").find(".aviso-form-inicial").show();
+         
+          $(".aviso-form-inicial").find("p").text("você não pode comentar com caracteres especiais");
+          return false
+        }else{
+          $("#editarComentario").find(".aviso-form-inicial").hide();
+          
+        }
+
+    }
     
     //ajax
     $.ajax({
