@@ -2247,7 +2247,7 @@ jQuery(function($){
             return false;
           }else{
               $this.parents(':eq(4)').remove();
-              alerta('Errado', 'O usuário removido');           
+              alerta('Errado', 'usuário removido');           
           }   
       }
    });
