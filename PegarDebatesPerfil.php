@@ -72,8 +72,8 @@
              $pagina = $debate->getPaginaAtual();      
          }
 
-        if($_GET['pagina'] > $quantidadePaginas) {        
-            if($quantidadePaginas == 0){
+        if($_GET['pagina'] > $quantidadePaginas OR $resposta == null) {        
+            if($quantidadePaginas == 0 OR $resposta == null){
                 if(!isset($tipoUsu)){
                     $tipoUsu = 'Comum';
                 }

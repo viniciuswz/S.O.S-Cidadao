@@ -66,8 +66,8 @@ session_start();
 
      $quantidadePaginas = $publi->getQuantidadePaginas();
 
-    if($_GET['pagina'] > $quantidadePaginas) {        
-        if($quantidadePaginas == 0){
+    if($_GET['pagina'] > $quantidadePaginas OR $resposta == null) {        
+        if($quantidadePaginas == 0 OR $resposta == null){
             if(!isset($tipoUsu)){
                 $tipoUsu = 'Comum';
             }
@@ -131,6 +131,7 @@ session_start();
     }
 
     ///var_dump($resposta);
+    
     echo json_encode($resposta);
     //$pagina = $publi->getPaginaAtual();   
 
