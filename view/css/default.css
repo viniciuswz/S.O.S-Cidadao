@@ -350,7 +350,8 @@ nav.menu > ul > li > a:hover #quantidade_de_not{
 }
 
 .user-menu .mini-perfil img:nth-child(2){
-    width: 450px;
+    min-width: 320px;
+    width: 100%;
     /* height: 208px; */
     position: relative;
     left: 50%;

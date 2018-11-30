@@ -1669,8 +1669,8 @@ jQuery(function($){
             }else if(email === emailAntigo && nome === nomeAntigo){ // se nao houver nenhuma mudança
               $(".aviso-form-inicial").css("background-color", "red");
               $("#user").focus(); 
-              $("#user").css("border-color" , 'rgba(256,000,000)');
-              $("#email").css("border-color" , 'rgba(256,000,000)');
+              $("#user").css("border" , '2px solid red');
+              $("#email").css("border" , '2px solid red');
               $(".aviso-form-inicial").show();
               $(".aviso-form-inicial").find("p").text("não houve alterações");              
               return false;
@@ -1683,8 +1683,8 @@ jQuery(function($){
                     if(result == "1"){ // alteracao realizada
                       $(".mini-perfil").find("p").text(nome);
                       $(".aviso-form-inicial").css("background-color", "green");
-                      $("#user").css("border-color" , 'green');
-                      $("#email").css("border-color" , 'green');                      
+                      $("#user").css("border" , '2px solid red');
+                      $("#email").css("border" , '2px solid red');                  
                       $(".aviso-form-inicial").show();
                       $(".aviso-form-inicial").find("p").text("Alteração realizada com sucesso");   
                       emailAntigo = email;
@@ -1693,7 +1693,7 @@ jQuery(function($){
                       $(".aviso-form-inicial").css("background-color", "red");
                         $(".aviso-form-inicial").show();
                         $(".aviso-form-inicial").find("p").text("Email ja existente");                        
-                        $("#email").css("border-color" , 'rgba(256,000,000)');
+                        $("#email").css("border" , '2px solid red');
                         $("#email").focus();                      
                     }else{
                       $(".aviso-form-inicial").show();
@@ -1716,7 +1716,7 @@ jQuery(function($){
         $("#formUpdateSenha").submit(function(){
           var senhaAtual = $("#passAtual").val();            
           if(senhaAtual === ""){
-            $("#passAtual").css("border-color" , 'rgba(256,000,000)');            
+            $("#passAtual").css("border" , '2px solid red');      
             return false;
           }else{              
             $("#passAtual").css("border-color" , 'none'); // tirar a cor da borda
@@ -1727,7 +1727,7 @@ jQuery(function($){
             var novaSenha = $("#passNova").val();
             if(novaSenha === ""){
               //$("#user").parent().find("label").css("background-color" , 'rgba(256,000,000)');
-              $("#passNova").css("border-color" , 'rgba(256,000,000)');              
+              $("#passNova").css("border" , '2px solid red');          
               return false;
             }else{
               $("#passNova").css("border-color" , ''); // tirar a cor da borda
@@ -1738,7 +1738,7 @@ jQuery(function($){
           var novaSenhaC = $("#passNovaRepete").val();
           if(novaSenhaC === ""){
             //$("#user").parent().find("label").css("background-color" , 'rgba(256,000,000)');
-            $("#passNovaRepete").css("border-color" , 'rgba(256,000,000)');            
+            $("#passNovaRepete").css("border" , '2px solid red');          
             return false;
           }else{
             $("#passNovaRepete").css("border-color" , ''); // tirar a cor da borda
@@ -1781,8 +1781,8 @@ jQuery(function($){
             $(".aviso-form-inicial").css("background-color", "red");
             $(".aviso-form-inicial").show();
             $(".aviso-form-inicial").find("p").text("Não houve alterações");  
-            $("#passNovaRepete").css("border-color" , 'rgba(256,000,000)');
-            $("#passNova").css("border-color" , 'rgba(256,000,000)');            
+            $("#passNovaRepete").css("border" , '2px solid red');
+            $("#passNova").css("border" , '2px solid red');      
             $("#passNova").focus();
             return false;
           }else{    // tudo certo          
