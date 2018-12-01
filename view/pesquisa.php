@@ -20,6 +20,7 @@ session_start();
             $pes->setCodUsu($_SESSION['id_user']);
         }           
         $_GET['pesquisa'] = str_replace("+"," ", $_GET['pesquisa']);
+        $_GET['pesquisa'] = str_replace(";","", $_GET['pesquisa']);
         $pes->setTextoPesqui($_GET['pesquisa']);       
         
         isset($_GET['pagina']) ?: $_GET['pagina'] = null;
@@ -90,9 +91,9 @@ session_start();
                 <img src="imagens/logo_oficial.png" alt="logo">
             </a>   
             <i class="icone-pesquisa pesquisa-mobile" id="abrir-pesquisa"></i>
-            <form action="pesquisa.php" method="get" id="form-pesquisa">
+            <form action="pesquisa.php" method="get" id="form-pesquisa"> 
                 <?php if(isset($_GET['pesquisa'])){?>
-                    <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar" value="<?php echo $_GET['pesquisa'] ?>">
+                    <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar" value="<?php echo filter_var($_GET['pesquisa'], FILTER_SANITIZE_STRING) ?>">
                 <?php }else{ ?>
                     <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar">
                 <?php } ?>
@@ -173,7 +174,8 @@ session_start();
                             </label>
                             <?php
                                 if(isset($_GET['pesquisa'])){
-                                    $pl = strtolower(preg_replace( '/[`,^~\'"]/', null, iconv( 'UTF-8', 'ASCII//TRANSLIT', $_GET['pesquisa'] )));      
+                                    $pl = strtolower(preg_replace( '/[`,^~\'"]/', null, iconv( 'UTF-8', 'ASCII//TRANSLIT', $_GET['pesquisa'] )));   
+                                    $pl = filter_var($pl, FILTER_SANITIZE_STRING);   
                                     echo '<input type="hidden" name="pesquisa" value='.urlencode($pl).'>';
                                 }
                             ?>
