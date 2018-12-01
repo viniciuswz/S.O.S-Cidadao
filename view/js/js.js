@@ -1683,8 +1683,8 @@ jQuery(function($){
                     if(result == "1"){ // alteracao realizada
                       $(".mini-perfil").find("p").text(nome);
                       $(".aviso-form-inicial").css("background-color", "green");
-                      $("#user").css("border" , '2px solid red');
-                      $("#email").css("border" , '2px solid red');                  
+                      $("#user").css("border" , '2px solid green');
+                      $("#email").css("border" , '2px solid green');                  
                       $(".aviso-form-inicial").show();
                       $(".aviso-form-inicial").find("p").text("Alteração realizada com sucesso");   
                       emailAntigo = email;

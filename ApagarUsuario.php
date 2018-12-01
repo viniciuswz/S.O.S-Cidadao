@@ -25,8 +25,10 @@ try{
     }else if($resul == 2){
         echo '1';
         //echo "<script> alert('Status mudado');javascript:window.location='./view/admin-moderador.php?tipo1=Adm&tipo2=Moderador&tipo3=Prefeitura&tipo4=Funcionario';</script>";
+    }else if($resul == 4){ // adm apagou usu comum
+        echo "<script> alert('Usuário Banido');javascript:window.location='./view/admin-denuncia.php';</script>";
     }else{
-        echo "<script> alert('Status mudado');javascript:window.location='./view/index.php';</script>";
+        echo "<script> alert('Você apagou sua conta');javascript:window.location='./view/index.php';</script>";
     }
     
         

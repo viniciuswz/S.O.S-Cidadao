@@ -362,7 +362,13 @@ class UsuarioA extends UsuarioM{
                 $status,
                 $codApagar                
             );
-            $codReturn = 2; // Adm ou moderador q esta apagando
+            if($tipoUserApagado == 'Comum'){ // Adm apagou usuario comum
+                $codReturn = 4; 
+            }else{ // adm apagou usuario adm ou moderador
+                $codReturn = 2; 
+            }
+            
+            
         }else{ // Se nao cair no primeiro if, é pq é o dono da conta q esta apagando. mas temos q ter certeza, por isso q colamos outro comando sql
             $sqlUpdatePubli = "UPDATE usuario SET status_usu = '%s' WHERE (cod_usu = '%s' AND cod_usu = '%s')";
             $sql = sprintf(
