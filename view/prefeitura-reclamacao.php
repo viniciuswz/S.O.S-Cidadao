@@ -117,9 +117,9 @@ session_start();
             <section class="tabelinha-admin" >
                 <table>
                     <tr>
-                        <th>Titulo</th>
+                        <th>Título</th>
                         <th>Categoria</th>
-                        <th>Usuario</th>
+                        <th>Usuário</th>
                     </tr>
                     <?php
                         $contador = 0;

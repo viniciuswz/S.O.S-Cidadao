@@ -149,7 +149,7 @@ session_start();
                     <i class="icone-filtro "></i>
                     <form id="filtroUser">
                     <span id="fechar-filtro">×</span>
-                        <h3>Tipo de usuario</h3>
+                        <h3>Tipo de usuário</h3>
                         <div>    
                         
                             <label class="container"> Moderador 
@@ -180,7 +180,7 @@ session_start();
             <div class="tabelinha-admin" >
                     <table>
                             <tr>
-                              <th>Usuario</th>
+                              <th>Usuário</th>
                               <th>Tipo</th>
                               <th>Data</th>
                             </tr>
