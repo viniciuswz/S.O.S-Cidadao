@@ -2,6 +2,20 @@
 var paginacao = 1;
 var validar = 0 // se for 0 roda o jaquinha se for outro valor não roda
 var teste = false;
+
+function criarEmpty(emptyStateMensagem,emptyStateCta){
+    $("#pa").append("<div class='empty-state' style='padding-bottom:50px; width: 100%;'>\
+    <div>\
+    <div style='overflow: hidden; border-radius: 50%; width: 280px; height: 280px;'>\
+    <img src='imagens/comentario-sem.png' style='width: 280px;'>\
+ </div>\
+        <div>\
+        <p style='margin: 0 auto; width:90%; max-width:500px'>"+emptyStateMensagem+"</p>"+emptyStateCta+"\
+        </div>\
+    </div>\
+    </div>")
+    }
+
 function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
     var rolagem =   document.body.scrollHeight - window.innerHeight  ;
    if(rolagem < 0 ){
@@ -33,9 +47,26 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
             type: "get",
             data: "pagina="+paginacao+"&ID="+idPubli+"&IdComen="+idComen,
             success: function(data){
-                if(data =="Maior"){ //Maior significa que não teve resultado para mostrar
+                var tipoPubPaginacao = data.substring(0, data.lastIndexOf('.'));
+                var tipoUsuPaginacao = data.substring(data.lastIndexOf(',') + 1 );
+                if(tipoPubPaginacao =="Maior" || tipoPubPaginacao == "Vazio"){ //Maior significa que não teve resultado para mostrar
                     validar = 1 //então nao vamos mais rodar o jaquinha, pois chegamos ao final de todas as reclamações
                     //alert("chegou no fim")
+                    if(tipoPubPaginacao =="Maior" || data =="Maior"){
+
+                    }else{
+                        if(tipoUsuPaginacao == "Comum"){
+                            //var emptyStateMensagem = "Descobrimos que você não tem nenhuma publicação, que tal postar uma reclamação?";
+                            //var emptyStateCta = 
+                            
+                            criarEmpty('Parece que ninguém deixou sua marca aqui, seja o primerio a fazer uma, deixe um comentário ','<a id=scrollcomentario class=cta> Comentar</a>');
+                        }else if(tipoUsuPaginacao == "Prefeitura"){
+                            criarEmpty('Parece que ninguém deixou sua marca aqui, deixe uma fazendo um comentário com sua conta de usuário comum','<a href="../Sair.php" class="cta">Log out</a>');
+                        }else{
+
+                            criarEmpty('Parece que ninguém deixou sua marca aqui, deixe uma fazendo um comentário com sua conta de usuário comum','<a href="../Sair.php" class="cta">Log out</a>');
+                        }
+                    }
                    
                 }else{//caso o resultado for outro roda normal e adiciona na paginação
                     paginacao++ 
