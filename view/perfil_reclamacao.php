@@ -60,8 +60,8 @@
         isset($_GET['pagina']) ?: $_GET['pagina'] = null; 
 
         if($descPerfilVisu == 'Prefeitura'){
-            $nomeLink1 = 'Respondidas';
-            $nomeLink2 = 'Sem resposta'; 
+            $nomeLink2 = 'Respondidas';
+            $nomeLink1 = 'Sem resposta'; 
            //$resposta = $publi->getPubliNRespo($_GET['pagina'], TRUE);  
         }else{
             isset($_SESSION['id_user']) ? $idVisualizador = $_SESSION['id_user'] : $idVisualizador = null;
