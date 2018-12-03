@@ -4,7 +4,7 @@ var validar = 0 // se for 0 roda o jaquinha se for outro valor não roda
 var teste = false;
 
 function criarEmpty(emptyStateMensagem,emptyStateCta){
-    $("#pa").append("<div class='empty-state' style='padding-bottom:50px; width: 100%;'>\
+    $('.comentarios').find('h3:first').html("<div class='empty-state' style='padding-bottom:50px; width: 100%;'>\
     <div>\
     <div style='overflow: hidden; border-radius: 50%; width: 280px; height: 280px;'>\
     <img src='imagens/comentario-sem.png' style='width: 280px;'>\
@@ -48,7 +48,8 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
             data: "pagina="+paginacao+"&ID="+idPubli+"&IdComen="+idComen,
             success: function(data){
                 var tipoPubPaginacao = data.substring(0, data.lastIndexOf('.'));
-                var tipoUsuPaginacao = data.substring(data.lastIndexOf(',') + 1 );
+                var tipoUsuPaginacao = data.substring(data.lastIndexOf('.') + 1 );
+                //alert(tipoUsuPaginacao)
                 if(tipoPubPaginacao =="Maior" || tipoPubPaginacao == "Vazio"){ //Maior significa que não teve resultado para mostrar
                     validar = 1 //então nao vamos mais rodar o jaquinha, pois chegamos ao final de todas as reclamações
                     //alert("chegou no fim")
@@ -58,13 +59,13 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
                         if(tipoUsuPaginacao == "Comum"){
                             //var emptyStateMensagem = "Descobrimos que você não tem nenhuma publicação, que tal postar uma reclamação?";
                             //var emptyStateCta = 
-                            
+                            // Moderador Adm
                             criarEmpty('Parece que ninguém deixou sua marca aqui, seja o primerio a fazer uma, deixe um comentário ','<a id=scrollcomentario class=cta> Comentar</a>');
-                        }else if(tipoUsuPaginacao == "Prefeitura"){
+                        }else if(tipoUsuPaginacao == "Prefeitura" || tipoUsuPaginacao == "Moderador" || tipoUsuPaginacao == "Adm" ){
                             criarEmpty('Parece que ninguém deixou sua marca aqui, deixe uma fazendo um comentário com sua conta de usuário comum','<a href="../Sair.php" class="cta">Log out</a>');
                         }else{
 
-                            criarEmpty('Parece que ninguém deixou sua marca aqui, deixe uma fazendo um comentário com sua conta de usuário comum','<a href="../Sair.php" class="cta">Log out</a>');
+                            criarEmpty('Parece que ninguém deixou sua marca aqui, deixe uma fazendo um comentário com sua conta','<a href="login.php" class="cta">Login</a>');
                         }
                     }
                    

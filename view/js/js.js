@@ -1859,17 +1859,17 @@ jQuery(function($){
                 if($('.icone-adm').length >= 1){
 
                 }else{
-                  $('.comentarios').find('h3:first').html("<div class='empty-state' style='margin: 0 auto;'>\
-                  <div>\
-                      <div style='overflow: hidden; border-radius: 50%; width: 280px; height: 280px;'>\
-                         <img src='imagens/comentario-sem.png' style='width: 280px;'>\
-                      </div>\
-                      <div>\
-                          <p style='margin: 0 auto; width:90%'>Parece que ninguém deixou sua marca aqui, seja o primerio a fazer uma, deixe um comentário </p>\
-                          <a id='scrollcomentario' class='cta'> Comentar</a>\
-                      </div>\
-                  </div>\
-              </div>");
+              //     $('.comentarios').find('h3:first').html("<div class='empty-state' style='margin: 0 auto;'>\
+              //     <div>\
+              //         <div style='overflow: hidden; border-radius: 50%; width: 280px; height: 280px;'>\
+              //            <img src='imagens/comentario-sem.png' style='width: 280px;'>\
+              //         </div>\
+              //         <div>\
+              //             <p style='margin: 0 auto; width:90%'>Parece que ninguém deixou sua marca aqui, seja o primerio a fazer uma, deixe um comentário </p>\
+              //             <a id='scrollcomentario' class='cta'> Comentar</a>\
+              //         </div>\
+              //     </div>\
+              // </div>");
                 }
 
               }
