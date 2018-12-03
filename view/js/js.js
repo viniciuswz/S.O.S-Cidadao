@@ -1949,7 +1949,7 @@ jQuery(function($){
             return false;
           }else{
             //alert("deu certo");
-            alerta('Certo', 'Denuncia feita com sucesso');
+            alerta('Certo', 'Denúncia realizada com sucesso');
            //Resetando VALORES do modal ao enviar o ajax
            $("div.modal-denunciar").removeClass("modal-denunciar-ativo");
            $this.attr('class','');
@@ -2154,7 +2154,7 @@ jQuery(function($){
     //alert(txtAntigo)
  
     $("#motivoT").remove();
-    $('#editarComentario').prepend('<textarea placeholder="Qual o motivo?" id="motivoT" name="texto">'+txtAntigo+'</textarea>');
+    $('#editarComentario').prepend('<textarea placeholder="Escreva aqui?" id="motivoT" name="texto">'+txtAntigo+'</textarea>');
 
       
     

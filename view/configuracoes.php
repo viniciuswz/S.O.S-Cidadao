@@ -112,7 +112,7 @@
             </section>
             <nav class="menu-perfil">
                 <ul class="espacos">
-                    <li class="ativo"><a href="configuracoes.php">pessoais</a></li>
+                    <li class="ativo"><a href="configuracoes.php">Pessoais</a></li>
 
             <li><a href="configuracoes2.php">Segurança</a></li>
 

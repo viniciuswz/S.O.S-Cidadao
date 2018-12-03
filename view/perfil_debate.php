@@ -237,7 +237,7 @@
                     <div class="modal-denunciar-fundo"></div>
                     <div class="box-denunciar">
                         <div>
-                            <h1>Qual o motivo da denuncia?</h1>
+                            <h1>Qual o motivo da denúncia?</h1>
                             <span class="fechar-denuncia">&times;</span>
                         </div>
                         
@@ -461,7 +461,7 @@
             <div class="modal-troca-foto-fundo"></div>
             <div class="box-troca-foto">
                 <div class="modal-titulo">
-                    <h1>trocar foto de capa</h1>
+                    <h1>Trocar foto de capa</h1>
                     <span class="fechar-troca-foto">&times;</span>
                 </div>
                 <div class="img-capa-corta">
@@ -501,7 +501,7 @@
                 <div class="modal-troca-foto-perfil-fundo"></div>
                 <div class="box-troca-foto-perfil">
                     <div class="modal-titulo">
-                        <h1>trocar foto de perfil</h1>
+                        <h1>Trocar foto de perfil</h1>
                         <span class="fechar-troca-foto-perfil">&times;</span>
                     </div>
                     <div class="img-perfil-corta">
@@ -530,8 +530,8 @@
                     </div>
                     <div>                 
                     <img src="" class="previewPerfil" style="width: 180px;border-radius: 50%;">
-                        <button class="alterar-perfil">enviar foto</button>
-                        <button class="outra-perfil">tentar de novo</button>
+                        <button class="alterar-perfil">Enviar foto</button>
+                        <button class="outra-perfil">Tentar de novo</button>
                     </div>
                 </div>
             </div>

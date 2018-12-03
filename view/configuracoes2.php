@@ -112,7 +112,7 @@
             </section>
             <nav class="menu-perfil">
                 <ul class="espacos">
-                    <li><a href="configuracoes.php">pessoais</a></li>
+                    <li><a href="configuracoes.php">Pessoais</a></li>
 
             <li class="ativo"><a href="configuracoes2.php">Segurança</a></li>
                 </ul>
@@ -122,7 +122,7 @@
                     <h3>Alterar senha</h3>
                     <div class="campo-texto-config">
                             <label for="passAtual">Senha atual</label>
-                            <input type="password" name="senhaAntiga" id="passAtual" placeholder="senha atual" autocomplete ="off">
+                            <input type="password" name="senhaAntiga" id="passAtual" placeholder="Senha atual" autocomplete ="off">
                     </div>
                     <div class="campo-texto-config">
                             <label for="passNova">Nova senha</label>

@@ -115,14 +115,14 @@
                     <hr>
                         <div class="campo-envio">
                             <label for="titulo">Título<p></p></label>
-                            <input type="text" id="titulo" name="titulo" placeholder="fora temer" autocomplete="off">
+                            <input type="text" id="titulo" name="titulo" placeholder="ex. Trânsito Lento" autocomplete="off">
                             <span></span>
                 
                     </div>
                         
                         <div class="campo-envio">
                             <label for="tema">Tema<p></p></label>
-                            <input type="text" id="tema" name="tema" placeholder="algum tema ai" autocomplete="off">
+                            <input type="text" id="tema" name="tema" placeholder="ex. Trânsito" autocomplete="off">
                             <span></span>
                 
                         </div>
@@ -148,14 +148,14 @@
                                 
                     <!--FORMULARIO DESCRIÇÃO DO DEBATE--> 
                         <div class="campo-texto"> 
-                            <h3>sobre o que vai debater ?</h3>
+                            <h3>Sobre o que vai debater ?</h3>
                         
                         <hr>
                     
                         
-                            <textarea placeholder="escreva aqui" id="sobre" name="descricao"></textarea>
+                            <textarea placeholder="Escreva aqui" id="sobre" name="descricao"></textarea>
                                 <p></p>
-                                <input type="submit" value="iniciar debate" class="cta">
+                                <input type="submit" value="Iniciar debate" class="cta">
                     
                         </div>     
             </form>

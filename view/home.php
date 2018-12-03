@@ -44,7 +44,7 @@
                 <div>
                     <p>
                         O S.O.S Cidadão é a melhor maneira de ficar sabendo o que esta
-                        acontecento em Barueri, compartilhe sua experiência na cidade com outras pessoas!
+                        acontecendo em Barueri, compartilhe sua experiência na cidade com outras pessoas!
                     </p>
                     <a class="cta" href="cadastro.php">Participe</a>
                     <a href="login.php">ou faça login se já tem cadastro</a>
@@ -61,7 +61,7 @@
                     <h3>Reclamações</h3>
                     <p>
                     Uma reclamação é uma forma de expressar a insatisfação pública. 
-                        Aqui no sos cidadão você pode mostrar sua opinião sobre o que acontece 
+                        Aqui no S.O.S Cidadão você pode mostrar sua opinião sobre o que acontece 
                         na cidade de Barueri e buscar uma solução para os problemas. 
                     </p>
                     <a class="cta" href="cadastro.php" >Tente agora mesmo!</a>
@@ -72,7 +72,7 @@
                     </div>
                     <h3>Colabore</h3>
                     <p>
-                        Colabore com outros moradores! O sos cidadao é a melhor maneira de 
+                        Colabore com outros moradores! O S.O.S Cidadao é a melhor maneira de 
                         saber como andam as coisas em nossa cidade. Existem muitas maneiras
                         de se ajudar em conjunto, então compartilhe suas experiências.
 
@@ -85,14 +85,12 @@
         <section class="landing-prefeitura">
                 <h1>A prefeitura responde?</h1>
                 <p>
-                    A partir do momento em que estiver online, a Prefeitura tera a possibilidade de
-                    responder a reclamação, daremos ela essa possibilidade, caso ela não queira sua
-                    imagem manchada ela tera como responder de forma publica 
+                A partir do momento em que sua reclamação estiver online a Prefeitura terá a possibilidade de respondê-la diretamente e de forma pública.
                 </p>
            </section>
            <footer class="landing-rodape">
                 <h1>Não perca o que acontece na sua cidade</h1>
-                <a class="cta" href="todasreclamacoes.php">ver agora</a>
+                <a class="cta" href="todasreclamacoes.php">Ver agora</a>
            </footer>
     </body>
 </html>

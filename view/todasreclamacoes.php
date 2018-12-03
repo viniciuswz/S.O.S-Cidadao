@@ -127,7 +127,7 @@
                 <div class="modal-denunciar-fundo"></div>
                 <div class="box-denunciar">
                     <div>
-                        <h1>Qual o motivo da denuncia?</h1>
+                        <h1>Qual o motivo da denúncia?</h1>
                         <span class="fechar-denuncia">&times;</span>
                     </div>
                     

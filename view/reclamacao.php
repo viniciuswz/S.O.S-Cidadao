@@ -227,7 +227,7 @@
                                             <div class="modal-denunciar-fundo"></div>
                                             <div class="box-denunciar">
                                                 <div>
-                                                    <h1>Qual o motivo da denuncia?</h1>
+                                                    <h1>Qual o motivo da denúncia?</h1>
                                                     <span class="fechar-denuncia">&times;</span>
                                                 </div>
                                                 
@@ -344,7 +344,7 @@
                             <div class="modal-editar-comentario-fundo"></div>
                             <div class="box-editar-comentario">
                                 <div>
-                                    <h1>Editar comentario</h1>
+                                    <h1>Editar comentário</h1>
                                     <span class="fechar-editar-comentario">&times;</span>
                                 </div>                     
                                 <form action="../UpdateComentario.php" method="post" id="editarComentario">
@@ -353,7 +353,7 @@
                                     <div class="aviso-form-inicial " style="margin-top:10px;">
                                         <p>O campo tal e pa</p>
                                     </div>
-                                    <button type="submit">editar</button>
+                                    <button type="submit">Editar</button>
                                 </form>
                             </div>
                         </div>         

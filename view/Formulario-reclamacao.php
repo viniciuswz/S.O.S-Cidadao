@@ -122,7 +122,7 @@
                     <hr>
                         <div class="campo-envio">
                             <label for="titulo">Título<p></p></label>
-                            <input type="text" id="titulo" name="titulo" placeholder="ex. arvore caidar" autocomplete="off">
+                            <input type="text" id="titulo" name="titulo" placeholder="ex. Árvore caída" autocomplete="off">
                             <span></span>
                 
                     </div>
@@ -135,7 +135,7 @@
 
                         <div class="campo-envio">
                             <label for="local">local<p></p></label>
-                            <input type="text" id="input-disabled-local" placeholder="rua, Avenida..." autocomplete="off" disabled >
+                            <input type="text" id="input-disabled-local" placeholder="Rua, Avenida..." autocomplete="off" disabled >
                             <input type="hidden" id="local" name="local" autocomplete="off" >
                             <span></span>
                         </div>
@@ -183,9 +183,9 @@
                 <div class="campo-texto"> 
                     <!-- <h3>sobre o que vai debater ?</h3> -->
                     <!-- <hr> -->
-                    <textarea placeholder="escreva aqui" id="sobre" name="texto"></textarea>
+                    <textarea placeholder="Escreva aqui" id="sobre" name="texto"></textarea>
                     <p></p>
-                    <input type="submit" value="enviar reclamação" class="cta">
+                    <input type="submit" value="Enviar reclamação" class="cta">
                 </div>     
             </form>
 
