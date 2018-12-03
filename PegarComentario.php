@@ -49,8 +49,16 @@
         //$pagina = $comentario->getPaginaAtual(); 
         if(isset($_GET['IdComen']) AND empty($_GET['IdComen'])) { // se nao for um comentario denunciado    
             if($_GET['pagina'] > $quantidadePaginas){
-                echo 'Maior';
-                exit();
+                if($quantidadePaginas == 0 OR $comentarioComum == null){
+                    if(!isset($tipoUsu)){
+                        echo 'Vazio.NLogado';
+                    }else{
+                        echo 'Vazio.'.$tipoUsu;
+                    }                    
+                }else{
+                    echo 'Maior';                    
+                }
+                exit();               
             }                
         }else{
             if($_GET['pagina'] > 1){
