@@ -201,7 +201,7 @@ session_start();
                 </header>
                 <div id="pa" class="mensagens">
                 <div class="fundo-zipzop"></div>
-                <img src="imagens/gif2.gif" style="margin: 0 auto;display: none;width: 70px;position:fixed;top:60px;left: 50%;transform: translateX(-50%);" id="loader" >
+                <div class="lds-ring" style="margin: 0 auto;display: none;width: 50px;position:fixed;top:60px;left: 50%;transform: translateX(-50%);" id="loader"><div></div><div></div><div></div><div></div></div>
                     
                    
 <!--

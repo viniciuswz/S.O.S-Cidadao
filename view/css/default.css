@@ -731,6 +731,8 @@ nav.notificacoes ul li a span:first-of-type{
      overflow: hidden;
      width: 340px;
      height: 250px;
+     position: relative;
+     top: 1px;
 }
 
 .item-publicacao.rc figure{
@@ -769,7 +771,7 @@ nav.notificacoes ul li a span:first-of-type{
     height: 50px;
     background-color: rgba(000,000,000, 0.6);
     color: #E7E8EB;
-    margin-top: -50px;
+    margin-top: -49px;
     position: absolute;
     padding: 1px 4px
  }
@@ -790,7 +792,7 @@ nav.notificacoes ul li a span:first-of-type{
  }
 
  .item-publicacao .legenda i{
-    background-position-y: -40px;
+    background-position-y: -45px;
  }
 
  .alinha-item{
@@ -997,6 +999,8 @@ cursor:pointer;
     width: 100%;
     border: none;
     font-size: 16px;
+    position: relative;
+    top: 2px;
 }
 
 .campo-envio input:focus + span{
@@ -1246,6 +1250,8 @@ form .categorias div div label i{
     display: block;
     text-align: center;
     margin: 0 auto;
+    position: relative;
+    top: -5px;
 }
 
 .formulario input[type="radio"]:checked + label{
@@ -1449,6 +1455,7 @@ color: white
 }
 .form-config .campo-texto-config input{
     padding:5px;
+    outline: none
 }
 
 .form-config .campo-texto-config label{
@@ -1706,7 +1713,7 @@ margin-right:3px
 }
 .contatos nav .contatinhos div.img-debate img{
     align-self: center;
-    width: 200px;
+    width: 80px;
     position: relative;
     top: 50%;
     left: 50%;
@@ -4289,3 +4296,41 @@ color:black
 
 
 
+
+
+.lds-ring {
+    display: inline-block;
+    position: relative;
+    width: 64px;
+    height: 64px;
+  }
+  .lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 51px;
+    height: 51px;
+    margin: 6px;
+    border: 6px solid #6dc6f3;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #6dc6f3 transparent transparent transparent;
+  }
+  .lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+  }
+  .lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+  .lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+  }
+  @keyframes lds-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
