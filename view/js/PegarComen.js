@@ -49,12 +49,13 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
             success: function(data){
                 var tipoPubPaginacao = data.substring(0, data.lastIndexOf('.'));
                 var tipoUsuPaginacao = data.substring(data.lastIndexOf('.') + 1 );
+               
                 //alert(tipoUsuPaginacao)
-                if(tipoPubPaginacao =="Maior" || tipoPubPaginacao == "Vazio"){ //Maior significa que não teve resultado para mostrar
-                    validar = 1 //então nao vamos mais rodar o jaquinha, pois chegamos ao final de todas as reclamações
+                if(tipoPubPaginacao =="Maior" || tipoPubPaginacao == "Vazio" || data =="Maior"){ //Maior significa que não teve resultado para mostrar
+                    validar = 1; //então nao vamos mais rodar o jaquinha, pois chegamos ao final de todas as reclamações
                     //alert("chegou no fim")
-                    if(tipoPubPaginacao =="Maior" || data =="Maior"){
-
+                    if(tipoPubPaginacao =="Maior" || data == "Maior"){
+                        //alert('jaca')
                     }else{
                         if(tipoUsuPaginacao == "Comum"){
                             //var emptyStateMensagem = "Descobrimos que você não tem nenhuma publicação, que tal postar uma reclamação?";
