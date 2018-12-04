@@ -196,7 +196,7 @@ session_start();
                                         <ul>
                                             <li><a href="#" class="motivo-ativar">Motivo</a></li>
                                             <li><a href="'.$res[$contador]['LinkVisita'].'">Visitar página</a></li>
-                                            <li><a href="'.$res[$contador]['LinkApagarPubli'].'">Remover '.$res[$contador]['Tipo'].'</a></li>
+                                            <li><a href="'.$res[$contador]['LinkApagarPubli'].'&tipo=retornar">Remover '.$res[$contador]['Tipo'].'</a></li>
                                             <li><a href="'.$res[$contador]['LinkApagarUsu'].'">Bloquear usuário</a></li>
                                             <li><a href="../RemoverDenuncia.php?ID='.$res[$contador]['cod_denun'].'&tipo='.$res[$contador]['tipoSemAcento'].'">Remover denúncia</a></li>
                                         </ul>                                        
