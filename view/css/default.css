@@ -1775,8 +1775,8 @@ margin-right:3px
 .batepapo{
     width: 100%;
     background-color: #009688;
-    background-image: url(../imagens/FUNDO-ZIPZOP.png);
-    background-size: 285px;
+    background-image: url(../imagens/zipzop.svg);
+    background-size: 380px;
 }
 
 .batepapo header{

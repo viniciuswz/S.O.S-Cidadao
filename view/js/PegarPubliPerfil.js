@@ -58,7 +58,7 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
                             //var emptyStateMensagem = "Descobrimos que você não tem nenhuma publicação, que tal postar uma reclamação?";
                             //var emptyStateCta = 
                             if(tipoDonoPaginacao == "Dono"){
-                                criarEmpty('Descobrimos que você não tem nenhuma publicação, que tal postar uma reclamação?','<a href="formulario-reclamacao.php" class="cta">reclamar</a>');
+                                criarEmpty('Descobrimos que você não tem nenhuma publicação, que tal postar uma reclamação?','<a href="Formulario-reclamacao.php" class="cta">reclamar</a>');
                             }else{
                                 criarEmpty('Esse usuário não tem nenhuma reclamação :(','');
                             }

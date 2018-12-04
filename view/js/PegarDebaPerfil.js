@@ -56,7 +56,7 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
                         //var emptyStateMensagem = "Descobrimos que você não tem nenhuma publicação, que tal postar uma reclamação?";
                         //var emptyStateCta = 
                         if(tipoDonoPaginacao == "Dono"){
-                            criarEmpty('Você não criou nenhum debate, sempre tem algo na cidade sobre o que discutir, crie um debate e chame a galera!','<a href="formulario-debate.php" class="cta">começar</a>');
+                            criarEmpty('Você não criou nenhum debate, sempre tem algo na cidade sobre o que discutir, crie um debate e chame a galera!','<a href="Formulario-debate.php" class="cta">começar</a>');
                         }else{
                             criarEmpty('Esse usuário não possui debate criado :(','');
                         }
