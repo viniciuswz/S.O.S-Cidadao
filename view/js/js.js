@@ -1218,7 +1218,7 @@ jQuery(function($){
               } 
               //se não for uma imagem
               else {
-                $('#fotoReclamacao').val("");
+                $('#imagemDebateInput').val("");
                 recriaDb();
                 $(".box-troca-foto-reclamacao").find(".aviso-form-inicial").css("display","block");
                 $(".box-troca-foto-reclamacao").find(".aviso-form-inicial").find("p").text("Isso não é uma imagem");

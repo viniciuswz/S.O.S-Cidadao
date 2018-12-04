@@ -116,7 +116,9 @@ jQuery(function(){
                 //$('#lista').html(data);
                 $(".qtdNVisu").parent().parent().parent().remove();// remove
                 jaquinha();
+                $('#btn-debate').attr('disabled' , 'disabled');
             }        
+            
     
         });           
         document.getElementById("texto").value = "";
