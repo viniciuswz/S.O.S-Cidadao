@@ -17,10 +17,14 @@ try{
     
     $publi = new Comentario();   
     $publi->setCodComen($_GET['ID']);
-    $publi->setCodUsu($_SESSION['id_user']);   
+    $publi->setCodUsu($_SESSION['id_user']); 
     $publi->updateStatusComen('I');
-    echo $publi->quantidadeTotalPubli();
-    //echo "<script> alert('Status mudado');javascript:window.location='./view/todasreclamacoes.php';</script>";
+    if(isset($_GET['tipo'])){
+        echo "<script> alert('Comentário Removido');javascript:window.location='./view/admin-denuncia.php?tipo[]=Comen&tipo[]=Debate&tipo[]=Publi';</script>";
+    }else{
+        echo $publi->quantidadeTotalPubli();
+    }
+    
         
 }catch(Exception $exc){  
     $erro = $exc->getCode();   
