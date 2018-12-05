@@ -52,8 +52,8 @@
                 <div>   
                     <div>
                         <img src="imagens/TOPO.png" >
-                        <h2>Bem vindo ao povo</h2>
-                        <p>Agora você pode fazer reclamações da sua cidade</p> 
+                        <h2>Bem vindo ao SOS Cidadão!</h2>
+                        <p>Agora você faz parte do povo e poderá contribuir com a cidade, envie sua reclamação, ou crie um debate!</p> 
                     </div> 
                    
 
