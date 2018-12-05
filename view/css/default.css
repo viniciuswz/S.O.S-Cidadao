@@ -383,8 +383,8 @@ nav.menu > ul > li > a:hover #quantidade_de_not{
 }
 
 .user-menu ul li a i.icone-user{
-    background-size: 950px;
-    background-position: 8px -30.5px;
+    background-size: 1033px;
+    background-position: 6px -36.5px;
 }
 
 /*Notificao*/
@@ -1044,10 +1044,12 @@ width: 100%
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom:10px
 }
 
 .imagem h3{
     text-align: center;
+   
 }
 
 .imagem hr{
@@ -1125,6 +1127,7 @@ width: 100%
 .campo-texto{   
     width: 100%;
     text-align: center;
+    
 }
 
 .campo-texto p{
@@ -1144,6 +1147,7 @@ width: 100%
 .campo-texto h3{
     display: flex;
     justify-content: center;   
+    margin-bottom: 10px;
 }
 
 .campo-texto hr{
@@ -1197,6 +1201,7 @@ form .categorias p{
 
 form .categorias h3{
     text-align: center;
+    margin-bottom:10px
 }
 
 form .categorias hr{

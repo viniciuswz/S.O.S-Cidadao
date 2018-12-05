@@ -159,7 +159,7 @@
                             <input type="hidden" id="base64" name="base64" value="banana">
                         
                         <div>
-                            <img src="imagens/capa.png" id="imgPreview">
+                            <img src="" id="imgPreview">
                         </div>
                     </label>
                     

@@ -102,7 +102,7 @@ session_start();
                                 <?php 
                                     if($resposta[0]['cod_usu'] == $_SESSION['id_user']){
                                 ?>                                
-                                    <label for="imagem"><a href="#"><i class="icone-edit-full" title="Alterar a foto de perfil"></i></a></label>
+                                   
                                 <?php 
                                     }
                                 ?> 

@@ -13,12 +13,12 @@ switch($resultado[0]['descri_tipo_usu']){
             echo '<hr>';
         break;
     case 'Prefeitura':
-            echo '<li><a href="prefeitura-admin.php"><i class="icone-salvar"></i>Área da prefeitura </a></li>';
-            echo '<li><a href="prefeitura-reclamacao.php"><i class="icone-salvar"></i>Reclamações não respondidas</a></li>';
+            echo '<li><a href="prefeitura-admin.php"><i class="icone-prefeitura"></i>Área da prefeitura </a></li>';
+            echo '<li><a href="prefeitura-reclamacao.php"><i class="icone-prefeitura"></i>Reclamações não respondidas</a></li>';
             echo '<hr>';
         break;
     case 'Funcionario':
-            echo '<li><a href="prefeitura-reclamacao.php"><i class="icone-salvar"></i>Reclamações não respondidas</a></li>';
+            echo '<li><a href="prefeitura-reclamacao.php"><i class="icone-prefeitura"></i>Reclamações não respondidas</a></li>';
             echo '<hr>';
         break;
 }
