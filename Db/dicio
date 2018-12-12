@@ -1,0 +1,4 @@
+SELECT a.table_name tabela, a.column_name campo, data_type 'tipo de dado', 
+is_nullable 'Null','' as 'Comentário'
+FROM INFORMATION_SCHEMA.COLUMNS a , INFORMATION_SCHEMA.TABLES  b
+where a.table_name = b.table_name and a.table_schema = b.table_schema and a.table_schema = 'nome do banco';
