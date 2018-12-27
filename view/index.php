@@ -1,4 +1,5 @@
 <?php
+header('Location:view/home.php');
     session_start();
     require_once('../Config/Config.php');
     require_once(SITE_ROOT.DS.'autoload.php');

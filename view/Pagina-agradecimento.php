@@ -19,8 +19,8 @@
 
         <meta charset=UTF-8> <!-- ISO-8859-1 -->
         <meta name=viewport content="width=device-width, initial-scale=1.0">
-        <meta name=description content="Esswa pagina é apara agradecer pelo cadastro de você, usuário ;)">
-        <meta name=keywords content="Reclamação, Barueri"> <!-- Opcional -->
+        <meta name=description content="Essa pagina é apara agradecer pelo cadastro de você, usuário ;)">
+        <meta name=keywords content="Reclamação, Barueri, Agradecer"> <!-- Opcional -->
         <meta name=author content='equipe 4 INI3A'>
         <meta name="theme-color" content="#089E8E" />
 

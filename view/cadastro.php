@@ -14,7 +14,7 @@
         <meta charset=UTF-8> <!-- ISO-8859-1 -->
         <meta name=viewport content="width=device-width, initial-scale=1.0">
         <meta name=description content="Faça um cadastro para poder participar da nossa rede! ">
-        <meta name=keywords content="Reclamação, Barueri"> <!-- Opcional -->
+        <meta name=keywords content="Reclamação, Barueri, Cadastro, Novo Usuário, Reclamar"> <!-- Opcional -->
         <meta name=author content='equipe 4 INI3A'>
 
         <!-- favicon, arquivo de imagem podendo ser 8x8 - 16x16 - 32x32px com extensão .ico -->

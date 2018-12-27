@@ -17,12 +17,12 @@
 <!DOCTYPE html>
 <html lang=pt-br>
     <head>
-        <title>S.O.S Cidadão</title>
+        <title>Reclame da Sua Cidade, Envie uma agora!</title>
 
         <meta charset=UTF-8> <!-- ISO-8859-1 -->
         <meta name=viewport content="width=device-width, initial-scale=1.0">
-        <meta name=description content="Site de reclamações para a cidade de Barueri">
-        <meta name=keywords content="Reclamação, Barueri"> <!-- Opcional -->
+        <meta name=description content="Aqui é possivel enviar reclamações, é fácil e rápido! entre agora envie a sua, nossa cidade precisa disso para crescer.">
+        <meta name=keywords content="Enviar, publicação, Barueri, Reclamação, Opinião"> <!-- Opcional -->
         <meta name=author content='equipe 4 INI3A'>
 
         <!-- favicon, arquivo de imagem podendo ser 8x8 - 16x16 - 32x32px com extensão .ico -->

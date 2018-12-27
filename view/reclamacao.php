@@ -266,7 +266,7 @@
             <div class="img-publicacao">
                 
                 <figure>
-                    <img src="../Img/publicacao/<?php echo $resposta[0]['img_publi']?>">
+                    <img src="../Img/publicacao/<?php echo $resposta[0]['img_publi']?>" alt="<?php echo $resposta[0]['titulo_publi']?>">
                 </figure>
                                     
                 <div class="item-baixo-publicacao">   

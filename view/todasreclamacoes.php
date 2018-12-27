@@ -23,7 +23,7 @@
 <!DOCTYPE html>
 <html lang=pt-br>
     <head>
-        <title>Reclamações da cidade de Barueri</title>
+        <title>Reclamações da cidade</title>
 
         <meta charset=UTF-8> <!-- ISO-8859-1 -->
         <meta name=viewport content="width=device-width, initial-scale=1.0">

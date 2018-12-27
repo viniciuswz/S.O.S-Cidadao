@@ -24,7 +24,7 @@ session_start();
 <!DOCTYPE html>
 <html lang=pt-br>
     <head>
-        <title>S.O.S Cidadão</title>
+        <title>Publicações salvas</title>
 
         <meta charset=UTF-8> <!-- ISO-8859-1 -->
         <meta name=viewport content="width=device-width, initial-scale=1.0">

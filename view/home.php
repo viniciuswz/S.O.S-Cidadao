@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html lang=pt-br>
     <head>
-        <title>Conheça o SOS Cidadão</title>
+        <title>Conheça o S.O.S Cidadão</title>
 
         <meta charset=UTF-8> <!-- ISO-8859-1 -->
         <meta name=viewport content="width=device-width, initial-scale=1.0">
