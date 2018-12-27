@@ -10,11 +10,11 @@
     font-size: 1em;
 }
 
-@font-face{
+/* @font-face{
     font-family: 'Open-Sans-Light';
     src:url("../fonts/Open_Sans/OpenSans-light.ttf");
     font-size: 1em;
-}
+} */
 @font-face{
     font-family: 'Open-Sans-Bold';
     src:url("../fonts/Open_Sans/OpenSans-Bold.ttf");
