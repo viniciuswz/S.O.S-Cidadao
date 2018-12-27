@@ -106,7 +106,7 @@ nav.menu >ul{
     justify-content: space-around;
     text-align: center;
     width: 100vw;
-    margin-top: 2px;
+    /* margin-top: 2px; */
 }
 
 nav.menu > ul > li{
@@ -115,14 +115,16 @@ nav.menu > ul > li{
     text-align: center;
 }
 nav.menu > ul > li > a > i{
-   display: block;
-   margin: 0 auto;
-   min-width: 30px;
-   min-height: 30px;
-   width: 30px;
-   height: 30px;
+    position: relative;
+    top: 0;
+    display: block;
+    margin: 0 auto;
+    min-width: 30px;
+    min-height: 30px;
+    width: 30px;
+    height: 30px;
    /* background-color: green; */
-   background-size: 3301% !important;
+    background-size: 3301% !important;
 }
 
 
@@ -181,7 +183,7 @@ nav.menu > ul > li > a > i > span{
     z-index: 2;
 }
 
-/*notificaÃ§Ãµes*/
+/*notificacao*/
 
 .notificacoes ul::-webkit-scrollbar{
     display:none
@@ -190,7 +192,7 @@ nav.menu > ul > li > a > i > span{
 nav.notificacoes{
    
     width: 100vw;
-    bottom: 50px;
+    bottom: 53px;
     right: 0;
     
     width: 100vw;
@@ -214,7 +216,7 @@ width: 100vw;
 }
 
 .notificacoes.ativo{
-    height: calc(100vh - 50px);
+    height: calc(100vh - 53px);
 }
 
 /*NÃƒO ALTERAR NADA DAQUI PARA CIMA*/

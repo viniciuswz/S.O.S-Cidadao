@@ -170,7 +170,7 @@
                 <div class="categorias">
                     <h3 id="bacon">Sobre o que vai reclamar?</h3>
                     <hr>
-                    <p></p>
+                  
                     <div>
                             <?php
                                 foreach($categorias as $valor){
@@ -178,6 +178,7 @@
                                 }
                             ?>                       
                     </div>
+                    <p></p>
                 </div>
             <!--FORMULARIO DESCRIÇÃO DO DEBATE--> 
                 <div class="campo-texto"> 

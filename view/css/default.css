@@ -1069,6 +1069,7 @@ width: 100%
 .envio-img{
     display: flex;
     justify-content: center;
+    min-height: 350px;
 }
 
 .envio-img input{
@@ -2550,10 +2551,10 @@ color:black
 }
 .barra-curtir-publicacao{
     color: white;
-    background-color: #009688;
+    background-color: #02ceb9;
     width: 100%;
-    border-top: 2px solid #009688;
-    border-bottom: 2px solid #009688;
+    /* border-top: 2px solid #009688;
+    border-bottom: 2px solid #009688; */
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -2574,7 +2575,7 @@ color:black
     color: white;
 }
 .barra-curtir-publicacao a:hover{
-    background-color: #263238;
+    background-color: #00ccb8;
 }
 
 .barra-curtir-publicacao a i{
@@ -2806,6 +2807,11 @@ color:black
     background-position: 0 130px;
     background-repeat: no-repeat;
 }
+
+.agradecimento h2{
+    text-align:center
+}
+
 
 .agradecimento > div{
     background-color: white;
