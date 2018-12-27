@@ -79,7 +79,7 @@
 <!DOCTYPE html>
 <html lang=pt-br>
     <head>
-        <title>S.O.S Cidadão</title>
+        <title><?php echo $resposta[0]['titulo_publi']?>, em Barueri</title>
 
         <meta charset=UTF-8> <!-- ISO-8859-1 -->
         <meta name=viewport content="width=device-width, initial-scale=1.0">
@@ -106,6 +106,13 @@
         <script src="js/js.js"></script>
         <script src="js/PegarComen.js"></script>
         <script src="../teste.js"></script>
+        <!-- <script>
+            $("document").ready(function(){
+                $("title").text($(".publicacao-conteudo").find("h2").text() +" "+ "em Barueri")
+                //$(".publicacao-conteudo").find("h2").text();
+            })
+        </script> -->
+
        
 
     </head>

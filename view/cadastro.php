@@ -9,11 +9,11 @@
 <!DOCTYPE html>
 <html lang=pt-br>
     <head>
-        <title>S.O.S Cidadão</title>
+        <title>cadastre-se e faça reclamações ;)</title>
 
         <meta charset=UTF-8> <!-- ISO-8859-1 -->
         <meta name=viewport content="width=device-width, initial-scale=1.0">
-        <meta name=description content="Site de reclamações para a cidade de Barueri">
+        <meta name=description content="Faça um cadastro para poder participar da nossa rede! ">
         <meta name=keywords content="Reclamação, Barueri"> <!-- Opcional -->
         <meta name=author content='equipe 4 INI3A'>
 

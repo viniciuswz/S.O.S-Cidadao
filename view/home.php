@@ -11,12 +11,12 @@
 <!DOCTYPE html>
 <html lang=pt-br>
     <head>
-        <title>S.O.S Cidadão</title>
+        <title>Conheça o SOS Cidadão</title>
 
         <meta charset=UTF-8> <!-- ISO-8859-1 -->
         <meta name=viewport content="width=device-width, initial-scale=1.0">
-        <meta name=description content="Site de reclamações para a cidade de Barueri">
-        <meta name=keywords content="Reclamação, Barueri"> <!-- Opcional -->
+        <meta name=description content="Somos um site de reclamação da cidade, feito do povo para o povo">
+        <meta name=keywords content="Reclamação, Barueri, Home, conheça"> <!-- Opcional -->
         <meta name=author content='equipe 4 INI3A'>
 
         <!-- favicon, arquivo de imagem podendo ser 8x8 - 16x16 - 32x32px com extensão .ico -->
