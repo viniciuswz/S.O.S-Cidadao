@@ -26,6 +26,17 @@ function escreverNoti(resposta){
         </div>\
         </div>";
         return;
+    }else{
+        document.getElementById('menu23').innerHTML = "<div class='empty-state gamb' style='padding-bottom:50px;'>\
+        <div>\
+            <div>\
+               <img src='imagens/notifica-sem.png' style='display:block; margin:0 auto; height:100%; width:50%;'>\
+            </div>\
+            <div>\
+                <p>Você precisa fazer login para acessar as notificações</p>\
+            </div>\
+        </div>\
+        </div>";
     }
     var arr1 = JSON.parse(resposta);
     document.getElementById('menu23').innerHTML = "";

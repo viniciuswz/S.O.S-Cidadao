@@ -30,6 +30,8 @@ if(isset($_SESSION['id_user']) AND isset($_SESSION['tipo_usu'])){
     }        
 
     
+}else{
+    echo "Nlogado";
 }
 
 ?>
