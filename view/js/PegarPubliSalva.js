@@ -7,7 +7,7 @@ function criarEmpty(emptyStateMensagem,emptyStateCta){
     $("#pa").append("<div class='empty-state' style='padding-bottom:50px; width: 100%; '>\
     <div>\
         <div>\
-           <img src='imagens/salvos-sem.png'>\
+           <img src='view/imagens/salvos-sem.png'>\
         </div>\
         <div>\
             <p style='margin: 0 auto; width:90%; max-width:500px'>"+emptyStateMensagem+"</p>"+emptyStateCta+"\
@@ -35,7 +35,7 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
         var jaq;
     
         $.ajax({
-            url: '../PegarPublicacaoSalva.php',
+            url: 'PegarPublicacaoSalva.php',
             type: "get",
             data: "pagina="+paginacao,
             success: function(data){
@@ -54,11 +54,11 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
                         if(tipoUsuPaginacao == "Comum"){
                             //var emptyStateMensagem = "Descobrimos que você não tem nenhuma publicação, que tal postar uma reclamação?";
                             //var emptyStateCta = 
-                           criarEmpty('<strong style="font-size: 25px;">Ops!</strong><br><br>Não tem nenhuma publicação salva, você consegue salvar publicações para ver mais tarde, quando ela forem respondidas você será notificado, legal né? começe a salvar coisas do seu interesse! ','<a href="todasreclamacoes.php" style="margin-top:20px" class="cta">ir para reclamações</a>');
+                           criarEmpty('<strong style="font-size: 25px;">Ops!</strong><br><br>Não tem nenhuma publicação salva, você consegue salvar publicações para ver mais tarde, quando ela forem respondidas você será notificado, legal né? começe a salvar coisas do seu interesse! ','<a href="todasreclamacoes" style="margin-top:20px" class="cta">ir para reclamações</a>');
                         }else if(tipoUsuPaginacao == "Prefeitura"){
-                            criarEmpty('<strong style="font-size: 25px;">Ops!</strong><br><br>Não tem nenhuma publicação salva, você consegue salvar publicações para ver mais tarde, começe a salvar coisas do seu interesse!','<a href="todasreclamacoes.php" style="margin-top:20px" class="cta">ir para reclamações</a>');
+                            criarEmpty('<strong style="font-size: 25px;">Ops!</strong><br><br>Não tem nenhuma publicação salva, você consegue salvar publicações para ver mais tarde, começe a salvar coisas do seu interesse!','<a href="todasreclamacoes" style="margin-top:20px" class="cta">ir para reclamações</a>');
                         }else{
-                            criarEmpty('Você não pode salvar reclamações, entre com sua conta de usuário comum!','<a href="../Sair.php" style="margin-top:20px" class="cta">Log out</a>');
+                            criarEmpty('Você não pode salvar reclamações, entre com sua conta de usuário comum!','<a href="Sair.php" style="margin-top:20px" class="cta">Log out</a>');
                         }
                     }
                    
@@ -139,7 +139,7 @@ function teste2(resposta){
                             <div class="item-topo">\
                                 <a href="perfil_reclamacao.php?ID='+ arr1[contador]['cod_usu'] +'">\
                                 <div>\
-                                    <img src="../Img/perfil/' + arr1[contador]['img_perfil_usu'] +'">\
+                                    <img src="Img/perfil/' + arr1[contador]['img_perfil_usu'] +'">\
                                 </div>\
                                 <p><span class="negrito">'+arr1[contador]['nome_usu']+'</a></span><time>'+arr1[contador]['dataHora_publi']+'</time></p>\
                                 <div class="mini-menu-item">\
@@ -169,7 +169,7 @@ function teste2(resposta){
                             <a href="reclamacao.php?ID='+arr1[contador]['cod_publi']+'">';                          
                             if(arr1[contador]['img_publi'] != ""){                            
                                 mensa += '<figure>\
-                                <img src=../Img/publicacao/'+arr1[contador]['img_publi']+'> \
+                                <img src=Img/publicacao/'+arr1[contador]['img_publi']+'> \
                                 </figure>';
                             }
                          

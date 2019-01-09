@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once('../Config/Config.php');
+    require_once('Config/Config.php');
     require_once(SITE_ROOT.DS.'autoload.php');   
     use Core\Usuario;
     //use Core\Publicacao;
@@ -86,39 +86,39 @@
         <meta name="theme-color" content="#089E8E" />
 
         <!-- favicon, arquivo de imagem podendo ser 8x8 - 16x16 - 32x32px com extensão .ico -->
-        <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="view/imagens/favicon.ico" type="image/x-icon">
 
         <!-- CSS PADRÃO -->
-        <link href="css/default.css" rel=stylesheet>
+        <link href="view/css/default.css" rel=stylesheet>
 
         <!-- Telas Responsivas -->
-        <link rel=stylesheet media="screen and (max-width:480px)" href="css/style480.css">
-        <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)" href="css/style768.css">
-        <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)" href="css/style1024.css">
-        <link rel=stylesheet media="screen and (min-width:1025px)" href="css/style1025.css">
+        <link rel=stylesheet media="screen and (max-width:480px)" href="view/css/style480.css">
+        <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)" href="view/css/style768.css">
+        <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)" href="view/css/style1024.css">
+        <link rel=stylesheet media="screen and (min-width:1025px)" href="view/css/style1025.css">
 
         <!-- JS-->
 
-        <script src="lib/_jquery/jquery.js"></script>
-        <script src="js/js.js"></script>
-        <script src="js/PegarPubliPerfil.js"></script>
-        <script src="../teste.js"></script>
+        <script src="view/lib/_jquery/jquery.js"></script>
+        <script src="view/js/js.js"></script>
+        <script src="view/js/PegarPubliPerfil.js"></script>
+        <script src="teste.js"></script>
 
                 
         <!-- cropp-->
 
-        <link rel="stylesheet" href="lib/_croppie-master/croppie.css">
-        <script src="lib/_croppie-master/croppie.js"></script>
-        <script src="lib/_croppie-master/exif.js"></script>
+        <link rel="stylesheet" href="view/lib/_croppie-master/croppie.css">
+        <script src="view/lib/_croppie-master/croppie.js"></script>
+        <script src="view/lib/_croppie-master/exif.js"></script>
 
     </head>
     <body onload="jaquinha()">
         <header>
-            <a href="todasreclamacoes.php">
-                <img src="imagens/logo_oficial.png" alt="logo">
+            <a href="todasreclamacoes">
+                <img src="view/imagens/logo_oficial.png" alt="logo">
             </a>   
             <i class="icone-pesquisa pesquisa-mobile" id="abrir-pesquisa"></i>
-            <form action="pesquisa.php" method="get" id="form-pesquisa">
+            <form action="pesquisa" method="get" id="form-pesquisa">
                 <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar">
                 <button type="submit"><i class="icone-pesquisa"></i></button>
             </form>

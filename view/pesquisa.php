@@ -1,6 +1,6 @@
 <?php
 session_start();
-    require_once('../Config/Config.php');
+    require_once('Config/Config.php');
     require_once(SITE_ROOT.DS.'autoload.php');
     
     use Core\Usuario;  
@@ -8,8 +8,8 @@ session_start();
     use Classes\Pesquisa;
     try{
         //Usuario::verificarLogin(1);  // Vai estourar um erro se ele ja estiver logado
-        $nomesCampos = array('pesquisa');// Nomes dos campos que receberei da URL    
-        $validar = new ValidarCampos($nomesCampos, $_GET);       
+        //$nomesCampos = array('pesquisa');// Nomes dos campos que receberei da URL    
+        //$validar = new ValidarCampos($nomesCampos, $_GET);       
         $pes = new Pesquisa();
 
         if(isset($_SESSION['id_user']) AND !empty($_SESSION['id_user'])){           
@@ -19,6 +19,8 @@ session_start();
             $resultado = $dados->getDadosUser();
             $pes->setCodUsu($_SESSION['id_user']);
         }           
+        $_GET['pesquisa'] = $_POST['pesquisa']; // tive q mandar por post
+
         $_GET['pesquisa'] = str_replace("+"," ", $_GET['pesquisa']);
         $_GET['pesquisa'] = str_replace(";","", $_GET['pesquisa']);
         $pes->setTextoPesqui($_GET['pesquisa']);       
@@ -26,7 +28,8 @@ session_start();
         isset($_GET['pagina']) ?: $_GET['pagina'] = null;
         //isset($_GET['tipo']) ?: $_GET['tipo'] = null;
         $parametro = "";
-        if(isset($_GET['tipo'])){            
+        if(isset($_POST['tipo'])){            
+            $_GET['tipo'] = $_POST['tipo'];
             $contador = 1;
             foreach($_GET as $chaves => $valores){    
                     if($chaves == 'tipo'){
@@ -66,32 +69,32 @@ session_start();
         <meta name="theme-color" content="#089E8E" />
 
         <!-- favicon, arquivo de imagem podendo ser 8x8 - 16x16 - 32x32px com extensão .ico -->
-        <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="view/imagens/favicon.ico" type="image/x-icon">
 
         <!-- CSS PADRÃO -->
-        <link href="css/default.css" rel=stylesheet>
+        <link href="view/css/default.css" rel=stylesheet>
 
         <!-- Telas Responsivas -->
-        <link rel=stylesheet media="screen and (max-width:480px)" href="css/style480.css">
-        <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)" href="css/style768.css">
-        <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)" href="css/style1024.css">
-        <link rel=stylesheet media="screen and (min-width:1025px)" href="css/style1025.css">
+        <link rel=stylesheet media="screen and (max-width:480px)" href="view/css/style480.css">
+        <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)" href="view/css/style768.css">
+        <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)" href="view/css/style1024.css">
+        <link rel=stylesheet media="screen and (min-width:1025px)" href="view/css/style1025.css">
 
         <!-- JS-->
 
-        <script src="lib/_jquery/jquery.js"></script>
-        <script src="js/js.js"></script>
-        <script src="js/PegarPesquisa.js"></script>
-        <script src="../teste.js"></script>
+        <script src="view/lib/_jquery/jquery.js"></script>
+        <script src="view/js/js.js"></script>
+        <script src="view/js/PegarPesquisa.js"></script>
+        <script src="teste.js"></script>
 
     </head>
     <body onload="jaquinha()">
         <header>
-            <a href="todasreclamacoes.php">
-                <img src="imagens/logo_oficial.png" alt="logo">
+            <a href="todasreclamacoes">
+                <img src="view/imagens/logo_oficial.png" alt="logo">
             </a>   
             <i class="icone-pesquisa pesquisa-mobile" id="abrir-pesquisa"></i>
-            <form action="pesquisa.php" method="get" id="form-pesquisa"> 
+            <form action="pesquisa" method="post" id="form-pesquisa"> 
                 <?php if(isset($_GET['pesquisa'])){?>
                     <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar" value="<?php echo filter_var($_GET['pesquisa'], FILTER_SANITIZE_STRING) ?>">
                 <?php }else{ ?>
@@ -107,13 +110,13 @@ session_start();
                             <li>
                         </ul>
                     </nav><a href="#" id="abrir-not"><i class="icone-notificacao" id="noti"></i>Notificações</a></li>
-                    <li><a href="todasreclamacoes.php"><i class="icone-reclamacao"></i>Reclamações</a></li>
-                    <li><a href="todosdebates.php"><i class="icone-debate"></i>Debates</a></li>
+                    <li><a href="todasreclamacoes"><i class="icone-reclamacao"></i>Reclamações</a></li>
+                    <li><a href="todosdebates"><i class="icone-debate"></i>Debates</a></li>
                 </ul>
             </nav>
             <?php
                 if(!isset($resultado)){  
-                    echo '<a href="login.php"><i class="icone-user" id="abrir"></i></a>';
+                    echo '<a href="login"><i class="icone-user" id="abrir"></i></a>';
                 }else{
                     echo '<i class="icone-user" id="abrir"></i>';
                 }
@@ -126,9 +129,9 @@ session_start();
                         <a href="javascript:void(0)" class="fechar">&times;</a>
                         <div class="mini-perfil">
                             <div>    
-                                <img src="../Img/perfil/<?php echo $resultado[0]['img_perfil_usu'] ?>" alt="perfil">
+                                <img src="Img/perfil/<?php echo $resultado[0]['img_perfil_usu'] ?>" alt="perfil">
                             </div>    
-                                <img src="../Img/capa/<?php echo $resultado[0]['img_capa_usu'] ?>" alt="capa">
+                                <img src="Img/capa/<?php echo $resultado[0]['img_capa_usu'] ?>" alt="capa">
                                 <p><?php echo $resultado[0]['nome_usu'] ?></p>
                         </div>
                         <nav>
@@ -150,7 +153,7 @@ session_start();
                         <h3>você pesquisou por:</h3><p>Churroooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooos</p>
                     </div> -->
                     <i class="icone-filtro "></i>
-                    <form action="pesquisa.php">
+                    <form action="pesquisa" method="post">
                         <span id="fechar-filtro">&times;</span>
                         <h3>estou procurando:</h3>
                         <div>

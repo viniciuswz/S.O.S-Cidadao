@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once('../Config/Config.php');
+    require_once('Config/Config.php');
     require_once(SITE_ROOT.DS.'autoload.php');   
     use Core\Usuario;    
     try{        
@@ -23,31 +23,31 @@
         <meta name="theme-color" content="#089E8E" />
 
         <!-- favicon, arquivo de imagem podendo ser 8x8 - 16x16 - 32x32px com extensão .ico -->
-        <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="view/imagens/favicon.ico" type="image/x-icon">
 
         <!-- CSS PADRÃO -->
-        <link href="css/default.css" rel=stylesheet>
+        <link href="view/css/default.css" rel=stylesheet>
 
         <!-- Telas Responsivas -->
-        <link rel=stylesheet media="screen and (max-width:480px)" href="css/style480.css">
-        <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)" href="css/style768.css">
-        <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)" href="css/style1024.css">
-        <link rel=stylesheet media="screen and (min-width:1025px)" href="css/style1025.css">
+        <link rel=stylesheet media="screen and (max-width:480px)" href="view/css/style480.css">
+        <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)" href="view/css/style768.css">
+        <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)" href="view/css/style1024.css">
+        <link rel=stylesheet media="screen and (min-width:1025px)" href="view/css/style1025.css">
 
         <!-- JS-->
 
-        <script src="lib/_jquery/jquery.js"></script>
-        <script src="js/js.js"></script>
-        <script src="../teste.js"></script>
+        <script src="view/lib/_jquery/jquery.js"></script>
+        <script src="view/js/js.js"></script>
+        <script src="teste.js"></script>
 
     </head>
     <body>
         <header>
-            <a href="todasreclamacoes.php">
-                <img src="imagens/logo_oficial.png" alt="logo">
+            <a href="todasreclamacoes">
+                <img src="view/imagens/logo_oficial.png" alt="logo">
             </a>   
             <i class="icone-pesquisa pesquisa-mobile" id="abrir-pesquisa"></i>
-            <form action="pesquisa.php" method="get" id="form-pesquisa">
+            <form action="pesquisa" method="post" id="form-pesquisa">
                 <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar">
                 <button type="submit"><i class="icone-pesquisa"></i></button>
             </form>
@@ -60,13 +60,13 @@
                             <li>
                         </ul>
                     </nav><a href="#" id="abrir-not"><i class="icone-notificacao" id="noti"></i>Notificações</a></li>
-                    <li><a href="todasreclamacoes.php"><i class="icone-reclamacao"></i>Reclamações</a></li>
-                    <li><a href="todosdebates.php"><i class="icone-debate"></i>Debates</a></li>
+                    <li><a href="todasreclamacoes"><i class="icone-reclamacao"></i>Reclamações</a></li>
+                    <li><a href="todosdebates"><i class="icone-debate"></i>Debates</a></li>
                 </ul>
             </nav>
             <?php
                 if(!isset($resultado)){
-                    echo '<a href="login.php"><i class="icone-user" id="abrir"></i></a>';
+                    echo '<a href="login"><i class="icone-user" id="abrir"></i></a>';
                 }else{
                     echo '<i class="icone-user" id="abrir"></i>';
                 }
@@ -79,9 +79,9 @@
                     <a href="javascript:void(0)" class="fechar">&times;</a>
                     <div class="mini-perfil">
                         <div>    
-                            <img src="../Img/perfil/<?php echo $resultado[0]['img_perfil_usu'] ?>" alt="perfil">
+                            <img src="Img/perfil/<?php echo $resultado[0]['img_perfil_usu'] ?>" alt="perfil">
                         </div>    
-                            <img src="../Img/capa/<?php echo $resultado[0]['img_capa_usu'] ?>" alt="capa">
+                            <img src="Img/capa/<?php echo $resultado[0]['img_capa_usu'] ?>" alt="capa">
                             <p><?php echo $resultado[0]['nome_usu'] ?></p>
                     </div>
                     <nav>
@@ -100,21 +100,21 @@
             <section class="perfil-base" >
                 <h3>Configurações da conta</h3>
                 <div class="perfil" id="config">
-                <img src="../Img/capa/<?php echo $resultado[0]['img_capa_usu'] ?>" alt="capa">
+                <img src="Img/capa/<?php echo $resultado[0]['img_capa_usu'] ?>" alt="capa">
                 </div>
                 <div class="perfil-info">
                     <span><?php echo $resultado[0]['dataHora_cadastro_usu'] ?></span>
                         <div>
-                        <img src="../Img/perfil/<?php echo $resultado[0]['img_perfil_usu'] ?>">
+                        <img src="Img/perfil/<?php echo $resultado[0]['img_perfil_usu'] ?>">
                         </div> 
                 </div>
                
             </section>
             <nav class="menu-perfil">
                 <ul class="espacos">
-                    <li><a href="configuracoes.php">Pessoais</a></li>
+                    <li><a href="configuracoes">Pessoais</a></li>
 
-            <li class="ativo"><a href="configuracoes2.php">Segurança</a></li>
+            <li class="ativo"><a href="configuracoes">Segurança</a></li>
                 </ul>
             </nav>
             <section class="form-config">

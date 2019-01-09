@@ -21,7 +21,7 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
         teste = true;
     
         $.ajax({
-            url: '../PegarPublicacoes.php',
+            url: 'PegarPublicacoes.php',
             type: "get",
             data: "pagina="+paginacao,
             success: function(data){
@@ -98,7 +98,7 @@ function teste2(resposta){
                             <div class="item-topo">\
                                 <a href="perfil_reclamacao.php?ID='+ arr1[contador]['cod_usu'] +'">\
                                 <div>\
-                                    <img src="../Img/perfil/' + arr1[contador]['img_perfil_usu'] +'">\
+                                    <img src="Img/perfil/' + arr1[contador]['img_perfil_usu'] +'">\
                                 </div>\
                                 <p><span class="negrito">'+arr1[contador]['nome_usu']+'</a></span><time>'+arr1[contador]['dataHora_publi']+'</time></p>\
                                 <div class="mini-menu-item">\
@@ -125,10 +125,10 @@ function teste2(resposta){
                                     </div>';                                 
                                 mensa +='</div>\
                             </div>\
-                            <a href="reclamacao.php?ID='+arr1[contador]['cod_publi']+'">';                          
+                            <a href="reclamacao?ID='+arr1[contador]['cod_publi']+'">';                          
                             if(arr1[contador]['img_publi'] != ""){                            
                                 mensa += '<figure>\
-                                <img src=../Img/publicacao/'+arr1[contador]['img_publi']+'> \
+                                <img src=Img/publicacao/'+arr1[contador]['img_publi']+'> \
                                 </figure>';
                             }
                          

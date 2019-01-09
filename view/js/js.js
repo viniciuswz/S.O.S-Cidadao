@@ -1359,7 +1359,7 @@ jQuery(function($){
               /* AJAX DE FAZER LOGIN */           
               $(".aviso-form-inicial").hide();                          
                 $.ajax({
-                    url:"../Login.php",
+                    url:"Login.php",
                     type: "post",
                     data: "email="+email+"&senha="+senha,
                     success:function(result){
@@ -1456,7 +1456,7 @@ jQuery(function($){
                 /* AJAX CADASTRAR */
                 $(".aviso-form-inicial").hide();
                 $.ajax({
-                  url:"../CadastrarUser.php",
+                  url:"CadastrarUser.php",
                   type: "post",
                   data: "email="+email+"&senha="+senha+"&nome="+user,
                   success:function(result){
@@ -1676,7 +1676,7 @@ jQuery(function($){
               return false;
             }else{              
               $.ajax({
-                url:"../updateNomeEmail.php",
+                url:"updateNomeEmail.php",
                 type: "post",
                 data: "email="+email+"&nome="+nome,
                 success:function(result){                  
@@ -1787,7 +1787,7 @@ jQuery(function($){
             return false;
           }else{    // tudo certo          
             $.ajax({
-              url:"../updateSenha.php",
+              url:"updateSenha.php",
               type: "post",
               data: "senhaAntiga="+senhaAtual+"&novaSenha="+novaSenha,
               success:function(result){                  
@@ -1903,11 +1903,11 @@ jQuery(function($){
     id_certo = id.substring(0, id.lastIndexOf('.'));
 
     if(final == 'Publicacao'){
-      final = "../Denunciar"+final+".php";
+      final = "Denunciar"+final+".php";
     }else if(final == 'Debate'){
-      final = "../Denunciar"+final+".php";
+      final = "Denunciar"+final+".php";
     }else if(final == 'Comentario'){
-      final = "../Denunciar"+final+".php";
+      final = "Denunciar"+final+".php";
     }else{
       return false;
     }
@@ -1945,7 +1945,7 @@ jQuery(function($){
       data: "id="+id_certo+"&texto="+txt,
       success:function(result){
           if(result == 'NLogado'){ // Nao esta logado, redirecionar pra fazer login
-            location.href="login.php";
+            location.href="login";
             return false;
           }else{
             //alert("deu certo");
@@ -2088,12 +2088,12 @@ $(document).on('click','.salvar',function(){
 
 
   $.ajax({
-    url:'../SalvarPublicacao.php',
+    url:'SalvarPublicacao.php',
     type: "get",
     data: "ID="+id,
     success:function(result){
         if(result == 'NLogado'){ // Nao esta logado, redirecionar pra fazer login
-          location.href="login.php";
+          location.href="login";
           return false;
         }else{
         if(tipo == 'remover'){

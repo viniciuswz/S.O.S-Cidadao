@@ -7,7 +7,7 @@ function criarEmpty(emptyStateMensagem,emptyStateCta){
     $("#pa").append("<div class='empty-state' style='padding-bottom:50px; width: 100%;'>\
     <div>\
     <div style='overflow: hidden; border-radius: 50%; width: 280px; height: 280px;'>\
-           <img src='imagens/pesquisa.svg' style='width:280px'>\
+           <img src='view/imagens/pesquisa.svg' style='width:280px'>\
         </div>\
         <div>\
         <p style='margin: 0 auto; width:90%; max-width:500px'>"+emptyStateMensagem+"</p>"+emptyStateCta+"\
@@ -38,7 +38,7 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
         var textoPes = document.getElementById("pesquisa").value;
         
         $.ajax({            
-            url: '../PegarPesquisa.php',
+            url: 'PegarPesquisa.php',
             type: "get",
             data: "pagina="+paginacao+"&pesquisa="+textoPes+"&"+parametros,
             success: function(data){
@@ -128,7 +128,7 @@ function teste2(resposta){
                     <div class="item-topo">\
                         <a href="perfil_reclamacao.php?ID='+ arr1[contador]['cod_usu'] +'">\
                         <div>\
-                            <img src="../Img/perfil/' + arr1[contador]['img_perfil_usu'] +'">\
+                            <img src="Img/perfil/' + arr1[contador]['img_perfil_usu'] +'">\
                         </div>\
                         <p><span class="negrito">'+arr1[contador]['nome_usu']+'</a></span><time>'+arr1[contador]['dataHora_publi']+'</time></p>\
                         <div class="mini-menu-item">\
@@ -158,7 +158,7 @@ function teste2(resposta){
                     <a href="reclamacao.php?ID='+arr1[contador]['cod_publi']+'">';                          
                     if(arr1[contador]['img_publi'] != ""){                            
                         mensa += '<figure>\
-                        <img src=../Img/publicacao/'+arr1[contador]['img_publi']+'> \
+                        <img src=Img/publicacao/'+arr1[contador]['img_publi']+'> \
                         </figure>';
                     }
                  
@@ -177,7 +177,7 @@ function teste2(resposta){
                 <div class="item-topo">\
                     <a href="perfil_debate.php?ID='+arr1[contador]['cod_usu']+'">\
                         <div>\
-                            <img src="../Img/perfil/'+arr1[contador]['img_perfil_usu']+'">\
+                            <img src="Img/perfil/'+arr1[contador]['img_perfil_usu']+'">\
                         </div>\
                         <p><span class="negrito">'+arr1[contador]['nome_usu']+'</a></span><time>'+arr1[contador]['dataHora_deba']+'</time></p>\
                         <div class="mini-menu-item">\
@@ -200,7 +200,7 @@ function teste2(resposta){
                     </div>\
                     <a href="Pagina-debate.php?ID='+arr1[contador]['cod_deba']+'">\
                         <figure>\
-                            <img src="../Img/debate/'+arr1[contador]['img_deba']+'">\
+                            <img src="Img/debate/'+arr1[contador]['img_deba']+'">\
                         </figure>\
                         <div class="legenda">\
                             <p>'+arr1[contador]['nome_deba']+'</p><p>'+arr1[contador]['qtdParticipantes']+'</p><i class="icone-grupo"></i>\

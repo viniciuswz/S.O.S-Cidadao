@@ -21,7 +21,7 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
         teste = true;
     
         $.ajax({
-            url: '../PegarDebates.php',
+            url: 'PegarDebates.php',
             type: "get",
             data: "pagina="+paginacao,
             success: function(data){
@@ -103,7 +103,7 @@ function teste2(resposta){
                 <div class="item-topo">\
                     <a href="perfil_debate.php?ID='+arr1[contador]['cod_usu']+'">\
                         <div>\
-                            <img src="../Img/perfil/'+arr1[contador]['img_perfil_usu']+'">\
+                            <img src="Img/perfil/'+arr1[contador]['img_perfil_usu']+'">\
                         </div>\
                         <p><span class="negrito">'+arr1[contador]['nome_usu']+'</a></span><time>'+arr1[contador]['dataHora_deba']+'</time></p>\
                         <div class="mini-menu-item">\
@@ -124,9 +124,9 @@ function teste2(resposta){
                             </div>';                           
                     mensa+='</div>\
                     </div>\
-                    <a href="Pagina-debate.php?ID='+arr1[contador]['cod_deba']+'">\
+                    <a href="Pagina-debate/'+arr1[contador]['cod_deba']+'">\
                         <figure>\
-                            <img src="../Img/debate/'+arr1[contador]['img_deba']+'">\
+                            <img src="Img/debate/'+arr1[contador]['img_deba']+'">\
                         </figure>\
                         <div class="legenda">\
                             <p>'+arr1[contador]['nome_deba']+'</p><p>'+arr1[contador]['qtdParticipantes']+'</p><i class="icone-grupo"></i>\

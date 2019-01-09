@@ -51,13 +51,13 @@ try{
         }
         
         if(isset($_SESSION['id_user']) AND isset($resposta[$contador]['indSalvaPubli']) AND $resposta[$contador]['indSalvaPubli'] == TRUE){//Salvou            
-            $resposta[$contador]['LinkSalvar'] = "../SalvarPublicacao.php?ID=".$resposta[$contador]['cod_publi'];
+            $resposta[$contador]['LinkSalvar'] = "SalvarPublicacao.php?ID=".$resposta[$contador]['cod_publi'];
             $resposta[$contador]['TextoLinkSalvar'] = "Salvo";
         }else if(isset($_SESSION['id_user']) AND isset($resposta[$contador]['indSalvaPubli']) AND $resposta[$contador]['indSalvaPubli'] == FALSE){//Nao salvou
-            $resposta[$contador]['LinkSalvar'] = "../SalvarPublicacao.php?ID=".$resposta[$contador]['cod_publi'];
+            $resposta[$contador]['LinkSalvar'] = "SalvarPublicacao.php?ID=".$resposta[$contador]['cod_publi'];
             $resposta[$contador]['TextoLinkSalvar'] = "Salvar";
         }else if(!isset($_SESSION['id_user'])){ // aparecer parar os usuario nao logado
-            $resposta[$contador]['LinkSalvar'] = "../SalvarPublicacao.php?ID=".$resposta[$contador]['cod_publi'];
+            $resposta[$contador]['LinkSalvar'] = "SalvarPublicacao.php?ID=".$resposta[$contador]['cod_publi'];
             $resposta[$contador]['TextoLinkSalvar'] = "Salvar";
         }  
 

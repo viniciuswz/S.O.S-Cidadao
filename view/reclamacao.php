@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once('../Config/Config.php');
+    require_once('Config/Config.php');
     require_once(SITE_ROOT.DS.'autoload.php');    
     use Core\Usuario;
     use Core\Publicacao;
@@ -31,49 +31,52 @@
         }             
         
         $nomesCampos = array('ID');// Nomes dos campos que receberei da URL    
-        $validar = new ValidarCampos($nomesCampos, $_GET);
-        $validar->verificarTipoInt($nomesCampos, $_GET); // Verificar se o parametro da url é um numero
-        
+        //$validar = new ValidarCampos($nomesCampos, $_GET);
+        //$validar->verificarTipoInt($nomesCampos, $_GET); // Verificar se o parametro da url é um numero        
+        $dados = explode('/',$_GET['url']);
+        var_dump($dados);
+        $_GET['ID'] = str_replace("ID=",'',$dados[1]); // gambi aqui
+
         $publi->setCodPubli($_GET['ID']);
         $comentario->setCodPubli($_GET['ID']);             
         
         isset($_GET['pagina']) ?: $_GET['pagina'] = null;  
         
         $resposta = $publi->listByIdPubli(); 
-        $comentarioPrefei = $comentario->SelecionarComentariosUserPrefei(TRUE);        
+        // $comentarioPrefei = $comentario->SelecionarComentariosUserPrefei(TRUE);        
                    
-        if(isset($_GET['com'])){                            
-            if(isset($_SESSION['id_user'])){                
-                $visualizar = new VisualizarNotificacao();
-                if(isset($_GET['IdComen'])){
-                    $idNoti = $_GET['IdComen'];
-                    $comentario->setCodComen($idNoti);
-                    $comentarioComum = $comentario->getDadosComenByIdComen(); // preciso do comenantario denunciado                    
-                }else{                                        
-                    $idNoti = $_GET['ID'];
-                }
-                $visualizar->visualizarNotificacao($_GET['com'], $idNoti, $_SESSION['id_user']);
-            }                  
-        }
+        // if(isset($_GET['com'])){                            
+        //     if(isset($_SESSION['id_user'])){                
+        //         $visualizar = new VisualizarNotificacao();
+        //         if(isset($_GET['IdComen'])){
+        //             $idNoti = $_GET['IdComen'];
+        //             $comentario->setCodComen($idNoti);
+        //             $comentarioComum = $comentario->getDadosComenByIdComen(); // preciso do comenantario denunciado                    
+        //         }else{                                        
+        //             $idNoti = $_GET['ID'];
+        //         }
+        //         $visualizar->visualizarNotificacao($_GET['com'], $idNoti, $_SESSION['id_user']);
+        //     }                  
+        // }
 
-        if(isset($_SESSION['id_user']) AND isset($_GET['IdComen']) AND isset($tipoUsu) AND ($tipoUsu == 'Adm' OR $tipoUsu == 'Moderador')){
-            $idNoti = $_GET['IdComen'];
-            $comentario->setCodComen($idNoti);
-            //$comentarioComum = $comentario->getDadosComenByIdComen(); // preciso do comenantario denunciado  
-            $complemento = "Comentário Denunciado: ";
-        }else{ // quero todos os comentários
-            $comentarioComum = $comentario->SelecionarComentariosUserComum($_GET['pagina']); // quero todos os comenatários
-            if(empty($comentarioComum) AND (isset($tipoUsu) AND $tipoUsu == 'Comum' )){
-                $complemento = "";
-            }else if(!empty($comentarioComum)){
-                $complemento = "Comentários";
-            }else{
-                $complemento = "";
-            }            
-            $_GET['IdComen'] = "";
-        }
-        $quantidadePaginas = $comentario->getQuantidadePaginas();
-        $pagina = $comentario->getPaginaAtual(); 
+        // if(isset($_SESSION['id_user']) AND isset($_GET['IdComen']) AND isset($tipoUsu) AND ($tipoUsu == 'Adm' OR $tipoUsu == 'Moderador')){
+        //     $idNoti = $_GET['IdComen'];
+        //     $comentario->setCodComen($idNoti);
+        //     //$comentarioComum = $comentario->getDadosComenByIdComen(); // preciso do comenantario denunciado  
+        //     $complemento = "Comentário Denunciado: ";
+        // }else{ // quero todos os comentários
+        //     $comentarioComum = $comentario->SelecionarComentariosUserComum($_GET['pagina']); // quero todos os comenatários
+        //     if(empty($comentarioComum) AND (isset($tipoUsu) AND $tipoUsu == 'Comum' )){
+        //         $complemento = "";
+        //     }else if(!empty($comentarioComum)){
+        //         $complemento = "Comentários";
+        //     }else{
+        //         $complemento = "";
+        //     }            
+        //     $_GET['IdComen'] = "";
+        // }
+        // $quantidadePaginas = $comentario->getQuantidadePaginas();
+        // $pagina = $comentario->getPaginaAtual(); 
         
 ?>
 <!DOCTYPE html>
@@ -492,11 +495,11 @@
         $erro = $exc->getCode();   
         $mensagem = $exc->getMessage();  
         switch($erro){
-            case 9://Não foi possivel achar a publicacao  
-                echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes.php';</script>";
-                break; 
-            default: //Qualquer outro erro cai aqui
-                echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes.php';</script>";
+            // case 9://Não foi possivel achar a publicacao  
+            //     echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes.php';</script>";
+            //     break; 
+            // default: //Qualquer outro erro cai aqui
+            //     echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes.php';</script>";
         }   
     }  
 ?>

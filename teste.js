@@ -3,7 +3,7 @@ function jaca(){
     var jaq;
     $.ajax({
 
-        url: '../Notificacoes.php',
+        url: 'Notificacoes.php',
 
         success: function(data){            
             //$('#lista').html(data);
@@ -18,7 +18,7 @@ function escreverNoti(resposta){
         document.getElementById('menu23').innerHTML = "<div class='empty-state gamb' style='padding-bottom:50px;'>\
         <div>\
             <div>\
-               <img src='imagens/notifica-sem.png' style='display:block; margin:0 auto; height:100%; width:50%;'>\
+               <img src='view/imagens/notifica-sem.png' style='display:block; margin:0 auto; height:100%; width:50%;'>\
             </div>\
             <div>\
                 <p>Você não tem nenhuma notificação, continue navegando, pode chegar uma mais tarde!</p>\
@@ -30,7 +30,7 @@ function escreverNoti(resposta){
         document.getElementById('menu23').innerHTML = "<div class='empty-state gamb' style='padding-bottom:50px;'>\
         <div>\
             <div>\
-               <img src='imagens/notifica-sem.png' style='display:block; margin:0 auto; height:100%; width:50%;'>\
+               <img src='view/imagens/notifica-sem.png' style='display:block; margin:0 auto; height:100%; width:50%;'>\
             </div>\
             <div>\
                 <p>Você precisa fazer login para acessar as notificações</p>\

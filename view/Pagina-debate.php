@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once('../Config/Config.php');
+    require_once('Config/Config.php');
     require_once(SITE_ROOT.DS.'autoload.php');   
     
     use Core\Usuario;    
@@ -17,7 +17,13 @@
             $dados->setCodUsu($_SESSION['id_user']); 
             $resultado = $dados->getDadosUser();
         }
-
+        
+        $dadosUrl = explode('/', $_GET['url']);
+        if(!isset($dadosUrl[1])){
+            throw new \Exception('Não foi possível achar o debate',9);
+        }
+        $voltar = '../';
+        $_GET['ID'] = $dadosUrl[1]; // passando o id pra variavel GET
         $nomesCampos = array('ID');// Nomes dos campos que receberei da URL    
         $validar = new ValidarCampos($nomesCampos, $_GET);
         $validar->verificarTipoInt($nomesCampos, $_GET); // Verificar se o parametro da url é um numero        
@@ -37,13 +43,20 @@
             $link = '../InserirParticipante.php';
         }        
 
-        if(isset($_GET['com'])){                            
-            if(isset($_SESSION['id_user'])){                
+        if(isset($dadosUrl[2])){
+            $voltar .= '../';      
+            if(isset($_SESSION['id_user'])){ 
+                $_GET['com'] = $dadosUrl[2];  
+                        
                 $visualizar = new VisualizarNotificacao();                
                 $idNoti = $_GET['ID'];                
                 $visualizar->visualizarNotificacao($_GET['com'], $idNoti, $_SESSION['id_user']);
             }                  
         }   
+
+        if(isset($dadosUrl[3])){ //não pode ter mais de dois parametros
+            throw new \Exception('Não foi possível achar o debate',9);
+        }
        
 ?>
 <!DOCTYPE html>
@@ -59,31 +72,31 @@
         <meta name="theme-color" content="#089E8E" />
 
         <!-- favicon, arquivo de imagem podendo ser 8x8 - 16x16 - 32x32px com extensão .ico -->
-        <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="<?php echo $voltar ?>imagens/favicon.ico" type="image/x-icon">
 
         <!-- CSS PADRÃO -->
-        <link href="css/default.css" rel=stylesheet>
+        <link href="<?php echo $voltar ?>view/css/default.css" rel=stylesheet>
 
         <!-- Telas Responsivas -->
-        <link rel=stylesheet media="screen and (max-width:480px)" href="css/style480.css">
-        <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)" href="css/style768.css">
-        <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)" href="css/style1024.css">
-        <link rel=stylesheet media="screen and (min-width:1025px)" href="css/style1025.css">
+        <link rel=stylesheet media="screen and (max-width:480px)" href="<?php echo $voltar ?>view/css/style480.css">
+        <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)" href="<?php echo $voltar ?>view/css/style768.css">
+        <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)" href="<?php echo $voltar ?>view/css/style1024.css">
+        <link rel=stylesheet media="screen and (min-width:1025px)" href="<?php echo $voltar ?>view/css/style1025.css">
 
         <!-- JS-->
 
-        <script src="lib/_jquery/jquery.js"></script>
-        <script src="js/js.js"></script>
-        <script src="../teste.js"></script>
+        <script src="<?php echo $voltar ?>view/lib/_jquery/jquery.js"></script>
+        <script src="<?php echo $voltar ?>view/js/js.js"></script>
+        <script src="<?php echo $voltar ?>teste.js"></script>
 
     </head>
     <body style="background-color:white">
         <header>
-            <a href="todasreclamacoes.php">
-                <img src="imagens/logo_oficial.png" alt="logo">
+            <a href="<?php echo $voltar ?>todasreclamacoes">
+                <img src="<?php echo $voltar ?>view/imagens/logo_oficial.png" alt="logo">
             </a>   
             <i class="icone-pesquisa pesquisa-mobile" id="abrir-pesquisa"></i>
-            <form action="pesquisa.php" method="get" id="form-pesquisa">
+            <form action="pesquisa" method="post" id="form-pesquisa">
                 <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar">
                 <button type="submit"><i class="icone-pesquisa"></i></button>
             </form>
@@ -96,13 +109,13 @@
                             <li>
                         </ul>
                     </nav><a href="#" id="abrir-not"><i class="icone-notificacao" id="noti"></i>Notificações</a></li>
-                    <li><a href="todasreclamacoes.php"><i class="icone-reclamacao"></i>Reclamações</a></li>
-                    <li><a href="todosdebates.php"><i class="icone-debate"></i>Debates</a></li>
+                    <li><a href="<?php echo $voltar ?>todasreclamacoes"><i class="icone-reclamacao"></i>Reclamações</a></li>
+                    <li><a href="<?php echo $voltar ?>todosdebates"><i class="icone-debate"></i>Debates</a></li>
                 </ul>
             </nav>
             <?php
                 if(!isset($resultado)){
-                    echo '<a href="login.php"><i class="icone-user" id="abrir"></i></a>';
+                    echo '<a href="'.$voltar.'login"><i class="icone-user" id="abrir"></i></a>';
                 }else{
                     echo '<i class="icone-user" id="abrir"></i>';
                 }
@@ -122,9 +135,9 @@
                     <a href="javascript:void(0)" class="fechar">&times;</a>
                     <div class="mini-perfil">
                         <div>    
-                            <img src="../Img/perfil/<?php echo $resultado[0]['img_perfil_usu'] ?>" alt="perfil">
+                            <img src="<?php echo $voltar ?>Img/perfil/<?php echo $resultado[0]['img_perfil_usu'] ?>" alt="perfil">
                         </div>    
-                            <img src="../Img/capa/<?php echo $resultado[0]['img_capa_usu'] ?>" alt="capa">
+                            <img src="<?php echo $voltar ?>Img/capa/<?php echo $resultado[0]['img_capa_usu'] ?>" alt="capa">
                             <p><?php echo $resultado[0]['nome_usu'] ?></p>
                     </div>
                     <<nav>
@@ -145,7 +158,7 @@
                         <div class="publicacao-topo-aberta">
                             <a href="">
                             <div>
-                                <img src="../Img/perfil/<?php echo $resposta[0]['img_perfil_usu']?>">
+                                <img src="<?php echo $voltar ?>Img/perfil/<?php echo $resposta[0]['img_perfil_usu']?>">
                             </div>
                             <p><span class="negrito"><?php echo $resposta[0]['nome_usu']?></span></a><time><?php echo $resposta[0]['dataHora_deba']?></time></p>
                             <div class="mini-menu-item ">
@@ -168,10 +181,10 @@
                                         ?>
                                         <?php
                                             if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $resposta[0]['cod_usu']){
-                                                echo '<li><a href="../ApagarDebate.php?ID='.$resposta[0]['cod_deba'].'"><i class="icone-fechar"></i></i>Remover</a></li>';
+                                                echo '<li><a href="ApagarDebate.php?ID='.$resposta[0]['cod_deba'].'"><i class="icone-fechar"></i></i>Remover</a></li>';
                                                 echo '<li><a href="debate-update.php?ID='.$resposta[0]['cod_deba'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';                                                    
                                             }else if(isset($tipoUsu) AND ($tipoUsu == 'Adm' or $tipoUsu == 'Moderador')){
-                                                echo '<li><a href="../ApagarDebate.php?ID='.$resposta[0]['cod_deba'].'"><i class="icone-fechar"></i></i>Remover</a></li>';
+                                                echo '<li><a href="ApagarDebate.php?ID='.$resposta[0]['cod_deba'].'"><i class="icone-fechar"></i></i>Remover</a></li>';
                                                 // Icone para apagar usuaario
                                                 //echo '<a href="../ApagarUsuario.php?ID='.$resposta[0]['cod_usu'].'">Apagar Usuario</a>';                                                       
                                                 echo '<li><a href="debate-update.php?ID='.$resposta[0]['cod_deba'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';                                                    
@@ -202,7 +215,7 @@
                             </div>
                         </div>
                         <div class="publicacao-conteudo-debate">
-                            <img src="../Img/debate/<?php echo $resposta[0]['img_deba']?>">
+                            <img src="<?php echo $voltar ?>Img/debate/<?php echo $resposta[0]['img_deba']?>">
                         </div>        
                     </div>
                     <div class="debate-publicacao">    

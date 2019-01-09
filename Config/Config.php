@@ -7,6 +7,6 @@ if(!defined('ROOT')){
     define('ROOT',str_replace('/','\\',$_SERVER['DOCUMENT_ROOT']));
 }
 if(!defined('SITE_ROOT')){
-    define('SITE_ROOT',ROOT.DS.'RepositorioTCC' .DIRECTORY_SEPARATOR. 'TCC');
+    define('SITE_ROOT',ROOT.DS.'RepositorioTcc' .DIRECTORY_SEPARATOR. 'TCC');
 }
 

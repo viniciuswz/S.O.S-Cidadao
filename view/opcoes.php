@@ -1,5 +1,5 @@
 <li><a id="idPerfilUsu" href="perfil_reclamacao.php?ID=<?php echo $_SESSION['id_user']?>"><i class="icone-user"></i>Meu perfil</a></li>
-<li><a href="salvos.php"><i class="icone-salvar"></i>Salvos</a></li>
+<li><a href="salvos"><i class="icone-salvar"></i>Salvos</a></li>
     <hr>
 <?php
 switch($resultado[0]['descri_tipo_usu']){
@@ -23,6 +23,6 @@ switch($resultado[0]['descri_tipo_usu']){
         break;
 }
 ?>
-<li><a href="configuracoes.php"><i class="icone-config"></i>Configurações</a></li>
-<li><a href="../Sair.php"><i class="icone-logout"></i>Log out</a></li>
+<li><a href="configuracoes"><i class="icone-config"></i>Configurações</a></li>
+<li><a href="Sair.php"><i class="icone-logout"></i>Log out</a></li>
    
