@@ -24,7 +24,7 @@ try{
     $debate->updateDebate();
       
     $_SESSION['atu'] = 1;
-    echo "<script>javascript:window.location='./view/Pagina-debate.php?ID=".$_POST['ID']."&atu=1';</script>";
+    echo "<script>javascript:window.location='Pagina-debate/".$_POST['ID']."/1';</script>";
         
 }catch(Exception $exc){
     $erro = $exc->getCode();   

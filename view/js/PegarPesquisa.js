@@ -155,7 +155,7 @@ function teste2(resposta){
                             </div>';                            
                         mensa +='</div>\
                     </div>\
-                    <a href="reclamacao.php?ID='+arr1[contador]['cod_publi']+'">';                          
+                    <a href="reclamacao/'+arr1[contador]['cod_publi']+'">';                          
                     if(arr1[contador]['img_publi'] != ""){                            
                         mensa += '<figure>\
                         <img src=Img/publicacao/'+arr1[contador]['img_publi']+'> \
@@ -198,7 +198,7 @@ function teste2(resposta){
                             </div>';                            
                     mensa+='</div>\
                     </div>\
-                    <a href="Pagina-debate.php?ID='+arr1[contador]['cod_deba']+'">\
+                    <a href="Pagina-debate/'+arr1[contador]['cod_deba']+'">\
                         <figure>\
                             <img src="Img/debate/'+arr1[contador]['img_deba']+'">\
                         </figure>\

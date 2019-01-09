@@ -19,10 +19,15 @@
         }
         
         $dadosUrl = explode('/', $_GET['url']);
-        if(!isset($dadosUrl[1])){
+
+        if(count($dadosUrl) > 3){ // injetou parametros
+            throw new \Exception('Não foi possível achar o debate',45);
+        }else if(!isset($dadosUrl[1])){ // não digitou o id
             throw new \Exception('Não foi possível achar o debate',9);
         }
+
         $voltar = '../';
+        
         $_GET['ID'] = $dadosUrl[1]; // passando o id pra variavel GET
         $nomesCampos = array('ID');// Nomes dos campos que receberei da URL    
         $validar = new ValidarCampos($nomesCampos, $_GET);
@@ -45,18 +50,16 @@
 
         if(isset($dadosUrl[2])){
             $voltar .= '../';      
-            if(isset($_SESSION['id_user'])){ 
-                $_GET['com'] = $dadosUrl[2];  
-                        
+            if(is_numeric($dadosUrl[2]) AND $dadosUrl[2] == 1){ // se o segundo parametro for 1 é pq o debate foi atualizado
+                $_GET['atu'] = 1;
+            }else if(isset($_SESSION['id_user'])){ // notificação referente ao debate 
+                $_GET['com'] = $dadosUrl[2];                          
                 $visualizar = new VisualizarNotificacao();                
                 $idNoti = $_GET['ID'];                
                 $visualizar->visualizarNotificacao($_GET['com'], $idNoti, $_SESSION['id_user']);
             }                  
         }   
 
-        if(isset($dadosUrl[3])){ //não pode ter mais de dois parametros
-            throw new \Exception('Não foi possível achar o debate',9);
-        }
        
 ?>
 <!DOCTYPE html>
@@ -72,7 +75,7 @@
         <meta name="theme-color" content="#089E8E" />
 
         <!-- favicon, arquivo de imagem podendo ser 8x8 - 16x16 - 32x32px com extensão .ico -->
-        <link rel="shortcut icon" href="<?php echo $voltar ?>imagens/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="<?php echo $voltar ?>view/imagens/favicon.ico" type="image/x-icon">
 
         <!-- CSS PADRÃO -->
         <link href="<?php echo $voltar ?>view/css/default.css" rel=stylesheet>
@@ -96,7 +99,7 @@
                 <img src="<?php echo $voltar ?>view/imagens/logo_oficial.png" alt="logo">
             </a>   
             <i class="icone-pesquisa pesquisa-mobile" id="abrir-pesquisa"></i>
-            <form action="pesquisa" method="post" id="form-pesquisa">
+            <form action="<?php echo $voltar ?>pesquisa" method="post" id="form-pesquisa">
                 <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar">
                 <button type="submit"><i class="icone-pesquisa"></i></button>
             </form>
@@ -124,7 +127,6 @@
                     echo '<script>alerta("Certo","Atualizado")</script>';
                     unset($_SESSION['atu']);
                 }
-        
         
             ?>
         </header>
@@ -181,13 +183,13 @@
                                         ?>
                                         <?php
                                             if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $resposta[0]['cod_usu']){
-                                                echo '<li><a href="ApagarDebate.php?ID='.$resposta[0]['cod_deba'].'"><i class="icone-fechar"></i></i>Remover</a></li>';
-                                                echo '<li><a href="debate-update.php?ID='.$resposta[0]['cod_deba'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';                                                    
+                                                echo '<li><a href="'.$voltar.'ApagarDebate.php?ID='.$resposta[0]['cod_deba'].'"><i class="icone-fechar"></i></i>Remover</a></li>';
+                                                echo '<li><a href="'.$voltar.'debate-update/'.$resposta[0]['cod_deba'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';                                                    
                                             }else if(isset($tipoUsu) AND ($tipoUsu == 'Adm' or $tipoUsu == 'Moderador')){
-                                                echo '<li><a href="ApagarDebate.php?ID='.$resposta[0]['cod_deba'].'"><i class="icone-fechar"></i></i>Remover</a></li>';
+                                                echo '<li><a href="'.$voltar.'ApagarDebate.php?ID='.$resposta[0]['cod_deba'].'"><i class="icone-fechar"></i></i>Remover</a></li>';
                                                 // Icone para apagar usuaario
                                                 //echo '<a href="../ApagarUsuario.php?ID='.$resposta[0]['cod_usu'].'">Apagar Usuario</a>';                                                       
-                                                echo '<li><a href="debate-update.php?ID='.$resposta[0]['cod_deba'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';                                                    
+                                                echo '<li><a href="'.$voltar.'debate-update/'.$resposta[0]['cod_deba'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';                                                    
                                             }
                                         ?> 
                                     </ul>
@@ -250,10 +252,20 @@
         $mensagem = $exc->getMessage();  
         switch($erro){
             case 9://Não foi possivel achar a publicacao  
-                echo "<script> alert('$mensagem');javascript:window.location='todosdebates.php';</script>";
+                echo "<script> alert('$mensagem');javascript:window.location='".$voltar."todosdebates';</script>";
                 break; 
+            case 45://Digitou um numero maior de parametros 
+                unset($dadosUrl[0]);
+                $contador = 1;
+                $voltar = "";
+                while($contador <= count($dadosUrl)){
+                    $voltar .= "../";
+                    $contador++;
+                }
+                echo "<script> alert('$mensagem');javascript:window.location='".$voltar."todosdebates';</script>";
+                break;
             default: //Qualquer outro erro cai aqui
-                echo "<script> alert('$mensagem');javascript:window.location='todosdebates.php';</script>";
+                echo "<script> alert('$mensagem');javascript:window.location='".$voltar."todosdebates';</script>";
         }   
     }  
 ?>

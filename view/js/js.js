@@ -1461,7 +1461,7 @@ jQuery(function($){
                   data: "email="+email+"&senha="+senha+"&nome="+user,
                   success:function(result){
                       if(result=="1"){
-                          location.href="Pagina-agradecimento.php";
+                          location.href="Pagina-agradecimento";
                       }else{
                         $("#email").parent().find("label").css("background-color" , 'rgba(256,000,000)');
                         $("#email").css("border-color" , 'rgba(256,000,000)');

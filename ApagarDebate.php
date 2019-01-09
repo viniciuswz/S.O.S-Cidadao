@@ -21,7 +21,7 @@ try{
     $publi->updateStatusDeba('I');
 
     $_SESSION['atu'] = 1;   
-    echo "<script>javascript:window.location='./view/todosdebates.php?atu=1';</script>";    
+    echo "<script>javascript:window.location='todosdebates';</script>";    
         
 }catch(Exception $exc){  
     $erro = $exc->getCode();   

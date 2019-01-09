@@ -11,7 +11,17 @@
     try{        
         $publi = new Publicacao();
         $comentario = new Comentario();
-       
+        
+        $dados = explode('/',$_GET['url']);
+        //var_dump($dados);     
+        if(!isset($dados[1])){
+            throw new \Exception('Não foi possível achar o debate',9);
+        }  
+        $voltar = "../";
+
+        $_GET['ID'] = $dados[1];
+
+
         if(isset($_SESSION['id_user']) AND !empty($_SESSION['id_user'])){
             $publi->setCodUsu($_SESSION['id_user']);
             $comentario->setCodUsu($_SESSION['id_user']);
@@ -28,14 +38,12 @@
 
             $dadosPrefei = $dados->getDadosUsuByTipoUsu(array('Prefeitura'));   
             
-        }             
+        }      
         
         $nomesCampos = array('ID');// Nomes dos campos que receberei da URL    
-        //$validar = new ValidarCampos($nomesCampos, $_GET);
-        //$validar->verificarTipoInt($nomesCampos, $_GET); // Verificar se o parametro da url é um numero        
-        $dados = explode('/',$_GET['url']);
-        var_dump($dados);
-        $_GET['ID'] = str_replace("ID=",'',$dados[1]); // gambi aqui
+        $validar = new ValidarCampos($nomesCampos, $_GET);
+        $validar->verificarTipoInt($nomesCampos, $_GET); // Verificar se o parametro da url é um numero           
+        
 
         $publi->setCodPubli($_GET['ID']);
         $comentario->setCodPubli($_GET['ID']);             
@@ -43,40 +51,46 @@
         isset($_GET['pagina']) ?: $_GET['pagina'] = null;  
         
         $resposta = $publi->listByIdPubli(); 
-        // $comentarioPrefei = $comentario->SelecionarComentariosUserPrefei(TRUE);        
+        $comentarioPrefei = $comentario->SelecionarComentariosUserPrefei(TRUE);        
                    
-        // if(isset($_GET['com'])){                            
-        //     if(isset($_SESSION['id_user'])){                
-        //         $visualizar = new VisualizarNotificacao();
-        //         if(isset($_GET['IdComen'])){
-        //             $idNoti = $_GET['IdComen'];
-        //             $comentario->setCodComen($idNoti);
-        //             $comentarioComum = $comentario->getDadosComenByIdComen(); // preciso do comenantario denunciado                    
-        //         }else{                                        
-        //             $idNoti = $_GET['ID'];
-        //         }
-        //         $visualizar->visualizarNotificacao($_GET['com'], $idNoti, $_SESSION['id_user']);
-        //     }                  
-        // }
+        if(isset($_GET['com'])){       
+            $voltar .= "../";                     
+            if(isset($_SESSION['id_user'])){                
+                $visualizar = new VisualizarNotificacao();
+                if(isset($_GET['IdComen'])){
+                    $idNoti = $_GET['IdComen'];
+                    $comentario->setCodComen($idNoti);
+                    $comentarioComum = $comentario->getDadosComenByIdComen(); // preciso do comenantario denunciado                    
+                }else{                                        
+                    $idNoti = $_GET['ID'];
+                }
+                $visualizar->visualizarNotificacao($_GET['com'], $idNoti, $_SESSION['id_user']);
+            }                  
+        }
 
-        // if(isset($_SESSION['id_user']) AND isset($_GET['IdComen']) AND isset($tipoUsu) AND ($tipoUsu == 'Adm' OR $tipoUsu == 'Moderador')){
-        //     $idNoti = $_GET['IdComen'];
-        //     $comentario->setCodComen($idNoti);
-        //     //$comentarioComum = $comentario->getDadosComenByIdComen(); // preciso do comenantario denunciado  
-        //     $complemento = "Comentário Denunciado: ";
-        // }else{ // quero todos os comentários
-        //     $comentarioComum = $comentario->SelecionarComentariosUserComum($_GET['pagina']); // quero todos os comenatários
-        //     if(empty($comentarioComum) AND (isset($tipoUsu) AND $tipoUsu == 'Comum' )){
-        //         $complemento = "";
-        //     }else if(!empty($comentarioComum)){
-        //         $complemento = "Comentários";
-        //     }else{
-        //         $complemento = "";
-        //     }            
-        //     $_GET['IdComen'] = "";
-        // }
-        // $quantidadePaginas = $comentario->getQuantidadePaginas();
-        // $pagina = $comentario->getPaginaAtual(); 
+        if(isset($_SESSION['id_user']) AND isset($_GET['IdComen']) AND isset($tipoUsu) AND ($tipoUsu == 'Adm' OR $tipoUsu == 'Moderador')){
+            $voltar = "../";
+            $idNoti = $_GET['IdComen'];
+            $comentario->setCodComen($idNoti);
+            //$comentarioComum = $comentario->getDadosComenByIdComen(); // preciso do comenantario denunciado  
+            $complemento = "Comentário Denunciado: ";
+        }else{ // quero todos os comentários
+            $comentarioComum = $comentario->SelecionarComentariosUserComum($_GET['pagina']); // quero todos os comenatários
+            if(empty($comentarioComum) AND (isset($tipoUsu) AND $tipoUsu == 'Comum' )){
+                $complemento = "";
+            }else if(!empty($comentarioComum)){
+                $complemento = "Comentários";
+            }else{
+                $complemento = "";
+            }            
+            $_GET['IdComen'] = "";
+        }
+        $quantidadePaginas = $comentario->getQuantidadePaginas();
+        $pagina = $comentario->getPaginaAtual(); 
+
+        if(isset($dadosUrl[4])){ //não pode ter mais de tres parametros
+            throw new \Exception('Não foi possível achar o debate',9);
+        }
         
 ?>
 <!DOCTYPE html>
@@ -92,23 +106,23 @@
         <meta name="theme-color" content="#089E8E" />
 
         <!-- favicon, arquivo de imagem podendo ser 8x8 - 16x16 - 32x32px com extensão .ico -->
-        <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="<?php echo $voltar ?>view/imagens/favicon.ico" type="image/x-icon">
 
         <!-- CSS PADRÃO -->
-        <link href="css/default.css" rel=stylesheet>
+        <link href="<?php echo $voltar ?>view/css/default.css" rel=stylesheet>
 
         <!-- Telas Responsivas -->
-        <link rel=stylesheet media="screen and (max-width:480px)" href="css/style480.css">
-        <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)" href="css/style768.css">
-        <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)" href="css/style1024.css">
-        <link rel=stylesheet media="screen and (min-width:1025px)" href="css/style1025.css">
+        <link rel=stylesheet media="screen and (max-width:480px)" href="<?php echo $voltar ?>view/css/style480.css">
+        <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)" href="<?php echo $voltar ?>view/css/style768.css">
+        <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)" href="<?php echo $voltar ?>view/css/style1024.css">
+        <link rel=stylesheet media="screen and (min-width:1025px)" href="<?php echo $voltar ?>view/css/style1025.css">
 
         <!-- JS-->
 
-        <script src="lib/_jquery/jquery.js"></script>
-        <script src="js/js.js"></script>
-        <script src="js/PegarComen.js"></script>
-        <script src="../teste.js"></script>
+        <script src="<?php echo $voltar ?>view/lib/_jquery/jquery.js"></script>
+        <script src="<?php echo $voltar ?>view/js/js.js"></script>
+        <script src="<?php echo $voltar ?>view/js/PegarComen.js"></script>
+        <script src="<?php echo $voltar ?>teste.js"></script>
         <!-- <script>
             $("document").ready(function(){
                 $("title").text($(".publicacao-conteudo").find("h2").text() +" "+ "em Barueri")
@@ -121,11 +135,11 @@
     </head>
     <body style="background-color:white" onload="jaquinha()">
         <header>
-            <a href="todasreclamacoes.php">
-                <img src="imagens/logo_oficial.png" alt="logo">
+            <a href="<?php echo $voltar ?>todasreclamacoes">
+                <img src="<?php echo $voltar ?>view/imagens/logo_oficial.png" alt="logo">
             </a>   
             <i class="icone-pesquisa pesquisa-mobile" id="abrir-pesquisa"></i>
-            <form action="pesquisa.php" method="get" id="form-pesquisa">
+            <form action="<?php echo $voltar ?>pesquisa" method="post" id="form-pesquisa">
                 <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar">                
                 <button type="submit"><i class="icone-pesquisa"></i></button>
             </form>
@@ -138,13 +152,13 @@
                             <li>
                         </ul>
                     </nav><a href="#" id="abrir-not"><i class="icone-notificacao" id="noti"></i>Notificações</a></li>
-                    <li><a href="todasreclamacoes.php"><i class="icone-reclamacao"></i>Reclamações</a></li>
-                    <li><a href="todosdebates.php"><i class="icone-debate"></i>Debates</a></li>
+                    <li><a href="<?php echo $voltar ?>todasreclamacoes"><i class="icone-reclamacao"></i>Reclamações</a></li>
+                    <li><a href="<?php echo $voltar ?>todosdebates"><i class="icone-debate"></i>Debates</a></li>
                 </ul>            
             </nav>  
             <?php
                 if(!isset($resultado)){
-                    echo '<a href="login.php"><i class="icone-user" id="abrir"></i></a>';
+                    echo '<a href="'.$voltar.'login"><i class="icone-user" id="abrir"></i></a>';
                 }else{
                     echo '<i class="icone-user" id="abrir"></i>';
                 }

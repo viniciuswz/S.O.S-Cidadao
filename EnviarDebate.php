@@ -21,7 +21,7 @@ try{
     $debate->setCodUsu($_SESSION['id_user']);
     $debate->insert();   
     $idDeba = $debate->getCodDeba(); // Pegar o codigo inserido, que a classe setou
-    echo "<script> javascript:window.location='./view/Pagina-debate.php?ID=".$idDeba."'</script>";
+    echo "<script> javascript:window.location='Pagina-debate/".$idDeba."'</script>";
     
 }catch (Exception $exc){
     $erro = $exc->getCode();   

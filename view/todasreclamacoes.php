@@ -14,6 +14,11 @@
             $dados->setCodUsu($_SESSION['id_user']);
             $resultado = $dados->getDadosUser();
         }    
+
+        $dadosUrl = explode('/', $_GET['url']);
+        if(count($dadosUrl) > 1){ // injetou parametros
+            throw new \Exception('Não foi possível achar o debate',45);
+        }
         //isset($_GET['pagina']) ?: $_GET['pagina'] = null;    
                    
         //$resposta = $publi->ListFromALL($_GET['pagina']);        
@@ -82,8 +87,8 @@
             ?>
         </header>
         <?php
-            if(isset($_GET['atu']) AND !empty($_SESSION['atu'])){
-                if($_GET['atu'] == '1'){
+            if(!empty($_SESSION['atu'])){
+                if($_SESSION['atu'] == '1'){
                     echo '<script>alerta("Certo","Você apagou a reclamação")</script>';
                 }                
                 unset($_SESSION['atu']);
@@ -150,6 +155,19 @@
 </html>
 <?php
 }catch (Exception $exc){
-         echo $exc->getMessage();
+    $erro = $exc->getCode();   
+    $mensagem = $exc->getMessage();
+    switch($erro){
+        case 45://Digitou um numero maior de parametros 
+            unset($dadosUrl[0]);
+            $contador = 1;
+            $voltar = "";
+            while($contador <= count($dadosUrl)){
+                $voltar .= "../";
+                $contador++;
+            }
+            echo "<script>javascript:window.location='".$voltar."todasreclamacoes';</script>";
+        break;
+    }
 }
 ?>

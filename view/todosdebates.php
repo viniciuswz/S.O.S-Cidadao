@@ -15,6 +15,10 @@ session_start();
             $dados->setCodUsu($_SESSION['id_user']);
             $resultado = $dados->getDadosUser();
         } 
+        $dadosUrl = explode('/', $_GET['url']);
+        if(count($dadosUrl) > 1){ // injetou parametros
+            throw new \Exception('Não foi possível achar o debate',45);
+        }
         //isset($_GET['pagina']) ?: $_GET['pagina'] = null;        
         
         //$resposta = $debate->ListFromALL($_GET['pagina']);       
@@ -34,7 +38,7 @@ session_start();
     <meta name="theme-color" content="#089E8E" />
     
     <!-- favicon, arquivo de imagem podendo ser 8x8 - 16x16 - 32x32px com extensão .ico -->
-    <link rel="shortcut icon" href="view/imagens/favicon.ico" type="view/image/x-icon">
+    <link rel="shortcut icon" href="view/imagens/favicon.ico" type="image/x-icon">
     
     <!-- CSS PADRÃO -->
     <link href="view/css/default.css" rel=stylesheet>
@@ -85,10 +89,10 @@ session_start();
         ?>
         </header>
         <?php
-            if(isset($_GET['atu']) AND !empty($_SESSION['atu'])){
-                if($_GET['atu'] == '1'){
+            if(!empty($_SESSION['atu'])){
+                if($_SESSION['atu'] == '1'){
                     echo '<script>alerta("Certo","Você apagou o debate")</script>';
-                }else if($_GET['atu'] == '2'){
+                }else if($_SESSION['atu'] == '2'){
                     echo '<script>alerta("Certo","Você saiu do debate")</script>';
                 }
                 
@@ -248,6 +252,19 @@ session_start();
 </html>
 <?php
 }catch (Exception $exc){
-         
+    $erro = $exc->getCode();   
+    $mensagem = $exc->getMessage();
+    switch($erro){
+        case 45://Digitou um numero maior de parametros 
+            unset($dadosUrl[0]);
+            $contador = 1;
+            $voltar = "";
+            while($contador <= count($dadosUrl)){
+                $voltar .= "../";
+                $contador++;
+            }
+            echo "<script>javascript:window.location='".$voltar."todosdebates';</script>";
+        break;
+    }
 }
 ?>

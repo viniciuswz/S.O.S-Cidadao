@@ -19,6 +19,17 @@ session_start();
             $resultado = $dados->getDadosUser();
             $pes->setCodUsu($_SESSION['id_user']);
         }           
+        $dadosUrl = explode('/', $_GET['url']);
+
+        if(count($dadosUrl) > 1){ // injetou parametros
+            throw new \Exception('Não foi possível fazer a pesquisa',45);
+        }
+        if(!isset($_POST['pesquisa'])){
+            $_POST['pesquisa'] = '';
+        }
+        
+
+
         $_GET['pesquisa'] = $_POST['pesquisa']; // tive q mandar por post
 
         $_GET['pesquisa'] = str_replace("+"," ", $_GET['pesquisa']);
@@ -177,9 +188,10 @@ session_start();
                             </label>
                             <?php
                                 if(isset($_GET['pesquisa'])){
-                                    $pl = strtolower(preg_replace( '/[`,^~\'"]/', null, iconv( 'UTF-8', 'ASCII//TRANSLIT', $_GET['pesquisa'] )));   
-                                    $pl = filter_var($pl, FILTER_SANITIZE_STRING);   
-                                    echo '<input type="hidden" name="pesquisa" value='.urlencode($pl).'>';
+                                    //$pl = strtolower(preg_replace( '/[`,^~\'"]/', null, iconv( 'UTF-8', 'ASCII//TRANSLIT', $_GET['pesquisa'] )));   
+                                    //$pl = filter_var($pl, FILTER_SANITIZE_STRING);   
+                                    //echo '<input type="hidden" name="pesquisa" value='.urlencode($pl).'>';
+                                    echo '<input type="hidden" name="pesquisa" value='.$_POST['pesquisa'].'>';
                                 }
                             ?>
 
@@ -213,7 +225,21 @@ session_start();
 </html>
 <?php
 }catch (Exception $exc){
-         echo $exc->getMessage();
+    $erro = $exc->getCode();   
+        $mensagem = $exc->getMessage();  
+        switch($erro){           
+            case 45://Digitou um numero maior de parametros 
+                unset($dadosUrl[0]);
+                $contador = 1;
+                $voltar = "";
+                while($contador <= count($dadosUrl)){
+                    $voltar .= "../";
+                    $contador++;
+                }
+                echo "<script>javascript:window.location='".$voltar."pesquisa';</script>";
+                break;
+           
+        }   
 }
 
 ?>
