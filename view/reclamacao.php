@@ -59,18 +59,20 @@
             $_GET['com'] = $dadosUrl[2];       
             $voltar .= "../";                     
             $numVoltar++;
-            if(isset($_SESSION['id_user'])){                
+           
+            if(isset($dadosUrl[3])){ // comentario denunciado                    
+                $voltar .="../";
+                $numVoltar++;
+                $_GET['IdComen'] = $dadosUrl[3];                                 
+            }else{                                        
+                $idNoti = $_GET['ID'];
+            }
+
+            if(isset($_SESSION['id_user'])){                                
                 $visualizar = new VisualizarNotificacao();
-                if(isset($dadosUrl[3])){ // comentario denunciado
-                    $voltar .="../";
-                    $numVoltar++;
-                    $_GET['IdComen'] = $dadosUrl[3];
-                    $idNoti = $dadosUrl[3];
-                    $comentario->setCodComen($idNoti);
-                    $comentarioComum = $comentario->getDadosComenByIdComen(); // preciso do comenantario denunciado                    
-                }else{                                        
-                    $idNoti = $_GET['ID'];
-                }
+                $idNoti = $dadosUrl[3];
+                $comentario->setCodComen($idNoti);
+                $comentarioComum = $comentario->getDadosComenByIdComen(); // preciso do comenantario denunciado   
                 $visualizar->visualizarNotificacao($_GET['com'], $idNoti, $_SESSION['id_user']);
             }                  
         }
@@ -91,9 +93,7 @@
             }            
             $_GET['IdComen'] = "";
         }
-       
-
-       
+        
 ?>
 <!DOCTYPE html>
 <html lang=pt-br>
@@ -395,13 +395,23 @@
 <?php
 }catch (Exception $exc){
         $erro = $exc->getCode();   
-        echo $mensagem = $exc->getMessage();  
+        $mensagem = $exc->getMessage();  
         switch($erro){
-            // case 9://Não foi possivel achar a publicacao  
-            //     echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes.php';</script>";
-            //     break; 
-            // default: //Qualquer outro erro cai aqui
-            //     echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes.php';</script>";
+            case 9://Não foi possivel achar a publicacao  
+                echo "<script> alert('$mensagem');javascript:window.location='".$voltar."todasreclamacoes';</script>";
+                break; 
+            case 45://Digitou um numero maior de parametros 
+                unset($dadosUrl[0]);
+                $contador = 1;
+                $voltar = "";
+                while($contador <= count($dadosUrl)){
+                    $voltar .= "../";
+                    $contador++;
+                }
+                echo "<script> alert('$mensagem');javascript:window.location='".$voltar."todasreclamacoes';</script>";
+                break;
+            default: //Qualquer outro erro cai aqui
+                echo "<script> alert('$mensagem');javascript:window.location='".$voltar."todasreclamacoes';</script>";
         }   
     }  
 ?>

@@ -48,8 +48,8 @@ jQuery(function($)
       type: "get",
       data: "ID="+id,
       success:function(result){
-          if(result == 'NLogado'){ // Nao esta logado, redirecionar pra fazer login
-            location.href="login.php";
+          if(result == 'NLogado'){ // Nao esta ogado, redirecionar pra fazer login
+            location.href= voltar+"login";
             return false;
           }          
           if(classe =="icone-like-full"){
