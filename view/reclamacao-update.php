@@ -316,12 +316,24 @@
         $mensagem = $exc->getMessage();
         switch($erro){
             case 2://Nao esta logado    
-                echo "<script>javascript:window.location='login.php';</script>";
+                echo "<script>javascript:window.location='../login';</script>";
                 break;
             case 6://Não é usuario comum  
-                echo "<script>javascript:window.location='index.php';</script>";
+                echo "<script>javascript:window.location='../todasreclamacoes';</script>";
+            case 25://Não foi possivel achar a publicacao  
+                echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes';</script>";
+                break; 
+            case 45://Digitou um numero maior de parametros 
+               unset($dadosUrl[0]);
+               $contador = 1;
+               $voltar = "";
+               while($contador <= count($dadosUrl)){
+                   $voltar .= "../";
+                   $contador++;
+               }
+                echo "<script> alert('$mensagem');javascript:window.location='".$voltar."todasreclamacoes';</script>";
             default:
-                echo "<script> alert('$mensagem');javascript:window.location='index.php';</script>";
+                echo "<script> alert('$mensagem');javascript:window.location='../todasreclamacoes';</script>";
                 break;            
         }            
     }

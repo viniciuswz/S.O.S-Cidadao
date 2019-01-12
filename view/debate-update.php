@@ -275,7 +275,7 @@
                 echo "<script> alert('$mensagem');javascript:window.location='../todosdebates';</script>";
                 break; 
             case 25://Não foi possivel achar a publicacao  
-                echo "<script> alert('$mensagem');javascript:window.location='../todosdebates';</script>";
+                echo "<script> alert('$mensagem');javascript:window.location='todosdebates';</script>";
                 break; 
             case 45://Digitou um numero maior de parametros 
                unset($dadosUrl[0]);
