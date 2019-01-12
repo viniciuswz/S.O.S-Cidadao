@@ -1,5 +1,5 @@
 <?php
-session_start();
+    session_start();
     require_once('Config/Config.php');
     require_once(SITE_ROOT.DS.'autoload.php');
     
@@ -8,8 +8,8 @@ session_start();
     use Classes\Pesquisa;
     try{
         //Usuario::verificarLogin(1);  // Vai estourar um erro se ele ja estiver logado
-        //$nomesCampos = array('pesquisa');// Nomes dos campos que receberei da URL    
-        //$validar = new ValidarCampos($nomesCampos, $_GET);       
+        $nomesCampos = array('pesquisa');// Nomes dos campos que receberei da URL    
+        $validar = new ValidarCampos($nomesCampos, $_GET);       
         $pes = new Pesquisa();
 
         if(isset($_SESSION['id_user']) AND !empty($_SESSION['id_user'])){           
@@ -19,19 +19,6 @@ session_start();
             $resultado = $dados->getDadosUser();
             $pes->setCodUsu($_SESSION['id_user']);
         }           
-        $dadosUrl = explode('/', $_GET['url']);
-
-        if(count($dadosUrl) > 1){ // injetou parametros
-            throw new \Exception('Não foi possível fazer a pesquisa',45);
-        }
-        if(!isset($_POST['pesquisa'])){
-            $_POST['pesquisa'] = '';
-        }
-        
-
-
-        $_GET['pesquisa'] = $_POST['pesquisa']; // tive q mandar por post
-
         $_GET['pesquisa'] = str_replace("+"," ", $_GET['pesquisa']);
         $_GET['pesquisa'] = str_replace(";","", $_GET['pesquisa']);
         $pes->setTextoPesqui($_GET['pesquisa']);       
@@ -39,8 +26,7 @@ session_start();
         isset($_GET['pagina']) ?: $_GET['pagina'] = null;
         //isset($_GET['tipo']) ?: $_GET['tipo'] = null;
         $parametro = "";
-        if(isset($_POST['tipo'])){            
-            $_GET['tipo'] = $_POST['tipo'];
+        if(isset($_GET['tipo'])){            
             $contador = 1;
             foreach($_GET as $chaves => $valores){    
                     if($chaves == 'tipo'){
@@ -70,12 +56,12 @@ session_start();
 <!DOCTYPE html>
 <html lang=pt-br>
     <head>
-        <title>Pesquise sobre Barueri</title>
+        <title>S.O.S Cidadão</title>
 
         <meta charset=UTF-8> <!-- ISO-8859-1 -->
         <meta name=viewport content="width=device-width, initial-scale=1.0">
-        <meta name=description content="Quer saber de algo? tente pesquisar aqui, somos uma comunidade que quer informar o que acontece na cidade.">
-        <meta name=keywords content="Pesquisa, Pesquisar, Barueri"> <!-- Opcional -->
+        <meta name=description content="Site de reclamações para a cidade de Barueri">
+        <meta name=keywords content="Reclamação, Barueri"> <!-- Opcional -->
         <meta name=author content='equipe 4 INI3A'>
         <meta name="theme-color" content="#089E8E" />
 
@@ -105,7 +91,7 @@ session_start();
                 <img src="view/imagens/logo_oficial.png" alt="logo">
             </a>   
             <i class="icone-pesquisa pesquisa-mobile" id="abrir-pesquisa"></i>
-            <form action="pesquisa" method="post" id="form-pesquisa"> 
+            <form action="pesquisa" method="get" id="form-pesquisa"> 
                 <?php if(isset($_GET['pesquisa'])){?>
                     <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar" value="<?php echo filter_var($_GET['pesquisa'], FILTER_SANITIZE_STRING) ?>">
                 <?php }else{ ?>
@@ -140,9 +126,9 @@ session_start();
                         <a href="javascript:void(0)" class="fechar">&times;</a>
                         <div class="mini-perfil">
                             <div>    
-                                <img src="Img/perfil/<?php echo $resultado[0]['img_perfil_usu'] ?>" alt="perfil">
+                                <img src="../Img/perfil/<?php echo $resultado[0]['img_perfil_usu'] ?>" alt="perfil">
                             </div>    
-                                <img src="Img/capa/<?php echo $resultado[0]['img_capa_usu'] ?>" alt="capa">
+                                <img src="../Img/capa/<?php echo $resultado[0]['img_capa_usu'] ?>" alt="capa">
                                 <p><?php echo $resultado[0]['nome_usu'] ?></p>
                         </div>
                         <nav>
@@ -164,11 +150,19 @@ session_start();
                         <h3>você pesquisou por:</h3><p>Churroooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooos</p>
                     </div> -->
                     <i class="icone-filtro "></i>
-                    <form action="pesquisa" method="post">
+                    <form action="pesquisa">
                         <span id="fechar-filtro">&times;</span>
                         <h3>estou procurando:</h3>
                         <div>
-                                    
+
+                            <?php
+                                if(isset($_GET['pesquisa'])){
+                                    $pl = strtolower(preg_replace( '/[`,^~\'"]/', null, iconv( 'UTF-8', 'ASCII//TRANSLIT', $_GET['pesquisa'] )));   
+                                    $pl = filter_var($pl, FILTER_SANITIZE_STRING);   
+                                    echo '<input type="hidden" name="pesquisa" value='.urlencode($pl).'>';
+                                }
+                            ?>
+
                             <label class="container"> Debates 
                             <?php if(isset($_GET['tipo']) AND in_array('Deba',$_GET['tipo'])) { ?>
                                 <input type="checkbox" name="tipo[]" checked="checked" value="Deba">
@@ -186,14 +180,7 @@ session_start();
                             <?php } ?>
                                 <span class="checkmark"></span>
                             </label>
-                            <?php
-                                if(isset($_GET['pesquisa'])){
-                                    //$pl = strtolower(preg_replace( '/[`,^~\'"]/', null, iconv( 'UTF-8', 'ASCII//TRANSLIT', $_GET['pesquisa'] )));   
-                                    //$pl = filter_var($pl, FILTER_SANITIZE_STRING);   
-                                    //echo '<input type="hidden" name="pesquisa" value='.urlencode($pl).'>';
-                                    echo '<input type="hidden" name="pesquisa" value='.$_POST['pesquisa'].'>';
-                                }
-                            ?>
+                            
 
                         </div>
                         <input type="submit" class="botao-filtro" value="Filtrar">
@@ -225,21 +212,7 @@ session_start();
 </html>
 <?php
 }catch (Exception $exc){
-    $erro = $exc->getCode();   
-        $mensagem = $exc->getMessage();  
-        switch($erro){           
-            case 45://Digitou um numero maior de parametros 
-                unset($dadosUrl[0]);
-                $contador = 1;
-                $voltar = "";
-                while($contador <= count($dadosUrl)){
-                    $voltar .= "../";
-                    $contador++;
-                }
-                echo "<script>javascript:window.location='".$voltar."pesquisa';</script>";
-                break;
-           
-        }   
+         echo $exc->getMessage();
 }
 
 ?>
