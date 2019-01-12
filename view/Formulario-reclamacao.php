@@ -12,7 +12,12 @@
         $categorias = $cate->gerarOptions();     
         $dados = new Usuario();
         $dados->setCodUsu($_SESSION['id_user']);
-        $resultado = $dados->getDadosUser();    
+        $resultado = $dados->getDadosUser();  
+        
+        $dadosUrl = explode('/', $_GET['url']);
+        if(count($dadosUrl) > 1){ // injetou parametros
+            throw new \Exception('Não foi possível achar o debate',45);
+        }
 ?>
 <!DOCTYPE html>
 <html lang=pt-br>
@@ -263,11 +268,21 @@
         $mensagem = $exc->getMessage();
         switch($erro){
             case 2://Nao esta logado    
-                echo "<script>javascript:window.location='login.php';</script>";
+                echo "<script>javascript:window.location='login';</script>";
                 break;
             case 6://Não é usuario comum  
-                echo "<script>javascript:window.location='index.php';</script>";
-                break;            
+                echo "<script>javascript:window.location='todasreclamacoes';</script>";
+                break;
+            case 45://Digitou um numero maior de parametros 
+                unset($dadosUrl[0]);
+                $contador = 1;
+                $voltar = "";
+                while($contador <= count($dadosUrl)){
+                    $voltar .= "../";
+                    $contador++;
+                }
+                echo "<script>javascript:window.location='".$voltar."todasreclamacoes';</script>";
+            break;
         }            
     }
 ?>

@@ -6,6 +6,13 @@ session_start();
     //use Core\PublicacaoSalva;
     
     try{        
+        
+        $dadosUrl = explode('/', $_GET['url']);
+        
+        if(count($dadosUrl) > 1){ // injetou parametros
+            throw new \Exception('Não foi possível achar o debate',45);
+        }
+
         $tipoUsuPermi = array('Prefeitura','Adm','Funcionario','Moderador','Comum');
         Usuario::verificarLogin(1,$tipoUsuPermi);  // Tem q estar logado         
         
@@ -14,12 +21,8 @@ session_start();
         $resultado = $usu->getDadosUser();
         $tipoUsu = $_SESSION['tipo_usu'];
         
-        //$publiSalva = new PublicacaoSalva();
-        //$publiSalva->setCodUsu($_SESSION['id_user']);
-        //isset($_GET['pagina']) ?: $_GET['pagina'] = null;   
-        //$resposta = $publiSalva->SelectPubliSalvaByIdUser($_GET['pagina']);        
-        //$quantidadePaginas = $publiSalva->getQuantidadePaginas();
-        //$pagina = $publiSalva->getPaginaAtual();   
+       
+       
 ?>
 <!DOCTYPE html>
 <html lang=pt-br>
@@ -257,8 +260,18 @@ session_start();
         switch($erro){
             case 2://Ja esta logado  
             case 6://Ja esta logado 
-                echo "<script>javascript:window.location='index.php';</script>";
+                echo "<script>javascript:window.location='todasreclamacoes';</script>";
                 break;
+            case 45://Digitou um numero maior de parametros 
+                unset($dadosUrl[0]);
+                $contador = 1;
+                $voltar = "";
+                while($contador <= count($dadosUrl)){
+                    $voltar .= "../";
+                    $contador++;
+                }
+                echo "<script>javascript:window.location='".$voltar."salvos';</script>";
+            break;
         
         }      
     }

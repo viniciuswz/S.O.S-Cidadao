@@ -23,7 +23,7 @@
         if(count($dadosUrl) >= 3){ // ingetou parametros
             throw new \Exception('Não foi possível achar o debate',45);
         }else if(!isset($dadosUrl[1])){ // nao tem id
-            throw new \Exception('Não foi possível achar o debate',9);
+            throw new \Exception('Não foi possível achar o debate',25);
         }
         
         $_GET['ID'] = $dadosUrl[1];
@@ -273,6 +273,9 @@
                 break;
             case 9://Não foi possivel achar a publicacao  
                 echo "<script> alert('$mensagem');javascript:window.location='../todosdebates';</script>";
+                break; 
+            case 25://Não foi possivel achar a publicacao  
+                echo "<script> alert('$mensagem');javascript:window.location='todosdebates';</script>";
                 break; 
             case 45://Digitou um numero maior de parametros 
                unset($dadosUrl[0]);
