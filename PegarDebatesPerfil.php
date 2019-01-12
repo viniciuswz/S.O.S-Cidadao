@@ -164,14 +164,14 @@
                         //echo '<li><a href="../ApagarDebate.php?ID='.$resposta[$contador]['cod_deba'].'"><i class="icone-fechar"></i></i>Remover</a></li>';
                         //echo '<li><a href="debate-update.php?ID='.$resposta[$contador]['cod_deba'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';   
                         $resposta[$contador]['LinkApagar'] = "../ApagarDebate.php?ID=".$resposta[$contador]['cod_deba'];
-                        $resposta[$contador]['LinkUpdate'] = "debate-update.php?ID=".$resposta[$contador]['cod_deba'];
+                        $resposta[$contador]['LinkUpdate'] = $voltar . "debate-update/".$resposta[$contador]['cod_deba'];
                     }else if(isset($tipoUsu) AND ($tipoUsu == 'Adm' or $tipoUsu == 'Moderador')){
                         //echo '<li><a href="../ApagarDebate.php?ID='.$resposta[$contador]['cod_deba'].'"><i class="icone-fechar"></i></i>Remover</a></li>';
                         // Icone para apagar usuaario
                         //echo '<a href="../ApagarUsuario.php?ID='.$resposta[0]['cod_usu'].'">Apagar Usuario</a>';                                                       
                         //echo '<li><a href="debate-update.php?ID='.$resposta[$contador]['cod_deba'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';                                                    
                         $resposta[$contador]['LinkApagar'] = "../ApagarDebate.php?ID=".$resposta[$contador]['cod_deba'];
-                        $resposta[$contador]['LinkUpdate'] = "debate-update.php?ID=".$resposta[$contador]['cod_deba'];
+                        $resposta[$contador]['LinkUpdate'] = $voltar . "debate-update/".$resposta[$contador]['cod_deba'];
                     }else{
                         $resposta[$contador]['LinkApagar'] = FALSE;
                         $resposta[$contador]['LinkUpdate'] = FALSE;

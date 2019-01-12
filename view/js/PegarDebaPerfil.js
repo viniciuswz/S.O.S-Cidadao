@@ -46,7 +46,7 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
         $.ajax({
             url: voltar+'PegarDebatesPerfil.php',
             type: "get",
-            data: "pagina="+paginacao+"&ID="+id,
+            data: "pagina="+paginacao+"&ID="+id+"&voltar="+quantVoltar,
             success: function(data){
                 var tipoUsuPaginacao = data.substring(data.lastIndexOf('.') + 1, data.lastIndexOf(',') );
                 var tipoPubPaginacao = data.substring(0, data.lastIndexOf('.'));
