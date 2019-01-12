@@ -11,6 +11,22 @@
         if(isset($_SESSION['indNovaConta'])){ // se por um acaso for usuario novo
             unset($_SESSION['indNovaConta']);           
         }
+        
+        if(isset($_GET['url'])){
+            $dadosUrl = explode('/', $_GET['url']);
+            $voltar = '../';
+            if(count($dadosUrl) > 2){ // injetou parametros
+                throw new \Exception('Não foi possível achar o perfil',45);
+            }else if(isset($dadosUrl[1])){          
+                $numVoltar = count($dadosUrl) - 1;
+                $_GET['ID'] = $dadosUrl[1];
+            }else{
+                $numVoltar = 0;
+                $voltar = "";
+            }
+        }
+
+
         $usuPerfil = new Usuario();
         if(isset($_SESSION['id_user'])){ // se estiver logado   
             $usu = new Usuario();  
@@ -72,6 +88,7 @@
           
         //$quantidadePaginas = $publi->getQuantidadePaginas();
         //$pagina = $publi->getPaginaAtual();
+        
 ?>
 <!DOCTYPE html>
 <html lang=pt-br>
@@ -86,39 +103,39 @@
         <meta name="theme-color" content="#089E8E" />
 
         <!-- favicon, arquivo de imagem podendo ser 8x8 - 16x16 - 32x32px com extensão .ico -->
-        <link rel="shortcut icon" href="view/imagens/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="<?php echo $voltar?>view/imagens/favicon.ico" type="image/x-icon">
 
         <!-- CSS PADRÃO -->
-        <link href="view/css/default.css" rel=stylesheet>
+        <link href="<?php echo $voltar?>view/css/default.css" rel=stylesheet>
 
         <!-- Telas Responsivas -->
-        <link rel=stylesheet media="screen and (max-width:480px)" href="view/css/style480.css">
-        <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)" href="view/css/style768.css">
-        <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)" href="view/css/style1024.css">
-        <link rel=stylesheet media="screen and (min-width:1025px)" href="view/css/style1025.css">
+        <link rel=stylesheet media="screen and (max-width:480px)" href="<?php echo $voltar?>view/css/style480.css">
+        <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)" href="<?php echo $voltar?>view/css/style768.css">
+        <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)" href="<?php echo $voltar?>view/css/style1024.css">
+        <link rel=stylesheet media="screen and (min-width:1025px)" href="<?php echo $voltar?>view/css/style1025.css">
 
         <!-- JS-->
 
-        <script src="view/lib/_jquery/jquery.js"></script>
-        <script src="view/js/js.js"></script>
-        <script src="view/js/PegarPubliPerfil.js"></script>
-        <script src="teste.js"></script>
+        <script src="<?php echo $voltar?>view/lib/_jquery/jquery.js"></script>
+        <script src="<?php echo $voltar?>view/js/js.js"></script>
+        <script src="<?php echo $voltar?>view/js/PegarPubliPerfil.js"></script>
+        <script src="<?php echo $voltar?>teste.js"></script>
 
                 
         <!-- cropp-->
 
-        <link rel="stylesheet" href="view/lib/_croppie-master/croppie.css">
-        <script src="view/lib/_croppie-master/croppie.js"></script>
-        <script src="view/lib/_croppie-master/exif.js"></script>
+        <link rel="stylesheet" href="<?php echo $voltar?>view/lib/_croppie-master/croppie.css">
+        <script src="<?php echo $voltar?>view/lib/_croppie-master/croppie.js"></script>
+        <script src="<?php echo $voltar?>view/lib/_croppie-master/exif.js"></script>
 
     </head>
     <body onload="jaquinha()">
         <header>
             <a href="todasreclamacoes">
-                <img src="view/imagens/logo_oficial.png" alt="logo">
+                <img src="<?php echo $voltar?>view/imagens/logo_oficial.png" alt="logo">
             </a>   
             <i class="icone-pesquisa pesquisa-mobile" id="abrir-pesquisa"></i>
-            <form action="pesquisa" method="get" id="form-pesquisa">
+            <form action="<?php echo $voltar?>pesquisa" method="post" id="form-pesquisa">
                 <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar">
                 <button type="submit"><i class="icone-pesquisa"></i></button>
             </form>
@@ -131,13 +148,13 @@
                             <li>
                         </ul>
                     </nav><a href="#" id="abrir-not"><i class="icone-notificacao" id="noti"></i>Notificações</a></li>
-                    <li><a href="todasreclamacoes.php"><i class="icone-reclamacao"></i>Reclamações</a></li>
-                    <li><a href="todosdebates.php"><i class="icone-debate"></i>Debates</a></li>
+                    <li><a href="<?php echo $voltar?>todasreclamacoes"><i class="icone-reclamacao"></i>Reclamações</a></li>
+                    <li><a href="<?php echo $voltar?>todosdebates"><i class="icone-debate"></i>Debates</a></li>
                 </ul>
             </nav>
             <?php
                 if(!isset($resultado)){
-                    echo '<a href="login.php"><i class="icone-user" id="abrir"></i></a>';
+                    echo '<a href="'.$voltar.'login"><i class="icone-user" id="abrir"></i></a>';
                 }else{
                     echo '<i class="icone-user" id="abrir"></i>';
                 }
@@ -150,9 +167,9 @@
                     <a href="javascript:void(0)" class="fechar">&times;</a>
                     <div class="mini-perfil">
                         <div>    
-                            <img src="../Img/perfil/<?php echo $resultado[0]['img_perfil_usu'] ?>" alt="perfil">
+                            <img src="<?php echo $voltar?>Img/perfil/<?php echo $resultado[0]['img_perfil_usu'] ?>" alt="perfil">
                         </div>    
-                            <img src="../Img/capa/<?php echo $resultado[0]['img_capa_usu'] ?>" alt="capa">
+                            <img src="<?php echo $voltar?>Img/capa/<?php echo $resultado[0]['img_capa_usu'] ?>" alt="capa">
                             <p><?php echo $resultado[0]['nome_usu'] ?></p>
                     </div>
                     <nav>
@@ -168,7 +185,7 @@
        ?>
 
         <div id="container">
-        <input type="hidden" id="IDPefil" value="<?php echo $id?>">
+        <input type="hidden" id="IDPefil" value="<?php echo $id?>,<?php echo $numVoltar?>">
         <section class="perfil-base" id="baconP">
                 
                 <div class="perfil">
@@ -180,7 +197,7 @@
                         <?php 
                             }
                         ?>
-                    <img src="../Img/capa/<?php echo $dadosPerfil[0]['img_capa_usu'] ?>"> 
+                    <img src="<?php echo $voltar?>Img/capa/<?php echo $dadosPerfil[0]['img_capa_usu'] ?>"> 
                    
 
                     
@@ -188,7 +205,7 @@
                 <div class="perfil-info">
                         <p><?php echo $dadosPerfil[0]['nome_usu'] ?></p>
                         <div>
-                            <img src="../Img/perfil/<?php echo $dadosPerfil[0]['img_perfil_usu'] ?>">
+                            <img src="<?php echo $voltar?>Img/perfil/<?php echo $dadosPerfil[0]['img_perfil_usu'] ?>">
                         </div>
 
                         <?php 
@@ -211,9 +228,9 @@
 
                     <?php 
                         if(isset($_GET['ID'])){                    
-                            echo '<li><a href="perfil_debate.php?ID='.$dadosPerfil[0]['cod_usu'].'">'.$nomeLink2.'</a></li>';
+                            echo '<li><a href="'.$voltar.'perfil_debate/'.$dadosPerfil[0]['cod_usu'].'">'.$nomeLink2.'</a></li>';
                         }else{
-                            echo '<li><a href="perfil_debate.php">'.$nomeLink2.'</a></li>';
+                            echo '<li><a href="'.$voltar.'perfil_debate">'.$nomeLink2.'</a></li>';
                         }
                     ?>   
                     
@@ -239,135 +256,9 @@
                         </form>
                     </div>
                 </div>
-            <?php
-                
-                /*
-                $contador = 0;
-                while($contador < count($resposta)){                
-            ?>  
-                <div class="item-publicacao">
-                    <div class="item-topo">
-                        <a href="#">
-                        <div>
-                            <img src="../Img/perfil/<?php echo $resposta[$contador]['img_perfil_usu']?>">
-                        </div>
-                        <p><span class="negrito"><?php echo $resposta[$contador]['nome_usu']?></a></span><time><?php echo $resposta[$contador]['dataHora_publi']?></time></p>
-                        <div class="mini-menu-item">
-                            <i class="icone-3pontos"></i>
-                            <div>
-                                <ul>
-                                <?php
-                                        if(isset($resposta[$contador]['indDenunPubli']) AND $resposta[$contador]['indDenunPubli'] == TRUE){ // Aparecer quando o user ja denunciou            
-                                            echo '<li><i class="icone-bandeira"></i><span class="negrito">Denunciado</span></li>';        
-                                        }else if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] != $resposta[$contador]['cod_usu']){ // Aparecer apenas naspublicaçoes q nao é do usuario
-                                            if($tipoUsu == 'Comum' or $tipoUsu == 'Prefeitura' or $tipoUsu == 'Funcionario'){
-                                                //echo '<li><a href="../Templates/DenunciarPublicacaoTemplate.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-bandeira"></i>Denunciar</a></li>';                                                        
-                                                echo '<li class="denunciar-item"><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>';
-                                                $indDenun = TRUE; // = carregar modal da denucia
-                                            }                    
-                                        }else if(!isset($_SESSION['id_user'])){ // aparecer parar os usuario nao logado
-                                                //echo '<li><a href="../Templates/DenunciarPublicacaoTemplate.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-bandeira"></i>Denunciar</a></li>';
-                                                echo '<li class="denunciar-item"><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>';
-                                                $indDenun = TRUE; // = carregar modal da denucia
-                                        } 
-                                    ?>
-                                    <?php
-                                            if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $resposta[$contador]['cod_usu']){
-                                                echo '<li><a href="../ApagarPublicacao.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-fechar"></i></i>Remover</a></li>';                                                
-                                                echo '<li><a href="reclamacao-update.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';
-                                            }else if(isset($tipoUsu) AND ($tipoUsu == 'Adm' or $tipoUsu == 'Moderador')){
-                                                echo '<li><a href="../ApagarPublicacao.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-fechar"></i></i>Remover</a></li>';
-                                                // Icone para apagar usuaario
-                                                //echo '<a href="../ApagarUsuario.php?ID='.$resposta[0]['cod_usu'].'">Apagar Usuario</a>';
-                                                echo '<li><a href="reclamacao-update.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';
-                                            }
-                                    ?> 
-                                    
-                                    <?php
-                                            if(isset($_SESSION['id_user']) AND isset($resposta[$contador]['indSalvaPubli']) AND $resposta[$contador]['indSalvaPubli'] == TRUE){//Salvou
-                                                echo '<li><a href="../SalvarPublicacao.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-salvar-full"></i>Salvo</a></li>';
-                                            }else if(isset($_SESSION['id_user']) AND isset($resposta[$contador]['indSalvaPubli']) AND $resposta[$contador]['indSalvaPubli'] == FALSE){//Nao salvou
-                                                echo '<li><a href="../SalvarPublicacao.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-salvar"></i>Salvar</a></li>';
-                                            }else if(!isset($_SESSION['id_user'])){ // aparecer parar os usuario nao logado
-                                                echo '<li><a href="../SalvarPublicacao.php?ID='.$resposta[$contador]['cod_publi'].'"><i class="icone-salvar"></i>Salvar</a></li>';
-                                            } 
-                                    ?> 
-
-                                </ul>
-                            </div>
-                            <?php if(isset($indDenun) AND $indDenun == TRUE) { // so quero q carregue em alguns casos?>
-                                    <div class="modal-denunciar">
-                                        <div class="modal-denunciar-fundo"></div>
-                                        <div class="box-denunciar">
-                                            <div>
-                                                <h1>Qual o motivo da denuncia?</h1>
-                                                <span class="fechar-denuncia">&times;</span>
-                                            </div>
-                                            
-                                            <form form method="post" action="../DenunciarPublicacao.php">
-                                                <textarea placeholder="Qual o motivo?" id="motivo" name="texto"></textarea>
-                                                <input type="hidden" name="id_publi" value="<?php echo $resposta[$contador]['cod_publi'] ?>">                
-                                                <button type="submit"> Denunciar</button>
-                                            </form>
-                                                
-                                        </div>
-                                    </div>
-                            <?php } ?>
-                        </div>
-                    </div>
-                    <a href="reclamacao.php?ID=<?php echo $resposta[$contador]['cod_publi'] ?>">
-                    <?php
-                        if(!empty($resposta[$contador]['img_publi'])){
-                    ?> 
-                        <figure>
-                            <img src="../Img/publicacao/<?php echo $resposta[$contador]['img_publi']?>">
-                        </figure>  
-                    <?php
-                        }
-                    ?>   
-                        <p><?php echo $resposta[$contador]['titulo_publi']?></p>
-                        </a>
-                        <div class="item-baixo">   
-                            <i class="icone-local"></i><p><?php echo $resposta[$contador]['endereco_organizado_fechado']?></p>
-                            <div>    
-                                <span><?php echo $resposta[$contador]['quantidade_curtidas']?></span><i class="icone-like"></i>
-                                <span><?php echo $resposta[$contador]['quantidade_comen']?></span><i class="icone-comentario"></i>
-                            </div>
-                        </div>
-                </div>
-                <?php 
-                    $indDenun = false;                 
-                    $contador++;
-                    }
-                    */
-                ?>                
+                       
             </section>            
         </div>
-        <ul>
-        <?php
-        /*
-            if($quantidadePaginas != 1){
-                $contador = 1;
-                while($contador <= $quantidadePaginas){
-                    if(isset($pagina) AND $pagina == $contador){
-                        if(isset($_GET['ID'])){
-                            echo '<li class="jaca"><a href="perfil_reclamacao.php?pagina='.$contador.'&ID='.$_GET['ID'].'">Pagina'.$contador.'</a></li>'  ; 
-                        }else{
-                            echo '<li class="jaca"><a href="perfil_reclamacao.php?pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ; 
-                        }                         
-                    }else{
-                        if(isset($_GET['ID'])){
-                            echo '<li class="jaca"><a href="perfil_reclamacao.php?pagina='.$contador.'&ID='.$_GET['ID'].'">Pagina'.$contador.'</a></li>'  ; 
-                        }else{
-                            echo '<li class="jaca"><a href="perfil_reclamacao.php?pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ; 
-                        }                         
-                    }                    
-                    $contador++;        
-                }
-            }      
-            */      
-        ?>
-        </ul>
         
         <div class="modal-troca-foto">
             <div class="modal-troca-foto-fundo"></div>

@@ -24,6 +24,8 @@
             throw new \Exception('Não foi possível achar o debate',45);
         }else if(!isset($dadosUrl[1])){ // não digitou o id
             throw new \Exception('Não foi possível achar o debate',9);
+        }else{
+            $numVoltar = count($dadosUrl) - 1;
         }
 
         $voltar = '../';
@@ -173,20 +175,20 @@
                                                 echo '<li><i class="icone-bandeira"></i><span class="negrito">Denunciado</span></li>';        
                                             }else if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] != $resposta[0]['cod_usu']){ // Aparecer apenas naspublicaçoes q nao é do usuario
                                                 if($tipoUsu == 'Comum' or $tipoUsu == 'Prefeitura' or $tipoUsu == 'Funcionario'){
-                                                    echo '<li class="denunciar-item" data-id="'.$resposta[0]['cod_deba'].'.Debate"><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>';
+                                                    echo '<li class="denunciar-item" data-id="'.$resposta[0]['cod_deba'].'.Debate,'.$numVoltar.'"><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>';
                                                     $indDenun = TRUE; // = carregar modal da denucia                                                    
                                                 }                    
                                             }else if(!isset($_SESSION['id_user'])){ // aparecer parar os usuario nao logado
-                                                echo '<li class="denunciar-item" data-id="'.$resposta[0]['cod_deba'].'.Debate"><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>';
+                                                echo '<li class="denunciar-item" data-id="'.$resposta[0]['cod_deba'].'.Debate,'.$numVoltar.'"><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>';
                                                 $indDenun = TRUE; // = carregar modal da denucia
                                             } 
                                         ?>
                                         <?php
                                             if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $resposta[0]['cod_usu']){
-                                                echo '<li><a href="'.$voltar.'ApagarDebate.php?ID='.$resposta[0]['cod_deba'].'"><i class="icone-fechar"></i></i>Remover</a></li>';
+                                                echo '<li><a href="'.$voltar.'ApagarDebate.php?ID='.$resposta[0]['cod_deba'].'&indNoti=1"><i class="icone-fechar"></i></i>Remover</a></li>';
                                                 echo '<li><a href="'.$voltar.'debate-update/'.$resposta[0]['cod_deba'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';                                                    
                                             }else if(isset($tipoUsu) AND ($tipoUsu == 'Adm' or $tipoUsu == 'Moderador')){
-                                                echo '<li><a href="'.$voltar.'ApagarDebate.php?ID='.$resposta[0]['cod_deba'].'"><i class="icone-fechar"></i></i>Remover</a></li>';
+                                                echo '<li><a href="'.$voltar.'ApagarDebate.php?ID='.$resposta[0]['cod_deba'].'&indNoti=1"><i class="icone-fechar"></i></i>Remover</a></li>';
                                                 // Icone para apagar usuaario
                                                 //echo '<a href="../ApagarUsuario.php?ID='.$resposta[0]['cod_usu'].'">Apagar Usuario</a>';                                                       
                                                 echo '<li><a href="'.$voltar.'debate-update/'.$resposta[0]['cod_deba'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';                                                    

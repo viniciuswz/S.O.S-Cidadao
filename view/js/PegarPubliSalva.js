@@ -166,7 +166,7 @@ function teste2(resposta){
                                     </div>';                                    
                                 mensa +='</div>\
                             </div>\
-                            <a href="reclamacao.php?ID='+arr1[contador]['cod_publi']+'">';                          
+                            <a href="reclamacao/'+arr1[contador]['cod_publi']+'">';                          
                             if(arr1[contador]['img_publi'] != ""){                            
                                 mensa += '<figure>\
                                 <img src=Img/publicacao/'+arr1[contador]['img_publi']+'> \

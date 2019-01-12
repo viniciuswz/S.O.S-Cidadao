@@ -3,11 +3,11 @@ var paginacao = 1;
 var validar = 0 // se for 0 roda o jaquinha se for outro valor não roda
 var teste = false;
 
-function criarEmpty(emptyStateMensagem,emptyStateCta){
+function criarEmpty(emptyStateMensagem,emptyStateCta, voltar){
     $("#pa").append("<div class='empty-state' style='padding-bottom:50px; width: 100%;'>\
     <div>\
         <div>\
-           <img src='imagens/debate-sem.png'>\
+           <img src='"+voltar+"view/imagens/debate-sem.png'>\
         </div>\
         <div>\
         <p style='margin: 0 auto; width:90%; max-width:500px'>"+emptyStateMensagem+"</p>"+emptyStateCta+"\
@@ -33,10 +33,18 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
     function jaquinha(){
         teste = true;
         var jaq;
-        var id = document.getElementById("IDPefil").value;
-    
+        var idInteiro = document.getElementById("IDPefil").value; // exemplo = 204,0
+        var id = idInteiro.substr(0,idInteiro.lastIndexOf(',')); // id, pegar ate a vrigula
+        var quantVoltar = idInteiro.substr(idInteiro.lastIndexOf(',') + 1);
+        
+        voltar = "";
+        if(quantVoltar > 0){
+            voltar = "../";
+        }
+
+
         $.ajax({
-            url: '../PegarDebatesPerfil.php',
+            url: voltar+'PegarDebatesPerfil.php',
             type: "get",
             data: "pagina="+paginacao+"&ID="+id,
             success: function(data){
@@ -56,26 +64,26 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
                         //var emptyStateMensagem = "Descobrimos que você não tem nenhuma publicação, que tal postar uma reclamação?";
                         //var emptyStateCta = 
                         if(tipoDonoPaginacao == "Dono"){
-                            criarEmpty('Você não criou nenhum debate, sempre tem algo na cidade sobre o que discutir, crie um debate e chame a galera!','<a href="Formulario-debate.php" class="cta">começar</a>');
+                            criarEmpty('Você não criou nenhum debate, sempre tem algo na cidade sobre o que discutir, crie um debate e chame a galera!','<a href="'+voltar+'Formulario-debate" class="cta">começar</a>',voltar);
                         }else{
-                            criarEmpty('Esse usuário não possui debate criado :(','');
+                            criarEmpty('Esse usuário não possui debate criado :(','',voltar);
                         }
                        
                     }else if(tipoUsuPaginacao == "Prefeitura"){
 
                         
                         if(tipoDonoPaginacao == "Dono"){
-                            criarEmpty('Ora ora, não tem nenhuma reclamação respondida, que tal responder uma?','<a href="prefeitura-reclamacao.php" class="cta">responder</a>');
+                            criarEmpty('Ora ora, não tem nenhuma reclamação respondida, que tal responder uma?','<a href="'+voltar+'prefeitura-reclamacao" class="cta">responder</a>',voltar);
                         }else{
-                            criarEmpty('Esse usuário não possui debate criado :(','');
+                            criarEmpty('Esse usuário não possui debate criado :(','',voltar);
                         }
                     }else{
 
                         
                         if(tipoDonoPaginacao == "Dono"){
-                            criarEmpty('Você não pode postar debates, entre com sua conta de usuário comum!','<a href="../Sair.php" class="cta">Log out</a>');
+                            criarEmpty('Você não pode postar debates, entre com sua conta de usuário comum!','<a href="'+voltar+'Sair.php" class="cta">Log out</a>',voltar);
                         }else{
-                            criarEmpty('Esse usuário não possui debate criado :(','');
+                            criarEmpty('Esse usuário não possui debate criado :(','',voltar);
                         }
                     }
                 }

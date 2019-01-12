@@ -1902,12 +1902,23 @@ jQuery(function($){
     final = id.substring(id.lastIndexOf('.')+1);
     id_certo = id.substring(0, id.lastIndexOf('.'));
 
+    indVirgula = id.lastIndexOf(','); // na virgula mostra o numero de pasta q tenho q voltar 
+
+    voltar = ""; // por padrao nao volta nenhuma
+    if(indVirgula > 0){ // se existir alguma virgula
+      final = id.substring(id.lastIndexOf('.')+1, id.lastIndexOf(',')); // pega até a virgula (Publicacao ou Debate ou Comentario)
+      quantVoltar = id.substr(id.lastIndexOf(',') + 1); // pega a quantidade de pasta q tem q voltar
+      for(i=0; i < quantVoltar; i++){
+         voltar = voltar + "../";
+      }      
+    }      
+    
     if(final == 'Publicacao'){
-      final = "Denunciar"+final+".php";
+      final = voltar + "Denunciar"+final+".php";
     }else if(final == 'Debate'){
-      final = "Denunciar"+final+".php";
+      final = voltar + "Denunciar"+final+".php";
     }else if(final == 'Comentario'){
-      final = "Denunciar"+final+".php";
+      final = voltar + "Denunciar"+final+".php";
     }else{
       return false;
     }
@@ -1945,7 +1956,7 @@ jQuery(function($){
       data: "id="+id_certo+"&texto="+txt,
       success:function(result){
           if(result == 'NLogado'){ // Nao esta logado, redirecionar pra fazer login
-            location.href="login";
+            location.href= voltar + "login";
             return false;
           }else{
             //alert("deu certo");
@@ -2082,18 +2093,31 @@ jQuery(function($){
 $(document).on('click','.salvar',function(){
   var tipo = $(this).data('tipo'); //data-tipo="remover"
   var href =$(this).attr('href');
-  var id = href.substring(href.lastIndexOf('ID')+3);
   var $this = $(this);
+  var idInteiro = href.substring(href.lastIndexOf('ID')+3);
+  voltar = "";
+  indVirgula = idInteiro.lastIndexOf(','); // na virgula mostra o numero de pasta q tenho q voltar 
 
-
-
+  if(indVirgula > 0){
+    var id = idInteiro.substr(0,idInteiro.lastIndexOf(',')); // id, pegar ate a vrigula
+    var quantVoltar = idInteiro.substr(idInteiro.lastIndexOf(',') + 1);
+    if(quantVoltar > 0){
+      voltar = "../";
+    } 
+  }else{
+    var id = href.substring(href.lastIndexOf('ID')+3);
+    quantVoltar = 0;
+  }
+   
+  
+  
   $.ajax({
-    url:'SalvarPublicacao.php',
+    url: voltar + 'SalvarPublicacao.php',
     type: "get",
     data: "ID="+id,
     success:function(result){
         if(result == 'NLogado'){ // Nao esta logado, redirecionar pra fazer login
-          location.href="login";
+          location.href= voltar+"login";
           return false;
         }else{
         if(tipo == 'remover'){

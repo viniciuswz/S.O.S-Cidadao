@@ -77,10 +77,10 @@ try{
             } 
     
             if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $resPes[$contador]['cod_usu']){            
-                $resPes[$contador]['LinkApagar'] = "../ApagarPublicacao.php?ID=".$resPes[$contador]['cod_publi'];
+                $resPes[$contador]['LinkApagar'] = "ApagarPublicacao.php?ID=".$resPes[$contador]['cod_publi'];
                 $resPes[$contador]['LinkUpdate'] = "reclamacao-update.php?ID=".$resPes[$contador]['cod_publi'];
             }else if(isset($tipoUsu) AND ($tipoUsu == 'Adm' or $tipoUsu == 'Moderador')){
-                $resPes[$contador]['LinkApagar'] = "../ApagarPublicacao.php?ID=".$resPes[$contador]['cod_publi'];
+                $resPes[$contador]['LinkApagar'] = "ApagarPublicacao.php?ID=".$resPes[$contador]['cod_publi'];
                 $resPes[$contador]['LinkUpdate'] = "reclamacao-update.php?ID=".$resPes[$contador]['cod_publi'];
             }else{
                 $resPes[$contador]['LinkApagar'] = FALSE;
@@ -88,13 +88,13 @@ try{
             }
             
             if(isset($_SESSION['id_user']) AND isset($resPes[$contador]['indSalvaPubli']) AND $resPes[$contador]['indSalvaPubli'] == TRUE){//Salvou            
-                $resPes[$contador]['LinkSalvar'] = "../SalvarPublicacao.php?ID=".$resPes[$contador]['cod_publi'];
+                $resPes[$contador]['LinkSalvar'] = "SalvarPublicacao.php?ID=".$resPes[$contador]['cod_publi'];
                 $resPes[$contador]['TextoLinkSalvar'] = "Salvo";
             }else if(isset($_SESSION['id_user']) AND isset($resPes[$contador]['indSalvaPubli']) AND $resPes[$contador]['indSalvaPubli'] == FALSE){//Nao salvou
-                $resPes[$contador]['LinkSalvar'] = "../SalvarPublicacao.php?ID=".$resPes[$contador]['cod_publi'];
+                $resPes[$contador]['LinkSalvar'] = "SalvarPublicacao.php?ID=".$resPes[$contador]['cod_publi'];
                 $resPes[$contador]['TextoLinkSalvar'] = "Salvar";
             }else if(!isset($_SESSION['id_user'])){ // aparecer parar os usuario nao logado
-                $resPes[$contador]['LinkSalvar'] = "../SalvarPublicacao.php?ID=".$resPes[$contador]['cod_publi'];
+                $resPes[$contador]['LinkSalvar'] = "SalvarPublicacao.php?ID=".$resPes[$contador]['cod_publi'];
                 $resPes[$contador]['TextoLinkSalvar'] = "Salvar";
             }  
     
@@ -115,12 +115,12 @@ try{
             } 
             
             if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $resPes[$contador]['cod_usu']){                 
-                $resPes[$contador]['LinkApagar'] = "../ApagarDebate.php?ID=".$resPes[$contador]['cod_deba'];
-                $resPes[$contador]['LinkUpdate'] = "debate-update.php?ID=".$resPes[$contador]['cod_deba'];
+                $resPes[$contador]['LinkApagar'] = "ApagarDebate.php?ID=".$resPes[$contador]['cod_deba'];
+                $resPes[$contador]['LinkUpdate'] = "debate-update/".$resPes[$contador]['cod_deba'];
             }else if(isset($tipoUsu) AND ($tipoUsu == 'Adm' or $tipoUsu == 'Moderador')){                
                 // Icone para apagar usuaario                
-                $resPes[$contador]['LinkApagar'] = "../ApagarDebate.php?ID=".$resPes[$contador]['cod_deba'];
-                $resPes[$contador]['LinkUpdate'] = "debate-update.php?ID=".$resPes[$contador]['cod_deba'];
+                $resPes[$contador]['LinkApagar'] = "ApagarDebate.php?ID=".$resPes[$contador]['cod_deba'];
+                $resPes[$contador]['LinkUpdate'] = "debate-update/".$resPes[$contador]['cod_deba'];
             }else{
                 $resPes[$contador]['LinkApagar'] = FALSE;
                 $resPes[$contador]['LinkUpdate'] = FALSE;

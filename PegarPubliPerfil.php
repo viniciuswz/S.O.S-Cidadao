@@ -53,6 +53,14 @@ session_start();
         }
     }    
 
+    if(isset($_GET['voltar']) AND $_GET['voltar'] > 0){
+        $voltar = '../';
+        $quantVoltar = 1;
+    }else{
+        $voltar = '';
+        $quantVoltar = 0;
+    }
+
     $publi = new Publicacao();    
     $publi->setCodUsu($id);
     isset($_GET['pagina']) ?: $_GET['pagina'] = null;
@@ -100,24 +108,24 @@ session_start();
         } 
 
         if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $resposta[$contador]['cod_usu']){            
-            $resposta[$contador]['LinkApagar'] = "../ApagarPublicacao.php?ID=".$resposta[$contador]['cod_publi'];
-            $resposta[$contador]['LinkUpdate'] = "reclamacao-update.php?ID=".$resposta[$contador]['cod_publi'];
+            $resposta[$contador]['LinkApagar'] = $voltar ."ApagarPublicacao.php?ID=".$resposta[$contador]['cod_publi'];
+            $resposta[$contador]['LinkUpdate'] = $voltar . "reclamacao-update/".$resposta[$contador]['cod_publi'];
         }else if(isset($tipoUsu) AND ($tipoUsu == 'Adm' or $tipoUsu == 'Moderador')){
-            $resposta[$contador]['LinkApagar'] = "../ApagarPublicacao.php?ID=".$resposta[$contador]['cod_publi'];
-            $resposta[$contador]['LinkUpdate'] = "reclamacao-update.php?ID=".$resposta[$contador]['cod_publi'];
+            $resposta[$contador]['LinkApagar'] = $voltar . "ApagarPublicacao.php?ID=".$resposta[$contador]['cod_publi'];
+            $resposta[$contador]['LinkUpdate'] = $voltar . "reclamacao-update/".$resposta[$contador]['cod_publi'];
         }else{
             $resposta[$contador]['LinkApagar'] = FALSE;
             $resposta[$contador]['LinkUpdate'] = FALSE;
         }
         
         if(isset($_SESSION['id_user']) AND isset($resposta[$contador]['indSalvaPubli']) AND $resposta[$contador]['indSalvaPubli'] == TRUE){//Salvou            
-            $resposta[$contador]['LinkSalvar'] = "../SalvarPublicacao.php?ID=".$resposta[$contador]['cod_publi'];
+            $resposta[$contador]['LinkSalvar'] = $voltar . "SalvarPublicacao.php?ID=".$resposta[$contador]['cod_publi']. "," .$quantVoltar ;
             $resposta[$contador]['TextoLinkSalvar'] = "Salvo";
         }else if(isset($_SESSION['id_user']) AND isset($resposta[$contador]['indSalvaPubli']) AND $resposta[$contador]['indSalvaPubli'] == FALSE){//Nao salvou
-            $resposta[$contador]['LinkSalvar'] = "../SalvarPublicacao.php?ID=".$resposta[$contador]['cod_publi'];
+            $resposta[$contador]['LinkSalvar'] = $voltar . "SalvarPublicacao.php?ID=".$resposta[$contador]['cod_publi']. "," .$quantVoltar;
             $resposta[$contador]['TextoLinkSalvar'] = "Salvar";
         }else if(!isset($_SESSION['id_user'])){ // aparecer parar os usuario nao logado
-            $resposta[$contador]['LinkSalvar'] = "../SalvarPublicacao.php?ID=".$resposta[$contador]['cod_publi'];
+            $resposta[$contador]['LinkSalvar'] = $voltar . "SalvarPublicacao.php?ID=".$resposta[$contador]['cod_publi']. "," .$quantVoltar;
             $resposta[$contador]['TextoLinkSalvar'] = "Salvar";
         }  
 

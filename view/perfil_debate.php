@@ -1,12 +1,27 @@
 <?php
     session_start();
-    require_once('../Config/Config.php');
+    require_once('Config/Config.php');
     require_once(SITE_ROOT.DS.'autoload.php');   
     use Core\Usuario;
     use Core\Debate;
     use Classes\ValidarCampos;
     use Core\Publicacao;
     try{        
+
+        if(isset($_GET['url'])){
+            $dadosUrl = explode('/', $_GET['url']);
+            $voltar = '../';
+            if(count($dadosUrl) > 2){ // injetou parametros
+                throw new \Exception('Não foi possível achar o perfil',45);
+            }else if(isset($dadosUrl[1])){          
+                $numVoltar = count($dadosUrl) - 1;
+                $_GET['ID'] = $dadosUrl[1];
+            }else{
+                $numVoltar = 0;
+                $voltar = "";
+            }
+        }
+
         $usuPerfil = new Usuario();
         if(isset($_SESSION['id_user'])){ // se estiver logado   
             $usu = new Usuario();  
@@ -90,47 +105,47 @@
         <meta name="theme-color" content="#089E8E" />
 
         <!-- favicon, arquivo de imagem podendo ser 8x8 - 16x16 - 32x32px com extensão .ico -->
-        <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="<?php echo $voltar?>view/imagens/favicon.ico" type="image/x-icon">
 
         <!-- CSS PADRÃO -->
-        <link href="css/default.css" rel=stylesheet>
+        <link href="<?php echo $voltar?>view/css/default.css" rel=stylesheet>
 
         <!-- Telas Responsivas -->
-        <link rel=stylesheet media="screen and (max-width:480px)" href="css/style480.css">
-        <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)" href="css/style768.css">
-        <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)" href="css/style1024.css">
-        <link rel=stylesheet media="screen and (min-width:1025px)" href="css/style1025.css">
+        <link rel=stylesheet media="screen and (max-width:480px)" href="<?php echo $voltar?>view/css/style480.css">
+        <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)" href="<?php echo $voltar?>view/css/style768.css">
+        <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)" href="<?php echo $voltar?>view/css/style1024.css">
+        <link rel=stylesheet media="screen and (min-width:1025px)" href="<?php echo $voltar?>view/css/style1025.css">
 
         <!-- JS-->
 
-        <script src="lib/_jquery/jquery.js"></script>
-        <script src="js/js.js"></script>
-        <script src="../teste.js"></script>
+        <script src="<?php echo $voltar?>view/lib/_jquery/jquery.js"></script>
+        <script src="<?php echo $voltar?>view/js/js.js"></script>
+        <script src="<?php echo $voltar?>teste.js"></script>
         <?php
             if($descPerfilVisu == 'Prefeitura'){ 
         ?>
-                <script src="js/PegarPubliPerfPrefei.js"></script>
+                <script src="<?php echo $voltar?>view/js/PegarPubliPerfPrefei.js"></script>
         <?php
             }else{
         ?>
-                <script src="js/PegarDebaPerfil.js"></script>
+                <script src="<?php echo $voltar?>view/js/PegarDebaPerfil.js"></script>
         <?php
             }
         ?>
         
         <!-- cropp-->
 
-        <link rel="stylesheet" href="lib/_croppie-master/croppie.css">
-        <script src="lib/_croppie-master/croppie.js"></script>
-        <script src="lib/_croppie-master/exif.js"></script>
+        <link rel="stylesheet" href="<?php echo $voltar?>view/lib/_croppie-master/croppie.css">
+        <script src="<?php echo $voltar?>view/lib/_croppie-master/croppie.js"></script>
+        <script src="<?php echo $voltar?>view/lib/_croppie-master/exif.js"></script>
     </head>
     <body onload="jaquinha()">
         <header>
-            <a href="todasreclamacoes.php">
-                <img src="imagens/logo_oficial.png" alt="logo">
+            <a href="todasreclamacoes">
+                <img src="<?php echo $voltar?>view/imagens/logo_oficial.png" alt="logo">
             </a>   
             <i class="icone-pesquisa pesquisa-mobile" id="abrir-pesquisa"></i>
-            <form action="pesquisa.php" method="get" id="form-pesquisa">
+            <form action="pesquisa.php" method="post" id="form-pesquisa">
                 <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar">
                 <button type="submit"><i class="icone-pesquisa"></i></button>
             </form>
@@ -143,13 +158,13 @@
                             <li>
                         </ul>
                     </nav><a href="#" id="abrir-not"><i class="icone-notificacao" id="noti"></i>Notificações</a></li>
-                    <li><a href="todasreclamacoes.php"><i class="icone-reclamacao"></i>Reclamações</a></li>
-                    <li><a href="todosdebates.php"><i class="icone-debate"></i>Debates</a></li>
+                    <li><a href="<?php echo $voltar?>todasreclamacoes"><i class="icone-reclamacao"></i>Reclamações</a></li>
+                    <li><a href="<?php echo $voltar?>todosdebates"><i class="icone-debate"></i>Debates</a></li>
                 </ul>
             </nav>
             <?php
                 if(!isset($resultado)){
-                    echo '<a href="login.php"><i class="icone-user" id="abrir"></i></a>';
+                    echo '<a href="'.$voltar.'login.php"><i class="icone-user" id="abrir"></i></a>';
                 }else{
                     echo '<i class="icone-user" id="abrir"></i>';
                 }
@@ -162,9 +177,9 @@
                         <a href="javascript:void(0)" class="fechar">&times;</a>
                         <div class="mini-perfil">
                             <div>    
-                                <img src="../Img/perfil/<?php echo $resultado[0]['img_perfil_usu'] ?>" alt="perfil">
+                                <img src="<?php echo $voltar?>Img/perfil/<?php echo $resultado[0]['img_perfil_usu'] ?>" alt="perfil">
                             </div>    
-                                <img src="../Img/capa/<?php echo $resultado[0]['img_capa_usu'] ?>" alt="capa">
+                                <img src="<?php echo $voltar?>Img/capa/<?php echo $resultado[0]['img_capa_usu'] ?>" alt="capa">
                                 <p><?php echo $resultado[0]['nome_usu'] ?></p>
                         </div>
                         <nav>
@@ -181,7 +196,7 @@
 
 
         <div id="container">
-        <input type="hidden" id="IDPefil" value="<?php echo $id?>">
+        <input type="hidden" id="IDPefil" value="<?php echo $id?>,<?php echo $numVoltar?>">
             <section class="perfil-base" id="baconP">
                 
                 <div class="perfil">
@@ -193,7 +208,7 @@
                         <?php 
                             }
                         ?>
-                    <img src="../Img/capa/<?php echo $dadosPerfil[0]['img_capa_usu'] ?>"> 
+                    <img src="<?php echo $voltar?>Img/capa/<?php echo $dadosPerfil[0]['img_capa_usu'] ?>"> 
                    
 
                     
@@ -201,7 +216,7 @@
                 <div class="perfil-info">
                         <p><?php echo $dadosPerfil[0]['nome_usu'] ?></p>
                         <div>
-                            <img src="../Img/perfil/<?php echo $dadosPerfil[0]['img_perfil_usu'] ?>">
+                            <img src="<?php echo $voltar?>Img/perfil/<?php echo $dadosPerfil[0]['img_perfil_usu'] ?>">
                         </div>
 
                         <?php 
@@ -222,9 +237,9 @@
 
                     <?php 
                         if(isset($_GET['ID'])){                    
-                            echo '<li><a href="perfil_reclamacao.php?ID='.$dadosPerfil[0]['cod_usu'].'">'.$nomeLink2.'</a></li>';
+                            echo '<li><a href="'.$voltar.'perfil_reclamacao/'.$dadosPerfil[0]['cod_usu'].'">'.$nomeLink2.'</a></li>';
                         }else{
-                            echo '<li><a href="perfil_reclamacao.php">'.$nomeLink2.'</a></li>';
+                            echo '<li><a href="'.$voltar.'perfil_reclamacao">'.$nomeLink2.'</a></li>';
                         }
                     ?>
 
