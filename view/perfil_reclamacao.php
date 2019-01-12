@@ -186,6 +186,7 @@
 
         <div id="container">
         <input type="hidden" id="IDPefil" value="<?php echo $id?>,<?php echo $numVoltar?>">
+        <input type="hidden" id="voltar" value="<?php echo $numVoltar?>">
         <section class="perfil-base" id="baconP">
                 
                 <div class="perfil">

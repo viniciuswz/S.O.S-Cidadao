@@ -190,7 +190,7 @@ session_start();
         
            <div class="batepapo">
                 <header>
-                    <a href="todosdebates.php" style="order:1">&#x21FD;</a>
+                    <a href="../todosdebates" style="order:1">&#x21FD;</a>
                     <div class="ft_debate-mensagem" style="order:2">
                         <img src="<?php echo $voltar ?>Img/debate/<?php echo $resposta[0]['img_deba']?>" alt="debate">
                     </div>
@@ -372,13 +372,13 @@ session_start();
         switch($erro){
             case 2://Ja esta logado  
             case 6://Ja esta logado 
-                echo "<script>javascript:window.location='index.php';</script>";
+                echo "<script>javascript:window.location='../todosdebates';</script>";
                 break;
             case 9://Não foi possivel achar a publicacao  
-                echo "<script> alert('$mensagem');javascript:window.location='todosdebates.php';</script>";
+                echo "<script> alert('$mensagem');javascript:window.location='../todosdebates';</script>";
                 break; 
             default: //Qualquer outro erro cai aqui
-                echo "<script> alert('$mensagem');javascript:window.location='todosdebates.php';</script>";
+                echo "<script> alert('$mensagem');javascript:window.location='../todosdebates';</script>";
         }   
     }  
 ?> 
