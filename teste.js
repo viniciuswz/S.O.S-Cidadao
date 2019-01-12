@@ -1,24 +1,31 @@
 setInterval("jaca()", 5000);
 function jaca(){
     var jaq;
+    qtdVoltar = $("#voltar").val();
+    voltar = "";
+    if(qtdVoltar >= 0 && qtdVoltar <= 5 ){
+        for(i = 0; i < qtdVoltar; i++){
+            voltar += "../"
+        }
+    }    
     $.ajax({
 
-        url: 'Notificacoes.php',
+        url: voltar+'Notificacoes.php',
 
         success: function(data){            
             //$('#lista').html(data);
-            escreverNoti(data);
+            escreverNoti(data, voltar);
         }        
 
     });   
 }
 
-function escreverNoti(resposta){    
+function escreverNoti(resposta, voltar){    
     if(resposta == 0){        
         document.getElementById('menu23').innerHTML = "<div class='empty-state gamb' style='padding-bottom:50px;'>\
         <div>\
             <div>\
-               <img src='view/imagens/notifica-sem.png' style='display:block; margin:0 auto; height:100%; width:50%;'>\
+               <img src='"+voltar+"view/imagens/notifica-sem.png' style='display:block; margin:0 auto; height:100%; width:50%;'>\
             </div>\
             <div>\
                 <p>Você não tem nenhuma notificação, continue navegando, pode chegar uma mais tarde!</p>\
@@ -30,7 +37,7 @@ function escreverNoti(resposta){
         document.getElementById('menu23').innerHTML = "<div class='empty-state gamb' style='padding-bottom:50px;'>\
         <div>\
             <div>\
-               <img src='view/imagens/notifica-sem.png' style='display:block; margin:0 auto; height:100%; width:50%;'>\
+               <img src='"+voltar+"view/imagens/notifica-sem.png' style='display:block; margin:0 auto; height:100%; width:50%;'>\
             </div>\
             <div>\
                 <p>Você precisa fazer login para acessar as notificações</p>\
@@ -44,7 +51,7 @@ function escreverNoti(resposta){
     if(arr1.length > 0){
         document.getElementById('noti').innerHTML = "<span id='quantidade_de_not'>"+arr1.length+"</span>";
         for(i = 0; i < arr1.length; i++){            
-            document.getElementById('menu23').innerHTML += "<li class='" + arr1[i]['classe'] + "'> <a href='"+arr1[i]['link']+".php?ID="+ arr1[i]['id_publi'] +"&com="+arr1[i]['indTipo']+"'><div><i class='"+arr1[i]['tipo']+"'></i></div><span class=''>" + arr1[i]['notificacao'] + "</span></a></li>";            
+            document.getElementById('menu23').innerHTML += "<li class='" + arr1[i]['classe'] + "'> <a href='"+voltar+""+arr1[i]['link']+"/"+ arr1[i]['id_publi'] +"/"+arr1[i]['indTipo']+"'><div><i class='"+arr1[i]['tipo']+"'></i></div><span class=''>" + arr1[i]['notificacao'] + "</span></a></li>";            
         }   
     }
     

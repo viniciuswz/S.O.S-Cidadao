@@ -1382,7 +1382,7 @@ jQuery(function($){
                     data: "email="+email+"&senha="+senha,
                     success:function(result){
                         if(result=="1"){
-                            location.href="perfil_reclamacao.php";
+                            location.href="perfil_reclamacao";
                         }else{                            
                             $(".aviso-form-inicial").show();
                             $(".aviso-form-inicial").find("p").text(result);

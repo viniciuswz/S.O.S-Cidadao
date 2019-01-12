@@ -1,6 +1,6 @@
 <?php
 session_start();
-    require_once('../Config/Config.php');
+    require_once('Config/Config.php');
     require_once(SITE_ROOT.DS.'autoload.php');    
     
     use Core\Usuario;    
@@ -12,6 +12,17 @@ session_start();
         $tipoUsuPermi = array('Prefeitura','Adm','Funcionario','Moderador','Comum');
         Usuario::verificarLogin(1,$tipoUsuPermi);
 
+        $dadosUrl = explode('/', $_GET['url']);
+
+        if(count($dadosUrl) > 2){ // injetou parametros
+            throw new \Exception('Não foi possível achar o debate',45);
+        }else if(!isset($dadosUrl[1])){ // não digitou o id
+            throw new \Exception('Não foi possível achar o debate',9);
+        }else{
+            $numVoltar = count($dadosUrl) - 1;
+            $_GET['ID'] = $dadosUrl[1];
+        }
+        $voltar = '../';
         $debate = new Debate(); 
         $mensagemObj = new Mensagens($_GET['ID']);       
 
@@ -19,6 +30,10 @@ session_start();
             $debate->setCodUsu($_SESSION['id_user']); 
             $tipoUsu = $_SESSION['tipo_usu'];      
         }
+
+        
+
+
         $nomesCampos = array('ID');// Nomes dos campos que receberei da URL    
         $validar = new ValidarCampos($nomesCampos, $_GET);
         $validar->verificarTipoInt($nomesCampos, $_GET); // Verificar se o parametro da url é um numero     
@@ -33,9 +48,9 @@ session_start();
         
 
         $listDeba = $debate->listarDebatesQpartcipo();        
-        isset($_GET['pagina']) ?: $_GET['pagina'] = 1; 
+        //isset($_GET['pagina']) ?: $_GET['pagina'] = 1; 
         
-        $mensagem = $mensagemObj->getMensagens($_GET['pagina']);        
+        //$mensagem = $mensagemObj->getMensagens($_GET['pagina']);        
         //$mensagemObj->visualizarMensagem();
         $quantidadePaginas = $mensagemObj->getQuantidadePaginas();
         $pagina = $mensagemObj->getPaginaAtual();      
@@ -54,24 +69,24 @@ session_start();
         <meta name="theme-color" content="#089E8E" />
 
         <!-- favicon, arquivo de imagem podendo ser 8x8 - 16x16 - 32x32px com extensão .ico -->
-        <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="<?php echo $voltar ?>view/imagens/favicon.ico" type="image/x-icon">
 
         <!-- CSS PADRÃO -->
-        <link href="css/default.css" rel=stylesheet>
+        <link href="<?php echo $voltar ?>view/css/default.css" rel=stylesheet>
 
         <!-- Telas Responsivas -->
-        <link rel=stylesheet media="screen and (max-width:480px)" href="css/style480.css">
-        <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)" href="css/style768.css">
-        <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)" href="css/style1024.css">
-        <link rel=stylesheet media="screen and (min-width:1025px)" href="css/style1025.css">
+        <link rel=stylesheet media="screen and (max-width:480px)" href="<?php echo $voltar ?>view/css/style480.css">
+        <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)" href="<?php echo $voltar ?>view/css/style768.css">
+        <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)" href="<?php echo $voltar ?>view/css/style1024.css">
+        <link rel=stylesheet media="screen and (min-width:1025px)" href="<?php echo $voltar ?>view/css/style1025.css">
         
 
         <!-- JS-->
 
-        <script src="lib/_jquery/jquery.js"></script>
-        <script src="js/js.js"></script>
-        <script src="js/rolagemChat.js"></script>
-        <script src="../TesteMensagem.js"></script>
+        <script src="<?php echo $voltar ?>view/lib/_jquery/jquery.js"></script>
+        <script src="<?php echo $voltar ?>view/js/js.js"></script>
+        <script src="<?php echo $voltar ?>view/js/rolagemChat.js"></script>
+        <script src="<?php echo $voltar ?>TesteMensagem.js"></script>
         
 
     </head>
@@ -82,10 +97,10 @@ session_start();
         <input type="hidden" id="IdDeba" value = "<?php echo $_GET['ID']?>">
         <section class="debate-full">
                <?php
-                    if(isset($_GET['atu']) AND  !empty($_SESSION['atu'])){ // mensagem de bem-vindo
-                        if($_GET['atu'] == '1'){
+                    if(!empty($_SESSION['atu'])){ // mensagem de bem-vindo
+                        if($_SESSION['atu'] == '1'){
                             echo '<script>alerta("Certo","Bem-vindo ao debate")</script>';
-                        }else if($_GET['atu'] == '2'){
+                        }else if($_SESSION['atu'] == '2'){
                             echo '<script>alerta("Certo","Usuário Removido")</script>';
                         }                        
                         unset($_SESSION['atu']);
@@ -122,7 +137,7 @@ session_start();
                             ?>  
                             <div class="item-participante" <?php if($participantes[$contador]['ind_visu_criador'] == 'I'){echo 'style="order:1"';}else{echo 'style="order:2"';}?> >
                                 <div class="img-participante">
-                                    <img src="../Img/perfil/<?php echo $participantes[$contador]['img_perfil_usu'] ?>">
+                                    <img src="<?php echo $voltar ?>Img/perfil/<?php echo $participantes[$contador]['img_perfil_usu'] ?>">
                                 </div>
                                 
                                 <p><?php echo $participantes[$contador]['nome_usu'] ?></p>
@@ -142,9 +157,9 @@ session_start();
                                                             }else if($tipoUsu == 'Comum'){
                                                                 echo '<li><span><a href="../SairDebate.php?ID='. $resposta[0]['cod_deba'].'&IDUsu='.$participantes[$contador]['cod_usu'].'">Remover Usuario</a></span></li>';
                                                             }                                                            
-                                                            echo "<li><span><a href='perfil_reclamacao.php?ID=". $participantes[$contador]['cod_usu']."'>Perfil</a></span></li>";
+                                                            echo "<li><span><a href='../perfil_reclamacao/". $participantes[$contador]['cod_usu']."'>Perfil</a></span></li>";
                                                         }else if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] != $participantes[$contador]['cod_usu']){
-                                                            echo "<li><span><a href='perfil_reclamacao.php?ID=". $participantes[$contador]['cod_usu']."'>Perfil</a></span></li>";
+                                                            echo "<li><span><a href='../perfil_reclamacao/". $participantes[$contador]['cod_usu']."'>Perfil</a></span></li>";
                                                         }                                                
                                                     ?>                                                                                                        
                                                 </ul>
@@ -177,7 +192,7 @@ session_start();
                 <header>
                     <a href="todosdebates.php" style="order:1">&#x21FD;</a>
                     <div class="ft_debate-mensagem" style="order:2">
-                        <img src="../Img/debate/<?php echo $resposta[0]['img_deba']?>" alt="debate">
+                        <img src="<?php echo $voltar ?>Img/debate/<?php echo $resposta[0]['img_deba']?>" alt="debate">
                     </div>
                     <h4 style="order:3"><?php echo $resposta[0]['nome_deba']?></h4>
                     <div class="mini-menu-item" style="order:4">

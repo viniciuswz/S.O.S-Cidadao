@@ -95,7 +95,7 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
                     //$(window).scrollTop($(document).height()); // descer o scroll pro final
                     setTimeout(function(){ //simular delay de carregamento
                         $('#loader').remove();//remove a estrutura do gif do html
-                        teste2(data, quantVoltar); //manda ver na criação de conteudo
+                        teste2(data, quantVoltar, voltar); //manda ver na criação de conteudo
                         //$(window).scrollTop($(window).scrollTop() + 1)
                     },1780); // tempo do delay
     
@@ -156,16 +156,16 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
     
 
 
-function teste2(resposta, quantVoltar){
+function teste2(resposta, quantVoltar, voltar){
     var arr1 = JSON.parse(resposta);   
     
     var mensa = "";
     for(contador = 0; contador < arr1.length; contador++){
                 mensa += '<div class="item-publicacao">\
                 <div class="item-topo">\
-                    <a href="perfil_debate/'+arr1[contador]['cod_usu']+'">\
+                    <a href="'+voltar+'perfil_debate/'+arr1[contador]['cod_usu']+'">\
                         <div>\
-                            <img src="../Img/perfil/'+arr1[contador]['img_perfil_usu']+'">\
+                            <img src="'+voltar+'Img/perfil/'+arr1[contador]['img_perfil_usu']+'">\
                         </div>\
                         <p><span class="negrito">'+arr1[contador]['nome_usu']+'</a></span><time>'+arr1[contador]['dataHora_deba']+'</time></p>\
                         <div class="mini-menu-item">\
@@ -186,9 +186,9 @@ function teste2(resposta, quantVoltar){
                             </div>';                           
                     mensa+='</div>\
                     </div>\
-                    <a href="Pagina-debate/'+arr1[contador]['cod_deba']+'">\
+                    <a href="'+voltar+'Pagina-debate/'+arr1[contador]['cod_deba']+'">\
                         <figure>\
-                            <img src="../Img/debate/'+arr1[contador]['img_deba']+'">\
+                            <img src="'+voltar+'Img/debate/'+arr1[contador]['img_deba']+'">\
                         </figure>\
                         <div class="legenda">\
                             <p>'+arr1[contador]['nome_deba']+'</p><p>'+arr1[contador]['qtdParticipantes']+'</p><i class="icone-grupo"></i>\

@@ -28,16 +28,16 @@ try{
     
     if($ind == 1){ // adm removeu
         $_SESSION['atu'] = 2;
-        echo "<script>javascript:window.location='./view/debate_mensagens.php?ID=".$_GET['ID']."&pagina=ultima&atu=2';</script>";    
+        echo "<script>javascript:window.location='debate_mensagens/".$_GET['ID']."';</script>";    
     }else if($ind == 2){ // dono removeu        
         $_SESSION['atu'] = 2;
-        echo "<script>javascript:window.location='./view/debate_mensagens.php?ID=".$_GET['ID']."&pagina=ultima&atu=2';</script>";        
+        echo "<script>javascript:window.location='debate_mensagens/".$_GET['ID']."';</script>";        
     }else if($ind == 3){ // usuario saiu ou dono saiu     
         $_SESSION['atu'] = 1;   
-        echo "<script>javascript:window.location='./view/todosdebates.php?atu=1';</script>";    
+        echo "<script>javascript:window.location='todosdebates';</script>";    
     }else{
         $_SESSION['atu'] = 2;   
-        echo "<script>javascript:window.location='./view/todosdebates.php?atu=2';</script>";    
+        echo "<script>javascript:window.location='todosdebates';</script>";    
     }
     
         
@@ -46,17 +46,17 @@ try{
     $mensagem = $exc->getMessage();
     switch($erro){
         case 2://Nao esta logado    
-            echo "<script> alert('$mensagem');javascript:window.location='view/login.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='view/login';</script>";
             break;
         case 6://Não é usuario comum  
-            echo "<script> alert('$mensagem');javascript:window.location='view/index.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='view/todosdebates';</script>";
             break;
         case 8:// Se der erro ao cadastrar
         case 12://Mexeu no insprnsionar elemento
-            echo "<script> alert('$mensagem');javascript:window.location='view/todosdebates.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='view/todosdebates';</script>";
             break;        
         default: //Qualquer outro erro cai aqui
-            echo "<script> alert('$mensagem');javascript:window.location='view/todosdebates.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='view/todosdebates';</script>";
     }   
             
             

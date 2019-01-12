@@ -29,7 +29,7 @@
         }
 
         $voltar = '../';
-        
+        $quantVoltar = 1;
         $_GET['ID'] = $dadosUrl[1]; // passando o id pra variavel GET
         $nomesCampos = array('ID');// Nomes dos campos que receberei da URL    
         $validar = new ValidarCampos($nomesCampos, $_GET);
@@ -38,20 +38,11 @@
         $debate->setCodDeba($_GET['ID']);        
         $resposta = $debate->listByIdDeba();          
         
-        if(isset($resposta[0]['indParticipa']) AND $resposta[0]['indParticipa'] === 'Banido' ){
-            $txtButton = 'Você foi Banido';
-            $link = '#';
-        }else if(isset($resposta[0]['indParticipa']) AND $resposta[0]['indParticipa'] == TRUE
-        OR isset($tipoUsu) AND ($tipoUsu == 'Adm' OR $tipoUsu == 'Moderador' OR $tipoUsu == 'Prefeitura' OR $tipoUsu == 'Funcionario')){            
-            $txtButton = 'Entrar no debate';
-            $link = 'debate_mensagens.php';
-        }else{
-            $txtButton = 'Participar do debate';
-            $link = '../InserirParticipante.php';
-        }        
+       
 
         if(isset($dadosUrl[2])){
-            $voltar .= '../';      
+            $voltar .= '../';   
+            $quantVoltar++;   
             if(is_numeric($dadosUrl[2]) AND $dadosUrl[2] == 1){ // se o segundo parametro for 1 é pq o debate foi atualizado
                 $_GET['atu'] = 1;
             }else if(isset($_SESSION['id_user'])){ // notificação referente ao debate 
@@ -62,6 +53,18 @@
             }                  
         }   
 
+
+        if(isset($resposta[0]['indParticipa']) AND $resposta[0]['indParticipa'] === 'Banido' ){
+            $txtButton = 'Você foi Banido';
+            $link = '#';
+        }else if(isset($resposta[0]['indParticipa']) AND $resposta[0]['indParticipa'] == TRUE
+        OR isset($tipoUsu) AND ($tipoUsu == 'Adm' OR $tipoUsu == 'Moderador' OR $tipoUsu == 'Prefeitura' OR $tipoUsu == 'Funcionario')){            
+            $txtButton = 'Entrar no debate';
+            $link = $voltar. 'debate_mensagens/';
+        }else{
+            $txtButton = 'Participar do debate';
+            $link = $voltar. 'InserirParticipante.php?ID=';
+        }        
        
 ?>
 <!DOCTYPE html>
@@ -157,6 +160,7 @@
         ?>
 
         <div id="container">
+                <input type="hidden" id="voltar" value="<?php echo $quantVoltar?>">
                 <section class="pag-debate">
                     <div class="debate">   
                         <div class="publicacao-topo-aberta">
@@ -238,7 +242,7 @@
                                 <i class="icone-categoria-debate"></i><span><?php echo $resposta[0]['tema_deba']?></span>
                             </div>
                         </div>   
-                            <a href="<?php echo $link ?>?ID=<?php echo $_GET['ID']?>&pagina=ultima"><?php echo $txtButton ?></a>
+                            <a href="<?php echo $link ?><?php echo $_GET['ID']?>"><?php echo $txtButton ?></a>
                     </div>
                     
         
