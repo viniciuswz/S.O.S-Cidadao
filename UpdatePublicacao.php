@@ -28,7 +28,7 @@ try{
     $publicacao->updatePublicacao($_POST['bairro'], $_POST['local']);    
 
     $_SESSION['atu'] = 1;
-    echo "<script>javascript:window.location='./view/reclamacao.php?ID=".$_POST['id_publi']."&atu=1';</script>";
+    echo "<script>javascript:window.location='reclamacao/".$_POST['id_publi']."';</script>";
         
 }catch(Exception $exc){
     $erro = $exc->getCode();   

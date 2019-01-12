@@ -165,7 +165,7 @@
                     echo '<i class="icone-user" id="abrir"></i>';
                 }
 
-                if(isset($_GET['atu']) AND $_GET['atu'] == '1' AND !empty($_SESSION['atu'])){
+                if(!empty($_SESSION['atu'])){
                     echo '<script>alerta("Certo","Atualizado")</script>';
                     unset($_SESSION['atu']);
                 }
@@ -229,12 +229,12 @@
                                                 <?php
                                                     if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $resposta[0]['cod_usu']){
                                                         echo '<li><a href="../ApagarPublicacao.php?ID='.$_GET['ID'].'"><i class="icone-fechar"></i></i>Remover</a></li>';                                                                                                           
-                                                        echo '<li><a href="reclamacao-update.php?ID='.$_GET['ID'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';
+                                                        echo '<li><a href="'.$voltar.'reclamacao-update/'.$_GET['ID'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';
                                                     }else if(isset($tipoUsu) AND ($tipoUsu == 'Adm' or $tipoUsu == 'Moderador')){
                                                         echo '<li><a href="../ApagarPublicacao.php?ID='.$_GET['ID'].'"><i class="icone-fechar"></i></i>Remover</a></li>';
                                                         // Icone para apagar usuaario
                                                         //echo '<a href="../ApagarUsuario.php?ID='.$resposta[0]['cod_usu'].'">Apagar Usuario</a>';  
-                                                        echo '<li><a href="reclamacao-update.php?ID='.$_GET['ID'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';                                                
+                                                        echo '<li><a href="'.$voltar.'reclamacao-update/'.$_GET['ID'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';                                                
                                                     }
                                                 ?> 
                                                 <?php                                             

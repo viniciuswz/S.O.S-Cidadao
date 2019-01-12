@@ -20,7 +20,7 @@ try{
     $publi->updateStatusPubli('I');
 
     $_SESSION['atu'] = 1;   
-    echo "<script>javascript:window.location='./view/todasreclamacoes.php?atu=1';</script>";    
+    echo "<script>javascript:window.location='todasreclamacoes';</script>";    
         
 }catch(Exception $exc){  
     $erro = $exc->getCode();   

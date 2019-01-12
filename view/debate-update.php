@@ -35,7 +35,7 @@
         $debate->setCodDeba($_GET['ID']);        
         $resposta = $debate->listByIdDeba('sqlSelect', true);
         
-        
+        $voltar = "../";
         
 ?>
 <!DOCTYPE html>
@@ -78,7 +78,7 @@
     </head>
     <body>
         <header>
-            <a href="todasreclamacoes">
+            <a href="../todasreclamacoes">
                 <img src="../view/imagens/logo_oficial.png" alt="logo">
             </a>   
             <i class="icone-pesquisa pesquisa-mobile" id="abrir-pesquisa"></i>
@@ -275,7 +275,7 @@
                 echo "<script> alert('$mensagem');javascript:window.location='../todosdebates';</script>";
                 break; 
             case 25://Não foi possivel achar a publicacao  
-                echo "<script> alert('$mensagem');javascript:window.location='todosdebates';</script>";
+                echo "<script> alert('$mensagem');javascript:window.location='../todosdebates';</script>";
                 break; 
             case 45://Digitou um numero maior de parametros 
                unset($dadosUrl[0]);
