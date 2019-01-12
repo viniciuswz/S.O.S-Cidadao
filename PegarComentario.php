@@ -66,7 +66,14 @@
                 exit();
             }
         }
-       
+        $voltar = "";
+        if(isset($_GET['voltar']) AND $_GET['voltar'] > 0){
+            
+            for($i = 0; $i < $_GET['voltar']; $i++){
+                $voltar .= "../";
+            }
+        }
+
         $indDenun = false;
         $contador = 0;
         while($contador < count($comentarioComum)){
@@ -86,11 +93,11 @@
 
 
                     if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $comentarioComum[$contador]['cod_usu']){
-                        $comentarioComum[$contador]['LinkApagar'] = "../ApagarComentario.php?ID=".$comentarioComum[$contador]['cod_comen'];
+                        $comentarioComum[$contador]['LinkApagar'] = $voltar . "ApagarComentario.php?ID=".$comentarioComum[$contador]['cod_comen'];
                         $comentarioComum[$contador]['LinkUpdate'] = "#";
                         $indEditarComen = true;
                     }else if(isset($tipoUsu) AND ($tipoUsu == 'Adm' or $tipoUsu == 'Moderador')){            
-                        $comentarioComum[$contador]['LinkApagar'] = "../ApagarComentario.php?ID=".$comentarioComum[$contador]['cod_comen']; 
+                        $comentarioComum[$contador]['LinkApagar'] = $voltar ."ApagarComentario.php?ID=".$comentarioComum[$contador]['cod_comen']; 
                         $comentarioComum[$contador]['LinkUpdate'] = FALSE;                         
                         //Remover usuario ADM    
                     }else{

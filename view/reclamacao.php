@@ -12,14 +12,16 @@
         $publi = new Publicacao();
         $comentario = new Comentario();
         
-        $dados = explode('/',$_GET['url']);
-        //var_dump($dados);     
-        if(!isset($dados[1])){
+        $dadosUrl = explode('/',$_GET['url']);
+        //var_dump($dadosUrl);     
+        if(!isset($dadosUrl[1])){
             throw new \Exception('Não foi possível achar o debate',9);
+        }else if(isset($dadosUrl[4])){ //não pode ter mais de tres parametros
+            throw new \Exception('Não foi possível achar o debate',45);
         }  
         $voltar = "../";
-
-        $_GET['ID'] = $dados[1];
+        $numVoltar = 1;
+        $_GET['ID'] = $dadosUrl[1];
 
 
         if(isset($_SESSION['id_user']) AND !empty($_SESSION['id_user'])){
@@ -53,12 +55,17 @@
         $resposta = $publi->listByIdPubli(); 
         $comentarioPrefei = $comentario->SelecionarComentariosUserPrefei(TRUE);        
                    
-        if(isset($_GET['com'])){       
+        if(isset($dadosUrl[2])){ // notificacao            
+            $_GET['com'] = $dadosUrl[2];       
             $voltar .= "../";                     
+            $numVoltar++;
             if(isset($_SESSION['id_user'])){                
                 $visualizar = new VisualizarNotificacao();
-                if(isset($_GET['IdComen'])){
-                    $idNoti = $_GET['IdComen'];
+                if(isset($dadosUrl[3])){ // comentario denunciado
+                    $voltar .="../";
+                    $numVoltar++;
+                    $_GET['IdComen'] = $dadosUrl[3];
+                    $idNoti = $dadosUrl[3];
                     $comentario->setCodComen($idNoti);
                     $comentarioComum = $comentario->getDadosComenByIdComen(); // preciso do comenantario denunciado                    
                 }else{                                        
@@ -68,8 +75,7 @@
             }                  
         }
 
-        if(isset($_SESSION['id_user']) AND isset($_GET['IdComen']) AND isset($tipoUsu) AND ($tipoUsu == 'Adm' OR $tipoUsu == 'Moderador')){
-            $voltar = "../";
+        if(isset($_SESSION['id_user']) AND isset($_GET['IdComen']) AND isset($tipoUsu) AND ($tipoUsu == 'Adm' OR $tipoUsu == 'Moderador')){            
             $idNoti = $_GET['IdComen'];
             $comentario->setCodComen($idNoti);
             //$comentarioComum = $comentario->getDadosComenByIdComen(); // preciso do comenantario denunciado  
@@ -85,13 +91,9 @@
             }            
             $_GET['IdComen'] = "";
         }
-        $quantidadePaginas = $comentario->getQuantidadePaginas();
-        $pagina = $comentario->getPaginaAtual(); 
+       
 
-        if(isset($dadosUrl[4])){ //não pode ter mais de tres parametros
-            throw new \Exception('Não foi possível achar o debate',9);
-        }
-        
+       
 ?>
 <!DOCTYPE html>
 <html lang=pt-br>
@@ -176,9 +178,9 @@
                         <a href="javascript:void(0)" class="fechar">&times;</a>
                         <div class="mini-perfil">
                             <div>    
-                                <img src="../Img/perfil/<?php echo $resultado[0]['img_perfil_usu'] ?>" alt="perfil">
+                                <img src="<?php echo $voltar ?>Img/perfil/<?php echo $resultado[0]['img_perfil_usu'] ?>" alt="perfil">
                             </div>    
-                                <img src="../Img/capa/<?php echo $resultado[0]['img_capa_usu'] ?>" alt="capa">
+                                <img src="<?php echo $voltar ?>Img/capa/<?php echo $resultado[0]['img_capa_usu'] ?>" alt="capa">
                                 <p><?php echo $resultado[0]['nome_usu'] ?></p>
                         </div>
                         <nav>
@@ -200,9 +202,9 @@
             <section class="pag-reclamacao">
                 <div class="Reclamacao">   
                         <div class="publicacao-topo-aberta">
-                                <a href="perfil_reclamacao.php?ID=<?php echo $resposta[0]['cod_usu'] ?>">
+                                <a href="<?php echo $voltar ?>perfil_reclamacao/<?php echo $resposta[0]['cod_usu'] ?>">
                                 <div>
-                                    <img src="../Img/perfil/<?php echo $resposta[0]['img_perfil_usu']?>">
+                                    <img src="<?php echo $voltar ?>Img/perfil/<?php echo $resposta[0]['img_perfil_usu']?>">
                                 </div>
                                 
                                 <p><span class="negrito"><?php echo $resposta[0]['nome_usu']?></span></a><time><?php echo $resposta[0]['dataHora_publi']?></time></p>
@@ -216,7 +218,7 @@
                                                         echo '<li><i class="icone-bandeira"></i><span class="negrito">Denunciado</b></li>';        
                                                     }else if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] != $resposta[0]['cod_usu']){ // Aparecer apenas naspublicaçoes q nao é do usuario
                                                         if($tipoUsu == 'Comum' or $tipoUsu == 'Prefeitura' or $tipoUsu == 'Funcionario'){
-                                                            echo '<li class="denunciar-item" data-id="'.$_GET['ID'].'.Publicacao"><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>';    
+                                                            echo '<li class="denunciar-item" data-id="'.$_GET['ID'].'.Publicacao,'.$numVoltar.'"><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>';    
                                                             $indDenun = TRUE; // = carregar modal da denucia
                                                         }                    
                                                     }else if(!isset($_SESSION['id_user'])){ // aparecer parar os usuario nao logado
@@ -237,11 +239,11 @@
                                                 ?> 
                                                 <?php                                             
                                                     if(isset($indSalva) AND !$indSalva){
-                                                        echo '<li><a class="salvar" href="../SalvarPublicacao.php?ID='.$_GET['ID'].'"><i class="icone-salvar"></i>Salvar</a></li>';
+                                                        echo '<li><a class="salvar" href="../SalvarPublicacao.php?ID='.$_GET['ID'].','.$numVoltar.'"><i class="icone-salvar"></i>Salvar</a></li>';
                                                     }else if(isset($indSalva) AND $indSalva){
-                                                        echo '<li><a class="salvar" href="../SalvarPublicacao.php?ID='.$_GET['ID'].'"><i class="icone-salvar-full"></i>Salvo</a></li>';
+                                                        echo '<li><a class="salvar" href="../SalvarPublicacao.php?ID='.$_GET['ID'].','.$numVoltar.'"><i class="icone-salvar-full"></i>Salvo</a></li>';
                                                     }else{
-                                                        echo '<li><a class="salvar" href="../SalvarPublicacao.php?ID='.$_GET['ID'].'"><i class="icone-salvar"></i>Salvar</a></li>';
+                                                        echo '<li><a class="salvar" href="../SalvarPublicacao.php?ID='.$_GET['ID'].','.$numVoltar.'"><i class="icone-salvar"></i>Salvar</a></li>';
                                                     }
                                                 ?>
                                         </ul>
@@ -283,7 +285,7 @@
             <div class="img-publicacao">
                 
                 <figure>
-                    <img src="../Img/publicacao/<?php echo $resposta[0]['img_publi']?>" alt="<?php echo $resposta[0]['titulo_publi']?>">
+                    <img src="<?php echo $voltar ?>Img/publicacao/<?php echo $resposta[0]['img_publi']?>" alt="<?php echo $resposta[0]['titulo_publi']?>">
                 </figure>
                                     
                 <div class="item-baixo-publicacao">   
@@ -301,7 +303,7 @@
                         <div class="topo-prefeitura-publicacao">
                             <a href="perfil_reclamacao.php?ID=<?php echo $comentarioPrefei[0]['cod_usu_prefei'] ?>">
                             <div>
-                                <img src="../Img/perfil/<?php echo $comentarioPrefei[0]['img_perfil_usu']?>">
+                                <img src="<?php echo $voltar ?>Img/perfil/<?php echo $comentarioPrefei[0]['img_perfil_usu']?>">
                             </div>
                             <p><span class="negrito"><?php echo $comentarioPrefei[0]['nome_usu_prefei']?></span></a><time><?php echo $comentarioPrefei[0]['dataHora_comen']?></time></p>  
                         </div> 
@@ -384,130 +386,16 @@
                 <h3 style="display: flex;order: -2;">
                     <?php echo $complemento ?>
                 </h3>
-                <?php 
-                /*
-                    $indDenun = false;
-                    $contador = 0;
-                    while($contador < count($comentarioComum)){
-                ?>
-                <div class="comentario-user">
-                    <div class="publicacao-topo-aberta">
-                        <a href="perfil_reclamacao.php?ID=<?php echo $comentarioComum[$contador]['cod_usu'] ?>">
-                        <div>
-                            <img src="../Img/perfil/<?php echo $comentarioComum[$contador]['img_perfil_usu']?>">
-                        </div>
-                        <p><span class="negrito"><?php echo $comentarioComum[$contador]['nome_usu']?></span></a><?php echo $comentarioComum[$contador]['dataHora_comen']?></p>
-                        <div class="mini-menu-item ">
-                            <i class="icone-3pontos"></i>
-                            <div>
-                            <ul style="z-index: 98">
-                                    <?php
-                                        if(isset($comentarioComum[$contador]['indDenunComen']) AND $comentarioComum[$contador]['indDenunComen'] == TRUE){ // Aparecer quando o user ja denunciou            
-                                            echo '<li><i class="icone-bandeira"></i><span class="negrito">Denunciado</span></li>';            
-                                        }else if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] != $comentarioComum[$contador]['cod_usu']){ // Aparecer apenas naspublicaçoes q nao é do usuario
-                                            if($tipoUsu == 'Comum' or $tipoUsu == 'Prefeitura' or $tipoUsu == 'Funcionario'){
-                                                echo '<li class="denunciar-item"><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>';
-                                                $indDenun = TRUE; // = carregar modal da denucia
-                                            }                    
-                                        }else if(!isset($_SESSION['id_user'])){ // aparecer parar os usuario nao logado
-                                            echo '<li class="denunciar-item"><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>';
-                                            $indDenun = TRUE; // = carregar modal da denucia
-                                        }
-                                    ?>
-
-                                    <?php
-                                        if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $comentarioComum[$contador]['cod_usu']){
-                                            echo '<li><a href="../ApagarComentario.php?ID='.$comentarioComum[$contador]['cod_comen'].'"><i class="icone-fechar"></i></i>Remover</a></li>';                                       
-                                            //echo '<li><a href="../Templates/UpdateComentarioTemplate.php?ID='.$comentarioComum[$contador]['cod_comen'].'&IDPubli='.$_GET['ID'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';                                        
-                                            echo '<li class="editar-comentario"><a href="#"><i class="icone-edit-full"></i>Alterar</a></li>';
-                                            $indEditarComen = true;
-                                        }else if(isset($tipoUsu) AND ($tipoUsu == 'Adm' or $tipoUsu == 'Moderador')){
-                                            echo '<li><a href="../ApagarComentario.php?ID='.$comentarioComum[$contador]['cod_comen'].'"><i class="icone-fechar"></i></i>Remover</a></li>';                                       
-                                            //Remover usuario ADM    
-                                            //echo '<a href="../ApagarUsuario.php?ID='.$comentarioComum[$contador]['cod_usu'].'">Apagar Usuario</a>';                            
-                                        }
-                                    ?>    
-                                </ul>
-                            </div>
-                            <?php if(isset($indDenun) AND $indDenun == TRUE) { // so quero q carregue em alguns casos?>
-                                            <div class="modal-denunciar">
-                                                <div class="modal-denunciar-fundo"></div>
-                                                <div class="box-denunciar">
-                                                    <div>
-                                                        <h1>Qual o motivo da denuncia?</h1>
-                                                        <span class="fechar-denuncia">&times;</span>
-                                                    </div>
-                                            
-                                                    <form form method="post" action="../DenunciarComentario.php">
-                                                        <textarea placeholder="Qual o motivo?" id="motivo" name="texto"></textarea>
-                                                        <input type="hidden" name="id_publi" value="<?php echo $_GET['ID'] ?>">  
-                                                        <input type="hidden" name="id_comen" value="<?php echo $comentarioComum[$contador]['cod_comen'] ?>">   
-                                                        <input type="hidden" name="pagina" value="<?php echo $pagina ?>">             
-                                                        <button type="submit"> Denunciar</button>
-                                                    </form>                                        
-                                                </div>
-                                            </div>
-                            <?php } ?>
-
-                            <?php if(isset($indEditarComen) AND $indEditarComen == TRUE) { // so quero q carregue em alguns casos?>
-                                    <div class="modal-editar-comentario">
-                                        <div class="modal-editar-comentario-fundo"></div>
-                                        <div class="box-editar-comentario">
-                                            <div>
-                                                <h1>Editar comentario</h1>
-                                                <span class="fechar-editar-comentario">&times;</span>
-                                            </div>
-                                        
-                                            <form action="../UpdateComentario.php" method="post">
-                                                <textarea placeholder="Qual o motivo?" id="motivo" name="texto">
-<?php echo str_replace("<br/>","\n",$comentarioComum[$contador]['texto_comen'])?>
-                                                </textarea>
-                                                <input type="hidden" value="<?php echo $comentarioComum[$contador]['cod_comen'] ?>" name="id">
-                                                <button type="submit"> editar</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                            <?php } ?>
-                        </div>
-                    </div>  
-                    <p>
-<?php echo nl2br($comentarioComum[$contador]['texto_comen'])?>
-                    </p>                
-                </div>
-                <?php
-                    $indDenun = false;
-                    $indEditarComen = false;
-                    $contador++;
-                   
-                }
-                 */
-                ?>
-                <ul>
-                    <?php    
-                    /*                
-                        if($quantidadePaginas != 1){
-                            $contador = 1;
-                            while($contador <= $quantidadePaginas){
-                                if(isset($pagina) AND $pagina == $contador){
-                                    echo '<li class="jaca"><a href="reclamacao.php?ID='.$_GET['ID'].'&pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;  
-                                }else{
-                                    echo '<li><a href="reclamacao.php?ID='.$_GET['ID'].'&pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;
-                                }                            
-                                $contador++;        
-                            }
-                        }    
-                        */        
-                    ?>
-                </ul> 
             </section>     
         </div>
-        <script src="js/like.js"></script>
+        <input type="hidden" id="voltar" value="<?php echo $numVoltar?>">
+        <script src="<?php echo $voltar ?>view/js/like.js"></script>
     </body>
 </html>
 <?php
 }catch (Exception $exc){
         $erro = $exc->getCode();   
-        $mensagem = $exc->getMessage();  
+        echo $mensagem = $exc->getMessage();  
         switch($erro){
             // case 9://Não foi possivel achar a publicacao  
             //     echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes.php';</script>";

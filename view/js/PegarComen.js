@@ -3,11 +3,11 @@ var paginacao = 1;
 var validar = 0 // se for 0 roda o jaquinha se for outro valor não roda
 var teste = false;
 
-function criarEmpty(emptyStateMensagem,emptyStateCta){
+function criarEmpty(emptyStateMensagem,emptyStateCta, voltar){
     $('.comentarios').find('h3:first').html("<div class='empty-state' style='padding-bottom:50px; width: 100%;'>\
     <div>\
     <div style='overflow: hidden; border-radius: 50%; width: 280px; height: 280px;'>\
-    <img src='imagens/comentario-sem.png' style='width: 280px;'>\
+    <img src='"+voltar+"view/imagens/comentario-sem.png' style='width: 280px;'>\
  </div>\
         <div>\
         <p style='margin: 0 auto; width:90%; max-width:500px'>"+emptyStateMensagem+"</p>"+emptyStateCta+"\
@@ -41,11 +41,20 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
         teste = true;
         var idPubli = document.getElementById("IdPublis").value;
         var idComen = document.getElementById("IdComen").value;
-        
+
+        var quantVoltar = $("#voltar").val();
+        voltar = "";
+        if(quantVoltar >= 0 && quantVoltar <= 5 ){
+            for(i = 0; i < quantVoltar; i++){
+                voltar += "../";
+            }
+        }   
+  
+
         $.ajax({
-            url: '../PegarComentario.php',
+            url: voltar + 'PegarComentario.php',
             type: "get",
-            data: "pagina="+paginacao+"&ID="+idPubli+"&IdComen="+idComen,
+            data: "pagina="+paginacao+"&ID="+idPubli+"&IdComen="+idComen+"&voltar="+quantVoltar,
             success: function(data){
                 var tipoPubPaginacao = data.substring(0, data.lastIndexOf('.'));
                 var tipoUsuPaginacao = data.substring(data.lastIndexOf('.') + 1 );
@@ -61,12 +70,12 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
                             //var emptyStateMensagem = "Descobrimos que você não tem nenhuma publicação, que tal postar uma reclamação?";
                             //var emptyStateCta = 
                             // Moderador Adm
-                            criarEmpty('Parece que ninguém deixou sua marca aqui, seja o primerio a fazer uma, deixe um comentário ','<a id=scrollcomentario class=cta> Comentar</a>');
+                            criarEmpty('Parece que ninguém deixou sua marca aqui, seja o primerio a fazer uma, deixe um comentário ','<a id=scrollcomentario class=cta> Comentar</a>', voltar);
                         }else if(tipoUsuPaginacao == "Prefeitura" || tipoUsuPaginacao == "Moderador" || tipoUsuPaginacao == "Adm" ){
-                            criarEmpty('Parece que ninguém deixou sua marca aqui, deixe uma fazendo um comentário com sua conta de usuário comum','<a href="../Sair.php" class="cta">Log out</a>');
+                            criarEmpty('Parece que ninguém deixou sua marca aqui, deixe uma fazendo um comentário com sua conta de usuário comum','<a href="'+voltar+'Sair.php" class="cta">Log out</a>', voltar);
                         }else{
 
-                            criarEmpty('Parece que ninguém deixou sua marca aqui, deixe uma fazendo um comentário com sua conta','<a href="login.php" class="cta">Login</a>');
+                            criarEmpty('Parece que ninguém deixou sua marca aqui, deixe uma fazendo um comentário com sua conta','<a href="'+voltar+'login" class="cta">Login</a>',voltar);
                         }
                     }
                    
@@ -78,7 +87,7 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
                     //$(window).scrollTop($(document).height()); // descer o scroll pro final
                     setTimeout(function(){ //simular delay de carregamento
                         $('#loader').remove();//remove a estrutura do gif do html
-                        teste2(data); //manda ver na criação de conteudo
+                        teste2(data, voltar, quantVoltar); //manda ver na criação de conteudo
                         //$(window).scrollTop($(window).scrollTop() + 1)
                     },1780); // tempo do delay
     
@@ -150,7 +159,7 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
 
 
 
-function teste2(resposta){
+function teste2(resposta, voltar, qtdVoltar){
     var arr1 = JSON.parse(resposta);   
     var idPubli = document.getElementById("IdPublis").value;
     var mensa = "";
@@ -161,9 +170,9 @@ function teste2(resposta){
        
             mensa +=  '<div class="comentario-user">\
                 <div class="publicacao-topo-aberta">\
-                    <a href="perfil_reclamacao.php?ID='+arr1[contador]['cod_usu']+'">\
+                    <a href="'+voltar+'perfil_reclamacao/'+arr1[contador]['cod_usu']+'">\
                     <div>\
-                        <img src="../Img/perfil/'+arr1[contador]['img_perfil_usu']+'">\
+                        <img src="'+voltar+'Img/perfil/'+arr1[contador]['img_perfil_usu']+'">\
                     </div>\
                     <p><span class="negrito">'+arr1[contador]['nome_usu']+'</span></a>'+arr1[contador]['dataHora_comen']+'</p>\
                     <div class="mini-menu-item ">\
@@ -174,7 +183,7 @@ function teste2(resposta){
                                 if(arr1[contador]["indDenun"] == true){
                                     mensa += '<li><i class="icone-bandeira"></i><span class="negrito">Denunciado</span></li>';
                                 }else if(arr1[contador]["indDenun"] == false){ // nao denunciou\
-                                    mensa += '<li class="denunciar-item" data-id="'+arr1[contador]['cod_comen']+'.Comentario"><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>';
+                                    mensa += '<li class="denunciar-item" data-id="'+arr1[contador]['cod_comen']+'.Comentario,'+qtdVoltar+'"><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>';
                                 }
 
                                 if(arr1[contador]["LinkApagar"] != false && arr1[contador]["LinkUpdate"] != false){ // Denuncioou

@@ -33,9 +33,18 @@ jQuery(function($)
   
   $("#deiLike").click(function(){
    var id = $("#IdPublis").val();
-   var classe = $(this).find('i').attr("class");   
+   var classe = $(this).find('i').attr("class");  
+    
+   var quantVoltar = $("#voltar").val();
+   voltar = "";
+   if(quantVoltar >= 0 && quantVoltar <= 5 ){
+       for(i = 0; i < quantVoltar; i++){
+           voltar += "../";
+       }
+   }   
+  
     $.ajax({
-      url:"../CurtirPublicacao.php",
+      url: voltar +"CurtirPublicacao.php",
       type: "get",
       data: "ID="+id,
       success:function(result){
@@ -2035,13 +2044,22 @@ jQuery(function($){
   var nome = $(".mini-perfil").find("p").html();
   var hrefIDUsu = $("#idPerfilUsu").attr('href');
   var id_usu = hrefIDUsu.substring(hrefIDUsu.lastIndexOf('ID')+3); // pegar id do usuario
+
+  var quantVoltar = $("#voltar").val();
+  voltar = "";
+  if(quantVoltar >= 0 && quantVoltar <= 5 ){
+      for(i = 0; i < quantVoltar; i++){
+          voltar += "../";
+      }
+  }   
+
   $.ajax({
-    url:"../Comentario.php",
+    url: voltar +"Comentario.php",
     type: "post",
     data: "id="+idPubli+"&texto="+comentario,
     success:function(result){
         if(result == 'NLogado'){ // Nao esta logado, redirecionar pra fazer login
-          location.href="login.php";
+          location.href= voltar + "login";
           return false;
         }else{
           //alert(result);
@@ -2055,13 +2073,13 @@ jQuery(function($){
             
             $(".comentarios").prepend('<div class="comentario-user" style="display:flex; order:-1">\
             <div class="publicacao-topo-aberta">\
-            <a href="perfil_reclamacao.php">\
+            <a href="'+voltar+'perfil_reclamacao">\
               <div>\
-              <img src="'+img+'">\
+              <img src="'+ img +'">\
               </div>\
             </a>\
             <p>\
-            <a href="perfil_reclamacao.php?ID='+id_usu+'">\
+            <a href="'+voltar+'perfil_reclamacao/'+id_usu+'">\
             <span class="negrito">'+nome+'</span>\
             </a>Enviado agora</p>\
             <div class="mini-menu-item ">\
@@ -2069,7 +2087,7 @@ jQuery(function($){
             <div>\
             <ul style="z-index: 98">\
             <li>\
-            <a class="remover_publicacao" href="../ApagarComentario.php?ID='+id_comentario+'">\<i class="icone-fechar"></i>Remover</a>\
+            <a class="remover_publicacao" href="'+voltar+'ApagarComentario.php?ID='+id_comentario+'">\<i class="icone-fechar"></i>Remover</a>\
             </li>\
             <li class="editar-comentario" data-id="'+id_comentario+'"><a href="#"><i class="icone-edit-full"></i>Alterar</a></li>\
             </ul>\
@@ -2088,11 +2106,11 @@ jQuery(function($){
             $(".enviar-comentario-publicacao").remove();
             $('<section class="prefeitura-publicacao">\
             <div class="topo-prefeitura-publicacao">\
-            <a href="perfil_reclamacao.php">\
+            <a href="'+voltar+'perfil_reclamacao">\
             <div>\
             <img src="'+img+'">\
             </div>\
-            </a><p><a href="perfil_reclamacao.php?ID='+id_usu+'"><span class="negrito">'+nomePref+'</span></a><time>Enviado agora</time></p></div>\
+            </a><p><a href="'+voltar+'perfil_reclamacao/'+id_usu+'"><span class="negrito">'+nomePref+'</span></a><time>Enviado agora</time></p></div>\
             <div class="conteudo-resposta">\
             <span>'+comentario+'</span>\
             <div>\
@@ -2120,15 +2138,15 @@ $(document).on('click','.salvar',function(){
   if(indVirgula > 0){
     var id = idInteiro.substr(0,idInteiro.lastIndexOf(',')); // id, pegar ate a vrigula
     var quantVoltar = idInteiro.substr(idInteiro.lastIndexOf(',') + 1);
-    if(quantVoltar > 0){
-      voltar = "../";
+    if(quantVoltar > 0 && quantVoltar <= 4){
+      for(i = 0; i < quantVoltar; i++){
+        voltar += "../";
+      }
     } 
   }else{
     var id = href.substring(href.lastIndexOf('ID')+3);
     quantVoltar = 0;
   }
-   
-  
   
   $.ajax({
     url: voltar + 'SalvarPublicacao.php',
@@ -2255,10 +2273,16 @@ jQuery(function($){
         }
 
     }
-    
+        var quantVoltar = $("#voltar").val();
+        voltar = "";
+        if(quantVoltar >= 0 && quantVoltar <= 5 ){
+            for(i = 0; i < quantVoltar; i++){
+                voltar += "../";
+            }
+        }   
     //ajax
     $.ajax({
-      url:"../UpdateComentario.php",
+      url: voltar + "UpdateComentario.php",
       type: "post",
       data: "id="+id+"&texto="+txt,
       success:function(result){
