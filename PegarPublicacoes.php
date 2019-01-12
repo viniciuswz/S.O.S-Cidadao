@@ -41,10 +41,10 @@ try{
 
         if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $resposta[$contador]['cod_usu']){            
             $resposta[$contador]['LinkApagar'] = "../ApagarPublicacao.php?ID=".$resposta[$contador]['cod_publi'];
-            $resposta[$contador]['LinkUpdate'] = "reclamacao-update.php?ID=".$resposta[$contador]['cod_publi'];
+            $resposta[$contador]['LinkUpdate'] = "reclamacao-update/".$resposta[$contador]['cod_publi'];
         }else if(isset($tipoUsu) AND ($tipoUsu == 'Adm' or $tipoUsu == 'Moderador')){
             $resposta[$contador]['LinkApagar'] = "../ApagarPublicacao.php?ID=".$resposta[$contador]['cod_publi'];
-            $resposta[$contador]['LinkUpdate'] = "reclamacao-update.php?ID=".$resposta[$contador]['cod_publi'];
+            $resposta[$contador]['LinkUpdate'] = "reclamacao-update/".$resposta[$contador]['cod_publi'];
         }else{
             $resposta[$contador]['LinkApagar'] = FALSE;
             $resposta[$contador]['LinkUpdate'] = FALSE;

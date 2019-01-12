@@ -78,10 +78,10 @@ try{
     
             if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $resPes[$contador]['cod_usu']){            
                 $resPes[$contador]['LinkApagar'] = "ApagarPublicacao.php?ID=".$resPes[$contador]['cod_publi'];
-                $resPes[$contador]['LinkUpdate'] = "reclamacao-update.php?ID=".$resPes[$contador]['cod_publi'];
+                $resPes[$contador]['LinkUpdate'] = "reclamacao-update/".$resPes[$contador]['cod_publi'];
             }else if(isset($tipoUsu) AND ($tipoUsu == 'Adm' or $tipoUsu == 'Moderador')){
                 $resPes[$contador]['LinkApagar'] = "ApagarPublicacao.php?ID=".$resPes[$contador]['cod_publi'];
-                $resPes[$contador]['LinkUpdate'] = "reclamacao-update.php?ID=".$resPes[$contador]['cod_publi'];
+                $resPes[$contador]['LinkUpdate'] = "reclamacao-update/".$resPes[$contador]['cod_publi'];
             }else{
                 $resPes[$contador]['LinkApagar'] = FALSE;
                 $resPes[$contador]['LinkUpdate'] = FALSE;
