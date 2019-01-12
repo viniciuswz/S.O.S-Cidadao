@@ -26,20 +26,20 @@ try{
     echo $mensagem = $exc->getMessage();
     switch($erro){
         case 2://Nao esta logado    
-            echo "<script> alert('$mensagem');javascript:window.location='./view/login.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='login';</script>";
             break;
         case 6://Não é usuario comum, prefeitura ou func
-            echo "<script> alert('$mensagem');javascript:window.location='./view/index.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes';</script>";
             break;
         case 12://Mexeu no insprnsionar elemento, ou nao tem valores validos
         case 9://Erro no ao fazer a insercao
-            echo "<script> alert('$mensagem');javascript:window.location='./view/index.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes';</script>";
             break;  
         case 20://Erro no ao fazer a update
-            echo "<script> alert('$mensagem');javascript:window.location='./view/admin-denuncia.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='admin-denuncia';</script>";
             break;        
         default: //Qualquer outro erro cai aqui
-            "<script> alert('$mensagem');javascript:window.location='./view/index.php';</script>";
+            "<script> alert('$mensagem');javascript:window.location='todasreclamacoes';</script>";
     }    
 }    
 

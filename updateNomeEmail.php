@@ -26,16 +26,16 @@ try{
             echo $mensagem;
             break;                          
         case 2://Não esta logado  
-            echo "<script> alert('$mensagem');javascript:window.location='./view/login.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='login';</script>";
             break; 
         case 4: // email ja existente
             echo "emailExistente";
             break; 
         case 12://Mexeu no insprnsionar elemento  ou entrou pela url
-            echo "<script> alert('$mensagem');javascript:window.location='./view/configuracoes.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='configuracoes';</script>";
             break;       
         default: //Qualquer outro erro cai aqui
-            echo "<script> alert('$mensagem');javascript:window.location='./view/configuracoes.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='configuracoes';</script>";
     }   
             
 }   

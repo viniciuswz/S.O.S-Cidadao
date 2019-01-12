@@ -82,7 +82,7 @@ try{
     switch($erro){
         case 2://Ja esta logado  
         case 6://Ja esta logado 
-            echo "<script> alert('$mensagem');javascript:window.location='view/index.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes';</script>";
             break;
     
     }      

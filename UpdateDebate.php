@@ -28,20 +28,20 @@ try{
         
 }catch(Exception $exc){
     $erro = $exc->getCode();   
-    echo $mensagem = $exc->getMessage();
+    $mensagem = $exc->getMessage();
     switch($erro){
         case 2://Nao esta logado    
-            //echo "<script> alert('$mensagem');javascript:window.location='./view/login.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='login';</script>";
             break;
         case 6://Não é usuario comum  
-            //echo "<script> alert('$mensagem');javascript:window.location='./view/index.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='todosdebates';</script>";
             break;
         case 13:// Se der erro ao cadastrar
         case 12://Mexeu no insprnsionar elemento
-            //echo "<script> alert('$mensagem');javascript:window.location='./view/index.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='todosdebates';</script>";
             break;        
         default: //Qualquer outro erro cai aqui
-           //echo "<script> alert('$mensagem');javascript:window.location='./view/index.php';</script>";
+           echo "<script> alert('$mensagem');javascript:window.location='todosdebates';</script>";
     }   
             
             

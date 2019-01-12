@@ -38,17 +38,17 @@ try{
     $mensagem = $exc->getMessage();
     switch($erro){
         case 2://Nao esta logado    
-            echo "<script> alert('$mensagem');javascript:window.location='./view/loginTemplate.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='login';</script>";
             break;
         case 6://Não é usuario comum  
-            echo "<script> alert('$mensagem');javascript:window.location='./view/starter.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes';</script>";
             break;
         case 8:// Se der erro ao cadastrar
         case 12://Mexeu no insprnsionar elemento
-            echo "<script> alert('$mensagem');javascript:window.location='./view/Formulario-reclamacao.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='Formulario-reclamacao';</script>";
             break;        
         default: //Qualquer outro erro cai aqui
-            echo "<script> alert('$mensagem');javascript:window.location='./view/Formulario-reclamacao.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='Formulario-reclamacao';</script>";
     }   
             
             

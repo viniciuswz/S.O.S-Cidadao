@@ -200,9 +200,9 @@
         case 2://Ja esta logado  
         case 6://Ja esta logado 
         case 1:
-            echo "<script> alert('$mensagem');javascript:window.location='view/index.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='todosdebates';</script>";
             break;
         default:
-            echo "<script> alert('$mensagem');javascript:window.location='view/index.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='todosdebates';</script>";
     }      
 }

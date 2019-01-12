@@ -29,12 +29,12 @@ try{
     $mensagem = $exc->getMessage();  
     switch($erro){
         case 2://Não está logado  
-            echo "<script> alert('$mensagem');javascript:window.location='./view/login.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='login';</script>";
             break;          
         case 12://Mexeu no insprnsionar elemento ou nao submeteu o formulario      
-            echo "<script> alert('$mensagem');javascript:window.location='./view/todasreclamacoes.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes';</script>";
             break;             
         default: //Qualquer outro erro cai aqui
-            echo "<script> alert('$mensagem');javascript:window.location='./view/todasreclamacoes.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes';</script>";
     }   
 }

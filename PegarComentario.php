@@ -120,13 +120,13 @@
     $mensagem = $exc->getMessage();  
     switch($erro){
         case 9://Não foi possivel achar a publicacao  
-            echo "<script> alert('$mensagem');javascript:window.location='view/todasreclamacoes.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes';</script>";
             break; 
         case 22:
             echo "Maior";
             break;
         default: //Qualquer outro erro cai aqui
-            echo "<script> alert('$mensagem');javascript:window.location='view/todasreclamacoes.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes';</script>";
     }   
 }  
     
