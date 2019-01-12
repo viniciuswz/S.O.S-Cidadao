@@ -19,12 +19,19 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
     function jaquinha(){
         teste = true;
         var jaq;
-        var id = document.getElementById("IDPefil").value;
+        var idInteiro = document.getElementById("IDPefil").value; // exemplo = 204,0
+        var id = idInteiro.substr(0,idInteiro.lastIndexOf(',')); // id, pegar ate a vrigula
+        var quantVoltar = idInteiro.substr(idInteiro.lastIndexOf(',') + 1);
+
+        voltar = "";
+        if(quantVoltar > 0){
+            voltar = "../";
+        }
         
         $.ajax({
-            url: '../PegarDebatesPerfil.php',
+            url: voltar+'PegarDebatesPerfil.php',
             type: "get",
-            data: "pagina="+paginacao+"&ID="+id,
+            data: "pagina="+paginacao+"&ID="+id+"&voltar="+quantVoltar,
             success: function(data){
                 if(data =="Maior"){ //Maior significa que não teve resultado para mostrar
                     validar = 1 //então nao vamos mais rodar o jaquinha, pois chegamos ao final de todas as reclamações
@@ -38,7 +45,7 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
                     //$(window).scrollTop($(document).height()); // descer o scroll pro final
                     setTimeout(function(){ //simular delay de carregamento
                         $('#loader').remove();//remove a estrutura do gif do html
-                        teste2(data); //manda ver na criação de conteudo
+                        teste2(data, quantVoltar); //manda ver na criação de conteudo
                         //$(window).scrollTop($(window).scrollTop() + 1)
                     },1780); // tempo do delay
     
@@ -91,16 +98,16 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
     });
     
 
-function teste2(resposta){
+function teste2(resposta, quantVoltar){
     var arr1 = JSON.parse(resposta);   
     
     var mensa = "";
     for(contador = 0; contador < arr1.length; contador++){
                 mensa += '<div class="item-publicacao">\
                             <div class="item-topo">\
-                                <a href="perfil_reclamacao.php?ID='+ arr1[contador]['cod_usu'] +'">\
+                                <a href="'+voltar+'perfil_reclamacao/'+ arr1[contador]['cod_usu'] +'">\
                                 <div>\
-                                    <img src="../Img/perfil/' + arr1[contador]['img_perfil_usu'] +'">\
+                                    <img src="'+voltar+'Img/perfil/' + arr1[contador]['img_perfil_usu'] +'">\
                                 </div>\
                                 <p><span class="negrito">'+arr1[contador]['nome_usu']+'</a></span><time>'+arr1[contador]['dataHora_publi']+'</time></p>\
                                 <div class="mini-menu-item">\
@@ -110,7 +117,7 @@ function teste2(resposta){
                                         if(arr1[contador]["indDenun"] == true){
                                             mensa += '<li><i class="icone-bandeira"></i><span class="negrito">Denunciado</span></li>';
                                         }else if(arr1[contador]["indDenun"] == false){ // nao denunciou\
-                                            mensa += '<li class="denunciar-item" data-id="'+arr1[contador]['cod_publi']+'.Publicacao"><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>';
+                                            mensa += '<li class="denunciar-item" data-id="'+arr1[contador]['cod_publi']+'.Publicacao,'+quantVoltar+'"><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>';
                                         }
 
                                         if(arr1[contador]["LinkApagar"] != false && arr1[contador]["LinkUpdate"]){ // Denuncioou
@@ -127,10 +134,10 @@ function teste2(resposta){
                                     </div>';                                    
                                 mensa +='</div>\
                             </div>\
-                            <a href="reclamacao.php?ID='+arr1[contador]['cod_publi']+'">';                          
+                            <a href="'+voltar+'reclamacao/'+arr1[contador]['cod_publi']+'">';                          
                             if(arr1[contador]['img_publi'] != ""){                            
                                 mensa += '<figure>\
-                                <img src=../Img/publicacao/'+arr1[contador]['img_publi']+'> \
+                                <img src='+voltar+'Img/publicacao/'+arr1[contador]['img_publi']+'> \
                                 </figure>';
                             }
                          

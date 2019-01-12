@@ -219,7 +219,7 @@ class PublicacaoA extends PublicacaoM{
             $dados[$contador]['quantidade_curtidas'] =  $this->getQuantCurtidas($dados[$contador]['cod_publi']); //Pegar quantidade de curtidas
             $dados[$contador]['quantidade_comen'] =  $this->getQuantComen($dados[$contador]['cod_publi']); //Pegar quantidade de comentarios
             $dados[$contador]['indResPrefei'] =  $this->getVerifyResPrefei($dados[$contador]['cod_publi']); //Veficar resposta da prefeitura   
-            if(!empty($this->getCodUsu())){//Só entar aqui se ele estiver logado
+            if(!empty($this->getCodUsu())){//Só entar aqui se ele estiver logado                      
                 $dados[$contador]['indCurtidaDoUser'] =  $this->getVerifyCurti($dados[$contador]['cod_publi']);//Verificar se ele curtiu a publicacao
                 $dados[$contador]['indDenunPubli'] =  $this->getVerificarSeDenunciou($dados[$contador]['cod_publi']);//Verificar se ele denunciou a publicacao               
                 $dados[$contador]['indSalvaPubli'] = $this->getVerificarSeSalvou($publicacaoSalva, $dados[$contador]['cod_publi']);

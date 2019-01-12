@@ -32,7 +32,8 @@ session_start();
             $usuPerfil->setCodUsu($_GET['ID']);    
             $dadosPerfil =  $usuPerfil->getDadosUser(false,true);     
         }        
-        $descPerfilVisu = $dadosPerfil[0]['descri_tipo_usu'];
+        $descPerfilVisu = $dadosPerfil[0]['descri_tipo_usu']; // tipo de perfil q esta sendo visualizado
+        
         if($descPerfilVisu != 'Comum' AND $descPerfilVisu != 'Prefeitura'){ // Vendo perfil restrito
             if(!isset($_SESSION['id_user'])){ // Não esta logado
                 throw new \Exception("Você nao tem permissao para este perfil12",1);
@@ -48,6 +49,7 @@ session_start();
                         if($descPerfilVisu != 'Funcionario'){
                             throw new \Exception("Você nao tem permissao para este perfil14",1);
                         }
+                        
                         break; 
                 }
         }
@@ -65,7 +67,10 @@ session_start();
     $publi->setCodUsu($id);
     isset($_GET['pagina']) ?: $_GET['pagina'] = null;
     
-    if($descPerfilVisu == 'Prefeitura'){        
+    if($descPerfilVisu == 'Prefeitura'){       
+        if(isset($_SESSION['id_user'])){
+            $publi->setCodUsu($_SESSION['id_user']);
+        }        
         $resposta = $publi->getPubliNRespo($_GET['pagina'], TRUE);  
      }else{
          isset($_SESSION['id_user']) ? $idVisualizador = $_SESSION['id_user'] : $idVisualizador = null;        
@@ -94,7 +99,7 @@ session_start();
     $contador = 0;
     while($contador < count($resposta)){
         if(isset($resposta[$contador]['indDenunPubli']) AND $resposta[$contador]['indDenunPubli'] == TRUE){ // Aparecer quando o user ja denunciou            
-            $resposta[$contador]['indDenun'] = TRUE;        // Denunciou
+            $resposta[$contador]['indDenun'] = TRUE;        // Denunciou            
         }else if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] != $resposta[$contador]['cod_usu']){ // Aparecer apenas naspublicaçoes q nao é do usuario
             if($tipoUsu == 'Comum' or $tipoUsu == 'Prefeitura' or $tipoUsu == 'Funcionario'){                                                             
                 $resposta[$contador]['indDenun'] = FALSE; // N Denunciou
@@ -138,10 +143,11 @@ session_start();
         $contador++;
     }
 
-    ///var_dump($resposta);
+    //var_dump($resposta);
     
     echo json_encode($resposta);
     //$pagina = $publi->getPaginaAtual();   
+    
 
 
 }catch (Exception $exc){     

@@ -137,7 +137,7 @@ function teste2(resposta){
     for(contador = 0; contador < arr1.length; contador++){
                 mensa += '<div class="item-publicacao">\
                             <div class="item-topo">\
-                                <a href="perfil_reclamacao.php?ID='+ arr1[contador]['cod_usu'] +'">\
+                                <a href="perfil_reclamacao/'+ arr1[contador]['cod_usu'] +'">\
                                 <div>\
                                     <img src="Img/perfil/' + arr1[contador]['img_perfil_usu'] +'">\
                                 </div>\

@@ -814,9 +814,18 @@ jQuery(function($){
       });
 
       $("#trocarcapa").submit(function(){
-        var img = $("#base64FotoCapa").val();
+        
+        var img = $("#base64FotoCapa").val();  
+        idUsu = $("#IDPefil").val(); 
+        indVirgula = idUsu.lastIndexOf(','); // na virgula mostra o numero de pasta q tenho q voltar 
+        quantVoltar = idUsu.substr(idUsu.lastIndexOf(',') + 1);
+        voltar = ""; // por padrao nao volta nenhuma
+        if(quantVoltar > 0){ // se existir alguma virgula         
+             voltar = '../';              
+        }             
+
         $.ajax({
-          url:"../UpdateImagem.php",
+          url: voltar + "UpdateImagem.php",
           type: "post",
           data: "tipo=capa"+"&imagem="+img,
           success:function(result){
@@ -983,10 +992,19 @@ jQuery(function($){
   $("#trocarperfil").submit(function(){
     var tipoPerfil =$(".ativo").find("a").text();
     var img = $("#base64FotoPerfil").val();
+
+      idUsu = $("#IDPefil").val(); 
+      indVirgula = idUsu.lastIndexOf(','); // na virgula mostra o numero de pasta q tenho q voltar 
+      quantVoltar = idUsu.substr(idUsu.lastIndexOf(',') + 1);
+      voltar = ""; // por padrao nao volta nenhuma
+      if(quantVoltar > 0){ // se existir alguma virgula         
+            voltar = '../';              
+      }     
+
    // alert('asa');
     $.ajax({
       
-      url:"../UpdateImagem.php",
+      url:voltar+"UpdateImagem.php",
       type: "post",
       data: "tipo=perfil"+"&imagem="+img,
       success:function(result){
@@ -1912,6 +1930,7 @@ jQuery(function($){
          voltar = voltar + "../";
       }      
     }      
+   
     
     if(final == 'Publicacao'){
       final = voltar + "Denunciar"+final+".php";

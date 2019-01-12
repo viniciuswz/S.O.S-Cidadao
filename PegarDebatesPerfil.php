@@ -50,12 +50,23 @@
                         break; 
                 }
         }}    
+
+        if(isset($_GET['voltar']) AND $_GET['voltar'] > 0){
+            $voltar = '../';
+            $quantVoltar = 1;
+        }else{
+            $voltar = '';
+            $quantVoltar = 0;
+        }
                
         
         isset($_GET['pagina']) ?: $_GET['pagina'] = null; 
         if($descPerfilVisu == 'Prefeitura'){
             $publi = new Publicacao();    
-            $publi->setCodUsu($_SESSION['id_user']);          
+            if(isset($_SESSION['id_user'])){
+                $publi->setCodUsu($_SESSION['id_user']);   
+            }
+                  
 
             $resposta = $publi->getPubliRespo($_GET['pagina'], TRUE);  
             //var_dump($resposta);
@@ -117,13 +128,13 @@
                         }
                         
                         if(isset($_SESSION['id_user']) AND isset($resposta[$contador]['indSalvaPubli']) AND $resposta[$contador]['indSalvaPubli'] == TRUE){//Salvou            
-                            $resposta[$contador]['LinkSalvar'] = "../SalvarPublicacao.php?ID=".$resposta[$contador]['cod_publi'];
+                            $resposta[$contador]['LinkSalvar'] = "SalvarPublicacao.php?ID=".$resposta[$contador]['cod_publi']. "," .$quantVoltar;
                             $resposta[$contador]['TextoLinkSalvar'] = "Salvo";
                         }else if(isset($_SESSION['id_user']) AND isset($resposta[$contador]['indSalvaPubli']) AND $resposta[$contador]['indSalvaPubli'] == FALSE){//Nao salvou
-                            $resposta[$contador]['LinkSalvar'] = "../SalvarPublicacao.php?ID=".$resposta[$contador]['cod_publi'];
+                            $resposta[$contador]['LinkSalvar'] = "SalvarPublicacao.php?ID=".$resposta[$contador]['cod_publi']. "," .$quantVoltar;
                             $resposta[$contador]['TextoLinkSalvar'] = "Salvar";
                         }else if(!isset($_SESSION['id_user'])){ // aparecer parar os usuario nao logado
-                            $resposta[$contador]['LinkSalvar'] = "../SalvarPublicacao.php?ID=".$resposta[$contador]['cod_publi'];
+                            $resposta[$contador]['LinkSalvar'] = "SalvarPublicacao.php?ID=".$resposta[$contador]['cod_publi']. "," .$quantVoltar;
                             $resposta[$contador]['TextoLinkSalvar'] = "Salvar";
                         }  
 

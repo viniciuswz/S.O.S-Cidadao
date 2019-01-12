@@ -126,7 +126,7 @@ function teste2(resposta){
                 if(arr1[contador]['tipo'] == 'Publicacao'){
                     mensa += '<div class="item-publicacao">\
                     <div class="item-topo">\
-                        <a href="perfil_reclamacao.php?ID='+ arr1[contador]['cod_usu'] +'">\
+                        <a href="perfil_reclamacao/'+ arr1[contador]['cod_usu'] +'">\
                         <div>\
                             <img src="Img/perfil/' + arr1[contador]['img_perfil_usu'] +'">\
                         </div>\
@@ -175,7 +175,7 @@ function teste2(resposta){
                 }else{
                     mensa += '<div class="item-publicacao db">\
                 <div class="item-topo">\
-                    <a href="perfil_debate.php?ID='+arr1[contador]['cod_usu']+'">\
+                    <a href="perfil_debate/'+arr1[contador]['cod_usu']+'">\
                         <div>\
                             <img src="Img/perfil/'+arr1[contador]['img_perfil_usu']+'">\
                         </div>\

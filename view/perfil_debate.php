@@ -70,7 +70,7 @@
         isset($_GET['pagina']) ?: $_GET['pagina'] = null; 
         if($descPerfilVisu == 'Prefeitura'){
             $publi = new Publicacao();    
-            $publi->setCodUsu($_SESSION['id_user']);
+            //$publi->setCodUsu($_SESSION['id_user']);
             $nomeLink1 = 'Respondidas';
             $nomeLink2 = 'Sem resposta'; 
 
@@ -614,9 +614,19 @@ var  $uploadCropPerfil = $('.img-perfil-corta').croppie({
         case 2://Ja esta logado  
         case 6://Ja esta logado 
         case 1:
-            echo "<script> alert('$mensagem');javascript:window.location='index.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='../view/todasreclamacoes';</script>";
+            break;
+        case 45://Digitou um numero maior de parametros 
+            unset($dadosUrl[0]);
+            $contador = 1;
+            $voltar = "";
+            while($contador <= count($dadosUrl)){
+                $voltar .= "../";
+                $contador++;
+            }
+            echo "<script>javascript:window.location='".$voltar."todasreclamacoes';</script>";
             break;
         default:
-            echo "<script> alert('$mensagem');javascript:window.location='index.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='../view/todasreclamacoes';</script>";
     }      
 }
