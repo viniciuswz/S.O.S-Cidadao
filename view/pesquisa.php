@@ -126,9 +126,9 @@
                         <a href="javascript:void(0)" class="fechar">&times;</a>
                         <div class="mini-perfil">
                             <div>    
-                                <img src="../Img/perfil/<?php echo $resultado[0]['img_perfil_usu'] ?>" alt="perfil">
+                                <img src="Img/perfil/<?php echo $resultado[0]['img_perfil_usu'] ?>" alt="perfil">
                             </div>    
-                                <img src="../Img/capa/<?php echo $resultado[0]['img_capa_usu'] ?>" alt="capa">
+                                <img src="Img/capa/<?php echo $resultado[0]['img_capa_usu'] ?>" alt="capa">
                                 <p><?php echo $resultado[0]['nome_usu'] ?></p>
                         </div>
                         <nav>

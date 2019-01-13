@@ -33,23 +33,23 @@ class Denuncias extends DenunciasM{
                                 FROM comen_denun INNER JOIN comentario ON (comen_denun.cod_comen = comentario.cod_comen)
                                 INNER JOIN usuario ON (comentario.cod_usu = usuario.cod_usu)
                                 INNER JOIN publicacao ON (comentario.cod_publi = publicacao.cod_publi)
-                                WHERE status_denun_comen = 'A' AND status_comen = 'A' AND status_usu = 'A' AND status_usu = 'A' 
+                                WHERE status_denun_comen = 'A' AND status_comen = 'A' AND status_usu = 'A'
                                 AND status_publi = 'A'";
     
     private $countDenunDebate = " %s SELECT 'Debate' AS Tipo, debate_denun.cod_deba FROM debate_denun 
                                         INNER JOIN debate ON (debate_denun.cod_deba = debate.cod_deba)
                                         INNER JOIN usuario ON (debate.cod_usu = usuario.cod_usu)
-                                        WHERE status_denun_deba = 'A' AND status_deba = 'A' ";
+                                        WHERE status_denun_deba = 'A' AND status_deba = 'A' AND status_usu = 'A'";
     private $countDenunPubli = " %s SELECT 'Publicação' AS Tipo, publi_denun.cod_publi FROM publi_denun 
                                             INNER JOIN publicacao ON (publi_denun.cod_publi = publicacao.cod_publi)
                                             INNER JOIN usuario ON (publicacao.cod_usu = usuario.cod_usu)
-                                            WHERE status_denun_publi = 'A' AND status_publi = 'A' ";
+                                            WHERE status_denun_publi = 'A' AND status_publi = 'A' AND status_usu = 'A'";
     private $countDenunComen = " %s SELECT 'Comentário' AS Tipo, comen_denun.cod_comen FROM comen_denun
                                         INNER JOIN comentario ON (comen_denun.cod_comen = comentario.cod_comen)
                                         INNER JOIN usuario ON (comentario.cod_usu = usuario.cod_usu)
                                         INNER JOIN publicacao ON (comentario.cod_publi = publicacao.cod_publi)
                                         WHERE status_denun_comen = 'A' AND status_comen = 'A' 
-                                        AND status_publi = 'A'";
+                                        AND status_publi = 'A' AND status_usu = 'A'";
 
     private $updateDenunDebate = "UPDATE debate_denun SET status_denun_deba = 'I' WHERE cod_denun_deba = '%s'";
 
@@ -122,11 +122,11 @@ class Denuncias extends DenunciasM{
         $tirarEspacos = str_replace(" ", "", $semAcento);
         if($tirarEspacos == 'comentario'){ 
             $codPubli = $this->acharPubliDoComen($cod);
-            $link = 'reclamacao.php?ID='.$codPubli.'&IdComen='.$cod;
+            $link = 'reclamacao/'.$codPubli.'/'.$cod.'/Denun';
         }else if($tirarEspacos == 'debate'){            
-            $link = 'Pagina-debate.php?ID='.$cod;
+            $link = 'Pagina-debate/'.$cod;
         }else if($tirarEspacos == 'publicacao'){
-            $link = 'reclamacao.php?ID='.$cod;
+            $link = 'reclamacao/'.$cod;
         }        
         return $link;
     }
@@ -135,7 +135,7 @@ class Denuncias extends DenunciasM{
         $semAcento = strtolower(preg_replace( '/[`^~\'"]/', null, iconv( 'UTF-8', 'ASCII//TRANSLIT', $palavra )));       
         $tirarEspacos = str_replace(" ", "", $semAcento);
         $semAcentos = ucfirst($tirarEspacos);
-        return $link = '../Apagar'.$semAcentos.'.php?ID='.$cod;
+        return $link = 'Apagar'.$semAcentos.'.php?ID='.$cod;
     }
 
     public function acharPubliDoComen($cod){ // Achar qual é o cod da publicacao do comentario

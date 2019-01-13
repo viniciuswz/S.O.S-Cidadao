@@ -1581,6 +1581,16 @@ jQuery(function($){
             var email = $("#email").val();
             var senha = $("#senha").val();
             var tipo = $('input[name=tipo]:checked').val();
+
+            var quantVoltar = $("#voltar").val();
+            voltar = "";
+            if(quantVoltar >= 0 && quantVoltar <= 5 ){
+                for(i = 0; i < quantVoltar; i++){
+                    voltar += "../";
+                }
+            }   
+
+
             if( email === "" && senha === "" && user === ""){
               $(".aviso-form-inicial").show();
               $(".aviso-form-inicial").find("p").text("campos obrigatorios");
@@ -1592,7 +1602,7 @@ jQuery(function($){
               $(".aviso-form-inicial").find("p").text("você precisa digitar um senha");
             }else{
               $.ajax({
-                url:"../CadastrarUser.php",
+                url: voltar + "CadastrarUser.php",
                 type: "post",
                 data: "email="+email+"&senha="+senha+"&nome="+user+"&tipo="+tipo,
                 success:function(result){
@@ -2308,13 +2318,19 @@ jQuery(function($){
     var href =$(this).attr('href');
     var id = href.substring(href.lastIndexOf('ID')+3);   
 
+    var quantVoltar = $("#voltar").val();
+    voltar = "";
+    if(quantVoltar > 0){
+       voltar = "../";
+    }   
+
     $.ajax({
-      url:'../ApagarUsuario.php',
+      url: voltar + 'ApagarUsuario.php',
       type: "get",
       data: "ID="+id,
       success:function(result){
           if(result == 'NLogado'){ // Nao esta logado, redirecionar pra fazer login
-            location.href="login.php";
+            location.href= voltar+"login";
             return false;
           }else{
               $this.parents(':eq(4)').remove();

@@ -1,6 +1,6 @@
 <?php
 session_start();
-    require_once('../Config/Config.php');
+    require_once('Config/Config.php');
     require_once(SITE_ROOT.DS.'autoload.php');
     
     use Core\Usuario;
@@ -9,6 +9,16 @@ session_start();
     try{
         $tipoUsuPermi = array('Funcionario','Prefeitura');
         Usuario::verificarLogin(1,$tipoUsuPermi);  // Tem q estar logado
+        $dadosUrl = explode('/', $_GET['url']);
+
+        $voltar = "";
+        if(count($dadosUrl) >= 3){ // ingetou parametros
+            throw new \Exception('Não foi possível achar a listagem',45);
+        }else if(isset($dadosUrl[1])){ // tem pagina
+            $voltar = "../";
+            $_GET['pagina'] = $dadosUrl[1];
+        }
+
         $dados = new Usuario();
         $dados->setCodUsu($_SESSION['id_user']);
         $resultado = $dados->getDadosUser();  
@@ -38,31 +48,31 @@ session_start();
         <meta name="theme-color" content="#089E8E" />
 
         <!-- favicon, arquivo de imagem podendo ser 8x8 - 16x16 - 32x32px com extensão .ico -->
-        <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="<?php echo $voltar?>view/imagens/favicon.ico" type="image/x-icon">
 
         <!-- CSS PADRÃO -->
-        <link href="css/default.css" rel=stylesheet>
+        <link href="<?php echo $voltar?>view/css/default.css" rel=stylesheet>
 
         <!-- Telas Responsivas -->
-        <link rel=stylesheet media="screen and (max-width:480px)" href="css/style480.css">
-        <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)" href="css/style768.css">
-        <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)" href="css/style1024.css">
-        <link rel=stylesheet media="screen and (min-width:1025px)" href="css/style1025.css">
+        <link rel=stylesheet media="screen and (max-width:480px)" href="<?php echo $voltar?>view/css/style480.css">
+        <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)" href="<?php echo $voltar?>view/css/style768.css">
+        <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)" href="<?php echo $voltar?>view/css/style1024.css">
+        <link rel=stylesheet media="screen and (min-width:1025px)" href="<?php echo $voltar?>view/css/style1025.css">
 
         <!-- JS-->
 
-        <script src="lib/_jquery/jquery.js"></script>
-        <script src="js/js.js"></script>
-        <script src="../teste.js"></script>
+        <script src="<?php echo $voltar?>view/lib/_jquery/jquery.js"></script>
+        <script src="<?php echo $voltar?>view/js/js.js"></script>
+        <script src="<?php echo $voltar?>teste.js"></script>
 
     </head>
     <body class="sempre-branco">
         <header>
-            <a href="todasreclamacoes.php">
-                <img src="imagens/logo_oficial.png" alt="logo">
+            <a href="<?php echo $voltar?>todasreclamacoes">
+                <img src="<?php echo $voltar?>view/imagens/logo_oficial.png" alt="logo">
             </a>   
             <i class="icone-pesquisa pesquisa-mobile" id="abrir-pesquisa"></i>
-            <form action="pesquisa.php" method="get" id="form-pesquisa">
+            <form action="<?php echo $voltar?>pesquisa" method="get" id="form-pesquisa">
                 <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar">
                 <button type="submit"><i class="icone-pesquisa"></i></button>
             </form>
@@ -75,13 +85,13 @@ session_start();
                             <li>
                         </ul>
                     </nav><a href="#" id="abrir-not"><i class="icone-notificacao" id="noti"></i>Notificações</a></li>
-                    <li><a href="todasreclamacoes.php"><i class="icone-reclamacao"></i>Reclamações</a></li>
-                    <li><a href="todosdebates.php"><i class="icone-debate"></i>Debates</a></li>
+                    <li><a href="<?php echo $voltar?>todasreclamacoes"><i class="icone-reclamacao"></i>Reclamações</a></li>
+                    <li><a href="<?php echo $voltar?>view/todosdebates"><i class="icone-debate"></i>Debates</a></li>
                 </ul>
             </nav>
             <?php
                 if(!isset($resultado)){
-                    echo '<a href="login.php"><i class="icone-user" id="abrir"></i></a>';
+                    echo '<a href="'.$voltar.'login"><i class="icone-user" id="abrir"></i></a>';
                 }else{
                     echo '<i class="icone-user" id="abrir"></i>';
                 }
@@ -94,9 +104,9 @@ session_start();
             <a href="javascript:void(0)" class="fechar">&times;</a>
             <div class="mini-perfil">
                 <div>    
-                    <img src="../Img/perfil/<?php echo $resultado[0]['img_perfil_usu'] ?>" alt="perfil">
+                    <img src="<?php echo $voltar?>Img/perfil/<?php echo $resultado[0]['img_perfil_usu'] ?>" alt="perfil">
                 </div>    
-                    <img src="../Img/capa/<?php echo $resultado[0]['img_capa_usu'] ?>" alt="capa">
+                    <img src="<?php echo $voltar?>Img/capa/<?php echo $resultado[0]['img_capa_usu'] ?>" alt="capa">
                     <p><?php echo $resultado[0]['nome_usu'] ?></p>
             </div>
             <nav>
@@ -128,7 +138,7 @@ session_start();
                                 echo '<td>
                                 <div class="mini-menu-adm">
                                     <ul>
-                                    <li><a href="reclamacao.php?ID='.$resposta[$contador]['cod_publi'].'">Visitar Página</a>
+                                    <li><a href="'.$voltar.'reclamacao/'.$resposta[$contador]['cod_publi'].'">Visitar Página</a>
                                     </ul>
                                 </div>
                                 <p>'.$resposta[$contador]['titulo_publi'].'</p>
@@ -147,9 +157,9 @@ session_start();
                         $contador = 1;
                         while($contador <= $quantidadePaginas){
                             if(isset($pagina) AND $pagina == $contador){
-                                echo '<li class="jaca"><a href="prefeitura-reclamacao.php?pagina='.$contador.'">'.$contador.'</a></li>'  ;  
+                                echo '<li class="jaca"><a href="'.$voltar.'prefeitura-reclamacao/'.$contador.'">'.$contador.'</a></li>'  ;  
                             }else{
-                                echo '<li><a href="prefeitura-reclamacao.php?pagina='.$contador.'">'.$contador.'</a></li>'  ;
+                                echo '<li><a href="'.$voltar.'prefeitura-reclamacao/'.$contador.'">'.$contador.'</a></li>'  ;
                             }
                             
                             $contador++;        
@@ -166,16 +176,25 @@ session_start();
     $mensagem = $exc->getMessage();  
     switch($erro){
         case 2://Nao esta logado           
-            echo "<script>javascript:window.location='login.php';</script>";
+            echo "<script>javascript:window.location='../login';</script>";
             break;
         case 6://Não é usuario prefeitura ou func  
-            echo "<script>javascript:window.location='index.php';</script>";
+            echo "<script>javascript:window.location='../todasreclamacoes';</script>";
             break; 
         case 9://Não foi possivel achar a publicacao  
-            echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes';</script>";
             break; 
+        case 45://Digitou um numero maior de parametros 
+               unset($dadosUrl[0]);
+               $contador = 1;
+               $voltar = "";
+               while($contador <= count($dadosUrl)){
+                   $voltar .= "../";
+                   $contador++;
+               }
+                echo "<script> alert('$mensagem');javascript:window.location='".$voltar."todasreclamacoes';</script>";
         default: //Qualquer outro erro cai aqui
-            echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='../todasreclamacoes';</script>";
     }   
 }
 

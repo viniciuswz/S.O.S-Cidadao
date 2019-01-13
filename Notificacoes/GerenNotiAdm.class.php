@@ -150,7 +150,7 @@ class GerenNotiAdm extends GenericaM{
                 }
                     if(isset($dados[$contador]['IDPubli'])){ // Preciso inverter os valores quando for uma denuncia de comentario
                         $idComen = $dados[$contador]['id'];
-                        $dados[$contador]['id'] = $dados[$contador]['IDPubli'] . "&IdComen=" . $idComen;                        
+                        $dados[$contador]['id'] = $dados[$contador]['IDPubli'] . "/" . $idComen;                        
                     }
                     $resultado[$contador]['id_publi'] = $dados[$contador]['id'];
                     $resultado[$contador]['tipo'] = 'not icone-not-denuncia';//$tipoNoti;  

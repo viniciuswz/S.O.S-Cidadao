@@ -61,8 +61,10 @@
             $numVoltar++;
             $visualizar = new VisualizarNotificacao();
             if(isset($dadosUrl[3])){
-                $idNoti = $dadosUrl[3];  
+                $_GET['com'] = $dadosUrl[3];
+                $idNoti = $dadosUrl[2];  
                 $voltar .="../";
+                $_GET['IdComen'] = $dadosUrl[2];  
                 $numVoltar++;
                 $comentario->setCodComen($idNoti);
                 $comentarioComum = $comentario->getDadosComenByIdComen(); // preciso do comenantario denunciado   

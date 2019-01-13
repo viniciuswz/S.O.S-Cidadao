@@ -19,7 +19,7 @@ try{
     $denuncia->setCodDenun($_GET['ID']);
     $denuncia->deletarDenun($_GET['tipo']);     
     
-    echo "<script> alert('Denuncia removida com sucesso');javascript:window.location='view/admin-denuncia.php';</script>";
+    echo "<script>alert('Denuncia removida com sucesso');javascript:window.location='admin-denuncia';</script>";
         
 }catch(Exception $exc){  
     $erro = $exc->getCode();   
