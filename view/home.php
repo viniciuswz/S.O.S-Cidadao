@@ -6,10 +6,13 @@
     use Core\Usuario;    
     try{        
         Usuario::verificarLogin(0);  // Vai estourar um erro se ele ja estiver logado, ou se ele nao for adm
-        $dadosUrl = explode('/', $_GET['url']);
-        if(count($dadosUrl) > 1){ // injetou parametros
-            throw new \Exception('Não foi possível achar o debate',45);
+        if(isset($_GET['url'])){
+            $dadosUrl = explode('/', $_GET['url']);
+            if(count($dadosUrl) > 1){ // injetou parametros
+                throw new \Exception('Não foi possível achar o debate',45);
+            }
         }
+        
         
 ?>
 <!DOCTYPE html>
