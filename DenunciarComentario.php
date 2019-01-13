@@ -31,10 +31,8 @@ try{
         case 2://Nao esta logado    
             echo 'NLogado';  
             //echo "<script> alert('$mensagem');javascript:window.location='./view/login.php';</script>";
-            break;
+            break;       
         case 6://Não é usuario comum, prefeitura ou func
-            echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes';</script>";
-            break;
         case 12://Mexeu no insprnsionar elemento, ou nao tem valores validos
         case 14://Erro no ao fazer a insercao
             echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes';</script>";

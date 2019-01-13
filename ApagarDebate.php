@@ -33,12 +33,10 @@ try{
     switch($erro){
         case 2://Nao esta logado    
             echo "<script>javascript:window.location='login';</script>";
-            break;
-        case 6://Não é usuario comum, prefeitura ou func
-            echo "<script> alert('$mensagem');javascript:window.location='todosdebates';</script>";
-            break;
-        case 12://Mexeu no insprnsionar elemento, ou nao tem valores validos
+            break;        
+        case 6://Não é usuario comum, prefeitura ou func        
         case 9://Erro no ao fazer a insercao
+        case 12://Mexeu no insprnsionar elemento, ou nao tem valores validos
             echo "<script> alert('$mensagem');javascript:window.location='todosdebates';</script>";
             break;        
         default: //Qualquer outro erro cai aqui

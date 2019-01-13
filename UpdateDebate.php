@@ -32,12 +32,10 @@ try{
     switch($erro){
         case 2://Nao esta logado    
             echo "<script> alert('$mensagem');javascript:window.location='login';</script>";
-            break;
+            break;       
         case 6://Não é usuario comum  
-            echo "<script> alert('$mensagem');javascript:window.location='todosdebates';</script>";
-            break;
-        case 13:// Se der erro ao cadastrar
         case 12://Mexeu no insprnsionar elemento
+        case 13:// Se der erro ao cadastrar        
             echo "<script> alert('$mensagem');javascript:window.location='todosdebates';</script>";
             break;        
         default: //Qualquer outro erro cai aqui
