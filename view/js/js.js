@@ -1879,7 +1879,7 @@ jQuery(function($){
             
             //alerta ('Errado', 'removido');
             
-            if(tipo == '../ApagarComentario'){ // se for apagar comentario, vai ter um retorno da qtd de comentarios dessa publi             
+            if(tipo == '../ApagarComentario' || tipo == '../../ApagarComentario' || tipo == '../../../ApagarComentario'){ // se for apagar comentario, vai ter um retorno da qtd de comentarios dessa publi             
               $("#qtd_comen").text(result); // ai altera
               if($('.comentario-user').length == 0){//$(document).
 
@@ -2068,7 +2068,7 @@ jQuery(function($){
           var id_comentario = result.substring(result.lastIndexOf('.') + 1,result.lastIndexOf(','));
           var qtd = result.substring(result.lastIndexOf(',') + 1);          
           if(usuario =="Comum"){            
-            alert(voltar + id_usu);
+            //alert(voltar + id_usu);
             $(".comentarios").prepend('<div class="comentario-user" style="display:flex; order:-1">\
             <div class="publicacao-topo-aberta">\
             <a href="'+voltar+id_usu+'">\
