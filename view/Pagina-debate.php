@@ -164,7 +164,7 @@
                 <section class="pag-debate">
                     <div class="debate">   
                         <div class="publicacao-topo-aberta">
-                            <a href="">
+                            <a href="<?php echo $voltar ?>perfil_debate/<?php echo $resposta[0]['cod_usu'] ?>">
                             <div>
                                 <img src="<?php echo $voltar ?>Img/perfil/<?php echo $resposta[0]['img_perfil_usu']?>">
                             </div>

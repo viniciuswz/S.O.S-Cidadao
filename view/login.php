@@ -5,6 +5,10 @@
     use Core\Usuario;
     try{        
         Usuario::verificarLogin(0); // Nao pode estar logado
+        $dadosUrl = explode('/', $_GET['url']);
+        if(count($dadosUrl) > 1){ // injetou parametros
+            throw new \Exception('Não foi possível achar o debate',45);
+        }
 ?>
 <!DOCTYPE html>
 <html lang=pt-br>
@@ -79,6 +83,16 @@
             case 6://Ja esta logado 
                 echo "<script>javascript:window.location='home.php';</script>";
                 break;           
+            case 45://Digitou um numero maior de parametros 
+                unset($dadosUrl[0]);
+                $contador = 1;
+                $voltar = "";
+                while($contador <= count($dadosUrl)){
+                    $voltar .= "../";
+                    $contador++;
+                }
+                echo "<script>javascript:window.location='".$voltar."login';</script>";
+            break;
         }         
     }
 ?>

@@ -9,6 +9,10 @@
         $usu = new Usuario(); 
         $usu->setCodUsu($_SESSION['id_user']);
         $resultado = $usu->getDadosUser(true); 
+        $dadosUrl = explode('/', $_GET['url']);
+        if(count($dadosUrl) > 1){ // injetou parametros
+            throw new \Exception('Não foi possível achar o debate',45);
+        }
 ?>
 <!DOCTYPE html>
 <html lang=pt-br>
@@ -149,7 +153,17 @@
     switch($erro){
         case 2://Ja esta logado  
         case 6://Ja esta logado 
-            echo "<script>javascript:window.location='index.php';</script>";
+            echo "<script>javascript:window.location='login';</script>";
             break;       
+        case 45://Digitou um numero maior de parametros 
+            unset($dadosUrl[0]);
+            $contador = 1;
+            $voltar = "";
+            while($contador <= count($dadosUrl)){
+                $voltar .= "../";
+                $contador++;
+            }
+            echo "<script>javascript:window.location='".$voltar."configuracoes2';</script>";
+            break;
     }      
 }

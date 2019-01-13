@@ -59,7 +59,7 @@ session_start();
 </head>
 <body onload="jaquinha()">
     <header>
-            <a href="todasreclamacoes">
+            <a href="<?php echo $voltar ?>todasreclamacoes">
                 <img src="view/imagens/logo_oficial.png" alt="logo">
             </a>   
             <i class="icone-pesquisa pesquisa-mobile" id="abrir-pesquisa"></i>

@@ -6,6 +6,10 @@
     use Core\Usuario;    
     try{        
         Usuario::verificarLogin(0);  // Vai estourar um erro se ele ja estiver logado, ou se ele nao for adm
+        $dadosUrl = explode('/', $_GET['url']);
+        if(count($dadosUrl) > 1){ // injetou parametros
+            throw new \Exception('Não foi possível achar o debate',45);
+        }
         
 ?>
 <!DOCTYPE html>
@@ -103,5 +107,15 @@
         case 6://nao  tem permissao de adm
             echo "<script>javascript:window.location='todasreclamacoes';</script>";
             break;             
+        case 45://Digitou um numero maior de parametros 
+            unset($dadosUrl[0]);
+            $contador = 1;
+            $voltar = "";
+            while($contador <= count($dadosUrl)){
+                $voltar .= "../";
+                $contador++;
+            }
+            echo "<script>javascript:window.location='".$voltar."home';</script>";
+        break;
     }              
 }

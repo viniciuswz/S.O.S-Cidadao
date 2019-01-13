@@ -11,6 +11,10 @@
 
         $nomesCampos = array('indNovaConta');//verificar se a conta é nova
         $validar = new ValidarCampos($nomesCampos, $_SESSION);//Verificar se eles existem, se nao existir estoura um erro
+        $dadosUrl = explode('/', $_GET['url']);
+        if(count($dadosUrl) > 1){ // injetou parametros
+            throw new \Exception('Não foi possível achar o debate',45);
+        }
 ?>
 <!DOCTYPE html>
 <html lang=pt-br>
@@ -72,16 +76,26 @@
     $mensagem = $exc->getMessage();
     switch($erro){
         case 2://Não está logado  
-            echo "<script>javascript:window.location='login.php';</script>";
+            echo "<script>javascript:window.location='login';</script>";
             break; 
         case 6://Ja esta logado 
-            echo "<script>javascript:window.location='index.php';</script>";
+            echo "<script>javascript:window.location='todasreclamacoes';</script>";
             break;
         case 11:// Erro no comentario
         case 12://Mexeu no insprnsionar elemento ou nao submeteu o formulario      
-            echo "<script>javascript:window.location='index.php';</script>";
+            echo "<script>javascript:window.location='todasreclamacoes';</script>";
             break;             
+        case 45://Digitou um numero maior de parametros 
+            unset($dadosUrl[0]);
+            $contador = 1;
+            $voltar = "";
+            while($contador <= count($dadosUrl)){
+                $voltar .= "../";
+                $contador++;
+            }
+            echo "<script>javascript:window.location='".$voltar."Pagina-agradecimento';</script>";
+        break;
         default: //Qualquer outro erro cai aqui
-            echo "<script> alert('$mensagem');javascript:window.location='index.php';</script>";
+            echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes';</script>";
     } 
 }

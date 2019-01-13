@@ -375,8 +375,18 @@ session_start();
                 echo "<script>javascript:window.location='../todosdebates';</script>";
                 break;
             case 9://Não foi possivel achar a publicacao  
-                echo "<script> alert('$mensagem');javascript:window.location='../todosdebates';</script>";
+                echo "<script> alert('$mensagem');javascript:window.location='todosdebates';</script>";
                 break; 
+            case 45://Digitou um numero maior de parametros 
+                unset($dadosUrl[0]);
+                $contador = 1;
+                $voltar = "";
+                while($contador <= count($dadosUrl)){
+                    $voltar .= "../";
+                    $contador++;
+                }
+                echo "<script>javascript:window.location='".$voltar."todosdebates';</script>";
+                break;
             default: //Qualquer outro erro cai aqui
                 echo "<script> alert('$mensagem');javascript:window.location='../todosdebates';</script>";
         }   

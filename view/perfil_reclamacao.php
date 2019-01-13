@@ -131,7 +131,7 @@
     </head>
     <body onload="jaquinha()">
         <header>
-            <a href="todasreclamacoes">
+            <a href="<?php echo $voltar?>todasreclamacoes">
                 <img src="<?php echo $voltar?>view/imagens/logo_oficial.png" alt="logo">
             </a>   
             <i class="icone-pesquisa pesquisa-mobile" id="abrir-pesquisa"></i>
