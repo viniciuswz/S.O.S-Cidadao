@@ -81,7 +81,7 @@
         switch($erro){
             case 2://Ja esta logado  
             case 6://Ja esta logado 
-                echo "<script>javascript:window.location='home.php';</script>";
+                echo "<script>javascript:window.location='home';</script>";
                 break;           
             case 45://Digitou um numero maior de parametros 
                 unset($dadosUrl[0]);

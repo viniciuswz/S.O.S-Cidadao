@@ -223,11 +223,9 @@ session_start();
             echo "<script>javascript:window.location='../login';</script>";
             break;
         case 6://Não é usuario prefeitura ou func  
-            echo "<script>javascript:window.location='../todasreclamacoes';</script>";
-            break; 
         case 9://Não foi possivel achar a publicacao  
-            echo "<script> alert('$mensagem');javascript:window.location='../todasreclamacoes';</script>";
-            break; 
+            echo "<script>javascript:window.location='../todasreclamacoes';</script>";
+            break;        
         case 45://Digitou um numero maior de parametros 
             unset($dadosUrl[0]);
             $contador = 1;
