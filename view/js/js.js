@@ -2043,7 +2043,7 @@ jQuery(function($){
   var img = $(".mini-perfil").find("img:first").attr("src");
   var nome = $(".mini-perfil").find("p").html();
   var hrefIDUsu = $("#idPerfilUsu").attr('href');
-  var id_usu = hrefIDUsu.substring(hrefIDUsu.lastIndexOf('ID')+3); // pegar id do usuario
+  var id_usu = hrefIDUsu.substring(hrefIDUsu.lastIndexOf('ID')+4); // pegar id do usuario
 
   var quantVoltar = $("#voltar").val();
   voltar = "";
@@ -2063,23 +2063,21 @@ jQuery(function($){
           return false;
         }else{
           //alert(result);
-
           $("#comentarioTxt").val('');
           var usuario = result.substring(0, result.lastIndexOf('.'));
           var id_comentario = result.substring(result.lastIndexOf('.') + 1,result.lastIndexOf(','));
           var qtd = result.substring(result.lastIndexOf(',') + 1);          
-          if(usuario =="Comum"){
-            
-            
+          if(usuario =="Comum"){            
+            alert(voltar + id_usu);
             $(".comentarios").prepend('<div class="comentario-user" style="display:flex; order:-1">\
             <div class="publicacao-topo-aberta">\
-            <a href="'+voltar+'perfil_reclamacao">\
+            <a href="'+voltar+id_usu+'">\
               <div>\
               <img src="'+ img +'">\
               </div>\
             </a>\
             <p>\
-            <a href="'+voltar+'perfil_reclamacao/'+id_usu+'">\
+            <a href="'+voltar+id_usu+'">\
             <span class="negrito">'+nome+'</span>\
             </a>Enviado agora</p>\
             <div class="mini-menu-item ">\
@@ -2102,15 +2100,15 @@ jQuery(function($){
               $('.comentarios').find('h3:first').text('Comentários')
             }
             
-          }else{
+          }else{            
             $(".enviar-comentario-publicacao").remove();
             $('<section class="prefeitura-publicacao">\
             <div class="topo-prefeitura-publicacao">\
-            <a href="'+voltar+'perfil_reclamacao">\
+            <a href="'+voltar+id_usu+'">\
             <div>\
             <img src="'+img+'">\
             </div>\
-            </a><p><a href="'+voltar+'perfil_reclamacao/'+id_usu+'"><span class="negrito">'+nomePref+'</span></a><time>Enviado agora</time></p></div>\
+            </a><p><a href="'+voltar+id_usu+'"><span class="negrito">'+nomePref+'</span></a><time>Enviado agora</time></p></div>\
             <div class="conteudo-resposta">\
             <span>'+comentario+'</span>\
             <div>\

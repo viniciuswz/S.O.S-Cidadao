@@ -54,28 +54,24 @@
         
         $resposta = $publi->listByIdPubli(); 
         $comentarioPrefei = $comentario->SelecionarComentariosUserPrefei(TRUE);        
-                   
-        if(isset($dadosUrl[2])){ // notificacao            
-            $_GET['com'] = $dadosUrl[2];       
+        
+        if(isset($dadosUrl[2]) AND isset($_SESSION['id_user'])){
+            $_GET['com'] = $dadosUrl[2];        
             $voltar .= "../";                     
             $numVoltar++;
-           
-            if(isset($dadosUrl[3])){ // comentario denunciado                    
+            $visualizar = new VisualizarNotificacao();
+            if(isset($dadosUrl[3])){
+                $idNoti = $dadosUrl[3];  
                 $voltar .="../";
                 $numVoltar++;
-                $_GET['IdComen'] = $dadosUrl[3];                                 
-            }else{                                        
-                $idNoti = $_GET['ID'];
-            }
-
-            if(isset($_SESSION['id_user'])){                                
-                $visualizar = new VisualizarNotificacao();
-                $idNoti = $dadosUrl[3];
                 $comentario->setCodComen($idNoti);
                 $comentarioComum = $comentario->getDadosComenByIdComen(); // preciso do comenantario denunciado   
-                $visualizar->visualizarNotificacao($_GET['com'], $idNoti, $_SESSION['id_user']);
-            }                  
+            }else{
+                $idNoti = $dadosUrl[1];
+            }
+            $visualizar->visualizarNotificacao($_GET['com'], $idNoti, $_SESSION['id_user']);
         }
+        
 
         if(isset($_SESSION['id_user']) AND isset($_GET['IdComen']) AND isset($tipoUsu) AND ($tipoUsu == 'Adm' OR $tipoUsu == 'Moderador')){            
             $idNoti = $_GET['IdComen'];
@@ -301,7 +297,7 @@
             ?>
                     <section class="prefeitura-publicacao">
                         <div class="topo-prefeitura-publicacao">
-                            <a href="perfil_reclamacao.php?ID=<?php echo $comentarioPrefei[0]['cod_usu_prefei'] ?>">
+                            <a href="<?php echo $voltar ?>perfil_reclamacao/<?php echo $comentarioPrefei[0]['cod_usu_prefei'] ?>">
                             <div>
                                 <img src="<?php echo $voltar ?>Img/perfil/<?php echo $comentarioPrefei[0]['img_perfil_usu']?>">
                             </div>
