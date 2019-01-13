@@ -23,8 +23,7 @@ session_start();
             $_GET['ID'] = $dadosUrl[1];
         }
         $voltar = '../';
-        $debate = new Debate(); 
-        $mensagemObj = new Mensagens($_GET['ID']);       
+        $debate = new Debate();           
 
         if(isset($_SESSION['id_user']) AND !empty($_SESSION['id_user'])){
             $debate->setCodUsu($_SESSION['id_user']); 
@@ -37,23 +36,14 @@ session_start();
         $nomesCampos = array('ID');// Nomes dos campos que receberei da URL    
         $validar = new ValidarCampos($nomesCampos, $_GET);
         $validar->verificarTipoInt($nomesCampos, $_GET); // Verificar se o parametro da url é um numero     
-        $debate->setCodDeba($_GET['ID']);   
-        $mensagemObj->setCodDeba($_GET['ID']);   
+        $debate->setCodDeba($_GET['ID']); 
                 
         $resposta = $debate->listByIdDeba('sqlListDebaQuandoAberto');
         $debate->verificarSeParticipaOuNao($_GET['ID'], TRUE);       
 
         $participantes = $debate->listarParticipantes(' usuario.cod_usu, nome_usu, img_perfil_usu, ind_visu_criador ');
-        $mensagemObj->setCodUsu($_SESSION['id_user']);       
+          
         
-
-        $listDeba = $debate->listarDebatesQpartcipo();        
-        //isset($_GET['pagina']) ?: $_GET['pagina'] = 1; 
-        
-        //$mensagem = $mensagemObj->getMensagens($_GET['pagina']);        
-        //$mensagemObj->visualizarMensagem();
-        $quantidadePaginas = $mensagemObj->getQuantidadePaginas();
-        $pagina = $mensagemObj->getPaginaAtual();      
 
 ?>
 <!DOCTYPE html>
@@ -217,117 +207,14 @@ session_start();
                 <div id="pa" class="mensagens">
                 <div class="fundo-zipzop"></div>
                 <div class="lds-ring" style="margin: 0 auto;display: none;width: 50px;position:fixed;top:60px;left: 50%;transform: translateX(-50%);" id="loader"><div></div><div></div><div></div><div></div></div>
-                    
-                   
-<!--
-                    <div class="linha-mensagem_usuario">
-                        <div>
-                            <span >
-                                teeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee<sub>16:55</sub>
-                            </span>
-                        </div>
-                    </div>
 
-                    <div class="linha-mensagem_sistema">
-                        <div>
-                            <span >
-                                HOJEaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                            </span>
-                        </div>
-                    </div>
-                    <div class="linha-mensagem_sistema">
-                        <div>
-                            <span >
-                                saiu do grupo<span>09:00</span>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="linha-mensagem_padrao">
-                            <div class="usuario-msg-foto">
-                                <img src="imagens/perfil.jpg">
-                            </div>
-                        <div class="mensagem_padrao">
-                            <span class="nome"><a href="#">Péricles alexandre santoaaaaaaaaaaaaaaaaaaaaaaaaaaas</a></span>
-                            <span >
-                                teseeeeeeeeeeeeeeeeeeeeeeeee<sub>16:55</sub>
-                            </span>
-                        </div>
-                    </div>
-    
-                    <div class="linha-mensagem_usuario">
-                        <div>
-                            <span >
-                                teeeeeeeeeeeeeeeee<sub>16:55</sub>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="linha-mensagem_padrao">
-                            <div class="usuario-msg-foto">
-                                <img src="imagens/perfil.jpg">
-                            </div>
-                    <div class="mensagem_padrao">
-                        <span class="nome">Péricles alexandre santoaaaaaaaaaaaaaaaaaaaaaaaaaaas</span>
-                            <span >
-                                teseeeeeeeeeeeeeeeeeeeeeeeee<sub>16:55</sub>
-                            </span>
-                        </div>
-                    </div>
-    
-                    <div class="linha-mensagem_usuario">
-                        <div>
-                            <span >
-                                teeeeeeeeeeeeeeeee<sub>16:55</sub>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="linha-mensagem_padrao">
-                            <div class="usuario-msg-foto">
-                                <img src="imagens/perfil.jpg">
-                            </div>
-                    <div class="mensagem_padrao">
-                        <span class="nome">Péricles alexandre santoaaaaaaaaaaaaaaaaaaaaaaaaaaas</span>
-                            <span >
-                                teseeeeeeeeeeeeeeeeeeeeeeeee<sub>16:55</sub>
-                            </span>
-                        </div>
-                    </div>
-    
-                    <div class="linha-mensagem_usuario">
-                        <div>
-                            <span >
-                                teeeeeeeeeeeeeeeee<sub>16:55</sub>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="linha-mensagem_padrao">
-                            <div class="usuario-msg-foto">
-                                <img src="imagens/perfil.jpg">
-                            </div>
-                    <div class="mensagem_padrao">
-                        <span class="nome">Péricles alexandre santoaaaaaaaaaaaaaaaaaaaaaaaaaaas</span>
-                            <span >
-                                teseeeeeeeeeeeeeeeeeeeeeeeee<sub>16:55</sub>
-                            </span>
-                        </div>
-                    </div>
-    
-                    <div class="linha-mensagem_usuario">
-                        <div>
-                            <span >
-                                teeeeeeeeeeeeeeeee<sub>16:55</sub>
-                            </span>
-                        </div>
-                    </div>-->
                         
-                </div>
-
-                     
+                </div>                     
                <form method="post" id="formDebaMen">
                     <?php
                         if($tipoUsu == 'Comum'){
                     ?>
-                        <input type="hidden" name="ID" value="<?php echo $_GET['ID'] ?>" />
-                        <input type="hidden" name="pagina" value="<?php echo $pagina ?>" />
+                        <input type="hidden" name="ID" value="<?php echo $_GET['ID'] ?>" />                        
                         <input type="text" name="texto" id="texto" placeholder="digite aqui..." autocomplete="off"><button id="btn-debate" type="submit" disabled> ></button> 
                    <?php
                         }
@@ -336,33 +223,7 @@ session_start();
            </div>
         </section>
         </div>
-        <!--
-        <ul>
-            <?php
-            /*
-                if($quantidadePaginas != 1){
-                    $contador = 1;
-                    while($contador <= $quantidadePaginas){
-                        if(isset($pagina) AND $pagina == $contador){
-                            if(isset($_GET['ID'])){
-                                echo '<li class="jaca"><a href="debate_mensagens.php?pagina='.$contador.'&ID='.$_GET['ID'].'">Pagina'.$contador.'</a></li>'  ; 
-                            }else{
-                                echo '<li class="jaca"><a href="debate_mensagens.php?pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ; 
-                            }                         
-                        }else{
-                            if(isset($_GET['ID'])){
-                                echo '<li class="jaca"><a href="debate_mensagens.php?pagina='.$contador.'&ID='.$_GET['ID'].'">Pagina'.$contador.'</a></li>'  ; 
-                            }else{
-                                echo '<li class="jaca"><a href="debate_mensagens.php?pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ; 
-                            }                         
-                        }                    
-                        $contador++;        
-                    }
-                }    
-                */        
-            ?>
-        </ul>
-        -->
+        
     </body>
 </html>
 <?php

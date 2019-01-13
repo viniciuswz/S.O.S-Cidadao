@@ -150,104 +150,10 @@ session_start();
                             <button type="submit"> Denunciar</button>
                         </form>
                     </div>
-                </div>               
-            <?php
-            /*
-                $contador = 0;
-                while($contador < count($resposta)){                
-            ?>      
-                        <div class="item-publicacao">
-                            <div class="item-topo">
-                                <a href="perfil_debate.php?ID=<?php echo $resposta[$contador]['cod_usu']?>">
-                                    <div>
-                                        <img src="../Img/perfil/<?php echo $resposta[$contador]['img_perfil_usu']?>">
-                                    </div>
-                                    <p><span class="negrito"><?php echo $resposta[$contador]['nome_usu']?></a></span><time><?php echo $resposta[$contador]['dataHora_deba']?></time></p>
-                                    <div class="mini-menu-item">
-                                        <i class="icone-3pontos"></i>
-                                        <div><!--DA PRA TIRAR A DIV-->
-                                            <ul>
-                                                <?php
-                                                    if(isset($resposta[$contador]['indDenunComen']) AND $resposta[$contador]['indDenunComen'] == TRUE){ // Aparecer quando o user ja denunciou            
-                                                        echo '<li><i class="icone-bandeira"></i><span class="negrito">Denunciado</span></li>';        
-                                                    }else if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] != $resposta[$contador]['cod_usu']){ // Aparecer apenas naspublicaçoes q nao é do usuario
-                                                        if($tipoUsu == 'Comum' or $tipoUsu == 'Prefeitura' or $tipoUsu == 'Funcionario'){                                                       
-                                                            echo '<li class="denunciar-item"><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>';
-                                                            $indDenun = TRUE; // = carregar modal da denucia
-                                                        }                    
-                                                    }else if(!isset($_SESSION['id_user'])){ // aparecer parar os usuario nao logado]
-                                                        echo '<li class="denunciar-item"><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>';
-                                                        $indDenun = TRUE; // = carregar modal da denucia
-                                                    } 
-                                                ?>
-
-                                                <?php
-                                                    if(isset($_SESSION['id_user']) AND $_SESSION['id_user'] == $resposta[$contador]['cod_usu']){
-                                                        echo '<li><a href="../ApagarDebate.php?ID='.$resposta[$contador]['cod_deba'].'"><i class="icone-fechar"></i></i>Remover</a></li>';
-                                                        echo '<li><a href="debate-update.php?ID='.$resposta[$contador]['cod_deba'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';                                                    
-                                                    }else if(isset($tipoUsu) AND ($tipoUsu == 'Adm' or $tipoUsu == 'Moderador')){
-                                                        echo '<li><a href="../ApagarDebate.php?ID='.$resposta[$contador]['cod_deba'].'"><i class="icone-fechar"></i></i>Remover</a></li>';
-                                                        // Icone para apagar usuaario
-                                                        //echo '<a href="../ApagarUsuario.php?ID='.$resposta[0]['cod_usu'].'">Apagar Usuario</a>';                                                       
-                                                        echo '<li><a href="debate-update.php?ID='.$resposta[$contador]['cod_deba'].'"><i class="icone-edit-full"></i></i>Alterar</a></li>';                                                    
-                                                    }
-                                                ?>                                             
-                                            </ul>
-                                        </div>
-                                        <?php if(isset($indDenun) AND $indDenun == TRUE) { // so quero q carregue em alguns casos?>
-                                            <div class="modal-denunciar">
-                                                <div class="modal-denunciar-fundo"></div>
-                                                <div class="box-denunciar">
-                                                    <div>
-                                                        <h1>Qual o motivo da denuncia?</h1>
-                                                        <span class="fechar-denuncia">&times;</span>
-                                                    </div>
-                                            
-                                                    <form form method="post" action="../DenunciarDebate.php">
-                                                        <textarea placeholder="Qual o motivo?" id="motivo" name="texto"></textarea>
-                                                        <input type="hidden" name="id_deba" value="<?php echo $resposta[$contador]['cod_deba'] ?>">                
-                                                        <button type="submit"> Denunciar</button>
-                                                    </form>                                        
-                                                </div>
-                                            </div>
-                                        <?php } ?>
-                                    </div>
-                                </div>
-                                <a href="Pagina-debate.php?ID=<?php echo $resposta[$contador]['cod_deba'] ?>">
-                                    <figure>
-                                        <img src="../Img/debate/<?php echo $resposta[$contador]['img_deba']?>">
-                                    </figure>
-                                    <div class="legenda">
-                                        <p><?php echo $resposta[$contador]['nome_deba']?></p><p><?php echo $resposta[$contador]['qtdParticipantes']?></p><i class="icone-grupo"></i>
-                                    </div>
-                                    
-                                </a>
-                        </div>
-                    <?php  
-                        $indDenun = false;
-                        $contador++;
-                        }
-                        */
-                    ?>                        
+                </div>    
                     </section>  
                 </div>
-                <ul>
-                    <?php
-                    /*
-                        if($quantidadePaginas != 1){
-                            $contador = 1;
-                            while($contador <= $quantidadePaginas){
-                                if(isset($pagina) AND $pagina == $contador){
-                                    echo '<li class="jaca"><a href="todosdebates.php?pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;  
-                                }else{
-                                    echo '<li><a href="todosdebates.php?pagina='.$contador.'">Pagina'.$contador.'</a></li>'  ;
-                                }                                
-                                $contador++;        
-                            }
-                        }     
-                        */                   
-                    ?>
-                </ul>
+                
 </body>
 </html>
 <?php
