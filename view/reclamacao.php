@@ -139,7 +139,7 @@
                 <img src="<?php echo $voltar ?>view/imagens/logo_oficial.png" alt="logo">
             </a>   
             <i class="icone-pesquisa pesquisa-mobile" id="abrir-pesquisa"></i>
-            <form action="<?php echo $voltar ?>pesquisa" method="post" id="form-pesquisa">
+            <form action="<?php echo $voltar ?>pesquisa" method="get" id="form-pesquisa">
                 <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar">                
                 <button type="submit"><i class="icone-pesquisa"></i></button>
             </form>
@@ -220,7 +220,7 @@
                                                             $indDenun = TRUE; // = carregar modal da denucia
                                                         }                    
                                                     }else if(!isset($_SESSION['id_user'])){ // aparecer parar os usuario nao logado
-                                                        echo '<li class="denunciar-item" data-id="'.$_GET['ID'].'.Publicacao"><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>';
+                                                        echo '<li class="denunciar-item" data-id="'.$_GET['ID'].'.Publicacao,'.$numVoltar.'"><a href="#"><i class="icone-bandeira"></i>Denunciar</a></li>';
                                                         $indDenun = TRUE; // = carregar modal da denucia
                                                     } 
                                                 ?>
