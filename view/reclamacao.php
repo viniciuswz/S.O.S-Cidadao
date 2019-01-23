@@ -1,4 +1,7 @@
-<?php
+<?php    
+    if(!file_exists('Config/Config.php')){        
+        echo "<script>javascript:window.location='todasreclamacoes';</script>";       
+    }
     session_start();
     require_once('Config/Config.php');
     require_once(SITE_ROOT.DS.'autoload.php');    
@@ -72,6 +75,8 @@
                 $idNoti = $dadosUrl[1];
             }
             $visualizar->visualizarNotificacao($_GET['com'], $idNoti, $_SESSION['id_user']);
+        }else if(isset($dadosUrl[2]) AND !isset($_SESSION['id_user'])){
+            throw new \Exception('Não foi possível achar o debate',45);
         }
         
 

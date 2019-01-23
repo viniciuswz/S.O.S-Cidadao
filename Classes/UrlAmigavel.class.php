@@ -42,7 +42,7 @@ class UrlAmigavel{
                     $this->indRetornar = True;       
                     $this->partesUrl[1] = $this->quebrarParametros($this->partesUrl[2]);
                     if(file_exists('view' . DIRECTORY_SEPARATOR . $this->partesUrl[2] . '.php')){
-                        $this->partesUrl[1] = $this->partesUrl[2] . '.php';
+                        $this->partesUrl[1] = $this->partesUrl[2];
                     }else{
                         $this->partesUrl[1] = 'home.php';
                     }                    

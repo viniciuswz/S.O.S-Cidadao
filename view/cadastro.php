@@ -1,4 +1,7 @@
 <?php
+    if(!file_exists('Config/Config.php')){        
+        echo "<script>javascript:window.location='todasreclamacoes';</script>";       
+    }
     session_start();
     require_once('Config/Config.php');
     require_once(SITE_ROOT.DS.'autoload.php');  
