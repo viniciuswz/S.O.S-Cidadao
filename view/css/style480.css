@@ -293,14 +293,16 @@ width: 100vw;
 }
 
 .perfil-info p{
-    margin-top: 40px;
-    position: inherit;
+
+    position: relative;
    
     text-align: center;
     font-size: 1.3rem;
     color: black;
-    margin: 40px auto 0 auto;
+    margin: 0px auto 0 auto;
     padding: 0 15px;
+    top:10px
+   
 }
 
 .perfil-info div span{
