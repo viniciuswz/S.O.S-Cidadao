@@ -546,11 +546,11 @@ form .categorias div div:last-child{
 }
 
 .form-icone form .campo-texto-icone{
-    width: 80%;
+    width: 90%;
 }
 
 .form-icone form .campo-texto-icone input{
-    width: 100%;
+    width: 80%;
 }
 
 .form-icone form h3{

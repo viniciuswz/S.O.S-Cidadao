@@ -439,7 +439,7 @@ nav.notificacoes ul li a span:first-of-type{
 }
 
 
-/*NÃƒÆ’Ã†â€™O ALTERAR NADA DAQUI PARA CIMA*/
+/*NÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢O ALTERAR NADA DAQUI PARA CIMA*/
 
 .perfil-base{
     position: relative;
@@ -1359,6 +1359,9 @@ color: white
     height: 30px;
     background-color: #009688;
     display: flex;
+    width: 40px;
+    justify-content: center;
+    /*! padding-left: 1px; */
 }
 
 .campo-texto-icone label i{
@@ -1366,25 +1369,40 @@ color: white
 }
 
 .campo-texto-icone label i.icone-mail{
-    background-size: 1000px;
-    height:25px;
-    background-position: -285px -35px; 
+       background-size: 1050px;
+    height: 30px;
+    background-position: -306px -37.5px;
+    min-height: 30px;
+/*     background-color: red; */
+    top: 0;
+    width: 30px;
+    min-width: 30px
+    /*! margin: 0 auto; */
+    /*! background-color: red; */
 }
 
 .campo-texto-icone label i.icone-senha{
-    background-size: 1000px;
-    height:25px;
-    background-position: -704px -35px;
+    background-size: 1050px;
+    height: 30px;
+    background-position: -746px -37.5px;
+    min-height: 30px;
+    /* background-color: red; */
+    top: 0;
+    width: 30px;
+    min-width: 30px;
 }
 
 .campo-texto-icone label i.icone-user{
-    background-size: 830px;
-    min-height: 26px;
-    margin: 0 7px;
-    min-width: 26px;
-    text-align: center;
-    background-position: 0px -31px;
-    top: 0;
+       background-size: 900px;
+       height: 30px;
+       background-position: -0px -30px;
+       min-height: 30px;
+       /*! background-color: red; */
+       top: 0;
+       width: 30px;
+       min-width: 30px
+    /*! margin: 0 auto; */
+    /*! background-color: red; */;
 }
 
 .campo-texto-icone input:focus {
