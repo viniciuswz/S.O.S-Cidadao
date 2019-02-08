@@ -1352,6 +1352,7 @@ color: white
     outline: none;
     height: 30px;
     border: 2px solid grey;
+    border-radius: 0 !important;
 }
 
 
