@@ -67,8 +67,8 @@ header form button{
 }
 i.icone-pesquisa{
  /*tamanho do icone*/
- background-position: -140px 1px; /*posiÃ§Ã£o que se encontra, esqueda/direita e cima/baixo*/
- background-size: 1100px;
+ background-position: -133px -2px; /*posiÃ§Ã£o que se encontra, esqueda/direita e cima/baixo*/
+ background-size: 1050px 80px;
 }
 header form button i.icone-pesquisa{
     min-height: 33px; /*tamanho do espaÃ§o que a altura ocupa na tela*/
