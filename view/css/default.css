@@ -1350,7 +1350,7 @@ color: white
     align-items: center;
     padding: 20px;
     flex-direction: column;
-    background-color: rgb(235, 235, 235 ,.8);
+    background-color: rgba(235, 235, 235 ,.8);
     position: absolute;
     right: 0;
     margin-right: 120px;
