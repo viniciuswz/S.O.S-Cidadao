@@ -2819,15 +2819,15 @@ input[type="submit"]{-webkit-appearance: none;}
 }
 
 .debate-status div i.icone-categoria-debate{
-    background-size: 1300px;
-    background-position: -1222px -7px;
+    background-size: 1300px 99px;
+    background-position: -1215px -7px;
     width: 20px;
     height: 30px;
 }
 
 .debate-status div i.icone-grupo{
-    background-size: 1000px;
-    background-position: -159px 0;
+    background-size: 1000px 70px;
+    background-position: -159px 3px;
     width: 20px;
     height: 30px;
     margin-left: 5px;
