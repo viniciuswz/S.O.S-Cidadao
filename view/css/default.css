@@ -1028,6 +1028,7 @@ cursor:pointer;
     font-size: 16px;
     position: relative;
     top: 2px;
+    padding-left: 4px;
 }
 
 .campo-envio input:focus + span{
