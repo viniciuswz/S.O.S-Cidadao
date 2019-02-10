@@ -1365,7 +1365,26 @@ jQuery(function($){
             }
           });
           
-          
+          function invalidoAjaxLogin(param){
+            if(param == 'Senha inválida'){
+              $("#email").parent().find("label").css("background-color" , '');
+              $("#email").css("border-color" , ''); 
+              $("#senha").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+              $("#senha").css("border-color" , 'inhrit');
+              $("#senha").focus();
+            }else if(param == 'E-mail não cadastrado'){
+              $("#email").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+              $("#email").css("border-color" , 'rgba(256,000,000)');   
+              $("#senha").parent().find("label").css("background-color" , '');
+              $("#senha").css("border-color" , '');   
+              $("#email").focus();
+            }else if(param == 'Email ou senha inválidos'){
+              $("#email").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+              $("#email").css("border-color" , 'rgba(256,000,000)');
+              $("#senha").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+              $("#senha").css("border-color" , 'rgba(256,000,000)');
+            }
+          }
           $("#login").submit(function(){
             var email = $("#email").val();
             var senha = $("#senha").val();
@@ -1392,7 +1411,8 @@ jQuery(function($){
                     success:function(result){
                         if(result=="1"){
                             location.href="perfil_reclamacao";
-                        }else{                            
+                        }else{   
+                          invalidoAjaxLogin(result);                         
                             $(".aviso-form-inicial").show();
                             $(".aviso-form-inicial").find("p").text(result);
                         }
@@ -1464,7 +1484,11 @@ jQuery(function($){
             var senhaC = $("#senhaC").val();
             if(senhaC !== senha && senhaC !==""){
               $(".aviso-form-inicial").show();
-              $(".aviso-form-inicial").find("p").text("confirmar senha não esta igual a senha, tente de novo");
+              $(".aviso-form-inicial").find("p").text("A confirmação da senha esta errada!");
+              $("#senha").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+              $("#senha").css("border-color" , 'rgba(256,000,000)');
+              $("#senhaC").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+              $("#senhaC").css("border-color" , 'rgba(256,000,000)');
               return false;
             }else{
               if( user === ""){
