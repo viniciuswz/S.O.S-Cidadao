@@ -215,7 +215,7 @@ jQuery(function(){
       
     }else{
 
-      if($this.attr('action') == '../enviarPublicacao.php'){
+      if($this.attr('action') == 'enviarPublicacao.php'){
         var imgDebate = $("#fotoReclamacao").val();
         if(imgDebate == ""){
           $(".imagem").find('p:last-child').text("uma imagem é obrigatoria");

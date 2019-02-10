@@ -1094,7 +1094,9 @@ width: 100%
 .envio-img{
     display: flex;
     justify-content: center;
+    align-items: flex-start;
     min-height: 350px;
+    /* background-color: red; */
 }
 
 .envio-img input{
@@ -1110,7 +1112,7 @@ width: 100%
     justify-content: center;
     align-items: center;
     position: relative;
-    background-color: white
+    background-color: red;
 }
 
 .envio-img label p{
@@ -1123,7 +1125,7 @@ width: 100%
     /* margin-left: -150px; */
     z-index: 2;
     left: 0px;
-    bottom: 0;
+    /* bottom: 0; */
     top: 0;
     padding-right: 10px;
 }
