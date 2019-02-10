@@ -817,7 +817,9 @@ nav.notificacoes ul li a span:first-of-type{
  }
 
  .item-publicacao .legenda i{
-    background-position-y: -45px;
+    background-position-y: -43px;
+    background-color: red;
+    top: 0;
  }
 
  .alinha-item{
