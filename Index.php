@@ -7,8 +7,10 @@ try{
     $url = new UrlAmigavel($_SERVER['REQUEST_URI']);
     $nome = $url->partesUrl[1];
     $ind = $url->indRetornar;
-    if(!$ind){ // nao precisa voltar        
-        require_once('view/' . $nome);
+    if(!$ind){ // nao precisa voltar
+        if(is_file('view/' . $nome)){
+            require_once('view/' . $nome);
+        }
     }else{ // precisa voltar        
         header("Location: ../$nome");
     }   
