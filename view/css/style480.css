@@ -876,9 +876,9 @@ form .categorias div div:last-child{
 .img-publicacao figure img{
     position:inherit;
     align-self: center;
-     width: 100%; 
-     height: auto;
-    background-color: red;
+    width: 100%;
+    height: auto;
+    /* background-color: red; */
     display: block;
  }
 
@@ -889,7 +889,7 @@ form .categorias div div:last-child{
     top: 0%;
     left:0%;
     transform: translateX(-0%) translateY(-0%);
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
 }
 
 .img-publicacao .item-baixo-publicacao{

@@ -549,8 +549,8 @@ font-size: 1.1em;
 
 .img-publicacao{
     width: inherit;
-    background-color: orange;
-    display:block
+    /* background-color: orange; */
+    display:block;
 }
 
 .img-publicacao figure{
@@ -563,14 +563,14 @@ font-size: 1.1em;
 
 .img-publicacao figure img{
    width:100%;
-        align-self: center;
-    height: inherit;
-    position: inherit;
-    top: 0%;
-    left: 50%;
-    transform: translateX(-00%) translateY(-00%);
-    background-color: blueviolet;
-    min-width:500px;
+   align-self: center;
+   height: inherit;
+   position: inherit;
+   top: 0%;
+   left: 50%;
+   transform: translateX(-00%) translateY(-00%);
+   /* background-color: blueviolet; */
+   min-width:500px;
  }
 
  .img-publicacao .item-baixo-publicacao{

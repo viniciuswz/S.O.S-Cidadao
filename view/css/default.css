@@ -181,13 +181,13 @@ i.icone-lapis{
 
 
 i.icone-like{
-    background-position: -635px -6px;
-    background-size: 3500%;
+    background-position: -560px 0px;
+    /*! background-size: 3500%; */
 }
 
 i.icone-like-full{
-    background-position: -681px 0;
-    background-size: 3500%;
+    background-position: -600px 0;
+    /*! background-size: 3500%; */
 }
 
 i.icone-olho{
@@ -2494,7 +2494,7 @@ color:black
     top: 0%;
     left: 50%;
     transform: translateX(-50%) translateY(-0%);
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
 }
 
 
@@ -2627,8 +2627,9 @@ color:black
 }
 
 .barra-curtir-publicacao a i{
-    background-position-y: -7px;
-    /* background-color: red; */
+    background-position-y: -3px;
+    /*! background-color: red; */
+    top: 0;
 }
 .enviar-comentario-publicacao{
     width: 50%;
