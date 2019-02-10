@@ -1112,7 +1112,7 @@ width: 100%
     justify-content: center;
     align-items: center;
     position: relative;
-    background-color: red;
+    /* background-color: red; */
 }
 
 .envio-img label p{
