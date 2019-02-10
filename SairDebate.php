@@ -35,6 +35,9 @@ try{
     }else if($ind == 3){ // usuario saiu ou dono saiu     
         $_SESSION['atu'] = 1;   
         echo "<script>javascript:window.location='todosdebates';</script>";    
+    }else if($ind == 7){
+        $_SESSION['atu'] = 1;   
+        echo "<script>javascript:window.location='todosdebates';</script>";  
     }else{
         $_SESSION['atu'] = 2;   
         echo "<script>javascript:window.location='todosdebates';</script>";    
@@ -46,15 +49,15 @@ try{
     $mensagem = $exc->getMessage();
     switch($erro){
         case 2://Nao esta logado    
-            echo "<script> alert('$mensagem');javascript:window.location='login';</script>";
+            //echo "<script> alert('$mensagem');javascript:window.location='login';</script>";
             break;        
         case 6://Não é usuario comum  
         case 8:// Se der erro ao cadastrar
         case 12://Mexeu no insprnsionar elemento
-            echo "<script> alert('$mensagem');javascript:window.location='todosdebates';</script>";
+            //echo "<script> alert('$mensagem');javascript:window.location='todosdebates';</script>";
             break;        
         default: //Qualquer outro erro cai aqui
-            echo "<script> alert('$mensagem');javascript:window.location='todosdebates';</script>";
+            //echo "<script> alert('$mensagem');javascript:window.location='todosdebates';</script>";
     }   
             
             

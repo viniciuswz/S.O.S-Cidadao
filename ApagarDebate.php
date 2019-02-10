@@ -24,8 +24,14 @@ try{
     }else{
         $_SESSION['atu'] = 3;   
     }
+
+    if(isset($_GET['tipo'])){
+        echo "<script> alert('Debate Removido');javascript:window.location='admin-denuncia';</script>";
+    }else{
+        echo "<script>javascript:window.location='todosdebates';</script>";    
+    }
+
     
-    echo "<script>javascript:window.location='todosdebates';</script>";    
         
 }catch(Exception $exc){  
     $erro = $exc->getCode();   

@@ -322,16 +322,18 @@ class DebateA extends DebateM{
         $usuario = new Usuario();
         $usuario->setCodUsu($this->getCodUsu());
         $tipo = $usuario->getDescTipo();   
-        if($tipo == 'Adm' or $tipo == 'Moderador'){ // Administracao apagando
+        if($tipo == 'Adm' or $tipo == 'Moderador'){ // Administracao apagando                
             $sql = sprintf(
                 $this->sqlSelectDonoDeba,
                 $this->getCodDeba()            
-            );
-            $res = $this->runSelect($sql);              
-            if($res[0]['cod_usu'] == $codUsuApagar){
+            );            
+            $res = $this->runSelect($sql); 
+            if($codUsuApagar == null){ // nao esta removendo usuario, mas sim apagando o debate
+                $this->updateStatusDeba('I'); // apagar debate, se o dono sair o debate é "apagado"
+                return 7;  // adm apagou debate
+            }else if($res[0]['cod_usu'] == $codUsuApagar){
                 throw new \Exception("Não é possivel remover o dono do debate");
-            }
-
+            } 
             $this->updateStatusParti('B', $codUsuApagar,TRUE, 'Administracao');
             return 1; // adm
         }
