@@ -67,8 +67,8 @@ header form button{
 }
 i.icone-pesquisa{
  /*tamanho do icone*/
- background-position: -140px 1px; /*posiÃ§Ã£o que se encontra, esqueda/direita e cima/baixo*/
- background-size: 1100px;
+ background-position: -133px -2px; /*posiÃ§Ã£o que se encontra, esqueda/direita e cima/baixo*/
+ background-size: 1050px 80px;
 }
 header form button i.icone-pesquisa{
     min-height: 33px; /*tamanho do espaÃ§o que a altura ocupa na tela*/
@@ -293,14 +293,16 @@ width: 100vw;
 }
 
 .perfil-info p{
-    margin-top: 40px;
-    position: inherit;
+
+    position: relative;
    
     text-align: center;
     font-size: 1.3rem;
     color: black;
-    margin: 40px auto 0 auto;
+    margin: 0px auto 0 auto;
     padding: 0 15px;
+    top:10px
+   
 }
 
 .perfil-info div span{
@@ -546,11 +548,11 @@ form .categorias div div:last-child{
 }
 
 .form-icone form .campo-texto-icone{
-    width: 80%;
+    width: 90%;
 }
 
 .form-icone form .campo-texto-icone input{
-    width: 100%;
+    width: 80%;
 }
 
 .form-icone form h3{

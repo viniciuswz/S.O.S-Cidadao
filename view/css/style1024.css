@@ -50,7 +50,7 @@ header form button{
 header form button i.icone-pesquisa{
     min-height: 33px;
     min-width: 28px;
-    background-size: 950px;
+    background-size: 950px 65px;
     background-position: -123.9px 1px;
     /* background-color: red; */
 }
@@ -58,7 +58,7 @@ header i.icone-user{
 margin:0 15px;
 width: 35px;
 height: 35px;
-background-size: 1060px;
+background-size: 1060px 80px;
 
 }
 nav.menu{
@@ -78,7 +78,7 @@ nav.menu > ul > li > a > i{
    margin: 0 auto;
    min-height: 25px;
    min-width: 25px;
-   background-size: 800px;
+   background-size: 800px 70px;
 }
 
 nav.menu > ul li > a > i.icone-reclamacao{background-position: -27px -8.6px;}
@@ -108,7 +108,7 @@ height: 80px;
 }
 
 nav.menu > ul > li > a:hover i{
-    background-position-y: -35.5px;
+    background-position-y: -35.6px;
 }
 
 .user-menu .fechar{    
