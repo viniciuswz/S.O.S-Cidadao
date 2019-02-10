@@ -1338,7 +1338,20 @@ jQuery(function($){
             }
           });
           
-          
+          var errosLogin = {
+            email: function(){
+              $("#email").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+              $("#email").css("border-color" , 'rgba(256,000,000)');
+              $(".aviso-form-inicial").show();
+              $(".aviso-form-inicial").find("p").text('Email não cadastrado');
+            },
+            senha: function(){
+              $("#email").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+              $("#senha").css("border-color" , 'rgba(256,000,000)');
+              $(".aviso-form-inicial").show();
+              $(".aviso-form-inicial").find("p").text('Senha invalida');
+            }
+          }
           $("#login").submit(function(){
             var email = $("#email").val();
             var senha = $("#senha").val();
@@ -1366,8 +1379,7 @@ jQuery(function($){
                         if(result=="1"){
                             location.href="perfil_reclamacao.php";
                         }else{                            
-                            $(".aviso-form-inicial").show();
-                            $(".aviso-form-inicial").find("p").text(result);
+                           errosLogin['email']();
                         }
                     }  
               });

@@ -15,7 +15,8 @@ $(document).ready(function(){
                     location.href="todasreclamacoes.php"
                 }else{
                     $(".aviso-form-inicial").show();
-                    $(".aviso-form-inicial").find("p").text(result)
+                    $(".aviso-form-inicial").find("p").text('result');
+                   
                 }
             }
         })
