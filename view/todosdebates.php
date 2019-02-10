@@ -10,6 +10,7 @@
     //use Core\Debate;    
     try{
         //$debate = new Debate();
+        $voltar = "";
         if(isset($_SESSION['id_user']) AND !empty($_SESSION['id_user'])){
             //$debate->setCodUsu($_SESSION['id_user']);
             $tipoUsu = $_SESSION['tipo_usu'];

@@ -23,7 +23,7 @@
             $_GET['pagina'] = $dadosUrl[1];
         }
         
-
+        
 
         $usu = new Usuario(); 
         $usu->setCodUsu($_SESSION['id_user']);
@@ -33,10 +33,7 @@
         //var_dump($res);             
         
         $quantidadePaginas = $usu->getQuantidadePaginas();
-        $pagina = $usu->getPaginaAtual();
-        if(empty($res)){
-            echo 'Não há nenhuma denuncia para verificar<br>';
-        }     
+        $pagina = $usu->getPaginaAtual();        
 ?>
 <!DOCTYPE html>
 <html lang=pt-br>
@@ -137,22 +134,29 @@
                                 <td colspan="3" class="cad-adm"><div>+</div><p>Cadastrar</p></td>
                         </tr>    
                         <?php
-                        $contador = 0;                        
-                        while($contador < count($res)){
-                            echo '<tr class="tabelinha-linha">';  
-                                echo '<td>
-                                <div class="mini-menu-adm">
-                                        <ul>
-                                            <li><a href="../ApagarUsuario.php?ID='.$res[$contador]['cod_usu'].'" class="remover-usuario">Remover Funcionário</a></li>                                            
-                                        </ul>                                        
-                                </div>                                
-                                <p>'.$res[$contador]['nome_usu'].'</p></td>';                      
-                                echo '<td><p>'.$res[$contador]['email_usu'].'</p></td>'; 
-                                echo '<td><p>'.$res[$contador]['dataHora_cadastro_usu'].'</p></td>';                       
-                                //echo '<td<p> <a href="'.$res[$contador]['LinkApagarUsu'].'">Remover Funcao</p></td>'; 
-                            echo '</tr>';
-                            $contador++;                            
-                            }
+                            if(!empty($res)){
+                                $contador = 0;                        
+                                while($contador < count($res)){
+                                    echo '<tr class="tabelinha-linha">';  
+                                        echo '<td>
+                                        <div class="mini-menu-adm">
+                                                <ul>
+                                                    <li><a href="../ApagarUsuario.php?ID='.$res[$contador]['cod_usu'].'" class="remover-usuario">Remover Funcionário</a></li>                                            
+                                                </ul>                                        
+                                        </div>                                
+                                        <p>'.$res[$contador]['nome_usu'].'</p></td>';                      
+                                        echo '<td><p>'.$res[$contador]['email_usu'].'</p></td>'; 
+                                        echo '<td><p>'.$res[$contador]['dataHora_cadastro_usu'].'</p></td>';                       
+                                        //echo '<td<p> <a href="'.$res[$contador]['LinkApagarUsu'].'">Remover Funcao</p></td>'; 
+                                    echo '</tr>';
+                                    $contador++;                            
+                                }
+                            }else{
+                                echo '<tr class="tabelinha-linha">
+                                    <td colspan="3" style="text-align:center;font-weight:bold;font-style:italic">Nenhum funcionário cadastrado</td>
+                                </tr>';
+                            }    
+                        
                         ?>                           
                     </table>
             </div>      

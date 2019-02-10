@@ -20,7 +20,7 @@ try{
     $publi->setCodUsu($_SESSION['id_user']); 
     $publi->updateStatusComen('I');
     if(isset($_GET['tipo'])){
-        echo "<script> alert('Comentário Removido');javascript:window.location='./view/admin-denuncia.php?tipo[]=Comen&tipo[]=Debate&tipo[]=Publi';</script>";
+        echo "<script> alert('Comentário Removido');javascript:window.location='admin-denuncia';</script>";
     }else{
         echo $publi->quantidadeTotalPubli();
     }
