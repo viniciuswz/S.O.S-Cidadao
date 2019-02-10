@@ -53,6 +53,8 @@ header form button i.icone-pesquisa{
     background-size: 950px 65px;
     background-position: -123.9px 1px;
     /* background-color: red; */
+    /* position: relative; */
+    top: 0px;
 }
 header i.icone-user{
 margin:0 15px;

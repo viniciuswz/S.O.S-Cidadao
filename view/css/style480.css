@@ -73,8 +73,9 @@ i.icone-pesquisa{
 header form button i.icone-pesquisa{
     min-height: 33px; /*tamanho do espaÃ§o que a altura ocupa na tela*/
     min-width: 28px; /*tamanho do espaÃ§o que a largura ocupa na tela*/
-    background-size: 950px; /*tamanho do icone*/
-    background-position: -123.9px 2px; /*posiÃ§Ã£o que se encontra, esqueda/direita e cima/baixo*/
+    background-size: 950px 65px; /*tamanho do icone*/
+    background-position: -123.9px 1px; /*posiÃ§Ã£o que se encontra, esqueda/direita e cima/baixo*/
+     top: 0; 
 }
 header i.icone-user{
     order: 3;
