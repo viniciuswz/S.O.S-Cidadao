@@ -2254,7 +2254,7 @@ color:black
     width: 30px;
     height: 30px;
     background-color: darkgreen;
-    border-radius: 50%;
+    /*! border-radius: 50%; */
     color: #e9ebee;
     font-family: arial;
     font-size: 30px;
@@ -2262,7 +2262,8 @@ color:black
     margin-right: 10px;
     font-weight: bold;
     display: inline-block;
-    margin-top: 1px
+    /*! margin-top: 1px; */
+    line-height: 30px;
 }
 
 .tabelinha-admin table td p {
