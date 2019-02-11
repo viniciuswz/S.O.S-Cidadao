@@ -1395,7 +1395,7 @@ jQuery(function($){
               return false;
             }else if( senha === ""){
               $(".aviso-form-inicial").show();
-              $(".aviso-form-inicial").find("p").text("você precisa digitar um senha");
+              $(".aviso-form-inicial").find("p").text("você precisa digitar uma senha");
               return false;
             }else if(email === ""){
               $(".aviso-form-inicial").show();
@@ -1780,7 +1780,7 @@ jQuery(function($){
             $("#passAtual").css("border" , '2px solid red');      
             return false;
           }else{              
-            $("#passAtual").css("border-color" , 'none'); // tirar a cor da borda
+            $("#passAtual").css("border" , ''); // tirar a cor da borda
           }
         });
 
@@ -1791,7 +1791,7 @@ jQuery(function($){
               $("#passNova").css("border" , '2px solid red');          
               return false;
             }else{
-              $("#passNova").css("border-color" , ''); // tirar a cor da borda
+              $("#passNova").css("border" , ''); // tirar a cor da borda
             }
         });
 
@@ -1802,7 +1802,7 @@ jQuery(function($){
             $("#passNovaRepete").css("border" , '2px solid red');          
             return false;
           }else{
-            $("#passNovaRepete").css("border-color" , ''); // tirar a cor da borda
+            $("#passNovaRepete").css("border" , ''); // tirar a cor da borda
           }
       });
 
@@ -1863,7 +1863,9 @@ jQuery(function($){
                     $(".aviso-form-inicial").css("background-color", "red");
                     $(".aviso-form-inicial").show();
                     $(".aviso-form-inicial").find("p").text("Senha incorreta"); 
-                    $("#passAtual").css("border-color" , 'rgba(256,000,000)'); 
+                    $("#passAtual").css("border-color" , 'rgba(256,000,000)');
+                    $("#passNovaRepete").css("border" , '');
+                    $("#passNova").css("border" , '');     
                     $("#passAtual").focus();          
                   }else{
                     $(".aviso-form-inicial").show();
