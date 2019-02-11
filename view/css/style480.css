@@ -604,10 +604,16 @@ form .categorias div div:last-child{
 .usuarios-debate-info{
     position: absolute;
     right: 0;
-    width: 0;
-    max-width: 100%;
-   
-   
+    
+  
+    max-width: inherit;
+    height:auto;
+    top:0;
+    bottom:0;
+}
+
+.usuarios-debate-info.usuarios-debate-info-ativo{
+    /* width:100vw !important */
 }
 
 .usuarios-debate-info > span{
@@ -618,10 +624,13 @@ form .categorias div div:last-child{
     position: absolute;
     width: 0;
     right: 0;
+    top:0;
+    bottom:0;
     background-color: white;
     overflow: hidden;
     order: 2;
-    max-width: 100%;
+    max-width: inherit;
+    height:auto;
     min-width: 0;
     display: block;
     transition: 0.5s;
@@ -638,6 +647,12 @@ form .categorias div div:last-child{
 .contatos header h3{
     white-space: nowrap
 }
+
+.batepapo{
+    position:absolute;
+    top:0;
+    bottom:0
+}
 .batepapo header h4{
     font-size: 13px
 }
@@ -648,8 +663,16 @@ form .categorias div div:last-child{
 }
 
 .mensagens{
-    height: calc(100vh - 110px);
+   position: absolute;
+   top: 55px;
+   bottom: 60px;
+   height: auto;
+   width: inherit;
+   /* background-color: red; */
+   z-index: 0;
 }
+
+.batepapo form {position:absolute;width: inherit;bottom: 0;}
 
 .mensagem_padrao span.nome{
     max-width: 90%;
