@@ -474,7 +474,7 @@ nav.notificacoes ul li a span:first-of-type{
 }
 
 
-/*NÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬ ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢O ALTERAR NADA DAQUI PARA CIMA*/
+/*NÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬ ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬ ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢O ALTERAR NADA DAQUI PARA CIMA*/
 
 .perfil-base{
     position: relative;
@@ -830,7 +830,7 @@ nav.notificacoes ul li a span:first-of-type{
 
  .item-publicacao .legenda i{
     background-position-y: -43px;
-    background-color: red;
+    /* background-color: red; */
     top: 0;
  }
 
