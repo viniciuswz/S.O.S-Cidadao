@@ -2254,7 +2254,7 @@ color:black
     width: 30px;
     height: 30px;
     background-color: darkgreen;
-    /*! border-radius: 50%; */
+    border-radius: 50%;
     color: #e9ebee;
     font-family: arial;
     font-size: 30px;
