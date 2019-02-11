@@ -250,7 +250,12 @@ i.icone-fechar{
 }
 
 i.icone-prefeitura{
-    background-position: -1120px 0
+    background-position: -1063px -9px;
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    min-height: 30px;
+    background-size: 3900% 85px;
 }
 
 i.icone-categoria-debate{
