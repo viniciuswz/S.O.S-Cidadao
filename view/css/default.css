@@ -235,7 +235,14 @@ i.icone-bandeira{
 }
 
 i.icone-adm{
-    background-position: -1040px 0
+    background-position: -987px -8px;
+   
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    min-height: 30px;
+    background-size: 3900% 85px;
+    
 }
 
 i.icone-fechar{

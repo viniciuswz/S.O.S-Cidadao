@@ -1370,7 +1370,7 @@ jQuery(function($){
               $("#email").parent().find("label").css("background-color" , '');
               $("#email").css("border-color" , ''); 
               $("#senha").parent().find("label").css("background-color" , 'rgba(256,000,000)');
-              $("#senha").css("border-color" , 'inhrit');
+              $("#senha").css("border-color" , 'red');
               $("#senha").focus();
             }else if(param == 'E-mail não cadastrado'){
               $("#email").parent().find("label").css("background-color" , 'rgba(256,000,000)');
