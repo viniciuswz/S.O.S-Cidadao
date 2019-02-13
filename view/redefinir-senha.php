@@ -20,7 +20,7 @@
 
         <meta charset=UTF-8> <!-- ISO-8859-1 -->
         <meta name=viewport content="width=device-width, initial-scale=1.0">
-        <meta name=description content="Faça um cadastro para poder participar da nossa rede! ">
+        <meta name=description content="Esqueceu a sua senha?">
         <meta name=keywords content="Reclamação, Barueri, Cadastro, Novo Usuário, Reclamar"> <!-- Opcional -->
         <meta name=author content='equipe 4 INI3A'>
 
