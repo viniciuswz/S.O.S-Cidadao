@@ -411,16 +411,18 @@ class UsuarioA extends UsuarioM{
         }
     }
 
-    public function updateSenha($novaSenha){//Altarar Senha
-        $dados = $this->getDadosUser();
-        $hashUsu = $dados[0]['senha_usu'];
-        $senhaAntiga = $this->getSenha();
-        if(!password_verify($senhaAntiga, $hashUsu)){
-            throw new \Exception("Senha Incorreta",5);
-        }
-        if(empty($novaSenha)){
-            throw new \Exception("Nova senha vazia",5);
-        }        
+    public function updateSenha($novaSenha, $indEsqueceuSenha = false){//Altarar Senha        
+        if($indEsqueceuSenha == false){ // só nao entra nesse if se o usuario nao esqueceu a senha
+            $dados = $this->getDadosUser();
+            $hashUsu = $dados[0]['senha_usu'];
+            $senhaAntiga = $this->getSenha();
+            if(!password_verify($senhaAntiga, $hashUsu)){
+                throw new \Exception("Senha Incorreta",5);
+            }
+            if(empty($novaSenha)){
+                throw new \Exception("Nova senha vazia",5);
+            }
+        }                
         $novoHash = $this->gerarHash($novaSenha);
 
         $sql = sprintf($this->sqlUpdateSenha,

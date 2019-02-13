@@ -43,19 +43,19 @@ class RecuperarSenhaM extends DbConnection{
         $this->novaSenha = $senha;
     }
 
-    public function getCodUsu($cod){
+    public function setCodUsu($cod){
         $this->codUsu = $cod;
     }
 
-    public function getStatusRecuperacao($status){
+    public function setStatusRecuperacao($status){
         $this->statusRecuperacao = $status;
     }
     
-    public function getDataHoraRecuperacao($dataHora){
+    public function setDataHoraRecuperacao($dataHora){
        $this->dataHoraRecuperacao = $dataHora;
     }
 
-    public function getCodRecuperacao($cod){
+    public function setCodRecuperacao($cod){
         $this->codRecuperacao = $cod;
     }
 

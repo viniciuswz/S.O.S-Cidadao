@@ -44,6 +44,12 @@
 
     </head>
     <body class="login-bg">
+            <?php
+                if(isset($_SESSION['recuperar_senha']) AND $_SESSION['recuperar_senha'] == 1){
+                    echo '<script>alerta("Certo","Senha Atualizada")</script>';
+                    unset($_SESSION['recuperar_senha']);
+                }
+            ?>
            <div class="form-icone">
                <section>
                    <div>
@@ -68,6 +74,7 @@
 
                         <button type="submit">login</button>
                         <a href="cadastro" style="margin-top: 10px;  font-size: 1em; font-family: arial;"><span style="color:black">Sem conta?</span> Inscreva-se!</a>
+                        <a href="recuperar" style="margin-top: 10px;  font-size: 1em; font-family: arial;">Recuperar senha</a>
 
                     </form>
                </section>

@@ -6,14 +6,18 @@
     require_once('Config/Config.php');
     require_once(SITE_ROOT.DS.'autoload.php');
     
-    use Core\Usuario;
+    use Core\RecuperarSenha;
     use Classes\ValidarCampos;
     try{        
-        Usuario::verificarLogin(0);  // Vai estourar um erro se ele ja estiver logado, ou se ele nao for adm
-        $dadosUrl = explode('/',$_GET['url']);        
-        if(isset($dadosUrl[1])){
+        $dadosUrl = explode('/',$_GET['url']); 
+        if(!isset($dadosUrl[1])){
             throw new \Exception('Mais paramentro do que esperado',9);
         }
+        $hash = $dadosUrl[1];        
+
+        $recuperarSenha = new RecuperarSenha(); 
+        $id = $recuperarSenha->verificarHash($hash);
+        
 ?>
 <!DOCTYPE html>
 <html lang=pt-br>
@@ -46,8 +50,11 @@
 
     </head>
     <body>
-        <form method="post" action="PedidoRecuperarSenha.php">
-            <input type="text" name="email" placeholder="digite seu email">
+        <form method="post" action="../RecuperarSenha.php">
+            <input type="text" name="senha1" placeholder="digite sua nova senha">
+            <input type="text" name="senha2" placeholder="confirme sua nova senha">
+            <input type="hidden" name="codigo" value="<?php echo $hash?>">
+            <input type="hidden" name="id" value="<?php echo $id?>">
             <input type="submit" value="enviar">
         </form>        
     </body>
@@ -55,26 +62,29 @@
 <?php
 }catch (Exception $exc){
     $erro = $exc->getCode();   
-    $mensagem = $exc->getMessage();
-    switch($erro){        
-        case 6://Ja esta logado 
-            echo "<script>javascript:window.location='todasreclamacoes';</script>";
-            break;
-        case 11:// Erro no comentario
-        case 12://Mexeu no insprnsionar elemento ou nao submeteu o formulario      
-            echo "<script>javascript:window.location='todasreclamacoes';</script>";
-            break;             
-        case 45://Digitou um numero maior de parametros 
-            unset($dadosUrl[0]);
-            $contador = 1;
-            $voltar = "";
-            while($contador <= count($dadosUrl)){
-                $voltar .= "../";
-                $contador++;
-            }
-            echo "<script>javascript:window.location='".$voltar."recuperar';</script>";
-        break;
-        default: //Qualquer outro erro cai aqui
-            echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes';</script>";
+    echo $mensagem = $exc->getMessage();
+    switch($erro){
+        // case 2://Não está logado  
+        //     echo "<script>javascript:window.location='login';</script>";
+        //     break; 
+        // case 6://Ja esta logado 
+        //     echo "<script>javascript:window.location='todasreclamacoes';</script>";
+        //     break;
+        // case 11:// Erro no comentario
+        // case 12://Mexeu no insprnsionar elemento ou nao submeteu o formulario      
+        //     echo "<script>javascript:window.location='todasreclamacoes';</script>";
+        //     break;             
+        // case 45://Digitou um numero maior de parametros 
+        //     unset($dadosUrl[0]);
+        //     $contador = 1;
+        //     $voltar = "";
+        //     while($contador <= count($dadosUrl)){
+        //         $voltar .= "../";
+        //         $contador++;
+        //     }
+        //     echo "<script>javascript:window.location='".$voltar."Pagina-agradecimento';</script>";
+        // break;
+        // default: //Qualquer outro erro cai aqui
+        //     echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes';</script>";
     } 
 }
