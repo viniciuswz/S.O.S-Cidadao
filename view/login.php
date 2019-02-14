@@ -74,7 +74,7 @@
 
                         <button type="submit">login</button>
                         <span>
-                            <a href="recuperar" style="font-weight:bold">Recuperar senha</a>
+                            <a href="enviar-redefinir" style="font-weight:bold">Recuperar senha</a>
                             <a href="cadastro" >Sem conta? <strong>Inscreva-se!</strong></a>
                         </span>
                         

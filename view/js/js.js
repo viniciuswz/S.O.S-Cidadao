@@ -1,5 +1,8 @@
+
+
 jQuery(function($)
 {
+ 
   function fechar(){
     $(".user-menu").css("width","0");
     $("body").css("overflow","auto");
@@ -1360,6 +1363,7 @@ jQuery(function($){
               $("#email").focus();
               return false;
             }else{
+              
               $("#email").parent().find("label").css("background-color" , 'dodgerblue' );
               $("#email").css("border-color" , 'dodgerblue');
             }
@@ -1389,7 +1393,6 @@ jQuery(function($){
 
           function invalidoAjaxLogin(param){
             if(param == 'Senha inválida'){
-              
               $("#senha").parent().find("label").css("background-color" , 'rgba(256,000,000)');
               $("#senha").css("border-color" , 'red');
               $("#senha").focus();
@@ -1450,7 +1453,7 @@ jQuery(function($){
         
         jQuery(function($){
           
-          
+          var regEmail = new RegExp('.+@\\w+\\.\\w{2,}(\\.\\w{2,})?');
           $("#cadastro").submit(function(){
             var senhaC = $("#senhaC").val();
             if( senhaC === ""){
@@ -1483,9 +1486,19 @@ jQuery(function($){
               $("#email").focus();
               return false;
             }else{
-              $("#email").parent().find("label").css("background-color" , 'dodgerblue' );
-              $("#email").css("border-color" , 'dodgerblue');
+              
+              if(regEmail.test(email)){
+                $("#email").parent().find("label").css("background-color" , 'dodgerblue' );
+                $("#email").css("border-color" , 'dodgerblue');
+              }else{
+                $("#email").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+                $("#email").css("border-color" , 'rgba(256,000,000)');
+               
+                $("#email").focus();
+                return false;
+              }
             }
+              
           });
           $("#cadastro").submit(function(){
             var user = $("#user").val();
@@ -1506,11 +1519,12 @@ jQuery(function($){
             var senhaC = $("#senhaC").val();
             if(senhaC !== senha && senhaC !==""){
               $(".aviso-form-inicial").show();
-              $(".aviso-form-inicial").find("p").text("A confirmação da senha esta errada!");
+              $(".aviso-form-inicial").find("p").text("A confirmação da senha não esta igual a senha!");
               $("#senha").parent().find("label").css("background-color" , 'rgba(256,000,000)');
               $("#senha").css("border-color" , 'rgba(256,000,000)');
               $("#senhaC").parent().find("label").css("background-color" , 'rgba(256,000,000)');
               $("#senhaC").css("border-color" , 'rgba(256,000,000)');
+              $("#senhaC").focus();
               return false;
             }else{
               if( user === ""){
@@ -1519,12 +1533,15 @@ jQuery(function($){
               }else if( email === ""){
                 $(".aviso-form-inicial").show();
                 $(".aviso-form-inicial").find("p").text("você precisa digitar um E-mail");
+              }else if(!regEmail.test(email)){
+                $(".aviso-form-inicial").show();
+                $(".aviso-form-inicial").find("p").text("você precisa digitar um E-mail válido");
               }else if( senha === ""){
                 $(".aviso-form-inicial").show();
                 $(".aviso-form-inicial").find("p").text("você precisa digitar um senha");
               }else if(senhaC === ""){
                 $(".aviso-form-inicial").show();
-                $(".aviso-form-inicial").find("p").text("você precisa comfirmar a senha");
+                $(".aviso-form-inicial").find("p").text("você precisa confirmar a senha");
               }else{ // AJAX CADASTRAR
                 /* AJAX CADASTRAR */
                 $(".aviso-form-inicial").hide();
@@ -1558,6 +1575,43 @@ jQuery(function($){
             $this.find(".mini-menu-item").toggleClass("mini-menu-item-ativo");
             
           });
+        });
+
+        // verificação redefinir senha form 1
+
+        jQuery(function($){
+          
+          
+         function inputEmailErro(mensagem){
+          $("#email").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+          $("#email").css("border-color" , 'rgba(256,000,000)');
+          $(".aviso-form-inicial").show();
+          $(".aviso-form-inicial").find("p").text(mensagem);
+          $("#email").focus();
+         }
+          
+          $("#enviar-redefinir-senha").submit(function(){
+            var email = $("#email").val();
+            if( email === ""){
+             inputEmailErro('Você precisa digitar um e-mail')
+              return false;
+            }else{
+              $(".aviso-form-inicial").hide();
+              $("#email").parent().find("label").css("background-color" , 'dodgerblue' );
+              $("#email").css("border-color" , 'dodgerblue');
+              $.ajax({
+                url: "jaca",
+                type: "post",
+                data: "email="+email,
+                success:function(result){
+                  //alert(result)
+  
+                }  
+              });
+            }
+          });
+
+       
         });
         
         // verficação add user
@@ -1603,6 +1657,8 @@ jQuery(function($){
               $("#email").focus();
               return false;
             }else{
+
+              
               $("#email").parent().find("label").css("background-color" , 'dodgerblue' );
               $("#email").css("border-color" , 'dodgerblue');
             }
@@ -1616,6 +1672,8 @@ jQuery(function($){
               $("#user").focus();
               return false;
             }else{
+
+
               $("#user").parent().find("label").css("background-color" , 'dodgerblue' );
               $("#user").css("border-color" , 'dodgerblue');
             }
@@ -1706,6 +1764,7 @@ jQuery(function($){
         /* VALIDACAO PRA QUANDO O USUARIO FIZER A MUDANCA DE NOME E EMAIL */
 
         jQuery(function($){
+          var regEmail = new RegExp('.+@\\w+\\.\\w{2,}(\\.\\w{2,})?');
           var emailAntigo = $("#email").val();
           var nomeAntigo = $("#user").val();
 
@@ -1749,6 +1808,7 @@ jQuery(function($){
               $(".aviso-form-inicial").css("background-color", "red");
               $(".aviso-form-inicial").show();
               $(".aviso-form-inicial").find("p").text("você precisa digitar um nome");
+              $("#email").css("border" , '');
             }else if(email === emailAntigo && nome === nomeAntigo){ // se nao houver nenhuma mudança
               $(".aviso-form-inicial").css("background-color", "red");
               $("#user").focus(); 
@@ -1756,6 +1816,13 @@ jQuery(function($){
               $("#email").css("border" , '2px solid red');
               $(".aviso-form-inicial").show();
               $(".aviso-form-inicial").find("p").text("não houve alterações");              
+              return false;
+            }else if(!regEmail.test(email)){
+              $("#user").css("border" , '');
+              $(".aviso-form-inicial").css("background-color", "red");
+              $("#email").css("border" , '2px solid red');
+              $(".aviso-form-inicial").show();
+              $(".aviso-form-inicial").find("p").text("formato de E-mail inválido");
               return false;
             }else{              
               $.ajax({

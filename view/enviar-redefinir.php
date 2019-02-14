@@ -45,8 +45,11 @@
     <body>
     <div id="container">
         <div class="form-cad" style="background-color:#009688">
-                 <form action="" id="" method="POST">
-                     <h3>Digite seu e-mail</h3>
+                 <form action="" id="enviar-redefinir-senha" method="POST" style="padding: 40px 20px;">
+                     <div class="tit-txt">
+                        <h3 style="width:100%">Troque sua senha</h3>
+                        <p>Digite seu e-mail de usuário, vamos te enviar um link para digitar uma nova senha.</p>
+                    </div>
                      <div class="campo-texto-icone">
                         <label for="email"><i class="icone-mail"></i></label>
                         <input type="email" name="email" id="email" placeholder="E-mail">

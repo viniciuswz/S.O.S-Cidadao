@@ -1494,10 +1494,20 @@ color: white
     padding: 70px 20px;
 }
 
+.form-cad form .tit-txt {
+    position:relative;
+    bottom:10px
+}
 
 .form-cad form h3{
     width: 213px;
     margin: 0 auto
+}
+
+.form-cad form h3 + p{
+    margin-top:5px;
+    font-size: .9em;
+    font-family: arial;
 }
 
 .form-cad form button{
