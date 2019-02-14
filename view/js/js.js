@@ -215,7 +215,7 @@ jQuery(function(){
       
     }else{
 
-      if($this.attr('action') == '../enviarPublicacao.php'){
+      if($this.attr('action') == 'enviarPublicacao.php'){
         var imgDebate = $("#fotoReclamacao").val();
         if(imgDebate == ""){
           $(".imagem").find('p:last-child').text("uma imagem é obrigatoria");
@@ -1365,7 +1365,26 @@ jQuery(function($){
             }
           });
           
-          
+          function invalidoAjaxLogin(param){
+            if(param == 'Senha inválida'){
+              $("#email").parent().find("label").css("background-color" , '');
+              $("#email").css("border-color" , ''); 
+              $("#senha").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+              $("#senha").css("border-color" , 'red');
+              $("#senha").focus();
+            }else if(param == 'E-mail não cadastrado'){
+              $("#email").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+              $("#email").css("border-color" , 'rgba(256,000,000)');   
+              $("#senha").parent().find("label").css("background-color" , '');
+              $("#senha").css("border-color" , '');   
+              $("#email").focus();
+            }else if(param == 'Email ou senha inválidos'){
+              $("#email").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+              $("#email").css("border-color" , 'rgba(256,000,000)');
+              $("#senha").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+              $("#senha").css("border-color" , 'rgba(256,000,000)');
+            }
+          }
           $("#login").submit(function(){
             var email = $("#email").val();
             var senha = $("#senha").val();
@@ -1376,7 +1395,7 @@ jQuery(function($){
               return false;
             }else if( senha === ""){
               $(".aviso-form-inicial").show();
-              $(".aviso-form-inicial").find("p").text("você precisa digitar um senha");
+              $(".aviso-form-inicial").find("p").text("você precisa digitar uma senha");
               return false;
             }else if(email === ""){
               $(".aviso-form-inicial").show();
@@ -1392,7 +1411,8 @@ jQuery(function($){
                     success:function(result){
                         if(result=="1"){
                             location.href="perfil_reclamacao";
-                        }else{                            
+                        }else{   
+                          invalidoAjaxLogin(result);                         
                             $(".aviso-form-inicial").show();
                             $(".aviso-form-inicial").find("p").text(result);
                         }
@@ -1464,7 +1484,11 @@ jQuery(function($){
             var senhaC = $("#senhaC").val();
             if(senhaC !== senha && senhaC !==""){
               $(".aviso-form-inicial").show();
-              $(".aviso-form-inicial").find("p").text("confirmar senha não esta igual a senha, tente de novo");
+              $(".aviso-form-inicial").find("p").text("A confirmação da senha esta errada!");
+              $("#senha").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+              $("#senha").css("border-color" , 'rgba(256,000,000)');
+              $("#senhaC").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+              $("#senhaC").css("border-color" , 'rgba(256,000,000)');
               return false;
             }else{
               if( user === ""){
@@ -1756,7 +1780,7 @@ jQuery(function($){
             $("#passAtual").css("border" , '2px solid red');      
             return false;
           }else{              
-            $("#passAtual").css("border-color" , 'none'); // tirar a cor da borda
+            $("#passAtual").css("border" , ''); // tirar a cor da borda
           }
         });
 
@@ -1767,7 +1791,7 @@ jQuery(function($){
               $("#passNova").css("border" , '2px solid red');          
               return false;
             }else{
-              $("#passNova").css("border-color" , ''); // tirar a cor da borda
+              $("#passNova").css("border" , ''); // tirar a cor da borda
             }
         });
 
@@ -1778,7 +1802,7 @@ jQuery(function($){
             $("#passNovaRepete").css("border" , '2px solid red');          
             return false;
           }else{
-            $("#passNovaRepete").css("border-color" , ''); // tirar a cor da borda
+            $("#passNovaRepete").css("border" , ''); // tirar a cor da borda
           }
       });
 
@@ -1839,7 +1863,9 @@ jQuery(function($){
                     $(".aviso-form-inicial").css("background-color", "red");
                     $(".aviso-form-inicial").show();
                     $(".aviso-form-inicial").find("p").text("Senha incorreta"); 
-                    $("#passAtual").css("border-color" , 'rgba(256,000,000)'); 
+                    $("#passAtual").css("border-color" , 'rgba(256,000,000)');
+                    $("#passNovaRepete").css("border" , '');
+                    $("#passNova").css("border" , '');     
                     $("#passAtual").focus();          
                   }else{
                     $(".aviso-form-inicial").show();

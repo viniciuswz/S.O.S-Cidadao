@@ -67,14 +67,15 @@ header form button{
 }
 i.icone-pesquisa{
  /*tamanho do icone*/
- background-position: -140px 1px; /*posiÃ§Ã£o que se encontra, esqueda/direita e cima/baixo*/
- background-size: 1100px;
+ background-position: -133px -2px; /*posiÃ§Ã£o que se encontra, esqueda/direita e cima/baixo*/
+ background-size: 1050px 80px;
 }
 header form button i.icone-pesquisa{
     min-height: 33px; /*tamanho do espaÃ§o que a altura ocupa na tela*/
     min-width: 28px; /*tamanho do espaÃ§o que a largura ocupa na tela*/
-    background-size: 950px; /*tamanho do icone*/
-    background-position: -123.9px 2px; /*posiÃ§Ã£o que se encontra, esqueda/direita e cima/baixo*/
+    background-size: 950px 65px; /*tamanho do icone*/
+    background-position: -123.9px 1px; /*posiÃ§Ã£o que se encontra, esqueda/direita e cima/baixo*/
+     top: 0; 
 }
 header i.icone-user{
     order: 3;
@@ -293,14 +294,16 @@ width: 100vw;
 }
 
 .perfil-info p{
-    margin-top: 40px;
-    position: inherit;
+
+    position: relative;
    
     text-align: center;
     font-size: 1.3rem;
     color: black;
-    margin: 40px auto 0 auto;
+    margin: 0px auto 0 auto;
     padding: 0 15px;
+    top:10px
+   
 }
 
 .perfil-info div span{
@@ -546,11 +549,11 @@ form .categorias div div:last-child{
 }
 
 .form-icone form .campo-texto-icone{
-    width: 80%;
+    width: 90%;
 }
 
 .form-icone form .campo-texto-icone input{
-    width: 100%;
+    width: 80%;
 }
 
 .form-icone form h3{
@@ -601,10 +604,16 @@ form .categorias div div:last-child{
 .usuarios-debate-info{
     position: absolute;
     right: 0;
-    width: 0;
-    max-width: 100%;
-   
-   
+    
+  
+    max-width: inherit;
+    height:auto;
+    top:0;
+    bottom:0;
+}
+
+.usuarios-debate-info.usuarios-debate-info-ativo{
+    /* width:100vw !important */
 }
 
 .usuarios-debate-info > span{
@@ -615,10 +624,13 @@ form .categorias div div:last-child{
     position: absolute;
     width: 0;
     right: 0;
+    top:0;
+    bottom:0;
     background-color: white;
     overflow: hidden;
     order: 2;
-    max-width: 100%;
+    max-width: inherit;
+    height:auto;
     min-width: 0;
     display: block;
     transition: 0.5s;
@@ -635,6 +647,12 @@ form .categorias div div:last-child{
 .contatos header h3{
     white-space: nowrap
 }
+
+.batepapo{
+    position:absolute;
+    top:0;
+    bottom:0
+}
 .batepapo header h4{
     font-size: 13px
 }
@@ -645,8 +663,16 @@ form .categorias div div:last-child{
 }
 
 .mensagens{
-    height: calc(100vh - 110px);
+   position: absolute;
+   top: 55px;
+   bottom: 60px;
+   height: auto;
+   width: inherit;
+   /* background-color: red; */
+   z-index: 0;
 }
+
+.batepapo form {position:absolute;width: inherit;bottom: 0;}
 
 .mensagem_padrao span.nome{
     max-width: 90%;
@@ -873,9 +899,9 @@ form .categorias div div:last-child{
 .img-publicacao figure img{
     position:inherit;
     align-self: center;
-     width: 100%; 
-     height: auto;
-    background-color: red;
+    width: 100%;
+    height: auto;
+    /* background-color: red; */
     display: block;
  }
 
@@ -886,7 +912,7 @@ form .categorias div div:last-child{
     top: 0%;
     left:0%;
     transform: translateX(-0%) translateY(-0%);
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
 }
 
 .img-publicacao .item-baixo-publicacao{

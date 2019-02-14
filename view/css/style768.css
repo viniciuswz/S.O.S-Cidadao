@@ -48,9 +48,11 @@ min-height: 30px;
 
 min-width: 28px;
 
-background-size: 950px;
+background-size: 950px 65px;
 
 background-position: -123.9px -1px;
+
+top: 0;
 }
 header i.icone-user{
   
@@ -58,7 +60,7 @@ margin:0 30px;
 width: 35px;
 height: 35px;
 
-background-size: 1060px;
+background-size: 1060px 80px;
 
 }
 
@@ -547,8 +549,8 @@ font-size: 1.1em;
 
 .img-publicacao{
     width: inherit;
-    background-color: orange;
-    display:block
+    /* background-color: orange; */
+    display:block;
 }
 
 .img-publicacao figure{
@@ -561,14 +563,14 @@ font-size: 1.1em;
 
 .img-publicacao figure img{
    width:100%;
-        align-self: center;
-    height: inherit;
-    position: inherit;
-    top: 0%;
-    left: 50%;
-    transform: translateX(-00%) translateY(-00%);
-    background-color: blueviolet;
-    min-width:500px;
+   align-self: center;
+   height: inherit;
+   position: inherit;
+   top: 0%;
+   left: 50%;
+   transform: translateX(-00%) translateY(-00%);
+   /* background-color: blueviolet; */
+   min-width:500px;
  }
 
  .img-publicacao .item-baixo-publicacao{

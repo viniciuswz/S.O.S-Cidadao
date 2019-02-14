@@ -47,7 +47,7 @@ header form button i.icone-pesquisa{
     height: 35px;
     width: 35px;
 
-    background-size: 1090px;
+    background-size: 1090px 80px;
     background-position: -139px -0px ;
 
 }
@@ -84,7 +84,7 @@ min-height: 35px;
    
 min-width: 35px;
    
-background-size: 3507%;
+background-size: 3507% 70px;
    
 /* background-color: red; */
  }

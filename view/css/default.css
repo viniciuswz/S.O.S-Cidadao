@@ -71,26 +71,21 @@ header form{
     
 }
 
-header form input[type=text]{
-background-color: #004C41;
-outline: #004C41 ;
-border:0;
-color: white;
-padding-left: 5px
-}
+header form input[type=text]{background-color: #004C41;outline: #004C41;border:0;color: white;padding-left: 5px;border-radius: 0;}
 
 header form input[type=text]::placeholder{
     color:white;
     opacity: 1;
 }
 header form button{
-    background-color: #004C41 ;
+    background-color: #004C41;
     border: 0;
     outline: none;
     cursor: pointer;
+    border-radius: 0;
 }
 
-header i.icone-user{cursor: pointer;display: block;height: 40px;width: 40px;background-size: 2700%;/* background-color: red; */background-position: 4px -2px;}
+header i.icone-user{cursor: pointer;display: block;height: 40px;width: 40px;background-size: 2700% 80px;/* background-color: red; */background-position: 4px -2px;}
 .negrito{
     font-weight: 600
 }
@@ -114,7 +109,7 @@ i{
     /* bottom: -16px; */
     min-width: 40px;
     min-height: 40px;
-    background-size: 3100%;
+    background-size: 3100% 85px;
 }
 
 i.icone-user{
@@ -136,7 +131,9 @@ i.icone-debate{
 }
     
 i.icone-pesquisa{
-    background-position: -160px 0
+    background-position: -155px -8px;
+    background-size: 1200px 100px;
+    /* background-color:red  */
 }
 i.icone-grupo{
     background-position: -200px 0
@@ -146,8 +143,18 @@ i.icone-salvar-full{
 }
 
 i.icone-salvar{
-    background-position: -280px 0;
-    background-size: 3100%;
+    background-position: -279px 0;
+
+    /*! background-size: 3300% !important; */
+    /*! background-size: 3100%; */
+}
+.user-menu .icone-salvar{
+
+    min-width: 30px;
+    min-height: 30px;
+    width: 30px;
+    height: 30px;
+    background-position: -213px -10px;
 }
 
 i.icone-local{
@@ -158,7 +165,7 @@ i.icone-mail{
 }
 
 i.icone-3pontos{
-    background-position: -395px 0
+    background-position: -395px 0;
 }
 
 i.icone-edit-full{
@@ -174,13 +181,13 @@ i.icone-lapis{
 
 
 i.icone-like{
-    background-position: -635px -6px;
-    background-size: 3500%;
+    background-position: -560px 0px;
+    /*! background-size: 3500%; */
 }
 
 i.icone-like-full{
-    background-position: -681px 0;
-    background-size: 3500%;
+    background-position: -600px 0;
+    /*! background-size: 3500%; */
 }
 
 i.icone-olho{
@@ -215,7 +222,12 @@ i.icone-filtro{
 }
 
 i.icone-config{
-    background-position: -960px 0
+    background-position: -769px 0;
+    min-width: 30px;
+    min-height: 30px;
+    width: 30px;
+    height: 30px;
+    background-size: 3301% !important;
 }
 
 i.icone-bandeira{
@@ -223,7 +235,14 @@ i.icone-bandeira{
 }
 
 i.icone-adm{
-    background-position: -1040px 0
+    background-position: -987px -8px;
+   
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    min-height: 30px;
+    background-size: 3900% 85px;
+    
 }
 
 i.icone-fechar{
@@ -231,7 +250,12 @@ i.icone-fechar{
 }
 
 i.icone-prefeitura{
-    background-position: -1120px 0
+    background-position: -1063px -9px;
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    min-height: 30px;
+    background-size: 3900% 85px;
 }
 
 i.icone-categoria-debate{
@@ -239,7 +263,13 @@ i.icone-categoria-debate{
 }
 
 i.icone-logout{
-    background-position: -1200px 0
+   background-position: -959px 0;
+    min-width: 30px;
+    min-height: 30px;
+    width: 30px;
+    height: 30px;
+    background-size: 3301% !important;
+    
 }
     
 a{
@@ -378,13 +408,18 @@ nav.menu > ul > li > a:hover #quantidade_de_not{
     color: white;
     width: 100%;
     align-items: center;
-    padding: 2px 0;
+    padding: 6px 0;
     padding-left: 19px;
 }
 
 .user-menu ul li a i.icone-user{
-    background-size: 1033px;
-    background-position: 6px -36.5px;
+    background-position: -2px -34px;
+    min-width: 30px;
+    min-height: 30px;
+    width: 30px;
+    height: 30px;
+    background-size: 3301% !important;
+    
 }
 
 /*Notificao*/
@@ -439,7 +474,7 @@ nav.notificacoes ul li a span:first-of-type{
 }
 
 
-/*NÃƒÆ’Ã†â€™O ALTERAR NADA DAQUI PARA CIMA*/
+/*NÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬ ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬ ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢O ALTERAR NADA DAQUI PARA CIMA*/
 
 .perfil-base{
     position: relative;
@@ -710,13 +745,15 @@ nav.notificacoes ul li a span:first-of-type{
  }
 
  .item-publicacao .item-topo p span:after{
-    background: linear-gradient(to right, rgba(255, 255, 255, 0), #009688 50%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    background: linear-gradient(to right, rgba(0, 150, 136, 0), rgb(0, 150, 136) 50%) repeat scroll 0 0 rgba(0, 150, 136, 0);
     bottom: 0;
+    /* left: 0; */
     content: "...";
     color: #009688;
-    padding: 0 10px 0px 45px;
+    padding: 0 10px 0px 40px;
     position: absolute;
     right: 0;
+    width: 30px;
  }
  
  .item-publicacao .item-topo img{
@@ -792,7 +829,9 @@ nav.notificacoes ul li a span:first-of-type{
  }
 
  .item-publicacao .legenda i{
-    background-position-y: -45px;
+    background-position-y: -43px;
+    /* background-color: red; */
+    top: 0;
  }
 
  .alinha-item{
@@ -1001,6 +1040,7 @@ cursor:pointer;
     font-size: 16px;
     position: relative;
     top: 2px;
+    padding-left: 4px;
 }
 
 .campo-envio input:focus + span{
@@ -1069,7 +1109,9 @@ width: 100%
 .envio-img{
     display: flex;
     justify-content: center;
+    align-items: flex-start;
     min-height: 350px;
+    /* background-color: red; */
 }
 
 .envio-img input{
@@ -1085,7 +1127,7 @@ width: 100%
     justify-content: center;
     align-items: center;
     position: relative;
-    background-color: white
+    /* background-color: red; */
 }
 
 .envio-img label p{
@@ -1098,7 +1140,7 @@ width: 100%
     /* margin-left: -150px; */
     z-index: 2;
     left: 0px;
-    bottom: 0;
+    /* bottom: 0; */
     top: 0;
     padding-right: 10px;
 }
@@ -1325,7 +1367,7 @@ color: white
     align-items: center;
     padding: 20px;
     flex-direction: column;
-    background-color: rgb(235, 235, 235 ,.8);
+    background-color: rgba(235, 235, 235 ,.8);
     position: absolute;
     right: 0;
     margin-right: 120px;
@@ -1352,6 +1394,7 @@ color: white
     outline: none;
     height: 30px;
     border: 2px solid grey;
+    border-radius: 0 !important;
 }
 
 
@@ -1359,6 +1402,9 @@ color: white
     height: 30px;
     background-color: #009688;
     display: flex;
+    width: 40px;
+    justify-content: center;
+    /*! padding-left: 1px; */
 }
 
 .campo-texto-icone label i{
@@ -1366,25 +1412,40 @@ color: white
 }
 
 .campo-texto-icone label i.icone-mail{
-    background-size: 1000px;
-    height:25px;
-    background-position: -285px -35px; 
+       background-size: 1050px;
+    height: 30px;
+    background-position: -306px -37.5px;
+    min-height: 30px;
+/*     background-color: red; */
+    top: 0;
+    width: 30px;
+    min-width: 30px
+    /*! margin: 0 auto; */
+    /*! background-color: red; */
 }
 
 .campo-texto-icone label i.icone-senha{
-    background-size: 1000px;
-    height:25px;
-    background-position: -704px -35px;
+    background-size: 1050px;
+    height: 30px;
+    background-position: -746px -37.5px;
+    min-height: 30px;
+    /* background-color: red; */
+    top: 0;
+    width: 30px;
+    min-width: 30px;
 }
 
 .campo-texto-icone label i.icone-user{
-    background-size: 830px;
-    min-height: 26px;
-    margin: 0 7px;
-    min-width: 26px;
-    text-align: center;
-    background-position: 0px -31px;
-    top: 0;
+       background-size: 900px;
+       height: 30px;
+       background-position: -0px -30px;
+       min-height: 30px;
+       /*! background-color: red; */
+       top: 0;
+       width: 30px;
+       min-width: 30px
+    /*! margin: 0 auto; */
+    /*! background-color: red; */;
 }
 
 .campo-texto-icone input:focus {
@@ -1910,9 +1971,9 @@ color:black
 }
 
 .mensagem_padrao {  /*POR CAUSA DO NOME TA BUGANDO*/
-	position: relative;
-	background: white;
-	border-radius: .4em;
+    position: relative;
+    background: white;
+    border-radius: .4em;
     padding:14px;
     margin-left: 10px;
     display: block;
@@ -1934,17 +1995,17 @@ color:black
 }
 
 .mensagem_padrao:after {
-	content: '';
-	position: absolute;
-	left: 0;
-	top: 50%;
-	width: 0;
-	height: 0;
-	border: 10px solid transparent;
-	border-right-color: #ffffff;
-	border-left: 0;
-	margin-top: -10px;
-	margin-left: -10px; 
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-right-color: #ffffff;
+    border-left: 0;
+    margin-top: -10px;
+    margin-left: -10px; 
 }
 
 .linha-mensagem_padrao .usuario-msg-foto{
@@ -1972,9 +2033,9 @@ color:black
 }
 
 .linha-mensagem_usuario div {
-	position: relative;
-	background: rgb(167, 255, 251);
-	border-radius: .4em;
+    position: relative;
+    background: rgb(167, 255, 251);
+    border-radius: .4em;
     padding:14px;
     margin-right: 10px;
     max-width: 500px;   
@@ -1990,8 +2051,8 @@ color:black
 
 .mensagem_usuario {
     position: relative;
-	background: white;
-	border-radius: .4em;
+    background: white;
+    border-radius: .4em;
     padding:14px;
 }
 
@@ -2004,8 +2065,8 @@ color:black
 }
 
 .linha-mensagem_sistema div {
-	background: rgba(225, 245, 254, 0.92);
-	border-radius: .4em;
+    background: rgba(225, 245, 254, 0.92);
+    border-radius: .4em;
     padding:14px;
     word-wrap: break-word;
     max-width: 50%; 
@@ -2201,7 +2262,8 @@ color:black
     margin-right: 10px;
     font-weight: bold;
     display: inline-block;
-    margin-top: 1px
+    /*! margin-top: 1px; */
+    line-height: 30px;
 }
 
 .tabelinha-admin table td p {
@@ -2446,7 +2508,7 @@ color:black
     top: 0%;
     left: 50%;
     transform: translateX(-50%) translateY(-0%);
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
 }
 
 
@@ -2579,8 +2641,9 @@ color:black
 }
 
 .barra-curtir-publicacao a i{
-    background-position-y: -7px;
-    /* background-color: red; */
+    background-position-y: -3px;
+    /*! background-color: red; */
+    top: 0;
 }
 .enviar-comentario-publicacao{
     width: 50%;
@@ -2624,9 +2687,12 @@ color:black
 }
 
 .enviar-comentario-publicacao form input:disabled{
+    color:white;
     background-color: #c6c6c6
 }
 
+button{-webkit-appearance: none;}
+input[type="submit"]{-webkit-appearance: none;}
 .comentarios{
     width: 50%;
     margin: 0 auto;
@@ -2770,15 +2836,15 @@ color:black
 }
 
 .debate-status div i.icone-categoria-debate{
-    background-size: 1300px;
-    background-position: -1222px -7px;
+    background-size: 1300px 99px;
+    background-position: -1215px -7px;
     width: 20px;
     height: 30px;
 }
 
 .debate-status div i.icone-grupo{
-    background-size: 1000px;
-    background-position: -159px 0;
+    background-size: 1000px 70px;
+    background-position: -159px 3px;
     width: 20px;
     height: 30px;
     margin-left: 5px;
@@ -4015,8 +4081,8 @@ color:black
 /*possivel balao de form*/
 
 .balao-form {
-	position: absolute;
-	background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
     border-radius: 12px/100%;
     padding: 4px;
     color: white;
@@ -4024,16 +4090,16 @@ color:black
 }
 
 .balao-form:after {
-	content: '';
-	position: absolute;
-	bottom: 0;
-	left: 50%;
-	width: 0;
-	height: 0;
-	border: 13px solid transparent;
-	border-top-color: rgba(0, 0, 0, 0.5);
-	border-bottom: 0;
-	margin-left: -13px;
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border: 13px solid transparent;
+    border-top-color: rgba(0, 0, 0, 0.5);
+    border-bottom: 0;
+    margin-left: -13px;
     margin-bottom: -13px;
 }
 
