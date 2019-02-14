@@ -126,21 +126,22 @@ nav.menu > ul > li > a:hover i{
 }
 nav.notificacoes{
     
-    bottom: 60px;
+    top: 0;
     right: 0;
-    
+    position: fixed;
     width: 100vw;
     box-shadow: none;
-  
+    z-index: 1;
 }
 
 
 nav.notificacoes ul{
     width: calc(100vw + 30px);
-    height: calc(100vh - 95px);
+    height: 100vh;
     margin-right: -10px;
     padding-right: 3px;
     text-align: start;
+    padding-bottom: 50px;
 }
 
 nav.notificacoes ul li a{
@@ -148,7 +149,23 @@ width: 100vw;
 }
 
 .notificacoes.ativo{
-    height: calc(100vh - 60px);
+    height: 100vh;
+}
+
+nav.notificacoes h3 span{
+    display:initial;
+    font-family: "Open-Sans";
+    font-size: 35px;
+    font-weight: bold;
+    position: absolute;
+    right: 16px;
+    z-index: 2;
+    top: -4px;
+    cursor: pointer;
+}
+
+nav.notificacoes h3 {
+    padding: 10px 4px;
 }
 
 /*NÃO ALTERAR NADA DAQUI PARA CIMA*/

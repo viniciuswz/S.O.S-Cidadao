@@ -443,6 +443,10 @@ nav.notificacoes h3{
     border-bottom: 2px solid rgb(212, 212, 212);
     padding: 5px 4px;
 }
+
+nav.notificacoes h3 span{
+    display:none
+}
 nav.notificacoes ul{
     display: block;
     overflow-y: scroll;

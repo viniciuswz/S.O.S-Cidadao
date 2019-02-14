@@ -74,10 +74,10 @@
         <nav class="menu">
             <ul>
                 <li><nav class="notificacoes">
-                <h3>notificações<span id="not-fechado"></span></h3>
+                <h3>notificações<span id="not-fechado">x</span></h3>
                     <ul id="menu23">
                             
-                        <li>
+                    
                     </ul>
                 </nav><a href="#" id="abrir-not"><i class="icone-notificacao" id="noti"></i>Notificações</a></li>
                 <li><a href="todasreclamacoes"><i class="icone-reclamacao"></i>Reclamações</a></li>

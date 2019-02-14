@@ -97,6 +97,10 @@ jQuery(function($)
     return false;
     
   });
+
+  $('#not-fechado').click(function(){
+    $(".notificacoes").removeClass('ativo');
+  })
   
   $(window).resize(function(){
     $(".notificacoes").removeClass('ativo');
