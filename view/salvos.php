@@ -72,7 +72,7 @@
             <nav class="menu">
                 <ul>
                     <li><nav class="notificacoes">
-                        <h3>notificações<span id="not-fechado"></span></h3>
+                        <h3>notificações<span id="not-fechado">x</span></h3>
                         <ul id="menu23">
                             
                             <li>

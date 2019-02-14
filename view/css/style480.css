@@ -193,12 +193,12 @@ nav.menu > ul > li > a > i > span{
 nav.notificacoes{
    
     width: 100vw;
-    bottom: 0;
+    top: 0;
     right: 0;
     position: fixed;
     width: 100vw;
     box-shadow: none;
-    z-index: 1;
+    z-index: 3;
    
 }
 
@@ -1382,7 +1382,7 @@ form .categorias div div:last-child{
     transform: translateX(-50%) translateY(-0%);
 }
 /*preview reclamacao*/
-reclamacao
+
 .box-troca-foto-reclamacao-previa div h1{
     font-size: 16px
 }

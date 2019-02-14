@@ -131,7 +131,7 @@ nav.notificacoes{
     position: fixed;
     width: 100vw;
     box-shadow: none;
-    z-index: 1;
+    z-index: 3;
 }
 
 
