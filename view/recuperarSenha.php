@@ -56,7 +56,35 @@
             <input type="hidden" name="codigo" value="<?php echo $hash?>">
             <input type="hidden" name="id" value="<?php echo $id?>">
             <input type="submit" value="enviar">
-        </form>        
+        </form>    
+        
+        <div id="container">
+        <div class="form-cad" style="background-color:#009688">
+                 <form action="" id="" method="POST">
+                 <div class="tit-txt">
+                        <h3 style="width:100%">Redefinir senha</h3>
+                        <p>Digite sua nova senha e confirme!</p>
+                    </div>
+                     
+                     <div class="campo-texto-icone">
+                             <label for="senha"><i class="icone-senha"></i></label>
+                             <input type="password" name="senha1" id="senha" placeholder="Nova senha">
+                     </div>
+                     <div class="campo-texto-icone">
+                             <label for="senhaC"><i class="icone-senha"></i> </label>
+                             <input type="password" name="senha2" id="senhaC" placeholder="Confirmar nova senha">
+                     </div>
+                     <div class="aviso-form-inicial">
+                         <p>O campo tal e pa</p>
+                     </div>
+                    <input type="hidden" name="codigo" value="<?php echo $hash?>">
+                    <input type="hidden" name="id" value="<?php echo $id?>">
+                     <button type="submit">Alterar senha</button>
+                     
+                 </form>
+        </div>
+
+     </div>
     </body>
 </html>
 <?php

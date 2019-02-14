@@ -46,7 +46,10 @@
     <div id="container">
         <div class="form-cad" style="background-color:#009688">
                  <form action="" id="" method="POST">
-                     <h3>Redefinir senha</h3>
+                 <div class="tit-txt">
+                        <h3 style="width:100%">Redefinir senha</h3>
+                        <p>Digite sua nova senha e confirme!</p>
+                    </div>
                      
                      <div class="campo-texto-icone">
                              <label for="senha"><i class="icone-senha"></i></label>
