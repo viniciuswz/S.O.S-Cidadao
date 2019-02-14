@@ -324,7 +324,7 @@ nav.menu > ul > li > a:hover #quantidade_de_not{
 .user-menu{
     display: block;
     width: 0;
-    height: 100%;
+    height: 100vh;
     position: fixed;
     z-index: 100;
     top: 0;

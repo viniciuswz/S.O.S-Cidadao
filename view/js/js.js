@@ -25,7 +25,7 @@ jQuery(function($)
     var tela= $(document).width();
     if(tela<=480){
       $(".user-menu").css("width","100vw");
-      $(window).resize(fechar);
+     
     }else{
       $(".user-menu").css("width","450px");
       $(window).resize(fechar);
@@ -107,7 +107,11 @@ jQuery(function($)
   })
   
   $(window).resize(function(){
+    if(window.innerWidth > 768){
     $(".notificacoes").removeClass('ativo');
+    $("body").css("overflow","auto");
+    }
+    
   });
   
 });
