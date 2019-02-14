@@ -73,8 +73,11 @@
                         </div>
 
                         <button type="submit">login</button>
-                        <a href="cadastro" style="margin-top: 10px;  font-size: 1em; font-family: arial;"><span style="color:black">Sem conta?</span> Inscreva-se!</a>
-                        <a href="recuperar" style="margin-top: 10px;  font-size: 1em; font-family: arial;">Recuperar senha</a>
+                        <span>
+                            <a href="recuperar" style="font-weight:bold">Recuperar senha</a>
+                            <a href="cadastro" >Sem conta? <strong>Inscreva-se!</strong></a>
+                        </span>
+                        
 
                     </form>
                </section>

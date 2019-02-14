@@ -1385,6 +1385,27 @@ jQuery(function($){
               $("#senha").css("border-color" , 'rgba(256,000,000)');
             }
           }
+
+
+          function invalidoAjaxLogin(param){
+            if(param == 'Senha inválida'){
+              
+              $("#senha").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+              $("#senha").css("border-color" , 'red');
+              $("#senha").focus();
+            }else if(param == 'E-mail não cadastrado'){
+              $("#email").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+              $("#email").css("border-color" , 'rgba(256,000,000)');   
+              $("#senha").parent().find("label").css("background-color" , '');
+              $("#senha").css("border-color" , '');   
+              $("#email").focus();
+            }else if(param == 'Email ou senha inválidos'){
+              $("#email").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+              $("#email").css("border-color" , 'rgba(256,000,000)');
+              $("#senha").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+              $("#senha").css("border-color" , 'rgba(256,000,000)');
+            }
+          }
           $("#login").submit(function(){
             var email = $("#email").val();
             var senha = $("#senha").val();
@@ -1412,7 +1433,8 @@ jQuery(function($){
                         if(result=="1"){
                             location.href="perfil_reclamacao";
                         }else{   
-                          invalidoAjaxLogin(result);                         
+                          invalidoAjaxLogin(result);
+                                                   
                             $(".aviso-form-inicial").show();
                             $(".aviso-form-inicial").find("p").text(result);
                         }
