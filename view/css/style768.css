@@ -80,7 +80,7 @@ nav.menu > ul{
     justify-content: space-around;
     text-align: center;
     width: 100vw;
-    margin-top: 2px;
+    /* padding-top: 2px; */
 }
 
 nav.menu > ul > li{
@@ -95,6 +95,8 @@ nav.menu > ul > li > a > i{
    min-height: 40px;
    /* background-color: red; */
    background-position-y: -5px;
+   position: relative;
+   top: 4px;
 }
 
 nav.menu > ul > li > a{

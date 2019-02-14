@@ -78,10 +78,13 @@ jQuery(function($)
   var click = 0;
   $("#abrir-not").click(function(){
     
-    
     $(".notificacoes").toggleClass('ativo');
     var banana= $(".notificacoes").attr("class");
-    
+    if(window.innerWidth < 768){
+      $("body").css("overflow","hidden");
+    }
+
+
     // if(banana=='notificacoes ativo'){
     // $("#abrir-not").css("background-color", "#009688");
     // $("#abrir-not").find("i").css('background-position-y','0px');
@@ -100,6 +103,7 @@ jQuery(function($)
 
   $('#not-fechado').click(function(){
     $(".notificacoes").removeClass('ativo');
+    $("body").css("overflow","auto");
   })
   
   $(window).resize(function(){
