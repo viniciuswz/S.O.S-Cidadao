@@ -50,13 +50,13 @@
 
     </head>
     <body>
-        <form method="post" action="../RecuperarSenha.php">
+        <!-- <form method="post" action="../RecuperarSenha.php">
             <input type="text" name="senha1" placeholder="digite sua nova senha">
             <input type="text" name="senha2" placeholder="confirme sua nova senha">
             <input type="hidden" name="codigo" value="<?php echo $hash?>">
             <input type="hidden" name="id" value="<?php echo $id?>">
             <input type="submit" value="enviar">
-        </form>    
+        </form>     -->
         
         <div id="container">
         <div class="form-cad" style="background-color:#009688">
