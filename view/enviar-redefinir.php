@@ -65,6 +65,15 @@
         </div>
 
      </div>
+     <div class="email-ok">
+        
+        <div>
+            <img src="view/imagens/emailok.svg" alt="email">
+            <h1>vamos entrar em contato</h1>
+            <p>Enviamos um e-mail para você com instruções de como redefinir a sua senha.</p>
+        </div>
+        
+    </div>
 </body>
 </html>
 <?php
