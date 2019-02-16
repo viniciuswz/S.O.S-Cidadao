@@ -1418,3 +1418,13 @@ form .categorias div div:last-child{
 .gamb{
     width: 100vw !important;
 }
+
+.email-ok div{
+    width: 90%;
+}
+
+.email-ok div h1{
+font-size: 1.4em;
+font-weight: bold;
+      
+}

@@ -23,7 +23,7 @@
         <meta name=description content="Faça um login para interagir com nossa comunidade!">
         <meta name=keywords content="Reclamação, Barueri, login, Reclamar"> <!-- Opcional -->
         <meta name=author content='equipe 4 INI3A'>
-        <meta name="theme-color" content="#28AEA0" />
+        <meta name="theme-color" content="#089E8E" />
 
         <!-- favicon, arquivo de imagem podendo ser 8x8 - 16x16 - 32x32px com extensão .ico -->
         <link rel="shortcut icon" href="view/imagens/favicon.ico" type="image/x-icon">

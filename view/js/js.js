@@ -1617,9 +1617,15 @@ jQuery(function($){
                 data: "email="+email,
                 success:function(result){
                   //alert(result)
-  
+                  $(".email-ok").addClass('email-ok-ativo');
+                  $("#container").css({'transition': '1s','opacity':'0'})
+    
+                  setTimeout(function(){
+                    $(".email-ok").css('opacity','1');
+                  },1000)
                 }  
               });
+              return false;
             }
           });
 

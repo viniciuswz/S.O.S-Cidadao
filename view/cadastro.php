@@ -35,7 +35,7 @@
         <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)" href="view/css/style768.css">
         <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)" href="view/css/style1024.css">
         <link rel=stylesheet media="screen and (min-width:1025px)" href="view/css/style1025.css">
-
+        <meta name="theme-color" content="#089E8E" />
         <!-- JS-->
 
         <script src="view/lib/_jquery/jquery.js"></script>
