@@ -1612,26 +1612,60 @@ jQuery(function($){
               $("#email").parent().find("label").css("background-color" , 'dodgerblue' );
               $("#email").css("border-color" , 'dodgerblue');
               $.ajax({
-                url: "jaca",
+                url: "PedidoRecuperarSenha.php",
                 type: "post",
                 data: "email="+email,
                 success:function(result){
+                  if(result == 1){
+                    $(".email-ok").addClass('email-ok-ativo');
+                    $("#container").css({'transition': '1s','opacity':'0'})
+      
+                    setTimeout(function(){
+                      $(".email-ok").css('opacity','1');
+                    },1000)
+                  }else{
+                    $(".aviso-form-inicial").show();
+                    $(".aviso-form-inicial").find("p").text(result);
+                  }
                   //alert(result)
-                  $(".email-ok").addClass('email-ok-ativo');
-                  $("#container").css({'transition': '1s','opacity':'0'})
-    
-                  setTimeout(function(){
-                    $(".email-ok").css('opacity','1');
-                  },1000)
+                  
                 }  
               });
               return false;
             }
-          });
+          });        
 
        
         });
         
+        jQuery(function($){
+          
+           
+           $("#redefinir_senha_final").submit(function(){
+             var senha = $("#senha").val();
+             var id = $("#id").val();
+              $.ajax({
+                url: "../RecuperarSenha.php",
+                type: "post",
+                data: "senha="+senha+"&id="+id,
+                success:function(result){
+                  if(result == 1){
+                    location.href="../view/login";
+                    return false;
+                  }else{
+                    $(".aviso-form-inicial").show();
+                    $(".aviso-form-inicial").find("p").text(result);
+                    return false;
+                  }
+                  //alert(result)
+                  
+                }  
+              });
+              return false;
+           });        
+ 
+        
+         });
         // verficação add user
         
         /* verificação login */

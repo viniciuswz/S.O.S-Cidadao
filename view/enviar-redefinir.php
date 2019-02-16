@@ -10,7 +10,7 @@
         Usuario::verificarLogin(0);  // Vai estourar um erro se ele ja estiver logado, ou se ele nao for adm
         $dadosUrl = explode('/', $_GET['url']);
         if(count($dadosUrl) > 1){ // injetou parametros
-            throw new \Exception('Não foi possível achar o debate',45);
+            throw new \Exception('Injetou parametros',45);
         }
 ?>
 <!DOCTYPE html>
@@ -44,6 +44,12 @@
     </head>
     <body>
     <div id="container">
+        <?php
+            if(isset($_SESSION['codigo_invalido'])){
+                echo '<script>alerta("Errado","Código Inválido")</script>';
+                unset($_SESSION['atu']);
+            }
+        ?>
         <div class="form-cad" style="background-color:#009688">
                  <form action="" id="enviar-redefinir-senha" method="POST" style="padding: 40px 20px;">
                      <div class="tit-txt">
@@ -69,7 +75,7 @@
         
         <div>
             <img src="view/imagens/emailok.svg" alt="email">
-            <h1>vamos entrar em contato</h1>
+            <h1>Vamos entrar em contato</h1>
             <p>Enviamos um e-mail para você com instruções de como redefinir a sua senha.</p>
         </div>
         
@@ -78,7 +84,7 @@
 </html>
 <?php
 }catch (Exception $exc){
-    $erro = $exc->getCode();   
+    $$erro = $exc->getCode();   
     $mensagem = $exc->getMessage();
     switch($erro){
         case 2://Se ja estiver logado   
@@ -95,5 +101,5 @@
             }
             echo "<script>javascript:window.location='".$voltar."cadastro';</script>";
             break;
-    }              
+    }               
 }

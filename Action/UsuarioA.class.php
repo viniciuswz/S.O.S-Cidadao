@@ -19,7 +19,7 @@ class UsuarioA extends UsuarioM{
     private $sqlInsert  = "INSERT INTO usuario(nome_usu, email_usu, senha_usu, img_capa_usu, img_perfil_usu, cod_tipo_usu, dataHora_cadastro_usu)
                                 VALUES('%s','%s','%s','%s','%s','%s','%s')";
                                 
-    private $sqlVerifiEmail = "SELECT cod_usu,nome_usu FROM usuario WHERE email_usu = '%s'";
+    private $sqlVerifiEmail = "SELECT cod_usu,nome_usu,email_usu FROM usuario WHERE email_usu = '%s'";
 
     private $sqlTipoUsu = "SELECT descri_tipo_usu FROM usuario INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu)
                             WHERE usuario.cod_usu = '%s'";

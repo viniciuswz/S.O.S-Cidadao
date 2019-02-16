@@ -2,7 +2,7 @@
 namespace Action;
 use Model\RecuperarSenhaM;
 use Core\Usuario;
-
+use Classes\Email\EmailMailer;
 class RecuperarSenhaA extends RecuperarSenhaM{
     
     private $sqlInsertPedido = "INSERT recuperar_senha(status_recuperar_senha, data_hora_solicitacao, cod_usu)
@@ -50,8 +50,10 @@ class RecuperarSenhaA extends RecuperarSenhaM{
             $inserir = $this->runQuery($sql);            
             if(!$inserir->rowCount()){  // Se der erro cai nesse if          
                 throw new \Exception("Não foi possível recuperar a senha",11);   
-            }             
-            return $this->gerarHash();
+            }     
+            $hash = $this->gerarHash();        
+            $email = new EmailMailer();
+            $email->enviar($dadosUsuario[0]['email_usu'],$dadosUsuario[0]['nome_usu'], $hash);            
         }else{ // ja realizou a solicitacao e ta pedindo de novo
             if($dadosExistencia[0]['minutosPassado'] <= 15){ // ja foi realizado um pedido
                 //return 'Proxima Etapa';
