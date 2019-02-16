@@ -98,7 +98,7 @@ class RecuperarSenhaA extends RecuperarSenhaM{
         );
         $res = $this->runSelect($sql);
         if(empty($res)){
-            throw new \Exception("Código inválido",11); // mexeu no id
+            throw new \Exception("Código inválido",130); // mexeu no id
         }
         $DataHora = new \DateTime($res[0]['data_hora_solicitacao']);
         return $tempo = $res[0]['cod_recupe_senha'] + ( ($DataHora->format('Y') * $res[0]['cod_recupe_senha']) + $DataHora->format('m') - $DataHora->format('d') + ($DataHora->format('H') * $res[0]['cod_recupe_senha']) - $DataHora->format('i') - $DataHora->format('s') ) - 649; // fazer calculo doido        
@@ -113,9 +113,11 @@ class RecuperarSenhaA extends RecuperarSenhaM{
     public function verificarHash($hash){
         $hashInteiro = str_replace('$$$','/',$hash);
         $hash = explode('-;',$hashInteiro);   // o que vier depois do -; é o id do usuario      
-        $this->setCodUsu($hash[1]);        
+        if(isset($hash[1])){
+            $this->setCodUsu($hash[1]); 
+        }               
         if(!password_verify($this->baseHash(), $hash[0])){ // Verifico se o hash é igual ao codigo digitado
-            throw new \Exception("Código invalido",11);
+            throw new \Exception("Código invalido", 130);
         }         
         return $hash[1]; // retorna id
     }

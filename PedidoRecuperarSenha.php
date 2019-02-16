@@ -24,12 +24,17 @@ try{
     $recuperarSenha = new RecuperarSenha();
     $recuperarSenha->setEmail($_POST['email']);
     $hash = $recuperarSenha->inserirPedido();
-
-    echo "<script>javascript:window.location='recuperarSenha/".$hash."';</script>";    
+    //echo "<script>javascript:window.location='recuperarSenha/".$hash."';</script>";    
+    echo '1';
 }catch(Exception $exc){
     $erro = $exc->getCode();   
-    echo $mensagem = $exc->getMessage();  
+    $mensagem = $exc->getMessage();  
     switch($erro){
+        case 20:
+            echo $mensagem;
+            break;        
+        default:
+            echo $mensagem;
         // case 2://Não está logado  
         //     echo 'NLogado';
         //     //echo "<script> alert('$mensagem');javascript:window.location='./view/login.php';</script>";

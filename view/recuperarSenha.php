@@ -11,12 +11,14 @@
     try{        
         $dadosUrl = explode('/',$_GET['url']); 
         if(!isset($dadosUrl[1])){
-            throw new \Exception('Mais paramentro do que esperado',9);
+            throw new \Exception('Faltando codigo',65);
+        }else if(isset($dadosUrl[2])){
+            throw new \Exception('Muitos parametros',45);
         }
         $hash = $dadosUrl[1];        
 
         $recuperarSenha = new RecuperarSenha(); 
-        $id = $recuperarSenha->verificarHash($hash);
+        $recuperarSenha->verificarHash($hash);
         
 ?>
 <!DOCTYPE html>
@@ -32,21 +34,21 @@
         <meta name="theme-color" content="#089E8E" />
 
         <!-- favicon, arquivo de imagem podendo ser 8x8 - 16x16 - 32x32px com extensão .ico -->
-        <link rel="shortcut icon" href="view/imagens/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="../view/imagens/favicon.ico" type="image/x-icon">
 
         <!-- CSS PADRÃO -->
-        <link href="view/css/default.css" rel=stylesheet>
+        <link href="../view/css/default.css" rel=stylesheet>
 
         <!-- Telas Responsivas -->
-        <link rel=stylesheet media="screen and (max-width:480px)" href="view/css/style480.css">
-        <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)" href="view/css/style768.css">
-        <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)" href="view/css/style1024.css">
-        <link rel=stylesheet media="screen and (min-width:1025px)" href="view/css/style1025.css">
+        <link rel=stylesheet media="screen and (max-width:480px)" href="../view/css/style480.css">
+        <link rel=stylesheet media="screen and (min-width:481px) and (max-width:768px)" href="../view/css/style768.css">
+        <link rel=stylesheet media="screen and (min-width:769px) and (max-width:1024px)" href="../view/css/style1024.css">
+        <link rel=stylesheet media="screen and (min-width:1025px)" href="../view/css/style1025.css">
 
         <!-- JS-->
 
-        <script src="view/lib/_jquery/jquery.js"></script>
-        <script src="view/js/js.js"></script>
+        <script src="../view/lib/_jquery/jquery.js"></script>
+        <script src="../view/js/js.js"></script>
 
     </head>
     <body>
@@ -90,29 +92,33 @@
 <?php
 }catch (Exception $exc){
     $erro = $exc->getCode();   
-    echo $mensagem = $exc->getMessage();
+    $mensagem = $exc->getMessage();
     switch($erro){
-        // case 2://Não está logado  
-        //     echo "<script>javascript:window.location='login';</script>";
-        //     break; 
-        // case 6://Ja esta logado 
-        //     echo "<script>javascript:window.location='todasreclamacoes';</script>";
-        //     break;
+        case 65:
+            echo "<script>javascript:window.location='todasreclamacoes';</script>";
+            break;        
+        case 6://Ja esta logado 
+            echo "<script>javascript:window.location='todasreclamacoes';</script>";
+            break;
         // case 11:// Erro no comentario
         // case 12://Mexeu no insprnsionar elemento ou nao submeteu o formulario      
         //     echo "<script>javascript:window.location='todasreclamacoes';</script>";
         //     break;             
-        // case 45://Digitou um numero maior de parametros 
-        //     unset($dadosUrl[0]);
-        //     $contador = 1;
-        //     $voltar = "";
-        //     while($contador <= count($dadosUrl)){
-        //         $voltar .= "../";
-        //         $contador++;
-        //     }
-        //     echo "<script>javascript:window.location='".$voltar."Pagina-agradecimento';</script>";
-        // break;
-        // default: //Qualquer outro erro cai aqui
-        //     echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes';</script>";
+        case 45://Digitou um numero maior de parametros 
+            unset($dadosUrl[0]);
+            $contador = 1;
+            $voltar = "";
+            while($contador <= count($dadosUrl)){
+                $voltar .= "../";
+                $contador++;
+            }
+            echo "<script>javascript:window.location='".$voltar."todasreclamacoes';</script>";
+        break;
+        case 130:
+            echo "<script>javascript:window.location='../enviar-redefinir';</script>";
+            $_SESSION['codigo_invalido'] = 1;
+            break;
+        default: //Qualquer outro erro cai aqui
+            echo "<script> alert('$mensagem');javascript:window.location='todasreclamacoes';</script>";
     } 
 }

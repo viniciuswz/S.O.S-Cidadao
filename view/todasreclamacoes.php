@@ -95,7 +95,7 @@
                     echo '<script>alerta("Certo","Você apagou a reclamação")</script>';
                 }                
                 unset($_SESSION['atu']);
-            }
+            }          
 
         if(isset($resultado) AND !empty($resultado)){    
         ?>
