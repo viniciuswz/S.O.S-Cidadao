@@ -44,7 +44,7 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
             success: function(data){
                 if(data =="Maior" || data == "Vazio"){ //Maior significa que não teve resultado para mostrar
                     if(data == "Vazio"){
-                        criarEmpty('<strong style="font-size: 25px;">Ops!</strong><br><br><strong>Não encontramos o caminho para a sua pesquisa.</strong><br><br>Tente um nome de uma categoria, de um usuário ou um endereço, pode ser que você encontre o que precise.','');
+                        criarEmpty('<strong style="font-size: 25px;">Ops!</strong><br><br><strong>Não encontramos o caminho para a sua pesquisa.</strong><br><br>Tente um nome de uma categoria ou um endereço, pode ser que você encontre o que precise.','');
                         teste = true;
                     }                   
                     validar = 1 //então nao vamos mais rodar o jaquinha, pois chegamos ao final de todas as reclamações                   

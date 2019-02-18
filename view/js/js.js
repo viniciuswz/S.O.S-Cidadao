@@ -256,7 +256,7 @@ jQuery(function(){
   //   var extensao = caminhoImagem.substring(
   //     caminhoImagem.lastIndexOf('.') + 1).toLowerCase();
   //     //verificando se é uma img
-  //     if (extensao == "gif" || extensao == "png"  || extensao == "bmp"
+  //     if ( extensao == "png"  || extensao == "bmp"
   //     || extensao == "jpeg" || extensao == "jpg") {
   //       // vai mostrar no preview
   //       if (InputData.files && InputData.files[0]) {
@@ -498,7 +498,7 @@ $(".reclamaForm").submit(function(){
 //   var extensao = caminhoImagem.substring(
 //     caminhoImagem.lastIndexOf('.') + 1).toLowerCase();
 //     //verificando se é uma img
-//     if (extensao == "gif" || extensao == "png"  || extensao == "bmp"
+//     if ( extensao == "png"  || extensao == "bmp"
 //     || extensao == "jpeg" || extensao == "jpg") {
 //       // vai mostrar no preview
 //       if (InputData.files && InputData.files[0]) {
@@ -718,7 +718,7 @@ jQuery(function($){
       var extensao = caminhoImagem.substring(
         caminhoImagem.lastIndexOf('.') + 1).toLowerCase();
         //verificando se é uma img
-        if (extensao == "gif" || extensao == "png"  || extensao == "bmp"  || extensao == "jpeg" || extensao == "jpg") {
+        if ( extensao == "png"  || extensao == "bmp"  || extensao == "jpeg" || extensao == "jpg") {
           $(".box-troca-foto").find(".aviso-form-inicial").css("display","none");
           // vai mostrar no preview
           if (InputData.files && InputData.files[0]) {
@@ -759,7 +759,7 @@ jQuery(function($){
           
           
           $(".box-troca-foto").find(".aviso-form-inicial").css("display","block");
-          $(".box-troca-foto").find(".aviso-form-inicial").find("p").text("Isso não é uma imagem");
+          $(".box-troca-foto").find(".aviso-form-inicial").find("p").text("Esse formato não é válido");
           
           return false;
         }
@@ -879,7 +879,7 @@ jQuery(function($){
         var extensao = caminhoImagem.substring(
           caminhoImagem.lastIndexOf('.') + 1).toLowerCase();
           //verificando se é uma img
-          if (extensao == "gif" || extensao == "png"  || extensao == "bmp" || extensao == "jpeg" || extensao == "jpg") {
+          if ( extensao == "png"  ||  extensao == "jpeg" || extensao == "jpg") {
             $(".box-troca-foto-perfil").find(".aviso-form-inicial").css("display","none");
             // vai mostrar no preview
             if (InputData.files && InputData.files[0]) {
@@ -919,7 +919,7 @@ jQuery(function($){
               },
             });
             $(".box-troca-foto-perfil").find(".aviso-form-inicial").css("display","block");
-            $(".box-troca-foto-perfil").find(".aviso-form-inicial").find("p").text("Isso não é uma imagem");
+            $(".box-troca-foto-perfil").find(".aviso-form-inicial").find("p").text("Esse formato não é válido");
             
             return false;
           }
@@ -1085,7 +1085,7 @@ jQuery(function($){
           var extensao = caminhoImagem.substring(
             caminhoImagem.lastIndexOf('.') + 1).toLowerCase();
             //verificando se é uma img
-            if (extensao == "gif" || extensao == "png"  || extensao == "bmp"|| extensao == "jpeg" || extensao == "jpg") {
+            if ( extensao == "png"  || extensao == "bmp"|| extensao == "jpeg" || extensao == "jpg") {
               $(".box-troca-foto-reclamacao").find(".aviso-form-inicial").css("display","none");
               // vai mostrar no preview
               if (InputData.files && InputData.files[0]) {
@@ -1109,7 +1109,7 @@ jQuery(function($){
               $('#fotoReclamacao').val("");
               recriarReclama();
               $(".box-troca-foto-reclamacao").find(".aviso-form-inicial").css("display","block");
-              $(".box-troca-foto-reclamacao").find(".aviso-form-inicial").find("p").text("Isso não é uma imagem");
+              $(".box-troca-foto-reclamacao").find(".aviso-form-inicial").find("p").text("Esse formato não é válido");
               
               return false;
             }
@@ -1239,7 +1239,7 @@ jQuery(function($){
             var extensao = caminhoImagem.substring(
               caminhoImagem.lastIndexOf('.') + 1).toLowerCase();
               //verificando se é uma img
-              if (extensao == "gif" || extensao == "png"  || extensao == "bmp" || extensao == "jpeg" || extensao == "jpg") {
+              if ( extensao == "png"  ||  extensao == "jpeg" || extensao == "jpg") {
                 $(".box-troca-foto-reclamacao").find(".aviso-form-inicial").css("display","none");
                 // vai mostrar no preview
                 if (InputData.files && InputData.files[0]) {
@@ -1263,7 +1263,7 @@ jQuery(function($){
                 $('#imagemDebateInput').val("");
                 recriaDb();
                 $(".box-troca-foto-reclamacao").find(".aviso-form-inicial").css("display","block");
-                $(".box-troca-foto-reclamacao").find(".aviso-form-inicial").find("p").text("Isso não é uma imagem");
+                $(".box-troca-foto-reclamacao").find(".aviso-form-inicial").find("p").text("Esse formato não é válido");
                 
                 return false;
               }
@@ -1689,7 +1689,7 @@ jQuery(function($){
             }else{
              if( senha === ""){
                 $(".aviso-form-inicial").show();
-                $(".aviso-form-inicial").find("p").text("você precisa digitar um senha");
+                $(".aviso-form-inicial").find("p").text("você precisa digitar uma senha");
               }else if(senhaC === ""){
                 $(".aviso-form-inicial").show();
                 $(".aviso-form-inicial").find("p").text("você precisa confirmar a senha");
