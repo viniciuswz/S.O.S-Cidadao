@@ -86,6 +86,10 @@
         case 2://Se ja estiver logado   
         case 6://nao  tem permissao de adm
             echo "<script>javascript:window.location='../todasreclamacoes';</script>";
+            break;            
+        case 130:
+            $_SESSION['codigo_invalido'] = 1;
+            echo "<script>javascript:window.location='../enviar-redefinir';</script>";
             break;
         case 45://Digitou um numero maior de parametros 
         default:

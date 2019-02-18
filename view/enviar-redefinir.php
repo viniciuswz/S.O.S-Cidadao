@@ -47,7 +47,7 @@
         <?php
             if(isset($_SESSION['codigo_invalido'])){
                 echo '<script>alerta("Errado","Código Inválido")</script>';
-                unset($_SESSION['atu']);
+                unset($_SESSION['codigo_invalido']);
             }
         ?>
         <div class="form-cad" style="background-color:#009688">
@@ -84,7 +84,7 @@
 </html>
 <?php
 }catch (Exception $exc){
-    $$erro = $exc->getCode();   
+    $erro = $exc->getCode();   
     $mensagem = $exc->getMessage();
     switch($erro){
         case 2://Se ja estiver logado   
