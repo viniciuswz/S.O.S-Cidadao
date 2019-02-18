@@ -1624,6 +1624,8 @@ jQuery(function($){
                       $(".email-ok").css('opacity','1');
                     },1000)
                   }else{
+                    $("#email").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+                    $("#email").css("border-color" , 'rgba(256,000,000)');
                     $(".aviso-form-inicial").show();
                     $(".aviso-form-inicial").find("p").text(result);
                   }
@@ -1642,27 +1644,84 @@ jQuery(function($){
           
            
            $("#redefinir_senha_final").submit(function(){
-             var senha = $("#senha").val();
-             var id = $("#id").val();
-              $.ajax({
-                url: "../RecuperarSenha.php",
-                type: "post",
-                data: "senha="+senha+"&id="+id,
-                success:function(result){
-                  if(result == 1){
-                    location.href="../view/login";
-                    return false;
-                  }else{
-                    $(".aviso-form-inicial").show();
-                    $(".aviso-form-inicial").find("p").text(result);
-                    return false;
-                  }
-                  //alert(result)
-                  
-                }  
-              });
+
+            var senhaC = $("#senhaC").val();
+            if( senhaC === ""){
+              $("#senhaC").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+              $("#senhaC").css("border-color" , 'rgba(256,000,000)');
+              $("#senhaC").focus();
               return false;
-           });        
+            }else{
+              $("#senhaC").parent().find("label").css("background-color" , 'dodgerblue' );
+              $("#senhaC").css("border-color" , 'dodgerblue');
+            }
+          });
+
+          $("#redefinir_senha_final").submit(function(){
+            var senha = $("#senha").val();
+            if( senha === ""){
+              $("#senha").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+              $("#senha").css("border-color" , 'rgba(256,000,000)');
+              $("#senha").focus();
+              return false;
+            }else{
+              $("#senha").parent().find("label").css("background-color" , 'dodgerblue' );
+              $("#senha").css("border-color" , 'dodgerblue');
+            }
+
+
+  
+           }); 
+           
+           $("#redefinir_senha_final").submit(function(){
+            var senha = $("#senha").val();
+            var id = $('#id').val();
+            var senhaC = $("#senhaC").val();
+            if(senhaC !== senha && senhaC !==""){
+              $(".aviso-form-inicial").show();
+              $(".aviso-form-inicial").find("p").text("A confirmação da senha não esta igual a senha!");
+              $("#senha").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+              $("#senha").css("border-color" , 'rgba(256,000,000)');
+              $("#senhaC").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+              $("#senhaC").css("border-color" , 'rgba(256,000,000)');
+              $("#senhaC").focus();
+              return false;
+            }else{
+             if( senha === ""){
+                $(".aviso-form-inicial").show();
+                $(".aviso-form-inicial").find("p").text("você precisa digitar um senha");
+              }else if(senhaC === ""){
+                $(".aviso-form-inicial").show();
+                $(".aviso-form-inicial").find("p").text("você precisa confirmar a senha");
+              }else{ // AJAX CADASTRAR
+                /* AJAX CADASTRAR */
+                $(".aviso-form-inicial").hide();
+                $.ajax({
+                  url: "../RecuperarSenha.php",
+                  type: "post",
+                  data: "senha="+senha+"&id="+id,
+                  success:function(result){
+                    if(result == 1){
+                      location.href="../view/login";
+                      return false;
+                    }else{
+                      $("#senha").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+                      $("#senha").css("border-color" , 'rgba(256,000,000)');
+                      $("#senhaC").parent().find("label").css("background-color" , 'rgba(256,000,000)');
+                      $("#senhaC").css("border-color" , 'rgba(256,000,000)');
+                      $("#senha").focus();
+                      $(".aviso-form-inicial").show();
+                      $(".aviso-form-inicial").find("p").text(result);
+                      return false;
+                    }
+                    //alert(result)
+                    
+                  }  
+                });
+                  return false;
+              }
+            }
+          });       
  
         
          });
