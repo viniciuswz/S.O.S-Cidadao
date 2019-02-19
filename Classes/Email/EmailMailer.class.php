@@ -248,7 +248,7 @@ cellpadding="0" style="margin: 0 auto">
   bgcolor="#EF3C1E">
 <a 
 href=
-"https://teste.soscidadao.online/redefinir-senha/'.$codigo.'"
+"https://soscidadao.online/redefinir-senha/'.$codigo.'"
 target="_blank"
 style="font-size: 15px; 
 font-family: Arial, Helvetica, sans-serif; 
