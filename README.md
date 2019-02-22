@@ -79,7 +79,8 @@ Esse usuário pode criar publicações, postar comentários, dar like, denunciar
 Usamos AJAX para deixar a navegação mais dinâmica, contamos sistema de URL amigável, o PHP foi criado em cima do POO.
 
 
-# Equipe
+
+
 
 
   
