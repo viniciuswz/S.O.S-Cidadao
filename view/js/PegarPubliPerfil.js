@@ -52,7 +52,7 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
                 var tipoDonoPaginacao = data.substring(data.lastIndexOf(',') + 1 );
                 //alert(tipoDonoPaginacao +"  : "+ tipoPubPaginacao +"  "+ tipoUsuPaginacao )
                 if(tipoPubPaginacao == "Maior" || tipoPubPaginacao =="Vazio" || data =="Maior" ){ //Maior significa que não teve resultado para mostrar
-                     //então nao vamos mais rodar o jaquinha, pois chegamos ao final de todas as reclamações
+                     //então nao vamos mais rodar o jaquinha, pois chegamos ao final de todas as publicações
                     //alert("jaca")
                     //alert(data)
                     validar = 1
@@ -62,26 +62,26 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
                     }else{
                         //$("body").css("background","white");
                         if(tipoUsuPaginacao == "Comum"){
-                            //var emptyStateMensagem = "Descobrimos que você não tem nenhuma publicação, que tal postar uma reclamação?";
+                            //var emptyStateMensagem = "Descobrimos que você não tem nenhuma publicação, que tal postar uma ?";
                             //var emptyStateCta = 
                             if(tipoDonoPaginacao == "Dono"){
-                                criarEmpty('Descobrimos que você não tem nenhuma publicação, que tal postar uma reclamação?','<a href="'+voltar+'Formulario-reclamacao" class="cta">reclamar</a>',voltar);
+                                criarEmpty('Descobrimos que você não tem nenhuma publicação, que tal postar uma?','<a href="'+voltar+'Formulario-reclamacao" class="cta">publicar</a>',voltar);
                             }else{
-                                criarEmpty('Esse usuário não tem nenhuma reclamação :(','',voltar);
+                                criarEmpty('Esse usuário não tem nenhuma publicação :(','',voltar);
                             }
                           
                         }else if(tipoUsuPaginacao == "Prefeitura"){
                             if(tipoDonoPaginacao == "Dono"){
-                                criarEmpty('Ora ora, não tem nenhuma reclamação, que tal tirar um dia de folga?','<a href="'+voltar+'Sair.php" class="cta">Log out</a>',voltar);
+                                criarEmpty('Ora ora, não tem nenhuma publicação, que tal tirar um dia de folga?','<a href="'+voltar+'Sair.php" class="cta">Log out</a>',voltar);
                             }else{
-                                criarEmpty('Esse usuário não tem nenhuma reclamação :(','',voltar);
+                                criarEmpty('Esse usuário não tem nenhuma publicação :(','',voltar);
                             }
                             
                         }else{
                             if(tipoDonoPaginacao == "Dono"){
                                 criarEmpty('Você não pode postar reclamações, entre com sua conta de usuário comum!','<a href="'+voltar+'Sair.php" class="cta">Log out</a>',voltar);
                             }else{
-                                criarEmpty('Esse usuário não tem nenhuma reclamação :(','',voltar);
+                                criarEmpty('Esse usuário não tem nenhuma publicação :(','',voltar);
                             }
                         }
                     }

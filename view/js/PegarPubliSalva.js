@@ -43,7 +43,7 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
                 var tipoPubPaginacao = data.substring(0, data.lastIndexOf('.'));
                 //alert(tipoPubPaginacao)
                 if(tipoPubPaginacao =="Maior" || tipoPubPaginacao =="Vazio" || data =="Maior" ){ //Maior significa que não teve resultado para mostrar
-                    validar = 1 //então nao vamos mais rodar o jaquinha, pois chegamos ao final de todas as reclamações
+                    validar = 1 //então nao vamos mais rodar o jaquinha, pois chegamos ao final de todas as publicações
                     //alert("jaca")
 
                     if(tipoPubPaginacao =="Maior" || data =="Maior" ){
@@ -52,7 +52,7 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
                         $("body").css("background","white");
                         $("h4").css("color","black");
                         if(tipoUsuPaginacao == "Comum"){
-                            //var emptyStateMensagem = "Descobrimos que você não tem nenhuma publicação, que tal postar uma reclamação?";
+                            //var emptyStateMensagem = "Descobrimos que você não tem nenhuma publicação, que tal postar uma ?";
                             //var emptyStateCta = 
                            criarEmpty('<strong style="font-size: 25px;">Ops!</strong><br><br>Não tem nenhuma publicação salva, você consegue salvar publicações para ver mais tarde, quando elas forem respondidas você será notificado, legal né? começe a salvar coisas do seu interesse! ','<a href="todasreclamacoes" style="margin-top:20px" class="cta">ir para reclamações</a>');
                         }else if(tipoUsuPaginacao == "Prefeitura"){

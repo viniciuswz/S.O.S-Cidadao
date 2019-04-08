@@ -47,7 +47,7 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
                         criarEmpty('<strong style="font-size: 25px;">Ops!</strong><br><br><strong>Não encontramos o caminho para a sua pesquisa.</strong><br><br>Tente um nome de uma categoria ou um endereço, pode ser que você encontre o que precise.','');
                         teste = true;
                     }                   
-                    validar = 1 //então nao vamos mais rodar o jaquinha, pois chegamos ao final de todas as reclamações                   
+                    validar = 1 //então nao vamos mais rodar o jaquinha, pois chegamos ao final de todas as publicações                   
                    
                 }else{//caso o resultado for outro roda normal e adiciona na paginação
                     paginacao++ 

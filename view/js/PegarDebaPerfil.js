@@ -53,7 +53,7 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
                 var tipoDonoPaginacao = data.substring(data.lastIndexOf(',') + 1 );
                 //alert(tipoDonoPaginacao +"  : "+ tipoPubPaginacao +"  "+ tipoUsuPaginacao )
                 if(tipoPubPaginacao == "Maior" || tipoPubPaginacao =="Vazio" || data =="Maior" ){ //Maior significa que não teve resultado para mostrar
-                     //então nao vamos mais rodar o jaquinha, pois chegamos ao final de todas as reclamações
+                     //então nao vamos mais rodar o jaquinha, pois chegamos ao final de todas as publicações
                     //alert("jaca")
                     validar = 1
                     if(tipoPubPaginacao =="Maior" || data =="Maior"){
@@ -61,7 +61,7 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
                     }else{
                       //  $("body").css("background","white");
                     if(tipoUsuPaginacao == "Comum"){
-                        //var emptyStateMensagem = "Descobrimos que você não tem nenhuma publicação, que tal postar uma reclamação?";
+                        //var emptyStateMensagem = "Descobrimos que você não tem nenhuma publicação, que tal postar uma ?";
                         //var emptyStateCta = 
                         if(tipoDonoPaginacao == "Dono"){
                             criarEmpty('Você não criou nenhum debate, sempre tem algo na cidade sobre o que discutir, crie um debate e chame a galera!','<a href="'+voltar+'Formulario-debate" class="cta">começar</a>',voltar);
@@ -73,7 +73,7 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
 
                         
                         if(tipoDonoPaginacao == "Dono"){
-                            criarEmpty('Ora ora, não tem nenhuma reclamação respondida, que tal responder uma?','<a href="'+voltar+'prefeitura-reclamacao" class="cta">responder</a>',voltar);
+                            criarEmpty('Ora ora, não tem nenhuma publicação respondida, que tal responder uma?','<a href="'+voltar+'prefeitura-reclamacao" class="cta">responder</a>',voltar);
                         }else{
                             criarEmpty('Esse usuário não possui debate criado :(','',voltar);
                         }

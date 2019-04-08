@@ -28,7 +28,7 @@ $(document).ready(function(){
     data: "pagina="+paginacao+"&ID="+id,
     success: function(data){        
         if(data =="Maior"){ //Maior significa que não teve resultado para mostrar
-            validar = 1 //então nao vamos mais rodar o jaquinha, pois chegamos ao final de todas as reclamações
+            validar = 1 //então nao vamos mais rodar o jaquinha, pois chegamos ao final de todas as publicações
             //alert("chegou no fim")     
             //alert("Ta no final desgrac");                      
         }else{    

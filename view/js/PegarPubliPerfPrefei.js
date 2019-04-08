@@ -34,7 +34,7 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
             data: "pagina="+paginacao+"&ID="+id+"&voltar="+quantVoltar,
             success: function(data){
                 if(data =="Maior"){ //Maior significa que não teve resultado para mostrar
-                    validar = 1 //então nao vamos mais rodar o jaquinha, pois chegamos ao final de todas as reclamações
+                    validar = 1 //então nao vamos mais rodar o jaquinha, pois chegamos ao final de todas as publicações
                     //alert("chegou no fim")
                    
                 }else{//caso o resultado for outro roda normal e adiciona na paginação

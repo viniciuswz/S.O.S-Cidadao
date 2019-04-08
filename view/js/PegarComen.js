@@ -61,13 +61,13 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
                
                 //alert(tipoUsuPaginacao)
                 if(tipoPubPaginacao =="Maior" || tipoPubPaginacao == "Vazio" || data =="Maior"){ //Maior significa que não teve resultado para mostrar
-                    validar = 1; //então nao vamos mais rodar o jaquinha, pois chegamos ao final de todas as reclamações
+                    validar = 1; //então nao vamos mais rodar o jaquinha, pois chegamos ao final de todas as publicações
                     //alert("chegou no fim")
                     if(tipoPubPaginacao =="Maior" || data == "Maior"){
                         //alert('jaca')
                     }else{
                         if(tipoUsuPaginacao == "Comum"){
-                            //var emptyStateMensagem = "Descobrimos que você não tem nenhuma publicação, que tal postar uma reclamação?";
+                            //var emptyStateMensagem = "Descobrimos que você não tem nenhuma publicação, que tal postar uma ?";
                             //var emptyStateCta = 
                             // Moderador Adm
                             criarEmpty('Parece que ninguém deixou sua marca aqui, seja o primerio a fazer uma, deixe um comentário ','<a id=scrollcomentario class=cta> Comentar</a>', voltar);
