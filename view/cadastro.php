@@ -16,7 +16,7 @@
 <!DOCTYPE html>
 <html lang=pt-br>
     <head>
-        <title>cadastre-se e faça reclamações ;)</title>
+        <title>cadastre-se ;)</title>
 
         <meta charset=UTF-8> <!-- ISO-8859-1 -->
         <meta name=viewport content="width=device-width, initial-scale=1.0">

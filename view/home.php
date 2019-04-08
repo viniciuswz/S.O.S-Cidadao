@@ -68,11 +68,10 @@
                     <div>
                         <img src="view/imagens/carapistola.jpg">
                     </div>
-                    <h3>Reclamações</h3>
+                    <h3>Publicações</h3>
                     <p>
-                    Uma reclamação é uma forma de expressar a insatisfação pública. 
-                        Aqui no S.O.S Cidadão você pode mostrar sua opinião sobre o que acontece 
-                        na cidade de Barueri e buscar uma solução para os problemas. 
+                    Uma publicação é uma forma de expressar a opinião pública. 
+                        Aqui no S.O.S Cidadão você pode contar sobre sua opinião de críticas a elogios  
                     </p>
                     <a class="cta" href="cadastro" >Tente agora mesmo!</a>
                 </div>
@@ -95,7 +94,7 @@
         <section class="landing-prefeitura">
                 <h1>A prefeitura responde?</h1>
                 <p>
-                A partir do momento em que sua reclamação estiver online a Prefeitura terá a possibilidade de respondê-la diretamente e de forma pública.
+                A partir do momento em que sua publicação estiver online a Prefeitura terá a possibilidade de respondê-la diretamente e de forma pública.
                 </p>
            </section>
            <footer class="landing-rodape">
