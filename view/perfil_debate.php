@@ -162,7 +162,7 @@
                         </ul>
                     </nav><a href="#" id="abrir-not"><i class="icone-notificacao" id="noti"></i>Notificações</a></li>
                     <li><a href="<?php echo $voltar?>todasreclamacoes"><i class="icone-reclamacao"></i>Publicações</a></li>
-                    <li><a href="<?php echo $voltar?>todosdebates"><i class="icone-debate"></i>Debates</a></li>
+                    <li><a href="<?php echo $voltar?>todosdebates"><i class="icone-debate"></i>Fórum</a></li>
                 </ul>
             </nav>
             <?php
