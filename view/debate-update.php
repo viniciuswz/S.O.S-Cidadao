@@ -44,7 +44,7 @@
 <!DOCTYPE html>
 <html lang=pt-br>
     <head>
-        <title>Editar debate</title>
+        <title>Editar discussão</title>
 
         <meta charset=UTF-8> <!-- ISO-8859-1 -->
         <meta name=viewport content="width=device-width, initial-scale=1.0">
@@ -159,7 +159,7 @@
                             
                     <!--FORMULARIO ENVIO DA FOTO-->           
                     <div class="imagem">
-                        <h3>Escolha uma foto para o debate</h3>
+                        <h3>Escolha uma foto para a discussão</h3>
                         <hr>
                         <div class="envio-img">
                                             
@@ -177,7 +177,7 @@
                                 
                     <!--FORMULARIO DESCRIÇÃO DO DEBATE--> 
                         <div class="campo-texto"> 
-                            <h3>sobre o que vai debater ?</h3>
+                            <h3>sobre o que vai falar ?</h3>
                         
                         <hr>
                     
@@ -199,7 +199,7 @@
             <div class="modal-troca-foto-reclamacao-fundo"></div>
             <div class="box-troca-foto-reclamacao">
                 <div class="modal-titulo">
-                    <h1>escolha uma foto para o debate</h1>
+                    <h1>escolha uma foto para a discussão</h1>
                     <span class="fechar-troca-foto-reclamacao">&times;</span>
                 </div>
                 <div class="img-reclamacao-corta">

@@ -208,8 +208,8 @@
                 </div>
             <!--FORMULARIO DESCRIÇÃO DO DEBATE--> 
                 <div class="campo-texto"> 
-                    <h3>sobre o que vai debater ?</h3>
-                    <hr>
+                    
+                    
                     <textarea placeholder="escreva aqui" id="sobre" name="texto">
 <?php echo trim($resposta[0]['texto_publi']) ?>
                     </textarea>

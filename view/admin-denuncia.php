@@ -165,7 +165,7 @@
                             <span class="checkmark"></span>
                         </label>
                         
-                        <label class="container"> Debates                         
+                        <label class="container"> fóruns                         
                                 <?php if(isset($_GET['tipo']) AND in_array('Debate',$_GET['tipo'])) { ?>
                                                 <input type="checkbox" checked="checked" name="tipo[]" value="Debate">
                                 <?php }else{  ?>

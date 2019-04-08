@@ -92,7 +92,7 @@
                <?php
                     if(!empty($_SESSION['atu'])){ // mensagem de bem-vindo
                         if($_SESSION['atu'] == '1'){
-                            echo '<script>alerta("Certo","Bem-vindo ao debate")</script>';
+                            echo '<script>alerta("Certo","Bem-vindo a discussão")</script>';
                         }else if($_SESSION['atu'] == '2'){
                             echo '<script>alerta("Certo","Usuário Removido")</script>';
                         }                        
