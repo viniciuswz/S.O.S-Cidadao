@@ -111,7 +111,7 @@
                             <li>
                         </ul>
                     </nav><a href="#" id="abrir-not"><i class="icone-notificacao" id="noti"></i>Notificações</a></li>
-                    <li><a href="todasreclamacoes"><i class="icone-reclamacao"></i>Reclamações</a></li>
+                    <li><a href="todasreclamacoes"><i class="icone-reclamacao"></i>Publicações</a></li>
                     <li><a href="todosdebates"><i class="icone-debate"></i>Debates</a></li>
                 </ul>
         </nav>
@@ -174,7 +174,7 @@
                             <span class="checkmark"></span>
                         </label>
                         
-                        <label class="container"> Reclamações
+                        <label class="container"> Publicações
                             <?php if(isset($_GET['tipo']) AND in_array('Publi',$_GET['tipo'])) { ?>
                                 <input type="checkbox" checked="checked" name="tipo[]" value="Publi">
                             <?php }else{  ?>

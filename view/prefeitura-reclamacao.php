@@ -88,7 +88,7 @@
                             <li>
                         </ul>
                     </nav><a href="#" id="abrir-not"><i class="icone-notificacao" id="noti"></i>Notificações</a></li>
-                    <li><a href="<?php echo $voltar?>todasreclamacoes"><i class="icone-reclamacao"></i>Reclamações</a></li>
+                    <li><a href="<?php echo $voltar?>todasreclamacoes"><i class="icone-reclamacao"></i>Publicações</a></li>
                     <li><a href="<?php echo $voltar?>view/todosdebates"><i class="icone-debate"></i>Debates</a></li>
                 </ul>
             </nav>
