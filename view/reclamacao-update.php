@@ -43,7 +43,7 @@
 <!DOCTYPE html>
 <html lang=pt-br>
     <head>
-        <title>Editar Reclamação</title>
+        <title>Editar publicação</title>
 
         <meta charset=UTF-8> <!-- ISO-8859-1 -->
         <meta name=viewport content="width=device-width, initial-scale=1.0">
@@ -177,7 +177,7 @@
                         
             <!--FORMULARIO ENVIO DA FOTO-->           
                 <div class="imagem">
-                            <h3>Escolha uma foto para a reclamação</h3>
+                            <h3>Escolha uma foto para a publicação</h3>
                             <hr>
                         <div class="envio-img">
                             
@@ -225,7 +225,7 @@
             <div class="modal-troca-foto-reclamacao-fundo"></div>
             <div class="box-troca-foto-reclamacao">
                 <div class="modal-titulo">
-                    <h1>escolha uma foto para a reclamação</h1>
+                    <h1>escolha uma foto para a publicação</h1>
                     <span class="fechar-troca-foto-reclamacao">&times;</span>
                 </div>
                 <div class="img-reclamacao-corta">

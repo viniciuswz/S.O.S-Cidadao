@@ -158,7 +158,7 @@
                         
             <!--FORMULARIO ENVIO DA FOTO-->           
                 <div class="imagem">
-                            <h3>Escolha uma foto para a reclamação</h3>
+                            <h3>Escolha uma foto para a publicação</h3>
                             <hr>
                         <div class="envio-img">
                             
@@ -194,7 +194,7 @@
                     <!-- <hr> -->
                     <textarea placeholder="Escreva aqui" id="sobre" name="texto"></textarea>
                     <p></p>
-                    <input type="submit" value="Enviar reclamação" class="cta">
+                    <input type="submit" value="Enviar publicação" class="cta">
                 </div>     
             </form>
 
@@ -204,7 +204,7 @@
             <div class="modal-troca-foto-reclamacao-fundo"></div>
             <div class="box-troca-foto-reclamacao">
                 <div class="modal-titulo">
-                    <h1>escolha uma foto para a reclamação</h1>
+                    <h1>escolha uma foto para a publicação</h1>
                     <span class="fechar-troca-foto-reclamacao">&times;</span>
                 </div>
                 <div class="img-reclamacao-corta">

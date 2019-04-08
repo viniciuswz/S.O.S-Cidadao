@@ -123,8 +123,8 @@
         <?php if((isset($tipoUsu) AND ($tipoUsu == 'Comum')) OR !isset($tipoUsu)){?>  
             <section class="criar-publicacao">
                 <div>
-                   <i class="icone-edit"></i><p>  Gostaria de fazer uma reclamação?</p>
-                    <a href="Formulario-reclamacao">Reclamar</a>
+                   <i class="icone-edit"></i><p>  Gostaria de fazer uma publicação?</p>
+                    <a href="Formulario-reclamacao">postar</a>
                 </div>
             </section>  
         <?php } ?>

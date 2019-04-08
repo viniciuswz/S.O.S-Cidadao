@@ -60,7 +60,7 @@
                     <div>
                         <img src="view/imagens/TOPO.png" >
                         <h2>Bem vindo ao SOS Cidadão!</h2>
-                        <p>Agora você faz parte do povo e poderá contribuir com a cidade, envie sua reclamação, ou crie um debate!</p> 
+                        <p>Agora você faz parte da nossa comunidade e poderá contribuir com a cidade, envie sua publicação, estimule ideias em um forum!</p> 
                     </div> 
                    
 
