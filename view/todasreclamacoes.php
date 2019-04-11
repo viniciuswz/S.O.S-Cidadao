@@ -92,7 +92,7 @@
         <?php
             if(!empty($_SESSION['atu'])){
                 if($_SESSION['atu'] == '1'){
-                    echo '<script>alerta("Certo","Você apagou a reclamação")</script>';
+                    echo '<script>alerta("Certo","Você apagou a publicação")</script>';
                 }                
                 unset($_SESSION['atu']);
             }          

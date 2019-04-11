@@ -2618,7 +2618,7 @@ color:black
     overflow: hidden;
 }
 .prefeitura-publicacao .topo-prefeitura-publicacao img{
-    height: 170%;
+    height: 100%;
     position: relative;
     top: 50%;
     left: 50%;

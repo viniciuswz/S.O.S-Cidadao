@@ -79,7 +79,7 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
                             
                         }else{
                             if(tipoDonoPaginacao == "Dono"){
-                                criarEmpty('Você não pode postar reclamações, entre com sua conta de usuário comum!','<a href="'+voltar+'Sair.php" class="cta">Log out</a>',voltar);
+                                criarEmpty('Você não pode postar publicações, entre com sua conta de usuário comum!','<a href="'+voltar+'Sair.php" class="cta">Log out</a>',voltar);
                             }else{
                                 criarEmpty('Esse usuário não tem nenhuma publicação :(','',voltar);
                             }

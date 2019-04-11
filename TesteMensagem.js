@@ -1,5 +1,5 @@
 var ultimo_id= 0;
-
+//a
 setInterval("jaquinha()",5000);
 
 function jaquinha(){
@@ -72,7 +72,7 @@ function teste2(resposta){
         
         if(classe == 'linha-mensagem_padrao'){
             ultimo_id = msg_id;
-            mensa += "<div class=usuario-msg-foto><img src='../Img/perfil/"+arr1[3]['mensagens'][contador]['img_perfil_usu']+"'></div><div class=mensagem_padrao><span class=nome><a href=perfil_reclamacao.php?ID="+arr1[3]['mensagens'][contador]['cod_usu']+">"+arr1[3]['mensagens'][contador]['nome_usu']+"</a></span>";
+            mensa += "<div class=usuario-msg-foto><img src='../Img/perfil/"+arr1[3]['mensagens'][contador]['img_perfil_usu']+"'></div><div class=mensagem_padrao><span class=nome><a href=../perfil_reclamacao/"+arr1[3]['mensagens'][contador]['cod_usu']+">"+arr1[3]['mensagens'][contador]['nome_usu']+"</a></span>";
         }else{
             mensa += "<div>";
         }

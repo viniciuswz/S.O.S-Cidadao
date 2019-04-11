@@ -95,9 +95,9 @@
         <?php
             if(!empty($_SESSION['atu'])){
                 if($_SESSION['atu'] == '1'){
-                    echo '<script>alerta("Certo","Você apagou o debate")</script>';
+                    echo '<script>alerta("Certo","Você apagou a discussão")</script>';
                 }else if($_SESSION['atu'] == '2'){
-                    echo '<script>alerta("Certo","Você saiu do debate")</script>';
+                    echo '<script>alerta("Certo","Você saiu da discussão")</script>';
                 }
                 
                 unset($_SESSION['atu']);
