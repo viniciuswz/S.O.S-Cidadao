@@ -84,8 +84,8 @@
            //$resposta = $publi->getPubliNRespo($_GET['pagina'], TRUE);  
         }else{
             isset($_SESSION['id_user']) ? $idVisualizador = $_SESSION['id_user'] : $idVisualizador = null;
-            $nomeLink1 = 'Reclamação';
-            $nomeLink2 = 'Debate';
+            $nomeLink1 = 'Publicações';
+            $nomeLink2 = 'Fóruns';
             //$resposta = $publi->ListByIdUser($_GET['pagina'], $idVisualizador);  
         }      
           

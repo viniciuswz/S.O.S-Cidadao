@@ -64,9 +64,9 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
                         //var emptyStateMensagem = "Descobrimos que você não tem nenhuma publicação, que tal postar uma ?";
                         //var emptyStateCta = 
                         if(tipoDonoPaginacao == "Dono"){
-                            criarEmpty('Você não criou nenhum debate, sempre tem algo na cidade sobre o que discutir, crie um debate e chame a galera!','<a href="'+voltar+'Formulario-debate" class="cta">começar</a>',voltar);
+                            criarEmpty('Você não criou nenhuma discussão, sempre tem algo na cidade sobre o que discutir, crie uma e chame a galera!','<a href="'+voltar+'Formulario-debate" class="cta">Criar discussão</a>',voltar);
                         }else{
-                            criarEmpty('Esse usuário não possui debate criado :(','',voltar);
+                            criarEmpty('Esse usuário não possui discussões criadas :(','',voltar);
                         }
                        
                     }else if(tipoUsuPaginacao == "Prefeitura"){
@@ -75,15 +75,15 @@ function verificarSeFazRolagem(){ // rodar isso dentro do jaquinha
                         if(tipoDonoPaginacao == "Dono"){
                             criarEmpty('Ora ora, não tem nenhuma publicação respondida, que tal responder uma?','<a href="'+voltar+'prefeitura-reclamacao" class="cta">responder</a>',voltar);
                         }else{
-                            criarEmpty('Esse usuário não possui debate criado :(','',voltar);
+                            criarEmpty('Esse usuário não possui discussão criado :(','',voltar);
                         }
                     }else{
 
                         
                         if(tipoDonoPaginacao == "Dono"){
-                            criarEmpty('Você não pode postar debates, entre com sua conta de usuário comum!','<a href="'+voltar+'Sair.php" class="cta">Log out</a>',voltar);
+                            criarEmpty('Você não pode postar uma discussão, entre com sua conta de usuário comum!','<a href="'+voltar+'Sair.php" class="cta">Log out</a>',voltar);
                         }else{
-                            criarEmpty('Esse usuário não possui debate criado :(','',voltar);
+                            criarEmpty('Esse usuário não possui discussões criadas :(','',voltar);
                         }
                     }
                 }

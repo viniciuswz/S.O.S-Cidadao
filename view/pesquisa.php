@@ -166,7 +166,7 @@
                                 }
                             ?>
 
-                            <label class="container"> fóruns 
+                            <label class="container"> Fóruns 
                             <?php if(isset($_GET['tipo']) AND in_array('Deba',$_GET['tipo'])) { ?>
                                 <input type="checkbox" name="tipo[]" checked="checked" value="Deba">
                             <?php }else{ ?>

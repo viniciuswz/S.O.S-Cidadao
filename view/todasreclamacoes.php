@@ -124,7 +124,7 @@
             <section class="criar-publicacao">
                 <div>
                    <i class="icone-edit"></i><p>  Gostaria de fazer uma publicação?</p>
-                    <a href="Formulario-reclamacao">postar</a>
+                    <a href="Formulario-reclamacao">Postar!</a>
                 </div>
             </section>  
         <?php } ?>

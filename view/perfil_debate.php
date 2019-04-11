@@ -85,8 +85,8 @@
             $debate = new Debate();
             $debate->setCodUsu($id);
              isset($_SESSION['id_user']) ? $idVisualizador = $_SESSION['id_user'] : $idVisualizador = null;
-             $nomeLink1 = 'Debate';
-             $nomeLink2 = 'Reclamação';
+             $nomeLink1 = 'Fóruns';
+             $nomeLink2 = 'Publicações';
              
              $resposta = $debate->ListByIdUser($_GET['pagina'], $idVisualizador);
              
