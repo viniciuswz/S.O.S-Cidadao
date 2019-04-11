@@ -163,7 +163,7 @@
                         
                             <textarea placeholder="Escreva aqui" id="sobre" name="descricao"></textarea>
                                 <p></p>
-                                <input type="submit" value="Iniciar debate" class="cta">
+                                <input type="submit" value="Iniciar discussão" class="cta">
                     
                         </div>     
             </form>
