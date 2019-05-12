@@ -1,11 +1,17 @@
 
+body{
+    background-color: white
+}
+
 header{
     display: flex;
    
     height: 100px;
 }
 header img{
-    height: 100px;
+    height: 80px;
+    margin-left: 10px;
+    margin-top: 10px;
 }
 header form{
     margin: 0 2vw;
@@ -41,7 +47,7 @@ header form button i.icone-pesquisa{
     height: 35px;
     width: 35px;
 
-    background-size: 1090px;
+    background-size: 1090px 80px;
     background-position: -139px -0px ;
 
 }
@@ -70,26 +76,28 @@ nav.menu > ul > li{
 
 nav.menu > ul > li > a > i{
    
-    top:8px;
-    margin: 0 auto; 
-    height: 35px;
-    width: 35px;
-    background-size: 1080px;
+top:8px;
    
- 
- 
+margin: 0 auto;
+   
+min-height: 35px;
+   
+min-width: 35px;
+   
+background-size: 3507% 70px;
+   
+/* background-color: red; */
  }
  
  nav.menu > ul > li > a > i.icone-reclamacao{
-    background-position: -34px -1.6px;
- 
+    background-position: -117px 0.4px;
+    /* background-size: 3400%; */
  }
  nav.menu ul li a i.icone-notificacao{
-     background-position: -68px -1.6px;
+     background-position: -150px 0.4px;
  }
  nav.menu ul li a i.icone-debate{
-     background-position: -102px -1.6px;
-     
+     background-position: -185px 0.4px;
  }
 
 
@@ -115,8 +123,10 @@ color:white;
 }
 
 nav.menu > ul > li > a:hover i{
-    background-position-y: -37.5px;
+    background-position-y: -35px;
 }
+
+.clicado
 
 nav.menu > ul > li > a:hover #quantidade_de_not{
     background-color: #253137;
@@ -134,7 +144,6 @@ nav.menu > ul > li > a:hover #quantidade_de_not{
 }
 
 .user-menu .fechar{
-    
     color: aliceblue;
     font-size: 50px;
     font-weight: bold;
@@ -182,7 +191,7 @@ nav.menu > ul > li > a:hover #quantidade_de_not{
 }
 
 .perfil-info div img{
-    height: 140%;
+    /* height: 140%; */
 }
 
 
@@ -253,4 +262,18 @@ nav.menu > ul > li > a:hover #quantidade_de_not{
 .comentarios .comentario-user:last-child::after{
     content: ' ';
     height:115px
+}
+
+.prefeitura-publicacao .topo-prefeitura-publicacao{
+    margin-top: 20px
+}
+
+.salvos h4 {
+    color: #000;
+  
+}
+
+.gamb{
+    width: 100vw !important;
+    max-width: 390px
 }

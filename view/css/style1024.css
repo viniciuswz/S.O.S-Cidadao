@@ -1,4 +1,9 @@
 
+body{
+    background-color: white
+}
+
+
 header{
     display: flex;
 
@@ -6,7 +11,9 @@ header{
     height: 80px;
 }
 header img{
-    height: 80px;
+    height: 60px;
+    margin-left: 10px;
+    margin-top: 10px;
 }
 header form{
     margin:0 1vw;
@@ -21,13 +28,13 @@ border:0;
 }
 
 header form input:focus{
-border: 3px solid pink;
+
 border-right: 0;
 }
 
 header input:focus + button{
-    border: 3px solid pink;
-    border-left: 0;
+    
+    
     height: 35px;
     width: 28px;
 }
@@ -41,16 +48,19 @@ header form button{
 }
 
 header form button i.icone-pesquisa{
-    height: 28px;
-    width: 28px;
-    background-size: 950px;
-    background-position: -123.9px -2px ;
+    min-height: 33px;
+    min-width: 28px;
+    background-size: 950px 65px;
+    background-position: -123.9px 1px;
+    /* background-color: red; */
+    /* position: relative; */
+    top: 0px;
 }
 header i.icone-user{
 margin:0 15px;
 width: 35px;
 height: 35px;
-background-size: 1060px;
+background-size: 1060px 80px;
 
 }
 nav.menu{
@@ -67,23 +77,21 @@ nav.menu > ul{
 
 nav.menu > ul > li > a > i{
    top:8px;
-   margin: 0 auto; 
-   height: 25px;
-   width: 25px;
-   background-size: 880px;
+   margin: 0 auto;
+   min-height: 25px;
+   min-width: 25px;
+   background-size: 800px 70px;
 }
 
-nav.menu > ul li > a > i.icone-reclamacao{
-background-position: -30px -1.6px;
-}
+nav.menu > ul li > a > i.icone-reclamacao{background-position: -27px -8.6px;}
 
 
 nav.menu ul li a i.icone-notificacao{
-    background-position: -59px -1.6px;
+    background-position: -50px -8.6px;
 }
 
 nav.menu ul li a i.icone-debate{
-    background-position: -87.51px -1.6px;
+    background-position: -78.51px -8.6px;
 }
 
 nav.menu > ul > li > a > i > span{
@@ -102,7 +110,7 @@ height: 80px;
 }
 
 nav.menu > ul > li > a:hover i{
-    background-position-y: -30.1px;
+    background-position-y: -35.6px;
 }
 
 .user-menu .fechar{    
@@ -135,8 +143,8 @@ nav.menu > ul > li > a:hover i{
 }
 
 .perfil > img{
-    height: 56.23vw;
-    max-height: 774px;
+    /* height: 56.23vw; */
+    /* max-height: 774px; */
 }
 
 
@@ -154,7 +162,7 @@ nav.menu > ul > li > a:hover i{
 }
 
 .perfil-info div img{
-    height: 135%;
+    /* height: 135%; */
 }
 
 
@@ -227,6 +235,12 @@ font-size: 18px;
 
 width: 320px
   
+}
+
+/*reclamacao form*/
+
+.imagem h3{
+    font-size: 19px
 }
 
 /*DEBATES*/
@@ -318,3 +332,35 @@ width: 320px
     width: 55%
 }
 
+.prefeitura-publicacao .topo-prefeitura-publicacao{
+
+    margin-top: 20px;
+   
+    max-width:70%;
+
+}
+
+.prefeitura-publicacao .conteudo-resposta{
+    width: 70%;
+}
+
+.prefeitura-publicacao .conteudo-resposta span{
+    display: block;
+    width: 100%;
+    font-size:14px;
+    font-family: arial;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    text-align: left;
+}
+
+
+.salvos h4 {
+    color: #000;
+  
+}
+
+.gamb{
+    width: 100vw !important;
+    max-width: 390px
+}

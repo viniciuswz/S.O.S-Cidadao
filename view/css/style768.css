@@ -2,7 +2,9 @@ header{
     height: 60px;
 }
 header img{
-    height: 60px;
+    height: 45px;
+    margin-top: 5px;
+    margin-left: 5px;
 }
 header form{
     width: 60%;
@@ -16,6 +18,7 @@ outline: white;
 height: 35px;
 border:0;
 }
+
 
 /* header form input:focus{
 border: 3px solid pink;
@@ -41,11 +44,15 @@ header form button{
 
 header form button i.icone-pesquisa{
 
-    height: 28px;
-    width: 28px;
+min-height: 30px;
 
-    background-size: 950px;
-    background-position: -123.9px -2px ;
+min-width: 28px;
+
+background-size: 950px 65px;
+
+background-position: -123.9px -1px;
+
+top: 0;
 }
 header i.icone-user{
   
@@ -53,7 +60,7 @@ margin:0 30px;
 width: 35px;
 height: 35px;
 
-background-size: 1060px;
+background-size: 1060px 80px;
 
 }
 
@@ -64,15 +71,16 @@ nav.menu{
     width: 100vw;
     position: fixed;
     /* top: calc(100vh - 60px); */
-    height: 60px;
-    bottom: 0
+    height: 68px;
+    bottom: 0;
+    border-top: 2px solid white;
 }
 nav.menu > ul{
     display: flex;
     justify-content: space-around;
     text-align: center;
     width: 100vw;
-
+    /* padding-top: 2px; */
 }
 
 nav.menu > ul > li{
@@ -82,7 +90,13 @@ nav.menu > ul > li{
 }
 nav.menu > ul > li > a > i{
    display: block;
-   margin: 0 auto; 
+   margin: 0 auto;
+   width: 40px;
+   min-height: 40px;
+   /* background-color: red; */
+   background-position-y: -5px;
+   position: relative;
+   top: 4px;
 }
 
 nav.menu > ul > li > a{
@@ -93,7 +107,7 @@ nav.menu > ul > li > a{
 }
 
 nav.menu > ul > li > a:hover i{
-    background-position-y: -41.1px;
+    background-position-y: -46.1px;
 }
 
 
@@ -114,20 +128,22 @@ nav.menu > ul > li > a:hover i{
 }
 nav.notificacoes{
     
-    bottom: 60px;
+    top: 0;
     right: 0;
-    
+    position: fixed;
     width: 100vw;
-  
+    box-shadow: none;
+    z-index: 3;
 }
 
 
 nav.notificacoes ul{
     width: calc(100vw + 30px);
-    height: calc(100vh - 95px);
+    height: 100vh;
     margin-right: -10px;
     padding-right: 3px;
     text-align: start;
+    padding-bottom: 50px;
 }
 
 nav.notificacoes ul li a{
@@ -135,19 +151,35 @@ width: 100vw;
 }
 
 .notificacoes.ativo{
-    height: calc(100vh - 60px);
+    height: 100vh;
+}
+
+nav.notificacoes h3 span{
+    display:initial;
+    font-family: "Open-Sans";
+    font-size: 35px;
+    font-weight: bold;
+    position: absolute;
+    right: 16px;
+    z-index: 2;
+    top: -4px;
+    cursor: pointer;
+}
+
+nav.notificacoes h3 {
+    padding: 10px 4px;
 }
 
 /*NÃO ALTERAR NADA DAQUI PARA CIMA*/
 
 .perfil-base{
    background-color: white;
-   padding-bottom: 90px
+   padding-bottom: 110px;
 }
 
 
 .perfil{
-    height: 260px;
+    height: 230px;
     justify-content: center;
 }
 
@@ -155,8 +187,7 @@ width: 100vw;
     position: absolute;
     z-index: 1;
     left: 10px;
-    top: 229px
-   
+    top: 199px;
 }
 
 .perfil > img{
@@ -234,9 +265,10 @@ width: 100vw;
  .criar-publicacao i{
      display: block;
      background-size: inherit;
-     background-position: -480px -5.6px;
-     width:50px;
-     height:30px;
+     background-position: -457px -1.6px;
+     min-width: 30px;
+     min-height: 30px;
+     background-size: 3900%;
  }
 
  .criar-publicacao a{
@@ -256,6 +288,7 @@ width: 100vw;
     width: 100%;
     flex-flow: column wrap;
     align-items: center;
+    padding-bottom: 60px;
 
 }
 /*pag todoas reclamacoes*/
@@ -274,7 +307,7 @@ width: 100vw;
 
 .formulario hr{
    
-    border: 2px solid purple;
+    border: 2px solid #EF3C1E;
     position: relative;
     bottom: 10px
 }
@@ -380,14 +413,15 @@ width: 100vw;
 .form-icone form button{
    
     padding:10px;
-    margin-top: 40px;
+    margin-top: 10px;
     width: 80%;
     font-weight:800;
     
 }
 
 .form-config{
-    padding-bottom: 70px
+    padding-bottom: 70px;
+    
 }
 
 .form-config .campo-texto-config label{
@@ -534,8 +568,8 @@ font-size: 1.1em;
 
 .img-publicacao{
     width: inherit;
-    background-color: orange;
-    display:block
+    /* background-color: orange; */
+    display:block;
 }
 
 .img-publicacao figure{
@@ -548,14 +582,14 @@ font-size: 1.1em;
 
 .img-publicacao figure img{
    width:100%;
-        align-self: center;
-    height: inherit;
-    position: inherit;
-    top: 0%;
-    left: 50%;
-    transform: translateX(-00%) translateY(-00%);
-    background-color: blueviolet;
-    min-width:500px;
+   align-self: center;
+   height: inherit;
+   position: inherit;
+   top: 0%;
+   left: 50%;
+   transform: translateX(-00%) translateY(-00%);
+   /* background-color: blueviolet; */
+   min-width:500px;
  }
 
  .img-publicacao .item-baixo-publicacao{
@@ -579,8 +613,9 @@ font-size: 1.1em;
 
 .prefeitura-publicacao .topo-prefeitura-publicacao{
 
-    justify-content: flex-start;
-   margin-left: 20px
+justify-content: flex-start;
+
+/* margin-left: 20px */
 }
 
 .topo-prefeitura-publicacao span:first-child{
@@ -652,13 +687,15 @@ overflow: inherit
 .landing-dobra h1{
     width: 100%;
     text-align: center;
-    top: 10%;
+    bottom: 214px;
+    top: inherit;
     left:50%;
     transform: translateX(-50%);
 }
 
 .landing-dobra div{
-    top: 90px;
+    bottom: 10px;
+    top: inherit;
     left:50%;
     transform: translateX(-50%);
     width: 450px;
@@ -667,11 +704,14 @@ overflow: inherit
 
 
 .landing-funcionalidades{
-    flex-direction: column
+    flex-direction: column;
+    margin-top: 20px;
+    padding: 0;
 }
 
 .landing-item{
     width: 100%;
+    margin: 0;
 }
 
 
@@ -679,18 +719,18 @@ overflow: inherit
     width: 100%;
     text-align: center;
     color:white;
-    position: absolute;
-    top: 30%;
-    left:50%;
-    transform: translateX(-50%)
+    /* position: absolute; */
+    /* top: 30%; */
+    /* left:50%; */
+    /* transform: translateX(-50%); */
 }
 
 .landing-prefeitura p{
     color:white;
-    position: absolute;
-    top: 40%;
-    left:50%;
-    transform: translateX(-50%);
+    /* position: absolute; */
+    /* top: 40%; */
+    /* left:50%; */
+    /* transform: translateX(-50%); */
 }
 
 .landing-rodape h1{
@@ -707,3 +747,36 @@ overflow: inherit
 }
 
 
+.prefeitura-publicacao .topo-prefeitura-publicacao{
+
+    margin-top: 20px;
+   
+    max-width:90%;
+  
+
+}
+
+.prefeitura-publicacao .conteudo-resposta{
+    width: 90%;
+}
+
+.prefeitura-publicacao .conteudo-resposta span{
+    display: block;
+    width: 100%;
+    font-size:14px;
+    font-family: arial;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+   
+    text-align: left;
+}
+
+.paginacao{
+    
+margin-bottom: 60px
+
+}
+
+.gamb{
+    width: 100vw !important;
+}

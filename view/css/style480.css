@@ -1,16 +1,17 @@
-
 header{
   
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 55px;
+    transition: .5s
     
    
 }
 header img{
     height: 45px;
-    order: 2
+    order: 2;
+    margin-top: 6px;
 }
 
 header > a {
@@ -66,24 +67,29 @@ header form button{
 }
 i.icone-pesquisa{
  /*tamanho do icone*/
- background-position: -140px 5px; /*posição que se encontra, esqueda/direita e cima/baixo*/
- background-size: 1100px
+ background-position: -133px -2px; /*posiÃ§Ã£o que se encontra, esqueda/direita e cima/baixo*/
+ background-size: 1050px 80px;
 }
 header form button i.icone-pesquisa{
-    height: 28px; /*tamanho do espaço que a altura ocupa na tela*/
-    width: 28px; /*tamanho do espaço que a largura ocupa na tela*/
-
-    background-size: 950px; /*tamanho do icone*/
-    background-position: -123.9px -2px ; /*posição que se encontra, esqueda/direita e cima/baixo*/
+    min-height: 33px; /*tamanho do espaÃ§o que a altura ocupa na tela*/
+    min-width: 28px; /*tamanho do espaÃ§o que a largura ocupa na tela*/
+    background-size: 950px 65px; /*tamanho do icone*/
+    background-position: -123.9px 1px; /*posiÃ§Ã£o que se encontra, esqueda/direita e cima/baixo*/
+     top: 0; 
 }
 header i.icone-user{
     order: 3;
     margin:0 10px;
     width: 30px;
-    height: 30px;
+    height: 28px;
+    min-height: 30px;
+    min-width: 30px;
     background-size: 950px;
-  
-    background-position-x: -2px
+    background-position-x: -2px;
+    /* background-color: red; */
+    /* background-position-y: 8px; */
+    align-self: center;
+    top: 0;
 }
 nav.menu{
     display: flex;
@@ -92,15 +98,16 @@ nav.menu{
     width: 100vw;
     position: fixed;
     /* top: calc(100vh - 50px); */
-    height: 50px;
-    bottom: 0px
+    height: 55px;
+    bottom: 0px;
+    border-top: 2px solid white;
 }
 nav.menu >ul{
     display: flex;
     justify-content: space-around;
     text-align: center;
     width: 100vw;
-
+    /* margin-top: 2px; */
 }
 
 nav.menu > ul > li{
@@ -109,16 +116,21 @@ nav.menu > ul > li{
     text-align: center;
 }
 nav.menu > ul > li > a > i{
-   display: block;
-   margin: 0 auto; 
-   width: 30px;
-   height: 30px;
-   background-size: 980px; 
+    position: relative;
+    top: 0;
+    display: block;
+    margin: 0 auto;
+    min-width: 30px;
+    min-height: 30px;
+    width: 30px;
+    height: 30px;
+   /* background-color: green; */
+    background-size: 3301% !important;
 }
 
 
 nav.menu > ul li > a > i.icone-reclamacao{
-    background-position: -32.5px -1.6px;
+    background-position: -33.5px -1.6px;
     }
     
     
@@ -127,7 +139,7 @@ nav.menu > ul li > a > i.icone-reclamacao{
     }
     
     nav.menu ul li a i.icone-debate{
-        background-position: -96px -1.6px;
+        background-position: -97px -1.6px;
     }
     
     nav.menu > ul > li > a > i > span{
@@ -172,7 +184,7 @@ nav.menu > ul > li > a > i > span{
     z-index: 2;
 }
 
-/*notificações*/
+/*notificacao*/
 
 .notificacoes ul::-webkit-scrollbar{
     display:none
@@ -181,38 +193,62 @@ nav.menu > ul > li > a > i > span{
 nav.notificacoes{
    
     width: 100vw;
-    bottom: 50px;
+    top: 0;
     right: 0;
-    
+    position: fixed;
     width: 100vw;
+    box-shadow: none;
+    z-index: 3;
    
+}
+
+nav.notificacoes h3 span{
+    display:initial;
+    font-family: "Open-Sans";
+    font-size: 35px;
+    font-weight: bold;
+    position: absolute;
+    right: 16px;
+    z-index: 2;
+    top: -4px;
+    cursor: pointer;
 }
 
 
 nav.notificacoes ul{
     
+width: calc(100vw + 20px);
     
-    width: calc(100vw + 20px);
-    height: calc(100vh - 90px);
-    margin-right: -10px;
-    padding-right: 3px;
-    text-align: start
+height: 100vh;
+    
+margin-right: -10px;
+    
+padding-right: 3px;
+    
+text-align: start;
+    
+
+    
+padding-bottom: 50px;
 }
 
 nav.notificacoes ul li a{
 width: 100vw;
 }
 
-.notificacoes.ativo{
-    height: calc(100vh - 50px);
+nav.notificacoes h3 {
+    padding: 10px 4px;
 }
 
-/*NÃO ALTERAR NADA DAQUI PARA CIMA*/
+.notificacoes.ativo{
+    height: 100vh
+}
+
+/*NÃƒO ALTERAR NADA DAQUI PARA CIMA*/
 
 .perfil-base{
     background-color: white;
-    padding-bottom: 80px
-    
+    padding-bottom: 130px;
  }
 
  .perfil-info span{
@@ -233,12 +269,12 @@ width: 100vw;
  
 
 .perfil{
-    height: 190px;
+    height: 150px;
     justify-content: center;
 }
 
-#trocar-capa{ 
-    top: 160px
+#trocar-capa{
+    top: 120px;
 }
 
 .perfil-info h3{
@@ -254,9 +290,9 @@ width: 100vw;
 .perfil > img{
     align-self: center;
     justify-content: center;
-    height: 56.23vw;
-    max-height: 774px;
-    transform: translateY(-50%) translateX(-50%) scale(1.21);
+    /* height: 56.23vw; */
+    /* max-height: 774px; */
+    /* transform: translateY(-50%) translateX(-50%) scale(1.21); */
 }
 
 
@@ -278,18 +314,20 @@ width: 100vw;
 }
 
 .perfil-info div img{
-    height: 135%;
+    height: 100%;
 }
 
 .perfil-info p{
-    margin-top: 40px;
-    position: inherit;
+
+    position: relative;
    
     text-align: center;
     font-size: 1.3rem;
     color: black;
-    margin: 40px auto 0 auto;
+    margin: 0px auto 0 auto;
     padding: 0 15px;
+    top:10px
+   
 }
 
 .perfil-info div span{
@@ -319,11 +357,16 @@ width: 100vw;
    .menu-perfil ul li a{
        font-size: .9em;
    }
+
+   .menu-perfil ul li {
+    width: calc(100vw / 2 - 5px);
+    max-width: calc(768px / 2);
+   }
 /*pag todos debates*/
 
 
 .alinha-item{
-    padding-bottom: 60px;
+    padding-bottom: 55px;
 }
 .criar-publicacao div{
     padding: 5px
@@ -334,12 +377,10 @@ width: 100vw;
  .criar-publicacao i{
      display: block;
      background-size: inherit;
-     background-position: -480px -5.6px;
-     width:60px;
-     height:30px;
-
-
-
+     background-position: -474px -3.6px;
+     min-width: 30px;
+     min-height: 30px;
+     background-size: 4043%;
  }
 
  .criar-publicacao a{
@@ -354,7 +395,7 @@ width: 100vw;
 
 .item-publicacao{
     max-width: 320px;
-    width:100%;
+    width:90%;
 }
 
 .item-publicacao .item-topo p span{
@@ -363,7 +404,7 @@ width: 100vw;
 
 .item-publicacao .legenda{
     max-width: 320px;
-    width:100%;
+    width:90%;
  }
 
  .item-publicacao figure{
@@ -391,7 +432,7 @@ width: 100vw;
 
 .formulario hr{
    
-    border: 2px solid purple;
+    border: 2px solid #EF3C1E;
     position: relative;
     bottom: 10px
 }
@@ -422,6 +463,26 @@ width: 100vw;
    
 }
     
+form .categorias{
+    width: 95%;
+}
+form .categorias > div{
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-y: scroll;
+    padding-right: 10px;
+    height:140px
+}
+
+form .categorias div div{
+    margin: 0;
+    margin-right: 10px;
+}
+
+form .categorias div div:last-child{
+     margin-right: 0px
+}
+
 .imagem{
     width: 100%;
 
@@ -443,7 +504,7 @@ width: 100vw;
     
 }
 .envio-img label div img{
- width: 140%;
+ width: 100%;
  position: relative;
 }
 
@@ -512,11 +573,11 @@ width: 100vw;
 }
 
 .form-icone form .campo-texto-icone{
-    width: 80%;
+    width: 90%;
 }
 
 .form-icone form .campo-texto-icone input{
-    width: 100%;
+    width: 80%;
 }
 
 .form-icone form h3{
@@ -525,7 +586,7 @@ width: 100vw;
 
 .form-icone form button{
     padding:10px;
-    margin-top: 0px;
+    margin-top: 10px;
     width: 80%;
     font-weight:800;
 }
@@ -567,10 +628,16 @@ width: 100vw;
 .usuarios-debate-info{
     position: absolute;
     right: 0;
-    width: 0;
-    max-width: 100%;
-   
-   
+    
+  
+    max-width: inherit;
+    height:auto;
+    top:0;
+    bottom:0;
+}
+
+.usuarios-debate-info.usuarios-debate-info-ativo{
+    /* width:100vw !important */
 }
 
 .usuarios-debate-info > span{
@@ -581,10 +648,13 @@ width: 100vw;
     position: absolute;
     width: 0;
     right: 0;
+    top:0;
+    bottom:0;
     background-color: white;
     overflow: hidden;
     order: 2;
-    max-width: 100%;
+    max-width: inherit;
+    height:auto;
     min-width: 0;
     display: block;
     transition: 0.5s;
@@ -601,6 +671,12 @@ width: 100vw;
 .contatos header h3{
     white-space: nowrap
 }
+
+.batepapo{
+    position:absolute;
+    top:0;
+    bottom:0
+}
 .batepapo header h4{
     font-size: 13px
 }
@@ -611,8 +687,16 @@ width: 100vw;
 }
 
 .mensagens{
-    height: calc(100vh - 110px);
+   position: absolute;
+   top: 55px;
+   bottom: 60px;
+   height: auto;
+   width: inherit;
+   /* background-color: red; */
+   z-index: 0;
 }
+
+.batepapo form {position:absolute;width: inherit;bottom: 0;}
 
 .mensagem_padrao span.nome{
     max-width: 90%;
@@ -777,7 +861,7 @@ width: 100vw;
 }
 
 
-/*PAG RECLAMAÇAO*/
+/*PAG RECLAMAÃ‡AO*/
 
 .pag-reclamacao{
     display: flex;
@@ -839,9 +923,9 @@ width: 100vw;
 .img-publicacao figure img{
     position:inherit;
     align-self: center;
-     width: 100%; 
-     height: auto;
-    background-color: red;
+    width: 100%;
+    height: auto;
+    /* background-color: red; */
     display: block;
  }
 
@@ -852,7 +936,7 @@ width: 100vw;
     top: 0%;
     left:0%;
     transform: translateX(-0%) translateY(-0%);
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
 }
 
 .img-publicacao .item-baixo-publicacao{
@@ -870,17 +954,14 @@ width: 100vw;
  }
 
 .img-publicacao .item-baixo-publicacao{
-    display: block;
-    justify-content: space-between;
+    display: flex;
+    justify-content: space-around;
     align-items: center;
     font-size: 14px;
     height: initial;
     margin: 10px 0;
     position: inherit;
     background-color: inherit;
-  
-   
-    
  }
 
  .img-publicacao .item-baixo-publicacao p{
@@ -893,14 +974,12 @@ width: 100vw;
  }
  .img-publicacao .item-baixo-publicacao i{
      display: inline-block;
-    
      background-size: 1000px;
      background-position: -260px 0px;
-     width: 30px;
-     height: 30px;
-    
-     margin: 0
-     
+     min-width: 30px;
+     min-height: 30px;
+     margin: 0;
+     /* background-color: red; */
  }
 
 
@@ -922,8 +1001,12 @@ width: 100vw;
 }
 
 .prefeitura-publicacao .topo-prefeitura-publicacao{
-    justify-content: flex-start;
-    margin-left: 20px
+
+    margin-top: 20px;
+   
+    max-width:90%;
+  
+
 }
 
 .topo-prefeitura-publicacao a span:first-child{
@@ -965,12 +1048,21 @@ width: 100vw;
 }
 
 .publicacao-conteudo-debate{
-    overflow: hidden;
+    overflow: inherit;
     
-    width: 95%;
-    height: 200px;
+    width: 100%;
+    height: auto;
     margin: 0 auto;
    
+}
+
+.publicacao-conteudo-debate img {
+     width: 100%; 
+    position: inherit;
+    top: 0%;
+    left: 0%;
+    transform: translateX(-0%) translateY(-0%);
+    /* min-width: 410px; */
 }
 
 .debate-publicacao a{
@@ -1006,7 +1098,7 @@ width: 100vw;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    background-color: rgb(77, 77, 77);
+    background-color: #009688;
 }
 
 .debate-status div{
@@ -1014,17 +1106,24 @@ width: 100vw;
     justify-content: center
 }
 
+.landing-dobra{
+    background-image: url('../imagens/nova-ima-mobile.jpg');
+    background-position: 0% 0;
+}
+
 .landing-dobra h1{
-    top: 10%;
+    bottom: 214px;
     left:50%;
     transform: translateX(-50%);
     width: 100%;
     font-size: 20px;
-    text-align: center
+    text-align: center;
+    top: inherit;
 }
 
 .landing-dobra div{
-    top: 90px;
+    bottom: 10px;
+    top: inherit;
     left:50%;
     transform: translateX(-50%);
     width: 95%;
@@ -1037,46 +1136,55 @@ width: 100vw;
 }
 
 .landing-funcionalidades{
-    flex-direction: column
+    flex-direction: column;
+    margin-top: 20px;
+    padding: 0;
 }
 
 .landing-item{
     width: 100%;
+    margin: 0;
+    text-align: center
 }
 
 .landing-prefeitura h1{
     width: 100%;
     text-align: center;
     color:white;
-    position: absolute;
-    top: calc(50% - 10px);
-    left:50%;
-    transform: translateX(-50%) translateY(-50%)
+    /* position: absolute; */
+    /* top: calc(30% - 10px); */
+    /* left:50%; */
+    /* transform: translateX(-50%) translateY(-50%) */
 }
 
 .landing-prefeitura p{
     color:white;
-    position: absolute;
-    width: 90%;
+    /* position: absolute; */
+    /* width: 90%; */
     text-align: center;
-    top:calc(50% + 60px);
-    left:50%;
-    transform: translateX(-50%) translateY(-50%)
+    /* top:calc(50% + 60px); */
+    /* left:50%; */
+    /* transform: translateX(-50%) translateY(-50%) */
+    font-size: 15px;
 }
 
 .landing-rodape h1{
-    font-size: 17px
+    font-size: 17px;
+    text-align: center
 }
 
 
 .mini-menu-adm{
+    display: block;
     position: fixed;
-    
-    top: calc(0px + 50px);
+    top: 0;
     width: 100%;
-    height: calc(100vh - 50px);
-    background-color: rgba(000, 000, 000, .5);
-    cursor: click
+    height: 0;
+    background-color: rgba(000, 000, 000, 0.8);
+    cursor: click;
+    transition: .5s;
+    z-index: 100;
+    overflow: hidden;
 }
 .mini-menu-adm ul{
     margin-top:0px;
@@ -1087,6 +1195,8 @@ width: 100vw;
     display:flex;
     flex-direction: column;
     font-family: Arial, Helvetica, sans-serif;
+    position: absolute;
+    bottom: 0;
 }
 
 .mini-menu-adm ul li a{
@@ -1105,7 +1215,7 @@ width: 100vw;
 
 .motivo-fundo{
     position: fixed;
-    background-color: rgba(0, 0, 0, .4);
+    background-color: rgba(0, 0, 0, .8);
     width: 100%;
     height: 100vh;
     left: 0;
@@ -1127,7 +1237,7 @@ width: 100vw;
 .motivo-box div{
     display: flex;
     justify-content: space-between;
-    align-items: center
+    align-items: center;
 }
 
 .motivo-box div span{
@@ -1139,7 +1249,7 @@ width: 100vw;
 /*Denuncia*/
 
 .box-denunciar div h1{
-    font-size: 18px
+    font-size: 16px;
 }
 
 .box-denunciar{
@@ -1153,7 +1263,7 @@ width: 100vw;
 /*Desativar*/
 
 .box-desativar div h1{
-    font-size: 18px
+    font-size: 16px;
 }
 
 .box-desativar{
@@ -1165,7 +1275,7 @@ width: 100vw;
 /*Erro*/
 
 .box-erro div h1{
-    font-size: 18px
+    font-size: 16px;
 }
 .box-erro{
     background-color: white;
@@ -1176,7 +1286,7 @@ width: 100vw;
 
 /*adduser*/
 .box-denunciar div h1{
-    font-size: 18px
+    font-size: 16px;
 }
 
 .box-adicionar-user{
@@ -1189,11 +1299,11 @@ width: 100vw;
 
 /*troca foto capa*/
 .modal-troca-foto{
-    overflow: auto
+    overflow: auto;
 }
 
 .box-troca-foto div h1{
-    font-size: 18px
+    font-size: 16px;
 }
 
 .box-troca-foto{
@@ -1206,7 +1316,7 @@ width: 100vw;
 /*preview capa*/
 
 .box-troca-foto-previa div h1{
-    font-size: 18px
+    font-size: 16px;
 }
 
 .box-troca-foto-previa{
@@ -1224,7 +1334,7 @@ width: 100vw;
 }
 
 .box-troca-foto-perfil div h1{
-    font-size: 18px;
+    font-size: 16px;
     
 }
 
@@ -1260,7 +1370,7 @@ width: 100vw;
 }
 
 .box-troca-foto-reclamacao div h1{
-    font-size: 18px
+    font-size: 16px
 }
 
 .box-troca-foto-reclamacao{
@@ -1272,9 +1382,9 @@ width: 100vw;
     transform: translateX(-50%) translateY(-0%);
 }
 /*preview reclamacao*/
-reclamacao
+
 .box-troca-foto-reclamacao-previa div h1{
-    font-size: 18px
+    font-size: 16px
 }
 
 .box-troca-foto-reclamacao-previa{
@@ -1288,7 +1398,7 @@ reclamacao
 /*modal editar comentario*/
 
 .box-editar-comentario div h1{
-    font-size: 18px
+    font-size: 16px
 }
 
 .box-editar-comentario{
@@ -1297,4 +1407,24 @@ reclamacao
     padding-bottom: 10px;
     height: 100vh;
     
+}
+
+.paginacao{
+    
+    margin-bottom: 70px
+
+}
+
+.gamb{
+    width: 100vw !important;
+}
+
+.email-ok div{
+    width: 90%;
+}
+
+.email-ok div h1{
+font-size: 1.4em;
+font-weight: bold;
+      
 }
