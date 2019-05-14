@@ -1428,3 +1428,14 @@ font-size: 1.4em;
 font-weight: bold;
       
 }
+
+/*modal avaliacao*/
+
+.box-avaliacao{
+    width: 100%;
+    height: 100vh;
+}
+
+.modal-avaliacao form{
+    height: 350px;
+}

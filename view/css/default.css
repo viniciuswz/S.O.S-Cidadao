@@ -4574,3 +4574,158 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+/*Modal avaliação resposta da prefeitura*/
+
+.estrelas{
+    display: flex;
+    width: 200px;
+    height: 50px;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+.estrelas .estrela {
+    width: 270px;
+    display: inline-block;
+}
+
+.estrelas input.estrela { 
+    display: none;
+}
+
+.estrelas label.estrela {
+    width: 20px;
+    height: 30px;
+    display: inline-block;
+    color: #444;
+    transition: all .2s;
+}
+
+
+.estrelas input.estrela:checked ~ label.estrela:before {
+    width:23px;
+    height: 23px;
+    display: block;
+    background-image: url('../imagens/estrela-com.png');
+    
+    background-repeat: no-repeat;
+}
+
+
+.estrelas label.estrela:before {
+    content: '';
+    width:23px;
+    height: 22px;
+    display: block;
+    background-image: url('../imagens/estrela-sem.png');
+    
+    background-position: 0px 0px;
+}
+
+.btn {
+    width: 110px;
+    padding: 6px;
+    border-radius: 5px;
+    border: 0;
+    color: white;
+    background-color: #f32723;
+    margin-top: 10px;
+}
+
+.modal-avaliacao{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 98;
+    display: block;
+    color:black;
+}
+
+.modal-avaliacao-fundo{
+    position: fixed;
+    background-color: rgba(0, 0, 0, .9);
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 98;
+}
+.modal-avaliacao-ativo{
+    display: block;
+}
+
+.box-avaliacao{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background-color: white;
+    width: 300px;
+    height: 400px;
+    padding-bottom: 10px;
+    z-index: 99;
+}
+
+.box-avaliacao span{
+    font-family: arial;
+    font-size: 40px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.box-avaliacao div:nth-child(1){
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 15px;
+}
+
+.box-avaliacao div h1{
+    font-size: 20px
+}
+
+
+.box-avaliacao div:nth-child(2){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 15px;
+    font-size: 14px;
+    flex-direction:column
+}
+
+.box-avaliacao a{
+    display: block;
+    margin: 0 auto;
+    background-color: red;
+    color:white;
+    padding: 10px;
+    margin-top: 10px
+}
+
+.texto-avaliacao textarea{
+    width: 100%;
+    height: 150px;
+    resize: none;
+    padding: 2px;
+}
+
+.texto-avaliacao{
+    width: 300px;
+}
+
+.texto-avaliacao p{
+    font-weight: 700;
+
+}
+
+.modal-avaliacao form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 300px;
+    align-items: center;
+}
+

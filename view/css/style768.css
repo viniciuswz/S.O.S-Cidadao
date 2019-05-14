@@ -780,3 +780,9 @@ margin-bottom: 60px
 .gamb{
     width: 100vw !important;
 }
+
+/*modal avaliação*/
+.box-avaliacao{
+    width: 300px;
+    height: 400px;
+}
