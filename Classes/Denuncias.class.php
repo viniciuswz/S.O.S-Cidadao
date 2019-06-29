@@ -3,7 +3,7 @@ namespace Classes;
 use Classes\Model\DenunciasM;
 use Classes\Paginacao;
 class Denuncias extends DenunciasM{
-    private $sqlDenunDebate = " %s SELECT 'Debate' AS Tipo,
+    private $sqlDenunDebate = " %s SELECT 'Fórum' AS Tipo,
                                 cod_denun_deba AS cod_denun, motivo_denun_deba AS motivo, 
                                 dataHora_denun_deba AS dataHora, 
                                 debate.cod_usu AS cod_usu_denunciado, 
@@ -36,7 +36,7 @@ class Denuncias extends DenunciasM{
                                 WHERE status_denun_comen = 'A' AND status_comen = 'A' AND status_usu = 'A'
                                 AND status_publi = 'A'";
     
-    private $countDenunDebate = " %s SELECT 'Debate' AS Tipo, debate_denun.cod_deba FROM debate_denun 
+    private $countDenunDebate = " %s SELECT 'Fórum' AS Tipo, debate_denun.cod_deba FROM debate_denun 
                                         INNER JOIN debate ON (debate_denun.cod_deba = debate.cod_deba)
                                         INNER JOIN usuario ON (debate.cod_usu = usuario.cod_usu)
                                         WHERE status_denun_deba = 'A' AND status_deba = 'A' AND status_usu = 'A'";
@@ -123,7 +123,7 @@ class Denuncias extends DenunciasM{
         if($tirarEspacos == 'comentario'){ 
             $codPubli = $this->acharPubliDoComen($cod);
             $link = 'reclamacao/'.$codPubli.'/'.$cod.'/Denun';
-        }else if($tirarEspacos == 'debate'){            
+        }else if($tirarEspacos == 'forum'){            
             $link = 'Pagina-debate/'.$cod;
         }else if($tirarEspacos == 'publicacao'){
             $link = 'reclamacao/'.$cod;
