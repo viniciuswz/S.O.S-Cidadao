@@ -96,7 +96,11 @@
             }            
             $_GET['IdComen'] = "";
         }
-        
+
+        $indUltimaRespostaPrefeitura = $comentario->verifyUltimaResposta("Resposta final da prefeitura");
+        $indUltimaRespostaDono = $comentario->verifyUltimaResposta("Resposta final do dono da publicação");        
+
+        $ultimaRespotaDono = $comentario->selectRespostaFinal("Resposta final do dono da publicação");        
 ?>
 <!DOCTYPE html>
 <html lang=pt-br>
@@ -300,21 +304,49 @@
             </section> 
 
             <?php         
-                if(!empty($comentarioPrefei)){                
+                if(!empty($comentarioPrefei)){ 
             ?>
                     <section class="prefeitura-publicacao">
+                    <?php
+                        $contador = 0;
+                        while($contador < count($comentarioPrefei)){
+                    ?>
                         <div class="topo-prefeitura-publicacao">
-                            <a href="<?php echo $voltar ?>perfil_reclamacao/<?php echo $comentarioPrefei[0]['cod_usu_prefei'] ?>">
+                            <a href="<?php echo $voltar ?>perfil_reclamacao/<?php echo $comentarioPrefei[$contador]['cod_usu_prefei'] ?>">
                             <div>
-                                <img src="<?php echo $voltar ?>Img/perfil/<?php echo $comentarioPrefei[0]['img_perfil_usu']?>">
+                                <img src="<?php echo $voltar ?>Img/perfil/<?php echo $comentarioPrefei[$contador]['img_perfil_usu']?>">
                             </div>
-                            <p><span class="negrito"><?php echo $comentarioPrefei[0]['nome_usu_prefei']?></span></a><time><?php echo $comentarioPrefei[0]['dataHora_comen']?></time></p>  
+                            <p><span class="negrito"><?php echo $comentarioPrefei[$contador]['nome_usu_prefei']?></span></a><time><?php echo $comentarioPrefei[$contador]['dataHora_comen']?></time></p>  
                         </div> 
                         <div class="conteudo-resposta">
                             <span>
-<?php echo nl2br($comentarioPrefei[0]['texto_comen'])?>
+<?php echo nl2br($comentarioPrefei[$contador]['texto_comen'])?>
                             </span>
                         </div>
+                    <?php
+                        $contador++;
+                        }
+                        if(!empty($ultimaRespotaDono)){
+                    ?>
+                    <div class="topo-prefeitura-publicacao">
+                            <a href="<?php echo $voltar ?>perfil_reclamacao/<?php echo $ultimaRespotaDono[0]['cod_usu'] ?>">
+                            <div>
+                                <img src="<?php echo $voltar ?>Img/perfil/<?php echo $ultimaRespotaDono[0]['img_perfil_usu']?>">
+                            </div>
+                            <p><span class="negrito"><?php echo $ultimaRespotaDono[0]['nome_usu']?></span></a><time><?php echo $ultimaRespotaDono[0]['dataHora_comen']?></time></p>  
+                        </div> 
+                        <div class="conteudo-resposta">
+                            <span>
+<?php echo nl2br($ultimaRespotaDono[0]['texto_comen'])?>
+                            </span>
+                            <br>
+                            <span>
+<strong>NOTA:<strong> <?php echo nl2br($ultimaRespotaDono[0]['nota_resposta'])?>
+                            </span>
+                    </div>
+                    <?php
+                        }                        
+                    ?>
 
                     </section>
             <?php
@@ -336,15 +368,20 @@
             </div> 
             <?php
                 if(isset($tipoUsu) AND ($tipoUsu == 'Funcionario' or $tipoUsu == 'Prefeitura')){
-                    if(empty($comentarioPrefei)){
+                    if($indUltimaRespostaPrefeitura <= 0){
+                        // ARRUMAR FORM PRA ENVIAR REPOSTA TEM Q TER OS IND REPOSTA
+                        // COMO INPUT TYPE HIDDEN
             ?>
                         <section class="enviar-comentario-publicacao">
                             <h3>
                                 Envie uma resposta
                             </h3>
-                            <form id="enviar_comentario">
+                            <!-- <form id="enviar_comentario"> -->
+                            <form action="../Comentario.php" method="post">
                                 <textarea placeholder="Escreva uma resposta" name="texto" id="comentarioTxt"></textarea>
                                 <input type="hidden" value="<?php echo $_GET['ID']?>" name="id" id="idPubli">
+                                <input type="radio" name="indUltimaResposta" value=true>Ultima Resposta
+                                <input type="radio" name="indUltimaResposta" value=false>Não ultima Resposta
                                 <input type="submit" id="btn-reclama" value="Enviar Resposta" disabled>
                             </form>  
                         </section>
@@ -366,8 +403,28 @@
                                     </form>  
                         </section>
             <?php
+                }                           
+                if($indUltimaRespostaDono <= 0 && $indUltimaRespostaPrefeitura > 0 && isset($tipoUsu) AND ($tipoUsu == 'Comum')){
+            ?>
+                <section class="enviar-comentario-publicacao">
+                    <h3>
+                        Envie um feedBack
+                    </h3>
+                    <form action="../Comentario.php" method="post">
+                        <textarea placeholder="Escreva um comentário" name="texto" id="comentarioTxt" ></textarea>
+                        <input type="hidden" value="<?php echo $_GET['ID']?>" name="id" id="idPubli">
+                        <input type="hidden" value="true" name="indUltimaResposta">
+                        <input type="text" name="nota" style="background-color: white; border: 1px solid black; color: black;" placeholder="Nota">
+                        <input type="submit" value="Enviar Comentário">
+                        <div class="aviso-form-inicial " style="margin-top:10px;">
+                            <p>O campo tal e pa</p>
+                        </div>
+                    </form>  
+                </section>
+            <?php
                 }
             ?>
+
             <section class="comentarios" id="pa">
                         <div class="modal-editar-comentario">
                             <div class="modal-editar-comentario-fundo"></div>

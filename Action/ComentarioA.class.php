@@ -10,12 +10,13 @@ class ComentarioA extends ComentarioM{
 
     private $sqlSelectCodPubli = " SELECT cod_publi FROM comentario WHERE cod_comen = '%s' ";
 
-    private $sqlInsert = "INSERT INTO comentario(texto_comen, dataHora_comen, ind_visu_dono_publi, cod_usu, cod_publi) VALUES ('%s', '%s', '%s', '%s','%s')";
+    private $sqlInsert = "INSERT INTO comentario(texto_comen, dataHora_comen, ind_visu_dono_publi, cod_usu, cod_publi, cod_tipo_comentario, nota_resposta) VALUES ('%s', '%s', '%s', '%s','%s', '%s', '%s')";
 
     private $sqlSelectComen = "SELECT usuario.nome_usu, usuario.cod_usu, cod_comen, img_perfil_usu,texto_comen,dataHora_comen,descri_tipo_usu, publicacao.cod_publi
                                     FROM usuario INNER JOIN comentario ON (usuario.cod_usu = comentario.cod_usu) 
                                     INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu) 
                                     INNER JOIN publicacao ON (publicacao.cod_publi = comentario.cod_publi) 
+                                    LEFT JOIN tipo_comentario AS tipo_comen ON (tipo_comen.cod_tipo_comen = comentario.cod_tipo_comentario)
                                     WHERE 1=1 AND status_comen = 'A' AND %s ";
 
     private $whereUserComum = " publicacao.cod_publi = '%s' AND descri_tipo_usu = 'Comum' AND status_usu = 'A' %s ";
@@ -27,9 +28,10 @@ class ComentarioA extends ComentarioM{
     private $sqlSelectVerifyCurti = "SELECT COUNT(*) FROM comen_curtida WHERE cod_comen = '%s' AND cod_usu = '%s' AND status_curte = 'A'";
 
     private $sqlQtdComenComum = "SELECT COUNT(*) FROM comentario INNER JOIN usuario ON (usuario.cod_usu = comentario.cod_usu) 
-                                    INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu) 
+                                    INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu)
+                                    LEFT JOIN tipo_comentario AS tipo_comen ON (tipo_comen.cod_tipo_comen = comentario.cod_tipo_comentario) 
                                     WHERE  cod_publi = '%s' AND status_comen = 'A' AND descri_tipo_usu = 'Comum'
-                                        AND status_usu = 'A'";
+                                        AND status_usu = 'A' AND %s";
 
     private $sqlQuantCurtidaComentario = "SELECT COUNT(*) FROM comen_curtida WHERE cod_comen = '%s' AND status_curte = 'A'";
 
@@ -38,25 +40,66 @@ class ComentarioA extends ComentarioM{
 
     private $sqlUpdateComen = "UPDATE comentario SET texto_comen = '%s' WHERE cod_comen = '%s' %s";
 
+    private $sqlSelectAllCodTipoComen = "SELECT cod_tipo_comen, nome_tipo_comen FROM tipo_comentario WHERE status_tipo_comen = 'A' %s";
+
+    private $sqlVerifyUltimaResposta = "SELECT COUNT(*) FROM comentario AS comen INNER JOIN tipo_comentario AS tipo ON(tipo.cod_tipo_comen = comen.cod_tipo_comentario) 
+                                            INNER JOIN publicacao AS publi ON (publi.cod_publi = comen.cod_publi)
+                                            WHERE comen.cod_tipo_comentario = '%s' AND comen.status_comen = 'A' AND tipo.status_tipo_comen = 'A' AND comen.cod_publi = '%s'";
+
+    private $sqlSelectUltimaResposta = "SELECT cod_comen, texto_comen, dataHora_comen, comen.cod_usu, comen.cod_publi, nota_resposta, nome_usu, img_perfil_usu  FROM comentario AS comen 
+                                                INNER JOIN tipo_comentario AS tipo ON(tipo.cod_tipo_comen = comen.cod_tipo_comentario) 
+                                                INNER JOIN publicacao AS publi ON (publi.cod_publi = comen.cod_publi)
+                                                INNER JOIN usuario AS usu ON (usu.cod_usu = comen.cod_usu)
+                                                WHERE comen.cod_tipo_comentario = '%s' AND comen.status_comen = 'A' AND tipo.status_tipo_comen = 'A' AND comen.cod_publi = '%s'";
+
     public function inserirComen(){        
-        $indVisuDono = $this->verifyDonoPubli();
+        $indVisuDono = $this->verifyDonoPubli(); // verificar se é o dono da publicacao
         $DataHora = new \DateTime('NOW');
         $DataHoraFormatadaAmerica = $DataHora->format('Y-m-d H:i:s');    
+        
+        $codTipoComen = 0;
+        $notaResposta = $this->getNotaResposta();
+        if($this->verifyDonoPubli() == "N"){ // nao é o dono
+            if($_SESSION['tipo_usu'] == 'Prefeitura' OR $_SESSION['tipo_usu'] == 'Funcionario'){
+                if($this->getIndUltimaResposta()){ // Resposta da prefeitura e é a ultima
+                    if($this->verifyUltimaResposta("Resposta final da prefeitura") > 0){
+                        throw new \Exception("Ja existe uma resposta final para está publicação", 1000);                        
+                    }
+                    $codTipoComen = $this->getCodTipoComen("Resposta final da prefeitura");
+                }else{ // Resposta da prefeitura mas nao é a ultima
+                    $codTipoComen = $this->getCodTipoComen("Resposta prefeitura");
+                }               
+            }else{
+                $codTipoComen = $this->getCodTipoComen("Comentário comum");
+            }            
+        }else{ // é o dono
+            if($this->getIndUltimaResposta()){ // ultima resposta do dono da publicação
+                if($this->verifyUltimaResposta("Resposta final do dono da publicação") > 0){
+                    throw new \Exception("Ja existe uma resposta final para está publicação", 1000);                        
+                }               
+                $codTipoComen = $this->getCodTipoComen("Resposta final do dono da publicação");
+            }else{
+                $codTipoComen = $this->getCodTipoComen("Comentário comum");
+            }           
+        }
+
+        if($notaResposta > 5 OR $notaResposta < 0){
+            $notaResposta = 0;
+        }
         
         $sql = sprintf($this->sqlInsert,
                         $this->getTextoComen(),
                         $DataHoraFormatadaAmerica,
                         $indVisuDono,
                         $this->getCodUsu(),
-                        $this->getCodPubli()
-        );
-
+                        $this->getCodPubli(),
+                        $codTipoComen,
+                        $notaResposta
+                    );        
         $inserir = $this->runQuery($sql); 
         if(!$inserir->rowCount()){  // Se der erro cai nesse if          
             throw new \Exception("Não foi possível realizar o comentario",11);   
-        }   
-        $this->SelecionarComentariosUserComum();
-        $this->SelecionarComentariosUserPrefei();
+        }          
         
     }
 
@@ -76,14 +119,19 @@ class ComentarioA extends ComentarioM{
 
     public function SelecionarComentariosUserComum($pagina = null){
         $limite = $this->controlarPaginacao($pagina);
-        $where = sprintf($this->whereUserComum,
+
+        $codigoRespostaComum = $this->getCodTipoComen("Resposta dono publicação");
+        $codigoRespotaFinal = $this->getCodTipoComen("Resposta final do dono da publicação");
+        $where = " comentario.cod_tipo_comentario != '" . $codigoRespostaComum ."' AND comentario.cod_tipo_comentario != '" . $codigoRespotaFinal ."' AND ";
+
+        $where .= sprintf($this->whereUserComum,
                             $this->getCodPubli(),
                             $limite
                 );              
         $sql = sprintf($this->sqlSelectComen,
                         $where       
-        );
-
+        );       
+        
         $consulta = $this->runSelect($sql); // Executa
         
 
@@ -107,15 +155,22 @@ class ComentarioA extends ComentarioM{
                         WHERE descri_tipo_usu = 'Prefeitura'";
             $consulta2 =  $this->runSelect($sql2);
             if(!empty($consulta2)){
-                $consulta[0]['cod_usu_prefei'] = $consulta2[0]['cod_usu'];
-                $consulta[0]['nome_usu_prefei'] = $consulta2[0]['nome_usu'];
+                $contador = 0;
+                while($contador < count($consulta)){
+                    $consulta[$contador]['cod_usu_prefei'] = $consulta2[0]['cod_usu'];
+                    $consulta[$contador]['nome_usu_prefei'] = $consulta2[0]['nome_usu'];
+                    $contador++;
+                }                
             }
         }else if(!empty($consulta)){ // Aqui pra usuario de prefeitura mantem o mesmo
-            $consulta[0]['cod_usu_prefei'] = $consulta[0]['cod_usu'];
-            $consulta[0]['nome_usu_prefei'] = $consulta[0]['nome_usu'];
+            $contador = 0;
+            while($contador < count($consulta)){
+                $consulta[$contador]['cod_usu_prefei'] = $consulta[0]['cod_usu'];
+                $consulta[$contador]['nome_usu_prefei'] = $consulta[0]['nome_usu'];
+                $contador++;
+            }              
         }        
-        return $resultado = $this->tratarDados($consulta);
-        //var_dump($resultado);////
+        return $resultado = $this->tratarDados($consulta);       
     }
 
     public function tratarDados($dados){
@@ -161,8 +216,12 @@ class ComentarioA extends ComentarioM{
         return FALSE;
     }    
     public function quantidadeTotalPubli(){//Comentarios comum
+        $codigoRespostaComum = $this->getCodTipoComen("Resposta dono publicação");
+        $codigoRespotaFinal = $this->getCodTipoComen("Resposta final do dono da publicação");
+        $where = " comentario.cod_tipo_comentario != '" . $codigoRespostaComum ."' AND comentario.cod_tipo_comentario != '" . $codigoRespotaFinal ."' ";
         $sql = sprintf($this->sqlQtdComenComum,
-                                $this->getCodPubli()
+                                $this->getCodPubli(),
+                                $where
                             
         );
         $res = $this->runSelect($sql);
@@ -317,5 +376,58 @@ class ComentarioA extends ComentarioM{
 
         return $dados[0]['cod_publi']; // Retorna o codigo da publicacao
         
+    }
+
+    public function getCodTipoComen($tipo){
+        $sql = sprintf(
+            $this->sqlSelectAllCodTipoComen,
+            "AND 1=1"
+        );
+        $res = $this->runSelect($sql);
+        if(empty($res)){
+            return null;
+        }        
+        $dados = array();
+        foreach($res as $array){
+            foreach($array as $chave => $vlr){
+                $dados[$array['cod_tipo_comen']] = $array['nome_tipo_comen'];
+            }
+        }
+
+        $codTipoComen = array_search($tipo, $dados);
+
+        if($codTipoComen <= 0){
+           return false;
+        }
+        
+        return $codTipoComen;
+    }
+
+    public function verifyUltimaResposta($tipo){ // verificar se existe ultima resposta
+        $codTipoComen = $this->getCodTipoComen($tipo);
+        $sql = sprintf(
+            $this->sqlVerifyUltimaResposta,
+            $codTipoComen,
+            $this->getCodPubli()
+        );
+        $res = $this->runSelect($sql);
+        if(empty($res)){
+            return 0;
+        }
+        return $res[0]['COUNT(*)'];
+    }
+
+    public function selectRespostaFinal($tipo){
+        if($this->verifyUltimaResposta($tipo) < 0){
+            return null;       
+        }
+        $codTipoComen = $this->getCodTipoComen($tipo);
+        $sql = sprintf(
+            $this->sqlSelectUltimaResposta,
+            $codTipoComen,
+            $this->getCodPubli()
+        );
+        $res = $this->runSelect($sql);
+        return $this->tratarDados($res);
     }
 }

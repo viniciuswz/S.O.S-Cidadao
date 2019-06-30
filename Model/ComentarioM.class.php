@@ -11,7 +11,9 @@ class ComentarioM extends DbConnection{
     private $statusComen;
     private $codUsu;
     private $codPubli;
-
+    private $indUltimaResposta;
+    private $indResposta;
+    private $notaResposta;
    
     private $qtdPaginas;
     private $PaginaAtual;
@@ -44,6 +46,18 @@ class ComentarioM extends DbConnection{
         return $this->codPubli;
     }
 
+    public function getIndUltimaResposta(){
+        return $this->indUltimaResposta;
+    }
+
+    public function getIndResposta(){
+        return $this->indResposta;
+    }
+
+    public function getNotaResposta(){
+        return $this->notaResposta;
+    }
+
 
 
     public function setCodComen($cod){
@@ -72,6 +86,18 @@ class ComentarioM extends DbConnection{
 
     public function setCodPubli($cod){
         $this->codPubli = $cod;
+    }
+
+    public function setIndUltimaResposta($ind){
+        $this->indUltimaResposta = $ind;
+    }
+
+    public function setIndResposta($ind){
+        $this->indResposta = $ind;
+    }
+
+    public function setNotaResposta($nota){
+        $this->notaResposta = $nota;
     }
        
     public function setQuantidadePaginas($quantidade){// Seta a quantidade de paginas no total

@@ -8,6 +8,7 @@ use Core\PublicacaoSalva;
 use Classes\TratarImg;
 use Classes\TratarDataHora;
 use Classes\Paginacao;
+use Core\Comentario;
 
 class PublicacaoA extends PublicacaoM{
     
@@ -31,10 +32,11 @@ class PublicacaoA extends PublicacaoM{
 
     private $sqlSelectQuantCurti = "SELECT COUNT(*) FROM publicacao_curtida WHERE cod_publi = '%s' AND status_publi_curti = 'A'";
 
-    private $sqlSelectQuantComen = "SELECT COUNT(*) FROM comentario INNER JOIN usuario on(usuario.cod_usu = comentario.cod_usu)
-                                        INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu)  
-                                        WHERE cod_publi = '%s' AND status_comen = 'A' AND descri_tipo_usu = 'Comum'
-                                        AND status_usu = 'A'";//Nao conta com comentarios da prefeitura
+    private $sqlQtdComenComum = "SELECT COUNT(*) FROM comentario INNER JOIN usuario ON (usuario.cod_usu = comentario.cod_usu) 
+                                    INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu)
+                                    LEFT JOIN tipo_comentario AS tipo_comen ON (tipo_comen.cod_tipo_comen = comentario.cod_tipo_comentario) 
+                                    WHERE  cod_publi = '%s' AND status_comen = 'A' AND descri_tipo_usu = 'Comum'
+                                    AND status_usu = 'A' AND %s";
 
     private $sqlSelectVerifyResPrefei = "SELECT COUNT(*) FROM comentario INNER JOIN usuario on(usuario.cod_usu = comentario.cod_usu)
                                         INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu)  
@@ -252,10 +254,17 @@ class PublicacaoA extends PublicacaoM{
 
     }
 
-    public function getQuantComen($idPubli) { // Pegar quantidade de comentarios na publicacao
-        $sql = sprintf($this->sqlSelectQuantComen,
-                                $idPubli);          
-        $res = $this->runSelect($sql);         
+    public function getQuantComen($idPubli){//Comentarios comum
+        $comentario = new Comentario();
+        $codigoRespostaComum = $comentario->getCodTipoComen("Resposta dono publicação");
+        $codigoRespotaFinal = $comentario->getCodTipoComen("Resposta final do dono da publicação");
+        $where = " comentario.cod_tipo_comentario != '" . $codigoRespostaComum ."' AND comentario.cod_tipo_comentario != '" . $codigoRespotaFinal ."' ";
+        $sql = sprintf($this->sqlQtdComenComum,
+                                $idPubli,
+                                $where
+                            
+        );
+        $res = $this->runSelect($sql);
         return $res[0]['COUNT(*)'];
     }
     public function getVerifyResPrefei($idPubli) { // Pegar quantidade de resposta da prefeitura
