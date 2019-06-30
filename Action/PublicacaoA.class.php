@@ -55,13 +55,22 @@ class PublicacaoA extends PublicacaoM{
                                 WHERE
                                 cod_publi  not in(SELECT cod_publi FROM comentario INNER JOIN usuario on(usuario.cod_usu = comentario.cod_usu)
                                 INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu) 
-                                WHERE  status_comen = 'A' AND (descri_tipo_usu = 'Prefeitura' or descri_tipo_usu = 'Funcionario') AND status_usu = 'A')
+                                INNER JOIN tipo_comentario AS tipo_comen ON (tipo_comen.cod_tipo_comen = comentario.cod_tipo_comentario)
+                                WHERE  status_comen = 'A' AND (descri_tipo_usu = 'Prefeitura' or descri_tipo_usu = 'Funcionario') AND status_usu = 'A'
+                                AND tipo_comen.cod_tipo_comen IN('4'))
                                 AND %s %s";
-    private $sqlQtdRespondidas = "SELECT %s FROM comentario INNER JOIN usuario on(usuario.cod_usu = comentario.cod_usu)
-                                        INNER JOIN publicacao ON(comentario.cod_publi = publicacao.cod_publi)
-                                        INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu) 
-                                        WHERE  status_comen = 'A' AND (descri_tipo_usu = 'Prefeitura' or descri_tipo_usu = 'Funcionario') 
-                                        AND  %s %s";
+    
+    private $sqlQtdRespondidas = "SELECT %s FROM publicacao     
+                                    INNER JOIN usuario on(usuario.cod_usu = publicacao.cod_usu)
+                                    INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu)
+                                    INNER JOIN categoria ON (publicacao.cod_cate = categoria.cod_cate)
+                                    WHERE
+                                    cod_publi  in(SELECT cod_publi FROM comentario INNER JOIN usuario on(usuario.cod_usu = comentario.cod_usu)
+                                    INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu) 
+                                    INNER JOIN tipo_comentario AS tipo_comen ON (tipo_comen.cod_tipo_comen = comentario.cod_tipo_comentario)
+                                    WHERE  status_comen = 'A' AND (descri_tipo_usu = 'Prefeitura' or descri_tipo_usu = 'Funcionario') AND status_usu = 'A'
+                                    AND tipo_comen.cod_tipo_comen IN('4'))
+                                    AND %s %s";   
                                         
     private $sqlSelectDonoPubli = "SELECT cod_usu FROM publicacao WHERE cod_usu = '%s' AND cod_publi = '%s'";
 
