@@ -61,7 +61,7 @@ class ComentarioA extends ComentarioM{
         $notaResposta = $this->getNotaResposta();
         if($this->verifyDonoPubli() == "N"){ // nao é o dono
             if($_SESSION['tipo_usu'] == 'Prefeitura' OR $_SESSION['tipo_usu'] == 'Funcionario'){
-                if($this->getIndUltimaResposta()){ // Resposta da prefeitura e é a ultima
+                if($this->getIndUltimaResposta() == "true"){ // Resposta da prefeitura e é a ultima                   
                     if($this->verifyUltimaResposta("Resposta final da prefeitura") > 0){
                         throw new \Exception("Ja existe uma resposta final para está publicação", 1000);                        
                     }
@@ -71,9 +71,9 @@ class ComentarioA extends ComentarioM{
                 }               
             }else{
                 $codTipoComen = $this->getCodTipoComen("Comentário comum");
-            }            
+            }   
         }else{ // é o dono
-            if($this->getIndUltimaResposta()){ // ultima resposta do dono da publicação
+            if($this->getIndUltimaResposta() == "true"){ // ultima resposta do dono da publicação
                 if($this->verifyUltimaResposta("Resposta final do dono da publicação") > 0){
                     throw new \Exception("Ja existe uma resposta final para está publicação", 1000);                        
                 }               

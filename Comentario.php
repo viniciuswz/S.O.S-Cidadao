@@ -26,7 +26,8 @@ try{
     }
     if(isset($_POST['nota'])){
         $nota = $_POST['nota'];
-    }    
+    }
+           
     $comentario = new Comentario();
     $comentario->setTextoComen($texto);
     $comentario->setCodUsu($_SESSION['id_user']);
