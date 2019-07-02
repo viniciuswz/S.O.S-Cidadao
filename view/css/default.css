@@ -2690,6 +2690,18 @@ color:black
     /*! background-color: red; */
     top: 0;
 }
+
+.reclamacao-avaliacao{
+    margin: 10px auto;
+    width: 90%;
+}
+
+.reclamacao-avaliacao-box .estrelas{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
 .enviar-comentario-publicacao{
     width: 50%;
     margin: 0 auto;
@@ -4660,7 +4672,7 @@ input:checked + .slider:before {
     left: 0;
     top: 0;
     z-index: 98;
-    display: block;
+    display: none;
     color:black;
 }
 
