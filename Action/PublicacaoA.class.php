@@ -8,12 +8,11 @@ use Core\PublicacaoSalva;
 use Classes\TratarImg;
 use Classes\TratarDataHora;
 use Classes\Paginacao;
-
+use Core\Comentario;
 class PublicacaoA extends PublicacaoM{
     
     private $sqlInsert = "INSERT INTO publicacao(texto_publi, img_publi, titulo_publi, cod_usu, cod_cate, cep_logra,dataHora_publi)
                             VALUES('%s','%s','%s','%s','%s','%s','%s')";
-
     private $sqlSelect = "SELECT usuario.cod_usu,usuario.nome_usu, img_perfil_usu, img_publi,titulo_publi, cod_publi, 
                                     texto_publi, dataHora_publi, descri_cate,categoria.cod_cate, endere_logra, nome_bai, logradouro.cep_logra      
                                     FROM usuario INNER JOIN publicacao on (usuario.cod_usu = publicacao.cod_usu) 
@@ -26,26 +25,21 @@ class PublicacaoA extends PublicacaoM{
     private $whereListFromALL = "status_publi = 'A'  AND status_usu = 'A' ";
     
     private $whereIdUser = " AND usuario.cod_usu = '%s' ";
-
     private $whereIdPubli = " AND publicacao.cod_publi = '%s'"; 
-
     private $sqlSelectQuantCurti = "SELECT COUNT(*) FROM publicacao_curtida WHERE cod_publi = '%s' AND status_publi_curti = 'A'";
-
-    private $sqlSelectQuantComen = "SELECT COUNT(*) FROM comentario INNER JOIN usuario on(usuario.cod_usu = comentario.cod_usu)
-                                        INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu)  
-                                        WHERE cod_publi = '%s' AND status_comen = 'A' AND descri_tipo_usu = 'Comum'
-                                        AND status_usu = 'A'";//Nao conta com comentarios da prefeitura
-
+    private $sqlQtdComenComum = "SELECT COUNT(*) FROM comentario INNER JOIN usuario ON (usuario.cod_usu = comentario.cod_usu) 
+                                    INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu)
+                                    LEFT JOIN tipo_comentario AS tipo_comen ON (tipo_comen.cod_tipo_comen = comentario.cod_tipo_comentario) 
+                                    WHERE  cod_publi = '%s' AND status_comen = 'A' AND descri_tipo_usu = 'Comum'
+                                    AND status_usu = 'A' AND %s";
     private $sqlSelectVerifyResPrefei = "SELECT COUNT(*) FROM comentario INNER JOIN usuario on(usuario.cod_usu = comentario.cod_usu)
                                         INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu)  
                                         WHERE cod_publi = '%s' AND status_comen = 'A' AND (descri_tipo_usu = 'Prefeitura' or descri_tipo_usu = 'Funcionario')
                                         AND status_usu = 'A'";//Nao conta com comentarios da prefeitura
-
     private $sqlSelectVerifyCurti = "SELECT COUNT(*) FROM publicacao_curtida WHERE cod_publi = '%s' AND cod_usu = '%s' AND status_publi_curti = 'A'";
    
     private $sqlSelectQuantPubli = "SELECT COUNT(*) FROM publicacao INNER JOIN usuario ON (usuario.cod_usu = publicacao.cod_usu)  
                                         WHERE status_publi = 'A'  AND status_usu = 'A' %s";
-
     private $sqlQtdNRespon = "SELECT %s FROM publicacao     
                                 INNER JOIN usuario on(usuario.cod_usu = publicacao.cod_usu)
                                 INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu)
@@ -62,15 +56,10 @@ class PublicacaoA extends PublicacaoM{
                                         AND  %s %s";
                                         
     private $sqlSelectDonoPubli = "SELECT cod_usu FROM publicacao WHERE cod_usu = '%s' AND cod_publi = '%s'";
-
-
     private $sqlUpdateStatusPubli = "UPDATE publicacao SET status_publi = '%s' WHERE cod_publi = '%s' AND cod_usu = '%s'";
-
     private $sqlUpdatePubli = "UPDATE publicacao SET texto_publi = '%s', titulo_publi = '%s', cod_cate = '%s', cep_logra = '%s' %s WHERE %s %s";
-
     private $sqlPaginaAtual;
     
-
     public function cadastrarPublicacao($bairro, $local){
         $this->cadastrarLocal($bairro, $local);
         $this->tratarImagem();
@@ -90,16 +79,13 @@ class PublicacaoA extends PublicacaoM{
            throw new \Exception("Não foi possível realizar o cadastro da publicacao",9);   
         }
         return TRUE;
-
     }
-
     public function cadastrarLocal($bairro, $local){        
         $logradouto = new Logradouro();
         $logradouto->setEndereLogra($local);
         $logradouto->setCepLogra($this->getCepLogra());             
         $logradouto->selectCep($bairro);
     }
-
     public function tratarImagem(){ // Mexer depois nessa funcao
         //Fazer a parada da thumb
         if(empty($this->getImgPubli())){
@@ -111,7 +97,6 @@ class PublicacaoA extends PublicacaoM{
         $this->setImgPubli($novoNome);
         return;
     } 
-
     public function ListFromALL($pagina = null, $complemento = ' AND 1=1', $complementoPaginacao = null){ // Listar todas as publicacoes
         // $pagina = pagina q o usuario esta
         // $complemento = se precisa de mais algum where no select
@@ -127,10 +112,8 @@ class PublicacaoA extends PublicacaoM{
         
         return $dadosTratados = $this->tratarInformacoes($res);
     }
-
     public function ListByIdUser($pagina = null, $idVisualizadorPerfil = false){ //Listar publicacoes de um usuario    
         $prepararWhereUser = sprintf($this->whereIdUser, $this->getCodUsu()); 
-
         $sqlPaginacao = $this->controlarPaginacao($this->sqlSelectQuantPubli,$prepararWhereUser,6,$pagina);
         $sql = sprintf($this->sqlSelect,
                     $this->whereListFromALL,
@@ -148,7 +131,6 @@ class PublicacaoA extends PublicacaoM{
         }
         return $dadosTratados = $this->tratarInformacoes($res);
     }
-
     public function listByIdPubli($restricao = null){ // Listar pelo id da publicacao
         if(!empty($this->getCodUsu())){
             $usuario = new Usuario();
@@ -195,7 +177,6 @@ class PublicacaoA extends PublicacaoM{
         return $dadosTratados;
         
     }
-
     public function tratarInformacoes($dados){        
         
         if(!empty($this->getCodUsu())){
@@ -207,7 +188,6 @@ class PublicacaoA extends PublicacaoM{
             $texto = ""; //Limpar a variavel
             $dados[$contador]['dataHora_publi'] = $this->tratarHora($dados[$contador]['dataHora_publi']);//Calcular o tempo
             $cepComTraco = substr($dados[$contador]['cep_logra'],0,5) . '-' . substr($dados[$contador]['cep_logra'],5,8); //Colocar o - no cep 
-
             $texto .=  $dados[$contador]['nome_bai'] . ', ';   
             $texto .=  $dados[$contador]['endere_logra'];  
             $dados[$contador]['endereco_organizado_fechado'] = $texto; // Nesse campo fica o endereco sem o cep
@@ -215,7 +195,6 @@ class PublicacaoA extends PublicacaoM{
             $texto .=  $cepComTraco; 
             //$texto = Endereço formatado
             $dados[$contador]['endereco_organizado_aberto'] = $texto; //Cria um novo campo na array, com o endereço organizado com o cep 
-
             $dados[$contador]['quantidade_curtidas'] =  $this->getQuantCurtidas($dados[$contador]['cod_publi']); //Pegar quantidade de curtidas
             $dados[$contador]['quantidade_comen'] =  $this->getQuantComen($dados[$contador]['cod_publi']); //Pegar quantidade de comentarios
             $dados[$contador]['indResPrefei'] =  $this->getVerifyResPrefei($dados[$contador]['cod_publi']); //Veficar resposta da prefeitura   
@@ -232,7 +211,6 @@ class PublicacaoA extends PublicacaoM{
         return $dados;       
         
     }
-
     public function tirarAcentos($palavra){ // Tirar acentos de palavras
         $semAcento = strtolower(preg_replace( '/[`^~\'"]/', null, iconv( 'UTF-8', 'ASCII//TRANSLIT', $palavra )));       
         $tirarEspacos = str_replace(" ", "", $semAcento);
@@ -243,19 +221,23 @@ class PublicacaoA extends PublicacaoM{
         $tratarHoras = new TratarDataHora($hora);
         return $tratarHoras->calcularTempo('publicacao','N');
     }
-
     public function getQuantCurtidas($idPubli) { // Pegar quantidades de curtidas na publicacao
         $sql = sprintf($this->sqlSelectQuantCurti,
                                 $idPubli);  
         $res = $this->runSelect($sql);         
         return $res[0]['COUNT(*)'];
-
     }
-
-    public function getQuantComen($idPubli) { // Pegar quantidade de comentarios na publicacao
-        $sql = sprintf($this->sqlSelectQuantComen,
-                                $idPubli);          
-        $res = $this->runSelect($sql);         
+    public function getQuantComen($idPubli){//Comentarios comum
+        $comentario = new Comentario();
+        $codigoRespostaComum = $comentario->getCodTipoComen("Resposta dono publicação");
+        $codigoRespotaFinal = $comentario->getCodTipoComen("Resposta final do dono da publicação");
+        $where = " comentario.cod_tipo_comentario != '" . $codigoRespostaComum ."' AND comentario.cod_tipo_comentario != '" . $codigoRespotaFinal ."' ";
+        $sql = sprintf($this->sqlQtdComenComum,
+                                $idPubli,
+                                $where
+                            
+        );
+        $res = $this->runSelect($sql);
         return $res[0]['COUNT(*)'];
     }
     public function getVerifyResPrefei($idPubli) { // Pegar quantidade de resposta da prefeitura
@@ -268,7 +250,6 @@ class PublicacaoA extends PublicacaoM{
         }
         return FALSE;
     }
-
     public function getVerifyCurti($idPubli){ //Verificar se o usuario ja curtiu a publicacao
         $sql = sprintf($this->sqlSelectVerifyCurti,
                         $idPubli,
@@ -280,7 +261,6 @@ class PublicacaoA extends PublicacaoM{
         }
         return FALSE;
     }    
-
     public function getVerificarSeDenunciou($codPubli){       
         $idUser = $this->getCodUsu();
         $denun = new PublicacaoDenuncia();
@@ -288,7 +268,6 @@ class PublicacaoA extends PublicacaoM{
         $denun->setCodUsu($idUser);        
         return $denun->verificarSeDenunciou();
     }
-
     public function getVerificarSeSalvou($obj,$codPubli){
         $obj->setCodPubli($codPubli);
         $retorno = $obj->indSalva(TRUE);
@@ -302,7 +281,6 @@ class PublicacaoA extends PublicacaoM{
             return false;
         }
     }
-
     public function quantidadeTotalPubli($sqlCountPubli,$where){//Pegar a quantidade de publicacoes
         if($where != null){ // Se for passado o paramentro null, nao tem restriçoes retorna todas as publicacoes
             $sql = sprintf($sqlCountPubli,
@@ -315,7 +293,6 @@ class PublicacaoA extends PublicacaoM{
         $res = $this->runSelect($sql);        
         return $res[0]['COUNT(*)'];
     }    
-
     public function getIdsPubliRespo($pagina = null, $tipoPubli){ //Pegar os ids da publicacoes nao respondidas ou Respondidas
         $sqlQtd = sprintf(
             $this->{$tipoPubli},
@@ -323,16 +300,13 @@ class PublicacaoA extends PublicacaoM{
             $this->whereListFromALL,
             'AND 1=1'
         ); // Preparar o sql da quantiade de publicacões
-
         $sqlPaginacao = $this->controlarPaginacao($sqlQtd, null, 6, $pagina);
-
         $sql = sprintf(
             $this->{$tipoPubli},
             'publicacao.cod_publi',
             $this->whereListFromALL,
             $sqlPaginacao
         );
-
         $res = $this->runSelect($sql); // Ids Na array;  
         $contador = 0;
         $ids = "";
@@ -348,7 +322,6 @@ class PublicacaoA extends PublicacaoM{
         return $ids;
               
     }
-
     public function getPubliNRespo($pagina = null, $indPerfil = null){//Pegar os dados das publicacoes nao respondidas
         // Tive q fazer esta gambi
         $sqlSelect = "SELECT usuario.nome_usu, publicacao.cod_publi, descri_cate, titulo_publi
@@ -357,13 +330,11 @@ class PublicacaoA extends PublicacaoM{
                         INNER JOIN categoria ON (publicacao.cod_cate = categoria.cod_cate)
                         INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu) 
                         WHERE descri_tipo_usu = 'Comum' AND %s  %s %s";
-
         if($indPerfil != null){
             $sqlSe = $this->sqlSelect;
         }else{
             $sqlSe = $sqlSelect;
         }
-
         $sql = sprintf(
             $sqlSe,
             $this->getIdsPubliRespo($pagina, 'sqlQtdNRespon'), //N
@@ -383,7 +354,6 @@ class PublicacaoA extends PublicacaoM{
         
         
     }
-
     public function getPubliRespo($pagina = null){//Pegar os dados das publicacoes Respondidas
         // Tive q fazer esta gambi
         
@@ -402,7 +372,6 @@ class PublicacaoA extends PublicacaoM{
         
         
     }
-
     public function verificarDonoPubli(){ // verificar dono da publicacao
         $sql = sprintf(
             $this->sqlSelectDonoPubli,
@@ -444,12 +413,10 @@ class PublicacaoA extends PublicacaoM{
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     // UPDATESSSSSS
-
     public function updateStatusPubli($status){        
         $usuario = new Usuario();
         $usuario->setCodUsu($this->getCodUsu());
         $tipo = $usuario->getDescTipo();       
-
         if($tipo == 'Adm' or $tipo == 'Moderador'){
             $sqlUpdatePubli = "UPDATE publicacao SET status_publi = '%s' WHERE cod_publi = '%s'";
             $sql = sprintf(
@@ -469,13 +436,10 @@ class PublicacaoA extends PublicacaoM{
         if(!$resposta->rowCount()){
             throw new \Exception("Não foi possível mudar o status",9);
         }
-
         return;
     }
-
     public function updatePublicacao($bairro, $local){    
         $dados = $this->listByIdPubli(); // Verificar se ele ainda é o dono 
-
         $NovosDados = array( 
             "titulo_publi" => $this->getTituloPubli(),
             "texto_publi" => $this->getTextoPubli(),
@@ -494,7 +458,6 @@ class PublicacaoA extends PublicacaoM{
         $tipoUsu = $usuario->getDescTipo();        
         $this->cadastrarLocal($bairro, $local);  
         $prepararWherePubli = sprintf(" cod_publi = '%s'", $this->getCodPubli());
-
         $sql = sprintf($this->sqlUpdatePubli, 
                         $this->getTextoPubli(),                        
                         $this->getTituloPubli(),                        
@@ -504,7 +467,6 @@ class PublicacaoA extends PublicacaoM{
                         $prepararWherePubli,
                          '%s' 
         );      
-
         if(!empty($this->getImgPubli())){ // Se for enviado uma nova imagem
             $this->tratarImagem();
             $sql = sprintf(
@@ -519,9 +481,7 @@ class PublicacaoA extends PublicacaoM{
                 ' %s '// Mantem o caracter coringa para pode usar posteriormente
             );
         }
-
         if($tipoUsu == 'Adm' or $tipoUsu == 'Moderador'){  // Se for adn ou moderador pode editar tranquilamente
-
             $sql = sprintf($sql, ' AND 1=1 ');
             
         }else{ // Se nao for, precisa ser o dono
