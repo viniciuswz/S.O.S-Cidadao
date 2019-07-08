@@ -124,6 +124,7 @@
         <script src="<?php echo $voltar ?>view/js/js.js"></script>
         <script src="<?php echo $voltar ?>view/js/PegarComen.js"></script>
         <script src="<?php echo $voltar ?>teste.js"></script>
+        <script src="<?php echo $voltar ?>view/js/avaliacao.js"></script>
         <!-- <script>
             $("document").ready(function(){
                 $("title").text($(".publicacao-conteudo").find("h2").text() +" "+ "em Barueri")
@@ -357,6 +358,31 @@
                     ?>
                 
             </div> 
+
+            <!--<section class="reclamacao-avaliacao">
+                <h3>Avalie a resposta</h3>
+                <p>Dê sua opinião</p>
+                <div class="reclamacao-avaliacao-box">
+                        <div class="estrelas" id="pre-avaliacao">
+                                <input class="estrela" id="estrela-5" type="radio" name="estrela" value="5"/>
+                                <label class="estrela" for="estrela-5"></label>
+                                
+                                <input class="estrela" id="estrela-4" type="radio" name="estrela" value="4"/>
+                                <label class="estrela" for="estrela-4"></label>
+                                
+                                <input class="estrela" id="estrela-3" type="radio" name="estrela" value="3"/>
+                                <label class="estrela" for="estrela-3"></label>
+                                
+                                <input class="estrela" id="estrela-2" type="radio" name="estrela" value="2"/>
+                                <label class="estrela" for="estrela-2"></label>
+                                
+                                <input class="estrela" id="estrela-1" type="radio" name="estrela" value="1"/>
+                                <label class="estrela" for="estrela-1"></label>
+                                
+                            </div>
+                </div>
+
+            </section>-->
             <?php
                 if(isset($tipoUsu) AND ($tipoUsu == 'Funcionario' or $tipoUsu == 'Prefeitura')){
                     if($indUltimaRespostaPrefeitura <= 0){
@@ -373,6 +399,16 @@
                                 <input type="hidden" value="<?php echo $_GET['ID']?>" name="id" id="idPubli">
                                 <input type="radio" name="indUltimaResposta" value=true>Ultima Resposta
                                 <input type="radio" name="indUltimaResposta" value=false>Não ultima Resposta
+                                <!--<div class="resposta-final">
+                                    <p>Marcar como ultima resposta?</p>
+                                    <div>
+                                            <span>Não</span> <span>Sim</span>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>-->
                                 <input type="submit" id="btn-reclama" value="Enviar Resposta" disabled>
                             </form>  
                         </section>
@@ -441,6 +477,42 @@
         </div>
         <input type="hidden" id="voltar" value="<?php echo $numVoltar?>">
         <script src="<?php echo $voltar ?>view/js/like.js"></script>
+        <div class="modal-avaliacao">
+                <div class="modal-avaliacao-fundo"></div>
+                <div class="box-avaliacao">
+                    <div>
+                        <h1>Avaliação</h1>
+                        <span class="fechar-avaliacao">&times;</span>
+                    </div>
+                    <div>
+                        <form action="" style="margin-top:10px">
+                            <div class="estrelas" >
+                                <input class="estrela" id="estrela-5" type="radio" name="estrela"/>
+                                <label class="estrela" for="estrela-5"></label>
+                                
+                                <input class="estrela" id="estrela-4" type="radio" name="estrela"/>
+                                <label class="estrela" for="estrela-4"></label>
+                                
+                                <input class="estrela" id="estrela-3" type="radio" name="estrela"/>
+                                <label class="estrela" for="estrela-3"></label>
+                                
+                                <input class="estrela" id="estrela-2" type="radio" name="estrela"/>
+                                <label class="estrela" for="estrela-2"></label>
+                                
+                                <input class="estrela" id="estrela-1" type="radio" name="estrela"/>
+                                <label class="estrela" for="estrela-1"></label>
+                                
+                            </div>
+                            <div class="texto-avaliacao">
+                                <p>Descreva sua experiência(opicional)</p>
+                                <textarea></textarea>
+                            </div>
+                            <button class="btn" style="margin-bottom: 10px; margin-left: 15px;">Avaliar</button>
+                        </form>
+                       
+                    </div>
+                </div>
+            </div>
     </body>
 </html>
 <?php
