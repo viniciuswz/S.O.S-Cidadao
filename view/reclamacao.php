@@ -294,11 +294,11 @@
             </div> 
 
             </section> 
-
+            <section class="prefeitura-publicacao">
             <?php         
                 if(!empty($comentarioPrefei)){ 
             ?>
-                    <section class="prefeitura-publicacao">
+                    
                     <?php
                         $contador = 0;
                         while($contador < count($comentarioPrefei)){
@@ -336,7 +336,7 @@
                             <span>
 <?php echo nl2br($ultimaRespotaDono[0]['texto_comen'])?>
                             </span>
-                            <br>
+                            
                         <?php
                             }
                         ?>
@@ -348,10 +348,11 @@
                         }                        
                     ?>
 
-                    </section>
+                    
             <?php
                 }
             ?>
+            </section>
             <div class="barra-curtir-publicacao"> 
                     <div>
                         <span id="qtd_comen"><?php echo $resposta[0]['quantidade_comen']?></span><i class="icone-comentario-full"></i>

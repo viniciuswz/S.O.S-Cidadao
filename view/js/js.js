@@ -2283,7 +2283,7 @@ jQuery(function($){
   
   /* CODIGO TEMPORARIO */
       var indRespostaPrefeitura = "";
-      $objSwitch = document.querySelector('.switch input');
+      var $objSwitch = document.querySelector('.switch input');
       if($objSwitch != null){ // se for diferente de null sei que é a prefeitura respondendo
         $indRespostaPrefeitura = "&indUltimaResposta=" + $objSwitch.checked;
       }
@@ -2309,9 +2309,14 @@ jQuery(function($){
         }else{
           //alert(result);
           $("#comentarioTxt").val('');
-          var usuario = result.substring(0, result.lastIndexOf('.'));
-          var id_comentario = result.substring(result.lastIndexOf('.') + 1,result.lastIndexOf(','));
-          var qtd = result.substring(result.lastIndexOf(',') + 1);          
+          // var usuario = result.substring(0, result.lastIndexOf('.'));
+          // var id_comentario = result.substring(result.lastIndexOf('.') + 1,result.lastIndexOf(','));
+          // var qtd = result.substring(result.lastIndexOf(',') + 1);  
+          var arr = /(.+)\.(.+)\,(.+)\;(.+)/g.exec(result);
+              let usuario = arr[1];
+              let id_comentario = arr[2];
+              let qtd = arr[3];
+              let flagUltimaResposta = arr[4];        
           if(usuario =="Comum"){            
             //alert(voltar + id_usu);
             $(".comentarios").prepend('<div class="comentario-user" style="display:flex; order:-1">\
@@ -2346,18 +2351,23 @@ jQuery(function($){
             }
             
           }else{            
-            $(".enviar-comentario-publicacao").remove();
-            $('<section class="prefeitura-publicacao">\
-            <div class="topo-prefeitura-publicacao">\
-            <a href="'+voltar+id_usu+'">\
-            <div>\
-            <img src="'+img+'">\
-            </div>\
-            </a><p><a href="'+voltar+id_usu+'"><span class="negrito">'+nomePref+'</span></a><time>Enviado agora</time></p></div>\
-            <div class="conteudo-resposta">\
-            <span>'+comentario+'</span>\
-            <div>\
-            </section>').insertBefore('.barra-curtir-publicacao');
+            
+            if($objSwitch.checked){
+              $(".enviar-comentario-publicacao").remove();
+            }
+            $('.prefeitura-publicacao').append('\
+            <div class="prefeitura-publicacao-resposta">\
+              <div class="topo-prefeitura-publicacao">\
+                <a href="'+voltar+id_usu+'">\
+                <div>\
+                  <img src="'+img+'">\
+                </div>\
+                </a><p><a href="'+voltar+id_usu+'"><span class="negrito">'+nomePref+'</span></a><time>Enviado agora</time></p>\
+              </div>\
+              <div class="conteudo-resposta">\
+                <span>'+comentario+'</span>\
+              </div>\
+            </div>');
           }
          
         

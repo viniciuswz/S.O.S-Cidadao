@@ -38,6 +38,12 @@ $('document').ready(function(){
             data: $('.modal-avaliacao form').serialize(),
             success:function(result){
                 alerta('Certo', 'Avaliação efetuada com sucesso');
+                var arr = /(.+)\.(.+)\,(.+)\;(.+)/g.exec(result);
+                let tipoUser = arr[1];
+                let idComent = arr[2];
+                let qtdCoemntarios = arr[3];
+                let flagUltimaResposta = arr[4];
+                
                 //
             }
          });
