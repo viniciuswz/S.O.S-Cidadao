@@ -34,8 +34,9 @@ class PublicacaoA extends PublicacaoM{
                                     AND status_usu = 'A' AND %s";
     private $sqlSelectVerifyResPrefei = "SELECT COUNT(*) FROM comentario INNER JOIN usuario on(usuario.cod_usu = comentario.cod_usu)
                                         INNER JOIN tipo_usuario ON (usuario.cod_tipo_usu = tipo_usuario.cod_tipo_usu)  
+                                        INNER JOIN tipo_comentario ON (tipo_comentario.cod_tipo_comen = comentario.cod_tipo_comentario)
                                         WHERE cod_publi = '%s' AND status_comen = 'A' AND (descri_tipo_usu = 'Prefeitura' or descri_tipo_usu = 'Funcionario')
-                                        AND status_usu = 'A'";//Nao conta com comentarios da prefeitura
+                                        AND status_usu = 'A' AND %s";//Nao conta com comentarios da prefeitura
     private $sqlSelectVerifyCurti = "SELECT COUNT(*) FROM publicacao_curtida WHERE cod_publi = '%s' AND cod_usu = '%s' AND status_publi_curti = 'A'";
    
     private $sqlSelectQuantPubli = "SELECT COUNT(*) FROM publicacao INNER JOIN usuario ON (usuario.cod_usu = publicacao.cod_usu)  
@@ -206,7 +207,7 @@ class PublicacaoA extends PublicacaoM{
             $dados[$contador]['endereco_organizado_aberto'] = $texto; //Cria um novo campo na array, com o endereço organizado com o cep 
             $dados[$contador]['quantidade_curtidas'] =  $this->getQuantCurtidas($dados[$contador]['cod_publi']); //Pegar quantidade de curtidas
             $dados[$contador]['quantidade_comen'] =  $this->getQuantComen($dados[$contador]['cod_publi']); //Pegar quantidade de comentarios
-            $dados[$contador]['indResPrefei'] =  $this->getVerifyResPrefei($dados[$contador]['cod_publi']); //Veficar resposta da prefeitura   
+            // $dados[$contador]['indResPrefei'] =  $this->getVerifyResPrefei($dados[$contador]['cod_publi']); //Veficar resposta da prefeitura   
             if(!empty($this->getCodUsu())){//Só entar aqui se ele estiver logado                      
                 $dados[$contador]['indCurtidaDoUser'] =  $this->getVerifyCurti($dados[$contador]['cod_publi']);//Verificar se ele curtiu a publicacao
                 $dados[$contador]['indDenunPubli'] =  $this->getVerificarSeDenunciou($dados[$contador]['cod_publi']);//Verificar se ele denunciou a publicacao               
@@ -251,10 +252,21 @@ class PublicacaoA extends PublicacaoM{
     }
     public function getVerifyResPrefei($idPubli) { // Pegar quantidade de resposta da prefeitura
         $sql = sprintf($this->sqlSelectVerifyResPrefei,
-                                $idPubli);          
+                                $idPubli,
+                                ' comentario.cod_tipo_comentario in(4)');          
         $res = $this->runSelect($sql);         
         $quantidade = $res[0]['COUNT(*)'];
-        if($quantidade > 0){ //Se for maior q zero é pq ta respondida
+        if($quantidade > 0){ //Se for maior q zero é pq tem resposta final
+            return TRUE;
+        }
+
+        $sql = sprintf($this->sqlSelectVerifyResPrefei,
+                                $idPubli,
+                                ' comentario.cod_tipo_comentario in(2)');          
+        $res = $this->runSelect($sql);        
+        $quantidade = $res[0]['COUNT(*)'];
+        
+        if($quantidade > 0){ //Se for maior q zero é pq tem resposta que nao é a final
             return TRUE;
         }
         return FALSE;

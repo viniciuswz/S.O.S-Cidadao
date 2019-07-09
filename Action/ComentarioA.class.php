@@ -52,7 +52,7 @@ class ComentarioA extends ComentarioM{
                     }
                     $codTipoComen = $this->getCodTipoComen("Resposta final da prefeitura");
                 }else{ // Resposta da prefeitura mas nao é a ultima
-                    $codTipoComen = $this->getCodTipoComen("Resposta prefeitura");
+                    $codTipoComen = $this->getCodTipoComen("Resposta prefeitura");                    
                 }               
             }else{
                 $codTipoComen = $this->getCodTipoComen("Comentário comum");
@@ -86,6 +86,11 @@ class ComentarioA extends ComentarioM{
         if(!$inserir->rowCount()){  // Se der erro cai nesse if          
             throw new \Exception("Não foi possível realizar o comentario",11);   
         }          
+
+        if($codTipoComen == 2 OR $codTipoComen == 4){ // dar update na tabela publicacao salva
+            $sqlUpdate = "UPDATE publicacao_salva SET ind_visu_respos_prefei = 'N' WHERE ind_visu_respos_prefei = 'V' AND cod_publi = " . $this->getCodPubli();
+            $resposta = $this->runQuery($sqlUpdate);               
+        }
         
     }
     public function verifyDonoPubli(){ // Verificar se quem esta comentando é o dono da publicacao

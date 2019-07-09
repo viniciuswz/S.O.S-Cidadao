@@ -60,7 +60,7 @@ class PublicacaoSalvaA extends PublicacaoSalvaM{
         $tipoUsu = $usuario->getDescTipo();
         if($verificarDono OR ($tipoUsu == 'Prefeitura' OR $tipoUsu == 'Funcionario')){ // é o dono ou é funcionario ou prefeira nao precisa ser notificado 
             $indVisuRes = 'I';
-        }else if(empty($indComenPrefei)){ // Nao tem resposta
+        }else if($indComenPrefei != TRUE){ // Nao tem resposta
             $indVisuRes = 'N';
         }else{//Tem resposta
             $indVisuRes = 'V';

@@ -51,17 +51,22 @@ class GerenNotiComum extends GenericaM{
         }           
     }
     //Feito
-    public function respostaPubliSalva(){
+    public function respostaPubliSalva($tipo = 'final'){
         $resposta = new SelectPubliSalva();
         $resposta->setCodSalvos($this->getCodSalvos());
         
-        $listaResposta = $resposta->selectComen($resposta->getWherePubli());
+        $listaResposta = $resposta->selectComen($resposta->getWherePubli($tipo));
         $quantidade = count($listaResposta); // quantidade de publicacaoes que foram respondidas
         $resultado = array();
         if($quantidade > 0){
             $contador = 0;
-            while($contador < count($listaResposta)){                
-                $resultado[$contador]['notificacao'] = "A publicação salva <span class='negrito'> " . $listaResposta[$contador][0]['titulo_publi'] . "</span> foi respondida pela prefeitura";
+            while($contador < count($listaResposta)){  
+                if($tipo == 'final'){
+                    $resultado[$contador]['notificacao'] = "A publicação salva <span class='negrito'> " . $listaResposta[$contador][0]['titulo_publi'] . "</span> teve uma resposta final realizada pela prefeitura";
+                }else{
+                    $resultado[$contador]['notificacao'] = "Nova atualização para a publicação salva <span class='negrito'> " . $listaResposta[$contador][0]['titulo_publi'] . "</span> realizada pela prefeitura";
+                }              
+                
                 $resultado[$contador]['id_publi'] = $listaResposta[$contador][0]['cod_publi']; 
                 $resultado[$contador]['tipo'] = 'not icone-not-respondeu';
                 $resultado[$contador]['indTipo'] = 'ResSalva'; //dasdasdasdasdasdasd
@@ -260,14 +265,14 @@ class GerenNotiComum extends GenericaM{
 
     public function notificacoes(){
             
-        $curtidasComen = $this->curtidasComen();        
-        $curtidasPubli = $this->curtidasPubli();
-        $respostaPubliSalva = $this->respostaPubliSalva();
-        $respostaPrefeiFinal = $this->respostaPrefeiFinal();
-        $comentarioComum = $this->comentarioComum();
+        $this->curtidasComen();        
+        $this->curtidasPubli();
+        $this->respostaPrefeiFinal();
+        $this->comentarioComum();
         $this->respostaPrefeiAtualizacao();
-        
-        
+        if(empty($this->respostaPubliSalva())){ // se existir resposta final nao quero notificacoes para resposta que nao sao as finais
+            $this->respostaPubliSalva('atualizacao');
+        }        
         $this->visualizarNotificacao($this->indVisu,$this->idUser);
         $this->resultados = $this->ordenarArray();
         return $this->resultados;
