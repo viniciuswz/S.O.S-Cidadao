@@ -510,25 +510,25 @@
                     <div>
                         <form action="" style="margin-top:10px">
                             <div class="estrelas" >
-                                <input class="estrela" id="estrela-5" type="radio" name="estrela"/>
-                                <label class="estrela" for="estrela-5"></label>
+                                <input class="estrela" value="5" id="estrela-55" type="radio" name="estrela"/>
+                                <label class="estrela" for="estrela-55"></label>
                                 
-                                <input class="estrela" id="estrela-4" type="radio" name="estrela"/>
-                                <label class="estrela" for="estrela-4"></label>
+                                <input class="estrela" value="4" id="estrela-44" type="radio" name="estrela"/>
+                                <label class="estrela" for="estrela-44"></label>
                                 
-                                <input class="estrela" id="estrela-3" type="radio" name="estrela"/>
-                                <label class="estrela" for="estrela-3"></label>
+                                <input class="estrela" value="3" id="estrela-33" type="radio" name="estrela"/>
+                                <label class="estrela" for="estrela-33"></label>
                                 
-                                <input class="estrela" id="estrela-2" type="radio" name="estrela"/>
-                                <label class="estrela" for="estrela-2"></label>
+                                <input class="estrela" value="2" id="estrela-22" type="radio" name="estrela"/>
+                                <label class="estrela" for="estrela-22"></label>
                                 
-                                <input class="estrela" id="estrela-1" type="radio" name="estrela"/>
-                                <label class="estrela" for="estrela-1"></label>
+                                <input class="estrela" value="1" id="estrela-11" type="radio" name="estrela"/>
+                                <label class="estrela" for="estrela-11"></label>
                                 
                             </div>
                             <div class="texto-avaliacao">
                                 <p>Descreva sua experiência(opicional)</p>
-                                <textarea></textarea>
+                                <textarea name="experiencia"></textarea>
                             </div>
                             <button class="btn" style="margin-bottom: 10px; margin-left: 15px;">Avaliar</button>
                         </form>
