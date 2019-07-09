@@ -2596,6 +2596,10 @@ color:black
     color:white;
 }
 
+.prefeitura-publicacao-resposta:nth-child(even){
+    background-color:#009688
+}
+
 .topo-prefeitura-publicacao a{
     color:white;
 
