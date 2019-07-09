@@ -78,7 +78,7 @@ class GerenNotiComum extends GenericaM{
         return $resultado;        
     }
     // Feito
-    public function respostaPrefei($getIdsComen = null){
+    public function respostaPrefeiFinal($getIdsComen = null){
         $resposta = new SelectComen();
         $resposta->setCodPubli($this->getCodPubli());
         $listaResposta = $resposta->selectComen($resposta->getWherePrefeiFunc()); // Faz o select 
@@ -92,7 +92,7 @@ class GerenNotiComum extends GenericaM{
                 if($getIdsComen != null){
                     $idsComen[$contador]['cod_comen'] = $listaResposta[$contador][0]['cod_comen'];       
                 }else{
-                    $resultado[$contador]['notificacao'] = " A prefeitura respondeu a publição <span class='negrito'> " . $listaResposta[$contador][0]['titulo_publi'] . "</span>";
+                    $resultado[$contador]['notificacao'] = "A prefeitura deu uma resposta final para a publicação <span class='negrito'> " . $listaResposta[$contador][0]['titulo_publi'] . "</span>";
                     $resultado[$contador]['id_publi'] = $listaResposta[$contador][0]['cod_publi']; 
                     $resultado[$contador]['tipo'] = 'not icone-not-respondeu';
                     $resultado[$contador]['indTipo'] = 'ResPrefei'; //dasdasdasdasdasdasd
@@ -112,6 +112,47 @@ class GerenNotiComum extends GenericaM{
             return $resultado; 
         }
             
+    
+    }
+    public function respostaPrefeiAtualizacao($getIdsComen = null){
+        $resposta = new SelectComen();
+        $resposta->setCodPubli($this->getCodPubli());
+        $listaResposta = $resposta->selectComen($resposta->getWherePrefeiFunc('atualizacao')); // Faz o select 
+        // var_dump($listaResposta); 
+        $quantidade = count($listaResposta); // quantidade de publicacaoes que foram respondidas
+        $resultado = array();
+        $idsComen = array();        
+        if($quantidade > 0){
+            $contador = 0; 
+            while($contador < count($listaResposta)){
+                if($getIdsComen != null){
+                    $idsComen[$contador]['cod_comen'] = $listaResposta[$contador][0]['cod_comen'];       
+                }else{
+                    $qtdAtualizacoes = count($listaResposta[$contador]);
+                    if($qtdAtualizacoes == 1){
+                        $prefixo = "uma nova atualização ";
+                    }else{
+                        $prefixo = "$qtdAtualizacoes novas atualizações ";
+                    }
+                    $resultado[$contador]['notificacao'] = " A prefeitura comunicou  $prefixo para a publicação <span class='negrito'> " . $listaResposta[$contador][0]['titulo_publi'] . "</span>";
+                    $resultado[$contador]['id_publi'] = $listaResposta[$contador][0]['cod_publi']; 
+                    $resultado[$contador]['tipo'] = 'not icone-not-respondeu';
+                    $resultado[$contador]['indTipo'] = 'ResPrefei'; //dasdasdasdasdasdasd
+                    $resultado[$contador]['Hora'] = strtotime($listaResposta[$contador][0]['dataHora']);  
+                    $resultado[$contador]['DataHora'] = $listaResposta[$contador][0]['dataHora'];               
+                    $resultado[$contador]['classe'] = $this->nomeClasse($listaResposta[$contador][0]['ind_visu_dono_publi']);     
+                    $resultado[$contador]['link'] = 'reclamacao';                    
+                }    
+                $contador++;
+            }
+        }
+        $this->resultados = array_merge_recursive($this->resultados, $resultado);
+        
+        if($getIdsComen != null){
+            return $idsComen; 
+        }else{
+            return $resultado; 
+        }           
     
     }
     // Feito
@@ -222,8 +263,9 @@ class GerenNotiComum extends GenericaM{
         $curtidasComen = $this->curtidasComen();        
         $curtidasPubli = $this->curtidasPubli();
         $respostaPubliSalva = $this->respostaPubliSalva();
-        $respostaPrefei = $this->respostaPrefei();
+        $respostaPrefeiFinal = $this->respostaPrefeiFinal();
         $comentarioComum = $this->comentarioComum();
+        $this->respostaPrefeiAtualizacao();
         
         
         $this->visualizarNotificacao($this->indVisu,$this->idUser);

@@ -435,7 +435,7 @@
                         </section>
             <?php
                 }                           
-                if($indUltimaRespostaDono <= 0 && $indUltimaRespostaPrefeitura > 0 && isset($tipoUsu) AND ($tipoUsu == 'Comum')){
+                if($indUltimaRespostaDono <= 0 && $indUltimaRespostaPrefeitura > 0 && isset($tipoUsu) AND ($tipoUsu == 'Comum' AND $resposta[0]['cod_usu'] == $_SESSION['id_user'])){
             ?>
                 <section class="reclamacao-avaliacao">
                 <h3>Avalie a resposta</h3>

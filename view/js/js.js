@@ -2301,7 +2301,7 @@ jQuery(function($){
   $.ajax({
     url: voltar +"Comentario.php",
     type: "post",
-    data: "id="+idPubli+"&texto="+comentario,
+    data: "id="+idPubli+"&texto="+comentario+$indRespostaPrefeitura,
     success:function(result){
         if(result == 'NLogado'){ // Nao esta logado, redirecionar pra fazer login
           location.href= voltar + "login";

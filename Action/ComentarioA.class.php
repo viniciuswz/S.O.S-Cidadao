@@ -67,7 +67,9 @@ class ComentarioA extends ComentarioM{
                 $codTipoComen = $this->getCodTipoComen("Comentário comum");
             }           
         }
-        if($notaResposta > 5 OR $notaResposta < 0){
+        if($codTipoComen == 0){// se não for algum comentario de ultima resposta fica como zero
+            $notaResposta = 0;
+        }else if($notaResposta > 5 OR $notaResposta < 0){ // se for comentario de ultima resposta
             $notaResposta = 0;
         }
         
