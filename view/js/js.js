@@ -2243,8 +2243,8 @@ jQuery(function($){
 });
 
 jQuery(function($){
-  $("#enviar_comentario").submit(function(){
-    
+  $("#enviar_comentario").submit(function(){  
+   
   //var caminho = $(this).attr('action');
 
   
@@ -2280,6 +2280,15 @@ jQuery(function($){
   var nome = $(".mini-perfil").find("p").html();
   var hrefIDUsu = $("#idPerfilUsu").attr('href');
   var id_usu = hrefIDUsu.substring(hrefIDUsu.lastIndexOf('ID')+4); // pegar id do usuario
+  
+  /* CODIGO TEMPORARIO */
+      var indRespostaPrefeitura = "";
+      $objSwitch = document.querySelector('.switch input');
+      if($objSwitch != null){ // se for diferente de null sei que é a prefeitura respondendo
+        $indRespostaPrefeitura = "&indUltimaResposta=" + $objSwitch.checked;
+      }
+  /* CODIGO TEMPORARIO */
+ 
 
   var quantVoltar = $("#voltar").val();
   voltar = "";
@@ -2292,7 +2301,7 @@ jQuery(function($){
   $.ajax({
     url: voltar +"Comentario.php",
     type: "post",
-    data: "id="+idPubli+"&texto="+comentario,
+    data: "id="+idPubli+"&texto="+comentario + $indRespostaPrefeitura,
     success:function(result){
         if(result == 'NLogado'){ // Nao esta logado, redirecionar pra fazer login
           location.href= voltar + "login";

@@ -385,21 +385,16 @@
             </section>-->
             <?php
                 if(isset($tipoUsu) AND ($tipoUsu == 'Funcionario' or $tipoUsu == 'Prefeitura')){
-                    if($indUltimaRespostaPrefeitura <= 0){
-                        // ARRUMAR FORM PRA ENVIAR REPOSTA TEM Q TER OS IND REPOSTA
-                        // COMO INPUT TYPE HIDDEN
+                    if($indUltimaRespostaPrefeitura <= 0){                        
             ?>
                         <section class="enviar-comentario-publicacao">
                             <h3>
                                 Envie uma resposta
                             </h3>
-                            <!-- <form id="enviar_comentario"> -->
-                            <form action="../Comentario.php" method="post">
+                            <form id="enviar_comentario">                          
                                 <textarea placeholder="Escreva uma resposta" name="texto" id="comentarioTxt"></textarea>
-                                <input type="hidden" value="<?php echo $_GET['ID']?>" name="id" id="idPubli">
-                                <input type="radio" name="indUltimaResposta" value=true>Ultima Resposta
-                                <input type="radio" name="indUltimaResposta" value=false>Não ultima Resposta
-                                <!--<div class="resposta-final">
+                                <input type="hidden" value="<?php echo $_GET['ID']?>" name="id" id="idPubli">                                
+                                <div class="resposta-final">
                                     <p>Marcar como ultima resposta?</p>
                                     <div>
                                             <span>Não</span> <span>Sim</span>
@@ -408,7 +403,7 @@
                                         <input type="checkbox">
                                         <span class="slider round"></span>
                                     </label>
-                                </div>-->
+                                </div>
                                 <input type="submit" id="btn-reclama" value="Enviar Resposta" disabled>
                             </form>  
                         </section>
@@ -433,7 +428,33 @@
                 }                           
                 if($indUltimaRespostaDono <= 0 && $indUltimaRespostaPrefeitura > 0 && isset($tipoUsu) AND ($tipoUsu == 'Comum')){
             ?>
-                <section class="enviar-comentario-publicacao">
+                <section class="reclamacao-avaliacao">
+                <h3>Avalie a resposta</h3>
+                <p>Dê sua opinião</p>
+                <div class="reclamacao-avaliacao-box">
+                        <div class="estrelas" id="pre-avaliacao">
+                                <input class="estrela" id="estrela-5" type="radio" name="estrela" value="5"/>
+                                <label class="estrela" for="estrela-5"></label>
+                                
+                                <input class="estrela" id="estrela-4" type="radio" name="estrela" value="4"/>
+                                <label class="estrela" for="estrela-4"></label>
+                                
+                                <input class="estrela" id="estrela-3" type="radio" name="estrela" value="3"/>
+                                <label class="estrela" for="estrela-3"></label>
+                                
+                                <input class="estrela" id="estrela-2" type="radio" name="estrela" value="2"/>
+                                <label class="estrela" for="estrela-2"></label>
+                                
+                                <input class="estrela" id="estrela-1" type="radio" name="estrela" value="1"/>
+                                <label class="estrela" for="estrela-1"></label>
+                                
+                            </div>
+                </div>
+
+            </section>
+
+
+                <!-- <section class="enviar-comentario-publicacao">
                     <h3>
                         Envie um feedBack
                     </h3>
@@ -447,7 +468,7 @@
                             <p>O campo tal e pa</p>
                         </div>
                     </form>  
-                </section>
+                </section> -->
             <?php
                 }
             ?>
