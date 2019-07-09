@@ -303,17 +303,19 @@
                         $contador = 0;
                         while($contador < count($comentarioPrefei)){
                     ?>
-                        <div class="topo-prefeitura-publicacao">
-                            <a href="<?php echo $voltar ?>perfil_reclamacao/<?php echo $comentarioPrefei[$contador]['cod_usu_prefei'] ?>">
-                            <div>
-                                <img src="<?php echo $voltar ?>Img/perfil/<?php echo $comentarioPrefei[$contador]['img_perfil_usu']?>">
+                        <div class="prefeitura-publicacao-resposta">
+                            <div class="topo-prefeitura-publicacao">
+                                <a href="<?php echo $voltar ?>perfil_reclamacao/<?php echo $comentarioPrefei[$contador]['cod_usu_prefei'] ?>">
+                                <div>
+                                    <img src="<?php echo $voltar ?>Img/perfil/<?php echo $comentarioPrefei[$contador]['img_perfil_usu']?>">
+                                </div>
+                                <p><span class="negrito"><?php echo $comentarioPrefei[$contador]['nome_usu_prefei']?></span></a><time><?php echo $comentarioPrefei[$contador]['dataHora_comen']?></time></p>  
+                            </div> 
+                            <div class="conteudo-resposta">
+                                <span>
+        <?php echo nl2br($comentarioPrefei[$contador]['texto_comen'])?>
+                                </span>
                             </div>
-                            <p><span class="negrito"><?php echo $comentarioPrefei[$contador]['nome_usu_prefei']?></span></a><time><?php echo $comentarioPrefei[$contador]['dataHora_comen']?></time></p>  
-                        </div> 
-                        <div class="conteudo-resposta">
-                            <span>
-<?php echo nl2br($comentarioPrefei[$contador]['texto_comen'])?>
-                            </span>
                         </div>
                     <?php
                         $contador++;
