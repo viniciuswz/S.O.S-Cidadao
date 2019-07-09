@@ -18,9 +18,10 @@ try{
     
     if(isset($_POST['indUltimaResposta'])){
         $indUltimaResposta = $_POST['indUltimaResposta'];
+        $validar = new ValidarCampos(['texto'], $_POST);//Verificar se eles existem, se nao existir estoura um erro
     }
-    if(isset($_POST['nota'])){
-        $nota = $_POST['nota'];
+    if(isset($_POST['estrela'])){
+        $nota = $_POST['estrela'];
     }
     $comentario = new Comentario();
     $comentario->setTextoComen($texto);
@@ -29,8 +30,9 @@ try{
     $comentario->setIndUltimaResposta($indUltimaResposta);   
     $comentario->setNotaResposta($nota);
     $comentario->inserirComen();
+
     echo $_SESSION['tipo_usu'].".".$comentario->last().",".$comentario->quantidadeTotalPubli();    
-    //echo "<script> javascript:window.location='view/reclamacao.php?ID=".$idPubli."';</script>";
+   
 }catch (Exception $exc){
     $erro = $exc->getCode();   
     $mensagem = $exc->getMessage();

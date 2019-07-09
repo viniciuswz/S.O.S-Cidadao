@@ -330,10 +330,16 @@
                             <p><span class="negrito"><?php echo $ultimaRespotaDono[0]['nome_usu']?></span></a><time><?php echo $ultimaRespotaDono[0]['dataHora_comen']?></time></p>  
                         </div> 
                         <div class="conteudo-resposta">
+                        <?php
+                            if(!empty($ultimaRespotaDono[0]['texto_comen'])){
+                        ?>
                             <span>
 <?php echo nl2br($ultimaRespotaDono[0]['texto_comen'])?>
                             </span>
                             <br>
+                        <?php
+                            }
+                        ?>
                             <span>
 <strong>NOTA:<strong> <?php echo nl2br($ultimaRespotaDono[0]['nota_resposta'])?>
                             </span>
@@ -528,8 +534,10 @@
                             </div>
                             <div class="texto-avaliacao">
                                 <p>Descreva sua experiência(opicional)</p>
-                                <textarea name="experiencia"></textarea>
+                                <textarea name="texto"></textarea>
                             </div>
+                            <input type="hidden" value="<?php echo $_GET['ID']?>" name="id">
+                            <input type="hidden" value="true" name="indUltimaResposta">
                             <button class="btn" style="margin-bottom: 10px; margin-left: 15px;">Avaliar</button>
                         </form>
                        

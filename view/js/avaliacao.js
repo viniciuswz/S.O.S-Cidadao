@@ -23,9 +23,17 @@ $('document').ready(function(){
 
     $('.modal-avaliacao .btn').click(function(e){
         event.preventDefault();
+
+        var quantVoltar = $("#voltar").val();
+        voltar = "";
+        if(quantVoltar >= 0 && quantVoltar <= 5 ){
+            for(i = 0; i < quantVoltar; i++){
+                voltar += "../";
+            }
+        }   
        
         $.ajax({
-            url: voltar + "a",
+            url: voltar + "Comentario.php",
             type: "post",
             data: $('.modal-avaliacao form').serialize(),
             success:function(result){
