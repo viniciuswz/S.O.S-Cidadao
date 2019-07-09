@@ -31,7 +31,7 @@ try{
     $comentario->setNotaResposta($nota);
     $comentario->inserirComen();
 
-    echo $_SESSION['tipo_usu'].".".$comentario->last().",".$comentario->quantidadeTotalPubli();    
+    echo $_SESSION['tipo_usu'].".".$comentario->last().",".$comentario->quantidadeTotalPubli(). ';' . $indUltimaResposta;    
    
 }catch (Exception $exc){
     $erro = $exc->getCode();   
