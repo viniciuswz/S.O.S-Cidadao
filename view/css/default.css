@@ -2698,12 +2698,13 @@ color:black
 .reclamacao-avaliacao{
     margin: 10px auto;
     width: 90%;
+    text-align:center;
 }
 
 .reclamacao-avaliacao-box .estrelas{
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
+    margin:10px auto
 }
 
 .enviar-comentario-publicacao{
@@ -2798,6 +2799,7 @@ input[type="submit"]{-webkit-appearance: none;}
     align-self: flex-end;
     word-break: break-all;
     white-space: pre-wrap;
+    font-weight: normal;
 } 
 
 .comentarios .comentario-user .publicacao-topo-aberta{

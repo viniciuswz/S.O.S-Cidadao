@@ -341,7 +341,7 @@
                             }
                         ?>
                             <span>
-<strong>NOTA:<strong> <?php echo nl2br($ultimaRespotaDono[0]['nota_resposta'])?>
+<strong>NOTA:</strong> <?php echo nl2br($ultimaRespotaDono[0]['nota_resposta'])?>
                             </span>
                     </div>
                     <?php

@@ -2301,7 +2301,7 @@ jQuery(function($){
   $.ajax({
     url: voltar +"Comentario.php",
     type: "post",
-    data: "id="+idPubli+"&texto="+comentario + $indRespostaPrefeitura,
+    data: "id="+idPubli+"&texto="+comentario,
     success:function(result){
         if(result == 'NLogado'){ // Nao esta logado, redirecionar pra fazer login
           location.href= voltar + "login";
@@ -2312,11 +2312,16 @@ jQuery(function($){
           // var usuario = result.substring(0, result.lastIndexOf('.'));
           // var id_comentario = result.substring(result.lastIndexOf('.') + 1,result.lastIndexOf(','));
           // var qtd = result.substring(result.lastIndexOf(',') + 1);  
-          var arr = /(.+)\.(.+)\,(.+)\;(.+)/g.exec(result);
+          var arr = /(.+)\.(.+)\,(.+)\;(.+)?/g.exec(result);
+
+        
               let usuario = arr[1];
               let id_comentario = arr[2];
               let qtd = arr[3];
-              let flagUltimaResposta = arr[4];        
+              if(arr.length < 4){
+                let flagUltimaResposta = arr[4]; 
+              }
+                     
           if(usuario =="Comum"){            
             //alert(voltar + id_usu);
             $(".comentarios").prepend('<div class="comentario-user" style="display:flex; order:-1">\
