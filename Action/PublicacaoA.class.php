@@ -207,7 +207,13 @@ class PublicacaoA extends PublicacaoM{
             $dados[$contador]['endereco_organizado_aberto'] = $texto; //Cria um novo campo na array, com o endereço organizado com o cep 
             $dados[$contador]['quantidade_curtidas'] =  $this->getQuantCurtidas($dados[$contador]['cod_publi']); //Pegar quantidade de curtidas
             $dados[$contador]['quantidade_comen'] =  $this->getQuantComen($dados[$contador]['cod_publi']); //Pegar quantidade de comentarios
-            // $dados[$contador]['indResPrefei'] =  $this->getVerifyResPrefei($dados[$contador]['cod_publi']); //Veficar resposta da prefeitura   
+            $indRespostaFinal = $this->getVerifyResPrefei($dados[$contador]['cod_publi'], FALSE); //Veficar resposta da prefeitura   
+            if($indRespostaFinal){ // se existir
+                $dados[$contador]['indResPrefei'] =  TRUE;
+            }else{
+                $dados[$contador]['indResPrefei'] =  FALSE;
+            }
+            
             if(!empty($this->getCodUsu())){//Só entar aqui se ele estiver logado                      
                 $dados[$contador]['indCurtidaDoUser'] =  $this->getVerifyCurti($dados[$contador]['cod_publi']);//Verificar se ele curtiu a publicacao
                 $dados[$contador]['indDenunPubli'] =  $this->getVerificarSeDenunciou($dados[$contador]['cod_publi']);//Verificar se ele denunciou a publicacao               
@@ -250,7 +256,7 @@ class PublicacaoA extends PublicacaoM{
         $res = $this->runSelect($sql);
         return $res[0]['COUNT(*)'];
     }
-    public function getVerifyResPrefei($idPubli) { // Pegar quantidade de resposta da prefeitura
+    public function getVerifyResPrefei($idPubli, $indRespostaNaoFinal = TRUE) { // Pegar quantidade de resposta da prefeitura
         $sql = sprintf($this->sqlSelectVerifyResPrefei,
                                 $idPubli,
                                 ' comentario.cod_tipo_comentario in(4)');          
@@ -260,15 +266,18 @@ class PublicacaoA extends PublicacaoM{
             return TRUE;
         }
 
-        $sql = sprintf($this->sqlSelectVerifyResPrefei,
-                                $idPubli,
-                                ' comentario.cod_tipo_comentario in(2)');          
-        $res = $this->runSelect($sql);        
-        $quantidade = $res[0]['COUNT(*)'];
-        
-        if($quantidade > 0){ //Se for maior q zero é pq tem resposta que nao é a final
+        if($indRespostaNaoFinal){ // preciso saber se tem resposta q nao é a final
+            $sql = sprintf($this->sqlSelectVerifyResPrefei,
+            $idPubli,
+            ' comentario.cod_tipo_comentario in(2)');          
+            $res = $this->runSelect($sql);        
+            $quantidade = $res[0]['COUNT(*)'];
+
+            if($quantidade > 0){ //Se for maior q zero é pq tem resposta que nao é a final
             return TRUE;
+            }
         }
+        
         return FALSE;
     }
     public function getVerifyCurti($idPubli){ //Verificar se o usuario ja curtiu a publicacao
