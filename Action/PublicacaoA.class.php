@@ -196,7 +196,7 @@ class PublicacaoA extends PublicacaoM{
         return $dadosTratados;
         
     }
-    public function tratarInformacoes($dados){        
+    public function tratarInformacoes($dados, $info_api){        
         
         if(!empty($this->getCodUsu())){
             $publicacaoSalva = new PublicacaoSalva();
@@ -205,7 +205,11 @@ class PublicacaoA extends PublicacaoM{
         $contador = 0;               
         while($contador < count($dados)){//Nesse while so entra a parte q me interresa
             $texto = ""; //Limpar a variavel
-            $dados[$contador]['dataHora_publi'] = $this->tratarHora($dados[$contador]['dataHora_publi']);//Calcular o tempo
+            if(!$info_api){
+                $dados[$contador]['dataHora_publi'] = $this->tratarHora($dados[$contador]['dataHora_publi']);//Calcular o tempo
+            }else{
+                $dados[$contador]['dataHora_publi'] = $dados[$contador]['dataHora_publi'];//Calcular o tempo
+            }            
             $cepComTraco = substr($dados[$contador]['cep_logra'],0,5) . '-' . substr($dados[$contador]['cep_logra'],5,8); //Colocar o - no cep 
             $texto .=  $dados[$contador]['nome_bai'] . ', ';   
             $texto .=  $dados[$contador]['endere_logra'];  
