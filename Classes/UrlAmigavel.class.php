@@ -32,7 +32,7 @@ class UrlAmigavel{
 
         if(is_dir($this->partesUrl[1])){ // verificar se existe pasta
             //echo 'é pasta';
-            if($this->partesUrl[1] == 'view'){ // se for a view
+            if($this->partesUrl[1] == 'requisicoes'){ // se for a requisicoes
                 if(empty($this->partesUrl[2])){ // se nao for digitado nenhum arquivo
                     //echo 'Não digitou nada na URL Pasta<br>';
                     $this->partesUrl[1] = 'home.php';
@@ -41,7 +41,7 @@ class UrlAmigavel{
                 }else{            
                     $this->indRetornar = True;       
                     $this->partesUrl[1] = $this->quebrarParametros($this->partesUrl[2]);
-                    if(file_exists('view' . DIRECTORY_SEPARATOR . $this->partesUrl[2] . '.php')){
+                    if(file_exists('requisicoes' . DIRECTORY_SEPARATOR . $this->partesUrl[2] . '.php')){
                         $this->partesUrl[1] = $this->partesUrl[2];
                     }else{
                         $this->partesUrl[1] = 'home.php';
@@ -53,7 +53,7 @@ class UrlAmigavel{
             }
         }else{ 
             $this->partesUrl[1] = $this->quebrarParametros($this->partesUrl[1]);
-            if(file_exists('view' . DIRECTORY_SEPARATOR . $this->partesUrl[1] . '.php')){
+            if(file_exists('requisicoes' . DIRECTORY_SEPARATOR . $this->partesUrl[1] . '.php')){
                 $this->partesUrl[1] .=  '.php';
             }else{
                 $this->partesUrl[1] = 'home.php';

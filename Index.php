@@ -1,21 +1,25 @@
 <?php
-//session_start();
+header("Content-type: text/html; charset=utf-8");
+
+
+
 require_once('Config/Config.php');
 require_once(SITE_ROOT.DS.'autoload.php');  
 use Classes\UrlAmigavel;
-try{
+try{    
     $url = new UrlAmigavel($_SERVER['REQUEST_URI']);
     $nome = $url->partesUrl[1];
-    $ind = $url->indRetornar;
-    if(!$ind){ // nao precisa voltar
-        if(is_file('view/' . $nome)){
-            require_once('view/' . $nome);
+    $ind = $url->indRetornar;    
+    if(!$ind && $nome != "home.php"){ // nao precisa voltar
+        if(is_file('requisicao/' . $nome)){
+            require_once('requisicao/' . $nome);
         }
-    }else{ // precisa voltar        
-        header("Location: ../$nome");
+    }else{ // precisa voltar   
+        http_response_code(404);               
+        throw new \Exception("Caminho da requisição errado", 5001);
     }   
 }catch(Exception $exc){
-    echo $exc->getMessage();
+    echo json_encode(["ind_sucesso" => "false","cod_erro" => $exc->getCode(), "messagem" => $exc->getMessage()]);
 }
 
 
