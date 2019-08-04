@@ -242,19 +242,19 @@ class PublicacaoA extends PublicacaoM{
     public function tratarInformacoesAPI($dados){
         $resposta = [];
         foreach($dados as $vlr_array){
-            $resposta['codigo_usuario'] = $vlr_array['cod_usu'];
+            $resposta['codigo_usuario'] = intval($vlr_array['cod_usu']);
             $resposta['nome_usuario'] = $vlr_array['nome_usu'];
             $resposta['titulo_publicacao'] = $vlr_array['titulo_publi'];
-            $resposta['codigo_publicacao'] = $vlr_array['cod_publi'];
+            $resposta['codigo_publicacao'] = intval($vlr_array['cod_publi']);
             $resposta['texto_publicacao'] = $vlr_array['texto_publi'];
             $resposta['data_hora_publicacao'] = $vlr_array['dataHora_publi'];
             $resposta['descricao_categoria'] = $vlr_array['descri_cate'];
-            $resposta['codigo_categoria'] = $vlr_array['cod_cate'];
+            $resposta['codigo_categoria'] = intval($vlr_array['cod_cate']);
             $resposta['endereco'] = $vlr_array['endere_logra'];
             $resposta['bairro'] = $vlr_array['nome_bai'];
             $resposta['cep'] = $vlr_array['cep_logra'];
-            $resposta['quantidade_curtida'] = $vlr_array['quantidade_curtidas'];
-            $resposta['quantidade_comentario'] = $vlr_array['quantidade_comen'];
+            $resposta['quantidade_curtida'] = intval($vlr_array['quantidade_curtidas']);
+            $resposta['quantidade_comentario'] = intval($vlr_array['quantidade_comen']);
             $resposta['status_publicacao'] = $vlr_array['status_publicacao'];           
             $resposta['status_usuario'] = $vlr_array['status_usuario'];  
             $resposta['status_resposta_prefeitura'] = $vlr_array['indResPrefei'];
