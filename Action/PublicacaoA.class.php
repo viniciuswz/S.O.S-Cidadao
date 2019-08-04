@@ -257,8 +257,7 @@ class PublicacaoA extends PublicacaoM{
             $resposta['quantidade_comentario'] = $vlr_array['quantidade_comen'];
             $resposta['status_publicacao'] = $vlr_array['status_publicacao'];           
             $resposta['status_usuario'] = $vlr_array['status_usuario'];  
-            $resposta['status_resposta_prefeitura'] = $vlr_array['indResPrefei'];    
-            $resposta['ind_sucesso'] = "true";   
+            $resposta['status_resposta_prefeitura'] = $vlr_array['indResPrefei'];
         }
         return $resposta;
     }

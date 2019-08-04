@@ -30,11 +30,7 @@ try{
     $publi->setCodPubli($_GET['ID']);
     
     $resposta = $publi->listByIdPubli(null, true);
-    
-
-    
-    echo json_encode($resposta);
-
+    echo json_encode(["ind_sucesso" => "true","cod_erro" => null, "messagem" => null, "dados" => $resposta]);   
 }catch (Exception $exc){       
     $erro = $exc->getCode();
     $mensagem = $exc->getMessage();
@@ -48,5 +44,5 @@ try{
             $mensagem = "Código informado não é numérico";
             break;
     }
-    echo json_encode(["ind_sucesso" => "false","cod_erro" => $erro, "messagem" => $mensagem]);
+    echo json_encode(["ind_sucesso" => "false","cod_erro" => $erro, "messagem" => $mensagem, "dados" => null]);
 }  
