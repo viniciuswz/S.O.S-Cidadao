@@ -14,7 +14,7 @@ class PublicacaoA extends PublicacaoM{
     private $sqlInsert = "INSERT INTO publicacao(texto_publi, img_publi, titulo_publi, cod_usu, cod_cate, cep_logra,dataHora_publi)
                             VALUES('%s','%s','%s','%s','%s','%s','%s')";
     private $sqlSelect = "SELECT usuario.cod_usu,usuario.nome_usu, img_perfil_usu, img_publi,titulo_publi, cod_publi, 
-                                    texto_publi, dataHora_publi, descri_cate,categoria.cod_cate, endere_logra, nome_bai, logradouro.cep_logra      
+                                    texto_publi, dataHora_publi, descri_cate,categoria.cod_cate, endere_logra, nome_bai, logradouro.cep_logra, publicacao.status_publi, usuario.status_usu      
                                     FROM usuario INNER JOIN publicacao on (usuario.cod_usu = publicacao.cod_usu) 
                                     INNER JOIN categoria ON (publicacao.cod_cate = categoria.cod_cate)
                                     INNER JOIN logradouro ON (publicacao.cep_logra = logradouro.cep_logra) 
@@ -141,17 +141,24 @@ class PublicacaoA extends PublicacaoM{
         }
         return $dadosTratados = $this->tratarInformacoes($res);
     }
-    public function listByIdPubli($restricao = null){ // Listar pelo id da publicacao
+    public function listByIdPubli($restricao = null, $info_api = false){ // Listar pelo id da publicacao
         if(!empty($this->getCodUsu())){
             $usuario = new Usuario();
             $usuario->setCodUsu($this->getCodUsu());
             $tipoUsu = $usuario->getDescTipo();
-        }        
+        }      
+        if($info_api === true){
+            $complementoSelect = "1=1"; 
+        }else{
+            $complementoSelect = $this->whereListFromALL; 
+        }  
+
         $sql = sprintf($this->sqlSelect,
-                        $this->whereListFromALL,
-                        ' %s',
-                        ' %s '
+            $complementoSelect,
+            ' %s',
+            ' %s '
         );  
+        
         
         if($restricao == null OR ($tipoUsu == 'Adm' OR $tipoUsu == 'Moderador')){ // Nao precisa ser o dono da publicacao
             $prepararWherePubli = sprintf($this->whereIdPubli, $this->getCodPubli());
@@ -181,9 +188,11 @@ class PublicacaoA extends PublicacaoM{
         if(empty($res)){
             throw new \Exception($erro,9); 
         }        
-        $dadosTratados = $this->tratarInformacoes($res);       
-        $dadosTratados[0]['class_cate'] = $this->tirarAcentos($dadosTratados[0]['descri_cate']);//Tirar acentos pra entrar como classe no html
-        //var_dump($dadosTratados);
+        $dadosTratados = $this->tratarInformacoes($res, $info_api);       
+        $dadosTratados[0]['class_cate'] = $this->tirarAcentos($dadosTratados[0]['descri_cate']);//Tirar acentos pra entrar como classe no html        
+        if($info_api){
+            $dadosTratados = $this->tratarInformacoesAPI($dadosTratados);
+        }
         return $dadosTratados;
         
     }
@@ -220,12 +229,38 @@ class PublicacaoA extends PublicacaoM{
                 $dados[$contador]['indSalvaPubli'] = $this->getVerificarSeSalvou($publicacaoSalva, $dados[$contador]['cod_publi']);
                 //Me retorna um bollenao                
             }
+            ($dados[$contador]['status_publi'] == "A") ? $dados[$contador]['status_publicacao'] = "Ativo" : $dados[$contador]['status_publicacao'] = "Inativo";
+            ($dados[$contador]['status_usu'] == "A") ? $dados[$contador]['status_usuario'] = "Ativo" : $dados[$contador]['status_usuario'] = "Inativo";
             
             $contador++;
         }     
         
         return $dados;       
         
+    }
+
+    public function tratarInformacoesAPI($dados){
+        $resposta = [];
+        foreach($dados as $vlr_array){
+            $resposta['codigo_usuario'] = $vlr_array['cod_usu'];
+            $resposta['nome_usuario'] = $vlr_array['nome_usu'];
+            $resposta['titulo_publicacao'] = $vlr_array['titulo_publi'];
+            $resposta['codigo_publicacao'] = $vlr_array['cod_publi'];
+            $resposta['texto_publicacao'] = $vlr_array['texto_publi'];
+            $resposta['data_hora_publicacao'] = $vlr_array['dataHora_publi'];
+            $resposta['descricao_categoria'] = $vlr_array['descri_cate'];
+            $resposta['codigo_categoria'] = $vlr_array['cod_cate'];
+            $resposta['endereco'] = $vlr_array['endere_logra'];
+            $resposta['bairro'] = $vlr_array['nome_bai'];
+            $resposta['cep'] = $vlr_array['cep_logra'];
+            $resposta['quantidade_curtida'] = $vlr_array['quantidade_curtidas'];
+            $resposta['quantidade_comentario'] = $vlr_array['quantidade_comen'];
+            $resposta['status_publicacao'] = $vlr_array['status_publicacao'];           
+            $resposta['status_usuario'] = $vlr_array['status_usuario'];  
+            $resposta['status_resposta_prefeitura'] = $vlr_array['indResPrefei'];    
+            $resposta['ind_sucesso'] = "true";   
+        }
+        return $resposta;
     }
     public function tirarAcentos($palavra){ // Tirar acentos de palavras
         $semAcento = strtolower(preg_replace( '/[`^~\'"]/', null, iconv( 'UTF-8', 'ASCII//TRANSLIT', $palavra )));       

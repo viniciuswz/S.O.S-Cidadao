@@ -11,8 +11,8 @@ try{
     $nome = $url->partesUrl[1];
     $ind = $url->indRetornar;    
     if(!$ind && $nome != "home.php"){ // nao precisa voltar
-        if(is_file('requisicao/' . $nome)){
-            require_once('requisicao/' . $nome);
+        if(is_file('requisicoes/' . $nome)){
+            require_once('requisicoes/' . $nome);
         }
     }else{ // precisa voltar   
         http_response_code(404);               
