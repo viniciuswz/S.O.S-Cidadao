@@ -2282,7 +2282,7 @@ jQuery(function($){
   var id_usu = hrefIDUsu.substring(hrefIDUsu.lastIndexOf('ID')+4); // pegar id do usuario
   
   /* CODIGO TEMPORARIO */
-      var indRespostaPrefeitura = "";
+      var $indRespostaPrefeitura = "";
       var $objSwitch = document.querySelector('.switch input');
       if($objSwitch != null){ // se for diferente de null sei que é a prefeitura respondendo
         $indRespostaPrefeitura = "&indUltimaResposta=" + $objSwitch.checked;
